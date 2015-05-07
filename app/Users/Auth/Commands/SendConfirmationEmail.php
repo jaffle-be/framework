@@ -7,10 +7,12 @@ use App\Users\User;
 use Illuminate\Contracts\Bus\SelfHandling;
 use Illuminate\Contracts\Mail\Mailer;
 use Illuminate\Contracts\Queue\ShouldBeQueued;
+use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Translation\Translator;
 
 class SendConfirmationEmail extends Command implements SelfHandling, ShouldBeQueued
 {
+    use InteractsWithQueue;
 
     /**
      * @var User
@@ -38,12 +40,17 @@ class SendConfirmationEmail extends Command implements SelfHandling, ShouldBeQue
 
         $subject = $lang->get('users::emails.confirm-email.subject');
 
-        $mail->send('users::emails.confirm-email', [
+        $send = $mail->send('users::emails.confirm-email', [
             'user'  => $user,
             'token' => $token
         ], function ($message) use ($user, $subject) {
             $message->to($user->email);
             $message->subject($subject);
         });
+
+        if($send)
+        {
+            $this->delete();
+        }
     }
 }

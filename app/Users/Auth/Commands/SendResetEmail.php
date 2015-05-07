@@ -7,10 +7,13 @@ use App\Users\Contracts\UserRepositoryInterface;
 use Illuminate\Contracts\Bus\SelfHandling;
 use Illuminate\Contracts\Mail\Mailer;
 use Illuminate\Contracts\Queue\ShouldBeQueued;
+use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Translation\Translator;
 
 class SendResetEmail extends Command implements SelfHandling, ShouldBeQueued
 {
+
+    use InteractsWithQueue;
 
     /**
      * @var
@@ -46,13 +49,19 @@ class SendResetEmail extends Command implements SelfHandling, ShouldBeQueued
 
             $subject = $lang->get('users::emails.reset-password.subject');
 
-            $mail->send('users::emails.reset-password', [
+            $send = $mail->send('users::emails.reset-password', [
                 'user'  => $user,
                 'token' => $token
             ], function ($message) use ($user, $subject) {
                 $message->to($user->email);
                 $message->subject($subject);
             });
+
+            if($send)
+            {
+                $this->delete();
+            }
+
         }
     }
 
