@@ -36,21 +36,28 @@ class SendConfirmationEmail extends Command implements SelfHandling, ShouldBeQue
     {
         $token = $tokens->createNewToken(Token::TYPE_CONFIRMATION, $this->user->email);
 
-        $user = $this->user;
-
-        $subject = $lang->get('users::emails.confirm-email.subject');
-
-        $send = $mail->send('users::emails.confirm-email', [
-            'user'  => $user,
-            'token' => $token
-        ], function ($message) use ($user, $subject) {
-            $message->to($user->email);
-            $message->subject($subject);
-        });
-
-        if($send)
+        if($token)
         {
-            $this->delete();
+            $user = $this->user;
+
+            $user->confirmationToken()->associate($token);
+
+            $subject = $lang->get('users::emails.confirm-email.subject');
+
+            $send = $mail->send('users::emails.confirm-email', [
+                'user'  => $user,
+                'token' => $token
+            ], function ($message) use ($user, $subject) {
+                $message->to($user->email);
+                $message->subject($subject);
+            });
+
+            if($send)
+            {
+                $this->delete();
+            }
+
+            $user->save();
         }
     }
 }
