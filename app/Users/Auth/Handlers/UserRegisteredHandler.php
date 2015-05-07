@@ -19,9 +19,9 @@ class UserRegisteredHandler
 
     public function handle(UserRegistered $event)
     {
-        $config = $this->config->get('users');
+        $auto_confirm = $this->config->get('users.auth.auto_confirmation');
 
-        if(!$config['auth.auto_confirmation'])
+        if(!$auto_confirm['auth.auto_confirmation'])
         {
             //we need to send an email to confirm their email address.
             $this->dispatch(new SendConfirmationEmail($event->user));

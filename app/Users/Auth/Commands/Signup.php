@@ -1,7 +1,6 @@
 <?php namespace App\Users\Auth\Commands;
 
 use App\Commands\Command;
-
 use App\Users\Auth\Events\UserRegistered;
 use App\Users\User;
 use Exception;
