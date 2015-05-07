@@ -2,10 +2,9 @@
 
 use App\Commands\Command;
 use App\Users\Auth\Tokens\Token;
+use App\Users\Contracts\TokenRepositoryInterface;
 use App\Users\Contracts\UserRepositoryInterface;
-use Carbon\Carbon;
 use Illuminate\Contracts\Bus\SelfHandling;
-use Illuminate\Contracts\Hashing\Hasher;
 use Illuminate\Contracts\Mail\Mailer;
 use Illuminate\Contracts\Queue\ShouldBeQueued;
 use Illuminate\Translation\Translator;
@@ -29,20 +28,17 @@ class SendResetEmail extends Command implements SelfHandling, ShouldBeQueued
     }
 
     /**
-     * Execute the command.
-     *
-     * @param Mailer                  $mail
-     * @param Carbon                  $carbon
-     * @param Translator              $lang
-     * @param Hasher                  $hash
-     * @param UserRepositoryInterface $users
+     * @param Mailer                   $mail
+     * @param TokenRepositoryInterface $tokens
+     * @param Translator               $lang
+     * @param UserRepositoryInterface  $users
      */
-    public function handle(Mailer $mail, Carbon $carbon, Translator $lang, Hasher $hash, UserRepositoryInterface $users)
+    public function handle(Mailer $mail, TokenRepositoryInterface $tokens, Translator $lang, UserRepositoryInterface $users)
     {
         $user = $users->findUserByEmail($this->email);
 
         if ($user) {
-            $token = $this->createNewToken($carbon, $hash);
+            $token = $tokens->createNewToken(Token::TYPE_RESET, $this->email);
 
             $user->resetToken()->associate($token);
 
@@ -60,14 +56,4 @@ class SendResetEmail extends Command implements SelfHandling, ShouldBeQueued
         }
     }
 
-    protected function createNewToken($carbon, $hash)
-    {
-        $token = new Token();
-
-        $token->type = Token::TYPE_RESET;
-        $token->value = $hash->make($this->email);
-        $token->expires_at = $carbon->addHours(2);
-
-        return $token->save() ? $token : false;
-    }
 }

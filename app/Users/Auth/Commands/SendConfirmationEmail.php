@@ -1,28 +1,38 @@
 <?php namespace App\Users\Auth\Commands;
 
 use App\Commands\Command;
-
 use App\Users\Auth\Tokens\Token;
+use App\Users\Contracts\TokenRepositoryInterface;
 use App\Users\User;
-use Carbon\Carbon;
 use Illuminate\Contracts\Bus\SelfHandling;
-use Illuminate\Contracts\Hashing\Hasher;
 use Illuminate\Contracts\Mail\Mailer;
 use Illuminate\Contracts\Queue\ShouldBeQueued;
 use Illuminate\Translation\Translator;
 
 class SendConfirmationEmail extends Command implements SelfHandling, ShouldBeQueued
 {
+
+    /**
+     * @var User
+     */
     protected $user;
 
+    /**
+     * @param User $user
+     */
     public function __construct(User $user)
     {
         $this->user = $user;
     }
 
-    public function handle(Mailer $mail, Translator $lang, Carbon $carbon, Hasher $hash)
+    /**
+     * @param Mailer                   $mail
+     * @param Translator               $lang
+     * @param TokenRepositoryInterface $tokens
+     */
+    public function handle(Mailer $mail, Translator $lang, TokenRepositoryInterface $tokens)
     {
-        $token = $this->createNewToken($carbon, $hash);
+        $token = $tokens->createNewToken(Token::TYPE_CONFIRMATION, $this->user->email);
 
         $user = $this->user;
 
@@ -35,19 +45,5 @@ class SendConfirmationEmail extends Command implements SelfHandling, ShouldBeQue
             $message->to($user->email);
             $message->subject($subject);
         });
-    }
-
-    protected function createNewToken(Carbon $carbon, Hasher $hash)
-    {
-        $token = new Token();
-        $token->type = Token::TYPE_CONFIRMATION;
-        $token->value = $hash->make($this->user->email);
-        $token->expires_at = $carbon->addDays(3);
-
-        $token->save();
-
-        $this->user->confirmationToken()->associate($token);
-
-        return $this->user->save() ? $token : false;
     }
 }
