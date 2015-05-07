@@ -33,7 +33,6 @@ class TokenRepository implements TokenRepositoryInterface
     {
         if ($this->validate($type)) {
             $token = new Token();
-
             $token->type = $type;
             $token->value = $this->hash($value);
             $token->expires_at = $this->carbon->addHours($expires);
@@ -66,7 +65,8 @@ class TokenRepository implements TokenRepositoryInterface
     {
         $hash = $this->hasher->make($value);
 
-        while (strpos('/', $hash) !== false) {
+        while (strpos($hash, '/') !== false) {
+
             $hash = $this->hasher->make($value);
         }
 
