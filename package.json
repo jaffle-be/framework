@@ -1,0 +1,14 @@
+{
+  "private": true,
+  "devDependencies": {
+    "gulp": "^3.8.11",
+    "bootstrap": "^3.3.2",
+    "font-awesome": "^4.3.0",
+    "gulp-copy": "0.0.2",
+    "gulp-less": "^3.0.1",
+    "gulp-minify-css": "^1.0.0",
+    "gulp-watch": "^4.1.1",
+    "jquery": "^2.1.3",
+    "metismenu": "^1.1.3"
+  }
+}

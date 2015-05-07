@@ -1,0 +1,19 @@
+//padding from header and footer is taken care of by layout-wrapper
+#layout-sidebar{
+	display: none;
+}
+
+@media(min-width: @screen-sm)
+{
+	#layout-sidebar{
+		padding-top: 77px;
+		.make-sm-column(2);
+		display:block;
+		position: fixed;
+		top: 0;
+		bottom: 0;
+		height: 100%;
+		border-right: 1px solid @brand-primary-dark;
+	}
+
+}
