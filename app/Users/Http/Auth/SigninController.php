@@ -27,7 +27,11 @@ class SigninController extends Controller{
         }
         else if(is_string($response) && $response == 'unconfirmed')
         {
-            return redirect()->back()->withErrors(['email' => $lang->get('users::auth.errors.unconfirmed')]);
+            $route = route('confirm-email.create', ['email' => $credentials['email']]);
+
+            $error = $lang->get('users::auth.errors.unconfirmed', ['url' => $route]);
+
+            return redirect()->back()->withErrors(['email' => $error]);
         }
 
         return redirect()->back()->withErrors(['email' => $lang->get('users::auth.errors.failed')]);
