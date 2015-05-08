@@ -22,7 +22,7 @@
 
                     @if($errors->has('email'))
                         <p class="alert alert-danger">
-                            {{ $errors->first('email') }}
+                            {!! $errors->first('email') !!}
                         </p>
                     @endif
 

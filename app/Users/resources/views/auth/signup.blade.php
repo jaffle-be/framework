@@ -25,7 +25,7 @@
 
                         @if($errors->has('email'))
                             <p class="alert alert-danger">
-                                {{ $errors->first('email') }}
+                                {!! $errors->first('email') !!}
                             </p>
                         @endif
 
@@ -39,7 +39,7 @@
 
                         @if($errors->has('password'))
                             <p class="alert alert-danger">
-                                {{ $errors->first('password') }}
+                                {!! $errors->first('password') !!}
                             </p>
                         @endif
 
@@ -53,7 +53,7 @@
 
                         @if($errors->has('password_confirmation'))
                             <p class="alert alert-danger">
-                                {{ $errors->first('password_confirmation') }}
+                                {!! $errors->first('password_confirmation') !!}
                             </p>
                         @endif
 

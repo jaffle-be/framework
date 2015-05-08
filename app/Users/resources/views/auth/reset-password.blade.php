@@ -36,7 +36,7 @@
 
             @if($errors->count())
                 <p class="alert alert-danger">
-                    {{ $errors->first() }}
+                    {!! $errors->first() !!}
                 </p>
             @endif
 
