@@ -2,7 +2,7 @@
 
     'confirm-email' => [
         'subject' => 'Welcome to our application.',
-        'intro'   => 'Thanks :user for signing up!',
+        'intro'   => 'Thanks for signing up!',
         'link'    => 'Please click <a class="alert-link" href=":url">this</a> confirmation link ',
         'outro'   => 'Enjoy our product',
     ],

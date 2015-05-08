@@ -3,7 +3,7 @@
 @section('content')
 
     <p>
-        {{ Lang::get('users::emails.confirm-email.intro', [':user' => $user->email]) }}
+        {{ Lang::get('users::emails.confirm-email.intro') }}
     </p>
 
     <p class="alert alert-success">
