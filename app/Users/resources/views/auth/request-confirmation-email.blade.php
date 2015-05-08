@@ -10,13 +10,15 @@
 
                 <h2>{{ Lang::get('auth.request-confirmation-email') }}</h2>
 
-                <form action="{{ route('confirm-email.store') }}">
+                <form action="{{ route('confirm-email.store') }}" method="POST">
+
+                    <input name="_token" type="hidden" value="{{ csrf_token() }}"/>
 
                     <div class="form-group">
                         <label for="email" class="control-label">{{ Lang::get('users::general.email') }}</label>
 
                         <div>
-                            <input type="text" name="email" id="email" class="form-control" value="{{ Input::old('email') }}"/>
+                            <input type="text" name="email" id="email" class="form-control" value="{{ $email ? $email : Input::old('email') }}"/>
                         </div>
                     </div>
 
