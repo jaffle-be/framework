@@ -10,7 +10,7 @@
 
                 <h2>{{ Lang::get('users::general.forgot-password') }}</h2>
 
-                <form action="{{ route('forgot-password.store') }}" method="post">
+                <form action="{{ route('forgot-password.update') }}" method="post">
 
                     <input value="{{csrf_token()}}" name="_token" type="hidden"/>
 
