@@ -6,7 +6,7 @@ class MenuItem extends Model{
 
     protected $table = 'menu_items';
 
-    protected $fillable = ['name', 'menu_id', 'url', 'menuable_id', 'menuable_type', 'parent_id', 'label', 'title', 'css_class'];
+    protected $fillable = ['name', 'menu_id', 'parent_id', 'url', 'menuable_id', 'menuable_type', 'label', 'title', 'css_class'];
 
     public function parent()
     {

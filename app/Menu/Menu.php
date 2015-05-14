@@ -10,7 +10,7 @@ class Menu extends Model{
 
     public function items()
     {
-        return $this->hasMany('App\Menu\MenuItem', 'menu_id');
+        return $this->hasMany('App\Menu\MenuItem', 'menu_id')->whereNull('parent_id');
     }
 
     public function scopeSupported($query, array $supported)

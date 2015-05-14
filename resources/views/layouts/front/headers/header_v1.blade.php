@@ -55,7 +55,18 @@
                     <ul class="nav navbar-nav">
 
                         @foreach(Menu::get('primary menu')->items as $item)
-                            <li><a href="{{ $item->url }}">{{ $item->name }}</a></li>
+                            @if($item->children->count() == 0)
+                                <li><a href="{{ $item->url }}">{{ $item->name }}</a></li>
+                            @else
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ $item->name }}</a>
+                                    <ul class="dropdown-menu">
+                                        @foreach($item->children as $child)
+                                            <li><a href="{{ $child->url }}">{{ $child->name }}</a></li>
+                                        @endforeach
+                                    </ul>
+                                </li>
+                            @endif
                         @endforeach
 
                         <!-- Search Block -->
