@@ -4,13 +4,23 @@ use Illuminate\Database\Eloquent\Model;
 
 class MenuItem extends Model{
 
-    protected $table = 'system_menu_items';
+    protected $table = 'menu_items';
 
-    protected $fillable = ['name', 'menu_id', 'menuable_id', 'menuable_type', 'label', 'title', 'css_class'];
+    protected $fillable = ['name', 'menu_id', 'url', 'menuable_id', 'menuable_type', 'parent_id', 'label', 'title', 'css_class'];
+
+    public function parent()
+    {
+
+    }
 
     public function menu()
     {
         return $this->belongsTo('Menu\Menu', 'menu_id');
+    }
+
+    public function children()
+    {
+        return $this->hasMany('App\Menu\Menuitem', 'parent_id');
     }
 
     public function item()

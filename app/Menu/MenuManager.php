@@ -62,7 +62,7 @@ class MenuManager
      *
      * @return mixed
      */
-    public function items($menu)
+    public function get($menu)
     {
         //by the time the first menu is rendered, we should know all supported menu's for the current theme.
         if (!static::$hasBeenLoaded) {
@@ -71,8 +71,7 @@ class MenuManager
 
         //if the menu is supported by the current theme, we'll render it.
         if (in_array($menu, $this->supports)) {
-
-            return $this->items('items');
+            return $this->loaded[$menu];
         }
     }
 
@@ -83,7 +82,7 @@ class MenuManager
 
         foreach($menus as $menu)
         {
-            $this->loaded[$menu->menu_hook] = $menu;
+            $this->loaded[$menu->name] = $menu;
         }
 
         //set loaded status

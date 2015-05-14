@@ -26,7 +26,7 @@
 
     {{--we preinclude the header and footer here so we can adjust the styles and scripts accordingly in the proper sections of the html--}}
     {{--if we didn't do this, styles would not be in the head section, thus slowing down the site.--}}
-    @include('layouts.front.headers.header_default')
+    @include('layouts.front.headers.header_v6_classic_dark')
     @include('layouts.front.footers.footer_default')
 
 
