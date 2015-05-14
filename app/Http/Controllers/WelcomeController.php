@@ -6,7 +6,7 @@ WelcomeController extends Controller
 
     public function index()
     {
-        return view('layouts.back');
+        return view('home');
     }
 
     public function start()
