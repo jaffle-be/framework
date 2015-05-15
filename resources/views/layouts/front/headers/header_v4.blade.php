@@ -1,5 +1,5 @@
 @section('styles-header')
-    <link rel="stylesheet" href="assets/css/headers/header-v4.css">
+    <link rel="stylesheet" href="{{ asset('assets/css/headers/header-v4.css') }}">
 @stop
 
 @section('header')
@@ -43,11 +43,11 @@
                     <div class="row">
                         <div class="col-md-2">
                             <a class="navbar-brand" href="index.html">
-                                <img id="logo-header" src="assets/img/logo1-default.png" alt="Logo">
+                                <img id="logo-header" src="{{ asset('/assets/img/logo1-default.png') }}" alt="Logo">
                             </a>
                         </div>
                         <div class="col-md-10">
-                            <a href="#"><img class="header-banner img-responsive" src="assets/img/banners/adds.jpg" width="1000" alt=""></a>
+                            <a href="#"><img class="header-banner img-responsive" src="{{ asset('/assets/img/banners/adds.jpg') }}" width="1000" alt=""></a>
                         </div>
                     </div>
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">

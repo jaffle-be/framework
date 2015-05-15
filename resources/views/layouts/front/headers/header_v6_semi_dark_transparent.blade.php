@@ -1,5 +1,5 @@
 @section('styles-header')
-    <link rel="stylesheet" href="assets/css/headers/header-v6.css">
+    <link rel="stylesheet" href="{{ asset('assets/css/headers/header-v6.css') }}">
 @stop
 @section('header')
     <!--=== Header v6 ===-->
@@ -19,8 +19,8 @@
                     <!-- Navbar Brand -->
                     <div class="navbar-brand">
                         <a href="index.html">
-                            <img class="default-logo" src="assets/img/logo3-light.png" alt="Logo">
-                            <img class="shrink-logo" src="assets/img/logo3-dark.png" alt="Logo">
+                            <img class="default-logo" src="{{ asset('/assets/img/logo3-light.png') }}" alt="Logo">
+                            <img class="shrink-logo" src="{{ asset('/assets/img/logo3-dark.png') }}" alt="Logo">
                         </a>
                     </div>
                     <!-- ENd Navbar Brand -->

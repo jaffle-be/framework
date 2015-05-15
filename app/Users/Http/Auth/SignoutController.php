@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Controller;
 use App\Users\Auth\Commands\Signout;
+use Lang;
 
 class SignoutController extends Controller{
 
@@ -11,7 +12,7 @@ class SignoutController extends Controller{
 
         $this->dispatch($command);
 
-        return redirect()->route('home');
+        return redirect()->route('signin.index')->withSuccess(Lang::get('users::general.logout_success'));
     }
 
 }

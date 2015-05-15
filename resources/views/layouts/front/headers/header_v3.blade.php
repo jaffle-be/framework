@@ -1,5 +1,5 @@
 @section('styles-header')
-    <link rel="stylesheet" href="assets/css/headers/header-v3.css">
+    <link rel="stylesheet" href="{{ asset('assets/css/headers/header-v3.css') }}">
 @stop
 
 @section('header')
@@ -15,7 +15,7 @@
                     <span class="fa fa-bars"></span>
                 </button>
                 <a class="navbar-brand" href="index.html">
-                    <img id="logo-header" src="assets/img/logo1-default.png" alt="Logo">
+                    <img id="logo-header" src="{{ asset('/assets/img/logo1-default.png') }}" alt="Logo">
                 </a>
             </div>
 

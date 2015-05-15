@@ -26,12 +26,12 @@
     <div class="container content">
         <div class="row">
             <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
-                <form class="reg-page" action="{{ route('forgot-password.store') }}" method="post">
+                <form class="reg-page" action="{{ route('signin.store') }}" method="POST">
 
                     <input value="{{csrf_token()}}" name="_token" type="hidden"/>
 
                     <div class="reg-header">
-                        <h2>{{ Lang::get('users::general.forgot-password') }}</h2>
+                        <h2>{{ Lang::get('users::general.signin') }}</h2>
                     </div>
 
                     <div class="input-group margin-bottom-20">
@@ -45,16 +45,44 @@
                         </p>
                     @endif
 
-                    <div class="row">
-                        <div class="col-md-6">
-                            <button class="btn-u btn-lg" type="submit">{{ Lang::get('users::general.submit') }}</button>
-                        </div>
+                    <div class="input-group margin-bottom-20">
+                        <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                        <input name="password" id="password" type="password" placeholder="{{ Lang::get('users::general.password') }}" class="form-control">
+                    </div>
 
+                    @if($errors->has('password'))
+                        <p class="alert alert-danger">
+                            {!! $errors->first('password') !!}
+                        </p>
+                    @endif
+
+                    <div class="row">
+                        <div class="col-md-6 checkbox">
+                            <label><input type="checkbox" name="remember_me" value="1" {{Input::old('remember_me') ? 'checked': ''}}>{{ Lang::get('users::general.remember-me') }}
+                            </label>
+                        </div>
                         <div class="col-md-6">
-                            <a class="pull-right btn-u btn-lg btn-default" href="{{ route('signin.index') }}">{{ Lang::get('users::general.back') }}</a>
+                            <button class="btn-u pull-right" type="submit">{{ Lang::get('users::general.signin') }}</button>
                         </div>
                     </div>
 
+                    @if($errors->has('reason'))
+                        <p class="alert alert-danger">
+                            {!! $errors->first('reason') !!}
+                        </p>
+                    @endif
+
+                    @if(Session::has('success'))
+                        <p class="alert alert-success">{{ Session::get('success') }}</p>
+                    @endif
+
+                    <hr>
+
+                    <h4>{{ Lang::get('users::general.forgot-password') }}</h4>
+
+                    <p>
+                        {!! Lang::get('users::general.forgot-password-text', ['url' => route('forgot-password.index')]) !!}
+                    </p>
                 </form>
             </div>
         </div>

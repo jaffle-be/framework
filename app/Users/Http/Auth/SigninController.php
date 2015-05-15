@@ -10,7 +10,7 @@ class SigninController extends Controller{
 
     public function index()
     {
-        return view('users::auth.signin');
+        return view('users::auth.login');
     }
 
     public function store(SignInRequest $request, Translator $lang)

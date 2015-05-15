@@ -1,5 +1,5 @@
 @section('styles-header')
-    <link rel="stylesheet" href="assets/css/headers/header-default.css">
+    <link rel="stylesheet" href="{{ asset('assets/css/headers/header-default.css') }}">
 @stop
 
 @section('header')
@@ -9,7 +9,7 @@
         <div class="container">
             <!-- Logo -->
             <a class="logo" href="index.html">
-                <img src="assets/img/logo1-default.png" alt="Logo">
+                <img src="{{ asset('/assets/img/logo1-default.png') }}" alt="Logo">
             </a>
             <!-- End Logo -->
 

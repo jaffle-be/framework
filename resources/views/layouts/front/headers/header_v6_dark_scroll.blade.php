@@ -1,5 +1,5 @@
 @section('styles-header')
-    <link rel="stylesheet" href="assets/css/headers/header-v6.css">
+    <link rel="stylesheet" href="{{ asset('assets/css/headers/header-v6.css') }}">
 @stop
 @section('header')
     <div class="header-v6 header-dark-scroll header-sticky">
@@ -18,7 +18,7 @@
                     <!-- Navbar Brand -->
                     <div class="navbar-brand">
                         <a href="index.html">
-                            <img class="default-logo" src="assets/img/logo3-light.png" alt="Logo">
+                            <img class="default-logo" src="{{ asset('/assets/img/logo3-light.png') }}" alt="Logo">
                         </a>
                     </div>
                     <!-- ENd Navbar Brand -->

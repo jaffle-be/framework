@@ -1,12 +1,12 @@
 @section('styles-footer')
-    <link rel="stylesheet" href="assets/css/footers/footer-default.css">
+    <link rel="stylesheet" href="{{ asset('assets/css/footers/footer-default.css') }}">
 @stop
 
             <!-- JS Implementing Plugins -->
 @section('scripts-footer')
-    <script type="text/javascript" src="assets/plugins/back-to-top.js"></script>
-    <script type="text/javascript" src="assets/plugins/smoothScroll.js"></script>
-    <script type="text/javascript" src="assets/plugins/jquery.parallax.js"></script>
+    <script type="text/javascript" src="{{ asset('assets/plugins/back-to-top.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/plugins/smoothScroll.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/plugins/jquery.parallax.js') }}"></script>
 @stop
 
 @section('footer')
@@ -43,7 +43,7 @@
                         <div class="posts">
                             <div class="headline"><h2>Recent Blog Entries</h2></div>
                             <dl class="dl-horizontal">
-                                <dt><a href="#"><img src="assets/img/sliders/elastislide/6.jpg" alt=""/></a></dt>
+                                <dt><a href="#"><img src="{{ asset('/assets/img/sliders/elastislide/6.jpg') }}" alt=""/></a></dt>
                                 <dd>
                                     <p>
                                         <a href="#">Anim moon officia Unify is an incredibly beautiful responsive Bootstrap Template</a>
@@ -51,7 +51,7 @@
                                 </dd>
                             </dl>
                             <dl class="dl-horizontal">
-                                <dt><a href="#"><img src="assets/img/sliders/elastislide/10.jpg" alt=""/></a></dt>
+                                <dt><a href="#"><img src="{{ asset('/assets/img/sliders/elastislide/10.jpg') }}" alt=""/></a></dt>
                                 <dd>
                                     <p>
                                         <a href="#">Anim moon officia Unify is an incredibly beautiful responsive Bootstrap Template</a>
@@ -59,7 +59,7 @@
                                 </dd>
                             </dl>
                             <dl class="dl-horizontal">
-                                <dt><a href="#"><img src="assets/img/sliders/elastislide/11.jpg" alt=""/></a></dt>
+                                <dt><a href="#"><img src="{{ asset('/assets/img/sliders/elastislide/11.jpg') }}" alt=""/></a></dt>
                                 <dd>
                                     <p>
                                         <a href="#">Anim moon officia Unify is an incredibly beautiful responsive Bootstrap Template</a>
@@ -113,7 +113,7 @@
                     </div>
                     <div class="col-md-6">
                         <a href="index.html">
-                            <img class="pull-right" id="logo-footer" src="assets/img/logo2-default.png" alt="">
+                            <img class="pull-right" id="logo-footer" src="{{ asset('/assets/img/logo2-default.png') }}" alt="">
                         </a>
                     </div>
                 </div>

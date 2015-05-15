@@ -1,12 +1,12 @@
 @section('styles-footer')
-    <link rel="stylesheet" href="assets/css/footers/footer-v4.css">
+    <link rel="stylesheet" href="{{ asset('assets/css/footers/footer-v4.css') }}">
 @stop
 
 @section('scripts-footer')
     <!-- JS Implementing Plugins -->
-    <script type="text/javascript" src="assets/plugins/back-to-top.js"></script>
-    <script type="text/javascript" src="assets/plugins/smoothScroll.js"></script>
-    <script type="text/javascript" src="assets/plugins/jquery.parallax.js"></script>
+    <script type="text/javascript" src="{{ asset('assets/plugins/back-to-top.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/plugins/smoothScroll.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/plugins/jquery.parallax.js') }}"></script>
 @stop
 
 @section('footer')
@@ -17,7 +17,7 @@
                 <div class="row">
                     <!-- About -->
                     <div class="col-md-4 md-margin-bottom-40">
-                        <a href="index.html"><img class="footer-logo" src="assets/img/logo-2.png" alt=""></a>
+                        <a href="index.html"><img class="footer-logo" src="{{ asset('/assets/img/logo-2.png') }}" alt=""></a>
 
                         <p>About Unify dolor sit amet, consectetur adipiscing elit. Maecenas eget nisl id libero tincidunt sodales.</p>
                         <br>

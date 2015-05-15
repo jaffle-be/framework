@@ -1,5 +1,5 @@
 @section('styles-header')
-<link rel="stylesheet" href="assets/css/headers/header-v2.css">
+<link rel="stylesheet" href="{{ asset('assets/css/headers/header-v2.css') }}">
 @stop
 
 @section('header')
@@ -32,8 +32,8 @@
                     </div>
                     <div class="col-sm-4">
                         <div class="topbar-buttons pull-right">
-                            <a href="page_login.html" class="btn-u btn-brd btn-brd-hover btn-u-light margin-right-5">Sign In</a>
-                            <a href="page_registration.html" class="btn-u">Sign Up</a>
+                            <a href="{{ route('signin.index') }}" class="btn-u btn-brd btn-brd-hover btn-u-light margin-right-5">Sign In</a>
+                            <a href="{{ route('signup.index') }}" class="btn-u">Sign Up</a>
                         </div>
                     </div>
                 </div>
@@ -51,7 +51,7 @@
                         <span class="fa fa-bars"></span>
                     </button>
                     <a class="navbar-brand brand-style" href="index.html">
-                        <img id="logo-header" src="assets/img/logo1-default.png" width="85" height="32" alt="Logo">
+                        <img id="logo-header" src="{{ asset('/assets/img/logo1-default.png') }}" width="85" height="32" alt="Logo">
                     </a>
                 </div>
 

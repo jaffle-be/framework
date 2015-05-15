@@ -1,7 +1,7 @@
 <? throw new Exception('this footer needs implementation for javascript and the form etc') ?>
 
 @section('styles-footer')
-    <link rel="stylesheet" href="assets/css/footers/footer-v7.css">
+    <link rel="stylesheet" href="{{ asset('assets/css/footers/footer-v7.css') }}">
 @stop
 @section('footer')
 
@@ -86,13 +86,13 @@
     <!-- JS Implementing Plugins -->
     {{--@todo: this part needs cleanup, this is not properly done--}}
 
-    <script type="text/javascript" src="assets/plugins/back-to-top.js"></script>
-    <script type="text/javascript" src="assets/plugins/smoothScroll.js"></script>
-    <script type="text/javascript" src="assets/plugins/sky-forms-pro/skyforms/js/jquery.form.min.js"></script>
-    <script type="text/javascript" src="assets/plugins/sky-forms-pro/skyforms/js/jquery.validate.min.js"></script>
-    <script type="text/javascript" src="assets/js/app.js"></script>
-    <script type="text/javascript" src="assets/js/forms/login.js"></script>
-    <script type="text/javascript" src="assets/js/forms/contact.js"></script>
+    <script type="text/javascript" src="{{ asset('assets/plugins/back-to-top.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/plugins/smoothScroll.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/plugins/sky-forms-pro/skyforms/js/jquery.form.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/plugins/sky-forms-pro/skyforms/js/jquery.validate.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/js/app.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/js/forms/login.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/js/forms/contact.js') }}"></script>
     <script type="text/javascript">
         jQuery(document).ready(function () {
             App.init();

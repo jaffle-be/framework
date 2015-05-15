@@ -1,11 +1,11 @@
 @section('styles-footer')
-    <link rel="stylesheet" href="assets/css/footers/footer-v5.css">
+    <link rel="stylesheet" href="{{ asset('assets/css/footers/footer-v5.css') }}">
 @stop
 
 @section('scripts-footer')
-    <script type="text/javascript" src="assets/plugins/back-to-top.js"></script>
-    <script type="text/javascript" src="assets/plugins/smoothScroll.js"></script>
-    <script type="text/javascript" src="assets/plugins/jquery.parallax.js"></script>
+    <script type="text/javascript" src="{{ asset('assets/plugins/back-to-top.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/plugins/smoothScroll.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/plugins/jquery.parallax.js') }}"></script>
 @stop
 
 @section('footer')
@@ -55,7 +55,7 @@
                         <div class="heading-footer"><h2>Recent Blog Entries</h2></div>
                         <ul class="list-unstyled thumb-news">
                             <li>
-                                <img class="radius-3x" src="assets/img/thumb/01.jpg" alt="">
+                                <img class="radius-3x" src="{{ asset('/assets/img/thumb/01.jpg') }}" alt="">
 
                                 <div class="overflow-h">
                                     <a href="#">Praesent ut consectetur diam.</a>
@@ -63,7 +63,7 @@
                                 </div>
                             </li>
                             <li>
-                                <img class="radius-3x" src="assets/img/thumb/02.jpg" alt="">
+                                <img class="radius-3x" src="{{ asset('/assets/img/thumb/02.jpg') }}" alt="">
 
                                 <div class="overflow-h">
                                     <a href="#">Maecenas pharetra tellus et fringilla.</a>
