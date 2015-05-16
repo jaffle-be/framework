@@ -149,6 +149,7 @@ return [
         'App\Settings\SettingServiceProvider',
         'App\Modules\ModuleServiceProvider',
         'App\Users\UserServiceProvider',
+        'App\Shop\ShopServiceProvider',
 
     ],
 

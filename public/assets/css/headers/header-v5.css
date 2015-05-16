@@ -784,6 +784,91 @@
     [5. Header - Mega Menu]
 ----------------------------------------------------*/
 
+/*Topbar*/
+.header-fixed .header-v5.header-fixed-shrink .topbar {
+    display: none;
+}
+
+/*No Topbar*/
+.header-fixed .header-v5.no-topbar {
+    height: 78px;
+}
+
+.header-fixed .header-v5.no-topbar.header-fixed-shrink {
+    height: 95px;
+    margin-top: -35px;
+}
+
+.header-fixed .header-v5.no-topbar.header-fixed-shrink .navbar-brand {
+    top: 46px;
+}
+
+.header-fixed .header-v5.no-topbar.header-fixed-shrink .shop-badge.badge-lists {
+    margin-top: 26px;
+}
+
+.header-fixed .header-v5.no-topbar.header-fixed-shrink .shop-badge.badge-lists > li {
+    padding-bottom: 17px;
+}
+
+.header-fixed .header-v5.no-topbar.header-fixed-shrink .shop-badge .badge-open {
+    top: 69px;
+}
+
+.header-fixed .header-v5.no-topbar.header-fixed-shrink .navbar-nav > li > .dropdown-menu {
+    margin-top: -1px;
+}
+
+/*Brand*/
+.header-fixed .header-v5.header-fixed-shrink .navbar-brand {
+    top: 15px;
+    z-index: 1;
+    position: relative;
+    padding: 0 10px 10px;
+}
+
+.header-fixed .header-v5.header-fixed-shrink .navbar-brand img {
+    width: 90%;
+}
+
+.header-fixed .header-v5.header-fixed-shrink .navbar-nav > li > .dropdown-menu {
+    margin-top: -8px;
+}
+
+/*Badge List*/
+.header-fixed .header-v5.header-fixed-shrink .shop-badge.badge-lists {
+    margin-top: -3px;
+}
+
+.header-fixed .header-v5.header-fixed-shrink .shop-badge .badge-open {
+    top: 70px;
+}
+
+@media (max-width: 991px) {
+    /*Header*/
+    .header-fixed .header-v5,
+    .header-fixed .header-v5.header-fixed-shrink,
+    .header-fixed .header-v5.no-topbar,
+    .header-fixed .header-v5.no-topbar.header-fixed-shrink {
+        height: inherit;
+        position: relative;
+    }
+}
+
+@media (min-width: 992px) {
+    .header-fixed .header-v5.header-fixed-shrink .navbar-nav > li > a {
+        font-size: 15px;
+        margin-top: 2px;
+        padding: 17px 18px 26px;
+    }
+
+    /*No Topbar*/
+    .header-fixed .header-v5.no-topbar.header-fixed-shrink .navbar-nav > li > a {
+        margin-top: 35px;
+        padding: 14px 17px 16px;
+    }
+}
+
 /*Mega Menu
 ------------------------------------*/
 .header-v5 .mega-menu .nav,
