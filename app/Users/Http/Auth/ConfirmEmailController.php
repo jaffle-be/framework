@@ -43,7 +43,7 @@ class ConfirmEmailController extends Controller
             $this->dispatchFromArray(SendConfirmationEmail::class, ['user' => $user]);
         }
 
-        return redirect()->route('signin.index');
+        return redirect()->route('signin.index')->withSuccess(Lang::get('users::general.request-handled'));
     }
 
     /**

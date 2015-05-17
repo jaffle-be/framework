@@ -149,6 +149,9 @@ return [
         'App\Settings\SettingServiceProvider',
         'App\Modules\ModuleServiceProvider',
         'App\Users\UserServiceProvider',
+        'App\Shop\ShopServiceProvider',
+        'App\Contact\ContactServiceProvider',
+        'App\Blog\BlogServiceProvider',
 
     ],
 
@@ -197,6 +200,11 @@ return [
         'URL'       => 'Illuminate\Support\Facades\URL',
         'Validator' => 'Illuminate\Support\Facades\Validator',
         'View'      => 'Illuminate\Support\Facades\View',
+
+
+        //Application aliases
+
+        'Menu' => 'App\Menu\Facade\Menu',
 
     ],
 

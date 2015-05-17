@@ -11,7 +11,7 @@ class SignupController extends Controller{
     {
         $user = new User();
 
-        return view('users::auth.signup', compact('user'));
+        return view('users::auth.register', compact('user'));
     }
 
     public function store(SignupRequest $request)
