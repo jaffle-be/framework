@@ -151,6 +151,7 @@ return [
         'App\Users\UserServiceProvider',
         'App\Shop\ShopServiceProvider',
         'App\Contact\ContactServiceProvider',
+        'App\Blog\BlogServiceProvider',
 
     ],
 
