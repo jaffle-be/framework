@@ -157,7 +157,7 @@
                     </form>
 
                     <div class="margin-bottom-20"></div>
-                    <p class="text-center">Already you have an account? <a href="shop-ui-login.html">Sign In</a></p>
+                    <p class="text-center">Already you have an account? <a href="{{ route('shop.login') }}">Sign In</a></p>
                 </div>
             </div>
             <!--/end row-->

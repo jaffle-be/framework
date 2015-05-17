@@ -6,7 +6,7 @@ class CheckoutController extends Controller{
 
     public function index()
     {
-        return 'the checkout controller';
+        return view('shop::checkout');
     }
 
 }

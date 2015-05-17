@@ -6,7 +6,7 @@
         <div class="thumb-product">
             <img class="thumb-product-img" src="{{ asset('/assets/img/thumb/08.jpg') }}" alt="">
             <div class="thumb-product-in">
-                <h4><a href="shop-ui-inner.html">Yuketen</a> – <a href="shop-ui-inner.html">Derby Shoe</a></h4>
+                <h4><a href="{{ route('shop.product') }}">Yuketen</a> – <a href="{{ route('shop.product') }}">Derby Shoe</a></h4>
                 <span class="thumb-product-type">Footwear - Oxfords</span>
             </div>
             <ul class="list-inline overflow-h">
@@ -18,7 +18,7 @@
         <div class="thumb-product">
             <img class="thumb-product-img" src="{{ asset('/assets/img/thumb/09.jpg') }}" alt="">
             <div class="thumb-product-in">
-                <h4><a href="shop-ui-inner.html">Yuketen</a> – <a href="shop-ui-inner.html">Derby Shoe</a></h4>
+                <h4><a href="{{ route('shop.product') }}">Yuketen</a> – <a href="{{ route('shop.product') }}">Derby Shoe</a></h4>
                 <span class="thumb-product-type">Footwear - Oxfords</span>
             </div>
             <ul class="list-inline overflow-h">
@@ -29,7 +29,7 @@
         <div class="thumb-product">
             <img class="thumb-product-img" src="{{ asset('/assets/img/thumb/03.jpg') }}" alt="">
             <div class="thumb-product-in">
-                <h4><a href="shop-ui-inner.html">Yuketen</a> – <a href="shop-ui-inner.html">Derby Shoe</a></h4>
+                <h4><a href="{{ route('shop.product') }}">Yuketen</a> – <a href="{{ route('shop.product') }}">Derby Shoe</a></h4>
                 <span class="thumb-product-type">Footwear - Oxfords</span>
             </div>
             <ul class="list-inline overflow-h">
@@ -45,7 +45,7 @@
         <div class="thumb-product">
             <img class="thumb-product-img" src="{{ asset('/assets/img/thumb/02.jpg') }}" alt="">
             <div class="thumb-product-in">
-                <h4><a href="shop-ui-inner.html">Yuketen</a> – <a href="shop-ui-inner.html">Derby Shoe</a></h4>
+                <h4><a href="{{ route('shop.product') }}">Yuketen</a> – <a href="{{ route('shop.product') }}">Derby Shoe</a></h4>
                 <span class="thumb-product-type">Footwear - Oxfords</span>
             </div>
             <ul class="list-inline overflow-h">
@@ -56,7 +56,7 @@
         <div class="thumb-product">
             <img class="thumb-product-img" src="{{ asset('/assets/img/thumb/10.jpg') }}" alt="">
             <div class="thumb-product-in">
-                <h4><a href="shop-ui-inner.html">Yuketen</a> – <a href="shop-ui-inner.html">Derby Shoe</a></h4>
+                <h4><a href="{{ route('shop.product') }}">Yuketen</a> – <a href="{{ route('shop.product') }}">Derby Shoe</a></h4>
                 <span class="thumb-product-type">Footwear - Oxfords</span>
             </div>
             <ul class="list-inline overflow-h">
@@ -67,7 +67,7 @@
         <div class="thumb-product">
             <img class="thumb-product-img" src="{{ asset('/assets/img/thumb/06.jpg') }}" alt="">
             <div class="thumb-product-in">
-                <h4><a href="shop-ui-inner.html">Yuketen</a> – <a href="shop-ui-inner.html">Derby Shoe</a></h4>
+                <h4><a href="{{ route('shop.product') }}">Yuketen</a> – <a href="{{ route('shop.product') }}">Derby Shoe</a></h4>
                 <span class="thumb-product-type">Footwear - Oxfords</span>
             </div>
             <ul class="list-inline overflow-h">
@@ -84,7 +84,7 @@
         <div class="thumb-product">
             <img class="thumb-product-img" src="{{ asset('/assets/img/thumb/07.jpg') }}" alt="">
             <div class="thumb-product-in">
-                <h4><a href="shop-ui-inner.html">Yuketen</a> – <a href="shop-ui-inner.html">Derby Shoe</a></h4>
+                <h4><a href="{{ route('shop.product') }}">Yuketen</a> – <a href="{{ route('shop.product') }}">Derby Shoe</a></h4>
                 <span class="thumb-product-type">Footwear - Oxfords</span>
             </div>
             <ul class="list-inline overflow-h">
@@ -96,7 +96,7 @@
         <div class="thumb-product">
             <img class="thumb-product-img" src="{{ asset('/assets/img/thumb/04.jpg') }}" alt="">
             <div class="thumb-product-in">
-                <h4><a href="shop-ui-inner.html">Yuketen</a> – <a href="shop-ui-inner.html">Derby Shoe</a></h4>
+                <h4><a href="{{ route('shop.product') }}">Yuketen</a> – <a href="{{ route('shop.product') }}">Derby Shoe</a></h4>
                 <span class="thumb-product-type">Footwear - Oxfords</span>
             </div>
             <ul class="list-inline overflow-h">
@@ -107,7 +107,7 @@
         <div class="thumb-product">
             <img class="thumb-product-img" src="{{ asset('/assets/img/thumb/05.jpg') }}" alt="">
             <div class="thumb-product-in">
-                <h4><a href="shop-ui-inner.html">Yuketen</a> – <a href="shop-ui-inner.html">Derby Shoe</a></h4>
+                <h4><a href="{{ route('shop.product') }}">Yuketen</a> – <a href="{{ route('shop.product') }}">Derby Shoe</a></h4>
                 <span class="thumb-product-type">Footwear - Oxfords</span>
             </div>
             <ul class="list-inline overflow-h">

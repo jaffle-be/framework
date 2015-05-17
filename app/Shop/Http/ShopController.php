@@ -1,6 +1,7 @@
 <?php namespace App\Shop\Http;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 
 class ShopController extends Controller
 {
@@ -10,9 +11,15 @@ class ShopController extends Controller
         return view('shop::store');
     }
 
-    public function show($categorySlug)
+    public function show($categorySlug, Request $request)
     {
-        dd('category', $categorySlug);
+        $view = $request->get('view', 'list');
+
+        if (!in_array($view, ['list', 'grid'])) {
+            $view = 'list';
+        }
+
+        return view('shop::category-' . $view);
     }
 
     public function product($productSlug)
