@@ -150,6 +150,7 @@ return [
         'App\Modules\ModuleServiceProvider',
         'App\Users\UserServiceProvider',
         'App\Shop\ShopServiceProvider',
+        'App\Contact\ContactServiceProvider',
 
     ],
 
