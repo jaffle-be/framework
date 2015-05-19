@@ -145,7 +145,9 @@ return [
         'App\Providers\EventServiceProvider',
         'App\Providers\RouteServiceProvider',
 
+        'Intervention\Image\ImageServiceProvider',
         'App\Menu\MenuServiceProvider',
+        'App\Media\MediaServiceProvider',
         'App\Settings\SettingServiceProvider',
         'App\Modules\ModuleServiceProvider',
         'App\Users\UserServiceProvider',

@@ -1,6 +1,7 @@
 <?php namespace App\Shop\Http;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 
 class ShopController extends Controller
@@ -19,7 +20,9 @@ class ShopController extends Controller
             $view = 'list';
         }
 
-        return view('shop::category-' . $view);
+        $products = \App\Shop\Product\Product::all();
+
+        return view('shop::category-' . $view, ['products' => $products]);
     }
 
     public function product($productSlug)

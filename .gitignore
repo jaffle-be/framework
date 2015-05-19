@@ -4,4 +4,6 @@ storage
 /vendor
 /node_modules
 .env
-root_theme
+media
+theme_admin
+theme_front

@@ -28,7 +28,7 @@
             <div class="col-md-9">
                 @include('shop::elements.category-results')
 
-                @include('shop::elements.filter-results')
+                @include('shop::elements.filter-list')
 
             </div>
         </div>
