@@ -35,10 +35,10 @@
                 {{--</ul>--}}
             {{--</li>--}}
             <li ui-sref-active="active">
-                <a ui-sref="dashboard.start"><i class="fa fa-flask"></i> <span class="nav-label">@{{ 'DASHBOARD' | translate }}</span></a>
+                <a ui-sref="dashboard.start"><i class="fa fa-tachometer"></i> <span class="nav-label">@{{ 'DASH' | translate }}</span></a>
             </li>
             <li ui-sref-active="active">
-                <a ui-sref="dashboard.widgets"><i class="fa fa-flask"></i> <span class="nav-label">@{{ 'WIDGETS' | translate }}</span></a>
+                <a ui-sref="dashboard.blog"><i class="fa fa-newspaper-o"></i> <span class="nav-label">@{{ 'BLOG' | translate }}</span></a>
             </li>
         </ul>
 
