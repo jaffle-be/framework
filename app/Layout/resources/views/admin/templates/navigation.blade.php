@@ -25,20 +25,16 @@
                     IN+
                 </div>
             </li>
-            {{--<li ng-class="{active: $state.includes('dashboards')}">--}}
-                {{--<a href="index.html"><i class="fa fa-th-large"></i> <span class="nav-label">@{{ 'DASHBOARD' | translate }}</span> <span class="fa arrow"></span></a>--}}
-                {{--<ul class="nav nav-second-level" ng-class="{in: $state.includes('dashboards')}">--}}
-                    {{--<li ui-sref-active="active"><a ui-sref="dashboards.dashboard_1">@{{ 'DASHBOARD' | translate }} v.1</a></li>--}}
-                    {{--<li ui-sref-active="active"><a ui-sref="dashboards.dashboard_2">@{{ 'DASHBOARD' | translate }} v.2</a></li>--}}
-                    {{--<li ui-sref-active="active"><a ui-sref="dashboards.dashboard_3">@{{ 'DASHBOARD' | translate }} v.3</a></li>--}}
-                    {{--<li ui-sref-active="active"><a ui-sref="dashboards.dashboard_4_1">@{{ 'DASHBOARD' | translate }} v.4</a></li>--}}
-                {{--</ul>--}}
-            {{--</li>--}}
+            
             <li ui-sref-active="active">
                 <a ui-sref="dashboard.start"><i class="fa fa-tachometer"></i> <span class="nav-label">@{{ 'DASH' | translate }}</span></a>
             </li>
             <li ui-sref-active="active">
                 <a ui-sref="dashboard.blog"><i class="fa fa-newspaper-o"></i> <span class="nav-label">@{{ 'BLOG' | translate }}</span></a>
+            </li>
+
+            <li ui-sref-active="active">
+                <a ui-sref="shop.products"><i class="fa fa-newspaper-o"></i> <span class="nav-label">@{{ 'SHOP' | translate }}</span></a>
             </li>
         </ul>
 

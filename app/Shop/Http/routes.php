@@ -15,3 +15,10 @@ Route::group(['namespace' => 'App\Shop\Http'], function () {
     //the shop homepage and the shop category page - KEEP AT BOTTOM
     Route::resource('shop', 'ShopController', ['only' => ['index', 'show']]);
 });
+
+
+Route::group(['namespace' => 'App\Shop\Http\Admin', 'prefix' => 'admin/shop'], function () {
+
+    Route::resource('products', 'ProductController', ['only' => 'index']);
+
+});

@@ -46,6 +46,15 @@ function config($stateProvider, $urlRouterProvider, $ocLazyLoadProvider, IdlePro
             url: "/blog",
             templateUrl: "admin/blog"
         })
+        .state('shop', {
+            abstract: true,
+            url: "/admin/shop",
+            templateUrl: "admin/templates/content"
+        })
+        .state('shop.products', {
+            url: "/products",
+            templateUrl: "admin/shop/products"
+        })
 }
 angular
     .module('app')
