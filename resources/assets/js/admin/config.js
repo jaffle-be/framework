@@ -4,7 +4,6 @@ function config($stateProvider, $urlRouterProvider, $ocLazyLoadProvider, IdlePro
     IdleProvider.idle(5); // in seconds
     IdleProvider.timeout(120); // in seconds
 
-
     $urlRouterProvider.otherwise("/dashboards/dashboard_1");
 
     $ocLazyLoadProvider.config({
@@ -29,15 +28,15 @@ function config($stateProvider, $urlRouterProvider, $ocLazyLoadProvider, IdlePro
 
                             serie: true,
                             name: 'angular-flot',
-                            files: [ 'js/plugins/flot/jquery.flot.js', 'js/plugins/flot/jquery.flot.time.js', 'js/plugins/flot/jquery.flot.tooltip.min.js', 'js/plugins/flot/jquery.flot.spline.js', 'js/plugins/flot/jquery.flot.resize.js', 'js/plugins/flot/jquery.flot.pie.js', 'js/plugins/flot/curvedLines.js', 'js/plugins/flot/angular-flot.js', ]
+                            files: [ 'js/admin/plugins/flot/jquery.flot.js', 'js/admin/plugins/flot/jquery.flot.time.js', 'js/admin/plugins/flot/jquery.flot.tooltip.min.js', 'js/admin/plugins/flot/jquery.flot.spline.js', 'js/admin/plugins/flot/jquery.flot.resize.js', 'js/admin/plugins/flot/jquery.flot.pie.js', 'js/admin/plugins/flot/curvedLines.js', 'js/admin/plugins/flot/angular-flot.js', ]
                         },
                         {
                             name: 'angles',
-                            files: ['js/plugins/chartJs/angles.js', 'js/plugins/chartJs/Chart.min.js']
+                            files: ['js/admin/plugins/chartJs/angles.js', 'js/admin/plugins/chartJs/Chart.min.js']
                         },
                         {
                             name: 'angular-peity',
-                            files: ['js/plugins/peity/jquery.peity.min.js', 'js/plugins/peity/angular-peity.js']
+                            files: ['js/admin/plugins/peity/jquery.peity.min.js', 'js/admin/plugins/peity/angular-peity.js']
                         }
                     ]);
                 }
@@ -53,17 +52,17 @@ function config($stateProvider, $urlRouterProvider, $ocLazyLoadProvider, IdlePro
                         {
                             serie: true,
                             name: 'angular-flot',
-                            files: [ 'js/plugins/flot/jquery.flot.js', 'js/plugins/flot/jquery.flot.time.js', 'js/plugins/flot/jquery.flot.tooltip.min.js', 'js/plugins/flot/jquery.flot.spline.js', 'js/plugins/flot/jquery.flot.resize.js', 'js/plugins/flot/jquery.flot.pie.js', 'js/plugins/flot/curvedLines.js', 'js/plugins/flot/angular-flot.js', ]
+                            files: [ 'js/admin/plugins/flot/jquery.flot.js', 'js/admin/plugins/flot/jquery.flot.time.js', 'js/admin/plugins/flot/jquery.flot.tooltip.min.js', 'js/admin/plugins/flot/jquery.flot.spline.js', 'js/admin/plugins/flot/jquery.flot.resize.js', 'js/admin/plugins/flot/jquery.flot.pie.js', 'js/admin/plugins/flot/curvedLines.js', 'js/admin/plugins/flot/angular-flot.js', ]
                         },
                         {
-                            files: ['js/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js']
+                            files: ['js/admin/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js']
                         },
                         {
-                            files: ['js/plugins/jvectormap/jquery-jvectormap-world-mill-en.js']
+                            files: ['js/admin/plugins/jvectormap/jquery-jvectormap-world-mill-en.js']
                         },
                         {
                             name: 'ui.checkbox',
-                            files: ['js/bootstrap/angular-bootstrap-checkbox.js']
+                            files: ['js/admin/bootstrap/angular-bootstrap-checkbox.js']
                         }
                     ]);
                 }
@@ -78,15 +77,15 @@ function config($stateProvider, $urlRouterProvider, $ocLazyLoadProvider, IdlePro
                     return $ocLazyLoad.load([
                         {
                             name: 'angles',
-                            files: ['js/plugins/chartJs/angles.js', 'js/plugins/chartJs/Chart.min.js']
+                            files: ['js/admin/plugins/chartJs/angles.js', 'js/admin/plugins/chartJs/Chart.min.js']
                         },
                         {
                             name: 'angular-peity',
-                            files: ['js/plugins/peity/jquery.peity.min.js', 'js/plugins/peity/angular-peity.js']
+                            files: ['js/admin/plugins/peity/jquery.peity.min.js', 'js/admin/plugins/peity/angular-peity.js']
                         },
                         {
                             name: 'ui.checkbox',
-                            files: ['js/bootstrap/angular-bootstrap-checkbox.js']
+                            files: ['js/admin/bootstrap/angular-bootstrap-checkbox.js']
                         }
                     ]);
                 }
@@ -106,16 +105,16 @@ function config($stateProvider, $urlRouterProvider, $ocLazyLoadProvider, IdlePro
                     return $ocLazyLoad.load([
                         {
                             name: 'angles',
-                            files: ['js/plugins/chartJs/angles.js', 'js/plugins/chartJs/Chart.min.js']
+                            files: ['js/admin/plugins/chartJs/angles.js', 'js/admin/plugins/chartJs/Chart.min.js']
                         },
                         {
                             name: 'angular-peity',
-                            files: ['js/plugins/peity/jquery.peity.min.js', 'js/plugins/peity/angular-peity.js']
+                            files: ['js/admin/plugins/peity/jquery.peity.min.js', 'js/admin/plugins/peity/angular-peity.js']
                         },
                         {
                             serie: true,
                             name: 'angular-flot',
-                            files: [ 'js/plugins/flot/jquery.flot.js', 'js/plugins/flot/jquery.flot.time.js', 'js/plugins/flot/jquery.flot.tooltip.min.js', 'js/plugins/flot/jquery.flot.spline.js', 'js/plugins/flot/jquery.flot.resize.js', 'js/plugins/flot/jquery.flot.pie.js', 'js/plugins/flot/curvedLines.js', 'js/plugins/flot/angular-flot.js', ]
+                            files: [ 'js/admin/plugins/flot/jquery.flot.js', 'js/admin/plugins/flot/jquery.flot.time.js', 'js/admin/plugins/flot/jquery.flot.tooltip.min.js', 'js/admin/plugins/flot/jquery.flot.spline.js', 'js/admin/plugins/flot/jquery.flot.resize.js', 'js/admin/plugins/flot/jquery.flot.pie.js', 'js/admin/plugins/flot/curvedLines.js', 'js/admin/plugins/flot/angular-flot.js', ]
                         }
                     ]);
                 }
@@ -130,16 +129,16 @@ function config($stateProvider, $urlRouterProvider, $ocLazyLoadProvider, IdlePro
                     return $ocLazyLoad.load([
                         {
                             name: 'angles',
-                            files: ['js/plugins/chartJs/angles.js', 'js/plugins/chartJs/Chart.min.js']
+                            files: ['js/admin/plugins/chartJs/angles.js', 'js/admin/plugins/chartJs/Chart.min.js']
                         },
                         {
                             name: 'angular-peity',
-                            files: ['js/plugins/peity/jquery.peity.min.js', 'js/plugins/peity/angular-peity.js']
+                            files: ['js/admin/plugins/peity/jquery.peity.min.js', 'js/admin/plugins/peity/angular-peity.js']
                         },
                         {
                             serie: true,
                             name: 'angular-flot',
-                            files: [ 'js/plugins/flot/jquery.flot.js', 'js/plugins/flot/jquery.flot.time.js', 'js/plugins/flot/jquery.flot.tooltip.min.js', 'js/plugins/flot/jquery.flot.spline.js', 'js/plugins/flot/jquery.flot.resize.js', 'js/plugins/flot/jquery.flot.pie.js', 'js/plugins/flot/curvedLines.js', 'js/plugins/flot/angular-flot.js', ]
+                            files: [ 'js/admin/plugins/flot/jquery.flot.js', 'js/admin/plugins/flot/jquery.flot.time.js', 'js/admin/plugins/flot/jquery.flot.tooltip.min.js', 'js/admin/plugins/flot/jquery.flot.spline.js', 'js/admin/plugins/flot/jquery.flot.resize.js', 'js/admin/plugins/flot/jquery.flot.pie.js', 'js/admin/plugins/flot/curvedLines.js', 'js/admin/plugins/flot/angular-flot.js', ]
                         }
                     ]);
                 }
@@ -165,7 +164,7 @@ function config($stateProvider, $urlRouterProvider, $ocLazyLoadProvider, IdlePro
                         {
                             serie: true,
                             name: 'angular-flot',
-                            files: [ 'js/plugins/flot/jquery.flot.js', 'js/plugins/flot/jquery.flot.time.js', 'js/plugins/flot/jquery.flot.tooltip.min.js', 'js/plugins/flot/jquery.flot.spline.js', 'js/plugins/flot/jquery.flot.resize.js', 'js/plugins/flot/jquery.flot.pie.js', 'js/plugins/flot/curvedLines.js', 'js/plugins/flot/angular-flot.js', ]
+                            files: [ 'js/admin/plugins/flot/jquery.flot.js', 'js/admin/plugins/flot/jquery.flot.time.js', 'js/admin/plugins/flot/jquery.flot.tooltip.min.js', 'js/admin/plugins/flot/jquery.flot.spline.js', 'js/admin/plugins/flot/jquery.flot.resize.js', 'js/admin/plugins/flot/jquery.flot.pie.js', 'js/admin/plugins/flot/curvedLines.js', 'js/admin/plugins/flot/angular-flot.js', ]
                         }
                     ]);
                 }
@@ -181,12 +180,12 @@ function config($stateProvider, $urlRouterProvider, $ocLazyLoadProvider, IdlePro
                         {
                             reconfig: true,
                             serie: true,
-                            files: ['js/plugins/rickshaw/vendor/d3.v3.js','js/plugins/rickshaw/rickshaw.min.js']
+                            files: ['js/admin/plugins/rickshaw/vendor/d3.v3.js','js/admin/plugins/rickshaw/rickshaw.min.js']
                         },
                         {
                             reconfig: true,
                             name: 'angular-rickshaw',
-                            files: ['js/plugins/rickshaw/angular-rickshaw.js']
+                            files: ['js/admin/plugins/rickshaw/angular-rickshaw.js']
                         }
                     ]);
                 }
@@ -201,7 +200,7 @@ function config($stateProvider, $urlRouterProvider, $ocLazyLoadProvider, IdlePro
                     return $ocLazyLoad.load([
                         {
                             name: 'angular-peity',
-                            files: ['js/plugins/peity/jquery.peity.min.js', 'js/plugins/peity/angular-peity.js']
+                            files: ['js/admin/plugins/peity/jquery.peity.min.js', 'js/admin/plugins/peity/angular-peity.js']
                         }
                     ]);
                 }
@@ -215,7 +214,7 @@ function config($stateProvider, $urlRouterProvider, $ocLazyLoadProvider, IdlePro
                 loadPlugin: function ($ocLazyLoad) {
                     return $ocLazyLoad.load([
                         {
-                            files: ['js/plugins/sparkline/jquery.sparkline.min.js']
+                            files: ['js/admin/plugins/sparkline/jquery.sparkline.min.js']
                         }
                     ]);
                 }
@@ -229,11 +228,11 @@ function config($stateProvider, $urlRouterProvider, $ocLazyLoadProvider, IdlePro
                 loadPlugin: function ($ocLazyLoad) {
                     return $ocLazyLoad.load([
                         {
-                            files: ['js/plugins/chartJs/Chart.min.js']
+                            files: ['js/admin/plugins/chartJs/Chart.min.js']
                         },
                         {
                             name: 'angles',
-                            files: ['js/plugins/chartJs/angles.js']
+                            files: ['js/admin/plugins/chartJs/angles.js']
                         }
                     ]);
                 }
@@ -252,7 +251,7 @@ function config($stateProvider, $urlRouterProvider, $ocLazyLoadProvider, IdlePro
                 loadPlugin: function ($ocLazyLoad) {
                     return $ocLazyLoad.load([
                         {
-                            files: ['css/plugins/iCheck/custom.css','js/plugins/iCheck/icheck.min.js']
+                            files: ['css/plugins/iCheck/custom.css','js/admin/plugins/iCheck/icheck.min.js']
                         }
                     ]);
                 }
@@ -271,11 +270,11 @@ function config($stateProvider, $urlRouterProvider, $ocLazyLoadProvider, IdlePro
                 loadPlugin: function ($ocLazyLoad) {
                     return $ocLazyLoad.load([
                         {
-                            files: ['css/plugins/summernote/summernote.css','css/plugins/summernote/summernote-bs3.css','js/plugins/summernote/summernote.min.js']
+                            files: ['css/plugins/summernote/summernote.css','css/plugins/summernote/summernote-bs3.css','js/admin/plugins/summernote/summernote.min.js']
                         },
                         {
                             name: 'summernote',
-                            files: ['css/plugins/summernote/summernote.css','css/plugins/summernote/summernote-bs3.css','js/plugins/summernote/summernote.min.js','js/plugins/summernote/angular-summernote.min.js']
+                            files: ['css/plugins/summernote/summernote.css','css/plugins/summernote/summernote-bs3.css','js/admin/plugins/summernote/summernote.min.js','js/admin/plugins/summernote/angular-summernote.min.js']
                         }
                     ]);
                 }
@@ -296,17 +295,17 @@ function config($stateProvider, $urlRouterProvider, $ocLazyLoadProvider, IdlePro
                         {
                             serie: true,
                             name: 'angular-flot',
-                            files: [ 'js/plugins/flot/jquery.flot.js', 'js/plugins/flot/jquery.flot.time.js', 'js/plugins/flot/jquery.flot.tooltip.min.js', 'js/plugins/flot/jquery.flot.spline.js', 'js/plugins/flot/jquery.flot.resize.js', 'js/plugins/flot/jquery.flot.pie.js', 'js/plugins/flot/curvedLines.js', 'js/plugins/flot/angular-flot.js', ]
+                            files: [ 'js/admin/plugins/flot/jquery.flot.js', 'js/admin/plugins/flot/jquery.flot.time.js', 'js/admin/plugins/flot/jquery.flot.tooltip.min.js', 'js/admin/plugins/flot/jquery.flot.spline.js', 'js/admin/plugins/flot/jquery.flot.resize.js', 'js/admin/plugins/flot/jquery.flot.pie.js', 'js/admin/plugins/flot/curvedLines.js', 'js/admin/plugins/flot/angular-flot.js', ]
                         },
                         {
-                            files: ['css/plugins/iCheck/custom.css','js/plugins/iCheck/icheck.min.js']
+                            files: ['css/plugins/iCheck/custom.css','js/admin/plugins/iCheck/icheck.min.js']
                         },
                         {
-                            files: ['js/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js','js/plugins/jvectormap/jquery-jvectormap-world-mill-en.js']
+                            files: ['js/admin/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js','js/admin/plugins/jvectormap/jquery-jvectormap-world-mill-en.js']
                         },
                         {
                             name: 'ui.checkbox',
-                            files: ['js/bootstrap/angular-bootstrap-checkbox.js']
+                            files: ['js/admin/bootstrap/angular-bootstrap-checkbox.js']
                         }
                     ]);
                 }
@@ -325,7 +324,7 @@ function config($stateProvider, $urlRouterProvider, $ocLazyLoadProvider, IdlePro
                 loadPlugin: function ($ocLazyLoad) {
                     return $ocLazyLoad.load([
                         {
-                            files: ['css/plugins/iCheck/custom.css','js/plugins/iCheck/icheck.min.js']
+                            files: ['css/plugins/iCheck/custom.css','js/admin/plugins/iCheck/icheck.min.js']
                         }
                     ]);
                 }
@@ -340,38 +339,38 @@ function config($stateProvider, $urlRouterProvider, $ocLazyLoadProvider, IdlePro
                     return $ocLazyLoad.load([
                         {
                             name: 'ui.knob',
-                            files: ['js/plugins/jsKnob/jquery.knob.js','js/plugins/jsKnob/angular-knob.js']
+                            files: ['js/admin/plugins/jsKnob/jquery.knob.js','js/admin/plugins/jsKnob/angular-knob.js']
                         },
                         {
-                            files: ['css/plugins/ionRangeSlider/ion.rangeSlider.css','css/plugins/ionRangeSlider/ion.rangeSlider.skinFlat.css','js/plugins/ionRangeSlider/ion.rangeSlider.min.js']
+                            files: ['css/plugins/ionRangeSlider/ion.rangeSlider.css','css/plugins/ionRangeSlider/ion.rangeSlider.skinFlat.css','js/admin/plugins/ionRangeSlider/ion.rangeSlider.min.js']
                         },
                         {
                             insertBefore: '#loadBefore',
                             name: 'localytics.directives',
-                            files: ['css/plugins/chosen/chosen.css','js/plugins/chosen/chosen.jquery.js','js/plugins/chosen/chosen.js']
+                            files: ['css/plugins/chosen/chosen.css','js/admin/plugins/chosen/chosen.jquery.js','js/admin/plugins/chosen/chosen.js']
                         },
                         {
                             name: 'nouislider',
-                            files: ['css/plugins/nouslider/jquery.nouislider.css','js/plugins/nouslider/jquery.nouislider.min.js','js/plugins/nouslider/angular-nouislider.js']
+                            files: ['css/plugins/nouslider/jquery.nouislider.css','js/admin/plugins/nouslider/jquery.nouislider.min.js','js/admin/plugins/nouslider/angular-nouislider.js']
                         },
                         {
                             name: 'datePicker',
-                            files: ['css/plugins/datapicker/angular-datapicker.css','js/plugins/datapicker/datePicker.js']
+                            files: ['css/plugins/datapicker/angular-datapicker.css','js/admin/plugins/datapicker/datePicker.js']
                         },
                         {
-                            files: ['js/plugins/jasny/jasny-bootstrap.min.js']
+                            files: ['js/admin/plugins/jasny/jasny-bootstrap.min.js']
                         },
                         {
                             name: 'ui.switchery',
-                            files: ['css/plugins/switchery/switchery.css','js/plugins/switchery/switchery.js','js/plugins/switchery/ng-switchery.js']
+                            files: ['css/plugins/switchery/switchery.css','js/admin/plugins/switchery/switchery.js','js/admin/plugins/switchery/ng-switchery.js']
                         },
                         {
                             name: 'colorpicker.module',
-                            files: ['css/plugins/colorpicker/colorpicker.css','js/plugins/colorpicker/bootstrap-colorpicker-module.js']
+                            files: ['css/plugins/colorpicker/colorpicker.css','js/admin/plugins/colorpicker/bootstrap-colorpicker-module.js']
                         },
                         {
                             name: 'ngImgCrop',
-                            files: ['js/plugins/ngImgCrop/ng-img-crop.js','css/plugins/ngImgCrop/ng-img-crop.css']
+                            files: ['js/admin/plugins/ngImgCrop/ng-img-crop.js','css/plugins/ngImgCrop/ng-img-crop.css']
                         }
 
                     ]);
@@ -416,7 +415,7 @@ function config($stateProvider, $urlRouterProvider, $ocLazyLoadProvider, IdlePro
                 loadPlugin: function ($ocLazyLoad) {
                     return $ocLazyLoad.load([
                         {
-                            files: ['css/plugins/dropzone/basic.css','css/plugins/dropzone/dropzone.css','js/plugins/dropzone/dropzone.js']
+                            files: ['css/plugins/dropzone/basic.css','css/plugins/dropzone/dropzone.css','js/admin/plugins/dropzone/dropzone.js']
                         }
                     ]);
                 }
@@ -431,7 +430,7 @@ function config($stateProvider, $urlRouterProvider, $ocLazyLoadProvider, IdlePro
                     return $ocLazyLoad.load([
                         {
                             name: 'summernote',
-                            files: ['css/plugins/summernote/summernote.css','css/plugins/summernote/summernote-bs3.css','js/plugins/summernote/summernote.min.js','js/plugins/summernote/angular-summernote.min.js']
+                            files: ['css/plugins/summernote/summernote.css','css/plugins/summernote/summernote-bs3.css','js/admin/plugins/summernote/summernote.min.js','js/admin/plugins/summernote/angular-summernote.min.js']
                         }
                     ]);
                 }
@@ -476,11 +475,11 @@ function config($stateProvider, $urlRouterProvider, $ocLazyLoadProvider, IdlePro
                     return $ocLazyLoad.load([
                         {
                             insertBefore: '#loadBefore',
-                            files: ['css/plugins/fullcalendar/fullcalendar.css','js/plugins/fullcalendar/fullcalendar.min.js','js/plugins/fullcalendar/gcal.js']
+                            files: ['css/plugins/fullcalendar/fullcalendar.css','js/admin/plugins/fullcalendar/fullcalendar.min.js','js/admin/plugins/fullcalendar/gcal.js']
                         },
                         {
                             name: 'ui.calendar',
-                            files: ['js/plugins/fullcalendar/calendar.js']
+                            files: ['js/admin/plugins/fullcalendar/calendar.js']
                         }
                     ]);
                 }
@@ -595,7 +594,7 @@ function config($stateProvider, $urlRouterProvider, $ocLazyLoadProvider, IdlePro
                     return $ocLazyLoad.load([
                         {
                             name: 'ui.sortable',
-                            files: ['js/plugins/ui-sortable/sortable.js']
+                            files: ['js/admin/plugins/ui-sortable/sortable.js']
                         }
                     ]);
                 }
@@ -620,11 +619,11 @@ function config($stateProvider, $urlRouterProvider, $ocLazyLoadProvider, IdlePro
                     return $ocLazyLoad.load([
                         {
                             name: 'ui.event',
-                            files: ['js/plugins/uievents/event.js']
+                            files: ['js/admin/plugins/uievents/event.js']
                         },
                         {
                             name: 'ui.map',
-                            files: ['js/plugins/uimaps/ui-map.js']
+                            files: ['js/admin/plugins/uimaps/ui-map.js']
                         },
                     ]);
                 }
@@ -639,11 +638,11 @@ function config($stateProvider, $urlRouterProvider, $ocLazyLoadProvider, IdlePro
                     return $ocLazyLoad.load([
                         {
                             serie: true,
-                            files: ['css/plugins/codemirror/codemirror.css','css/plugins/codemirror/ambiance.css','js/plugins/codemirror/codemirror.js','js/plugins/codemirror/mode/javascript/javascript.js']
+                            files: ['css/plugins/codemirror/codemirror.css','css/plugins/codemirror/ambiance.css','js/admin/plugins/codemirror/codemirror.js','js/admin/plugins/codemirror/mode/javascript/javascript.js']
                         },
                         {
                             name: 'ui.codemirror',
-                            files: ['js/plugins/ui-codemirror/ui-codemirror.min.js']
+                            files: ['js/admin/plugins/ui-codemirror/ui-codemirror.min.js']
                         }
                     ]);
                 }
@@ -668,7 +667,7 @@ function config($stateProvider, $urlRouterProvider, $ocLazyLoadProvider, IdlePro
                     return $ocLazyLoad.load([
                         {
                             name: 'ui.tree',
-                            files: ['css/plugins/uiTree/angular-ui-tree.min.css','js/plugins/uiTree/angular-ui-tree.min.js']
+                            files: ['css/plugins/uiTree/angular-ui-tree.min.css','js/admin/plugins/uiTree/angular-ui-tree.min.js']
                         },
                     ]);
                 }
@@ -683,7 +682,7 @@ function config($stateProvider, $urlRouterProvider, $ocLazyLoadProvider, IdlePro
                     return $ocLazyLoad.load([
                         {
                             name: 'cgNotify',
-                            files: ['css/plugins/angular-notify/angular-notify.min.css','js/plugins/angular-notify/angular-notify.min.js']
+                            files: ['css/plugins/angular-notify/angular-notify.min.css','js/admin/plugins/angular-notify/angular-notify.min.js']
                         }
                     ]);
                 }
@@ -712,11 +711,11 @@ function config($stateProvider, $urlRouterProvider, $ocLazyLoadProvider, IdlePro
                 loadPlugin: function ($ocLazyLoad) {
                     return $ocLazyLoad.load([
                         {
-                            files: ['js/plugins/diff_match_patch/javascript/diff_match_patch.js']
+                            files: ['js/admin/plugins/diff_match_patch/javascript/diff_match_patch.js']
                         },
                         {
                             name: 'diff-match-patch',
-                            files: ['js/plugins/angular-diff-match-patch/angular-diff-match-patch.js']
+                            files: ['js/admin/plugins/angular-diff-match-patch/angular-diff-match-patch.js']
                         }
                     ]);
                 }
@@ -731,7 +730,7 @@ function config($stateProvider, $urlRouterProvider, $ocLazyLoadProvider, IdlePro
                     return $ocLazyLoad.load([
                         {
                             name: 'cgNotify',
-                            files: ['css/plugins/angular-notify/angular-notify.min.css','js/plugins/angular-notify/angular-notify.min.js']
+                            files: ['css/plugins/angular-notify/angular-notify.min.css','js/admin/plugins/angular-notify/angular-notify.min.js']
                         }
                     ]);
                 }
@@ -745,7 +744,7 @@ function config($stateProvider, $urlRouterProvider, $ocLazyLoadProvider, IdlePro
                 loadPlugin: function ($ocLazyLoad) {
                     return $ocLazyLoad.load([
                         {
-                            files: ['js/plugins/tinycon/tinycon.min.js']
+                            files: ['js/admin/plugins/tinycon/tinycon.min.js']
                         }
                     ]);
                 }
@@ -770,7 +769,7 @@ function config($stateProvider, $urlRouterProvider, $ocLazyLoadProvider, IdlePro
                     return $ocLazyLoad.load([
                         {
                             name: 'ui.sortable',
-                            files: ['js/plugins/ui-sortable/sortable.js']
+                            files: ['js/admin/plugins/ui-sortable/sortable.js']
                         }
                     ]);
                 }
@@ -790,10 +789,10 @@ function config($stateProvider, $urlRouterProvider, $ocLazyLoadProvider, IdlePro
                     return $ocLazyLoad.load([
                         {
                             name: 'angular-peity',
-                            files: ['js/plugins/peity/jquery.peity.min.js', 'js/plugins/peity/angular-peity.js']
+                            files: ['js/admin/plugins/peity/jquery.peity.min.js', 'js/admin/plugins/peity/angular-peity.js']
                         },
                         {
-                            files: ['css/plugins/iCheck/custom.css','js/plugins/iCheck/icheck.min.js']
+                            files: ['css/plugins/iCheck/custom.css','js/admin/plugins/iCheck/icheck.min.js']
                         }
                     ]);
                 }
@@ -808,14 +807,14 @@ function config($stateProvider, $urlRouterProvider, $ocLazyLoadProvider, IdlePro
                     return $ocLazyLoad.load([
                         {
                             seria: true,
-                            files: ['js/plugins/dataTables/jquery.dataTables.js','css/plugins/dataTables/dataTables.bootstrap.css']
+                            files: ['js/admin/plugins/dataTables/jquery.dataTables.js','css/plugins/dataTables/dataTables.bootstrap.css']
                         },
                         {
-                            files: ['js/plugins/dataTables/dataTables.bootstrap.js']
+                            files: ['js/admin/plugins/dataTables/dataTables.bootstrap.js']
                         },
                         {
                             name: 'datatables',
-                            files: ['js/plugins/dataTables/angular-datatables.min.js']
+                            files: ['js/admin/plugins/dataTables/angular-datatables.min.js']
                         }
                     ]);
                 }
@@ -830,11 +829,11 @@ function config($stateProvider, $urlRouterProvider, $ocLazyLoadProvider, IdlePro
                     return $ocLazyLoad.load([
                         {
                             name: 'ngGrid',
-                            files: ['js/plugins/nggrid/ng-grid-2.0.3.min.js']
+                            files: ['js/admin/plugins/nggrid/ng-grid-2.0.3.min.js']
                         },
                         {
                             insertBefore: '#loadBefore',
-                            files: ['js/plugins/nggrid/ng-grid.css']
+                            files: ['js/admin/plugins/nggrid/ng-grid.css']
                         }
                     ]);
                 }
@@ -853,7 +852,7 @@ function config($stateProvider, $urlRouterProvider, $ocLazyLoadProvider, IdlePro
                 loadPlugin: function ($ocLazyLoad) {
                     return $ocLazyLoad.load([
                         {
-                            files: ['js/plugins/blueimp/jquery.blueimp-gallery.min.js','css/plugins/blueimp/css/blueimp-gallery.min.css']
+                            files: ['js/admin/plugins/blueimp/jquery.blueimp-gallery.min.js','css/plugins/blueimp/css/blueimp-gallery.min.css']
                         }
                     ]);
                 }
@@ -874,12 +873,12 @@ function config($stateProvider, $urlRouterProvider, $ocLazyLoadProvider, IdlePro
                         {
                             reconfig: true,
                             serie: true,
-                            files: ['js/plugins/rickshaw/vendor/d3.v3.js','js/plugins/rickshaw/rickshaw.min.js']
+                            files: ['js/admin/plugins/rickshaw/vendor/d3.v3.js','js/admin/plugins/rickshaw/rickshaw.min.js']
                         },
                         {
                             reconfig: true,
                             name: 'angular-rickshaw',
-                            files: ['js/plugins/rickshaw/angular-rickshaw.js']
+                            files: ['js/admin/plugins/rickshaw/angular-rickshaw.js']
                         }
                     ]);
                 }

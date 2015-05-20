@@ -10,7 +10,7 @@
     <!-- Page title set in pageTitle directive -->
     <title page-title></title>
 
-    <link id="loadBefore" href="{{ asset('/css/main.css') }}" rel="stylesheet">
+    <link id="loadBefore" href="{{ asset('/css/admin/main.css') }}" rel="stylesheet">
 
 
 </head>
@@ -19,7 +19,22 @@
 
 <div ui-view></div>
 
-<script src="{{ asset('/js/admin/core.js') }}"></script>
+<!-- jQuery and Bootstrap -->
+<script src=" {{ asset('/js/admin/jquery/jquery-2.1.1.min.js') }}"></script>
+<script src=" {{ asset('/js/admin/plugins/jquery-ui/jquery-ui.js') }}"></script>
+<script src=" {{ asset('/js/admin/bootstrap/bootstrap.min.js') }}"></script>
+
+
+{{--<!-- Custom and plugin javascript -->--}}
+<script src=" {{ asset('/js/admin/core.min.js') }}"></script>
+
+{{--<!-- Main Angular scripts-->--}}
+<script src=" {{ asset('/js/admin/angular/angular.min.js') }}"></script>
+<script src=" {{ asset('/js/admin/plugins/oclazyload/dist/ocLazyLoad.min.js') }}"></script>
+<script src=" {{ asset('/js/admin/angular-translate/angular-translate.min.js') }}"></script>
+<script src=" {{ asset('/js/admin/ui-router/angular-ui-router.min.js') }}"></script>
+<script src=" {{ asset('/js/admin/bootstrap/ui-bootstrap-tpls-0.12.0.min.js') }}"></script>
+<script src=" {{ asset('/js/admin/plugins/angular-idle/angular-idle.js') }}"></script>
 
 <!--
  You need to include this script on any page that has a Google Map.

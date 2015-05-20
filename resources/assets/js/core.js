@@ -21,6 +21,7 @@
         }
 
         $(window).bind("load resize scroll", function() {
+
             if(!$("body").hasClass('body-small')) {
                 fix_height();
             }

@@ -7,7 +7,8 @@ var gulp = require('gulp'),
     uglify = require('gulp-uglify'),
     rename = require('gulp-rename'),
     watch = require('gulp-watch'),
-    cached = require('gulp-cached');
+    cached = require('gulp-cached'),
+    maps = require('gulp-sourcemaps');
 
 
 /**
@@ -43,25 +44,20 @@ gulp.task('admin::app', function () {
 });
 
 gulp.task('admin::core', function () {
+
     gulp.src([
-        'bower_components/jquery/dist/jquery.min.js',
-        'bower_components/jquery-ui/jquery-ui.min.js',
-        'bower_components/bootstrap/dist/js/bootstrap.min.js',
-        'metisMenu/dist/metisMenu.min.js',
-        'bower_components/slimScroll/jquery.slimscroll.min.js',
-        'bower_components/PACE/pace.min.js',
+        'bower_components/metisMenu/dist/metisMenu.js',
+        'bower_components/slimScroll/jquery.slimscroll.js',
+        'bower_components/PACE/pace.js',
         'resources/assets/js/core.js',
-        'bower_components/angular/angular.min.js',
-        'bower_components/ocLazyLoad/dist/ocLazyLoad.min.js',
-        'bower_components/angular-translate/angular-translate.min.js', ,
-        'bower_components/angular-ui-router/release/angular-ui-router.min.js',
-        'bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js',
-        'bower_components/ng-idle/angular-idle.min.js'
     ])
+        .pipe(maps.init())
         .pipe(concat('core.js'))
-        //.pipe(uglify({
-        //    mangle: false
-        //}))
+        .pipe(uglify())
+        .pipe(rename(function(path){
+            path.extname = '.min.js';
+        }))
+        .pipe(maps.write())
         .pipe(gulp.dest('public/js/admin'))
 });
 
@@ -70,37 +66,17 @@ gulp.task('less', function () {
         .pipe(plumber())
         .pipe(less())
         .pipe(minify())
-        .pipe(gulp.dest('public/css'));
+        .pipe(gulp.dest('public/css/admin'));
 });
-
 
 /**
  * COMPILER TASKS
  */
 //all libraries
 gulp.task('publisher', function () {
-    gulp.src('bower_components/bootstrap/dist/**')
-        .pipe(copy('./public/', {
-            prefix: 3
-        }));
 
     gulp.src('bower_components/font-awesome/fonts/**')
-        .pipe(copy('./public/', {
-            prefix: 2
-        }));
-
-    gulp.src('bower_components/jquery/dist/*')
-        .pipe(copy('./public/js/', {
-            prefix: 3
-        }));
-
-    gulp.src(['bower_components/angular/angular.min.js', 'bower_components/angular/angular.min.map'])
-        .pipe(copy('./public/js/', {
-            prefix: 3
-        }));
-
-    gulp.src(['bower_components/angular-bootstrap/angular.min.js', 'bower_components/angular/angular.min.map'])
-        .pipe(copy('./public/js/', {
+        .pipe(copy('./public/fonts/admin', {
             prefix: 3
         }));
 });
