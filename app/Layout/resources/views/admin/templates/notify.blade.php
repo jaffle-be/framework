@@ -1,7 +1,7 @@
 <div class="cg-notify-message inspinia-notify" ng-class="$classes">
     <div class="p-lg">
         <div ng-show="!$messageTemplate">
-            {{$message}}
+            @{{$message}}
         </div>
 
         <div ng-show="$messageTemplate" class="cg-notify-message-template">

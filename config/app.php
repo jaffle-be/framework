@@ -146,6 +146,7 @@ return [
         'App\Providers\RouteServiceProvider',
 
         'Intervention\Image\ImageServiceProvider',
+        'App\Layout\LayoutServiceProvider',
         'App\Menu\MenuServiceProvider',
         'App\Media\MediaServiceProvider',
         'App\Settings\SettingServiceProvider',

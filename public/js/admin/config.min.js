@@ -16,7 +16,7 @@ function config($stateProvider, $urlRouterProvider, $ocLazyLoadProvider, IdlePro
         .state('dashboards', {
             abstract: true,
             url: "/dashboards",
-            templateUrl: "views/common/content.html",
+            templateUrl: "admin/templates/content",
         })
         .state('dashboards.dashboard_1', {
             url: "/dashboard_1",
@@ -94,7 +94,7 @@ function config($stateProvider, $urlRouterProvider, $ocLazyLoadProvider, IdlePro
         .state('dashboards_top', {
             abstract: true,
             url: "/dashboards_top",
-            templateUrl: "views/common/content_top_navigation.html",
+            templateUrl: "admin/templates/content_top_navigation",
         })
         .state('dashboards_top.dashboard_4', {
             url: "/dashboard_4",
@@ -152,7 +152,7 @@ function config($stateProvider, $urlRouterProvider, $ocLazyLoadProvider, IdlePro
         .state('charts', {
             abstract: true,
             url: "/charts",
-            templateUrl: "views/common/content.html",
+            templateUrl: "admin/templates/content",
         })
         .state('charts.flot_chart', {
             url: "/flot_chart",
@@ -241,7 +241,7 @@ function config($stateProvider, $urlRouterProvider, $ocLazyLoadProvider, IdlePro
         .state('mailbox', {
             abstract: true,
             url: "/mailbox",
-            templateUrl: "views/common/content.html",
+            templateUrl: "admin/templates/content",
         })
         .state('mailbox.inbox', {
             url: "/inbox",
@@ -314,7 +314,7 @@ function config($stateProvider, $urlRouterProvider, $ocLazyLoadProvider, IdlePro
         .state('forms', {
             abstract: true,
             url: "/forms",
-            templateUrl: "views/common/content.html",
+            templateUrl: "admin/templates/content",
         })
         .state('forms.basic_form', {
             url: "/basic_form",
@@ -439,7 +439,7 @@ function config($stateProvider, $urlRouterProvider, $ocLazyLoadProvider, IdlePro
         .state('app', {
             abstract: true,
             url: "/app",
-            templateUrl: "views/common/content.html",
+            templateUrl: "admin/templates/content",
         })
         .state('app.contacts', {
             url: "/contacts",
@@ -533,7 +533,7 @@ function config($stateProvider, $urlRouterProvider, $ocLazyLoadProvider, IdlePro
         .state('pages', {
             abstract: true,
             url: "/pages",
-            templateUrl: "views/common/content.html",
+            templateUrl: "admin/templates/content",
         })
         .state('pages.search_results', {
             url: "/search_results",
@@ -548,7 +548,7 @@ function config($stateProvider, $urlRouterProvider, $ocLazyLoadProvider, IdlePro
         .state('ui', {
             abstract: true,
             url: "/ui",
-            templateUrl: "views/common/content.html",
+            templateUrl: "admin/templates/content",
         })
         .state('ui.typography', {
             url: "/typography",
@@ -608,7 +608,7 @@ function config($stateProvider, $urlRouterProvider, $ocLazyLoadProvider, IdlePro
         .state('miscellaneous', {
             abstract: true,
             url: "/miscellaneous",
-            templateUrl: "views/common/content.html",
+            templateUrl: "admin/templates/content",
         })
         .state('miscellaneous.google_maps', {
             url: "/google_maps",
@@ -778,7 +778,7 @@ function config($stateProvider, $urlRouterProvider, $ocLazyLoadProvider, IdlePro
         .state('tables', {
             abstract: true,
             url: "/tables",
-            templateUrl: "views/common/content.html",
+            templateUrl: "admin/templates/content",
         })
         .state('tables.static_table', {
             url: "/static_table",
@@ -842,7 +842,7 @@ function config($stateProvider, $urlRouterProvider, $ocLazyLoadProvider, IdlePro
         .state('gallery', {
             abstract: true,
             url: "/gallery",
-            templateUrl: "views/common/content.html",
+            templateUrl: "admin/templates/content",
         })
         .state('gallery.basic_gallery', {
             url: "/basic_gallery",
