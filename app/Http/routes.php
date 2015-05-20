@@ -5,7 +5,7 @@ Route::get('/', [
     'as' => 'home'
 ]);
 
-Route::get('/start', [
+Route::get('admin', [
     'uses' => 'WelcomeController@start',
     'as' => 'start'
 ]);
