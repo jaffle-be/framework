@@ -15,7 +15,7 @@
 
 </head>
 
-<body ng-controller="MainCtrl as main">
+<body ng-controller="MainCtrl as main" class="fixed-sidebar fixed-nav">
 
 <div ui-view></div>
 
