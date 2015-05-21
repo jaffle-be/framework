@@ -1,10 +1,13 @@
-function config($stateProvider, $urlRouterProvider, $ocLazyLoadProvider, IdleProvider, KeepaliveProvider) {
+function config($stateProvider, $urlRouterProvider, $ocLazyLoadProvider, IdleProvider, KeepaliveProvider, $httpProvider) {
 
     // Configure Idle settings
     IdleProvider.idle(5); // in seconds
     IdleProvider.timeout(120); // in seconds
 
     $urlRouterProvider.otherwise("/dashboard/start");
+
+    //make sure laravel request->ajax() still works
+    $httpProvider.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";
 
     $ocLazyLoadProvider.config({
         // Set to true if you want to see what and when is dynamically loaded
