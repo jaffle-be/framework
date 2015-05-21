@@ -17,7 +17,7 @@ Route::group(['namespace' => 'App\Shop\Http'], function () {
 });
 
 
-Route::group(['namespace' => 'App\Shop\Http\Admin', 'prefix' => 'admin/shop'], function () {
+Route::group(['domain' => config('app.subdomain'), 'namespace' => 'App\Shop\Http\Admin', 'prefix' => 'admin/shop'], function () {
 
     Route::resource('products', 'ProductController', ['only' => 'index']);
 

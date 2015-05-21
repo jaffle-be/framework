@@ -9,9 +9,14 @@ class WelcomeController extends Controller
 
     use DispatchesCommands;
 
-    public function index()
+    public function appHome()
     {
-        return view('home');
+        return view('home.app');
+    }
+
+    public function storeHome()
+    {
+        return view('home.store');
     }
 
     public function start()
