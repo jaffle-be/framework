@@ -8,7 +8,7 @@
   "license": "MIT",
   "type": "project",
   "require": {
-    "laravel/framework": "5.0.*",
+    "laravel/framework": "~5.0",
     "predis/predis": "~1.0",
     "guzzlehttp/guzzle": "~5.0",
     "intervention/image": "~2.2"
