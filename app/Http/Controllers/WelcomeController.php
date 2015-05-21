@@ -19,7 +19,12 @@ class WelcomeController extends Controller
         return view('home.store');
     }
 
-    public function start()
+    public function appDash()
+    {
+        return view('layouts.back');
+    }
+
+    public function storeDash()
     {
         return view('layouts.back');
     }

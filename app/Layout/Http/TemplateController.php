@@ -2,11 +2,11 @@
 
 use App\Http\Controllers\Controller;
 
-class TemplateController extends Controller{
+class TemplateController extends Controller
+{
 
     public function show($template)
     {
-        return view('layout::admin.templates.' . $template);
+        return view('layout::admin.' . app_detect() . '.' . $template);
     }
-
 }

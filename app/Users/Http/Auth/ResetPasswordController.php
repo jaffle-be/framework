@@ -7,7 +7,10 @@ use App\Users\Auth\Commands\ResetPassword;
 use Illuminate\Contracts\Auth\Guard;
 use Lang;
 
-class ResetPasswordController extends Controller{
+abstract class ResetPasswordController extends Controller
+{
+
+    abstract function routePrefix();
 
     /**
      * Show the form for resetting the password
@@ -25,22 +28,19 @@ class ResetPasswordController extends Controller{
     {
         $token = $tokens->findTokenByValue($token);
 
-        if($token)
-        {
+        if ($token) {
             $user = $this->dispatchFrom(ResetPassword::class, $request, ['token' => $token]);
 
-            if($user)
-            {
+            if ($user) {
                 $guard->loginUsingId($user->id);
 
-                return redirect()->route('start');
+                return redirect()->route($this->routePrefix() . '.dash');
             }
         }
 
         //always redirect to signin if we get here.
         //the request was validated for correct input, so if the reset was no success,
         //we simply bail out for security reasons.
-        return redirect()->route('signin.index')->withSuccess(Lang::get('users::general.request-handled'));
+        return redirect()->route($this->routePrefix() . '.signin.index')->withSuccess(Lang::get('users::general.request-handled'));
     }
-
 }

@@ -1,4 +1,4 @@
-<?php namespace App\Dashboard\Http\Admin;
+<?php namespace App\Dashboard\Http\Stores;
 
 use App\Http\Controllers\Controller;
 
