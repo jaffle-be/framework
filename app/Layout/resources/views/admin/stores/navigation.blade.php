@@ -34,7 +34,7 @@
             </li>
 
             <li ui-sref-active="active">
-                <a ui-sref="shop.products"><i class="fa fa-newspaper-o"></i> <span class="nav-label">@{{ 'SHOP' | translate }}</span></a>
+                <a ui-sref="dashboard.products"><i class="fa fa-newspaper-o"></i> <span class="nav-label">@{{ 'SHOP' | translate }}</span></a>
             </li>
         </ul>
 

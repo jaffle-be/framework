@@ -1,4 +1,4 @@
-<?php namespace App\Shop\Http;
+<?php namespace App\Shop\Http\Store;
 
 use App\Http\Controllers\Controller;
 

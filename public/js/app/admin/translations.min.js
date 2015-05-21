@@ -7,6 +7,7 @@ function config($translateProvider) {
             DASH: 'Dashboard',
             BLOG: 'Blog',
             SHOP: 'Shop',
+            PRODUCTS: 'Products',
 
             // Define some custom text
             WELCOME: 'Welcome Amelia',

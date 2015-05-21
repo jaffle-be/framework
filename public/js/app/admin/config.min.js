@@ -46,6 +46,10 @@ function config($stateProvider, $urlRouterProvider, $ocLazyLoadProvider, IdlePro
             url: "/blog",
             templateUrl: "admin/blog"
         })
+        .state('dashboard.products', {
+            url: "/products",
+            templateUrl: "admin/products"
+        })
         .state('shop', {
             abstract: true,
             url: "/admin/shop",

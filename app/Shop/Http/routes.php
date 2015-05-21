@@ -1,6 +1,10 @@
 <?php
 
-Route::group(['namespace' => 'App\Shop\Http'], function () {
+Route::group(['domain' => config('app.subdomain'), 'namespace' => 'App\Shop\Http\Store\Admin', 'prefix' => 'admin'], function () {
+    Route::resource('products', 'ProductController', ['only' => 'index']);
+});
+
+Route::group(['namespace' => 'App\Shop\Http\Store'], function () {
 
     //login pages
     Route::get('shop/register', ['uses' => 'AuthController@register', 'as' => 'shop.register']);
@@ -16,9 +20,9 @@ Route::group(['namespace' => 'App\Shop\Http'], function () {
     Route::resource('shop', 'ShopController', ['only' => ['index', 'show']]);
 });
 
-
-Route::group(['domain' => config('app.subdomain'), 'namespace' => 'App\Shop\Http\Admin', 'prefix' => 'admin/shop'], function () {
-
+/**
+ * PRODUCT INPUT ROUTES
+ */
+Route::group(['namespace' => 'App\Shop\Http\App\Admin', 'prefix' => 'admin'], function () {
     Route::resource('products', 'ProductController', ['only' => 'index']);
-
 });
