@@ -9,18 +9,6 @@
             </form>
         </div>
         <ul class="nav navbar-top-links navbar-right">
-            <!--<li>-->
-                <!--<span class="m-r-sm text-muted welcome-message">Welcome to INSPINIA+ Admin Theme.</span>-->
-            <!--</li>-->
-            <li class="dropdown" dropdown>
-                <a class="dropdown-toggle count-info" href dropdown-toggle>
-                    Language
-                </a>
-                <ul class="dropdown-menu animated fadeInRight m-t-xs" ng-controller="translateCtrl">
-                    <li><a ng-click="changeLanguage('en')">English</a></li>
-                    <li><a ng-click="changeLanguage('es')">Spanish</a></li>
-                </ul>
-            </li>
             <li class="dropdown" dropdown>
                 <a class="dropdown-toggle count-info" href dropdown-toggle>
                     <i class="fa fa-envelope"></i> <span class="label label-warning">16</span>
