@@ -46,6 +46,7 @@
 
 <script src=" {{ asset('/js/' . app_detect() . '/admin/app.min.js') }}"></script>
 <script src=" {{ asset('/js/' . app_detect() . '/admin/config.min.js') }}"></script>
+<script src=" {{ asset('/js/' . app_detect() . '/admin/services.min.js') }}"></script>
 <script src=" {{ asset('/js/' . app_detect() . '/admin/translations.min.js') }}"></script>
 <script src=" {{ asset('/js/' . app_detect() . '/admin/directives.min.js') }}"></script>
 <script src=" {{ asset('/js/' . app_detect() . '/admin/controllers.min.js') }}"></script>
