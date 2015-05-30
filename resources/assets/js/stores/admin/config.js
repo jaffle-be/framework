@@ -1,13 +1,15 @@
-function config($stateProvider, $urlRouterProvider, $ocLazyLoadProvider, IdleProvider, KeepaliveProvider, $httpProvider) {
+function config($stateProvider, $urlRouterProvider, $ocLazyLoadProvider, IdleProvider, KeepaliveProvider, $httpProvider, $locationProvider) {
 
     // Configure Idle settings
     IdleProvider.idle(5); // in seconds
     IdleProvider.timeout(120); // in seconds
 
-    $urlRouterProvider.otherwise("/dashboard/start");
+    $urlRouterProvider.otherwise("/admin/start");
 
     //make sure laravel request->ajax() still works
     $httpProvider.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";
+    //$httpProvider.defaults.headers.common["Content-Type"] = "application/x-www-form-urlencoded";
+
     //add a hard reload when csrf token mismatches
     $httpProvider.interceptors.push('csrfHandler');
 
@@ -16,16 +18,18 @@ function config($stateProvider, $urlRouterProvider, $ocLazyLoadProvider, IdlePro
         debug: false
     });
 
+    $locationProvider.html5Mode(true);
+
     $stateProvider
 
-        .state('dashboard', {
+        .state('admin', {
             abstract: true,
-            url: "/dashboard",
-            templateUrl: "admin/templates/content",
+            url: "/admin",
+            templateUrl: "templates/admin/layout/content",
         })
-        .state('dashboard.start', {
+        .state('admin.start', {
             url: "/start",
-            templateUrl: "admin/start",
+            templateUrl: "templates/admin/start",
             resolve: {
                 loadPlugin: function ($ocLazyLoad) {
                     return $ocLazyLoad.load([
@@ -47,13 +51,9 @@ function config($stateProvider, $urlRouterProvider, $ocLazyLoadProvider, IdlePro
                 }
             }
         })
-        .state('dashboard.blog', {
-            url: "/blog",
-            templateUrl: "admin/blog"
-        })
-        .state('dashboard.products', {
+        .state('admin.products', {
             url: "/products",
-            templateUrl: "admin/products"
+            templateUrl: "templates/admin/products"
         })
 }
 angular

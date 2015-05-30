@@ -155,6 +155,7 @@ return [
         'App\Providers\EventServiceProvider',
         'App\Providers\RouteServiceProvider',
 
+        'Dimsav\Translatable\TranslatableServiceProvider',
         'Intervention\Image\ImageServiceProvider',
         'App\Layout\LayoutServiceProvider',
         'App\Dashboard\DashboardServiceProvider',
@@ -163,6 +164,7 @@ return [
         'App\Settings\SettingServiceProvider',
         'App\Modules\ModuleServiceProvider',
         'App\Users\UserServiceProvider',
+        'App\Account\AccountServiceProvider',
         'App\Shop\ShopServiceProvider',
         'App\Contact\ContactServiceProvider',
         'App\Blog\BlogServiceProvider',

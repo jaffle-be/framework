@@ -4,7 +4,7 @@ function config($stateProvider, $urlRouterProvider, $ocLazyLoadProvider, IdlePro
     IdleProvider.idle(5); // in seconds
     IdleProvider.timeout(120); // in seconds
 
-    $urlRouterProvider.otherwise("/dashboard/start");
+    $urlRouterProvider.otherwise("/admin/start");
 
     //make sure laravel request->ajax() still works
     $httpProvider.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";
@@ -18,14 +18,14 @@ function config($stateProvider, $urlRouterProvider, $ocLazyLoadProvider, IdlePro
 
     $stateProvider
 
-        .state('dashboard', {
+        .state('admin', {
             abstract: true,
-            url: "/dashboard",
-            templateUrl: "admin/templates/content",
+            url: "/admin",
+            templateUrl: "templates/admin/layout/content",
         })
-        .state('dashboard.start', {
+        .state('admin.start', {
             url: "/start",
-            templateUrl: "admin/start",
+            templateUrl: "templates/admin/start",
             resolve: {
                 loadPlugin: function ($ocLazyLoad) {
                     return $ocLazyLoad.load([
@@ -47,22 +47,22 @@ function config($stateProvider, $urlRouterProvider, $ocLazyLoadProvider, IdlePro
                 }
             }
         })
-        .state('dashboard.blog', {
+        .state('admin.blog', {
             url: "/blog",
-            templateUrl: "admin/blog"
+            templateUrl: "templates/admin/blog"
         })
-        .state('dashboard.products', {
+        .state('admin.products', {
             url: "/products",
-            templateUrl: "admin/products"
+            templateUrl: "templates/admin/products"
         })
         .state('shop', {
             abstract: true,
             url: "/admin/shop",
-            templateUrl: "admin/templates/content"
+            templateUrl: "templates/admin/templates/content"
         })
         .state('shop.products', {
             url: "/products",
-            templateUrl: "admin/shop/products"
+            templateUrl: "templates/admin/shop/products"
         })
 }
 angular

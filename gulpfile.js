@@ -73,6 +73,7 @@ gulp.task('admin-core', function () {
         'bower_components/metisMenu/dist/metisMenu.js',
         'bower_components/slimScroll/jquery.slimscroll.js',
         'bower_components/PACE/pace.js',
+        'bower_components/moment/min/moment-with-locales.min.js',
         'resources/assets/js/core.js',
     ])
         .pipe(maps.init())
@@ -111,6 +112,23 @@ gulp.task('publisher', function () {
         .pipe(copy('./public/fonts', {
             prefix: 3
         }));
+
+
+    //angular admin plugins
+    gulp.src('bower_components/angular-smart-table/dist/smart-table.min.js')
+        .pipe(copy('./public/js/admin/plugins/angular-smart-table/', {
+            prefix: 3
+        }));
+
+    gulp.src('bower_components/angular-resource/angular-resource.min.js')
+        .pipe(copy('./public/js/admin/plugins/angular-resource/', {
+            prefix: 3
+        }));
+
+    gulp.src('bower_components/ngStorage/ngStorage.min.js')
+        .pipe(copy('./public/js/admin/plugins/ngStorage/', {
+            prefix: 2
+        }))
 });
 
 

@@ -1,11 +1,17 @@
 <?php
 
-Route::group(['domain' => config('app.subdomain'), 'namespace' => 'App\Dashboard\Http\Stores', 'prefix' => 'admin'], function () {
-
+/**
+ * templates stores
+ */
+Route::group(['domain' => config('app.subdomain'), 'namespace' => 'App\Dashboard\Http\Stores', 'prefix' => 'templates/admin'], function () {
     Route::resource('start', 'DashboardController', ['only' => ['index']]);
 });
 
-Route::group(['namespace' => 'App\Dashboard\Http\App', 'prefix' => 'admin'], function () {
+/**
+ * Templates app
+ */
+
+Route::group(['namespace' => 'App\Dashboard\Http\App', 'prefix' => 'templates/admin'], function () {
 
     Route::resource('start', 'DashboardController', ['only' => ['index']]);
 });

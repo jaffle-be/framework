@@ -27,16 +27,16 @@
             </li>
             
             <li ui-sref-active="active">
-                <a ui-sref="dashboard.start"><i class="fa fa-tachometer"></i> <span class="nav-label">@{{ 'DASH' | translate }}</span></a>
+                <a ui-sref="admin.start"><i class="fa fa-tachometer"></i> <span class="nav-label">@{{ 'DASH' | translate }}</span></a>
             </li>
 
             <li><a href="#">if user has rights</a></li>
             <li ui-sref-active="active">
-                <a ui-sref="dashboard.products" href=""><i class="fa fa-barcode"></i><span class="nav-label">@{{ 'PRODUCTS' | translate }}</span></a>
+                <a ui-sref="admin.products" href=""><i class="fa fa-barcode"></i><span class="nav-label">@{{ 'PRODUCTS' | translate }}</span></a>
             </li>
 
             <li ui-sref-active="active">
-                <a ui-sref="dashboard.blog"><i class="fa fa-newspaper-o"></i> <span class="nav-label">@{{ 'BLOG' | translate }}</span></a>
+                <a ui-sref="admin.blog"><i class="fa fa-newspaper-o"></i> <span class="nav-label">@{{ 'BLOG' | translate }}</span></a>
             </li>
         </ul>
 

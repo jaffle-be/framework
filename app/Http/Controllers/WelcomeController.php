@@ -52,4 +52,19 @@ class WelcomeController extends Controller
 
         return sprintf('<img src="%s"><a href="test">click</a>', $image ? $image->path : null);
     }
+
+    public function system()
+    {
+        $config = config('translatable');
+
+        $config = [
+            'locale' => \App::getLocale(),
+            'fallback_locale' => $config['fallback_locale'],
+            'locales' => $config['locales'],
+            'user' => \Auth::user(),
+            'rpp' => 40
+        ];
+
+        return $config;
+    }
 }

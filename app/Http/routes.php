@@ -7,14 +7,20 @@
  * THEN ALL ROUTES FOR THE APP ITSELF
  */
 Route::group(['domain' => config('app.subdomain')], function(){
+
+
     Route::get('/', [
         'uses' => 'WelcomeController@storeHome',
         'as' => 'store.home'
     ]);
 
-    Route::get('admin', [
+    Route::get('templates/admin', [
         'uses' => 'WelcomeController@storeDash',
         'as' => 'store.dash'
+    ]);
+
+    Route::get('templates/admin/system', [
+        'uses' => 'WelcomeController@system',
     ]);
 });
 
@@ -28,3 +34,11 @@ Route::get('admin', [
 
 Route::get('test', 'WelcomeController@test');
 Route::get('test2', 'WelcomeController@test2');
+
+
+Route::group(['domain' => config('app.subdomain')], function()
+{
+    Route::get('admin/{subs}', [
+        'uses' => 'WelcomeController@storeDash',
+    ])->where(['subs' => '.*']);
+});

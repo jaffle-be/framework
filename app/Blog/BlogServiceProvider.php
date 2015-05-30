@@ -12,7 +12,8 @@ class BlogServiceProvider extends ServiceProvider
 
         //migration files
         $this->publishes([
-            __DIR__ . '/database/migrations' => base_path('database/migrations')
+            __DIR__ . '/database/migrations' => base_path('database/migrations'),
+            __DIR__ . '/database/seeds' => base_path('database/seeds')
         ]);
 
         //load translations and views
@@ -22,6 +23,8 @@ class BlogServiceProvider extends ServiceProvider
 
         //event listeners
         $this->listeners();
+        $this->observers();
+        include('helpers.php');
     }
 
     public function register()
@@ -31,5 +34,11 @@ class BlogServiceProvider extends ServiceProvider
     protected function listeners()
     {
 
+    }
+
+    protected function observers()
+    {
+        Post::observe('App\Blog\PostObserver');
+        PostTranslation::observe('App\Blog\PostTranslationObserver');
     }
 }

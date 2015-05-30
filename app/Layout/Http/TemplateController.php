@@ -5,7 +5,7 @@ use App\Http\Controllers\Controller;
 class TemplateController extends Controller
 {
 
-    public function show($template)
+    public function template($template)
     {
         return view('layout::admin.' . app_detect() . '.' . $template);
     }
