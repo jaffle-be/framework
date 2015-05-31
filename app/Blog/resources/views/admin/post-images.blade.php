@@ -5,7 +5,9 @@
     </div>
 
     <div class="ibox-content">
-
+        <form action="" class="dropzone" dropzone="dropzone">
+            <input name="_token" type="hidden" value="{{ csrf_token() }}"/>
+        </form>
     </div>
 
 </div>

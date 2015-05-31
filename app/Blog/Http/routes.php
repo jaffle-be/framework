@@ -16,6 +16,7 @@ Route::group(['domain' => config('app.subdomain'), 'namespace' => 'App\Blog\Http
     Route::group(['prefix' => 'api/admin'], function()
     {
         Route::resource('blog', 'BlogController', ['as' => 'store', 'only' => ['index', 'show', 'store', 'update']]);
+        Route::post('blog/{id}/upload', 'BlogController@upload');
     });
 });
 

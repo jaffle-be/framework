@@ -1,9 +1,10 @@
 <?php namespace App\Blog;
 
+use App\Media\StoresMedia;
 use Dimsav\Translatable\Translatable;
 use Illuminate\Database\Eloquent\Model;
 
-class Post extends Model{
+class Post extends Model implements StoresMedia{
 
     use Translatable;
 
@@ -16,5 +17,15 @@ class Post extends Model{
     public function user()
     {
         return $this->belongsTo('App\Users\User');
+    }
+
+    public function images()
+    {
+        return $this->morphMany('App\Media\Image', 'owner');
+    }
+
+    public function getMediaFolder()
+    {
+        return sprintf('blog/%d/', $this->attributes['id']);
     }
 }

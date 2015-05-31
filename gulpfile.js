@@ -74,6 +74,7 @@ gulp.task('admin-core', function () {
         'bower_components/slimScroll/jquery.slimscroll.js',
         'bower_components/PACE/pace.js',
         'bower_components/moment/min/moment-with-locales.min.js',
+        'bower_components/dropzone/dist/min/dropzone.min.js',
         'resources/assets/js/core.js',
     ])
         .pipe(maps.init())
@@ -129,6 +130,12 @@ gulp.task('publisher', function () {
         .pipe(copy('./public/js/admin/plugins/ngStorage/', {
             prefix: 2
         }))
+
+    gulp.src('bower_components/angular-cookies/angular-cookies.min.js')
+        .pipe(copy('./public/js/admin/plugins/angular-cookies/', {
+            prefix: 2
+        }));
+
 });
 
 

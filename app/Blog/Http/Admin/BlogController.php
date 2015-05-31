@@ -2,11 +2,13 @@
 
 use App\Blog\Post;
 use App\Http\Controllers\Controller;
+use App\Media\Commands\StoreNewImage;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 
-class BlogController extends Controller{
+class BlogController extends Controller
+{
 
     public function index(Request $request)
     {
@@ -21,8 +23,7 @@ class BlogController extends Controller{
 
         $post->user()->associate($guard->user());
 
-        if($post->save())
-        {
+        if ($post->save()) {
             return $post;
         }
 
@@ -44,12 +45,33 @@ class BlogController extends Controller{
 
         $post->fill($input);
 
-        if(!$post->save())
-        {
+        if (!$post->save()) {
             return response('500', 'something bad happened');
         }
 
         return $post;
+    }
+
+    public function upload($id, Request $request)
+    {
+        $post = $post = Post::find($id);
+
+        if ($post) {
+            $file = $request->file('file');
+
+            $path = $post->getMediaFolder() . '/' . $file->getClientOriginalName();
+
+            $file->move($post->getMediaFolder(), $file->getClientOriginalName());
+
+            $this->dispatchFromArray(StoreNewImage::class, [
+                'owner' => $post,
+                'path'  => $path,
+                'sizes' => [
+                    '400x300',
+                    '800x600'
+                ]
+            ]);
+        }
     }
 
     public function overview()
@@ -77,5 +99,4 @@ class BlogController extends Controller{
 
         return $input;
     }
-
 }

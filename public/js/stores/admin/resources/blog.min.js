@@ -15,8 +15,7 @@ angular.module('blog.controllers', ['blog.factories', 'system'])
             this.options.locale = locale;
         };
 
-        this.activeTab = function(locale)
-        {
+        this.activeTab = function (locale) {
             return this.locale == locale;
         };
 
@@ -35,12 +34,23 @@ angular.module('blog.controllers', ['blog.factories', 'system'])
         };
     })
 
-    .controller('BlogDetailCtrl', function ($state, blog, $http) {
+    .controller('BlogDetailCtrl', function ($state, blog, $http, $scope, $cookies) {
 
         //when creating, it should get locked so it won't trigger another save, till we have the id back from the server.
         this.locked = false;
 
         var id = $state.params.postId;
+
+        //image uploader
+        $scope.dropzone = {
+            options:{
+                url: 'api/admin/blog/' + id + '/upload',
+                clickable: true
+            },
+            handlers:{
+            }
+        };
+
         var me = this;
 
         this.load = function (id) {
@@ -50,29 +60,27 @@ angular.module('blog.controllers', ['blog.factories', 'system'])
             });
         };
 
-        function unlock()
-        {
-            return setTimeout(function(){
+        function unlock() {
+            return setTimeout(function () {
                 me.locked = false;
-            },3000);
+            }, 3000);
         }
 
         this.save = function () {
 
-            if(!this.locked)
+            if (!this.locked)
             {
-                if(!this.post.id)
+                if (!this.post.id)
                 {
-                    this.post.$save(function(post)
-                    {
+                    this.post.$save(function (post) {
                         $state.go('admin.post', {postId: post.id});
                     });
                 }
-                else{
+                else
+                {
                     this.locked = true;
 
-                    this.post.$update(function()
-                    {
+                    this.post.$update(function () {
                         unlock();
                     });
                 }
@@ -84,15 +92,14 @@ angular.module('blog.controllers', ['blog.factories', 'system'])
         id ? this.load(id) : this.post = new blog();
     });
 
-
 angular.module('blog.factories', ['ngResource'])
     .factory('blog', function ($resource) {
         return $resource('api/admin/blog/:id', {id: '@id'}, {
             query: {
-                isArray:false
+                isArray: false
             },
-            get:{
-                method:'GET'
+            get: {
+                method: 'GET'
             },
             update: {
                 method: 'PUT'

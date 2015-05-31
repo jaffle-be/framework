@@ -8,7 +8,6 @@ function config($stateProvider, $urlRouterProvider, $ocLazyLoadProvider, IdlePro
 
     //make sure laravel request->ajax() still works
     $httpProvider.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";
-    //$httpProvider.defaults.headers.common["Content-Type"] = "application/x-www-form-urlencoded";
 
     //add a hard reload when csrf token mismatches
     $httpProvider.interceptors.push('csrfHandler');

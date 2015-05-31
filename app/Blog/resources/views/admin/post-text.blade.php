@@ -35,8 +35,6 @@
                 </div>
             </div>
 
-            <a class="btn btn-lg btn-primary" href="#" ng-click="vm.test()">click me!</a>
-
             <div class="clearfix"></div>
         </form>
 

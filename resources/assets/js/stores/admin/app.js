@@ -9,7 +9,8 @@
         'system',
         'blog',
         'ngResource',
-        'ngStorage'
+        'ngStorage',
+        'ngCookies',
     ])
 })();
 // Other libraries are loaded dynamically in the config.js file using the library ocLazyLoad

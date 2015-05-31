@@ -39,6 +39,7 @@
 <script src=" {{ asset('/js/admin/plugins/ngStorage/ngStorage.min.js') }}"></script>
 <script src=" {{ asset('/js/admin/plugins/angular-idle/angular-idle.js') }}"></script>
 <script src=" {{ asset('/js/admin/plugins/angular-resource/angular-resource.min.js') }}"></script>
+<script src=" {{ asset('/js/admin/plugins/angular-cookies/angular-cookies.min.js') }}"></script>
 
 <!--
  You need to include this script on any page that has a Google Map.

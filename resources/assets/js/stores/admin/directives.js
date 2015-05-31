@@ -282,29 +282,20 @@ function ionRangeSlider() {
 /**
  * dropZone - Directive for Drag and drop zone file upload plugin
  */
-function dropZone() {
-    return function(scope, element, attrs) {
-        element.dropzone({
-            url: "/upload",
-            maxFilesize: 100,
-            paramName: "uploadfile",
-            maxThumbnailFilesize: 5,
-            init: function() {
-                scope.files.push({file: 'added'});
-                this.on('success', function(file, json) {
-                });
-                this.on('addedfile', function(file) {
-                    scope.$apply(function(){
-                        alert(file);
-                        scope.files.push({file: 'added'});
-                    });
-                });
-                this.on('drop', function(file) {
-                    alert('file');
-                });
-            }
+function dropzone() {
+    return function (scope, element, attrs) {
+        var config, dropzone;
+
+        config = scope[attrs.dropzone];
+
+        // create a Dropzone for the element with the given options
+        dropzone = new Dropzone(element[0], config.options);
+
+        // bind the given event handlers
+        angular.forEach(config.handlers, function (handler, event) {
+            dropzone.on(event, handler);
         });
-    }
+    };
 }
 
 /**
@@ -383,7 +374,7 @@ angular
     .directive('sparkline', sparkline)
     .directive('icheck', icheck)
     .directive('ionRangeSlider', ionRangeSlider)
-    .directive('dropZone', dropZone)
+    .directive('dropzone', dropzone)
     .directive('responsiveVideo', responsiveVideo)
     .directive('chatSlimScroll', chatSlimScroll)
     .directive('customValid', customValid)
