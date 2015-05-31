@@ -2,10 +2,9 @@
 
 use App\Blog\Post;
 use App\Http\Controllers\Controller;
-use App\Media\Commands\StoreNewImage;
+use App\Media\Commands\UploadNewImage;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Http\Request;
-use Illuminate\Support\Collection;
 
 class BlogController extends Controller
 {
@@ -57,19 +56,13 @@ class BlogController extends Controller
         $post = $post = Post::find($id);
 
         if ($post) {
+
             $file = $request->file('file');
 
-            $path = $post->getMediaFolder() . '/' . $file->getClientOriginalName();
-
-            $file->move($post->getMediaFolder(), $file->getClientOriginalName());
-
-            $this->dispatchFromArray(StoreNewImage::class, [
+            $this->dispatchFromArray(UploadNewImage::class, [
                 'owner' => $post,
-                'path'  => $path,
-                'sizes' => [
-                    '400x300',
-                    '800x600'
-                ]
+                'image' => $file,
+                'sizes' => config('blog.image_sizes')
             ]);
         }
     }
