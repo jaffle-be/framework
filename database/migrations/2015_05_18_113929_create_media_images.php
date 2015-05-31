@@ -26,6 +26,15 @@ class CreateMediaImages extends Migration
             $table->integer('height');
             $table->timestamps();
         });
+
+        Schema::create('media_image_translations', function(Blueprint $table){
+            $table->increments('id');
+            $table->integer('image_id', false, true);
+            $table->foreign('image_id', 'image_translation_to_image')->references('id')->on('media_images');
+            $table->enum('locale', config('translatable.locales'));
+            $table->string('title');
+            $table->timestamps();
+        });
     }
 
     /**
@@ -35,6 +44,10 @@ class CreateMediaImages extends Migration
      */
     public function down()
     {
+        Schema::drop('media_image_translations', function (Blueprint $table) {
+            $table->dropForeign('image_translation_to_image');
+        });
+
         Schema::drop('media_images', function (Blueprint $table) {
             $table->dropForeign('thumbnail_to_original_images');
         });

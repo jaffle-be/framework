@@ -49,8 +49,16 @@
                     <td>
                         @{{ $index + 1 }}&nbsp;<input type="checkbox"/>
                     </td>
-                    <td>@{{ post.translations[vm.options.locale].title }}</td>
-                    <td>@{{ post.translations[vm.options.locale].extract }}</td>
+                    <td></td>
+                    <td>
+                        <div class="">
+                            <h4>@{{ post.translations[vm.options.locale].title }}</h4>
+                            <img class="pull-left" src="@{{ post.images[0].sizes[0].path }}"/>
+                            @{{ post.translations[vm.options.locale].extract }}
+                        </div>
+
+
+                    </td>
                     <td>@{{ post.translations[vm.options.locale].created_at | fromNow }}</td>
                     <td>@{{ post.translations[vm.options.locale].updated_at | fromNow }}</td>
                 </tr>

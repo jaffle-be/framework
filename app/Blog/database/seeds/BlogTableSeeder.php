@@ -2,11 +2,15 @@
 
 use App\Blog\Post;
 use App\Blog\PostTranslation;
+use App\Media\Commands\StoreNewImage;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Bus\DispatchesCommands;
 use Jaffle\Tools\Seeder;
 
 class BlogTableSeeder extends Seeder
 {
+
+    use DispatchesCommands;
 
     public function run()
     {
@@ -54,6 +58,37 @@ class BlogTableSeeder extends Seeder
                 ]
             ]);
 
+
+            $count = rand(1,3);
+            $teller = 0;
+
+            while($teller < $count)
+            {
+                $this->newImage($post);
+                $teller++;
+            }
+
         }
+    }
+
+    protected function newImage($post)
+    {
+        $images = [
+            'IMG_9908.jpg',
+            'IMG_9985.jpg',
+            'O14A0241.jpg',
+            'O14A0247.jpg',
+            'O14A0256.jpg',
+            'O14A0436.jpg',
+            'O14A0438.jpg',
+        ];
+
+        $image = rand(0, count($images) - 1);
+
+        $this->dispatchFromArray(StoreNewImage::class, [
+            'owner' => $post,
+            'path' => __DIR__ . '/../images/' . $images[$image],
+            'sizes' => config('blog.image_sizes')
+        ]);
     }
 }

@@ -13,7 +13,8 @@
     "guzzlehttp/guzzle": "~5.0",
     "intervention/image": "~2.2",
     "fzaninotto/faker": "~1.4",
-    "dimsav/laravel-translatable": "~5.1"
+    "dimsav/laravel-translatable": "~5.1",
+    "intervention/imagecache": "~2.3"
   },
   "require-dev": {
     "phpunit/phpunit": "~4.0",

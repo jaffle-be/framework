@@ -48,6 +48,10 @@ angular.module('blog.controllers', ['blog.factories', 'system'])
                 clickable: true
             },
             handlers:{
+                success: function(a, b, c)
+                {
+                    console.log(a, b, c);
+                }
             }
         };
 

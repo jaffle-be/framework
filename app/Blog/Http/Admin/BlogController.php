@@ -11,7 +11,9 @@ class BlogController extends Controller
 
     public function index(Request $request)
     {
-        return \App\Blog\Post::with(['translations'])->paginate();
+        return \App\Blog\Post::with(['translations', 'images', 'images.sizes' => function ($query) {
+            $query->dimension(150);
+        }, 'images.translations'])->paginate();
     }
 
     public function store(Request $request, Post $post, Guard $guard)
@@ -33,7 +35,9 @@ class BlogController extends Controller
 
     public function show($id)
     {
-        return \App\Blog\Post::with(['translations'])->find($id);
+        return \App\Blog\Post::with(['translations', 'images', 'images.sizes' => function ($query) {
+            $query->dimension(340);
+        }, 'images.translations'])->find($id);
     }
 
     public function update($id, Request $request)

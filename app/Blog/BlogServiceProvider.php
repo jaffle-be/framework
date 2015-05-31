@@ -13,7 +13,8 @@ class BlogServiceProvider extends ServiceProvider
         //migration files
         $this->publishes([
             __DIR__ . '/database/migrations' => base_path('database/migrations'),
-            __DIR__ . '/database/seeds' => base_path('database/seeds')
+            __DIR__ . '/database/seeds' => base_path('database/seeds'),
+            __DIR__ . '/database/images' => base_path('database/images')
         ]);
 
         //load translations and views
