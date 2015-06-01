@@ -34,28 +34,29 @@ angular.module('blog.controllers', ['blog.factories', 'system'])
         };
     })
 
-    .controller('BlogDetailCtrl', function ($state, blog, $http, $scope, $cookies) {
+    .controller('BlogDetailCtrl', function ($state, blog, $scope, $resource) {
 
         //when creating, it should get locked so it won't trigger another save, till we have the id back from the server.
         this.locked = false;
 
-        var id = $state.params.postId;
+        var me = this,
+            id = $state.params.postId;
 
         //image uploader
         $scope.dropzone = {
-            options:{
-                url: 'api/admin/blog/' + id + '/upload',
-                clickable: true
+            options: {
+                url: 'api/admin/blog/' + id + '/image',
+                clickable: true,
+                maxFileSize: 10
             },
-            handlers:{
-                success: function(a, b, c)
-                {
-                    console.log(a, b, c);
+            handlers: {
+                success: function (file, image, xhr) {
+                    me.post.images.push(image);
+                    this.removeFile(file);
+                    $scope.$apply();
                 }
             }
         };
-
-        var me = this;
 
         this.load = function (id) {
             //also pass through the locale parameter (not the UI locale, but the input locale for the post itself
@@ -88,8 +89,29 @@ angular.module('blog.controllers', ['blog.factories', 'system'])
                         unlock();
                     });
                 }
-
             }
+        };
+
+        this.deleteImage = function (id) {
+
+            image = $resource('api/admin/blog/:postId/image/:imageId', {
+                postId: me.postId,
+                imageId: '@id'
+            }, {
+                update:{
+                    method: 'PUT'
+                }
+            });
+
+            image.delete({
+                postId: me.post.id,
+                imageId: id
+            }, function()
+            {
+                _.remove(me.post.images, function(value, index, array){
+                    return value.id == id;
+                });
+            });
         };
 
         //init with the post or an empty one

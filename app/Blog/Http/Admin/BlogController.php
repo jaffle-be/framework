@@ -2,7 +2,6 @@
 
 use App\Blog\Post;
 use App\Http\Controllers\Controller;
-use App\Media\Commands\UploadNewImage;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Http\Request;
 
@@ -33,16 +32,16 @@ class BlogController extends Controller
         ));
     }
 
-    public function show($id)
+    public function show(Post $post)
     {
-        return \App\Blog\Post::with(['translations', 'images', 'images.sizes' => function ($query) {
-            $query->dimension(340);
-        }, 'images.translations'])->find($id);
+        $post->load($this->relations());
+
+        return $post;
     }
 
-    public function update($id, Request $request)
+    public function update(Post $post, Request $request)
     {
-        $post = \App\Blog\Post::with(['translations'])->find($id);
+        $post->load($this->relations());
 
         $input = $this->input($request);
 
@@ -53,22 +52,6 @@ class BlogController extends Controller
         }
 
         return $post;
-    }
-
-    public function upload($id, Request $request)
-    {
-        $post = $post = Post::find($id);
-
-        if ($post) {
-
-            $file = $request->file('file');
-
-            $this->dispatchFromArray(UploadNewImage::class, [
-                'owner' => $post,
-                'image' => $file,
-                'sizes' => config('blog.image_sizes')
-            ]);
-        }
     }
 
     public function overview()
@@ -95,5 +78,12 @@ class BlogController extends Controller
         }
 
         return $input;
+    }
+
+    protected function relations()
+    {
+        return ['translations', 'images', 'images.sizes' => function ($query) {
+            $query->dimension(340);
+        }, 'images.translations'];
     }
 }

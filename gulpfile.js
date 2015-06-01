@@ -75,6 +75,7 @@ gulp.task('admin-core', function () {
         'bower_components/PACE/pace.js',
         'bower_components/moment/min/moment-with-locales.min.js',
         'bower_components/dropzone/dist/min/dropzone.min.js',
+        'bower_components/lodash/lodash.min.js',
         'resources/assets/js/core.js',
     ])
         .pipe(maps.init())

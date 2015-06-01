@@ -12,7 +12,11 @@
             <div class="row" ng-show="img.sizes[0]">
 
                 <div class="col-xs-12 col-md-6">
-                    <img ng-src="@{{ img.sizes[0].path }}"/>
+                    <img class="img-responsive" ng-src="@{{ img.sizes[0].path }}"/>
+
+                    <div class="controls">
+                        <button class="btn btn-danger" ng-click="vm.deleteImage(img.id)">{{ Lang::get('blog::admin.delete') }}</button>
+                    </div>
                 </div>
 
                 <div class="col-xs-12 col-md-6">
