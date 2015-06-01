@@ -4,12 +4,12 @@
 
         <tab ng-repeat="locale in vm.options.locales" heading="@{{ locale.locale }}" active="vm.options.locales[locale.locale].active">
 
-            <div class="col-xs-12 col-md-6 col-lg-8">
+            <div class="col-xs-12 col-lg-7">
 
                 @include('blog::admin.post-text')
             </div>
 
-            <div class="col-xs-12 col-md-6 col-lg-4">
+            <div class="col-xs-12 col-lg-5" ng-show="vm.post.id">
 
                 @include('blog::admin.post-status')
 
