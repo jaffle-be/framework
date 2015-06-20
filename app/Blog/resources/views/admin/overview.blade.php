@@ -46,8 +46,8 @@
                 </thead>
                 <tbody>
                 <tr ng-repeat="post in vm.posts" ui-sref="admin.blog.post({postId: post.id})">
-                    <td>
-                        @{{ $index + 1 }}&nbsp;<input type="checkbox"/>
+                    <td ng-click="$event.stopPropagation()">
+                        <label>@{{ $index + 1 }}&nbsp;<input type="checkbox" /></label>
                     </td>
                     <td></td>
                     <td>

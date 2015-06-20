@@ -6,37 +6,50 @@
 
     <div class="ibox-content">
 
-        <form ng-submit="vm.tag()" novalidate name="tagForm">
+        <form ng-submit="vm.createTag()" novalidate name="tagForm">
 
-            <div class="form-group col-xs-12 col-md-6">
-                <label for="addTag">{{ Lang::get('blog::admin.addTag') }}</label>
-                <input type="text" ng-model="asyncSelected" placeholder="{{ Lang::get('blog::admin.tag') }}" typeahead="address for address in getLocation($viewValue)" typeahead-loading="vm.searchingTag" class="form-control">
-                <i ng-show="vm.searchingTag" class="glyphicon glyphicon-refresh"></i>
-            </div>
+            <div class="form-group">
 
-            <div class="form-group col-xs-12 col-md-6">
-                <input class="btn btn-success" type="submit" value="{{ Lang::get('blog::admin.tag') }}"/>
+                <div class="input-group">
+
+                    <div class="input-group-addon"><i class="fa fa-refresh" ng-show="vm.tags.searching"></i><i class="fa fa-search" ng-hide="vm.tags.searching"></i></div>
+
+                    <input type="text" class="form-control" placeholder="{{ Lang::get('blog::admin.tag') }}"
+                           typeahead="tags.translations[locale.locale].name for tags in vm.searchTag($viewValue, locale.locale)"
+                           typeahead-loading="vm.tags.searching"
+                           typeahead-on-select="vm.addTag($item, $model, $label)"
+                           ng-model="vm.tags.input">
+
+                    <div class="input-group-btn">
+                        <button type="submit" class="btn btn-success"><i class="fa fa-plus"></i></button>
+                    </div>
+
+                </div>
+
             </div>
 
         </form>
+
+        <div class="clearfix"></div>
 
         <ul class="nav">
             <li ng-repeat="tag in vm.post.tags">
 
                 <form ng-submit="vm.updateTag(tag)" novalidate name="tagForm">
 
-                    <div class="form-group col-xs-6" ng-repeat="locale in vm.options.locales">
-                        <label>@{{ locale.locale }}</label>
-                        <input ng-change="vm.updateTag(tag)" class="form-control" type="text" name="@{{ locale.locale }}" ng-model="tag.translations[locale.locale].name"/>
+                    <div class="form-group">
+
+                        <div class="input-group">
+                            <input ng-change="vm.updateTag(tag)" class="form-control" type="text" name="@{{ locale.locale }}" ng-model="tag.translations[locale.locale].name"/>
+
+                            <div class="input-group-btn">
+                                <button ng-click="vm.deleteTag(tag.id)" class="btn btn-danger"><i class="fa fa-minus"></i></button>
+                            </div>
+                        </div>
+
                     </div>
 
                 </form>
-
-                <div class="form-group text-center">
-                    <button ng-click="vm.deleteTag(tag.id)" class="btn btn-danger">{{ Lang::get('blog::admin.delete') }}</button>
-                </div>
-
-                <div class="clearfix"></div>
 
             </li>
         </ul>

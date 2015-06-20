@@ -15,7 +15,7 @@ Route::group(['domain' => config('app.subdomain'), 'namespace' => 'App\Blog\Http
     Route::group(['prefix' => 'api/admin'], function () {
         Route::resource('blog', 'BlogController', ['as' => 'store', 'only' => ['index', 'show', 'store', 'update']]);
         Route::resource('blog/{blog}/image', 'BlogImageController', [['as' => 'store'], 'only' => ['store', 'destroy', 'update']]);
-        Route::resource('blog/{blog}/tag', 'BlogTagController', [['as' => 'store'], 'only' => ['store', 'destroy', 'update']]);
+        Route::resource('blog/{blog}/tag', 'BlogTagController', [['as' => 'store'], 'only' => ['index', 'store', 'destroy', 'update']]);
     });
 });
 

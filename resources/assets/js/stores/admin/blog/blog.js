@@ -33,9 +33,15 @@ angular.module('blog.controllers', ['blog.models'])
                 pagination.numberOfPages = response.last_page;
             });
         };
+
+        this.check = function($event)
+        {
+            $event.stopPropagation();
+            return false;
+        }
     })
 
-    .controller('BlogDetailCtrl', function ($state, $scope, Blog, BlogService, BlogImageService, BlogTagService) {
+    .controller('BlogDetailCtrl', function ($state, $scope, $timeout, Blog, BlogService, BlogImageService, BlogTagService) {
 
         this.images = BlogImageService;
         this.posts = BlogService;
@@ -103,22 +109,30 @@ angular.module('blog.controllers', ['blog.models'])
 
         this.deleteTag = function (id) {
 
-            this.tags.delete().success(function () {
-                _.remove(me.post.tags, function (value, index, array) {
-                    return value.id == id
-                });
+            this.tags.delete(me.post, id, _.remove(me.post.tags, function (value, index, array) {
+                return value.id == id
+            }));
+        };
+
+        this.searchTag = function (value, locale) {
+            return this.tags.search(me.post, locale, value).then(function (response) {
+                return response.data;
             });
         };
 
-        this.searchTag = function (id) {
-            BlogTag.query({
-                postId: me.post.id,
-                query: id
+        this.createTag = function () {
+            this.tags.create(me.post, function(tag)
+            {
+                me.post.tags.push(tag);
+                me.tags.input = '';
             });
         };
 
-        this.addTag = function (id) {
-
+        this.addTag = function ($item, $model, $label) {
+            this.tags.link(me.post, $item, function () {
+                me.post.tags.push($item);
+                me.tags.input = "";
+            });
         };
 
         this.load(id);
@@ -149,12 +163,9 @@ angular.module('blog.services', ['blog.models'])
                 {
                     this.locked = true;
 
-                    return post.$save(function (post) {
-                    }).success(function () {
+                    return post.$save(function () {
                         me.locked = false;
                         $state.go('admin.blog.post', {postId: post.id});
-                    }).error(function () {
-                        me.locked = false;
                     });
                 }
                 else
@@ -166,7 +177,7 @@ angular.module('blog.services', ['blog.models'])
 
                     this.timeout = $timeout(function () {
                         return post.$update();
-                    }, 1500);
+                    }, 400);
                 }
             };
         }
@@ -174,26 +185,65 @@ angular.module('blog.services', ['blog.models'])
         return new Service();
     })
 
-    .factory('BlogTagService', function (BlogTag) {
+    .factory('BlogTagService', function (BlogTag, $timeout) {
 
         function Service() {
 
+            this.searching = false;
+            this.input = '';
+            this.timeouts = [];
+
+            var me = this;
+
             this.update = function (post, tag, translations) {
-                tag.postId = post.id;
-                tag.translations = translations;
-                tag = new BlogTag(tag);
-                return tag.$update();
+
+                if(this.timeouts[tag.id])
+                {
+                    $timeout.cancel(this.timeouts[tag.id]);
+                }
+
+                this.timeouts[tag.id] = $timeout(function()
+                {
+                    tag.postId = post.id;
+                    tag.translations = translations;
+                    tag = new BlogTag(tag);
+                    return tag.$update();
+                }, 400);
             };
 
-            this.delete = function (post, tag) {
+            this.create = function(post, locale, success)
+            {
+                tag = new BlogTag({
+                    postId: post.id,
+                    locale: locale,
+                    name: me.input
+                });
+
+                tag.$save();
+            };
+
+            this.link = function (post, tag, success) {
+                tag = new BlogTag(tag);
+                tag.$update({
+                    postId: post.id,
+                    tagId: tag.id
+                }, success);
+            };
+
+            this.delete = function (post, tag, success, error) {
                 return BlogTag.delete({
                     postId: post.id,
-                    tagId: id
-                });
+                    tagId: tag
+                }, success, error);
             };
 
-            this.search = function () {
+            this.search = function (post, locale, value) {
 
+                return BlogTag.query({
+                    postId: post.id,
+                    value: value,
+                    locale: locale
+                }).$promise;
             };
 
         }
@@ -202,10 +252,11 @@ angular.module('blog.services', ['blog.models'])
 
     })
 
-    .factory('BlogImageService', function (BlogImage, $state) {
+    .factory('BlogImageService', function (BlogImage, $state, $timeout) {
         function Service() {
 
             var id = $state.params.postId
+            this.timeouts = [];
 
             //image uploader
             this.uploader = function (success) {
@@ -222,11 +273,20 @@ angular.module('blog.services', ['blog.models'])
             };
 
             this.update = function (post, img, translations) {
-                img.translations = translations;
-                img.postId = post.id;
 
-                image = new BlogImage(img);
-                return image.$update();
+                if(this.timeouts[img.id])
+                {
+                    $timeout.cancel(this.timeouts[img.id]);
+                }
+
+                this.timeouts[img.id] = $timeout(function()
+                {
+                    img.translations = translations;
+                    img.postId = post.id;
+
+                    image = new BlogImage(img);
+                    return image.$update();
+                }, 400);
             };
 
             this.delete = function (post, imageId, success) {

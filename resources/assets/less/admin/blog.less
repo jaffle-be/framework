@@ -16,6 +16,10 @@
 
 .blog-image{
 
+  position: relative;
+  width: 50%;
+  padding: 15px;
+  float:left;
   border-bottom: 1px solid @border-color;
   margin-bottom: 2em;
 
@@ -23,10 +27,16 @@
     margin-top: 1.5em;
   }
 
-  .controls{
-    display: block;
-    padding-bottom: 1em;
-    padding-top: 1em;
+  .fa.fa-remove{
+    cursor: pointer;
+    font-size: 250%;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+
+    &:hover, &:focus, &:active{
+      color:@brand-danger;
+    }
   }
 
 }

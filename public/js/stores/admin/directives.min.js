@@ -360,6 +360,7 @@ function fullScroll($timeout){
     };
 }
 
+
 /**
  *
  * Pass all functions into module
