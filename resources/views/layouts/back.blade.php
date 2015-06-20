@@ -56,7 +56,7 @@
 <script src=" {{ asset('/js/' . app_detect() . '/admin/directives.min.js') }}"></script>
 <script src=" {{ asset('/js/' . app_detect() . '/admin/controllers.min.js') }}"></script>
 <script src=" {{ asset('/js/' . app_detect() . '/admin/resources/system.min.js') }}"></script>
-<script src=" {{ asset('/js/' . app_detect() . '/admin/resources/blog.min.js') }}"></script>
+<script src=" {{ asset('/js/' . app_detect() . '/admin/blog/blog.min.js') }}"></script>
 
 
 </body>

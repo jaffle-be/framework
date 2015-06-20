@@ -8,8 +8,7 @@ function MainCtrl() {
         this.alerts.splice(index, 1);
     };
 
-
-};
+}
 
 angular
     .module('app')

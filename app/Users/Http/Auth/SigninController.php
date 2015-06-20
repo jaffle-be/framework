@@ -25,7 +25,7 @@ abstract class SigninController extends Controller
         $response = $this->dispatchFromArray(Signin::class, compact('credentials', 'remember_me'));
 
         if ($response instanceof User) {
-            return redirect()->route($this->routePrefix() . '.dash');
+            return redirect('admin/start');//->route($this->routePrefix() . '.dash');
         } else if (is_string($response) && $response == 'unconfirmed') {
             $route = route('confirm-email.create', ['email' => $credentials['email']]);
 

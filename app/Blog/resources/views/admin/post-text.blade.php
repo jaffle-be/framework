@@ -14,7 +14,7 @@
                 <label for="title" class="control-label">{{ Lang::get('blog::admin.post-title') }}</label>
 
                 <div>
-                    <input ng-blur="vm.save()" type="text" name="title" id="title" class="form-control" ng-model="vm.post.translations[locale.locale].title"/>
+                    <input ng-change="vm.save()" type="text" name="title" id="title" class="form-control" ng-model="vm.post.translations[locale.locale].title"/>
                 </div>
             </div>
 
@@ -23,7 +23,7 @@
                 <label for="extract" class="control-label">{{ Lang::get('blog::admin.post-extract') }}</label>
 
                 <div>
-                    <input ng-blur="vm.save()" type="text" name="extract" id="extract" class="form-control" ng-model="vm.post.translations[locale.locale].extract"/>
+                    <input ng-change="vm.save()" type="text" name="extract" id="extract" class="form-control" ng-model="vm.post.translations[locale.locale].extract"/>
                 </div>
             </div>
 
@@ -31,7 +31,7 @@
                 <label for="content" class="control-label">{{ Lang::get('blog::admin.post-content') }}</label>
 
                 <div>
-                    <textarea name="content" ng-blur="vm.save()" id="content" cols="30" rows="10" class="form-control" ng-model="vm.post.translations[locale.locale].content"></textarea>
+                    <textarea name="content" ng-change="vm.save()" id="content" cols="30" rows="10" class="form-control" ng-model="vm.post.translations[locale.locale].content"></textarea>
                 </div>
             </div>
 

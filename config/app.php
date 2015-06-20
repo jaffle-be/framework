@@ -168,6 +168,7 @@ return [
         'App\Shop\ShopServiceProvider',
         'App\Contact\ContactServiceProvider',
         'App\Blog\BlogServiceProvider',
+        'App\Tags\TagsServiceProvider',
 
     ],
 

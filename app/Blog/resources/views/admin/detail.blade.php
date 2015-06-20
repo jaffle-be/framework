@@ -6,12 +6,13 @@
 
             <div class="col-xs-12 col-lg-7">
 
+                @include('blog::admin.post-status')
+
                 @include('blog::admin.post-text')
+
             </div>
 
             <div class="col-xs-12 col-lg-5" ng-show="vm.post.id">
-
-                @include('blog::admin.post-status')
 
                 @include('blog::admin.post-tags')
 

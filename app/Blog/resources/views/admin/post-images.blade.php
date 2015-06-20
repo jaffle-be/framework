@@ -7,24 +7,27 @@
 
     <div class="ibox-content">
 
-        <div class="blog-image" ng-repeat="img in vm.post.images">
+        <div class="blog-image" ng-show="vm.post.images" ng-repeat="img in vm.post.images">
 
-            <div class="row" ng-show="img.sizes[0]">
+            <div class="row">
 
-                <div class="col-xs-12 col-md-6">
-                    <img class="img-responsive" ng-src="@{{ img.sizes[0].path }}"/>
+                <form ng-submit="vm.updateImage(img)" novalidate name="imageForm">
 
-                    <div class="controls">
-                        <button class="btn btn-danger" ng-click="vm.deleteImage(img.id)">{{ Lang::get('blog::admin.delete') }}</button>
+                    <div class="col-xs-12 col-md-6">
+                        <img class="img-responsive" ng-src="@{{ img.sizes[0].path }}"/>
+
+                        <div class="controls">
+                            <button class="btn btn-danger" ng-click="vm.deleteImage(img.id)">{{ Lang::get('blog::admin.delete') }}</button>
+                        </div>
                     </div>
-                </div>
 
-                <div class="col-xs-12 col-md-6">
-                    <div class="form-group" ng-repeat="locale in vm.options.locales">
-                        <label>@{{ locale.locale }}</label>
-                        <input class="form-control" type="text" name="@{{ locale.locale }}" id="" value="@{{ translation[locale.locale].title }}"/>
+                    <div class="col-xs-12 col-md-6">
+                        <div class="form-group" ng-repeat="locale in vm.options.locales">
+                            <label>@{{ locale.locale }}</label>
+                            <input ng-change="vm.updateImage(img)" class="form-control" type="text" name="@{{ locale.locale }}" ng-model="img.translations[locale.locale].title"/>
+                        </div>
                     </div>
-                </div>
+                </form>
             </div>
 
         </div>

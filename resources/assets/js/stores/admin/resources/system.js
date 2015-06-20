@@ -8,9 +8,6 @@ angular.module('system', [])
 
     .factory('system', function()
     {
-
-        moment.locale('en');
-
         //need to return an object that resembles all configurations
         //we should only fetch it once and store it.
         return {

@@ -16,7 +16,7 @@
 
         <div class="ibox-content">
 
-            <table st-table="vm.posts" st-pipe="vm.list" class="table table-hover table-striped table-responsive" ng-show="vm.total">
+            <table st-table="vm.posts" st-pipe="vm.list" class="table table-hover table-striped table-responsive" ng-show="vm.posts">
                 <thead>
                 <tr>
                     <th>
@@ -40,12 +40,12 @@
                         <input type="search" name="search" class="form-control"/>
                     </th>
                     <th colspan="2">
-                        <a class="btn btn-sm btn-primary pull-right" ui-sref="admin.post">{{ Lang::get('blog::new_post') }}</a>
+                        <a class="btn btn-sm btn-primary pull-right" ui-sref="admin.blog.post">{{ Lang::get('blog::new_post') }}</a>
                     </th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr ng-repeat="post in vm.posts" ui-sref="admin.post({postId: post.id})">
+                <tr ng-repeat="post in vm.posts" ui-sref="admin.blog.post({postId: post.id})">
                     <td>
                         @{{ $index + 1 }}&nbsp;<input type="checkbox"/>
                     </td>
@@ -53,12 +53,13 @@
                     <td>
                         <div class="">
                             <h4>@{{ post.translations[vm.options.locale].title }}</h4>
-                            <img class="pull-left" src="@{{ post.images[0].sizes[0].path }}"/>
+                            <img class="pull-left" ng-src="@{{ post.images[0].sizes[0].path }}"/>
                             @{{ post.translations[vm.options.locale].extract }}
                         </div>
 
 
                     </td>
+                    <td>@{{ post.tags.length }}</td>
                     <td>@{{ post.translations[vm.options.locale].created_at | fromNow }}</td>
                     <td>@{{ post.translations[vm.options.locale].updated_at | fromNow }}</td>
                 </tr>
@@ -71,7 +72,7 @@
             </table>
 
             <div class="no-posts-box">
-                <a ui-sref="admin.post">{{ Lang::get('blog::new_post') }}</a>
+                <a ui-sref="admin.blog.post">{{ Lang::get('blog::new_post') }}</a>
             </div>
 
         </div>

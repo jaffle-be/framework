@@ -1,31 +1,10 @@
 <?php namespace App\Menu;
 
-use Illuminate\Support\ServiceProvider;
+use Jaffle\Tools\ServiceProvider;
 
 class MenuServiceProvider extends ServiceProvider
 {
-
-    public function boot()
-    {
-        //include our routes
-        include __DIR__ . '/Http/routes.php';
-
-        //migration files
-        $this->publishes([
-            __DIR__ . '/database/migrations' => base_path('database/migrations')
-        ]);
-
-        //load translations and views
-        $this->loadViewsFrom(__DIR__ . '/resources/views/', 'menu');
-        $this->loadTranslationsFrom(__DIR__ . '/resources/lang', 'menu');
-        $this->mergeConfigFrom(__DIR__ . '/config/menu.php', 'menu');
-
-        //event listeners
-        $this->listeners();
-
-        $this->app['menu']->register('primary menu');
-        $this->app['menu']->register('secondary menu');
-    }
+    protected $namespace = 'menu';
 
     public function register()
     {
@@ -35,6 +14,12 @@ class MenuServiceProvider extends ServiceProvider
     }
 
     protected function listeners()
+    {
+        $this->app['menu']->register('primary menu');
+        $this->app['menu']->register('secondary menu');
+    }
+
+    protected function observers()
     {
     }
 }

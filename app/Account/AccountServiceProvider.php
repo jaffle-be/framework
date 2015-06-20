@@ -1,27 +1,11 @@
 <?php namespace App\Account;
 
-use Illuminate\Support\ServiceProvider;
+use Jaffle\Tools\ServiceProvider;
 
-class AccountServiceProvider extends ServiceProvider{
+class AccountServiceProvider extends ServiceProvider
+{
 
-    public function boot()
-    {
-        //include our routes
-        include __DIR__ . '/Http/routes.php';
-
-        //migration files
-        $this->publishes([
-            __DIR__ . '/database/migrations' => base_path('database/migrations')
-        ]);
-
-        //load translations and views
-        $this->loadViewsFrom(__DIR__ . '/resources/views/', 'accounts');
-        $this->loadTranslationsFrom(__DIR__ . '/resources/lang', 'accounts');
-        $this->mergeConfigFrom(__DIR__ . '/config/accounts.php', 'accounts');
-
-        //event listeners
-        $this->listeners();
-    }
+    protected $namespace = 'account';
 
     /**
      * Register the service provider.
@@ -33,6 +17,10 @@ class AccountServiceProvider extends ServiceProvider{
     }
 
     protected function listeners()
+    {
+    }
+
+    protected function observers()
     {
     }
 }

@@ -3,10 +3,12 @@
 use App\Media\StoresMedia;
 use Dimsav\Translatable\Translatable;
 use Illuminate\Database\Eloquent\Model;
+use App\Tags\Taggable;
 
 class Post extends Model implements StoresMedia{
 
     use Translatable;
+    use Taggable;
 
     protected $table = 'posts';
 

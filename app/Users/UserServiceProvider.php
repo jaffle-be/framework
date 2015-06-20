@@ -19,4 +19,9 @@ class UserServiceProvider extends ServiceProvider
 
         $events->listen('App\Users\Auth\Events\UserRegistered', 'App\Users\Auth\Handlers\UserRegisteredHandler');
     }
+
+    protected function observers()
+    {
+
+    }
 }

@@ -2,12 +2,23 @@
 
 use App\Blog\Post;
 use App\Http\Controllers\Controller;
+use App\Media\Commands\UpdateImage;
 use App\Media\Commands\UploadNewImage;
 use App\Media\Image;
 use Illuminate\Http\Request;
 
 class BlogImageController extends Controller
 {
+
+    protected function relations()
+    {
+        return [
+            'sizes' => function ($query) {
+                $query->dimension(340);
+            },
+            'translations'
+        ];
+    }
 
     public function store(Post $post, Request $request)
     {
@@ -21,21 +32,24 @@ class BlogImageController extends Controller
                 'sizes' => config('blog.image_sizes')
             ]);
 
-            $image->load([
-                'sizes' => function ($query) {
-                    $query->dimension(340);
-                },
-                'translations'
-            ]);
+            $image->load($this->relations());
 
             return $image;
         }
     }
 
-    public function update(Image $image, Post $post)
+    public function update(Post $post, Image $image, Request $request)
     {
+        $image->load($this->relations());
+
         if ($image->owner->id == $post->id) {
-            //update image
+
+            $input = $request->except(['_token']);
+
+            return $this->dispatchFromArray(UpdateImage::class, [
+                'image' => $image,
+                'input' => $input
+            ]);
         }
     }
 

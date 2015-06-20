@@ -10,14 +10,14 @@ class BlogController extends Controller
 
     public function index(Request $request)
     {
-        return \App\Blog\Post::with(['translations', 'images', 'images.sizes' => function ($query) {
+        return \App\Blog\Post::with(['translations', 'tags', 'images', 'images.sizes' => function ($query) {
             $query->dimension(150);
         }, 'images.translations'])->paginate();
     }
 
     public function store(Request $request, Post $post, Guard $guard)
     {
-        $input = $this->input($request);
+        $input = translation_input($request);
 
         $post = $post->newInstance($input);
 
@@ -43,7 +43,7 @@ class BlogController extends Controller
     {
         $post->load($this->relations());
 
-        $input = $this->input($request);
+        $input = translation_input($request);
 
         $post->fill($input);
 
@@ -64,25 +64,9 @@ class BlogController extends Controller
         return view('blog::admin.detail');
     }
 
-    /**
-     * @param Request $request
-     *
-     * @return array
-     */
-    protected function input(Request $request)
-    {
-        $input = $request->all();
-
-        foreach ($input['translations'] as $locale => $translation) {
-            $input[$locale] = $translation;
-        }
-
-        return $input;
-    }
-
     protected function relations()
     {
-        return ['translations', 'images', 'images.sizes' => function ($query) {
+        return ['translations', 'tags', 'tags.translations', 'images', 'images.sizes' => function ($query) {
             $query->dimension(340);
         }, 'images.translations'];
     }

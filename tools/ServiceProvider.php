@@ -3,12 +3,13 @@
 use Illuminate\Support\ServiceProvider as Provider;
 use ReflectionClass;
 
-abstract class ServiceProvider extends Provider{
+abstract class ServiceProvider extends Provider
+{
 
     protected $namespace = false;
 
     protected $setups = [
-        'publish', 'config', 'routes', 'views', 'lang'
+        'helpers', 'publish', 'config', 'routes', 'views', 'lang'
     ];
 
     protected $publishing = [
@@ -18,20 +19,21 @@ abstract class ServiceProvider extends Provider{
 
     public function boot()
     {
-        if(!$this->namespace)
-        {
+        if (!$this->namespace) {
             throw new \Exception('Please set the namespace for the provider');
         }
 
         $dir = $this->dir();
 
-        foreach($this->setups as $setup)
-        {
+        foreach ($this->setups as $setup) {
             $this->$setup($dir);
         }
 
+        $this->observers();
         $this->listeners();
     }
+
+    protected abstract function observers();
 
     protected abstract function listeners();
 
@@ -108,5 +110,14 @@ abstract class ServiceProvider extends Provider{
         $dir = dirname($reflection->getFileName());
 
         return $dir;
+    }
+
+    protected function helpers($dir)
+    {
+        $helpers = $dir . '/helpers.php';
+
+        if (file_exists($helpers)) {
+            include_once $helpers;
+        }
     }
 }

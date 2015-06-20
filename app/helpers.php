@@ -16,3 +16,14 @@ function app_detect()
 
     return $app;
 }
+
+function translation_input(Request $request)
+{
+    $input = $request->all();
+
+    foreach ($input['translations'] as $locale => $translation) {
+        $input[$locale] = $translation;
+    }
+
+    return $input;
+}
