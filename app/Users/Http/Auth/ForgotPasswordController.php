@@ -5,8 +5,10 @@ use App\Users\Auth\Commands\SendResetEmail;
 use App\Users\Auth\Requests\ForgotPasswordRequest;
 use Lang;
 
-class ForgotPasswordController extends Controller
+abstract class ForgotPasswordController extends Controller
 {
+
+    abstract function routePrefix();
 
     public function index()
     {
@@ -17,6 +19,6 @@ class ForgotPasswordController extends Controller
     {
         $this->dispatchFrom(SendResetEmail::class, $request);
 
-        return redirect()->route('signin.index')->withSuccess(Lang::get('users::general.request-handled'));
+        return redirect()->route($this->routePrefix() . '.signin.index')->withSuccess(Lang::get('users::general.request-handled'));
     }
 }

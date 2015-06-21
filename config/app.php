@@ -30,6 +30,16 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Subdomain
+    |--------------------------------------------------------------------------
+    |
+    | This handles the separation from client sites to ours in all route files
+    |
+    */
+    'subdomain' => env('APP_SUBDOMAIN', 'stores.framework.local') ,
+
+    /*
+    |--------------------------------------------------------------------------
     | Application Timezone
     |--------------------------------------------------------------------------
     |
@@ -145,13 +155,20 @@ return [
         'App\Providers\EventServiceProvider',
         'App\Providers\RouteServiceProvider',
 
+        'Dimsav\Translatable\TranslatableServiceProvider',
+        'Intervention\Image\ImageServiceProvider',
+        'App\Layout\LayoutServiceProvider',
+        'App\Dashboard\DashboardServiceProvider',
         'App\Menu\MenuServiceProvider',
+        'App\Media\MediaServiceProvider',
         'App\Settings\SettingServiceProvider',
         'App\Modules\ModuleServiceProvider',
         'App\Users\UserServiceProvider',
+        'App\Account\AccountServiceProvider',
         'App\Shop\ShopServiceProvider',
         'App\Contact\ContactServiceProvider',
         'App\Blog\BlogServiceProvider',
+        'App\Tags\TagsServiceProvider',
 
     ],
 

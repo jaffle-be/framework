@@ -4,7 +4,10 @@ use App\Http\Controllers\Controller;
 use App\Users\Auth\Commands\Signout;
 use Lang;
 
-class SignoutController extends Controller{
+abstract class SignoutController extends Controller
+{
+
+    abstract function routePrefix();
 
     public function index()
     {
@@ -12,7 +15,6 @@ class SignoutController extends Controller{
 
         $this->dispatch($command);
 
-        return redirect()->route('signin.index')->withSuccess(Lang::get('users::general.logout_success'));
+        return redirect()->route($this->routePrefix() . '.signin.index')->withSuccess(Lang::get('users::general.logout_success'));
     }
-
 }

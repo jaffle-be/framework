@@ -28,60 +28,60 @@ class CreateMenuItemsTable extends Migration {
 
 		MenuItem::create([
 			'menu_id' => 1,
-			'url' => 'producten',
+			'url' => '/shop',
 			'name' => 'producten',
 		]);
 
 		MenuItem::create([
 			'menu_id' => 1,
-			'url' => 'promoties',
+			'url' => '/shop',
 			'name' => 'promoties',
 		]);
 
 		MenuItem::create([
 			'menu_id' => 1,
-			'url' => 'nieuwsberichten',
+			'url' => '/blog',
 			'name' => 'nieuwsberichten',
 		]);
 
 		MenuItem::create([
 			'menu_id' => 1,
-			'url' => 'contact',
+			'url' => '/contact',
 			'name' => 'contact',
 		]);
 
 		MenuItem::create([
 			'menu_id' => 1,
 			'parent_id' => 1,
-			'url' => 'tv-vision',
+			'url' => '/shop/tv-vision',
 			'name' => 'TV / vision'
 		]);
 
 		MenuItem::create([
 			'menu_id' => 1,
 			'parent_id' => 1,
-			'url' => 'telefonie-mobile',
+			'url' => '/shop/telefonie-mobile',
 			'name' => 'telefonie / mobile'
 		]);
 
 		MenuItem::create([
 			'menu_id' => 1,
 			'parent_id' => 1,
-			'url' => 'computer-tablets',
+			'url' => '/shop/computer-tablets',
 			'name' => 'computer / tablets'
 		]);
 
 		MenuItem::create([
 			'menu_id' => 1,
 			'parent_id' => 1,
-			'url' => 'office-gps',
+			'url' => '/shop/office-gps',
 			'name' => 'office / gps'
 		]);
 
 		MenuItem::create([
 			'menu_id' => 1,
 			'parent_id' => 1,
-			'url' => 'huishoud',
+			'url' => '/shop/huishoud',
 			'name' => 'huishoud'
 		]);
 	}

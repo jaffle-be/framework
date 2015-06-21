@@ -8,9 +8,10 @@ use App\Users\Contracts\UserRepositoryInterface;
 use Illuminate\Foundation\Bus\DispatchesCommands;
 use Illuminate\Http\Request;
 
-class ConfirmEmailController extends Controller
+abstract class ConfirmEmailController extends Controller
 {
-    use DispatchesCommands;
+
+    abstract function routePrefix();
 
     /**
      * Form for sending new confirmation email.
@@ -38,12 +39,11 @@ class ConfirmEmailController extends Controller
     {
         $user = $users->findUserByEmail($request->get('email'));
 
-        if($user)
-        {
+        if ($user) {
             $this->dispatchFromArray(SendConfirmationEmail::class, ['user' => $user]);
         }
 
-        return redirect()->route('signin.index')->withSuccess(Lang::get('users::general.request-handled'));
+        return redirect()->route($this->routePrefix() . '.signin.index')->withSuccess(Lang::get('users::general.request-handled'));
     }
 
     /**
@@ -58,11 +58,10 @@ class ConfirmEmailController extends Controller
     {
         $token = $tokens->findTokenByValue($token);
 
-        if($token)
-        {
+        if ($token) {
             $this->dispatchFromArray(ConfirmEmail::class, ['token' => $token]);
         }
 
-        return redirect()->route('home');
+        return redirect()->route($this->routePrefix() . '.home');
     }
 }

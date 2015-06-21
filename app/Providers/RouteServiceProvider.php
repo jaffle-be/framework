@@ -24,7 +24,9 @@ class RouteServiceProvider extends ServiceProvider {
 	{
 		parent::boot($router);
 
-		//
+		$router->model('image', 'App\Media\Image');
+		$router->model('tag', 'App\Tags\Tag');
+		$router->model('blog', 'App\Blog\Post');
 		$this->pathsToPublish('');
 	}
 

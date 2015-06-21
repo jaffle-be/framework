@@ -50,7 +50,7 @@
     <link rel="stylesheet" href="{{asset('/assets/css/theme-colors/default.css') }}">
 
     <!-- CSS Customization -->
-    <link rel="stylesheet" href="{{asset('/assets/css/custom.css') }}">
+    <link rel="stylesheet" href="{{asset('/css/front/main.css') }}">
 </head>
 
 <body class="header-fixed">
