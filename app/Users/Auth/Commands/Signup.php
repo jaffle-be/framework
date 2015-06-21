@@ -1,6 +1,6 @@
 <?php namespace App\Users\Auth\Commands;
 
-use App\Commands\Command;
+use App\Jobs\Job;
 use App\Users\Auth\Events\UserRegistered;
 use App\Users\User;
 use Exception;
@@ -8,7 +8,7 @@ use Illuminate\Contracts\Bus\SelfHandling;
 use Illuminate\Contracts\Hashing\Hasher;
 use Illuminate\Events\Dispatcher;
 
-class Signup extends Command implements SelfHandling
+class Signup extends Job implements SelfHandling
 {
 
     protected $email;

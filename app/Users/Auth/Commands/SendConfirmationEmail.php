@@ -1,6 +1,6 @@
 <?php namespace App\Users\Auth\Commands;
 
-use App\Commands\Command;
+use App\Jobs\Job;
 use App\Users\Auth\Tokens\Token;
 use App\Users\Contracts\TokenRepositoryInterface;
 use App\Users\User;
@@ -10,7 +10,7 @@ use Illuminate\Contracts\Queue\ShouldBeQueued;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Translation\Translator;
 
-class SendConfirmationEmail extends Command implements SelfHandling, ShouldBeQueued
+class SendConfirmationEmail extends Job implements SelfHandling, ShouldBeQueued
 {
     use InteractsWithQueue;
 

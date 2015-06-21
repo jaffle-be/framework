@@ -47,7 +47,7 @@ class BlogTagController extends Controller
 
         $sorted = new Collection($tags->items());
 
-        $sorted->sortBy(function($tag) use ($locale){
+        $sorted = $sorted->sortBy(function($tag) use ($locale){
             return $tag->translate($locale)->name;
         });
 

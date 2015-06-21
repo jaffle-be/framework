@@ -1,6 +1,6 @@
 <?php namespace App\Users\Auth\Commands;
 
-use App\Commands\Command;
+use App\Jobs\Job;
 use App\Users\Auth\Tokens\Token;
 use App\Users\Contracts\TokenRepositoryInterface;
 use App\Users\Contracts\UserRepositoryInterface;
@@ -12,7 +12,7 @@ use Illuminate\Log\Writer;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Translation\Translator;
 
-class SendResetEmail extends Command implements SelfHandling, ShouldBeQueued
+class SendResetEmail extends Job implements SelfHandling, ShouldBeQueued
 {
 
     use InteractsWithQueue;

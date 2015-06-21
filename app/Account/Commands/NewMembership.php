@@ -3,10 +3,10 @@
 use App\Account\Account;
 use App\Account\AccountRepositoryInterface;
 use App\Account\MembershipOwner;
-use App\Commands\Command;
+use App\Jobs\Job;
 use Illuminate\Contracts\Bus\SelfHandling;
 
-class NewMembership extends Command implements SelfHandling{
+class NewMembership extends Job implements SelfHandling{
 
     /**
      * @var Account

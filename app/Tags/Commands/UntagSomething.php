@@ -1,9 +1,9 @@
 <?php namespace App\Tags\Commands;
 
-use App\Commands\Command;
+use App\Jobs\Job;
 use Illuminate\Contracts\Bus\SelfHandling;
 
-class UntagSomething extends Command implements SelfHandling{
+class UntagSomething extends Job implements SelfHandling{
 
     protected $owner;
 
