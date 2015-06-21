@@ -30,4 +30,9 @@ class Post extends Model implements StoresMedia{
     {
         return sprintf('blog/%d/', $this->attributes['id']);
     }
+
+    public function getPublishedAtAttribute()
+    {
+        return $this->getAttribute('created_at');
+    }
 }

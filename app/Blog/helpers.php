@@ -15,7 +15,7 @@ function blog_options()
 
         return [
             'locale' => $item,
-            'active' => $item == 'nl'
+            'active' => $item == App::getLocale()
         ];
 
     }, $options['locales']);

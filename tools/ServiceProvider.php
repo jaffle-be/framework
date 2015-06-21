@@ -96,6 +96,7 @@ abstract class ServiceProvider extends Provider
     protected function config($dir)
     {
         $config = $dir . '/config/' . $this->namespace . '.php';
+
         if (file_exists($config)) {
             $this->mergeConfigFrom($config, $this->namespace);
         }

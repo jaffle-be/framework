@@ -58,7 +58,7 @@ class BlogTableSeeder extends Seeder
                 ]
             ]);
 
-            $count = rand(1, 3);
+            $count = rand(1, 2);
             $teller = 0;
 
             while ($teller < $count) {

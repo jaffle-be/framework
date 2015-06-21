@@ -43,6 +43,11 @@ class User extends Model implements Authenticatable, MembershipOwner
         return $this->belongsTo('App\Users\Auth\Tokens\Token', 'confirmation_token_id');
     }
 
+    public function getNameAttribute()
+    {
+        return isset($this->attributes['name']) ? $this->attributes['name'] : 'Unknown';
+    }
+
     /**
      * Get the token value for the "remember me" session.
      *

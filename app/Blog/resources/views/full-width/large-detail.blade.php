@@ -23,27 +23,28 @@
         <div class="container content-sm">
             <!-- News v3 -->
             <div class="news-v3 margin-bottom-30">
-                <img class="img-responsive full-width" src="{{ asset('/assets/img/main/img12.jpg') }}" alt="">
+                <img class="img-responsive full-width" src="{{ asset($post->images->first()->sizes->first()->path) }}" alt="{{ $post->images->first()->title }}">
 
                 <div class="news-v3-in">
                     <ul class="list-inline posted-info">
-                        <li>By <a href="#">Alexander Jenni</a></li>
-                        <li>In <a href="#">Design</a></li>
-                        <li>Posted January 24, 2015</li>
+                        <li>By <a href="#">{{ $post->user->name }}</a></li>
+                        @foreach($post->tags as $tag)
+                        <li>In <a href="#">{{ $tag->name }}</a></li>
+                        @endforeach
+                        <li>Posted {{ $post->published_at->format('d M, Y') }}</li>
                     </ul>
-                    <h2><a href="#">Incredible standard post “IMAGE”</a></h2>
+                    <h2><a href="#">{{ $post->title }}</a></h2>
 
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec arcu ipsum. Curabitur tincidunt nisi ex, ut eleifend turpis egestas vitae. Proin convallis et eros eget rutrum. Duis luctus lorem id mattis placerat. Etiam pharetra libero ut suscipit mollis. Morbi augue mi, maximus at lectus id, mollis ornare dui. Curabitur consequat, est non cursus suscipit, quam nulla porta enim, sed pharetra diam elit non nisi. Praesent pulvinar ante eu euismod cursus. Fusce quis est justo. Nullam id egestas diam. Etiam ac augue orci. Aliquam scelerisque convallis est sed pretium. In vel elementum lorem.</p>
-
-                    <p>Pellentesque eleifend metus vitae commodo finibus. Proin eget mi a sem placerat facilisis. Aenean interdum aliquet sapien, non scelerisque massa vestibulum ut. Quisque mollis, ante nec volutpat dignissim, lectus libero porta magna, at volutpat massa orci a turpis. Duis tincidunt nunc magna, non semper metus tempus ut. Duis vulputate enim condimentum posuere lacinia. Ut venenatis massa ex.</p>
                     <blockquote class="hero">
                         <p>
-                            <em>"Lorem ipsum dolor sit amet, consectetur adipiscing duis mollis, est non commodo luctus elit posuere erat a ante. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis lorem ipsum dolor sit amet, consectetur adipiscing"</em>
+                            <em>{{ $post->extract }}</em>
                         </p>
                     </blockquote>
-                    <p>Sed placerat diam auctor eget. Mauris tellus eros, iaculis id leo quis, finibus aliquet ipsum. Duis volutpat lacus in purus bibendum, at sollicitudin eros malesuada. Sed nec diam a eros eleifend mattis. Phasellus in facilisis enim. Vestibulum sodales lacinia lectus, quis efficitur velit posuere sed.</p>
 
-                    <p>Pellentesque eleifend metus vitae commodo finibus. Proin eget mi a sem placerat facilisis. Aenean interdum aliquet sapien, non scelerisque massa vestibulum ut. Quisque mollis, ante nec volutpat dignissim, lectus libero porta magna, at volutpat massa orci a turpis. Duis tincidunt nunc magna, non semper metus tempus ut. Duis vulputate enim condimentum posuere lacinia. Ut venenatis massa ex.</p>
+                    <p>
+                        {{ $post->content }}
+                    </p>
+
                     <ul class="post-shares post-shares-lg">
                         <li>
                             <a href="#">
@@ -87,53 +88,7 @@
             <!-- End Blog Post Author -->
 
             <!-- Authored Blog -->
-            <div class="row news-v2 margin-bottom-50">
-                <div class="col-sm-4 sm-margin-bottom-30">
-                    <div class="news-v2-badge">
-                        <img class="img-responsive" src="{{ asset('/assets/img/main/img3.jpg') }}" alt="">
-
-                        <p>
-                            <span>24</span>
-                            <small>Jan</small>
-                        </p>
-                    </div>
-                    <div class="news-v2-desc">
-                        <h3><a href="#">Blog Image Post</a></h3>
-                        <small>By Admin | California, US | In <a href="#">Art</a></small>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae, gravida pellentesque urna varius vitae.</p>
-                    </div>
-                </div>
-                <div class="col-sm-4 sm-margin-bottom-30">
-                    <div class="news-v2-badge">
-                        <img class="img-responsive" src="{{ asset('/assets/img/main/img6.jpg') }}" alt="">
-
-                        <p>
-                            <span>23</span>
-                            <small>Jan</small>
-                        </p>
-                    </div>
-                    <div class="news-v2-desc">
-                        <h3><a href="#">Blog Image Post</a></h3>
-                        <small>By Admin | California, US | In <a href="#">Art</a></small>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae, gravida pellentesque urna varius vitae.</p>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="news-v2-badge">
-                        <img class="img-responsive" src="{{ asset('/assets/img/main/img4.jpg') }}" alt="">
-
-                        <p>
-                            <span>22</span>
-                            <small>Jan</small>
-                        </p>
-                    </div>
-                    <div class="news-v2-desc">
-                        <h3><a href="#">Blog Image Post</a></h3>
-                        <small>By Admin | California, US | In <a href="#">Art</a></small>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae, gravida pellentesque urna varius vitae.</p>
-                    </div>
-                </div>
-            </div>
+            @include('blog::elements.news-2', ['posts' => $related])
             <!-- End Authored Blog -->
 
             <hr>
