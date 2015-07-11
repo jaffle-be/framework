@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html ng-app="app">
 
@@ -47,16 +46,15 @@
  https://developers.google.com/maps/documentation/javascript/tutorial#api_key
  After your sign up replace the key in the URL below..
 -->
-{{--<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDQTpXj82d8UpCi97wzo_nKXL7nYrd4G70"></script>--}}
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBcPQMkol7H0kSnSSqYkJpRicrKfxWHC4o&libraries=places&v=3.exp"></script>
 
-<script src=" {{ asset('/js/' . app_detect() . '/admin/app.min.js') }}"></script>
-<script src=" {{ asset('/js/' . app_detect() . '/admin/config.min.js') }}"></script>
-<script src=" {{ asset('/js/' . app_detect() . '/admin/services.min.js') }}"></script>
-<script src=" {{ asset('/js/' . app_detect() . '/admin/translations.min.js') }}"></script>
-<script src=" {{ asset('/js/' . app_detect() . '/admin/directives.min.js') }}"></script>
-<script src=" {{ asset('/js/' . app_detect() . '/admin/controllers.min.js') }}"></script>
-<script src=" {{ asset('/js/' . app_detect() . '/admin/resources/system.min.js') }}"></script>
-<script src=" {{ asset('/js/' . app_detect() . '/admin/blog/blog.min.js') }}"></script>
+<script src=" {{ asset('/js/admin/app.min.js') }}"></script>
+<script src=" {{ asset('/js/admin/config.min.js') }}"></script>
+<script src=" {{ asset('/js/admin/services.min.js') }}"></script>
+<script src=" {{ asset('/js/admin/translations.min.js') }}"></script>
+<script src=" {{ asset('/js/admin/directives.min.js') }}"></script>
+<script src=" {{ asset('/js/admin/models.min.js') }}"></script>
+<script src=" {{ asset('/js/admin/controllers.min.js') }}"></script>
 
 
 </body>

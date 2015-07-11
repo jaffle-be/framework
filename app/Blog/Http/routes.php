@@ -3,7 +3,10 @@
 /**
  * store controllers
  */
-Route::group(['domain' => config('app.subdomain'), 'namespace' => 'App\Blog\Http\Admin'], function () {
+Route::group([
+    'domain' => config('app.subdomain'),
+    'namespace' => 'App\Blog\Http\Admin'
+], function () {
 
     Route::group(['prefix' => 'templates/admin'], function () {
         //template files, load at top so we do not end up in the show method

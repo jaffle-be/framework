@@ -44,7 +44,7 @@ class BlogImageController extends Controller
 
         if ($image->owner->id == $post->id) {
 
-            $input = $request->except(['_token', 'title']);
+            $input = translation_input($request, ['_token', 'title']);
 
             return $this->dispatchFromArray(UpdateImage::class, [
                 'image' => $image,

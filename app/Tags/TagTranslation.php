@@ -8,9 +8,4 @@ class TagTranslation extends TranslationModel{
 
     protected $fillable = ['name'];
 
-    public function owner()
-    {
-        return $this->morp('App\Users\User');
-    }
-
 }

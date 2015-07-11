@@ -36,6 +36,15 @@
             <li ui-sref-active="active">
                 <a ui-sref="admin.products"><i class="fa fa-newspaper-o"></i> <span class="nav-label">@{{ 'SHOP' | translate }}</span></a>
             </li>
+
+            <li ng-class="{active: $state.includes('admin.account')}">
+                <a href=""><i class="class fa fa-gear"></i> <span class="nav-label">@{{ 'ACCOUNT' | translate }}</span></a>
+                <ul class="nav nav-second-level" ng-class="{in: $state.includes('admin.account')}">
+                    <li ui-sref-active="active">
+                        <a ui-sref="admin.account.contact"><i class="class fa fa-map-marker"></i> <span class="nav-label">@{{ 'CONTACT' | translate }}</span></a>
+                    </li>
+                </ul>
+            </li>
         </ul>
 
     </div>

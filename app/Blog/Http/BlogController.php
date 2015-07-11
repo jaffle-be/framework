@@ -15,7 +15,7 @@ class BlogController extends Controller{
 
         $posts = Post::with($this->relations(460))->orderBy('created_at', 'desc')->paginate();
 
-        return view('blog::full-width.medium-overview', ['posts' => $posts]);
+        return $this->theme->render('blog.full-width.medium-overview', ['posts' => $posts])->render();
     }
 
     public function show(Post $post)
@@ -24,7 +24,7 @@ class BlogController extends Controller{
 
         $related = $post->with($this->relations(360))->get()->shuffle()->take(3);
 
-        return view('blog::full-width.large-detail', ['post' => $post, 'related' => $related]);
+        return $this->theme->render('blog.full-width.large-detail', ['post' => $post, 'related' => $related]);
     }
 
     /**
@@ -32,8 +32,6 @@ class BlogController extends Controller{
      */
     protected function relations($dimension)
     {
-        return ['translations', 'images', 'images.translations', 'images.sizes' => function ($query) use ($dimension) {
-            $query->dimension($dimension);
-        }];
+        return ['translations', 'images', 'images.translations'];
     }
 }

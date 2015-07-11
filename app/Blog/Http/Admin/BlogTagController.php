@@ -80,6 +80,8 @@ class BlogTagController extends Controller
 
     public function update(Post $post, Tag $tag, Request $request)
     {
+        $tag->load(['translations']);
+
         //if the post didn't contain the tag, we wanted to add it.
         if (!$post->tags->contains($tag->id)) {
 
@@ -91,7 +93,7 @@ class BlogTagController extends Controller
 
         $this->dispatchFromArray(UpdateTag::class, [
             'tag'   => $tag,
-            'input' => $request->all()
+            'input' => translation_input($request, ['name'])
         ]);
     }
 

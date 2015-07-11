@@ -92,7 +92,6 @@
     <script type="text/javascript" src="{{ asset('assets/plugins/sky-forms-pro/skyforms/js/jquery.validate.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('assets/js/app.js') }}"></script>
     <script type="text/javascript" src="{{ asset('assets/js/forms/login.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('assets/js/forms/contact.js') }}"></script>
     <script type="text/javascript">
         jQuery(document).ready(function () {
             App.init();

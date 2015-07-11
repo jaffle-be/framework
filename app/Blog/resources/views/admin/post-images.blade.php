@@ -7,6 +7,8 @@
 
     <div class="ibox-content">
 
+        <div class="alert alert-danger">{{ Lang::get('blog::admin.geen_images_verwijderen_tijdens_het_editen') }}</div>
+
         <div class="blog-image" ng-show="vm.post.images" ng-repeat="img in vm.post.images">
 
             <form ng-submit="vm.updateImage(img)" novalidate name="imageForm">

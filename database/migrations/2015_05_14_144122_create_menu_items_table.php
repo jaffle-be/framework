@@ -25,65 +25,6 @@ class CreateMenuItemsTable extends Migration {
 			$table->string('name');
 			$table->timestamps();
 		});
-
-		MenuItem::create([
-			'menu_id' => 1,
-			'url' => 'producten',
-			'name' => 'producten',
-		]);
-
-		MenuItem::create([
-			'menu_id' => 1,
-			'url' => 'promoties',
-			'name' => 'promoties',
-		]);
-
-		MenuItem::create([
-			'menu_id' => 1,
-			'url' => 'nieuwsberichten',
-			'name' => 'nieuwsberichten',
-		]);
-
-		MenuItem::create([
-			'menu_id' => 1,
-			'url' => 'contact',
-			'name' => 'contact',
-		]);
-
-		MenuItem::create([
-			'menu_id' => 1,
-			'parent_id' => 1,
-			'url' => 'tv-vision',
-			'name' => 'TV / vision'
-		]);
-
-		MenuItem::create([
-			'menu_id' => 1,
-			'parent_id' => 1,
-			'url' => 'telefonie-mobile',
-			'name' => 'telefonie / mobile'
-		]);
-
-		MenuItem::create([
-			'menu_id' => 1,
-			'parent_id' => 1,
-			'url' => 'computer-tablets',
-			'name' => 'computer / tablets'
-		]);
-
-		MenuItem::create([
-			'menu_id' => 1,
-			'parent_id' => 1,
-			'url' => 'office-gps',
-			'name' => 'office / gps'
-		]);
-
-		MenuItem::create([
-			'menu_id' => 1,
-			'parent_id' => 1,
-			'url' => 'huishoud',
-			'name' => 'huishoud'
-		]);
 	}
 
 	/**

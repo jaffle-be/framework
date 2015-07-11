@@ -1,7 +1,15 @@
 <div class="ibox">
 
     <div class="ibox-title">
-        <h5>{{ Lang::get('blog::admin.post-details') }}</h5>
+        <div class="row">
+            <div class="col-xs-8">
+                <h5>{{ Lang::get('blog::admin.post-details') }}</h5>
+            </div>
+            <div class="col-xs-4 text-right">
+                <span id="publisher" class="btn-sm btn btn-info" ng-click="vm.publish()" ng-show="vm.drafting">{{ Lang::get('blog::admin.drafting') }}</span>
+                <span id="reset" class="btn-sm btn btn-danger" ng-click="vm.delete()">{{ Lang::get('blog::admin.reset') }}</span>
+            </div>
+        </div>
     </div>
 
     <div class="ibox-content">

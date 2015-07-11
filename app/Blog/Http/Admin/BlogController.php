@@ -1,5 +1,6 @@
 <?php namespace App\Blog\Http\Admin;
 
+use App\Blog\Jobs\UpdatePost;
 use App\Blog\Post;
 use App\Http\Controllers\Controller;
 use Illuminate\Contracts\Auth\Guard;
@@ -10,9 +11,25 @@ class BlogController extends Controller
 
     public function index(Request $request)
     {
-        return \App\Blog\Post::with(['translations', 'tags', 'images', 'images.sizes' => function ($query) {
+        $query = Post::with(['translations', 'tags', 'images', 'images.sizes' => function ($query) {
             $query->dimension(150);
-        }, 'images.translations'])->paginate();
+        }, 'images.translations']);
+
+        $value = $request->get('query');
+        $locale = $request->get('locale');
+
+        $query->whereHas('translations', function ($q) use ($value, $locale) {
+            if ($value) {
+                $q->where('locale', $locale);
+                $q->where(function ($q) use ($value) {
+                    $q->where('title', 'like', '%' . $value . '%')
+                        ->orWhere('extract', 'like', '%' . $value . '%')
+                        ->orWhere('content', 'like', '%' . $value . '%');
+                });
+            }
+        });
+
+        return $query->paginate();
     }
 
     public function store(Request $request, Post $post, Guard $guard)
@@ -43,11 +60,12 @@ class BlogController extends Controller
     {
         $post->load($this->relations());
 
-        $input = translation_input($request);
+        $payload = [
+            'post'  => $post,
+            'input' => translation_input($request, ['title', 'extract', 'content', 'published_at'])
+        ];
 
-        $post->fill($input);
-
-        if (!$post->save()) {
+        if (!$this->dispatchFromArray(UpdatePost::class, $payload)) {
             return response('500', 'something bad happened');
         }
 

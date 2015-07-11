@@ -14,6 +14,7 @@ class AccountServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        $this->app->singleton('App\Account\AccountManager');
     }
 
     protected function listeners()

@@ -15,11 +15,9 @@ class DatabaseSeeder extends Seeder
     {
         Model::unguard();
 
-//        $seeders = ['users', 'blog', 'tags'];
-        $seeders = ['tag'];
+        $seeders = ['country', 'contact', 'users', 'menu', 'account', 'tag', 'blog'];
 
-        foreach($seeders as $seeds)
-        {
+        foreach ($seeders as $seeds) {
             $this->seed($seeds);
         }
     }
@@ -28,8 +26,7 @@ class DatabaseSeeder extends Seeder
     {
         $table = ucfirst($table) . 'TableSeeder';
 
-        if(class_exists($table))
-        {
+        if (class_exists($table)) {
             $this->call($table);
         }
     }

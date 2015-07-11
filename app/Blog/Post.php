@@ -12,9 +12,9 @@ class Post extends Model implements StoresMedia{
 
     protected $table = 'posts';
 
-    protected $translatedAttributes = ['title', 'extract', 'content', 'publish_at'];
-
     protected $fillable = ['title', 'extract', 'content', 'publish_at'];
+
+    protected $translatedAttributes = ['title', 'extract', 'content', 'publish_at'];
 
     public function user()
     {

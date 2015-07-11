@@ -15,7 +15,10 @@ class CreateAccountsTable extends Migration {
 		Schema::create('accounts', function(Blueprint $table)
 		{
 			$table->increments('id');
-			$table->string('slug');
+			$table->string('alias');
+            $table->string('domain');
+            $table->integer('user_id', false, true);
+            $table->foreign('user_id', 'account_to_user')->references('id')->on('users');
 			$table->timestamps();
 		});
 	}

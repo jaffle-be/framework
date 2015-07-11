@@ -17,13 +17,15 @@ function app_detect()
     return $app;
 }
 
-function translation_input(Request $request)
+function translation_input(Request $request, array $except = [])
 {
-    $input = $request->all();
+    $input = $request->except($except);
 
     foreach ($input['translations'] as $locale => $translation) {
         $input[$locale] = $translation;
     }
+
+    unset($input['translations']);
 
     return $input;
 }

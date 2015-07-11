@@ -5,7 +5,6 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateMembershipsTable extends Migration
 {
-
     /**
      * Run the migrations.
      *

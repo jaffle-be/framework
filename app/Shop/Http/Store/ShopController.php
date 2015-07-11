@@ -9,7 +9,7 @@ class ShopController extends Controller
 
     public function index()
     {
-        return view('shop::store');
+        return $this->theme->render('shop.store');
     }
 
     public function show($categorySlug, Request $request)
@@ -22,11 +22,11 @@ class ShopController extends Controller
 
         $products = \App\Shop\Product\Product::all();
 
-        return view('shop::category-' . $view, ['products' => $products]);
+        return $this->theme->render('shop.category-' . $view, ['products' => $products]);
     }
 
     public function product($productSlug)
     {
-        return view('shop::product');
+        return $this->theme->render('shop.product');
     }
 }

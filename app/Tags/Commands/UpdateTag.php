@@ -32,19 +32,7 @@ class UpdateTag extends Job implements SelfHandling
      */
     public function handle()
     {
-        foreach ($this->input['translations'] as $locale => $translations) {
-            $translation = $this->tag->getTranslation($locale, false);
-
-            if (!$translation) {
-                $translation = $this->tag->getNewTranslation($locale);
-            }
-
-            $translation->fill($translations);
-        }
-
         $this->tag->fill($this->input);
-
-        $this->tag->save();
 
         return $this->tag->save() ? $this->tag : false;
     }

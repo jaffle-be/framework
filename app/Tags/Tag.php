@@ -9,9 +9,9 @@ class Tag extends Model{
 
     protected $table = "tags";
 
-    protected $translatedAttributes = ['name'];
-
     protected $fillable = ['name'];
+
+    protected $translatedAttributes = ['name'];
 
     public function posts()
     {
