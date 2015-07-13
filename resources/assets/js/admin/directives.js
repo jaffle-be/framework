@@ -41,7 +41,7 @@ function pageTitle($rootScope, $timeout) {
 };
 
 /**
- * sideNavigation - Directive for run metsiMenu on sidebar navigation
+ * sideNavigation - Directive for run metisMenu on sidebar navigation
  */
 function sideNavigation($timeout) {
     return {

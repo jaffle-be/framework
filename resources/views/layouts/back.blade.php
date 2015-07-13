@@ -15,7 +15,7 @@
 
 </head>
 
-<body ng-controller="MainCtrl as main" class="fixed-sidebar fixed-nav">
+<body ng-controller="MainController as main" class="fixed-sidebar fixed-nav">
 
 <div ui-view></div>
 
@@ -40,12 +40,6 @@
 <script src=" {{ asset('/js/admin/plugins/angular-resource/angular-resource.min.js') }}"></script>
 <script src=" {{ asset('/js/admin/plugins/angular-cookies/angular-cookies.min.js') }}"></script>
 
-<!--
- You need to include this script on any page that has a Google Map.
- When using Google Maps on your own site you MUST signup for your own API key at:
- https://developers.google.com/maps/documentation/javascript/tutorial#api_key
- After your sign up replace the key in the URL below..
--->
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBcPQMkol7H0kSnSSqYkJpRicrKfxWHC4o&libraries=places&v=3.exp"></script>
 
 <script src=" {{ asset('/js/admin/app.min.js') }}"></script>

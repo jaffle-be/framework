@@ -30,22 +30,22 @@ class AccountTableSeeder extends Seeder
                 'lol'
             ]),
             'nl' => [
-                'description' => $this->nl->text(),
+                'form_description' => $this->nl->text(),
                 'widget_title' => $this->nl->words(13, true),
                 'widget_content' => $this->nl->text()
             ],
             'en' => [
-                'description' => $this->en->text(),
+                'form_description' => $this->en->text(),
                 'widget_title' => $this->en->words(13, true),
                 'widget_content' => $this->en->text()
             ],
             'fr' => [
-                'description' => $this->fr->text(),
+                'form_description' => $this->fr->text(),
                 'widget_title' => $this->fr->words(13, true),
                 'widget_content' => $this->fr->text()
             ],
             'de' => [
-                'description' => $this->de->text(),
+                'form_description' => $this->de->text(),
                 'widget_title' => $this->de->words(13, true),
                 'widget_content' => $this->de->text()
             ]

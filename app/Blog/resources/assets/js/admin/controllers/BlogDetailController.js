@@ -1,5 +1,5 @@
 angular.module('blog')
-    .controller('BlogDetailController', function ($state, $scope, $timeout, Blog, BlogService, BlogImageService, BlogTagService) {
+    .controller('BlogDetailController', function ($state, $scope, $timeout, Blog, BlogService, BlogImageService, BlogTagService, InputTranslationHandler) {
 
         this.images = BlogImageService;
         this.posts = BlogService;
@@ -13,21 +13,6 @@ angular.module('blog')
             this.removeFile(file);
             $scope.$apply();
         });
-
-        //need to adjust translations to an object
-        //since it will not send the languages
-        //if they are sent as an array
-        this.handleTranslations = function (original) {
-            var translations = {};
-
-            for (var locale in this.options.locales) {
-                if (original[locale]) {
-                    translations[locale] = original[locale];
-                }
-            }
-
-            return translations;
-        };
 
         this.load = function (id) {
             if (id) {
@@ -47,7 +32,7 @@ angular.module('blog')
         };
 
         this.updateImage = function (img) {
-            this.images.update(me.post, img, this.handleTranslations(img.translations));
+            this.images.update(me.post, img, InputTranslationHandler(this.options.locales, img.translations));
         };
 
         this.deleteImage = function (id) {
@@ -59,7 +44,7 @@ angular.module('blog')
         };
 
         this.updateTag = function (tag) {
-            this.tags.update(me.post, tag, this.handleTranslations(tag.translations));
+            this.tags.update(me.post, tag, InputTranslationHandler(this.options.locales, tag.translations));
         };
 
         this.deleteTag = function (id) {

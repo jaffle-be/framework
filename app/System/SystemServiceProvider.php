@@ -2,13 +2,38 @@
 
 namespace App\System;
 
+use Jaffle\Tools\ServiceProvider;
 
-use Illuminate\Support\AggregateServiceProvider;
+class SystemServiceProvider extends ServiceProvider{
 
-class SystemServiceProvider extends AggregateServiceProvider{
+    protected $namespace = 'system';
 
-    protected $providers = [
-        'App\System\Country\CountryServiceProvider',
-    ];
+    public function boot()
+    {
+        $this->validators();
+        parent::boot();
+    }
+
+    /**
+     * Register the service provider.
+     *
+     * @return void
+     */
+    public function register()
+    {
+    }
+
+    protected function observers()
+    {
+    }
+
+    protected function listeners()
+    {
+    }
+
+    protected function validators()
+    {
+        $this->app->make('validator')->extend('vat', 'App\System\Validators\Vat@validate');
+    }
 
 }

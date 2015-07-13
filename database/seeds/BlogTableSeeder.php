@@ -44,7 +44,7 @@ class BlogTableSeeder extends Seeder
         $this->preImageCaching();
 
         for ($i = 0; $i < 40; $i++) {
-            $start = microtime(true);
+
             $post = App\Blog\Post::create([
                 'user_id' => 1,
                 'nl' => [
@@ -85,10 +85,6 @@ class BlogTableSeeder extends Seeder
                 ]
             ]);
 
-            $stop = microtime(true);
-            var_dump($stop - $start);
-            $start = $stop;
-
             $counter = 0;
 
             if ($counter < 5)
@@ -100,8 +96,6 @@ class BlogTableSeeder extends Seeder
                 $this->newImage($post, $counter);
                 $counter++;
             }
-
-            var_dump(microtime(true) - $start);
 
             echo 'post number ' . $i . PHP_EOL;
         }

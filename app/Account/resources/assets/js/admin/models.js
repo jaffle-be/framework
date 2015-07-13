@@ -1,14 +1,13 @@
 angular.module('account')
-    .factory('Account', function ($resource) {
-        return $resource('api/admin/account/:id', {id: '@id'}, {
-            query: {
-                isArray: false
+    .factory('AccountContactInformation', function ($resource) {
+        return $resource('api/admin/account/account-contact-information/:id', {
+            id: '@id'
+        }, {
+            load: {
+                method: 'GET',
             },
-            get: {
-                method: 'GET'
-            },
-            update: {
-                method: 'PUT'
+            update:{
+                method: 'PUT',
             }
         });
     });

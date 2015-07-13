@@ -9,10 +9,10 @@ angular.module('blog', [])
             })
             .state('admin.blog.posts', {
                 url: "/posts",
-                templateUrl: "templates/admin/blog/overview"
+                templateUrl: "templates/admin/blog/overview",
             })
             .state('admin.blog.post', {
                 url: '/post/:postId',
-                templateUrl: "templates/admin/blog/detail"
+                templateUrl: "templates/admin/blog/detail",
             });
     });

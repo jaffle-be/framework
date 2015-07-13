@@ -9,6 +9,6 @@ Route::group(['domain' => config('app.subdomain'), 'namespace' => 'App\Account\H
 
     //actual resource
     Route::group(['prefix' => 'api/admin/account'], function () {
-        Route::resource('contact', 'ContactController', ['only' => ['update']]);
+        Route::resource('account-contact-information', 'ContactController', ['only' => ['index', 'store', 'update']]);
     });
 });

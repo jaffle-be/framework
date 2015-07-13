@@ -28,7 +28,7 @@ class CreateAccountContactInformationTable extends Migration
         Schema::create('account_contact_information_translations', function (Blueprint $table) {
             $table->increments('id');
             $table->string('locale', 5);
-            $table->text('description');
+            $table->text('form_description');
             $table->string('widget_title');
             $table->text('widget_content');
             $table->integer('account_contact_information_id', false, true);

@@ -173,6 +173,7 @@ return [
         'App\Contact\ContactServiceProvider',
         'App\Blog\BlogServiceProvider',
         'App\Tags\TagsServiceProvider',
+        'App\Marketing\MarketingServiceProvider',
 
     ],
 

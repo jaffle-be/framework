@@ -12,13 +12,13 @@ class AccountContactInformation extends Model implements AddressOwner{
 
     protected $table = "account_contact_information";
 
-    protected $fillable = ["contact_address_id", "description", "widget"];
+    protected $fillable = ["email", "phone", "vat", "website", "hours", "form_description", "widget_title", "widget_content"];
 
-    protected $translatedAttributes = [ 'description', 'widget' ];
+    protected $translatedAttributes = [ 'form_description', 'widget_title', 'widget_content' ];
 
     public function account()
     {
-        return $this->belongsTo('App\Account');
+        return $this->belongsTo('App\Account\Account');
     }
 
     public function address()

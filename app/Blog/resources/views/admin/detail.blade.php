@@ -1,4 +1,4 @@
-<div class="row wrapper wrapper-content" ng-controller="BlogDetailController as vm" ng-init="vm.options = {{ blog_options() }}">
+<div class="row wrapper wrapper-content" ng-controller="BlogDetailController as vm" ng-init="vm.options = {{ system_options() }}">
 
     <tabset justified="true">
 
