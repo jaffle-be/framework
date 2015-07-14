@@ -26,45 +26,26 @@ gulp.task('admin', function()
 
     gulp.watch(['resources/assets/js/core.js'], ['admin-core']);
 
-
-    //angular compiles in 2 steps. First it compiles all module specific files
-    //secondly it compiles all those module files into app specific files
-    watch('app/*/resources/assets/js/admin/**/*.js', function(watcher)
-    {
-        var parsed = parseWatcher(watcher),
-        //if there is a section, the filename should be built from that. else the filename is the actual remaining path
-            type = parsed.section ? parsed.section + '.js' : parsed.path;
-
-        var sectionTask = ModuleSectionTask(parsed.module, parsed.section, parsed.path);
-        var globalTask = GlobalTask(type);
-
-        sectionTask.on('end', function()
-        {
-            globalTask.run();
-        });
-
-        sectionTask.run();
-    });
-
-
-    watch('resources/assets/js/admin/**/*.js', function(watcher)
-    {
-        var parsed = parseWatcher(watcher);
-        //if there is a section, the filename should be built from that. else the filename is the actual remaining path
-            type = parsed.section ? parsed.section + '.js' : parsed.path;
-
-        var sectionTask = ModuleSectionTask(parsed.module, parsed.section, parsed.path);
-        var globalTask = GlobalTask(type);
-
-        sectionTask.on('end', function()
-        {
-            globalTask.run();
-        });
-
-        sectionTask.run();
-    });
+    watch(['app/*/resources/assets/js/admin/**/*.js', 'resources/assets/js/admin/**/*.js'], adminScripts);
 
 });
+
+//angular compiles in 2 steps. First it compiles all module specific files
+//secondly it compiles all those module files into app specific files
+function adminScripts(watcher) {
+    var parsed = parseWatcher(watcher),
+        //if there is a section, the filename should be built from that. else the filename is the actual remaining path
+        type = parsed.section ? parsed.section + '.js' : parsed.path;
+
+    var sectionTask = ModuleSectionTask(parsed.module, parsed.section, parsed.path);
+    var globalTask = GlobalTask(type);
+
+    sectionTask.on('end', function () {
+        globalTask.run();
+    });
+
+    sectionTask.run();
+}
 
 function parseWatcher(watcher)
 {
@@ -77,14 +58,15 @@ function parseWatcher(watcher)
 
     var module = path.substring(0, path.indexOf('/'));
 
-    if(module != 'resources')
+    if(module == 'resources')
     {
-        path = path.replace(module + '/resources/assets/js/admin/', '');
+        module = '';
     }
     else{
-        module = '';
-        path = path.replace('resources/assets/js/admin/', '');
+        module += '/';
     }
+
+    path = path.replace(module + 'resources/assets/js/admin/', '');
 
     var section = path.substring(0, path.indexOf('/'));
 
@@ -136,6 +118,67 @@ function ModuleSectionTask(module, section, file)
     return task;
 }
 
+
+/**
+ * THEME COMPILERS
+ */
+
+gulp.task('themes', function()
+{
+    //global startup compilers
+    gulp.run('theme-page-styles');
+
+    watch(['./themes/*/assets/less/**/*.less'], themeStyles);
+    watch(['./themes/*/assets/less/pages/**/*.less'], themePages);
+});
+
+//global startup compiler
+gulp.task('theme-page-styles', function()
+{
+    gulp.src('./themes/*/assets/less/pages/**/*.less')
+        .pipe(plumber())
+        .pipe(debug({title: 'compile page styles'}))
+        .pipe(less())
+        .pipe(rename(function(path){
+            path.dirname = path.dirname.replace('less', 'css');
+            path.extname = '.css';
+        }))
+        .pipe(gulp.dest('public/themes'))
+        .pipe(minify())
+        .pipe(rename(function(path){
+            path.extname = '.min.css';
+        }))
+        .pipe(gulp.dest('public/themes'));
+});
+
+function themePages(file)
+{
+    themeLessFile('themes/*/' + file.path.substring(file.path.indexOf('assets/')))
+}
+
+function themeStyles()
+{
+    themeLessFile('themes/*/assets/less/styles.less');
+};
+
+function themeLessFile(file)
+{
+    gulp.src([file])
+        .pipe(plumber())
+        .pipe(debug({title: 'theme less file'}))
+        .pipe(less())
+        .pipe(rename(function(path){
+            path.dirname = path.dirname.replace('less', 'css');
+        }))
+        .pipe(gulp.dest('public/themes'))
+        .pipe(rename(function(path){
+            path.extname = '.min.css';
+        }))
+        .pipe(minify())
+        .pipe(gulp.dest('public/themes'))
+}
+
+
 /**
  * WATCHER TASKS
  */
@@ -179,7 +222,11 @@ gulp.task('less-admin', function () {
     gulp.src(['resources/assets/less/admin/main.less'])
         .pipe(plumber())
         .pipe(less())
+        .pipe(gulp.dest('public/css/admin'))
         .pipe(minify())
+        .pipe(rename(function(path){
+            path.extname = '.min.css';
+        }))
         .pipe(gulp.dest('public/css/admin'))
 });
 
@@ -188,6 +235,11 @@ gulp.task('less-front', function () {
         .pipe(plumber())
         .pipe(less())
         .pipe(minify())
+        .pipe(gulp.dest('public/css/front'))
+        .pipe(minify())
+        .pipe(rename(function(path){
+            path.extname = '.min.css';
+        }))
         .pipe(gulp.dest('public/css/front'))
 });
 
@@ -227,7 +279,7 @@ gulp.task('publisher', function () {
 });
 
 
-gulp.task('watch', ['front', 'admin']);
+gulp.task('watch', ['front', 'admin', 'themes']);
 
 gulp.task('compile', ['publisher']);
 gulp.task('default', ['compile', 'watch']);
