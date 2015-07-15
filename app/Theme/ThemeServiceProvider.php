@@ -2,15 +2,11 @@
 
 namespace App\Theme;
 
-use Illuminate\Support\ServiceProvider;
+use Jaffle\Tools\ServiceProvider;
 
 class ThemeServiceProvider extends ServiceProvider{
 
-    public function boot()
-    {
-        include(__DIR__ . '/helpers.php');
-    }
-
+    protected $namespace = 'theme';
     /**
      * Register the service provider.
      *
@@ -29,6 +25,20 @@ class ThemeServiceProvider extends ServiceProvider{
 
             return $theme;
         });
+
+        $theme = config('theme.name');
+
+        $theme = ucfirst(camel_case($theme));
+
+        $this->app->register(sprintf('Themes\\%s\\%sServiceProvider', $theme, $theme));
+    }
+
+    protected function observers()
+    {
+    }
+
+    protected function listeners()
+    {
     }
 
 }

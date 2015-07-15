@@ -4,7 +4,7 @@
     /**
      * Supported themes
      */
-    'themes' => ['unify', 'test'],
+    'themes' => ['unify'],
 
     /**
      * Default theme to use.

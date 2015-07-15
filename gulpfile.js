@@ -37,8 +37,8 @@ function adminScripts(watcher) {
         //if there is a section, the filename should be built from that. else the filename is the actual remaining path
         type = parsed.section ? parsed.section + '.js' : parsed.path;
 
-    var sectionTask = ModuleSectionTask(parsed.module, parsed.section, parsed.path);
-    var globalTask = GlobalTask(type);
+    var sectionTask = BasicAdminModuleTask(parsed.module, parsed.section, parsed.path);
+    var globalTask = BasicAdminGlobalTask(type);
 
     sectionTask.on('end', function () {
         globalTask.run();
@@ -77,7 +77,7 @@ function parseWatcher(watcher)
     }
 }
 
-function GlobalTask(type)
+function BasicAdminGlobalTask(type)
 {
     return new SubTask()
         .src(['resources/assets/js/admin/' + type, 'app/*/resources/assets/js/dist/admin/' + type])
@@ -91,7 +91,7 @@ function GlobalTask(type)
         .pipe(gulp.dest, 'public/js/admin');
 }
 
-function ModuleSectionTask(module, section, file)
+function BasicAdminModuleTask(module, section, file)
 {
     var base = 'app/' + module + '/resources/assets/js/admin/';
     var dist = './app/' + module + '/resources/assets/js/dist/admin';
@@ -128,14 +128,19 @@ gulp.task('themes', function()
     //global startup compilers
     gulp.run('theme-page-styles');
 
-    watch(['./themes/*/assets/less/**/*.less'], themeStyles);
-    watch(['./themes/*/assets/less/pages/**/*.less'], themePages);
+    //will this compile compile all styles from all themes?
+    //test this out!!
+    watch(['./themes/*/resources/assets/less/**/*.less'], themeFrontStyles);
+    watch(['./themes/*/resources/assets/less/pages/**/*.less'], themeFrontLessPages);
+
+
+    watch(['./themes/*/resources/assets/js/admin/**/*.js'], ThemeAdminJsTasks);
 });
 
 //global startup compiler
 gulp.task('theme-page-styles', function()
 {
-    gulp.src('./themes/*/assets/less/pages/**/*.less')
+    gulp.src('./themes/*/resources/assets/less/pages/**/*.less')
         .pipe(plumber())
         .pipe(debug({title: 'compile page styles'}))
         .pipe(less())
@@ -151,17 +156,17 @@ gulp.task('theme-page-styles', function()
         .pipe(gulp.dest('public/themes'));
 });
 
-function themePages(file)
+function themeFrontLessPages(file)
 {
-    themeLessFile('themes/*/' + file.path.substring(file.path.indexOf('assets/')))
+    themeFrontLessFile('themes/*/' + file.path.substring(file.path.indexOf('resources/assets/')))
 }
 
-function themeStyles()
+function themeFrontStyles()
 {
-    themeLessFile('themes/*/assets/less/styles.less');
+    themeFrontLessFile('themes/*/resources/assets/less/styles.less');
 };
 
-function themeLessFile(file)
+function themeFrontLessFile(file)
 {
     gulp.src([file])
         .pipe(plumber())
@@ -178,25 +183,93 @@ function themeLessFile(file)
         .pipe(gulp.dest('public/themes'))
 }
 
+function ThemeAdminJsTasks(watcher)
+{
+    var theme = watcher.path.substring(watcher.path.indexOf('themes/'));
+    theme = theme.substring(theme.indexOf('/') + 1);
+    theme = theme.substring(0, theme.indexOf('/resources/assets/'));
+
+    var prefix = theme + '/resources/assets/js/admin/';
+    var type = watcher.path.substring(watcher.path.indexOf(prefix));
+    type = type.substring(prefix.length);
+
+    var section, file;
+
+    if(type.indexOf('/') == -1)
+    {
+        //global file
+        section = '';
+        file = type;
+    }
+    else{
+        section = type.substring(0, type.indexOf('/'));
+    }
+
+    console.log(theme, section, file);
+
+
+    var sectionTask = ThemeAdminModuleTask(theme, section, file);
+    var globalTask = ThemeAdminGlobalTask(theme);
+
+    sectionTask.on('end', function () {
+        globalTask.run();
+    });
+
+    sectionTask.run();
+}
+
+
+function ThemeAdminGlobalTask(theme)
+{
+    return new SubTask()
+        .src([
+            'themes/' + theme + '/resources/assets/js/dist/admin/config.js',
+            'themes/' + theme + '/resources/assets/js/dist/admin/services.js',
+            'themes/' + theme + '/resources/assets/js/dist/admin/directives.js',
+            'themes/' + theme + '/resources/assets/js/dist/admin/translations.js',
+            'themes/' + theme + '/resources/assets/js/dist/admin/controllers.js',
+        ])
+        .pipe(plumber)
+        .pipe(debug, {title: 'theme admin global js build'})
+        .pipe(concat, theme)
+        .pipe(rename, function(path){
+            path.extname = '.min.js';
+        })
+        //.pipe(uglify, {mangle: false})
+        .pipe(gulp.dest, 'public/themes/' + theme + '/assets/js/admin');
+}
+
+function ThemeAdminModuleTask(theme, section, file)
+{
+    var base = 'themes/' + theme + '/resources/assets/js/admin/';
+    var dist = './themes/' + theme + '/resources/assets/js/dist/admin';
+
+    var task = new SubTask();
+
+    if(section)
+    {
+        task.src([base + section + '/*.js'])
+            .pipe(plumber)
+            .pipe(debug, {title: 'theme admin js build compiled: '})
+            .pipe(concat, section + '.js')
+            .pipe(gulp.dest, dist);
+    }
+    else if(file){
+        //this is the filename of the changed file, if there is no section, we're dealing with a
+        //small file that should simply be copied.
+        task.src(base + file)
+            .pipe(plumber)
+            .pipe(debug, {title: 'theme admin js build non-compiled: '})
+            .pipe(gulp.dest, dist);
+    }
+
+    return task;
+}
+
 
 /**
  * WATCHER TASKS
  */
-
-gulp.task('admin-angular', function () {
-
-    gulp.src([
-        'resources/assets/js/admin/app.js',
-        'resources/assets/js/admin/config.js',
-        'resources/assets/js/admin/services.js',
-        'resources/assets/js/admin/directives.js',
-        'resources/assets/js/admin/translations.js',
-        'resources/assets/js/admin/controllers.js',
-    ])
-        .pipe(concat('admin.js'))
-        .pipe(gulp.dest('public/js/admin'));
-});
-
 gulp.task('admin-core', function () {
 
     gulp.src([

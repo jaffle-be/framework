@@ -16,7 +16,7 @@ class WelcomeController extends Controller
 
     public function storeHome()
     {
-        return view('home.store');
+        return $this->theme->render('home.store');
     }
 
     public function appDash()

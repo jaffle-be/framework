@@ -50,6 +50,11 @@
 <script src=" {{ asset('/js/admin/models.min.js') }}"></script>
 <script src=" {{ asset('/js/admin/controllers.min.js') }}"></script>
 
+@if(is_file(public_path('themes/'. config('theme.name') .'/assets/js/admin/' . config('theme.name') . '.min.js')))
+
+    <script src=" {{ theme_asset('/js/admin/' . config('theme.name') .'.min.js') }}"></script>
+
+@endif
 
 </body>
 </html>

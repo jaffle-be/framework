@@ -33,11 +33,21 @@ class Theme implements \App\Theme\Contracts\Theme
         return $this->config->get('theme.name');
     }
 
+    public function supported($theme = null)
+    {
+        if($theme)
+        {
+            return in_array($theme, config('theme.themes'));
+        }
+
+        return config('theme.themes');
+    }
+
     public function render($view, array $data = [])
     {
         $name = $this->name();
 
-        return $this->view->make('theme.' . $name . '::' . $view, $data);
+        return $this->view->make($name . '::' . $view, $data);
     }
 
     /**
@@ -56,7 +66,7 @@ class Theme implements \App\Theme\Contracts\Theme
 
     protected function setupNamespace($name)
     {
-        $this->view->addNamespace('theme.unify', config('theme.path') . '/' . $name . '/views');
+        $this->view->addNamespace('theme.' . $name, config('theme.path') . '/' . $name . '/views');
     }
 
 }
