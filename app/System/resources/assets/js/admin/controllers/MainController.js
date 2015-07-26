@@ -1,5 +1,7 @@
 function MainController() {
 
+    this.alerts = [];
+
     this.addAlert = function() {
         this.alerts.push({msg: 'Another alert!'});
     };
