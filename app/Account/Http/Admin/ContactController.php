@@ -6,9 +6,9 @@ use App\Account\AccountContactInformation;
 use App\Account\AccountManager;
 use App\Account\Jobs\Contact\UpdateInformation;
 use App\Account\Requests\Contact\UpdateInformationRequest;
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\AdminController;
 
-class ContactController extends Controller
+class ContactController extends AdminController
 {
 
     public function page(AccountManager $manager)

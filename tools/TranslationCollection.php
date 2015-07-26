@@ -8,4 +8,9 @@ class TranslationCollection extends Collection
     {
         return with(new Collection($this->items))->keyBy('locale')->toArray();
     }
+
+    public function toJson($options = 0)
+    {
+        return parent::toJson(JSON_FORCE_OBJECT);
+    }
 }

@@ -24,7 +24,7 @@ angular.module('blog')
 
                     return post.$save(function () {
                         me.locked = false;
-                        $state.go('admin.blog.post', {postId: post.id});
+                        $state.go('admin.blog.post', {id: post.id});
                     });
                 }
                 else {

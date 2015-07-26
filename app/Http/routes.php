@@ -1,44 +1,30 @@
 <?php
 
-/**
- * ATTENTION
- *
- * YOU NEED TO PLACE ALL SUBDOMAIN ROUTES FIRST
- * THEN ALL ROUTES FOR THE APP ITSELF
- */
-Route::group(['domain' => config('app.subdomain')], function(){
-
+Route::group(['as' => 'store.'], function () {
 
     Route::get('/', [
         'uses' => 'WelcomeController@storeHome',
-        'as' => 'store.home'
+        'as'   => 'home'
     ]);
 
-    Route::get('templates/admin', [
-        'uses' => 'WelcomeController@storeDash',
-        'as' => 'store.dash'
-    ]);
+    Route::group(['prefix' => 'admin'], function () {
 
-    Route::get('templates/admin/system', [
-        'uses' => 'WelcomeController@system',
-    ]);
-});
+        Route::get('/', ['uses' => 'WelcomeController@storeDash', 'middleware' => 'auth.admin']);
 
-Route::get('/', ['uses' => 'WelcomeController@appHome', 'as' => 'app.home']);
+        Route::get('{subs}', [
+            'uses' => 'WelcomeController@storeDash',
+            'middleware' => 'auth.admin'
+        ])->where(['subs' => '.*']);
+    });
 
-Route::get('admin', [
-    'uses' => 'WelcomeController@appDash',
-    'as' => 'app.dash'
-]);
+    Route::group(['prefix' => 'templates'], function () {
+        Route::get('admin', [
+            'uses' => 'WelcomeController@storeDash',
+            'as'   => 'dash',
+            'middleware' => 'auth.admin'
+        ]);
 
-
-Route::get('test', 'WelcomeController@test');
-Route::get('test2', 'WelcomeController@test2');
-
-
-Route::group(['domain' => config('app.subdomain')], function()
-{
-    Route::get('admin/{subs}', [
-        'uses' => 'WelcomeController@storeDash',
-    ])->where(['subs' => '.*']);
+        //this route should probably no longer be used?
+        Route::get('admin/system', ['uses' => 'WelcomeController@system', 'middleware' => 'auth.admin']);
+    });
 });

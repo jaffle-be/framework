@@ -18,6 +18,6 @@ class PortfolioServiceProvider extends ServiceProvider
 
     protected function observers()
     {
-
+        Project::observe(ProjectObserver::class);
     }
 }

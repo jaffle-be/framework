@@ -43,6 +43,12 @@ class BlogTableSeeder extends Seeder
 
         $this->preImageCaching();
 
+        $tags = App\Tags\Tag::all();
+        $tags = $tags->lists('id')->toArray();
+        $tags = array_unique($tags);
+        //flip array since array_rand returns the keys from an array
+        $tags = array_flip($tags);
+
         for ($i = 0; $i < 40; $i++) {
 
             $post = App\Blog\Post::create([
@@ -96,6 +102,11 @@ class BlogTableSeeder extends Seeder
                 $this->newImage($post, $counter);
                 $counter++;
             }
+
+
+            $useTags = array_rand($tags, rand(1, 3));
+            $useTags = (array) $useTags;
+            $post->tags()->sync($useTags);
 
             echo 'post number ' . $i . PHP_EOL;
         }

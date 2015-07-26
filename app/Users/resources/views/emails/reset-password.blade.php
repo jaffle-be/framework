@@ -7,7 +7,7 @@
     </p>
 
     <p class="alert alert-success">
-        {!! Lang::get('users::emails.reset-password.link', ['url' => route('reset-password.show', [$token->value]) ]) !!}
+        {!! Lang::get('users::emails.reset-password.link', ['url' => route('store.auth.reset-password.show', [$token->value]) ]) !!}
     </p>
 
     <p>

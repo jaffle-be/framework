@@ -1,9 +1,8 @@
 <?php namespace App\Theme\Http\Admin;
 
-use App\Http\Controllers\Controller;
-use App\Theme\ThemeRepository;
+use App\Http\Controllers\AdminController;
 
-class ThemeController extends Controller
+class ThemeController extends AdminController
 {
 
     public function settings()

@@ -13,7 +13,7 @@ class TagsServiceProvider extends ServiceProvider{
 
     public function observers()
     {
-        Tag::observe('App\Tag\TagObserver');
+        Tag::observe('App\Tags\TagObserver');
     }
 
     public function register()

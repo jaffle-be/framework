@@ -3,15 +3,14 @@
 /**
  * templates stores
  */
-Route::group(['domain' => config('app.subdomain'), 'namespace' => 'App\Dashboard\Http\Stores', 'prefix' => 'templates/admin'], function () {
-    Route::resource('start', 'DashboardController', ['only' => ['index']]);
-});
+Route::group([
+    'namespace' => 'App\Dashboard\Http',
+    'as' => 'store.',
+], function () {
 
-/**
- * Templates app
- */
+    Route::group(['prefix' => 'templates'], function()
+    {
+        Route::resource('admin/start', 'Admin\DashboardController', ['only' => ['index']]);
+    });
 
-Route::group(['namespace' => 'App\Dashboard\Http\App', 'prefix' => 'templates/admin'], function () {
-
-    Route::resource('start', 'DashboardController', ['only' => ['index']]);
 });

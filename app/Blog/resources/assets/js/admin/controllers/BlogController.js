@@ -1,5 +1,5 @@
 angular.module('blog')
-    .controller('BlogController', function ($scope, Blog, $timeout) {
+    .controller('BlogController', function ($scope, Blog, BlogService) {
 
         //start with true so we don't see the layout flash
         this.loading = true;
@@ -8,6 +8,12 @@ angular.module('blog')
         this.posts = [];
 
         var me = this;
+
+        this.newPost = function()
+        {
+            var post = new Blog();
+            BlogService.save(post);
+        };
 
         this.changeTab = function (locale) {
             this.query = '';
@@ -32,7 +38,7 @@ angular.module('blog')
                 page: page,
                 query: table.search.predicateObject ? table.search.predicateObject.query : '',
                 locale: me.options.locale,
-            }, function (response, callback) {
+            }, function (response) {
                 me.total = response.total;
                 me.posts = response.data;
                 pagination.numberOfPages = response.last_page;

@@ -14,15 +14,15 @@ class AccountTableSeeder extends Seeder
     {
         $account = Account::create([
             'user_id' => 1,
-            'alias' => 'demo',
-            'domain' => 'stores.framework.local',
+            'alias' => 'digiredo',
+            'domain' => 'digiredo.local',
         ]);
 
         $info = new AccountContactInformation([
             'email' => 'thomas@jaffle.be',
-            'phone' => $this->nl->phoneNumber,
-            'website' => $this->nl->url,
-            'vat' => $this->nl->randomNumber(9),
+            'phone' => '0473/506720',
+            'website' => 'http://jaffle.be',
+            'vat' => '0538.819.360',
             'hours' => json_encode([
                 'some random hours',
                 'lol',
@@ -54,14 +54,14 @@ class AccountTableSeeder extends Seeder
         $account->contactInformation()->save($info);
 
         $info->address()->save(new Address([
-            'latitude' => $this->nl->latitude,
-            'longitude' => $this->nl->longitude,
+            'latitude' => '50.8909351',
+            'longitude' => '3.4132522',
             'firstname' => '',
             'lastname' => '',
-            'street' => $this->nl->streetName,
-            'box' => $this->nl->numberBetween(0,2666),
-            'postcode' => $this->nl->postcode,
-            'city' => $this->nl->city,
+            'street' => 'Stuifkouter',
+            'box' => '64',
+            'postcode' => '8790',
+            'city' => 'Waregem',
 
             'country_id' => rand(1,4)
         ]));

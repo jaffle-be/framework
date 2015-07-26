@@ -36,7 +36,7 @@ return [
     | This handles the separation from client sites to ours in all route files
     |
     */
-    'subdomain' => env('APP_SUBDOMAIN', 'stores.framework.local'),
+    'subdomain' => env('APP_SUBDOMAIN', 'stores'),
 
     /*
     |--------------------------------------------------------------------------
@@ -159,6 +159,7 @@ return [
         'App\System\SystemServiceProvider',
         'App\Theme\ThemeServiceProvider',
         Mews\Captcha\CaptchaServiceProvider::class,
+        Thomaswelton\LaravelGravatar\LaravelGravatarServiceProvider::class,
         'Dimsav\Translatable\TranslatableServiceProvider',
         'Intervention\Image\ImageServiceProvider',
         'App\Layout\LayoutServiceProvider',
@@ -174,6 +175,7 @@ return [
         'App\Blog\BlogServiceProvider',
         'App\Tags\TagsServiceProvider',
         'App\Marketing\MarketingServiceProvider',
+        'App\Portfolio\PortfolioServiceProvider',
 
     ],
 
@@ -228,6 +230,7 @@ return [
 
 //        'Theme' => 'Teepluss\Theme\Facades\Theme',
         'Menu' => 'App\Menu\Facade\Menu',
+        'Gravatar' => 'Thomaswelton\LaravelGravatar\Facades\Gravatar',
 
     ],
 

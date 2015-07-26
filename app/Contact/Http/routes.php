@@ -1,7 +1,6 @@
 <?php
 
 Route::group([
-    'domain' => config('app.subdomain'),
     'namespace' => 'App\Contact\Http',
     'as' => 'store.'
 ], function () {

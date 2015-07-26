@@ -1,20 +1,24 @@
 <?php
 
-/**
- * STORE CONTROLLERS
- */
-Route::group(['domain' => config('app.subdomain'), 'namespace' => 'App\Shop\Http\Store\Admin'], function () {
+Route::group([
+    'namespace' => 'App\Shop\Http',
+    'as' => 'store.',
+], function () {
 
-    Route::group(['prefix' => 'templates/admin'], function()
-    {
-        Route::resource('products', 'ProductController', ['only' => 'index']);
+    //admin routes
+    Route::group([
+        'namespace' => 'Admin',
+    ], function () {
+        Route::group(['prefix' => 'templates/admin'], function () {
+            Route::resource('products', 'ProductController', ['only' => 'index']);
+        });
+
+        Route::group(['prefix' => 'admin'], function () {
+            Route::resource('products', 'ProductController', ['only' => 'index']);
+        });
     });
-});
 
-/**
- * APP CONTROLLERS
- */
-Route::group(['namespace' => 'App\Shop\Http\Store'], function () {
+    //front routes
 
     //login pages
     Route::get('shop/register', ['uses' => 'AuthController@register', 'as' => 'shop.register']);
@@ -28,11 +32,4 @@ Route::group(['namespace' => 'App\Shop\Http\Store'], function () {
 
     //the shop homepage and the shop category page - KEEP AT BOTTOM
     Route::resource('shop', 'ShopController', ['only' => ['index', 'show']]);
-});
-
-/**
- * PRODUCT INPUT ROUTES
- */
-Route::group(['namespace' => 'App\Shop\Http\App\Admin', 'prefix' => 'admin'], function () {
-    Route::resource('products', 'ProductController', ['only' => 'index']);
 });

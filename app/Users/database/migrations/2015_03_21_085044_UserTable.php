@@ -17,6 +17,8 @@ class UserTable extends Migration {
             //authentication fields
             $table->string('email');
             $table->string('password');
+            $table->string('firstname');
+            $table->string('lastname');
             $table->boolean('confirmed')->default(0);
 
             //tokens

@@ -1,10 +1,10 @@
 <?php namespace App\System\Http\Admin;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\AdminController;
 use Illuminate\Config\Repository;
 use Illuminate\Foundation\Application;
 
-class SystemController extends Controller
+class SystemController extends AdminController
 {
 
     public function index(Repository $config, Application $app)

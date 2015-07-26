@@ -18,4 +18,9 @@ class Tag extends Model{
         return $this->morphedByMany('App\Blog\Post', 'taggable');
     }
 
+    public function content()
+    {
+        return $this->hasMany('App\Tags\TaggedContent');
+    }
+
 }

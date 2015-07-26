@@ -8,10 +8,8 @@ use App\Users\Contracts\UserRepositoryInterface;
 use Illuminate\Foundation\Bus\DispatchesCommands;
 use Illuminate\Http\Request;
 
-abstract class ConfirmEmailController extends Controller
+class ConfirmEmailController extends Controller
 {
-
-    abstract function routePrefix();
 
     /**
      * Form for sending new confirmation email.
@@ -24,7 +22,7 @@ abstract class ConfirmEmailController extends Controller
     {
         $email = $request->get('email', false);
 
-        return view('users::auth.request-confirmation-email', ['email' => $email]);
+        return $this->theme->render('auth.request-confirmation-email', ['email' => $email]);
     }
 
     /**
@@ -43,7 +41,7 @@ abstract class ConfirmEmailController extends Controller
             $this->dispatchFromArray(SendConfirmationEmail::class, ['user' => $user]);
         }
 
-        return redirect()->route($this->routePrefix() . '.signin.index')->withSuccess(Lang::get('users::general.request-handled'));
+        return redirect()->route('store.auth.signin.index')->withSuccess(Lang::get('users::general.request-handled'));
     }
 
     /**
@@ -62,6 +60,6 @@ abstract class ConfirmEmailController extends Controller
             $this->dispatchFromArray(ConfirmEmail::class, ['token' => $token]);
         }
 
-        return redirect()->route($this->routePrefix() . '.home');
+        return redirect()->route('store.home');
     }
 }

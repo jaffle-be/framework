@@ -1,12 +1,15 @@
 <?php namespace App\Layout\Http;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\AdminController;
+use Illuminate\Contracts\Auth\Guard;
 
-class TemplateController extends Controller
+class TemplateController extends AdminController
 {
 
-    public function template($template)
+    public function template($template, Guard $guard)
     {
-        return view('layout::admin.' . app_detect() . '.' . $template);
+        $user = $guard->user();
+
+        return view('layout::admin.' . $template, ['user' => $user]);
     }
 }

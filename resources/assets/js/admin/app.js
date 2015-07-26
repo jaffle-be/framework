@@ -7,6 +7,8 @@
         'ngIdle',                       // Idle timer
         'smart-table',                  //smart table
         'system',
+        'tags',
+        'media',
         'blog',
         'ngResource',
         'ngStorage',
@@ -15,6 +17,7 @@
         'contact',
         'system',
         'marketing',
+        'portfolio',
         'theme',
         'theme-active',                 //the active theme should use this scope to load
     ])

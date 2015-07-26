@@ -7,7 +7,7 @@
     </p>
 
     <p class="alert alert-success">
-        {!! Lang::get('users::emails.confirm-email.link', ['url' => route('confirm-email.show', [$token->value]) ]) !!}
+        {!! Lang::get('users::emails.confirm-email.link', ['url' => route('store.auth.confirm-email.show', [$token->value]) ]) !!}
     </p>
 
     <p>

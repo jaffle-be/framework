@@ -11,21 +11,46 @@ function app_detect()
     if (!$app) {
         //if the host is not the main host we default to the stores application
         //we determine the main host by using the main application
-        $app = app('request')->getHost() != substr(config('app.url'), strlen('http://')) ? 'stores' : 'app';
+        $app = app('request')->getHost() != preg_replace('#https?://#', '', config('app.url')) ? 'stores' : 'app';
     }
 
     return $app;
 }
 
+
+function route_subdomain()
+{
+    static $cached = false;
+
+    if ($cached) {
+        return $cached;
+    }
+
+    $domain = config('app.subdomain');
+
+    $url = config('app.url');
+
+    $url = preg_replace('#https?://#', '', $url);
+
+    $cached = $domain . '.' . $url;
+
+    return $cached;
+}
+
+
+
 function translation_input(Request $request, array $except = [])
 {
     $input = $request->except($except);
 
-    foreach ($input['translations'] as $locale => $translation) {
-        $input[$locale] = $translation;
-    }
+    if(isset($input['translations']))
+    {
+        foreach ($input['translations'] as $locale => $translation) {
+            $input[$locale] = $translation;
+        }
 
-    unset($input['translations']);
+        unset($input['translations']);
+    }
 
     return $input;
 }

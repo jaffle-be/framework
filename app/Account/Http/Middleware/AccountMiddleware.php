@@ -17,7 +17,12 @@ class AccountMiddleware {
 
     public function handle(Request $request, Closure $next)
     {
-        $this->manager->boot($request);
+        $account = $this->manager->boot($request);
+
+        if(!$account)
+        {
+            return response('Invalid account provided', 403);
+        }
 
         return $next($request);
     }

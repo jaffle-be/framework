@@ -19,7 +19,7 @@ class User extends Model implements Authenticatable, MembershipOwner
      *
      * @var array
      */
-    protected $fillable = ['name', 'email', 'password'];
+    protected $fillable = ['name', 'email', 'password', 'firstname', 'lastname'];
 
     /**
      * The attributes excluded from the model's JSON form.
@@ -98,5 +98,10 @@ class User extends Model implements Authenticatable, MembershipOwner
     public function getAuthPassword()
     {
         return $this->password;
+    }
+
+    public function getFullnameAttribute()
+    {
+        return trim( $this->firstname . ' ' . $this->lastname);
     }
 }

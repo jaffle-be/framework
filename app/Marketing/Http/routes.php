@@ -4,8 +4,8 @@
  * store controllers
  */
 Route::group([
-    'domain' => config('app.subdomain'),
-    'namespace' => 'App\Marketing\Http\Admin'
+    'namespace' => 'App\Marketing\Http\Admin',
+    'as' => 'store.',
 ], function () {
 
     Route::group(['prefix' => 'templates/admin'], function () {
@@ -16,10 +16,6 @@ Route::group([
 
     //actual resource
     Route::group(['prefix' => 'api/admin'], function () {
-        Route::resource('marketing', 'MarketingController', ['as' => 'store', 'only' => ['index', 'show', 'store', 'update']]);
+        Route::resource('marketing', 'MarketingController', ['only' => ['index', 'show', 'store', 'update']]);
     });
-});
-
-Route::group(['domain' => config('app.subdomain'), 'namespace' => 'App\Marketing\Http'], function () {
-//    Route::resource('marketing', 'MarketingController', ['as' => 'store', 'only' => ['index', 'show']]);
 });

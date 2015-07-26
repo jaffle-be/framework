@@ -43,9 +43,11 @@ class UploadNewImage extends Job implements SelfHandling
     {
         $temp_dir = app_path('storage') . '/' . $this->owner->getMediaFolder();
 
-        $temp_path = $temp_dir . '/' . $this->image->getClientOriginalName();
+        $uniqueName = $this->uniqueName();
 
-        $this->image->move($temp_dir, $this->image->getClientOriginalName());
+        $temp_path = $temp_dir . '/' . $uniqueName;
+
+        $this->image->move($temp_dir, $uniqueName);
 
         $image = $this->dispatchFromArray(StoreNewImage::class, [
             'owner' => $this->owner,
@@ -56,6 +58,15 @@ class UploadNewImage extends Job implements SelfHandling
         $files->delete($temp_path);
 
         return $image;
+    }
+
+    protected function uniqueName()
+    {
+        $uniqueName = sha1(md5($this->image->getClientOriginalName()) . time());
+
+        $uniqueName .= '.' . $this->image->getClientOriginalExtension();
+
+        return $uniqueName;
     }
 
 }

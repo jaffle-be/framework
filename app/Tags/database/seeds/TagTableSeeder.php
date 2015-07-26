@@ -31,23 +31,5 @@ class TagTableSeeder extends Seeder
                 ]
             ]));
         }
-
-        //mind the limit
-        Post::limit(3)->chunk(300, function ($posts) use ($tags){
-
-            foreach ($posts as $post) {
-
-                $count = rand(1,3);
-                $added = 0;
-
-                while($added < $count)
-                {
-                    $post->tags()->save($tags->random());
-
-                    $added++;
-                }
-
-            }
-        });
     }
 }

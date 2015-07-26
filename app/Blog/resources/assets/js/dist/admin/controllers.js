@@ -1,5 +1,5 @@
 angular.module('blog')
-    .controller('BlogController', function ($scope, Blog, $timeout) {
+    .controller('BlogController', function ($scope, Blog, BlogService) {
 
         //start with true so we don't see the layout flash
         this.loading = true;
@@ -8,6 +8,12 @@ angular.module('blog')
         this.posts = [];
 
         var me = this;
+
+        this.newPost = function()
+        {
+            var post = new Blog();
+            BlogService.save(post);
+        };
 
         this.changeTab = function (locale) {
             this.query = '';
@@ -32,7 +38,7 @@ angular.module('blog')
                 page: page,
                 query: table.search.predicateObject ? table.search.predicateObject.query : '',
                 locale: me.options.locale,
-            }, function (response, callback) {
+            }, function (response) {
                 me.total = response.total;
                 me.posts = response.data;
                 pagination.numberOfPages = response.last_page;
@@ -46,20 +52,12 @@ angular.module('blog')
         }
     });
 angular.module('blog')
-    .controller('BlogDetailController', function ($state, $scope, $timeout, Blog, BlogService, BlogImageService, BlogTagService, InputTranslationHandler) {
+    .controller('BlogDetailController', function ($state, Blog, BlogService) {
 
-        this.images = BlogImageService;
         this.posts = BlogService;
-        this.tags = BlogTagService;
 
         var me = this,
-            id = $state.params.postId;
-
-        $scope.dropzone = this.images.uploader(function (file, image, xhr) {
-            me.post.images.push(image);
-            this.removeFile(file);
-            $scope.$apply();
-        });
+            id = $state.params.id;
 
         this.load = function (id) {
             if (id) {
@@ -72,53 +70,20 @@ angular.module('blog')
             }
         };
 
+        /**
+         * trigger a save for a document that exists but hold the autosave when it's a
+         * document we're creating.
+         *
+         * @param manual
+         */
         this.save = function () {
             var me = this;
             me.drafting = true;
-            this.posts.save(me.post);
-        };
 
-        this.updateImage = function (img) {
-            this.images.update(me.post, img, InputTranslationHandler(this.options.locales, img.translations));
-        };
-
-        this.deleteImage = function (id) {
-            this.images.delete(me.post, id, function () {
-                _.remove(me.post.images, function (value, index, array) {
-                    return value.id == id;
-                });
-            })
-        };
-
-        this.updateTag = function (tag) {
-            this.tags.update(me.post, tag, InputTranslationHandler(this.options.locales, tag.translations));
-        };
-
-        this.deleteTag = function (id) {
-
-            this.tags.delete(me.post, id, _.remove(me.post.tags, function (value, index, array) {
-                return value.id == id
-            }));
-        };
-
-        this.searchTag = function (value, locale) {
-            return this.tags.search(me.post, locale, value).then(function (response) {
-                return response.data;
-            });
-        };
-
-        this.createTag = function () {
-            this.tags.create(me.post, function (tag) {
-                me.post.tags.push(tag);
-                me.tags.input = '';
-            });
-        };
-
-        this.addTag = function ($item, $model, $label) {
-            this.tags.link(me.post, $item, function () {
-                me.post.tags.push($item);
-                me.tags.input = "";
-            });
+            if(me.post.id)
+            {
+                this.posts.save(me.post);
+            }
         };
 
         this.publish = function () {

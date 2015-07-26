@@ -17,7 +17,6 @@ function system_options()
             'locale' => $item,
             'active' => $item == App::getLocale()
         ];
-
     }, $options['locales']);
 
     $options['locales'] = array_combine($options['locales'], $locales);

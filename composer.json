@@ -16,7 +16,8 @@
     "dimsav/laravel-translatable": "~5.1",
     "intervention/imagecache": "~2.2",
     "teepluss/theme": "^2.0",
-    "mews/captcha": "^2.0"
+    "mews/captcha": "^2.0",
+    "thomaswelton/laravel-gravatar": "~1.0"
   },
   "require-dev": {
     "phpunit/phpunit": "~4.0",

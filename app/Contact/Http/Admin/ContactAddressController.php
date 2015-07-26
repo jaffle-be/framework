@@ -2,15 +2,15 @@
 
 namespace App\Contact\Http\Admin;
 
+use App\Contact\Address;
 use App\Contact\Jobs\NewAddress;
 use App\Contact\Jobs\UpdateAddress;
 use App\Contact\Requests\NewAddressRequest;
 use App\Contact\Requests\UpdateAddressRequest;
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\AdminController;
 use App\System\Country\CountryRepository;
-use App\Contact\Address;
 
-class ContactAddressController extends Controller{
+class ContactAddressController extends AdminController{
 
     public function widget(CountryRepository $countries)
     {

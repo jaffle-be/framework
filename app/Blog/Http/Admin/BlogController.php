@@ -2,11 +2,11 @@
 
 use App\Blog\Jobs\UpdatePost;
 use App\Blog\Post;
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\AdminController;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Http\Request;
 
-class BlogController extends Controller
+class BlogController extends AdminController
 {
 
     public function index(Request $request)
@@ -18,16 +18,16 @@ class BlogController extends Controller
         $value = $request->get('query');
         $locale = $request->get('locale');
 
-        $query->whereHas('translations', function ($q) use ($value, $locale) {
-            if ($value) {
+        if (!empty($value)) {
+            $query->whereHas('translations', function ($q) use ($value, $locale) {
                 $q->where('locale', $locale);
                 $q->where(function ($q) use ($value) {
                     $q->where('title', 'like', '%' . $value . '%')
                         ->orWhere('extract', 'like', '%' . $value . '%')
                         ->orWhere('content', 'like', '%' . $value . '%');
                 });
-            }
-        });
+            });
+        }
 
         return $query->paginate();
     }
@@ -84,8 +84,6 @@ class BlogController extends Controller
 
     protected function relations()
     {
-        return ['translations', 'tags', 'tags.translations', 'images', 'images.sizes' => function ($query) {
-            $query->dimension(340);
-        }, 'images.translations'];
+        return ['translations'];
     }
 }

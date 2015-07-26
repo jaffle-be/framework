@@ -14,7 +14,8 @@ angular
         $httpProvider.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";
 
         //add a hard reload when csrf token mismatches
-        //$httpProvider.interceptors.push('csrfHandler');
+        $httpProvider.interceptors.push('csrfHandler');
+        $httpProvider.interceptors.push('authHandler');
 
         $ocLazyLoadProvider.config({
             // Set to true if you want to see what and when is dynamically loaded

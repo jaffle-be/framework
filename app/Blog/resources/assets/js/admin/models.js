@@ -5,37 +5,18 @@ angular.module('blog')
                 isArray: false
             },
             get: {
-                method: 'GET'
+                method: 'GET',
+                transformResponse: function(response)
+                {
+                    response = angular.fromJson(response);
+
+                    if(response.translations.length == 0)
+                    {
+                        response.translations = {};
+                    }
+                    return response;
+                }
             },
-            update: {
-                method: 'PUT'
-            }
-        });
-    })
-    .factory('BlogImage', function ($resource) {
-        var placeholders = {
-            imageId: '@id',
-            postId: '@postId'
-        };
-
-        return $resource('api/admin/blog/:postId/image/:imageId', placeholders, {
-            query: {
-                isArray: false
-            },
-            update: {
-                method: 'PUT'
-            }
-        });
-    })
-    .factory('BlogTag', function ($resource) {
-
-        var placeholders = {
-            tagId: '@id',
-            postId: '@postId'
-        };
-
-        return $resource('api/admin/blog/:postId/tag/:tagId', placeholders, {
-            query: {isArray: false},
             update: {
                 method: 'PUT'
             }

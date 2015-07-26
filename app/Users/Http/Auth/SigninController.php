@@ -6,14 +6,12 @@ use App\Users\Auth\Requests\SigninRequest;
 use App\Users\User;
 use Illuminate\Translation\Translator;
 
-abstract class SigninController extends Controller
+class SigninController extends Controller
 {
-
-    abstract function routePrefix();
 
     public function index()
     {
-        return view('users::auth.login');
+        return $this->theme->render('auth.login');
     }
 
     public function store(SignInRequest $request, Translator $lang)
@@ -27,7 +25,7 @@ abstract class SigninController extends Controller
         if ($response instanceof User) {
             return redirect('admin/start');//->route($this->routePrefix() . '.dash');
         } else if (is_string($response) && $response == 'unconfirmed') {
-            $route = route('confirm-email.create', ['email' => $credentials['email']]);
+            $route = route('store.auth.confirm-email.create', ['email' => $credentials['email']]);
 
             $error = $lang->get('users::auth.errors.unconfirmed', ['url' => $route]);
 

@@ -19,11 +19,13 @@ class CreateNewTag extends Job implements SelfHandling
 
     public function handle(Tag $tag)
     {
-        $tag = $tag->create([
+        $payload = [
             $this->locale => [
                 'name' => $this->name
             ]
-        ]);
+        ];
+
+        $tag = $tag->create($payload);
 
         return $tag ? : false;
     }

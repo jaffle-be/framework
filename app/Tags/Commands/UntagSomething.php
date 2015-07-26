@@ -19,7 +19,7 @@ class UntagSomething extends Job implements SelfHandling{
     {
         $this->owner->tags()->detach($this->tag->id);
 
-        if ($this->tag->posts()->count() == 0) {
+        if ($this->tag->content()->count() == 0) {
             $this->tag->delete();
         }
     }

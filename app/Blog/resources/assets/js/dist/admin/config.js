@@ -12,7 +12,7 @@ angular.module('blog', [])
                 templateUrl: "templates/admin/blog/overview",
             })
             .state('admin.blog.post', {
-                url: '/post/:postId',
+                url: '/post/:id',
                 templateUrl: "templates/admin/blog/detail",
             });
     });

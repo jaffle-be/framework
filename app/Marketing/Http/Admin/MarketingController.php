@@ -1,8 +1,8 @@
 <?php namespace App\Marketing\Http\Admin;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\AdminController;
 
-class MarketingController extends Controller
+class MarketingController extends AdminController
 {
 
     public function overview()

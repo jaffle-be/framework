@@ -27,6 +27,18 @@ class MenuTableSeeder extends Seeder{
 
         MenuItem::create([
             'menu_id' => 1,
+            'url' => '/portfolio',
+            'name' => 'onze werken',
+        ]);
+
+        MenuItem::create([
+            'menu_id' => 1,
+            'url' => '/team',
+            'name' => 'onze kraks',
+        ]);
+
+        MenuItem::create([
+            'menu_id' => 1,
             'url' => '/contact',
             'name' => 'contact',
         ]);
