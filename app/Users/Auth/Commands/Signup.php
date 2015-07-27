@@ -1,5 +1,6 @@
 <?php namespace App\Users\Auth\Commands;
 
+use App\Account\MembershipInvitation;
 use App\Jobs\Job;
 use App\Users\Auth\Events\UserRegistered;
 use App\Users\User;
@@ -15,10 +16,11 @@ class Signup extends Job implements SelfHandling
 
     protected $password;
 
-    public function __construct($email, $password)
+    public function __construct($email, $password, MembershipInvitation $invitation = null)
     {
         $this->email = $email;
         $this->password = $password;
+        $this->invitation = $invitation;
     }
 
     public function handle(User $user, Hasher $hash, Dispatcher $events)
@@ -32,7 +34,7 @@ class Signup extends Job implements SelfHandling
 
             $user->save();
 
-            $events->fire(new UserRegistered($user));
+            $events->fire(new UserRegistered($user, $this->invitation));
 
             $connection->commit();
 

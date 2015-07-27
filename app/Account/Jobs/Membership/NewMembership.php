@@ -1,7 +1,7 @@
-<?php namespace App\Account\Jobs;
+<?php namespace App\Account\Jobs\Membership;
 
 use App\Account\Account;
-use App\Account\AccountRepositoryInterface;
+use App\Account\Membership;
 use App\Account\MembershipOwner;
 use App\Jobs\Job;
 use Illuminate\Contracts\Bus\SelfHandling;
@@ -16,17 +16,20 @@ class NewMembership extends Job implements SelfHandling{
     /**
      * @var MembershipOwner
      */
-    protected $owner;
+    protected $member;
 
-    public function __construct(Account $account, MembershipOwner $owner)
+    public function __construct(Account $account, MembershipOwner $member)
     {
         $this->account = $account;
-        $this->owner = $owner;
+        $this->member = $member;
     }
 
     public function handle()
     {
-        $this->account->members()->associate($this->owner);
+        $membership = new Membership();
+        $membership->member()->associate($this->member);
+
+        return $this->account->memberships()->save($membership);
     }
 
 }

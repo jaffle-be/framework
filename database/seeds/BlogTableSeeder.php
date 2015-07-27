@@ -29,7 +29,7 @@ class BlogTableSeeder extends Seeder
     {
         $this->images = $images;
 
-        $this->image_sizes = config('blog.image_sizes');;
+        $this->image_sizes = config('media.sizes.blog');;
 
         $this->prefix = __DIR__ . '/../images/';
 

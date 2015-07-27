@@ -18,14 +18,17 @@ class SendContactEmail extends Job implements SelfHandling
      * @var AccountContactInformation
      */
     protected $contact;
+
     /**
      * @var
      */
     protected $name;
+
     /**
      * @var
      */
     protected $email;
+
     /**
      * @var
      */
@@ -43,11 +46,11 @@ class SendContactEmail extends Job implements SelfHandling
 
     /**
      * @param AccountContactInformation $contact
-     * @param $name
-     * @param $email
-     * @param $message
-     * @param null $subject
-     * @param null $copy
+     * @param                           $name
+     * @param                           $email
+     * @param                           $message
+     * @param null                      $subject
+     * @param null                      $copy
      */
     public function __construct(AccountContactInformation $contact, $name, $email, $message, $subject = null, $copy = null)
     {
@@ -70,8 +73,10 @@ class SendContactEmail extends Job implements SelfHandling
         $subject = $this->subject;
         $copy = $this->copy;
 
-        //can't use key message, it's being overridden probably by the mailer
-        $mailer->send('emails.contact.contact', ['contact_message' => $this->message, 'email' => $this->email, 'name' => $this->name], function (Message $message) use ($lang, $email, $name, $contact, $subject, $copy) {
+        //can't use the key 'message', it's being overridden probably by the mailer
+        $payload = ['contact_message' => $this->message, 'email' => $this->email, 'name' => $this->name];
+
+        $callback = function (Message $message) use ($lang, $email, $name, $contact, $subject, $copy) {
             $message->from($email, $name);
             $message->to($contact->email);
             $message->subject($lang->get('contact::contact.emails.contact.subject') . ': ' . $subject);
@@ -79,7 +84,9 @@ class SendContactEmail extends Job implements SelfHandling
             if ($copy) {
                 $message->bcc($email, $name);
             }
-        });
+        };
+
+        $mailer->send('emails.contact.contact', $payload, $callback);
     }
 
 }

@@ -1,0 +1,48 @@
+<?php namespace App\Account\Http\Admin;
+
+use App\Account\AccountManager;
+use App\Account\Membership;
+use App\Http\Controllers\AdminController;
+use Illuminate\Contracts\Auth\Guard;
+
+class MembershipController extends AdminController
+{
+
+    public function page(AccountManager $manager, Guard $guard)
+    {
+        return view('account::admin.members.overview', [
+            'account' => $manager->account(),
+            'user' => $guard->user()
+        ]);
+    }
+
+    /**
+     * this is the method to update some membership information, currently it has nothing
+     * but it should be able to adjust the membership roles in the future
+     */
+    public function update()
+    {
+//        $this->dispatch();
+    }
+
+    public function index(AccountManager $manager)
+    {
+        $account = $manager->account();
+
+        $account->load(['memberships', 'memberships.member']);
+
+        return $account->memberships;
+    }
+
+
+    public function destroy(Membership $membership)
+    {
+        /**
+         * cannot destroy a final membership or the owner of an account
+         */
+        $this->dispatchFromArray(RevokeMembership::class, [
+            'membership' => $membership
+        ]);
+    }
+
+}

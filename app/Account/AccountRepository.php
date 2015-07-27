@@ -23,6 +23,16 @@ class AccountRepository
     }
 
     /**
+     * @param array $payload
+     *
+     * @return Account
+     */
+    public function newAccount(array $payload)
+    {
+        return $this->account->create($payload);
+    }
+
+    /**
      * The alias represents the subdomain for the main app url an account is running under
      *
      * @param $domain

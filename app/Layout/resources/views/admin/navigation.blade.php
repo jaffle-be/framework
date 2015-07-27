@@ -5,19 +5,19 @@
 
                 <div class="profile-element" dropdown>
 
-                    <img alt="image" class="img-circle img-responsive" src="{{ Gravatar::src($user->email, 200) }}"/>
+                    <a ui-sref="admin.profile">
+                        <img alt="image" class="img-circle img-responsive" src="{{ Gravatar::src($user->email, 200) }}"/>
+                    </a>
 
                     <br>
 
-                    @if($user->fullname)
                         <span class="clear">
                                 <span class="block m-t-xs fullname">
-                                    <strong class="font-bold">{{ $user->fullname }}</strong>
+                                    <a ui-sref="admin.profile"><strong class="font-bold">{{ $user->fullname ? $user->fullname : 'Mr/Ms J. Doe'}}</strong></a>
                              </span>
                         </span>
-                    @endif
-                    <a target="_blank" href="{{ $account->domain }}" class="text-muted text-xs block">{{ $account->alias }}</a>
 
+                    <a target="_blank" href="{{ $account->domain }}" class="text-muted text-xs block">{{ $account->alias }}</a>
 
                 </div>
                 <div class="logo-element">
@@ -56,6 +56,10 @@
                     <li ui-sref-active="active">
                         <a ui-sref="admin.account.contact"><i class="class fa fa-map-marker"></i>
                             <span class="nav-label">@{{ 'CONTACT' | translate }}</span></a>
+                    </li>
+                    <li ui-sref-active="active">
+                        <a ui-sref="admin.account.members"><i class="fa fa-users"></i>
+                            <span class="nav-label">@{{ 'USERS' | translate }}</span></a>
                     </li>
                 </ul>
             </li>

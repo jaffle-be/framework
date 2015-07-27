@@ -21,8 +21,6 @@ Route::group([
         //actual resource
         Route::group(['prefix' => 'api/admin'], function () {
             Route::resource('blog', 'BlogController', ['only' => ['index', 'show', 'store', 'update']]);
-            Route::resource('blog/{blog}/image', 'BlogImageController', ['only' => ['store', 'destroy', 'update']]);
-            Route::resource('blog/{blog}/tag', 'BlogTagController', ['only' => ['index', 'store', 'destroy', 'update']]);
         });
     });
 

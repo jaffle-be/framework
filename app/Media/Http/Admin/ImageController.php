@@ -96,14 +96,16 @@ class ImageController extends AdminController
             'sizes' => $sizes,
         ]);
 
-        $image->load($this->relations());
+        $image->load($this->relations($sizes));
 
         return $image;
     }
 
     public function update(Image $image, Request $request)
     {
-        $image->load($this->relations());
+        $sizes = $this->sizes($request);
+
+        $image->load($this->relations($sizes));
 
         $owner = $this->owner($request);
 

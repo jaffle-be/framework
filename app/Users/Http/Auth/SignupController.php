@@ -1,5 +1,6 @@
 <?php namespace App\Users\Http\Auth;
 
+use App\Account\MembershipInvitation;
 use App\Http\Controllers\Controller;
 use App\Users\Auth\Commands\Signup;
 use App\Users\Auth\Requests\SignupRequest;
@@ -17,7 +18,21 @@ class SignupController extends Controller
 
     public function store(SignupRequest $request)
     {
-        $data = $request->only(array('email', 'password', 'password_confirmation'));
+        $data = $request->only(array('email', 'password'));
+
+        $invitation = null;
+
+        if($request->has('invitation'))
+        {
+            $invitation = MembershipInvitation::find($request->get('invitation'));
+
+            if(!$invitation)
+            {
+                return redirect()->back()->with('message', 'failed');
+            }
+        }
+
+        $data = array_merge($data, ['invitation' => $invitation]);
 
         if ($user = $this->dispatchFromArray(Signup::class, $data)) {
             return redirect()->route('store.home')->with('message', 'success');

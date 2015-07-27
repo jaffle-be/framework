@@ -1,6 +1,7 @@
 <?php namespace App\Portfolio;
 
 use App\Media\StoresMedia;
+use App\Media\StoringMedia;
 use App\Tags\Taggable;
 use Dimsav\Translatable\Translatable;
 use Illuminate\Database\Eloquent\Model;
@@ -9,24 +10,17 @@ class Project extends Model implements StoresMedia
 {
     use Translatable;
     use Taggable;
+    use StoringMedia;
 
     protected $table = "portfolio_projects";
+
+    protected $media = 'portfolio';
 
     protected $fillable = ['client_name', 'website', 'date', 'title', 'description'];
 
     protected $dates = ['date'];
 
     protected $translatedAttributes = ['title', 'description'];
-
-    public function getMediaFolder()
-    {
-        return sprintf('portfolio/%d/', $this->attributes['id']);
-    }
-
-    public function images()
-    {
-        return $this->morphMany('App\Media\Image', 'owner');
-    }
 
     public function collaborators()
     {

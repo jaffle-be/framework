@@ -10,6 +10,7 @@
         'tags',
         'media',
         'blog',
+        'users',
         'ngResource',
         'ngStorage',
         'ngCookies',

@@ -1,19 +1,37 @@
-<div class="blog-image" ng-show="images" ng-repeat="img in images">
+<div class="input-image">
 
-    <form ng-submit="ctrl.updateImage(img)" novalidate name="imageForm">
+    <div class="loader" ng-show="!loaded">
 
-        <div class="form-group">
-            <img class="img-responsive" ng-src="@{{ img.sizes[0].path  }}"/>
-
-            <i class="fa fa-remove" ng-click="ctrl.deleteImage(img)"></i>
+        <div class="sk-spinner sk-spinner-double-bounce">
+            <div class="sk-double-bounce1"></div>
+            <div class="sk-double-bounce2"></div>
         </div>
 
-        <div class="form-group">
-            <input autocomplete="off" ng-change="ctrl.updateImage(img)" class="form-control" type="text" ng-model="img.translations[locale].title"/>
+    </div>
+
+    <div class="row row-eq-height list">
+        <div class="item col-md-6" ng-show="loaded" ng-repeat="img in images track by $index" ng-class="{clearfix: $index%2==0}">
+
+            <form ng-submit="ctrl.updateImage(img)" novalidate name="imageForm">
+
+                <div class="form-group">
+                    <img class="img-responsive" ng-src="@{{ img.sizes[0].path  }}"/>
+
+                    <i class="fa fa-remove" ng-click="ctrl.deleteImage(img)"></i>
+                </div>
+
+                <div class="form-group" ng-hide="!locale">
+                    <input autocomplete="off" ng-change="ctrl.updateImage(img)" class="form-control" type="text" ng-model="img.translations[locale].title"/>
+                </div>
+            </form>
+
         </div>
-    </form>
+    </div>
+
+
 
 </div>
+
 
 <div class="clearfix"></div>
 

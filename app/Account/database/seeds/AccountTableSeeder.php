@@ -2,6 +2,8 @@
 
 use App\Account\Account;
 use App\Account\AccountContactInformation;
+use App\Account\Membership;
+use App\Account\MembershipInvitation;
 use App\Contact\Address;
 use Illuminate\Foundation\Bus\DispatchesCommands;
 use Jaffle\Tools\Seeder;
@@ -18,6 +20,7 @@ class AccountTableSeeder extends Seeder
             'domain' => 'digiredo.local',
         ]);
 
+        //we always! need a membership for the owner
         $info = new AccountContactInformation([
             'email' => 'thomas@jaffle.be',
             'phone' => '0473/506720',
@@ -66,6 +69,17 @@ class AccountTableSeeder extends Seeder
             'country_id' => rand(1,4)
         ]));
 
+        Membership::create([
+            'user_id' => 1,
+            'account_id' => $account->id
+        ]);
+
+        for($i = 0; $i < 5; $i++)
+        {
+            $account->membershipInvitations()->create([
+                'email' => $this->faker->email
+            ]);
+        }
 
     }
 

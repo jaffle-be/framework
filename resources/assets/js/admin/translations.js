@@ -11,6 +11,7 @@ angular
                 SHOP: 'Shop',
                 CONTACT: 'Contact',
                 ACCOUNT: 'Account',
+                USERS: 'Users',
                 MARKETING: 'Marketing',
 
 

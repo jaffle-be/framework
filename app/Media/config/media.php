@@ -10,6 +10,7 @@ return [
     'owners' => [
         'blog'      => App\Blog\Post::class,
         'portfolio' => App\Portfolio\Project::class,
+        'user' => App\Users\user::class,
     ],
 
     /**
@@ -44,6 +45,11 @@ return [
             '285',
             '270',
             '150',
+        ],
+
+        'user' => [
+            '512',
+            '200'
         ]
     ],
 

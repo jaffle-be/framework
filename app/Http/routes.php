@@ -28,3 +28,5 @@ Route::group(['as' => 'store.'], function () {
         Route::get('admin/system', ['uses' => 'WelcomeController@system', 'middleware' => 'auth.admin']);
     });
 });
+
+Route::get('test', 'WelcomeController@test');

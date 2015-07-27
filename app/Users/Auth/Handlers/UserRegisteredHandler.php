@@ -1,5 +1,6 @@
 <?php namespace App\Users\Auth\Handlers;
 
+use App\Account\Jobs\Membership\AcceptMembership;
 use App\Users\Auth\Commands\SendConfirmationEmail;
 use App\Users\Auth\Events\UserRegistered;
 use Illuminate\Contracts\Config\Repository;
@@ -21,15 +22,24 @@ class UserRegisteredHandler
     {
         $auto_confirm = $this->config->get('users.auth.auto_confirmation');
 
-        if(!$auto_confirm['auth.auto_confirmation'])
-        {
-            //we need to send an email to confirm their email address.
-            $this->dispatch(new SendConfirmationEmail($event->user));
-        }
-        else{
-            $event->user->confirmed = 1;
+        if ($event->invitation) {
 
+            $event->user->confirmed = 1;
             $event->user->save();
+
+            return $this->dispatchFromArray(AcceptMembership::class, [
+                'invitation' => $event->invitation,
+                'member' => $event->user,
+            ]);
         }
+
+        if (!$auto_confirm['auth.auto_confirmation']) {
+            //we need to send an email to confirm their email address.
+            return $this->dispatch(new SendConfirmationEmail($event->user));
+        }
+
+        $event->user->confirmed = 1;
+
+        return $event->user->save();
     }
 }

@@ -36,6 +36,9 @@ class AccountManager
         return $this->account;
     }
 
+    /**
+     * @return Account|bool
+     */
     public function account()
     {
         return $this->account;

@@ -4,6 +4,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Membership extends Model{
 
-    protected $tables = 'account_memberships';
+    protected $table = 'account_memberships';
+
+    public function member()
+    {
+        return $this->belongsTo('App\Users\User', 'user_id');
+    }
 
 }

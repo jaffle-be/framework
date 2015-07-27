@@ -6,8 +6,33 @@ angular.module('account')
             load: {
                 method: 'GET',
             },
-            update:{
+            update: {
                 method: 'PUT',
+            }
+        });
+    })
+
+
+    .factory('Membership', function ($resource) {
+
+        return $resource('api/admin/account/members/:id', {
+            id: '@id',
+        }, {
+            list: {
+                isArray: true,
+                method: 'GET',
+            }
+        });
+
+    })
+
+    .factory('MembershipInvitation', function ($resource) {
+        return $resource('api/admin/account/members/invitation/:id', {
+            id: '@id'
+        }, {
+            list: {
+                isArray: true,
+                method: 'GET'
             }
         });
     });

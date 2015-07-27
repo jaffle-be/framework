@@ -10,12 +10,13 @@
  * the regular one is for our native app.
  */
 Route::group([
-    'namespace' => 'App\Users\Http\Auth',
+    'namespace' => 'App\Users\Http',
     'as'        => 'store.',
 ], function () {
 
     Route::group([
         'prefix' => 'auth',
+        'namespace' => 'Auth'
     ], function () {
         Route::resource('signup', 'SignupController', ['only' => ['index', 'store']]);
         Route::resource('confirm-email', 'ConfirmEmailController', ['only' => ['show', 'create', 'store']]);
@@ -23,5 +24,22 @@ Route::group([
         Route::resource('signout', 'SignoutController', ['only' => ['index']]);
         Route::resource('forgot-password', 'ForgotPasswordController', ['only' => ['index', 'store']]);
         Route::resource('reset-password', 'ResetPasswordController', ['only' => ['show', 'update']]);
+    });
+
+    Route::group([
+        'namespace' => 'Admin',
+    ], function () {
+        Route::group([
+            'prefix' => 'templates/admin'
+        ], function () {
+            Route::get('users/profile', 'UserController@profile');
+        });
+
+        Route::group([
+            'prefix' => 'api/admin'
+        ], function()
+        {
+            Route::resource('profile', 'UserController', ['only' => ['index', 'store']]);
+        });
     });
 });

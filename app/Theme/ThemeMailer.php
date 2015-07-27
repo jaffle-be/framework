@@ -53,7 +53,10 @@ class ThemeMailer implements MailContract{
     {
         $theme = $this->theme->name();
 
-        $view = 'theme.' . $theme . '::' . $view;
+        $data = array_merge($data, [
+            'theme' => $this->theme,
+            'theme_template' => $this->resolveThemeTemplate()
+        ]);
 
         return $this->mailer->send($view, $data, $callback);
     }
@@ -68,5 +71,9 @@ class ThemeMailer implements MailContract{
         return $this->mailer->failures();
     }
 
+    protected function resolveThemeTemplate()
+    {
+        return config('theme.email_template');
+    }
 
 }

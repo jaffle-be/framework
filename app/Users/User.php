@@ -1,11 +1,16 @@
 <?php namespace App\Users;
 
 use App\Account\MembershipOwner;
+use App\Contact\AddressOwner;
+use App\Media\StoresMedia;
+use App\Media\StoringMedia;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 
-class User extends Model implements Authenticatable, MembershipOwner
+class User extends Model implements Authenticatable, MembershipOwner, AddressOwner, StoresMedia
 {
+
+    use StoringMedia;
 
     /**
      * The database table used by the model.
@@ -14,12 +19,14 @@ class User extends Model implements Authenticatable, MembershipOwner
      */
     protected $table = 'users';
 
+    protected $media = 'user';
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-    protected $fillable = ['name', 'email', 'password', 'firstname', 'lastname'];
+    protected $fillable = ['name', 'email', 'password', 'firstname', 'lastname', 'phone', 'vat', 'website'];
 
     /**
      * The attributes excluded from the model's JSON form.
@@ -32,6 +39,10 @@ class User extends Model implements Authenticatable, MembershipOwner
         'confirmed' => 'boolean'
     ];
 
+    public function address()
+    {
+        return $this->morphOne('App\Contact\Address', 'owner');
+    }
 
     public function resetToken()
     {

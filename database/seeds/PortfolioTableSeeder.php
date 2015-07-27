@@ -15,7 +15,7 @@ class PortfolioTableSeeder extends Seeder
     {
         $this->images = $images;
 
-        $this->image_sizes = config('portfolio.image_sizes');;
+        $this->image_sizes = config('media.sizes.portfolio');
 
         $this->prefix = __DIR__ . '/../images/';
 

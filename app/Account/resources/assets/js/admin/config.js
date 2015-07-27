@@ -10,5 +10,9 @@ angular.module('account', [])
             .state('admin.account.contact', {
                 url: "/contact",
                 templateUrl: "templates/admin/account/contact/page",
+            })
+            .state('admin.account.members', {
+                url: "/members",
+                templateUrl: "templates/admin/account/members/page",
             });
     });

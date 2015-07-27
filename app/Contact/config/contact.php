@@ -9,6 +9,7 @@ return [
      */
     'address_owners' => [
         'account' => 'App\Account\AccountContactInformation',
+        'user'    => 'App\Users\User'
     ]
 
 ];
