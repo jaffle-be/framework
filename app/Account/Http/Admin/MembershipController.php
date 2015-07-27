@@ -1,6 +1,7 @@
 <?php namespace App\Account\Http\Admin;
 
 use App\Account\AccountManager;
+use App\Account\Jobs\Membership\RevokeMembership;
 use App\Account\Membership;
 use App\Http\Controllers\AdminController;
 use Illuminate\Contracts\Auth\Guard;
@@ -12,7 +13,7 @@ class MembershipController extends AdminController
     {
         return view('account::admin.members.overview', [
             'account' => $manager->account(),
-            'user' => $guard->user()
+            'user'    => $guard->user()
         ]);
     }
 
@@ -34,15 +35,19 @@ class MembershipController extends AdminController
         return $account->memberships;
     }
 
-
     public function destroy(Membership $membership)
     {
         /**
          * cannot destroy a final membership or the owner of an account
          */
-        $this->dispatchFromArray(RevokeMembership::class, [
+        if($this->dispatchFromArray(RevokeMembership::class, [
             'membership' => $membership
-        ]);
+        ]))
+        {
+            $membership->id = false;
+        }
+
+        return $membership;
     }
 
 }

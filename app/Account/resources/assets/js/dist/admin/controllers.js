@@ -52,54 +52,49 @@ angular.module('account')
 
         var me = this;
 
-        this.load = function()
-        {
-            MembershipService.list(function(memberships)
-            {
+        this.load = function () {
+            MembershipService.list(function (memberships) {
                 me.memberships = memberships
             });
 
-            MembershipService.invitations(function(invitations){
+            MembershipService.invitations(function (invitations) {
                 me.invitations = invitations;
             });
         };
 
-        this.sendInvitation = function()
-        {
+        this.sendInvitation = function () {
             var email = invitationForm.email.value;
-            var success = function(invitation)
-            {
+            var success = function (invitation) {
                 me.invitations.push(invitation);
                 invitationForm.email.value = '';
             };
 
-            var error = function(response)
-            {
+            var error = function (response) {
                 me.invitationErrors = response.data;
             };
 
             MembershipService.invite(email, success, error);
         };
 
-        this.revokeInvitation = function(invitation)
-        {
-            MembershipService.revokeInvitation(invitation, function(response)
-            {
-                if(response.status == 'ok')
+        this.revokeInvitation = function (invitation) {
+            MembershipService.revokeInvitation(invitation, function (response) {
+                if (!response.id)
                 {
-                    _.remove(me.invitations, function(item)
-                    {
+                    _.remove(me.invitations, function (item) {
                         return item.id == invitation.id;
                     });
                 }
             });
         };
 
-        this.revokeMembership = function(membership)
-        {
-            MembershipService.revokeMembership(membership, function()
-            {
-
+        this.revokeMembership = function (membership) {
+            MembershipService.revokeMembership(membership, function (response) {
+                if(!response.id)
+                {
+                    _.remove(me.memberships, function (item) {
+                        return item.id == membership.id;
+                    });
+                }
             });
         };
 

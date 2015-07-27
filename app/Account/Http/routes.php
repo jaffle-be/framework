@@ -16,7 +16,7 @@ Route::group([
         //actual resource
         Route::group(['prefix' => 'api/admin/account'], function () {
             Route::resource('account-contact-information', 'ContactController', ['only' => ['index', 'store', 'update']]);
-            Route::resource('members', 'MembershipController', ['only' => ['index', 'update', 'destroy']]);
+            Route::resource('members/membership', 'MembershipController', ['only' => ['index', 'update', 'destroy']]);
             Route::resource('members/invitation', 'MembershipInvitationController', ['only' => ['index', 'store', 'destroy']]);
         });
     });

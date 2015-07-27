@@ -18,6 +18,10 @@ angular.module('account')
             revokeInvitation: function(invitation, success)
             {
                 invitation.$delete({}, success);
+            },
+            revokeMembership: function(membership, success)
+            {
+                membership.$delete({}, success);
             }
 
         }

@@ -31,8 +31,7 @@ class MembershipInvitationController extends AdminController
 
         $account->membershipInvitations()->save($invitation);
 
-        $mailer->send('account::admin.members.invitation.email', ['invitation' => $invitation], function($message) use ($invitation, $account, $lang)
-        {
+        $mailer->send('account::admin.members.invitation.email', ['invitation' => $invitation], function ($message) use ($invitation, $account, $lang) {
             $message->to($invitation->email);
             $message->from($account->contactInformation->first()->email);
             $message->subject($lang->get('account::members.you-are-invited'));
@@ -48,12 +47,13 @@ class MembershipInvitationController extends AdminController
         if ($account->membershipInvitations->contains($invitation)) {
             $invitation = $account->membershipInvitations->find($invitation);
 
-            if ($invitation->delete()) {
-                return json_encode(['status' => 'ok']);
+            if($invitation->delete())
+            {
+                $invitation->id = false;
             }
         }
 
-        return json_encode(['status' => 'nok']);
+        return $invitation;
     }
 
     /**

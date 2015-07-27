@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 use App\Users\Auth\Commands\Signup;
 use App\Users\Auth\Requests\SignupRequest;
 use App\Users\User;
+use Illuminate\Auth\Guard;
 
 class SignupController extends Controller
 {
@@ -16,7 +17,7 @@ class SignupController extends Controller
         return $this->theme->render('auth.register', compact('user'));
     }
 
-    public function store(SignupRequest $request)
+    public function store(SignupRequest $request, Guard $guard)
     {
         $data = $request->only(array('email', 'password'));
 
@@ -35,6 +36,15 @@ class SignupController extends Controller
         $data = array_merge($data, ['invitation' => $invitation]);
 
         if ($user = $this->dispatchFromArray(Signup::class, $data)) {
+
+            if($user->confirmed)
+            {
+                //user can be logged in too
+                $guard->login($user);
+
+                return redirect()->route('store.dash');
+            }
+
             return redirect()->route('store.home')->with('message', 'success');
         }
 

@@ -30,6 +30,7 @@ class RouteServiceProvider extends ServiceProvider {
         $router->model('address', 'App\Contact\Address');
 		$router->model('account_contact_information', 'App\Account\AccountContactInformation');
 		$router->model('portfolio', 'App\Portfolio\Project');
+		$router->model('membership', 'App\Account\Membership');
 		$this->pathsToPublish('');
 	}
 

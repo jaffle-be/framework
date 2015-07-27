@@ -15,7 +15,7 @@ angular.module('account')
 
     .factory('Membership', function ($resource) {
 
-        return $resource('api/admin/account/members/:id', {
+        return $resource('api/admin/account/members/membership/:id', {
             id: '@id',
         }, {
             list: {

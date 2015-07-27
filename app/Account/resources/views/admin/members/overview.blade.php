@@ -53,13 +53,15 @@
 
                 <div class="ibox-content">
 
-                    <ul>
+                    <ul class="memberships">
                         <li ng-repeat="membership in vm.memberships">
                             @if($account->owner->id == $user->id)
-                            <a class="pull-right btn btn-sm btn-danger">{{ Lang::get('account::users.remove') }}</a>
+                            <a class="pull-right btn btn-sm btn-danger" ng-click="vm.revokeMembership(membership)">{{ Lang::get('account::users.remove') }}</a>
                             @endif
 
-                            @{{ membership.member.firstname + ' ' + membership.member.lastname }}<br>
+                            <i ng-show="membership.member.confirmed" class="fa fa-key owner" title="{{ Lang::get('account::members.owner') }}"></i>
+
+                            <div>@{{ membership.member.firstname + ' ' + membership.member.lastname }}</div>
                             <a>@{{ membership.member.email }}</a>
 
                         </li>

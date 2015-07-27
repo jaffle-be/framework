@@ -6,7 +6,12 @@
                 <div class="profile-element" dropdown>
 
                     <a ui-sref="admin.profile">
+
+                        @if($user->images->count() == 0)
                         <img alt="image" class="img-circle img-responsive" src="{{ Gravatar::src($user->email, 200) }}"/>
+                        @else
+                            <img alt="image" class="img-circle img-responsive" src="{{ asset($user->images->first()->path) }}"/>
+                        @endif
                     </a>
 
                     <br>
