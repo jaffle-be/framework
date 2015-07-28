@@ -11,11 +11,10 @@
  *  - minimalizaSidebar
  *  - vectorMap
  *  - sparkline
- *  - icheck
+ *  - icheck --deleted
  *  - ionRangeSlider
  *  - dropZone
  *  - responsiveVideo
-
  *
  */
 
@@ -227,42 +226,6 @@ function sparkline() {
     }
 };
 
-/**
- * icheck - Directive for custom checkbox icheck
- */
-function icheck($timeout) {
-    return {
-        restrict: 'A',
-        require: 'ngModel',
-        link: function($scope, element, $attrs, ngModel) {
-            return $timeout(function() {
-                var value;
-                value = $attrs['value'];
-
-                $scope.$watch($attrs['ngModel'], function(newValue){
-                    $(element).iCheck('update');
-                })
-
-                return $(element).iCheck({
-                    checkboxClass: 'icheckbox_square-green',
-                    radioClass: 'iradio_square-green'
-
-                }).on('ifChanged', function(event) {
-                        if ($(element).attr('type') === 'checkbox' && $attrs['ngModel']) {
-                            $scope.$apply(function() {
-                                return ngModel.$setViewValue(event.target.checked);
-                            });
-                        }
-                        if ($(element).attr('type') === 'radio' && $attrs['ngModel']) {
-                            return $scope.$apply(function() {
-                                return ngModel.$setViewValue(value);
-                            });
-                        }
-                    });
-            });
-        }
-    };
-}
 
 /**
  * ionRangeSlider - Directive for Ion Range Slider
@@ -359,8 +322,6 @@ function fullScroll($timeout){
         }
     };
 }
-
-
 /**
  *
  * Pass all functions into module
@@ -373,11 +334,12 @@ angular
     .directive('minimalizaSidebar', minimalizaSidebar)
     .directive('vectorMap', vectorMap)
     .directive('sparkline', sparkline)
-    .directive('icheck', icheck)
     .directive('ionRangeSlider', ionRangeSlider)
     .directive('dropzone', dropzone)
     .directive('responsiveVideo', responsiveVideo)
     .directive('chatSlimScroll', chatSlimScroll)
     .directive('customValid', customValid)
     .directive('fullScroll', fullScroll)
-    .directive('closeOffCanvas', closeOffCanvas)
+    .directive('closeOffCanvas', closeOffCanvas);
+
+

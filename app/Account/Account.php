@@ -13,6 +13,11 @@ class Account extends Model{
         return $this->hasMany('App\Account\Membership');
     }
 
+    public function members()
+    {
+        return $this->belongsToMany('App\Users\User', 'account_memberships');
+    }
+
     public function membershipInvitations()
     {
         return $this->hasMany('App\Account\MembershipInvitation');

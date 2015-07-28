@@ -2,7 +2,7 @@
 
     <div class="ibox" st-table="vm.projects" st-pipe="vm.list">
 
-        <tabset justified="true">
+        <tabset>
 
             <tab ng-repeat="locale in vm.options.locales" heading="@{{ locale.locale }}" st-click-refresh active="vm.options.locales[locale.locale].active" select="vm.changeTab(locale.locale)">
 
@@ -65,7 +65,10 @@
                 </tr>
                 <tr ng-repeat="project in vm.projects" ui-sref="admin.portfolio.detail({id: project.id})" class="portfolio-overview">
                     <td width="10%" ng-click="$event.stopPropagation()">
-                        <label>@{{ $index + 1 }}&nbsp;<input type="checkbox" /></label>
+                        <p>
+                            <input type="checkbox" class="filled-in" id="row@{{ $index + 1 }}" checked="checked" />
+                            <label for="row@{{ $index + 1 }}">@{{ $index + 1 }}</label>
+                        </p>
                     </td>
                     <td width="0%">&nbsp;</td>
                     <td width="60%">
@@ -95,8 +98,8 @@
                 </tfoot>
             </table>
 
-            <div class="no-projects-box">
-                <a ng-click="vm.newProject()">{{ Lang::get('portfolio::new_project') }}</a>
+            <div>
+                <a class="btn btn-block btn-primary btn-lg" ng-click="vm.newProject()">{{ Lang::get('portfolio::new_project') }}</a>
             </div>
 
         </div>

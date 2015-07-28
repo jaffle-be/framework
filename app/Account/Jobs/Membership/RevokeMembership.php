@@ -33,6 +33,6 @@ class RevokeMembership extends Job implements SelfHandling
             return false;
         }
 
-        $this->membership->delete();
+        return $this->membership->delete();
     }
 }

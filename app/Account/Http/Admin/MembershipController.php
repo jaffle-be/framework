@@ -30,7 +30,7 @@ class MembershipController extends AdminController
     {
         $account = $manager->account();
 
-        $account->load(['memberships', 'memberships.member']);
+        $account->load(['memberships', 'memberships.member', 'memberships.member.images']);
 
         return $account->memberships;
     }

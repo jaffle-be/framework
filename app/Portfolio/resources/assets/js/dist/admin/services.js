@@ -27,6 +27,21 @@ angular.module('portfolio')
                 else{
                     project.$save({}, success);
                 }
+            },
+            collaborators: function(project, success)
+            {
+                Portfolio.collaborators({
+                    id: project.id
+                }, success);
+            },
+            toggleCollaboration: function(project, collaborator, success)
+            {
+                Portfolio.toggleCollaboration({
+                    id: project.id,
+                }, {
+                    member: collaborator.id,
+                    status: collaborator.selected
+                },success);
             }
 
         };

@@ -1,6 +1,6 @@
 <div class="ibox">
 
-    <div class="ibox-heading">
+    <div class="ibox-title">
         <h5>{{ Lang::get('portfolio::project-details') }}</h5>
     </div>
 

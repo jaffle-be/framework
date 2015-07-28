@@ -12,9 +12,14 @@
 //since that .btn-primary wasnt made using the regular mixin.
 @brand-primary: @navy;
 
+@fa-font-path: "/fonts";
+
+//this is a port from the materialize css design framework.
+//we currently took checkboxes only, but others may follow
+@import "materialize/forms";
+
 @import "tabs";
 @import "blog";
 @import "input-image";
 @import "account";
-
-@fa-font-path: "/fonts";
+@import "portfolio";

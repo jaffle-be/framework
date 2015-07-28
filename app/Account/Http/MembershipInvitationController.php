@@ -12,7 +12,7 @@ class MembershipInvitationController extends Controller
 
         if(!$invitation)
         {
-            return redirect()->route('home');
+            return redirect()->route('store.home');
         }
 
         return $this->theme->render('auth.register', ['invitation' => $invitation]);

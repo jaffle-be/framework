@@ -23,6 +23,15 @@ angular.module('portfolio')
             update: {
                 method: 'PUT',
             },
+            collaborators: {
+                isArray:true,
+                method: 'GET',
+                url: 'api/admin/portfolio/:id/collaboration'
+            },
+            toggleCollaboration:{
+                method: 'POST',
+                url :'api/admin/portfolio/:id/collaboration'
+            }
         });
 
     });

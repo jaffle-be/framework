@@ -1,0 +1,47 @@
+.project-collaborators {
+
+  li:not(:last-child)
+  {
+    border-bottom: 1px solid @border-color;
+  }
+
+  li .img-wrapper{
+    .pull-left;
+    width: 20%;
+
+    img{
+      .pull-right;
+      .img-responsive;
+      max-width: 75px;
+      margin-right: 15px;
+    }
+  }
+
+  li .wrapper {
+    .pull-right;
+    width: 80%;
+
+
+    @media(max-width: @screen-xs-max)
+    {
+      padding: 0 5px;
+    }
+
+    input[type="checkbox"].filled-in{
+      & + label:before {
+        margin-top: 30px;
+      }
+      & + label:after {
+        margin-top: 30px;
+      }
+    }
+
+    label span{
+      padding-top: 10px;
+      display: inline-block;
+      width: 100%;
+    }
+
+  }
+
+}

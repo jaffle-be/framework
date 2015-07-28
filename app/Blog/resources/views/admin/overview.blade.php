@@ -2,7 +2,7 @@
 
     <div class="ibox" st-table="vm.posts" st-pipe="vm.list">
 
-        <tabset justified="true">
+        <tabset>
 
             <tab ng-repeat="locale in vm.options.locales" heading="@{{ locale.locale }}" st-click-refresh active="vm.options.locales[locale.locale].active" select="vm.changeTab(locale.locale)">
 
@@ -65,7 +65,10 @@
                 </tr>
                 <tr ng-repeat="post in vm.posts" ui-sref="admin.blog.post({id: post.id})" class="blog-post-overview">
                     <td width="10%" ng-click="$event.stopPropagation()">
-                        <label>@{{ $index + 1 }}&nbsp;<input type="checkbox"/></label>
+                        <p>
+                            <input type="checkbox" class="filled-in" id="row@{{ $index + 1 }}" checked="checked" />
+                            <label for="row@{{ $index + 1 }}">@{{ $index + 1 }}</label>
+                        </p>
                     </td>
                     <td width="0%">&nbsp;</td>
                     <td>
@@ -95,8 +98,8 @@
                 </tfoot>
             </table>
 
-            <div class="no-posts-box">
-                <a ng-click="vm.newPost()">{{ Lang::get('blog::new_post') }}</a>
+            <div>
+                <a class="btn btn-primary btn-block btn-lg" ng-click="vm.newPost()">{{ Lang::get('blog::new_post') }}</a>
             </div>
 
         </div>
