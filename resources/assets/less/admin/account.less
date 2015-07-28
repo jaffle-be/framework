@@ -1,8 +1,39 @@
-.memberships{
+.memberships, .invitations {
 
-  .owner{
+  list-style: none;
+  padding: 0;
+
+  li{
+    padding: 15px 0;
+  }
+
+  li:not(:last-child){
+    margin-bottom: 15px;
+    border-bottom: 1px solid @border-color;
+  }
+
+  .owner {
     margin-right: 15px;
-    font-size: xx-large;
+    font-size: x-large;
+    .pull-right;
+  }
+
+
+  .img-wrapper{
+    display: inline-block;
+    width: 20%;
+    .pull-left;
+    text-align: right;
+
+    img{
+      max-width: 75px;
+    }
+  }
+
+  .wrapper{
+    display: inline-block;
+    padding-top: 20px;
+    width: 80%;
     .pull-right;
   }
 

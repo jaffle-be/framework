@@ -14,7 +14,7 @@
 
                     <div class="form-group">
 
-                        <ul>
+                        <ul class="invitations">
                             <li ng-repeat="invitation in vm.invitations">
                                 <a class="pull-right btn btn-danger btn-sm" ng-click="vm.revokeInvitation(invitation)">{{ Lang::get('account::users.remove') }}</a>
                                 @{{ invitation.email }} <br>
@@ -54,16 +54,21 @@
                 <div class="ibox-content">
 
                     <ul class="memberships">
-                        <li ng-repeat="membership in vm.memberships">
-                            @if($account->owner->id == $user->id)
-                            <a class="pull-right btn btn-sm btn-danger" ng-click="vm.revokeMembership(membership)">{{ Lang::get('account::users.remove') }}</a>
-                            @endif
+                        <li ng-repeat="membership in vm.memberships" class="clearfix">
 
-                            <i ng-show="membership.member.confirmed" class="fa fa-key owner" title="{{ Lang::get('account::members.owner') }}"></i>
+                            <div class="img-wrapper">
+                                <img ng-src="@{{ membership.member.images[0].path }}">
+                            </div>
+                            <div class="wrapper">
+                                @if($account->owner->id == $user->id)
+                                    <a class="pull-right btn btn-sm btn-danger" ng-click="vm.revokeMembership(membership)">{{ Lang::get('account::users.remove') }}</a>
+                                @endif
 
-                            <div>@{{ membership.member.firstname + ' ' + membership.member.lastname }}</div>
-                            <a>@{{ membership.member.email }}</a>
+                                <i ng-show="membership.member.id == {{$account->owner->id}}" class="fa fa-key owner" title="{{ Lang::get('account::members.owner') }}"></i>
 
+                                <div>@{{ membership.member.firstname + ' ' + membership.member.lastname }}</div>
+                                <a>@{{ membership.member.email }}</a>
+                            </div>
                         </li>
                     </ul>
 
