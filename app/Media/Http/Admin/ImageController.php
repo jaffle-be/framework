@@ -6,6 +6,7 @@ use App\Media\Commands\UploadNewImage;
 use App\Media\Image;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
 
 class ImageController extends AdminController
 {
@@ -23,7 +24,15 @@ class ImageController extends AdminController
 
         $images = $owner->images;
 
-        $images->load($this->relations($sizes));
+        if($images)
+        {
+            $images->load($this->relations($sizes));
+
+            if(!$images instanceof Collection)
+            {
+                $images = new Collection([$images]);
+            }
+        }
 
         return $images;
     }

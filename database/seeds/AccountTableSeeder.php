@@ -5,6 +5,7 @@ use App\Account\AccountContactInformation;
 use App\Account\Membership;
 use App\Account\MembershipInvitation;
 use App\Contact\Address;
+use App\Users\User;
 use Illuminate\Foundation\Bus\DispatchesCommands;
 use Jaffle\Tools\Seeder;
 
@@ -69,10 +70,14 @@ class AccountTableSeeder extends Seeder
             'country_id' => rand(1,4)
         ]));
 
-        Membership::create([
-            'user_id' => 1,
-            'account_id' => $account->id
-        ]);
+
+        foreach(User::all() as $user)
+        {
+            Membership::create([
+                'user_id' => $user->id,
+                'account_id' => $account->id
+            ]);
+        }
 
         for($i = 0; $i < 5; $i++)
         {

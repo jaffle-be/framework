@@ -32,19 +32,41 @@ class CheckGravatarImage extends Job implements SelfHandling
 
             $content = file_get_contents($url);
 
-            if(!$files->isDirectory(storage_path('tmp')))
+            $tmpDir = storage_path('media' . '/' . $this->user->getMediaFolder());
+
+            if(!$files->isDirectory($tmpDir))
             {
-                $files->makeDirectory(storage_path('tmp'));
+                $files->makeDirectory($tmpDir, 0755, true);
             }
 
-            $path = storage_path('tmp/' . sha1(time() . 'user-profile-pic' . $this->user->id));
+            $path = $tmpDir . sha1(time() . 'user-profile-pic' . $this->user->id);
 
             $files->put($path, $content);
 
-            $this->dispatch(new StoreNewImage($this->user, $path, null, config('media.sizes.user')));
+            $finalPath = $this->pathWithExtension($path);
+
+            $files->move($path, $finalPath);
+
+            $this->dispatch(new StoreNewImage($this->user, $finalPath, null, config('media.sizes.user')));
+
+            $files->delete($finalPath);
         }
 
     }
 
+    /**
+     * @param $path
+     *
+     * @return string
+     */
+    protected function pathWithExtension($path)
+    {
+        $info = getimagesize($path);
+
+        //add the extension based on the image type
+        $finalPath = $path . image_type_to_extension($info[2]);
+
+        return $finalPath;
+    }
 
 }

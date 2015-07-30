@@ -41,32 +41,41 @@ class UploadNewImage extends Job implements SelfHandling
 
     public function handle(Filesystem $files)
     {
-        $temp_dir = app_path('storage') . '/' . $this->owner->getMediaFolder();
+        $temp_dir = storage_path('media') . '/' . $this->owner->getMediaFolder();
 
-        $uniqueName = $this->uniqueName();
+        $name = $this->uniqueName();
 
-        $temp_path = $temp_dir . '/' . $uniqueName;
+        $this->image->move($temp_dir, $name);
 
-        $this->image->move($temp_dir, $uniqueName);
+        $temp_file = $temp_dir . $name;
+
+        $name_with_extension = $name . $this->extension($temp_file);
+
+        $final_path = $temp_file . $name_with_extension;
+
+        $files->move($temp_file, $final_path);
 
         $image = $this->dispatchFromArray(StoreNewImage::class, [
             'owner' => $this->owner,
-            'path'  => $temp_path,
+            'path'  => $final_path,
             'sizes' => $this->sizes
         ]);
 
-        $files->delete($temp_path);
+        $files->delete($final_path);
 
         return $image;
     }
 
     protected function uniqueName()
     {
-        $uniqueName = sha1(md5($this->image->getClientOriginalName()) . time());
+        return sha1(md5($this->image->getClientOriginalName()) . time());
+    }
 
-        $uniqueName .= '.' . $this->image->getClientOriginalExtension();
+    private function extension($path)
+    {
+        $info = getimagesize($path);
 
-        return $uniqueName;
+        return image_type_to_extension($info[2]);
     }
 
 }

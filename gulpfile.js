@@ -344,6 +344,11 @@ gulp.task('publisher', function () {
             prefix: 2
         }));
 
+    gulp.src('bower_components/ng-sortable/dist/ng-sortable.min.js')
+        .pipe(copy('./public/js/admin/plugins/ng-sortable/', {
+            prefix: 3
+        }));
+
     gulp.src('bower_components/angular-cookies/angular-cookies.min.js')
         .pipe(copy('./public/js/admin/plugins/angular-cookies/', {
             prefix: 2

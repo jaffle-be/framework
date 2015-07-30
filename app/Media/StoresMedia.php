@@ -2,6 +2,8 @@
 
 interface StoresMedia {
 
+    public function images();
+
     public function getMediaFolder();
 
 }

@@ -1,54 +1,21 @@
-<?php
+<?php namespace App\Theme;
 
-namespace App\Theme;
+use App\Media\StoresMedia;
+use App\Media\StoringMedia;
+use Illuminate\Database\Eloquent\Model;
 
-use Illuminate\Config\Repository;
-use Illuminate\Events\Dispatcher;
-use Illuminate\View\Factory;
-
-class Theme implements \App\Theme\Contracts\Theme
+class Theme extends Model implements StoresMedia
 {
+    use StoringMedia;
 
-    protected $config;
+    protected $table = "themes";
 
-    protected $view;
+    protected $fillable = ['name', 'version'];
 
-    protected $events;
+    protected $media = 'theme';
 
-    public function __construct(Repository $config, Factory $view, Dispatcher $events)
-    {
-        $this->config = $config;
-        $this->view = $view;
-        $this->events = $events;
-    }
+    protected $mediaMultiple = false;
 
-    public function name($name = null)
-    {
-        if (!empty($name)) {
-            $this->config->set('theme.name', $name);
-
-            $this->setupNamespace($name);
-        }
-
-        return $this->config->get('theme.name');
-    }
-
-    public function supported($theme = null)
-    {
-        if($theme)
-        {
-            return in_array($theme, config('theme.themes'));
-        }
-
-        return config('theme.themes');
-    }
-
-    public function render($view, array $data = [])
-    {
-        $name = $this->name();
-
-        return $this->view->make($name . '::' . $view, $data);
-    }
 
     /**
      * Return an asset from a theme
@@ -58,15 +25,19 @@ class Theme implements \App\Theme\Contracts\Theme
      */
     public function asset($asset)
     {
-        $asset = config('theme.public_path') . '/' . $this->name() . '/assets/' . ltrim($asset, '/');
+        $asset = config('theme.public_path') . '/' . $this->name . '/assets/' . ltrim($asset, '/');
 
         return asset($asset);
     }
 
-
-    protected function setupNamespace($name)
+    public function settings()
     {
-        $this->view->addNamespace('theme.' . $name, config('theme.path') . '/' . $name . '/views');
+        return $this->hasMany('App\Theme\ThemeSetting', 'theme_id');
+    }
+
+    public function selection()
+    {
+        return $this->hasOne('App\Theme\ThemeSelection');
     }
 
 }

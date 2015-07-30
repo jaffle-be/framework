@@ -8,7 +8,7 @@
                     <a ui-sref="admin.profile">
 
                         @if($user->images->count() == 0)
-                        <img alt="image" class="img-circle img-responsive" src="{{ Gravatar::src($user->email, 200) }}"/>
+                            <img alt="image" class="img-circle img-responsive" src="{{ Gravatar::src($user->email, 200) }}"/>
                         @else
                             <img alt="image" class="img-circle img-responsive" src="{{ asset($user->images->first()->path) }}"/>
                         @endif
@@ -78,7 +78,9 @@
                             <span class="nav-label">@{{ 'SETTINGS' | translate }}</span></a>
                     </li>
 
-                    @include(config('theme.name') .'::admin.theme_navigation')
+                    @if($theme)
+                        @include($theme->name .'::admin.theme_navigation')
+                    @endif
 
                 </ul>
             </li>

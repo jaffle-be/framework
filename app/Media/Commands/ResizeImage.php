@@ -55,8 +55,9 @@ class ResizeImage extends Job implements SelfHandling
             $image->resize($width, $height, $constraint);
         }, 5, true)->save($path);
 
-        //always fetch the actual height from the image,
-        //it could have been null to auto scale the image.
+        //always fetch the actual width and height from the image,
+        //one of them could have been null to auto scale the image.
+        $width = $image->getWidth();
         $height = $image->getHeight();
 
         if ($image) {
@@ -124,18 +125,37 @@ class ResizeImage extends Job implements SelfHandling
     }
 
     /**
+     * Dimensions can be passed like this:
+     * 150x150 to have a fixed dimension
+     * 150x to have a auto resize with a max width of
+     * x150 to have a auto resize with a max height of
+     *
      * @return array
      * @throws Exception
      */
     protected function dimensions()
     {
-        if (strpos($this->size, 'x') === false && is_numeric($this->size)) {
-            return array($this->size, null);
+        if(strpos($this->size, 'x') === false)
+        {
+            throw new Exception('Invalid image dimension provided');
         }
 
-        list($width, $height) = explode('x', $this->size);
+        if(starts_with($this->size, 'x'))
+        {
+            $width= null;
+            $height = str_replace('x', '', $this->size);
+        }
+        else if(ends_with($this->size, 'x'))
+        {
+            $width = str_replace('x', '', $this->size);
+            $height = null;
+        }
+        else{
+            list($width, $height) = explode('x', $this->size);
+        }
 
-        if (!is_numeric($width) || !is_numeric($height)) {
+        if($this->bothAreNull($width, $height) || $this->hasNonNumeric($width, $height) )
+        {
             throw new Exception('Invalid image size provided');
         }
 
@@ -152,5 +172,15 @@ class ResizeImage extends Job implements SelfHandling
         }
 
         return null;
+    }
+
+    protected function hasNonNumeric($width, $height)
+    {
+        return (!is_null($width) && !is_numeric($width)) || (!is_null($height) && !is_numeric($height));
+    }
+
+    protected function bothAreNull($width, $height)
+    {
+        return is_null($width) && is_null($height);
     }
 }

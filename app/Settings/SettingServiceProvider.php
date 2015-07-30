@@ -9,7 +9,18 @@ class SettingServiceProvider extends ServiceProvider
 
     public function register()
     {
-        $this->app->bind('App\Settings\Contracts\SettingsRepositoryInterface', 'App\Settings\SettingsRepository');
+
+        if(config('settings.cache'))
+        {
+            $this->app->bind('App\Settings\Contracts\SettingsRepositoryInterface', function($app){
+                $repository = $app->make('App\Settings\SettingsRepository');
+
+                return new CachedSettingsRepository($repository);
+            });
+        }
+        else{
+            $this->app->bind('App\Settings\Contracts\SettingsRepositoryInterface', 'App\Settings\SettingsRepository');
+        }
     }
 
     protected function observers()

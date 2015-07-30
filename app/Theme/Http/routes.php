@@ -18,7 +18,10 @@ Route::group([
 
         //actual resource
         Route::group(['prefix' => 'api/admin'], function () {
-            Route::resource('theme', 'ThemeController', ['only' => ['index', 'show', 'store', 'update']]);
+            Route::resource('theme', 'ThemeController', ['only' => ['index']]);
+            Route::get('theme/current', 'ThemeController@current');
+            Route::post('theme/{theme}/activate', 'ThemeController@activate');
+            Route::post('theme/{theme}/setting', 'ThemeController@setting');
         });
     });
 });

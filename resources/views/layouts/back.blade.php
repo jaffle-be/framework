@@ -36,6 +36,7 @@
 <script src=" {{ asset('/js/admin/ui-router/angular-ui-router.min.js') }}"></script>
 <script src=" {{ asset('/js/admin/bootstrap/ui-bootstrap-tpls-0.12.0.min.js') }}"></script>
 <script src=" {{ asset('/js/admin/plugins/ngStorage/ngStorage.min.js') }}"></script>
+<script src=" {{ asset('/js/admin/plugins/ng-sortable/ng-sortable.min.js') }}"></script>
 <script src=" {{ asset('/js/admin/plugins/angular-idle/angular-idle.js') }}"></script>
 <script src=" {{ asset('/js/admin/plugins/angular-resource/angular-resource.min.js') }}"></script>
 <script src=" {{ asset('/js/admin/plugins/angular-cookies/angular-cookies.min.js') }}"></script>
@@ -50,9 +51,15 @@
 <script src=" {{ asset('/js/admin/models.min.js') }}"></script>
 <script src=" {{ asset('/js/admin/controllers.min.js') }}"></script>
 
-@if(is_file(public_path('themes/'. config('theme.name') .'/assets/js/admin/' . config('theme.name') . '.min.js')))
+@if($theme && is_file(public_path('themes/'. $theme->name .'/assets/js/admin/' . $theme->name . '.min.js')))
 
-    <script src=" {{ theme_asset('/js/admin/' . config('theme.name') .'.min.js') }}"></script>
+    <script src=" {{ theme_asset('/js/admin/' . $theme->name .'.min.js') }}"></script>
+
+@else
+    {{--mock theme, angular expects this module--}}
+    <script type="text/javascript">
+        angular.module('theme-active', []);
+    </script>
 
 @endif
 

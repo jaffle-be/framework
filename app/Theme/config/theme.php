@@ -1,15 +1,9 @@
 <?php return [
 
-
-    /**
-     * Supported themes
-     */
-    'themes' => ['unify'],
-
     /**
      * Default theme to use.
      */
-    'name' => 'unify',
+    'default' => 'unify',
 
     /**
      * Default theme email master template name to use

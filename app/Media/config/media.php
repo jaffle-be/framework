@@ -11,45 +11,51 @@ return [
         'blog'      => App\Blog\Post::class,
         'portfolio' => App\Portfolio\Project::class,
         'user' => App\Users\user::class,
+        'account-logo' => App\Account\AccountLogo::class,
     ],
 
     /**
      * HEADS UP:
-     * In the admin section we always need a 340 dimension in the detail pages
+     * In the admin section we always need a 340 dimension in the detail pages (image uploader)
      * And a 150 dimension in the overview pages
      *
      */
     'sizes'  => [
 
         'blog' => [
-            '1140',
-            '850',
-            '460',
-            '410',
-            '360',
-            '340',
-            '150',
-            '60',
+            '1140x',
+            '850x',
+            '460x',
+            '410x',
+            '360x',
+            '340x',
+            '150x',
+            '60x',
         ],
 
         'portfolio' => [
-            '1280',
-            '1140',
-            '860',
-            '660',
-            '640',
-            '570',
-            '512',
-            '430',
-            '380',
-            '285',
-            '270',
-            '150',
+            '1280x',
+            '1140x',
+            '860x',
+            '660x',
+            '640x',
+            '570x',
+            '512x',
+            '430x',
+            '380x',
+            '285x',
+            '270x',
+            '150x',
         ],
 
         'user' => [
-            '512',
-            '200'
+            '512x',
+            '200x'
+        ],
+
+        'account-logo' => [
+            '340x',
+            'x40'
         ]
     ],
 

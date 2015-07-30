@@ -7,8 +7,8 @@ angular.module('media')
             this.timeouts = [];
 
             //image uploader
-            this.uploader = function (type, id, success) {
-                return {
+            this.uploader = function (type, id, limit, success) {
+                var config = {
                     options: {
                         url: 'api/admin/media/image',
                         params: {
@@ -17,11 +17,25 @@ angular.module('media')
                         },
                         clickable: true,
                         maxFileSize: 10,
+                        init: function()
+                        {
+                            this.on('maxfilesexceeded', function(file){
+                                console.log('test');
+                                this.removeFile(file);
+                            });
+                        }
                     },
                     handlers: {
                         success: success,
-                    }
+                    },
+                };
+
+                if(limit)
+                {
+                    config.options.maxFiles = limit;
                 }
+
+                return config;
             };
 
             this.list = function(type, id, success)

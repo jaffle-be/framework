@@ -15,7 +15,7 @@ class DatabaseSeeder extends Seeder
     {
         Model::unguard();
 
-        $seeders = ['country', 'contact', 'users', 'menu', 'account', 'tag', 'blog', 'portfolio'];
+        $seeders = ['country', 'contact', 'users', 'menu', 'account', 'tag', /*'blog', 'portfolio'*/];
 
         foreach ($seeders as $seeds) {
             $this->seed($seeds);

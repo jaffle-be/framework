@@ -31,6 +31,8 @@ class RouteServiceProvider extends ServiceProvider {
 		$router->model('account_contact_information', 'App\Account\AccountContactInformation');
 		$router->model('portfolio', 'App\Portfolio\Project');
 		$router->model('membership', 'App\Account\Membership');
+		$router->model('menu', 'App\Menu\Menu');
+		$router->model('menu-item', 'App\Menu\MenuItem');
 		$this->pathsToPublish('');
 	}
 

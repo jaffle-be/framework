@@ -22,6 +22,8 @@
 
                     <div class="ibox-content">
 
+                        <image-input owner-type="'account-logo'" owner-id="{{ $account->logo()->id }}" locale="vm.options.locale" limit="1"></image-input>
+
                         <input-errors errors="vm.errors"></input-errors>
 
 

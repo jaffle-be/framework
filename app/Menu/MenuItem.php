@@ -1,12 +1,23 @@
 <?php namespace App\Menu;
 
+use App\System\Scopes\ModelAutoSort;
+use Dimsav\Translatable\Translatable;
 use Illuminate\Database\Eloquent\Model;
 
 class MenuItem extends Model{
 
+    use Translatable;
+    use ModelAutoSort;
+
     protected $table = 'menu_items';
 
-    protected $fillable = ['name', 'menu_id', 'parent_id', 'url', 'menuable_id', 'menuable_type', 'label', 'title', 'css_class'];
+    protected $translatedAttributes = ['name'];
+
+    protected $fillable = ['name', 'menu_id', 'parent_id', 'url', 'target_blank', 'menuable_id', 'menuable_type'];
+
+    protected $casts = [
+        'target_blank' => 'boolean',
+    ];
 
     public function parent()
     {
@@ -20,12 +31,17 @@ class MenuItem extends Model{
 
     public function children()
     {
-        return $this->hasMany('App\Menu\Menuitem', 'parent_id');
+        return $this->hasMany('App\Menu\MenuItem', 'parent_id');
     }
 
     public function item()
     {
         return $this->morphTo();
+    }
+
+    public function getTargetAttribute()
+    {
+        return $this->attributes['target_blank'] ? '_blank': null;
     }
 
 }

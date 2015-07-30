@@ -5,6 +5,8 @@ use App\Media\Media;
 use App\Theme\Theme;
 use Illuminate\Foundation\Bus\DispatchesCommands;
 use App\Media\Commands\StoreNewImage;
+use Illuminate\Http\Request;
+use Illuminate\Session\Store;
 
 class WelcomeController extends Controller
 {
@@ -15,11 +17,11 @@ class WelcomeController extends Controller
         return $this->theme->render('home.index');
     }
 
-    public function storeDash()
+    public function storeDash(Store $session, Request $request)
     {
         $this->middleware('auth.admin');
 
-        return view('layouts.back');
+        return view('layouts.back', ['theme' => $this->theme->current()]);
     }
 
     public function system()

@@ -33,4 +33,11 @@ class Account extends Model{
         return $this->belongsTo('App\Users\User', 'user_id');
     }
 
+    public function logo()
+    {
+        return new AccountLogo([
+            'id' => $this->getKey()
+        ]);
+    }
+
 }

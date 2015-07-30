@@ -7,6 +7,7 @@ use Jaffle\Tools\ServiceProvider;
 class ThemeServiceProvider extends ServiceProvider{
 
     protected $namespace = 'theme';
+
     /**
      * Register the service provider.
      *
@@ -16,21 +17,29 @@ class ThemeServiceProvider extends ServiceProvider{
     {
         $this->mergeConfigFrom(__DIR__ . '/config/theme.php', 'theme');
 
-        $this->app->bind('App\Theme\Contracts\Theme', 'theme');
+        //why is this here? for the facade we aren't even using?
+        //we don't have a binding for the actual theme injection? (do we inject Theme anywhere?)
         $this->app->bind('theme', function($app){
 
-            $theme = new Theme($app['config'], $app['view'], $app['events']);
+            return $app->make('App\Theme\ThemeManager')->current();
+        });
 
-            $theme->name(config('theme.name'));
+        $this->app->singleton('App\Theme\ThemeManager', function($app)
+        {
+            $theme = new ThemeManager($app['view'], new ThemeSelection(), new Theme());
+
+            $theme->boot($app['App\Account\AccountManager']);
 
             return $theme;
         });
 
-        $theme = config('theme.name');
-
-        $theme = ucfirst(camel_case($theme));
-
-        $this->app->register(sprintf('Themes\\%s\\%sServiceProvider', $theme, $theme));
+        foreach(scandir(config('theme.path')) as $theme)
+        {
+            if($theme != '.' && $theme != '..')
+            {
+                $this->app->register(sprintf('Themes\\%s\\%sServiceProvider', $theme, $theme));
+            }
+        }
     }
 
     protected function observers()

@@ -1,11 +1,29 @@
 <?php namespace App\Media;
 
+use Exception;
+
 trait StoringMedia
 {
-
     public function images()
     {
-        return $this->morphMany('App\Media\Image', 'owner');
+        static $multiple;
+
+        if($multiple === null)
+        {
+            $multiple = true;
+
+            if(property_exists(get_class($this), 'mediaMultiple'))
+            {
+                $multiple = $this->mediaMultiple;
+            }
+        }
+
+        if($multiple)
+        {
+            return $this->morphMany('App\Media\Image', 'owner');
+        }
+
+        return $this->morphOne('App\Media\Image', 'owner');
     }
 
     public function getMediaFolder()
