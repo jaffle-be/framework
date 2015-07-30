@@ -2,14 +2,16 @@
 
 use App\Jobs\Job;
 use App\Media\Image;
+use App\Media\ImageDimensionHelpers;
 use App\Media\MediaRepositoryInterface;
-use Exception;
 use Illuminate\Contracts\Bus\SelfHandling;
 use Illuminate\Filesystem\Filesystem;
 use Intervention\Image\ImageManager;
 
 class ResizeImage extends Job implements SelfHandling
 {
+
+    use ImageDimensionHelpers;
 
     protected $image;
 
@@ -36,19 +38,17 @@ class ResizeImage extends Job implements SelfHandling
 
     public function handle(MediaRepositoryInterface $media, ImageManager $images, Filesystem $files)
     {
-        list($width, $height) = $this->dimensions();
+        list($width, $height) = $this->dimensions($this->size);
 
         $path = $this->getPath($files);
 
         $constraint = $this->constraint($width, $height);
 
-        $image = $images->cache(function($image) use ($width, $height, $constraint){
+        $image = $images->cache(function ($image) use ($width, $height, $constraint) {
 
-            if($this->cachedPath)
-            {
+            if ($this->cachedPath) {
                 $image = $image->make($this->cachedPath);
-            }
-            else{
+            } else {
                 $image = $image->make(public_path($this->image->path));
             }
 
@@ -122,65 +122,5 @@ class ResizeImage extends Job implements SelfHandling
             'extension' => $this->extension,
             'path'      => $path,
         ];
-    }
-
-    /**
-     * Dimensions can be passed like this:
-     * 150x150 to have a fixed dimension
-     * 150x to have a auto resize with a max width of
-     * x150 to have a auto resize with a max height of
-     *
-     * @return array
-     * @throws Exception
-     */
-    protected function dimensions()
-    {
-        if(strpos($this->size, 'x') === false)
-        {
-            throw new Exception('Invalid image dimension provided');
-        }
-
-        if(starts_with($this->size, 'x'))
-        {
-            $width= null;
-            $height = str_replace('x', '', $this->size);
-        }
-        else if(ends_with($this->size, 'x'))
-        {
-            $width = str_replace('x', '', $this->size);
-            $height = null;
-        }
-        else{
-            list($width, $height) = explode('x', $this->size);
-        }
-
-        if($this->bothAreNull($width, $height) || $this->hasNonNumeric($width, $height) )
-        {
-            throw new Exception('Invalid image size provided');
-        }
-
-        return array($width, $height);
-    }
-
-    protected function constraint($width, $height)
-    {
-        if($width === null || $height === null)
-        {
-            return function($constraint){
-                $constraint->aspectRatio();
-            };
-        }
-
-        return null;
-    }
-
-    protected function hasNonNumeric($width, $height)
-    {
-        return (!is_null($width) && !is_numeric($width)) || (!is_null($height) && !is_numeric($height));
-    }
-
-    protected function bothAreNull($width, $height)
-    {
-        return is_null($width) && is_null($height);
     }
 }

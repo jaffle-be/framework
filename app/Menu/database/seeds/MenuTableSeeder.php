@@ -40,32 +40,20 @@ class MenuTableSeeder extends Seeder{
             'menu_id' => $menu->id,
             'url' => '/shop',
             'target_blank' => false,
-            'nl' => ['name' => 'producten'],
-            'fr' => ['name' => 'producten'],
-            'de' => ['name' => 'producten'],
-            'en' => ['name' => 'producten'],
-
-        ]);
-
-        MenuItem::create([
-            'menu_id' => $menu->id,
-            'url' => '/shop',
-            'target_blank' => false,
-            'nl' => ['name' => 'promoties'],
-            'fr' => ['name' => 'promoties'],
-            'de' => ['name' => 'promoties'],
-            'en' => ['name' => 'promoties'],
-
+            'nl' => ['name' => 'shop'],
+            'fr' => ['name' => 'shop'],
+            'de' => ['name' => 'shop'],
+            'en' => ['name' => 'shop'],
         ]);
 
         MenuItem::create([
             'menu_id' => $menu->id,
             'url' => '/blog',
             'target_blank' => false,
-            'nl' => ['name' => 'nieuwsberichten'],
-            'fr' => ['name' => 'nieuwsberichten'],
-            'de' => ['name' => 'nieuwsberichten'],
-            'en' => ['name' => 'nieuwsberichten'],
+            'nl' => ['name' => 'nieuws'],
+            'fr' => ['name' => 'nieuws'],
+            'de' => ['name' => 'nieuws'],
+            'en' => ['name' => 'nieuws'],
 
         ]);
 

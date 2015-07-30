@@ -3,6 +3,7 @@
 use App\Blog\Post;
 use App\Blog\PostTranslation;
 use App\Media\Commands\StoreNewImage;
+use App\Media\ImageDimensionHelpers;
 use Illuminate\Foundation\Bus\DispatchesCommands;
 use Jaffle\Tools\Seeder;
 
@@ -10,6 +11,7 @@ class BlogTableSeeder extends Seeder
 {
 
     use DispatchesCommands;
+    use ImageDimensionHelpers;
 
     protected $image_names = [
         'BLOG_IMG_9908.jpg',
@@ -125,25 +127,6 @@ class BlogTableSeeder extends Seeder
     }
 
     /**
-     * @return array
-     * @throws Exception
-     */
-    protected function dimensions($size)
-    {
-        if (strpos($size, 'x') === false && is_numeric($size)) {
-            return array($size, null);
-        }
-
-        list($width, $height) = explode('x', $size);
-
-        if (!is_numeric($width) || !is_numeric($height)) {
-            throw new Exception('Invalid image size provided');
-        }
-
-        return array($width, $height);
-    }
-
-    /**
      * @param $images
      * @param $sizes
      * @return mixed
@@ -166,16 +149,5 @@ class BlogTableSeeder extends Seeder
                 });
             }
         }
-    }
-
-    protected function constraint($width, $height)
-    {
-        if ($width === null || $height === null) {
-            return function ($constraint) {
-                $constraint->aspectRatio();
-            };
-        }
-
-        return null;
     }
 }

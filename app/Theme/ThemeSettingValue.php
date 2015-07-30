@@ -11,4 +11,14 @@ class ThemeSettingValue extends Model
 
     protected $fillable = ['key_id', 'account_id', 'option_id', 'value'];
 
+    public function option()
+    {
+        return $this->belongsTo('App\Theme\ThemeSettingOption', 'option_id');
+    }
+
+    public function setting()
+    {
+        return $this->belongsTo('App\Theme\ThemeSetting', 'key_id');
+    }
+
 }

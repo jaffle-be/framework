@@ -64,6 +64,20 @@ class ThemeManager
         return $this->current;
     }
 
+    public function setting($key)
+    {
+        $theme = $this->current();
+
+        $value = $theme->settings->get($key)->value;
+
+        if($value->option)
+        {
+            return $value->option->value;
+        }
+
+        return $value->value;
+    }
+
     public function activate($theme, AccountManager $manager)
     {
         $activator = new ThemeActivator($this->theme, $manager, $this->selector);

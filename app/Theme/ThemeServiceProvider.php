@@ -21,7 +21,12 @@ class ThemeServiceProvider extends ServiceProvider{
         //we don't have a binding for the actual theme injection? (do we inject Theme anywhere?)
         $this->app->bind('theme', function($app){
 
-            return $app->make('App\Theme\ThemeManager')->current();
+            return $app->make('App\Theme\ThemeManager');
+        });
+
+        $this->app->bind('App\Theme\Theme', function($app)
+        {
+            return $app->make('theme')->current();
         });
 
         $this->app->singleton('App\Theme\ThemeManager', function($app)

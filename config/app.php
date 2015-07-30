@@ -227,8 +227,7 @@ return [
 
 
         //Application aliases
-
-//        'Theme' => 'Teepluss\Theme\Facades\Theme',
+        'Theme' => 'App\Theme\Facade\Theme',
         'Menu' => 'App\Menu\Facade\Menu',
         'Gravatar' => 'Thomaswelton\LaravelGravatar\Facades\Gravatar',
 
