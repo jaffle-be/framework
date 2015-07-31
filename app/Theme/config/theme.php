@@ -3,7 +3,7 @@
     /**
      * Default theme to use.
      */
-    'default' => 'unify',
+    'default' => 'Unify',
 
     /**
      * Default theme email master template name to use

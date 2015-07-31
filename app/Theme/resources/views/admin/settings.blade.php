@@ -26,7 +26,7 @@
             </div>
 
             <div class="col-lg-6 col-lg-offset-1">
-                <image-input owner-type="'account-logo'" owner-id="{{ $account->logo()->id }}" locale="vm.options.locale" limit="1"></image-input>
+                <image-input owner-type="'account-logo'" owner-id="{{ $account->id }}" locale="vm.options.locale" limit="1"></image-input>
             </div>
 
             <div class="clearfix"></div>

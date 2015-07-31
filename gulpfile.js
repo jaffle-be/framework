@@ -146,6 +146,7 @@ gulp.task('theme-page-styles', function()
         .pipe(less())
         .pipe(rename(function(path){
             path.dirname = path.dirname.replace('less', 'css');
+            path.dirname = path.dirname.replace('resources/', '');
             path.extname = '.css';
         }))
         .pipe(gulp.dest('public/themes'))
@@ -174,6 +175,8 @@ function themeFrontLessFile(file)
         .pipe(less())
         .pipe(rename(function(path){
             path.dirname = path.dirname.replace('less', 'css');
+            path.dirname = path.dirname.replace('resources/', '');
+            console.log(path.dirname);
         }))
         .pipe(gulp.dest('public/themes'))
         .pipe(rename(function(path){

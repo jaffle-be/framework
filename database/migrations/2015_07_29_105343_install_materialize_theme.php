@@ -1,9 +1,11 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
+use App\Theme\ThemeMigration;
 
-class InstallMaterializeTheme extends Migration
+class InstallMaterializeTheme extends ThemeMigration
 {
+
+    protected $name = 'Materialize';
 
     protected $settings = [
 
@@ -45,7 +47,8 @@ class InstallMaterializeTheme extends Migration
                 'name'        => 'footer view',
                 'explanation' => 'footer view'
             ],
-        ],];
+        ],
+    ];
 
     protected $options = [
 
@@ -78,45 +81,8 @@ class InstallMaterializeTheme extends Migration
             ['value' => 'footer_v5'],
             ['value' => 'footer_v6'],
             ['value' => 'footer_v7'],
-        ]
+        ],
 
     ];
 
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
-    public function up()
-    {
-        $theme = App\Theme\Theme::create([
-            'name'    => 'materialize',
-            'version' => '1.0',
-        ]);
-
-        foreach ($this->settings as $setting) {
-
-            $setting = $theme->settings()->create($setting);
-
-            $options = $this->options[$setting->key];
-
-            foreach ($options as $option) {
-                $setting->options()->create($option);
-            }
-        }
-    }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        $theme = App\Theme\Theme::where('name', 'materialize')->first();
-
-        if ($theme) {
-            $theme->delete();
-        }
-    }
 }

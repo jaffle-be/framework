@@ -13,8 +13,6 @@ class AccountManager
 
     protected $config;
 
-    protected $system;
-
     protected $account = false;
 
     public function __construct(AccountRepository $account, Repository $config, Application $application)

@@ -156,8 +156,8 @@ return [
         'App\Providers\EventServiceProvider',
         'App\Providers\RouteServiceProvider',
 
-        'App\System\SystemServiceProvider',
         'App\Theme\ThemeServiceProvider',
+        'App\System\SystemServiceProvider',
         Mews\Captcha\CaptchaServiceProvider::class,
         Thomaswelton\LaravelGravatar\LaravelGravatarServiceProvider::class,
         'Dimsav\Translatable\TranslatableServiceProvider',

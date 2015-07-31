@@ -33,11 +33,23 @@ class Account extends Model{
         return $this->belongsTo('App\Users\User', 'user_id');
     }
 
-    public function logo()
+    public function logo($size = null)
     {
-        return new AccountLogo([
+        $logo = new AccountLogo([
             'id' => $this->getKey()
         ]);
+
+        if(!$size)
+        {
+            $size = '40';
+        }
+
+        $logo = $logo->images;
+
+        if($logo)
+        {
+            return $logo->sizes()->dimension(null, $size)->first()->path;
+        }
     }
 
 }

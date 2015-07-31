@@ -26,7 +26,7 @@ class ContactController extends AdminController
 
         $address = $contact ? $contact->address : null;
 
-        return view('account::admin.contact.settings', ['account' => $account, 'contact' => $contact, 'address' => $address]);
+        return view('account::admin.contact.settings', ['contact' => $contact, 'address' => $address]);
     }
 
     /**

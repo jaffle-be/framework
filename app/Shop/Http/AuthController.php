@@ -6,12 +6,12 @@ class AuthController extends Controller{
 
     public function register()
     {
-        return view('shop::register');
+        return $this->theme->render('shop.register');
     }
 
     public function login()
     {
-        return view('shop::login');
+        return $this->theme->render('shop.login');
     }
 
 }

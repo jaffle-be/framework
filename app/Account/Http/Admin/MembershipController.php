@@ -9,12 +9,9 @@ use Illuminate\Contracts\Auth\Guard;
 class MembershipController extends AdminController
 {
 
-    public function page(AccountManager $manager, Guard $guard)
+    public function page()
     {
-        return view('account::admin.members.overview', [
-            'account' => $manager->account(),
-            'user'    => $guard->user()
-        ]);
+        return view('account::admin.members.overview');
     }
 
     /**

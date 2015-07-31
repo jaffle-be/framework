@@ -6,7 +6,7 @@ class CheckoutController extends Controller{
 
     public function index()
     {
-        return view('shop::checkout');
+        return $this->theme->render('shop.checkout');
     }
 
 }

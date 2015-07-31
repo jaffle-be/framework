@@ -39,7 +39,7 @@ class Image extends Model
             }
 
             if ($height) {
-                $query->height('height', $height);
+                $query->where('height', $height);
             }
         };
 

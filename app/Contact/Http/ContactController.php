@@ -24,7 +24,7 @@ class ContactController extends Controller{
 
         $success = $session->get('success');
 
-        return $this->theme->render('contact.contact-advanced', ['account' => $account, 'contact' => $contact, 'success' => $success]);
+        return $this->theme->render('contact.contact-advanced', ['contact' => $contact, 'success' => $success]);
     }
 
     public function store(ContactRequest $request, AccountManager $account)

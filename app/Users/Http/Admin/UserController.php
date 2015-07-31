@@ -13,11 +13,7 @@ class UserController extends AdminController
      */
     public function profile(Guard $guard)
     {
-        $user = $guard->user();
-
-        $user->load(['address', 'images']);
-
-        return view('users::admin.profile', ['user' => $user]);
+        return view('users::admin.profile');
     }
 
     public function index(Guard $guard)

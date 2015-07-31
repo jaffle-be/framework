@@ -1,12 +1,11 @@
 <?php
 
-use App\Theme\ThemeSettingDefault;
-use Illuminate\Database\Migrations\Migration;
+use App\Theme\ThemeMigration;
 
-class InstallUnifyTheme extends Migration
+class InstallUnifyTheme extends ThemeMigration
 {
 
-    protected $name = 'unify';
+    protected $name = 'Unify';
 
     protected $version = '1.0';
 
@@ -50,11 +49,80 @@ class InstallUnifyTheme extends Migration
                 'name'        => 'footer view',
                 'explanation' => 'footer view'
             ],
-        ],];
+        ],
+
+        [
+            'key' => 'blogOverview',
+            'nl'  => [
+                'name'        => 'blog overview',
+                'explanation' => 'blog overview'
+            ],
+            'fr'  => [
+                'name'        => 'blog overview',
+                'explanation' => 'blog overview'
+            ],
+            'de'  => [
+                'name'        => 'blog overview',
+                'explanation' => 'blog overview'
+            ],
+            'en'  => [
+                'name'        => 'blog overview',
+                'explanation' => 'blog overview'
+            ],
+        ],
+
+        [
+            'key' => 'blogDetail',
+            'nl'  => [
+                'name'        => 'blog detail',
+                'explanation' => 'blog detail'
+            ],
+            'fr'  => [
+                'name'        => 'blog detail',
+                'explanation' => 'blog detail'
+            ],
+            'de'  => [
+                'name'        => 'blog detail',
+                'explanation' => 'blog detail'
+            ],
+            'en'  => [
+                'name'        => 'blog detail',
+                'explanation' => 'blog detail'
+            ],
+        ],
+
+        [
+            'key' => 'contactLayout',
+            'nl'  => [
+                'name'        => 'contact layout',
+                'explanation' => 'contact layout'
+            ],
+            'fr'  => [
+                'name'        => 'contact layout',
+                'explanation' => 'contact layout'
+            ],
+            'de'  => [
+                'name'        => 'contact layout',
+                'explanation' => 'contact layout'
+            ],
+            'en'  => [
+                'name'        => 'contact layout',
+                'explanation' => 'contact layout'
+            ],
+        ],
+    ];
+
+    protected $defaults = [
+        'header'        => 'header_default',
+        'footer'        => 'footer_default',
+        'blogOverview'  => 'masonry',
+        'blogDetail'    => 'full-width/large-detail',
+        'contactLayout' => 'contact-1',
+    ];
 
     protected $options = [
 
-        'header' => [
+        'header'        => [
 
             ['value' => 'header_default'],
             ['value' => 'header_v1'],
@@ -74,7 +142,7 @@ class InstallUnifyTheme extends Migration
             ['value' => 'header_v6_transparent'],
         ],
 
-        'footer' => [
+        'footer'        => [
             ['value' => 'footer_default'],
             ['value' => 'footer_v1'],
             ['value' => 'footer_v2'],
@@ -83,58 +151,43 @@ class InstallUnifyTheme extends Migration
             ['value' => 'footer_v5'],
             ['value' => 'footer_v6'],
             ['value' => 'footer_v7'],
+        ],
+
+        'blogOverview'  => [
+            ['value' => 'full-width/large-overview'],
+            ['value' => 'full-width/large-overview-simple'],
+            ['value' => 'full-width/medium-overview'],
+
+            ['value' => 'sidebar-left/large-overview'],
+            ['value' => 'sidebar-left/large-overview-simple'],
+            ['value' => 'sidebar-right/large-overview'],
+            ['value' => 'sidebar-right/large-overview-simple'],
+
+            ['value' => 'sidebar-left/medium-overview'],
+            ['value' => 'sidebar-left/medium-overview-simple'],
+            ['value' => 'sidebar-right/medium-overview'],
+            ['value' => 'sidebar-right/medium-overview-simple'],
+
+            ['value' => 'masonry'],
+            ['value' => 'timeline'],
+        ],
+
+        'blogDetail'    => [
+            ['value' => 'full-width/large-detail'],
+            ['value' => 'full-width/large-detail-simple'],
+            ['value' => 'sidebar-left/large-detail'],
+            ['value' => 'sidebar-right/large-detail'],
+            ['value' => 'sidebar-right/large-detail-simple'],
+        ],
+
+        'contactLayout' => [
+            ['value' => 'contact-1'],
+            ['value' => 'contact-2'],
+            ['value' => 'contact-3'],
+            ['value' => 'contact-4'],
+            ['value' => 'contact-advanced'],
         ]
 
     ];
 
-    protected $defaults = [
-        'header' => 'header_default',
-        'footer' => 'footer_default',
-    ];
-
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
-    public function up()
-    {
-        $theme = App\Theme\Theme::create([
-            'name'    => $this->name,
-            'version' => $this->version,
-        ]);
-
-        foreach ($this->settings as $setting) {
-
-            $setting = $theme->settings()->create($setting);
-
-            $options = $this->options[$setting->key];
-
-            foreach ($options as $option) {
-                $setting->options()->create($option);
-            }
-
-            if(isset($this->defaults[$setting->key]))
-            {
-                $option = $setting->options()->where('value', $this->defaults[$setting->key])->first();
-
-                $setting->defaults()->create(['option_id' => $option->id]);
-            }
-
-        }
-    }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        $theme = App\Theme\Theme::where('name', $this->name)->first();
-
-        if ($theme) {
-            $theme->delete();
-        }
-    }
 }

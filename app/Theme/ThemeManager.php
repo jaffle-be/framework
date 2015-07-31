@@ -2,11 +2,9 @@
 
 namespace App\Theme;
 
-use App\Account\Account;
 use App\Account\AccountManager;
 use Exception;
 use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Events\Dispatcher;
 use Illuminate\View\Factory;
 
 class ThemeManager
@@ -24,6 +22,7 @@ class ThemeManager
 
     /**
      * We store the supported themes here once they are fetched.
+     *
      * @var Collection
      */
     protected $supported;
@@ -44,14 +43,16 @@ class ThemeManager
             ->first();
 
         //we default to the unify theme
-        if(!$selected)
-        {
+        if (!$selected) {
             $selected = $this->setupDefaultTheme($manager);
         }
 
-        $this->current = $selected->theme;
+        if($selected)
+        {
+            $this->current = $selected->theme;
 
-        $this->setupNamespace();
+            $this->setupNamespace();
+        }
     }
 
     public function name()
@@ -70,8 +71,7 @@ class ThemeManager
 
         $value = $theme->settings->get($key)->value;
 
-        if($value->option)
-        {
+        if ($value->option) {
             return $value->option->value;
         }
 
@@ -92,13 +92,11 @@ class ThemeManager
      */
     public function supported($theme = null)
     {
-        if(!$this->supported)
-        {
+        if (!$this->supported) {
             $this->supported = $this->theme->orderBy('name')->get();
         }
 
-        if($theme)
-        {
+        if ($theme) {
             return $this->supported->contains('name', $theme);
         }
 
@@ -123,14 +121,17 @@ class ThemeManager
     {
         $themes = $this->supported();
 
+        if (!$themes->count()) {
+            return false;
+        }
+
         $default = config('theme.default');
 
-        $default = array_first($themes, function($key, $theme) use ($default){
+        $default = array_first($themes, function ($key, $theme) use ($default) {
             return $theme->name == $default;
         });
 
-        if(!$default)
-        {
+        if (!$default) {
             throw new Exception('Invalid default theme provided');
         }
 

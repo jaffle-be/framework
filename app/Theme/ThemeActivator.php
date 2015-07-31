@@ -74,15 +74,18 @@ class ThemeActivator
      */
     protected function createSelection(Theme $theme)
     {
-        $selector = $this->selector->create([
-            'theme_id'   => $theme->id,
-            'account_id' => $this->account->getKey(),
-            'active'     => true
-        ]);
+        if($this->account)
+        {
+            $selector = $this->selector->create([
+                'theme_id'   => $theme->id,
+                'account_id' => $this->account->getKey(),
+                'active'     => true
+            ]);
 
-        $this->addDefaults($theme);
+            $this->addDefaults($theme);
 
-        return $selector;
+            return $selector;
+        }
     }
 
     /**
