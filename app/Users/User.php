@@ -56,7 +56,9 @@ class User extends Model implements Authenticatable, MembershipOwner, AddressOwn
 
     public function getNameAttribute()
     {
-        return isset($this->attributes['name']) ? $this->attributes['name'] : 'Unknown';
+        $fullname = $this->fullname;
+
+        return $fullname ? : 'John Doe';
     }
 
     /**
