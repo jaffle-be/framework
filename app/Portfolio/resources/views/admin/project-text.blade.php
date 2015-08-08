@@ -22,7 +22,7 @@
                 <label for="description" class="control-label">{{ Lang::get('portfolio::admin.project-description') }}</label>
 
                 <div>
-                    <textarea name="description" ng-change="vm.save()" id="description" cols="30" rows="10" class="form-control" ng-model="vm.project.translations[vm.options.locale].description"></textarea>
+                    <div summernote ng-model="vm.project.translations[vm.options.locale].description" on-change="vm.save()"></div>
                 </div>
             </div>
 

@@ -335,6 +335,7 @@ gulp.task('admin-core', function () {
         'bower_components/moment/min/moment-with-locales.min.js',
         'bower_components/dropzone/dist/min/dropzone.min.js',
         'bower_components/lodash/lodash.min.js',
+        'bower_components/summernote/dist/summernote.min.js',
         'resources/assets/js/core.js',
     ])
         .pipe(maps.init())
@@ -410,10 +411,15 @@ gulp.task('publisher', function () {
             prefix: 2
         }));
 
+    gulp.src('bower_components/angular-summernote/dist/angular-summernote.min.js')
+        .pipe(copy('./public/js/admin/plugins/angular-summernote/', {
+            prefix: 3
+        }));
+
 });
 
 
 gulp.task('watch', ['front', 'admin', 'themes']);
 
-gulp.task('compile', ['publisher']);
+gulp.task('compile', ['publisher', 'admin-core']);
 gulp.task('default', ['watch', 'compile']);

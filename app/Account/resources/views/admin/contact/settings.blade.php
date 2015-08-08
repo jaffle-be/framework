@@ -84,7 +84,7 @@
 
                                     <div class="form-group col-xs-12">
                                         <label for="">Contact form description</label>
-                                        <textarea class="form-control" rows="5" name="form_description" ng-change="vm.save()" ng-model="vm.info.translations[locale.locale].form_description"></textarea>
+                                        <div summernote ng-model="vm.info.translations[locale.locale].form_description" on-change="vm.save()"></div>
                                     </div>
 
                                     <div class="form-group col-xs-12">
@@ -94,7 +94,8 @@
 
                                     <div class="form-group col-xs-12">
                                         <label for="">Contact widget content</label>
-                                        <textarea class="form-control" rows="5" name="widget_content" ng-change="vm.save()" ng-model="vm.info.translations[locale.locale].widget_content"></textarea>
+                                        <div summernote ng-model="vm.info.translations[locale.locale].widget_content" on-change="vm.save()"></div>
+
                                     </div>
 
                                 </div>

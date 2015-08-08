@@ -19,10 +19,19 @@ class Vat
         //we need to replace them when checking the number.
         $value = trim(str_replace('.', '', $value));
 
-        $response = $client->checkVat(array(
-            'countryCode' => $this->request->get('vat_country', 'BE'),
-            'vatNumber'   => $value
-        ));
+        try{
+            $response = $client->checkVat(array(
+                'countryCode' => $this->request->get('vat_country', 'BE'),
+                'vatNumber'   => $value
+            ));
+        }
+        catch(\Exception $e)
+        {
+            //this might allow bad vat numbers to be inserted, we'd need a method just for updating the vat
+            //to have better control. We shouldn't be updating the vat with all other model fields.
+            return true;
+        }
+
 
         return $response->valid;
     }

@@ -41,4 +41,4 @@ Route::group([
 
 });
 
-Route::get('test', 'WelcomeController@test');
+//Route::get('test', 'WelcomeController@test');

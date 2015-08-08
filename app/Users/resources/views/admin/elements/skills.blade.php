@@ -59,10 +59,10 @@
 
             <div class="form-group col-xs-12">
 
-                <label for="">{{ Lang::get('users::admin.global-skill-description') }}</label>
-                <textarea cols="30" rows="10" class=form-control ng-model="skill.translations[vm.options.locale].description" ng-change="vm.updateSkill(skill)">
-
-                </textarea>
+                <div class="form-group">
+                    <label for="">{{ Lang::get('users::admin.global-skill-description') }}</label>
+                    <div summernote ng-model="skill.translations[vm.options.locale].description" on-change="vm.updateSkill(skill)"></div>
+                </div>
 
             </div>
 

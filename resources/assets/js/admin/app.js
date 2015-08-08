@@ -6,6 +6,7 @@
         'pascalprecht.translate',       // Angular Translate
         'ngIdle',                       // Idle timer
         'smart-table',                  //smart table
+        'summernote',
         'system',
         'tags',
         'media',

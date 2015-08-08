@@ -40,6 +40,7 @@
 <script src=" {{ asset('/js/admin/plugins/angular-idle/angular-idle.js') }}"></script>
 <script src=" {{ asset('/js/admin/plugins/angular-resource/angular-resource.min.js') }}"></script>
 <script src=" {{ asset('/js/admin/plugins/angular-cookies/angular-cookies.min.js') }}"></script>
+<script src=" {{ asset('/js/admin/plugins/angular-summernote/angular-summernote.min.js') }}"></script>
 
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBcPQMkol7H0kSnSSqYkJpRicrKfxWHC4o&libraries=places&v=3.exp"></script>
 

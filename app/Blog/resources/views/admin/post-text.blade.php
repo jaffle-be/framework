@@ -31,7 +31,7 @@
                 <label for="extract" class="control-label">{{ Lang::get('blog::admin.post-extract') }}</label>
 
                 <div>
-                    <input ng-change="vm.save()" autocomplete="off" type="text" name="extract" id="extract" class="form-control" ng-model="vm.post.translations[vm.options.locale].extract"/>
+                    <div summernote ng-model="vm.post.translations[vm.options.locale].extract" on-change="vm.save()"></div>
                 </div>
             </div>
 
@@ -39,7 +39,7 @@
                 <label for="content" class="control-label">{{ Lang::get('blog::admin.post-content') }}</label>
 
                 <div>
-                    <textarea name="content" autocomplete="off" ng-change="vm.save()" id="content" cols="30" rows="10" class="form-control" ng-model="vm.post.translations[vm.options.locale].content"></textarea>
+                    <div summernote ng-model="vm.post.translations[vm.options.locale].content" on-change="vm.save()"></div>
                 </div>
             </div>
 

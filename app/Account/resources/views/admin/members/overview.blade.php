@@ -2,7 +2,7 @@
 
     <div class="row">
 
-        <div class="col-md-6">
+        <div class="col-md-6 col-lg-4">
 
             <div class="ibox">
 
@@ -43,7 +43,7 @@
 
         </div>
 
-        <div class="col-md-6">
+        <div class="col-md-6 col-lg-8">
 
             <div class="ibox">
 
