@@ -1,15 +1,17 @@
 <?php namespace App\Tags;
 
+use App\System\Scopes\ModelAccountResource;
 use Dimsav\Translatable\Translatable;
 use Illuminate\Database\Eloquent\Model;
 
 class Tag extends Model{
 
     use Translatable;
+    use ModelAccountResource;
 
     protected $table = "tags";
 
-    protected $fillable = ['name'];
+    protected $fillable = ['account_id', 'name'];
 
     protected $translatedAttributes = ['name'];
 

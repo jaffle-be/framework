@@ -7,8 +7,8 @@ use App\Contact\Jobs\NewAddress;
 use App\Contact\Jobs\UpdateAddress;
 use App\Contact\Requests\NewAddressRequest;
 use App\Contact\Requests\UpdateAddressRequest;
-use App\Http\Controllers\AdminController;
 use App\System\Country\CountryRepository;
+use App\System\Http\AdminController;
 
 class ContactAddressController extends AdminController{
 

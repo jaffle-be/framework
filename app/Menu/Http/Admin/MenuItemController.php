@@ -1,8 +1,8 @@
 <?php namespace App\Menu\Http\Admin;
 
-use App\Http\Controllers\AdminController;
 use App\Menu\Menu;
 use App\Menu\MenuItem;
+use App\System\Http\AdminController;
 use Illuminate\Http\Request;
 
 class MenuItemController extends AdminController

@@ -1,7 +1,7 @@
 <?php namespace App\Users\Http\Auth;
 
 use App\Account\MembershipInvitation;
-use App\Http\Controllers\Controller;
+use App\System\Http\Controller;
 use App\Users\Auth\Commands\Signup;
 use App\Users\Auth\Requests\SignupRequest;
 use App\Users\User;

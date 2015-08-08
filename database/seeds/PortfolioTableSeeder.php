@@ -1,5 +1,6 @@
 <?php
 
+use App\Account\Account;
 use App\Media\Commands\StoreNewImage;
 use App\Portfolio\Project;
 use App\Users\User;
@@ -25,6 +26,7 @@ class PortfolioTableSeeder extends Seeder
     public function run()
     {
         $projects = Project::all();
+        $account = Account::find(1);
 
         foreach($projects as $project)
         {
@@ -37,6 +39,7 @@ class PortfolioTableSeeder extends Seeder
         for ($i = 0; $i < 20; $i++) {
 
             $project = App\Portfolio\Project::create([
+                'account_id' => 1,
                 'client_name' => $this->nl->sentence(),
                 'date'        => $this->nl->dateTimeBetween('-3 months', 'now'),
                 'website'     => $this->nl->url,
@@ -75,7 +78,7 @@ class PortfolioTableSeeder extends Seeder
             }
 
             while ($counter < $count) {
-                $this->newImage($project, $counter);
+                $this->newImage($project, $account);
                 $counter++;
             }
 
@@ -113,11 +116,12 @@ class PortfolioTableSeeder extends Seeder
     protected $images;
 
 
-    protected function newImage($post, $counter)
+    protected function newImage($post, $account)
     {
         $image = rand(0, count($this->image_names) - 1);
 
         $this->dispatchFromArray(StoreNewImage::class, [
+            'account' => $account,
             'owner'   => $post,
             'path'    => $this->prefix . $this->image_names[$image],
             'sizes'   => $this->image_sizes,

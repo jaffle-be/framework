@@ -1,5 +1,6 @@
 <?php namespace App\Media\Commands;
 
+use App\Account\Account;
 use App\Jobs\Job;
 use App\Media\Media;
 use App\Media\MediaRepositoryInterface;
@@ -79,8 +80,9 @@ class StoreNewImage extends Job implements SelfHandling
      * @param string $currentPath
      * @param array  $sizes
      */
-    public function __construct(StoresMedia $owner, $path, $rename = null, array $sizes = [], $seeding = false)
+    public function __construct(Account $account, StoresMedia $owner, $path, $rename = null, array $sizes = [], $seeding = false)
     {
+        $this->account = $account;
         $this->owner = $owner;
         $this->currentPath = $path;
         $this->directory = pathinfo($path, PATHINFO_DIRNAME);
@@ -160,6 +162,7 @@ class StoreNewImage extends Job implements SelfHandling
     protected function getPayload()
     {
         return [
+            'account_id' => $this->account->id,
             'path'      => $this->path,
             'filename'  => $this->rename,
             'extension' => $this->extension,

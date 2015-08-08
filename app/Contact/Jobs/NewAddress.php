@@ -1,8 +1,8 @@
 <?php namespace App\Contact\Jobs;
 
+use App\Contact\Address;
 use App\Contact\AddressOwner;
 use App\Jobs\Job;
-Use App\Contact\Address;
 use App\System\Country\CountryRepository;
 use Exception;
 use Illuminate\Contracts\Bus\SelfHandling;

@@ -1,12 +1,10 @@
 <?php namespace App\Theme\Http\Admin;
 
 use App\Account\AccountManager;
-use App\Http\Controllers\AdminController;
-use App\Theme\Theme;
+use App\System\Http\AdminController;
 use App\Theme\ThemeManager;
 use App\Theme\ThemeSettingOption;
 use Illuminate\Http\Request;
-use Illuminate\Session\Store;
 
 class ThemeController extends AdminController
 {
@@ -41,7 +39,7 @@ class ThemeController extends AdminController
         ]);
     }
 
-    public function setting($theme, ThemeManager $themes, Request $request, ThemeSettingOption $option, AccountManager $accounts)
+    public function setting($theme, $setting, ThemeManager $themes, Request $request, ThemeSettingOption $option, AccountManager $accounts)
     {
         $current = $themes->current();
 
@@ -51,16 +49,32 @@ class ThemeController extends AdminController
         {
             $settings = $current->settings->keyBy('id');
 
-            $option = $option->find($request->get('option'));
+            $setting = $settings->get($setting);
 
-            $setting = $settings->get($option->key_id);
+            if($setting->boolean)
+            {
+                $checked = $request->get('checked');
 
-            $setting->value()->delete();
+                $setting->value()->delete();
 
-            $setting->value()->create([
-                'option_id' => $option->id,
-                'account_id' => $account->id
-            ]);
+                if($checked)
+                {
+                    $setting->value()->create([
+                        'value' => true,
+                        'account_id' => $account->id,
+                    ]);
+                }
+            }
+            else{
+                $option = $option->find($request->get('option'));
+
+                $setting->value()->delete();
+
+                $setting->value()->create([
+                    'option_id' => $option->id,
+                    'account_id' => $account->id
+                ]);
+            }
         }
     }
 

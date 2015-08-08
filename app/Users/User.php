@@ -4,6 +4,7 @@ use App\Account\MembershipOwner;
 use App\Contact\AddressOwner;
 use App\Media\StoresMedia;
 use App\Media\StoringMedia;
+use Dimsav\Translatable\Translatable;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 
@@ -11,6 +12,7 @@ class User extends Model implements Authenticatable, MembershipOwner, AddressOwn
 {
 
     use StoringMedia;
+    use Translatable;
 
     /**
      * The database table used by the model.
@@ -21,12 +23,14 @@ class User extends Model implements Authenticatable, MembershipOwner, AddressOwn
 
     protected $media = 'user';
 
+    protected $translatedAttributes = ['bio', 'quote', 'quote_author'];
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-    protected $fillable = ['name', 'email', 'password', 'firstname', 'lastname', 'phone', 'vat', 'website'];
+    protected $fillable = ['name', 'email', 'password', 'firstname', 'lastname', 'phone', 'vat', 'website', 'bio', 'quote', 'quote_author'];
 
     /**
      * The attributes excluded from the model's JSON form.
@@ -54,11 +58,26 @@ class User extends Model implements Authenticatable, MembershipOwner, AddressOwn
         return $this->belongsTo('App\Users\Auth\Tokens\Token', 'confirmation_token_id');
     }
 
+    public function projects()
+    {
+        return $this->belongsToMany('App\Portfolio\Project', 'portfolio_project_collaborators', 'user_id', 'project_id');
+    }
+
+    public function skills()
+    {
+        return $this->belongsToMany('App\Users\Skill', 'user_skills_selection', 'user_id', 'skill_id')->withPivot(['level']);
+    }
+
     public function getNameAttribute()
     {
         $fullname = $this->fullname;
 
         return $fullname ? : 'John Doe';
+    }
+
+    public function getFunctionAttribute()
+    {
+        return isset($this->attributes['function']) ? $this->attributes['function'] : 'Happy teammember';
     }
 
     /**

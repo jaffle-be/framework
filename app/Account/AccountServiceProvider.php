@@ -7,6 +7,16 @@ class AccountServiceProvider extends ServiceProvider
 
     protected $namespace = 'account';
 
+    public function boot()
+    {
+        parent::boot();
+
+        if(!$this->app->runningInConsole())
+        {
+            $this->app->make('App\Account\AccountManager')->boot($this->app['request']);
+        }
+    }
+
     /**
      * Register the service provider.
      *

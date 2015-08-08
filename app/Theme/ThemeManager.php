@@ -43,6 +43,7 @@ class ThemeManager
             ->first();
 
         //we default to the unify theme
+
         if (!$selected) {
             $selected = $this->setupDefaultTheme($manager);
         }
@@ -69,7 +70,14 @@ class ThemeManager
     {
         $theme = $this->current();
 
-        $value = $theme->settings->get($key)->value;
+        $setting = $theme->settings->get($key);
+
+        if($setting->boolean)
+        {
+            return $setting->value ? true : false;
+        }
+        
+        $value = $setting->value;
 
         if ($value->option) {
             return $value->option->value;

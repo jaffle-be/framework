@@ -4,7 +4,9 @@ use Exception;
 
 trait StoringMedia
 {
-    public function images()
+    use ImageDimensionHelpers;
+
+    protected function mediaStoresMultiple()
     {
         static $multiple;
 
@@ -18,12 +20,41 @@ trait StoringMedia
             }
         }
 
-        if($multiple)
+        return $multiple;
+    }
+
+    public function images()
+    {
+        if($this->mediaStoresMultiple())
         {
             return $this->morphMany('App\Media\Image', 'owner');
         }
 
         return $this->morphOne('App\Media\Image', 'owner');
+    }
+
+    public function sizes($width = null, $height = null)
+    {
+        $this->images()->dimension($width, $height);
+
+        return $this->images;
+    }
+
+    //this is a shortcut method to get the thumbnail source.
+    public function thumbnail($width = null, $height = null)
+    {
+        if($this->mediaStoresMultiple())
+        {
+            $image = $this->images->first();
+        }
+        else{
+            $image = $this->images;
+        }
+
+        if($image)
+        {
+            return $image->thumbnail($width, $height);
+        }
     }
 
     public function getMediaFolder()

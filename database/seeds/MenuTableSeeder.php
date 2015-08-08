@@ -20,10 +20,12 @@ class MenuTableSeeder extends Seeder{
 
         $menu = Menu::create([
             'name' => 'primary menu',
+            'account_id' => 1,
         ]);
 
         Menu::create([
             'name' => 'secondary menu',
+            'account_id' => 1,
         ]);
 
         MenuItem::create([
@@ -53,7 +55,7 @@ class MenuTableSeeder extends Seeder{
             'nl' => ['name' => 'nieuws'],
             'fr' => ['name' => 'nieuws'],
             'de' => ['name' => 'nieuws'],
-            'en' => ['name' => 'nieuws'],
+            'en' => ['name' => 'news'],
 
         ]);
 
@@ -64,7 +66,7 @@ class MenuTableSeeder extends Seeder{
             'nl' => ['name' => 'onze werken'],
             'fr' => ['name' => 'onze werken'],
             'de' => ['name' => 'onze werken'],
-            'en' => ['name' => 'onze werken'],
+            'en' => ['name' => 'projects'],
 
         ]);
 
@@ -75,7 +77,7 @@ class MenuTableSeeder extends Seeder{
             'nl' => ['name' => 'onze kraks'],
             'fr' => ['name' => 'onze kraks'],
             'de' => ['name' => 'onze kraks'],
-            'en' => ['name' => 'onze kraks'],
+            'en' => ['name' => 'about'],
 
         ]);
 
@@ -110,7 +112,7 @@ class MenuTableSeeder extends Seeder{
             'nl' => ['name' => 'telefonie / mobile'],
             'fr' => ['name' => 'telefonie / mobile'],
             'de' => ['name' => 'telefonie / mobile'],
-            'en' => ['name' => 'telefonie / mobile'],
+            'en' => ['name' => 'phone / mobile'],
 
         ]);
 
@@ -146,7 +148,7 @@ class MenuTableSeeder extends Seeder{
             'nl' => ['name' => 'huishoud'],
             'fr' => ['name' => 'huishoud'],
             'de' => ['name' => 'huishoud'],
-            'en' => ['name' => 'huishoud'],
+            'en' => ['name' => 'household'],
 
         ]);
     }

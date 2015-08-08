@@ -1,9 +1,9 @@
 <?php namespace App\Users\Http\Auth;
 
-use App\Http\Controllers\Controller;
+use App\System\Http\Controller;
+use App\Users\Auth\Commands\ResetPassword;
 use App\Users\Auth\Requests\ResetPasswordRequest;
 use App\Users\Auth\Tokens\TokenRepository;
-use App\Users\Auth\Commands\ResetPassword;
 use Illuminate\Contracts\Auth\Guard;
 use Lang;
 

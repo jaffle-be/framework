@@ -2,21 +2,26 @@
 
 use App\Media\StoresMedia;
 use App\Media\StoringMedia;
+use App\System\Scopes\ModelAccountResource;
+use App\Tags\Taggable;
 use Dimsav\Translatable\Translatable;
 use Illuminate\Database\Eloquent\Model;
-use App\Tags\Taggable;
+use Jaffle\Tools\Sluggable;
 
-class Post extends Model implements StoresMedia{
+class Post extends Model implements StoresMedia
+{
 
     use Translatable;
     use Taggable;
     use StoringMedia;
+    use ModelAccountResource;
+    use Sluggable;
 
     protected $table = 'posts';
 
     protected $media = 'blog';
 
-    protected $fillable = ['title', 'extract', 'content', 'publish_at'];
+    protected $fillable = ['account_id', 'title', 'extract', 'content', 'publish_at'];
 
     protected $translatedAttributes = ['title', 'extract', 'content', 'publish_at'];
 
@@ -29,4 +34,17 @@ class Post extends Model implements StoresMedia{
     {
         return $this->getAttribute('created_at');
     }
+
+    /**
+     * Create a new Eloquent Collection instance.
+     *
+     * @param  array $models
+     *
+     * @return \Illuminate\Database\Eloquent\Collection
+     */
+    public function newCollection(array $models = [])
+    {
+        return new PostCollection($models);
+    }
+
 }

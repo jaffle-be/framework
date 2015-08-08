@@ -1,19 +1,17 @@
 <?php namespace App\Blog\Http;
 
 use App\Blog\Post;
-use App\Http\Controllers\Controller;
+use App\System\Http\Controller;
 
-class BlogController extends Controller{
+class BlogController extends Controller
+{
 
     public function index(Post $post)
     {
         /**
-         * the correct template should be fetched from somewhere,
-         * however, i'm not to sure where from at this point.
-         * change the template name however you need it.
+         * images are lazyloaded in specific template file
          */
-
-        $posts = Post::with($this->relations(460))->orderBy('created_at', 'desc')->paginate();
+        $posts = Post::with($this->relations())->orderBy('created_at', 'desc')->paginate();
 
         return $this->theme->render('blog.' . $this->theme->setting('blogOverview'), ['posts' => $posts])->render();
     }
@@ -30,8 +28,8 @@ class BlogController extends Controller{
     /**
      * @return array
      */
-    protected function relations($dimension)
+    protected function relations()
     {
-        return ['translations', 'images', 'images.translations'];
+        return ['user', 'translations', 'tags', 'tags.translations'];
     }
 }

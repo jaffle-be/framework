@@ -1,6 +1,6 @@
 <?php namespace App\Users\Http\Admin;
 
-use App\Http\Controllers\AdminController;
+use App\System\Http\AdminController;
 use App\Users\Jobs\CheckGravatarImage;
 use Illuminate\Auth\Guard;
 use Illuminate\Http\Request;
@@ -25,6 +25,8 @@ class UserController extends AdminController
             $this->dispatch(new CheckGravatarImage($user));
         }
 
+        $user->load(['translations', 'skills', 'skills.translations']);
+
         return $user;
     }
 
@@ -32,7 +34,7 @@ class UserController extends AdminController
     {
         $this->validate($request, ['vat' => 'vat', 'website' => 'url']);
 
-        $data = $request->only(['firstname', 'lastname', 'phone', 'vat', 'website']);
+        $data = translation_input($request, ['bio', 'quote', 'quote_author']);
 
         $user = $guard->user();
 

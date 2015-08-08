@@ -1,12 +1,12 @@
 <?php namespace App\Tags\Http\Admin;
 
-use App\Http\Controllers\AdminController;
+use App\System\Http\AdminController;
 use App\Tags\Commands\CreateNewTag;
 use App\Tags\Commands\TagSomething;
 use App\Tags\Commands\UntagSomething;
 use App\Tags\Commands\UpdateTag;
-use Illuminate\Http\Request;
 use App\Tags\Tag;
+use Illuminate\Http\Request;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Collection;
 

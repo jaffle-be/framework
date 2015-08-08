@@ -1,7 +1,7 @@
 <?php namespace App\Layout\Http;
 
 use App\Account\AccountManager;
-use App\Http\Controllers\AdminController;
+use App\System\Http\AdminController;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Session\Store;
 

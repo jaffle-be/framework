@@ -1,11 +1,10 @@
 <?php namespace App\Users\Http\Auth;
 
-use App\Http\Controllers\Controller;
+use App\System\Http\Controller;
 use App\Users\Auth\Commands\ConfirmEmail;
 use App\Users\Auth\Commands\SendConfirmationEmail;
 use App\Users\Contracts\TokenRepositoryInterface;
 use App\Users\Contracts\UserRepositoryInterface;
-use Illuminate\Foundation\Bus\DispatchesCommands;
 use Illuminate\Http\Request;
 
 class ConfirmEmailController extends Controller

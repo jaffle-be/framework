@@ -1,32 +1,31 @@
 <?php
 
-Route::group(['as' => 'store.'], function () {
 
-    Route::get('/', [
-        'uses' => 'WelcomeController@storeHome',
-        'as'   => 'home'
-    ]);
-
-    Route::group(['prefix' => 'admin'], function () {
-
-        Route::get('/', ['uses' => 'WelcomeController@storeDash', 'middleware' => 'auth.admin']);
-
-        Route::get('{subs}', [
-            'uses' => 'WelcomeController@storeDash',
-            'middleware' => 'auth.admin'
-        ])->where(['subs' => '.*']);
-    });
-
-    Route::group(['prefix' => 'templates'], function () {
-        Route::get('admin', [
-            'uses' => 'WelcomeController@storeDash',
-            'as'   => 'dash',
-            'middleware' => 'auth.admin'
-        ]);
-
-        //this route should probably no longer be used?
-        Route::get('admin/system', ['uses' => 'WelcomeController@system', 'middleware' => 'auth.admin']);
-    });
-});
-
-Route::get('test', 'WelcomeController@test');
+//
+//// Home > About
+//Breadcrumbs::register('about', function($breadcrumbs)
+//{
+//    $breadcrumbs->parent('home');
+//    $breadcrumbs->push('About', route('about'));
+//});
+//
+//// Home > Blog
+//Breadcrumbs::register('blog', function($breadcrumbs)
+//{
+//    $breadcrumbs->parent('home');
+//    $breadcrumbs->push('Blog', route('blog'));
+//});
+//
+//// Home > Blog > [Category]
+//Breadcrumbs::register('category', function($breadcrumbs, $category)
+//{
+//    $breadcrumbs->parent('blog');
+//    $breadcrumbs->push($category->title, route('category', $category->id));
+//});
+//
+//// Home > Blog > [Category] > [Page]
+//Breadcrumbs::register('page', function($breadcrumbs, $page)
+//{
+//    $breadcrumbs->parent('category', $page->category);
+//    $breadcrumbs->push($page->title, route('page', $page->id));
+//});

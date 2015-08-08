@@ -1,3 +1,7 @@
+# dont forget to remove new lines in the pattern when searching
+# 
+# you also might need to change the breadcrumbs and footer versioning
+
 ([\s\S]*)
 <link rel="stylesheet" href="assets/plugins/font-awesome/css/font-awesome.min.css">
 ([\s\S]*)
@@ -18,7 +22,7 @@
 
 
 
-@extends('unify::unify')
+@extends('Unify::unify')
 
 @section('styles-content')
     $2

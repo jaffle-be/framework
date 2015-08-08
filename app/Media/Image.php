@@ -1,5 +1,6 @@
 <?php namespace App\Media;
 
+use App\System\Scopes\ModelAccountResource;
 use Dimsav\Translatable\Translatable;
 use Illuminate\Database\Eloquent\Model;
 
@@ -7,14 +8,20 @@ class Image extends Model
 {
 
     use Translatable;
+    use ModelAccountResource;
 
     protected $table = 'media_images';
 
-    protected $fillable = ['path', 'filename', 'extension', 'width', 'height', 'title'];
+    protected $fillable = ['account_id', 'path', 'filename', 'extension', 'width', 'height', 'title'];
 
     protected $translatedAttributes = ['title'];
 
-    protected $hidden = ['filename', 'extension', 'width', 'height', 'owner_id', 'owner_type', 'created_at', 'updated_at', 'original_id'];
+    protected $hidden = ['account_id', 'filename', 'extension', 'width', 'height', 'owner_id', 'owner_type', 'created_at', 'updated_at', 'original_id'];
+
+    public function account()
+    {
+        return $this->belongsTo('App\Account\Account');
+    }
 
     public function original()
     {
@@ -29,6 +36,22 @@ class Image extends Model
     public function owner()
     {
         return $this->morphTo();
+    }
+
+    public function thumbnail($width = null, $height = null)
+    {
+        if (!$this->relationLoaded('sizes')) {
+
+            $this->load(['sizes' => function($query) use ($width, $height){
+                $query->dimension($width, $height);
+            }]);
+
+        }
+
+        if ($image = $this->sizes->first()) {
+
+            return $image->path;
+        }
     }
 
     public function scopeDimension($query, $width = null, $height = null, $boolean = 'and')

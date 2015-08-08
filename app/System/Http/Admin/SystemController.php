@@ -1,6 +1,6 @@
 <?php namespace App\System\Http\Admin;
 
-use App\Http\Controllers\AdminController;
+use App\System\Http\AdminController;
 use Illuminate\Config\Repository;
 use Illuminate\Foundation\Application;
 

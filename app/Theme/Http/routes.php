@@ -21,7 +21,7 @@ Route::group([
             Route::resource('theme', 'ThemeController', ['only' => ['index']]);
             Route::get('theme/current', 'ThemeController@current');
             Route::post('theme/{theme}/activate', 'ThemeController@activate');
-            Route::post('theme/{theme}/setting', 'ThemeController@setting');
+            Route::post('theme/{theme}/setting/{setting}', 'ThemeController@setting');
         });
     });
 });

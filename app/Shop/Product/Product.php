@@ -1,7 +1,7 @@
 <?php namespace App\Shop\Product;
 
-use Illuminate\Database\Eloquent\Model;
 use App\Media\StoresMedia;
+use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model implements StoresMedia{
 

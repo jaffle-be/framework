@@ -2,8 +2,8 @@
 
 namespace App\Contact\Jobs;
 
-use App\Jobs\Job;
 use App\Contact\Address;
+use App\Jobs\Job;
 use App\System\Country\CountryRepository;
 use Illuminate\Contracts\Bus\SelfHandling;
 

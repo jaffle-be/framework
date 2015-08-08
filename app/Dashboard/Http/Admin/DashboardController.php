@@ -1,6 +1,6 @@
 <?php namespace App\Dashboard\Http\Admin;
 
-use App\Http\Controllers\AdminController;
+use App\System\Http\AdminController;
 
 class DashboardController extends AdminController
 {

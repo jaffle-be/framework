@@ -1,7 +1,7 @@
 <?php namespace App\Portfolio\Jobs;
 
-use App\Portfolio\Project;
 use App\Jobs\Job;
+use App\Portfolio\Project;
 use Illuminate\Contracts\Bus\SelfHandling;
 
 class UpdateProject extends Job implements SelfHandling{

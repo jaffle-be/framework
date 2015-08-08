@@ -1,5 +1,6 @@
 <?php namespace App\Menu;
-use Illuminate\Database\Eloquent\Collection;
+
+use Illuminate\Routing\Router;
 
 /**
  * Class MenuManager
@@ -42,7 +43,7 @@ class MenuManager
     /**
      * @param MenuRepositoryInterface $repository
      */
-    public function __construct(MenuRepositoryInterface $repository)
+    public function __construct(MenuRepositoryInterface $repository, Router $url)
     {
         $this->repository = $repository;
     }
@@ -73,6 +74,16 @@ class MenuManager
         if (in_array($menu, $this->supports)) {
             return $this->loaded[$menu];
         }
+    }
+
+    public function crumbs($menu)
+    {
+        $menu = $this->get($menu);
+
+        //find the active url
+
+        //return home, followed by all the parents, followed by the current page
+        return [];
     }
 
     protected function load()

@@ -1,88 +1,63 @@
-<div class="wrapper-content" ng-controller="ProfileController as vm">
+<div class="wrapper-content" ng-controller="ProfileController as vm" ng-init="vm.options = {{ system_options() }}">
 
-    <div class="ibox">
+    <tabset>
 
-        <div class="ibox-title">
-            <h5>{{ Lang::get('users::profile.basic-info') }}</h5>
+        <tab ng-repeat="locale in vm.options.locales" heading="@{{ locale.locale }}" active="vm.options.locales[locale.locale].active" select="vm.options.locale = locale.locale">
+        </tab>
+
+    </tabset>
+
+
+    <div class="col-md-6">
+        <div class="ibox">
+
+            <div class="ibox-title">
+                <h5>{{ Lang::get('users::profile.basic-info') }}</h5>
+            </div>
+
+            <div class="ibox-content">
+
+                @include('users::admin.elements.profile')
+
+            </div>
+
         </div>
 
-        <div class="ibox-content">
 
-            <div class="row">
+        <div address-input address-id="{{ $user->address ? $user->address->id : null }}" address-owner-type="'user'" address-owner-id="{{ $user->id }}"></div>
 
-                <div class="col-md-6">
-                    <div class="form-group">
+    </div>
 
-                        <label for="email">
-                            {{ Lang::get('users::profile.email') }}
-                        </label>
+    <div class="col-md-6">
 
-                        <input autocomplete="off" class="form-control" type="text" name="email" id="email" disabled value="{{ $user->email }}"/>
+        <div class="ibox">
 
-                    </div>
+            <div class="ibox-title">
+                <h5>{{ Lang::get('users::profile.bio') }}</h5>
+            </div>
 
-                    <div class="form-group">
+            <div class="ibox-content">
 
-                        <label for="firstname">
-                            {{ Lang::get('users::profile.firstname') }}
-                        </label>
-
-                        <input autocomplete="off" class="form-control" type="text" name="firstname" id="firstname" ng-model="vm.profile.firstname" ng-change="vm.save()"/>
-
-                    </div>
-
-
-                    <div class="form-group">
-
-                        <label for="lastname">
-                            {{ Lang::get('users::profile.lastname') }}
-                        </label>
-
-                        <input autocomplete="off" class="form-control" type="text" name="lastname" id="lastname" ng-model="vm.profile.lastname" ng-change="vm.save()"/>
-
-                    </div>
-
-
-                    <div class="form-group">
-
-                        <label for="phone">
-                            {{ Lang::get('users::profile.phone') }}
-                        </label>
-
-                        <input autocomplete="off" class="form-control" type="text" name="phone" id="phone" ng-model="vm.profile.phone" ng-change="vm.save()"/>
-
-                    </div>
-
-                    <div class="form-group">
-
-                        <label for="website">
-                            {{ Lang::get('users::profile.website') }}
-                        </label>
-
-                        <input class="form-control" type="text" name="website" id="website" ng-model="vm.profile.website" ng-change="vm.save()"/>
-
-                    </div>
-
-                    <div class="form-group">
-
-                        <label for="vat">
-                            {{ Lang::get('users::profile.vat') }}
-                        </label>
-
-                        <input autocomplete="off" class="form-control" type="text" name="vat" id="vat" ng-model="vm.profile.vat" ng-change="vm.save()"/>
-
-                    </div>
-
-
-                    <input-errors errors="vm.profileErrors"></input-errors>
+                <div class="form-group">
+                	<label for="bio" class="control-label"></label>
+                	<div>
+                        <textarea name="bio" id="bio" cols="30" rows="10" class="form-control" ng-model="vm.profile.translations[vm.options.locale].bio" ng-change="vm.save()"></textarea>
+                	</div>
+                </div>
+                
+                <div class="form-group">
+                	<label for="quote" class="control-label">{{ Lang::get('users::admin.quote') }}</label>
+                	<div>
+                		<input type="text" name="quote" id="quote" class="form-control" ng-model="vm.profile.translations[vm.options.locale].quote" ng-change="vm.save()"/>
+                	</div>
                 </div>
 
-                <div class="col-md-6">
-
-                    <image-input locale="vm.options.locale" owner-type="'user'" owner-id="{{ Auth::user()->id }}" wait-for="vm.loaded" no-text="'true'"></image-input>
-
+                <div class="form-group">
+                    <label for="quote_author" class="control-label">{{ Lang::get('users::admin.quote-author') }}</label>
+                    <div>
+                        <input type="text" name="quote_author" id="quote_author" class="form-control" ng-model="vm.profile.translations[vm.options.locale].quote_author" ng-change="vm.save()"/>
+                    </div>
                 </div>
-
 
             </div>
 
@@ -91,7 +66,26 @@
     </div>
 
 
-    <div address-input address-id="{{ $user->address ? $user->address->id : null }}" address-owner-type="'user'" address-owner-id="{{ $user->id }}"></div>
+    <div class="col-md-6">
+
+        <div class="ibox">
+
+            <div class="ibox-title">
+                <h5>{{ Lang::get('users::profile.skills') }}</h5>
+            </div>
+
+            <div class="ibox-content">
+
+                @include('users::admin.elements.skills')
+
+                <div class="clearfix"></div>
+
+            </div>
+
+        </div>
+
+    </div>
 
 
+    <div class="clearfix"></div>
 </div>

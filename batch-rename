@@ -3,7 +3,7 @@ do
  mv "$file" "${file%.css}.less"
 done
 
-for file in /home/vagrant/www/laravel/framework/themes/Unify/resources/views/portfolio/*.html
+for file in /home/vagrant/www/laravel/framework/themes/Unify/resources/views/team/*.html
 
 do
   mv "$file" "${file%.html}.blade.php"

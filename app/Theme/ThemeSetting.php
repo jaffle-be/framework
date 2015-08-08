@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class ThemeSetting extends Model
 {
+
     use translatable;
 
     protected $table = 'themes_setting_keys';
@@ -14,7 +15,11 @@ class ThemeSetting extends Model
 
     protected $translationForeignKey = 'key_id';
 
-    protected $fillable = ['theme_id', 'key', 'name', 'explanation'];
+    protected $fillable = ['theme_id', 'boolean', 'key', 'name', 'explanation'];
+
+    protected $casts = [
+        'boolean' => 'boolean'
+    ];
 
     public function options()
     {
@@ -36,6 +41,18 @@ class ThemeSetting extends Model
     public function defaults()
     {
         return $this->hasOne('App\Theme\ThemeSettingDefault', 'key_id');
+    }
+
+    public function toArray()
+    {
+        $result = parent::toArray();
+
+        if($this->boolean)
+        {
+            $result['value'] = (bool) $result['value'];
+        }
+
+        return $result;
     }
 
 }

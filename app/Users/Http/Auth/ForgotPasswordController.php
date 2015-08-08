@@ -1,6 +1,6 @@
 <?php namespace App\Users\Http\Auth;
 
-use App\Http\Controllers\Controller;
+use App\System\Http\Controller;
 use App\Users\Auth\Commands\SendResetEmail;
 use App\Users\Auth\Requests\ForgotPasswordRequest;
 use Lang;

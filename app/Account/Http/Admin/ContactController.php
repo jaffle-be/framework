@@ -6,7 +6,7 @@ use App\Account\AccountContactInformation;
 use App\Account\AccountManager;
 use App\Account\Jobs\Contact\UpdateInformation;
 use App\Account\Requests\Contact\UpdateInformationRequest;
-use App\Http\Controllers\AdminController;
+use App\System\Http\AdminController;
 
 class ContactController extends AdminController
 {

@@ -1,6 +1,6 @@
 <?php namespace App\Shop\Http;
 
-use App\Http\Controllers\Controller;
+use App\System\Http\Controller;
 
 class CheckoutController extends Controller{
 

@@ -2,7 +2,8 @@
 
 use Illuminate\Database\Eloquent\Model;
 
-class Account extends Model{
+class Account extends Model
+{
 
     protected $table = "accounts";
 
@@ -28,9 +29,23 @@ class Account extends Model{
         return $this->hasMany('App\Account\AccountContactInformation');
     }
 
-    public function owner()
+    public function getOwnerAttribute()
     {
-        return $this->belongsTo('App\Users\User', 'user_id');
+        return $this->ownership->member;
+    }
+
+    public function ownership()
+    {
+        $relation = $this->hasOne('App\Account\Membership');
+
+        $relation->where('is_owner', true);
+
+        return $relation;
+    }
+
+    public function teams()
+    {
+        return $this->hasMany('App\Account\Team');
     }
 
     public function logo($size = null)
@@ -39,15 +54,13 @@ class Account extends Model{
             'id' => $this->getKey()
         ]);
 
-        if(!$size)
-        {
+        if (!$size) {
             $size = '40';
         }
 
         $logo = $logo->images;
 
-        if($logo)
-        {
+        if ($logo) {
             return $logo->sizes()->dimension(null, $size)->first()->path;
         }
     }

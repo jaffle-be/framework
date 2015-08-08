@@ -2,7 +2,7 @@
 
 use App\Blog\Jobs\UpdatePost;
 use App\Blog\Post;
-use App\Http\Controllers\AdminController;
+use App\System\Http\AdminController;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Http\Request;
 

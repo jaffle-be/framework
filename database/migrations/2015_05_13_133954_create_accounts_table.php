@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
 class CreateAccountsTable extends Migration {
 
@@ -17,8 +17,6 @@ class CreateAccountsTable extends Migration {
 			$table->increments('id');
 			$table->string('alias');
             $table->string('domain');
-            $table->integer('user_id', false, true);
-            $table->foreign('user_id', 'account_to_user')->references('id')->on('users');
 			$table->timestamps();
 		});
 	}

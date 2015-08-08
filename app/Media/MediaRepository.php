@@ -21,8 +21,12 @@ class MediaRepository implements MediaRepositoryInterface{
         if($original)
         {
             $image->original()->associate($original);
+
+            $image->account_id = $original->account_id;
         }
 
-        return $image->save() ? $image : false;
+        $image = $image->save() ? $image : false;
+
+        return $image;
     }
 }

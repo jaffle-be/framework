@@ -2,7 +2,7 @@
 
 use App\Account\AccountManager;
 use App\Account\MembershipInvitation;
-use App\Http\Controllers\AdminController;
+use App\System\Http\AdminController;
 use App\Theme\ThemeMailer;
 use Illuminate\Contracts\Hashing\Hasher;
 use Illuminate\Http\Request;

@@ -1,5 +1,6 @@
 <?php
 
+use App\Account\Account;
 use App\Blog\Post;
 use App\Blog\PostTranslation;
 use App\Media\Commands\StoreNewImage;
@@ -43,6 +44,8 @@ class BlogTableSeeder extends Seeder
         Post::unguard();
         PostTranslation::unguard();
 
+        $account = Account::find(1);
+
         $this->preImageCaching();
 
         $tags = App\Tags\Tag::all();
@@ -55,6 +58,11 @@ class BlogTableSeeder extends Seeder
 
             $post = App\Blog\Post::create([
                 'user_id' => 1,
+                'account_id' => 1,
+                'slug_nl' => str_slug($this->nl->sentence() . rand(0, 1000000)),
+                'slug_fr' => str_slug($this->fr->sentence() . rand(0, 1000000)),
+                'slug_en' => str_slug($this->en->sentence() . rand(0, 1000000)),
+                'slug_de' => str_slug($this->de->sentence() . rand(0, 1000000)),
                 'nl' => [
                     'title' => $this->nl->sentence(),
                     'extract' => $this->nl->realText(100),
@@ -101,7 +109,7 @@ class BlogTableSeeder extends Seeder
                 $count = 1;
 
             while ($counter < $count) {
-                $this->newImage($post, $counter);
+                $this->newImage($post, $account);
                 $counter++;
             }
 
@@ -114,11 +122,12 @@ class BlogTableSeeder extends Seeder
         }
     }
 
-    protected function newImage($post, $counter)
+    protected function newImage($post, $account)
     {
         $image = rand(0, count($this->image_names) - 1);
 
         $this->dispatchFromArray(StoreNewImage::class, [
+            'account' => $account,
             'owner' => $post,
             'path' => $this->prefix . $this->image_names[$image],
             'sizes' => $this->image_sizes,

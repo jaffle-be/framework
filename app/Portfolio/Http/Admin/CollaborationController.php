@@ -1,8 +1,8 @@
 <?php namespace App\Portfolio\Http\Admin;
 
 use App\Account\AccountManager;
-use App\Http\Controllers\AdminController;
 use App\Portfolio\Project;
+use App\System\Http\AdminController;
 use Illuminate\Http\Request;
 
 class CollaborationController extends AdminController

@@ -14,10 +14,16 @@ angular.module('theme')
             {
                 Theme.current(success);
             },
-            saveSetting: function(theme, option)
+            saveSelect: function(theme, setting, option)
             {
-                return $http.post('api/admin/theme/'+ theme.id + '/setting', {
+                return $http.post('api/admin/theme/'+ theme.id + '/setting/' + setting.id, {
                     option: option.id,
+                });
+            },
+            saveCheckbox: function(theme, setting, checked)
+            {
+                return $http.post('api/admin/theme/'+ theme.id + '/setting/' + setting.id, {
+                    checked: checked
                 });
             }
         };

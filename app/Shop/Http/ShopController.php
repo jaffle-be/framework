@@ -1,7 +1,6 @@
 <?php namespace App\Shop\Http;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Database\Eloquent\Collection;
+use App\System\Http\Controller;
 use Illuminate\Http\Request;
 
 class ShopController extends Controller

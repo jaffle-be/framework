@@ -1,7 +1,7 @@
 <?php namespace App\Account\Http;
 
 use App\Account\MembershipRepository;
-use App\Http\Controllers\Controller;
+use App\System\Http\Controller;
 
 class MembershipInvitationController extends Controller
 {

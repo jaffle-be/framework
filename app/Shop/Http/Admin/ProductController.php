@@ -1,6 +1,6 @@
 <?php namespace App\Shop\Http\Admin;
 
-use App\Http\Controllers\AdminController;
+use App\System\Http\AdminController;
 
 class ProductController extends AdminController{
 

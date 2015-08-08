@@ -1,7 +1,7 @@
 <?php namespace App\Menu\Http\Admin;
 
-use App\Http\Controllers\AdminController;
 use App\Menu\Menu;
+use App\System\Http\AdminController;
 use Illuminate\Http\Request;
 
 class MenuController extends AdminController

@@ -1,5 +1,6 @@
 <?php namespace App\Media\Commands;
 
+use App\Account\AccountManager;
 use App\Jobs\Job;
 use App\Media\StoresMedia;
 use Illuminate\Contracts\Bus\SelfHandling;
@@ -39,7 +40,7 @@ class UploadNewImage extends Job implements SelfHandling
         $this->sizes = $sizes;
     }
 
-    public function handle(Filesystem $files)
+    public function handle(Filesystem $files, AccountManager $manager)
     {
         $temp_dir = storage_path('media') . '/' . $this->owner->getMediaFolder();
 
@@ -56,6 +57,7 @@ class UploadNewImage extends Job implements SelfHandling
         $files->move($temp_file, $final_path);
 
         $image = $this->dispatchFromArray(StoreNewImage::class, [
+            'account' => $manager->account(),
             'owner' => $this->owner,
             'path'  => $final_path,
             'sizes' => $this->sizes

@@ -156,27 +156,36 @@ return [
         'App\Providers\EventServiceProvider',
         'App\Providers\RouteServiceProvider',
 
+        //keep these at the top.
+        //some providers depend on the existence of our account or user
+        'App\Users\UserServiceProvider',
+        'App\Account\AccountServiceProvider',
+
+        //load all providers that use settings which might be used by other components here
         'App\Theme\ThemeServiceProvider',
+
+
+        //regular providers
+        'DaveJamesMiller\Breadcrumbs\ServiceProvider',
+        'App\Menu\MenuServiceProvider',
         'App\System\SystemServiceProvider',
+
+
         Mews\Captcha\CaptchaServiceProvider::class,
         Thomaswelton\LaravelGravatar\LaravelGravatarServiceProvider::class,
         'Dimsav\Translatable\TranslatableServiceProvider',
         'Intervention\Image\ImageServiceProvider',
         'App\Layout\LayoutServiceProvider',
         'App\Dashboard\DashboardServiceProvider',
-        'App\Menu\MenuServiceProvider',
         'App\Media\MediaServiceProvider',
         'App\Settings\SettingServiceProvider',
         'App\Modules\ModuleServiceProvider',
-        'App\Users\UserServiceProvider',
-        'App\Account\AccountServiceProvider',
         'App\Shop\ShopServiceProvider',
         'App\Contact\ContactServiceProvider',
         'App\Blog\BlogServiceProvider',
         'App\Tags\TagsServiceProvider',
         'App\Marketing\MarketingServiceProvider',
         'App\Portfolio\PortfolioServiceProvider',
-
     ],
 
     /*
@@ -230,6 +239,7 @@ return [
         'Theme' => 'App\Theme\Facade\Theme',
         'Menu' => 'App\Menu\Facade\Menu',
         'Gravatar' => 'Thomaswelton\LaravelGravatar\Facades\Gravatar',
+        'Breadcrumbs' => 'DaveJamesMiller\Breadcrumbs\Facade',
 
     ],
 

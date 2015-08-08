@@ -1,6 +1,6 @@
 <?php namespace App\Users\Http\Auth;
 
-use App\Http\Controllers\Controller;
+use App\System\Http\Controller;
 use App\Users\Auth\Commands\Signin;
 use App\Users\Auth\Requests\SigninRequest;
 use App\Users\User;

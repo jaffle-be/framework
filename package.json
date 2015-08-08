@@ -1,6 +1,7 @@
 {
   "private": true,
   "devDependencies": {
+    "glob": "^5.0.14",
     "gulp": "^3.8.11",
     "gulp-cached": "^1.1.0",
     "gulp-concat": "^2.5.2",

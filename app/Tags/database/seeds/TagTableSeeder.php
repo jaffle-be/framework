@@ -1,10 +1,9 @@
 <?php
 
-use App\Blog\Post;
+use App\Tags\Tag;
 use Illuminate\Foundation\Bus\DispatchesCommands;
 use Illuminate\Support\Collection;
 use Jaffle\Tools\Seeder;
-use App\Tags\Tag;
 
 class TagTableSeeder extends Seeder
 {
@@ -17,6 +16,7 @@ class TagTableSeeder extends Seeder
 
         for ($i = 0; $i < 15; $i++) {
             $tags->push(Tag::create([
+                'account_id' => 1,
                 'nl' => [
                     'name' => $this->nl->word,
                 ],

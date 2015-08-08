@@ -60,6 +60,7 @@
                                 <img ng-src="@{{ membership.member.images[0].path }}">
                             </div>
                             <div class="wrapper">
+
                                 @if($account->owner->id == $user->id)
                                     <a class="pull-right btn btn-sm btn-danger" ng-click="vm.revokeMembership(membership)">{{ Lang::get('account::users.remove') }}</a>
                                 @endif

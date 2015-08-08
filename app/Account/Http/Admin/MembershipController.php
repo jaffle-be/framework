@@ -3,8 +3,7 @@
 use App\Account\AccountManager;
 use App\Account\Jobs\Membership\RevokeMembership;
 use App\Account\Membership;
-use App\Http\Controllers\AdminController;
-use Illuminate\Contracts\Auth\Guard;
+use App\System\Http\AdminController;
 
 class MembershipController extends AdminController
 {

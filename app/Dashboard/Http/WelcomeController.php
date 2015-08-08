@@ -1,10 +1,10 @@
-<?php namespace App\Http\Controllers;
+<?php namespace App\Dashboard\Http;
 
 use App\Account\MembershipInvitation;
 use App\Media\Media;
+use App\System\Http\Controller;
 use App\Theme\Theme;
 use Illuminate\Foundation\Bus\DispatchesCommands;
-use App\Media\Commands\StoreNewImage;
 use Illuminate\Http\Request;
 use Illuminate\Session\Store;
 

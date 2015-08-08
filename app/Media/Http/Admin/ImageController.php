@@ -1,9 +1,9 @@
 <?php namespace App\Media\Http\Admin;
 
-use App\Http\Controllers\AdminController;
 use App\Media\Commands\UpdateImage;
 use App\Media\Commands\UploadNewImage;
 use App\Media\Image;
+use App\System\Http\AdminController;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;

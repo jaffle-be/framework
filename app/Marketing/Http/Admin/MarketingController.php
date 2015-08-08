@@ -1,6 +1,6 @@
 <?php namespace App\Marketing\Http\Admin;
 
-use App\Http\Controllers\AdminController;
+use App\System\Http\AdminController;
 
 class MarketingController extends AdminController
 {

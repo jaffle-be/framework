@@ -1,5 +1,6 @@
 <?php namespace App\Users\Jobs;
 
+use App\Account\AccountManager;
 use App\Jobs\Job;
 use App\Media\Commands\StoreNewImage;
 use App\Users\User;
@@ -22,7 +23,7 @@ class CheckGravatarImage extends Job implements SelfHandling
         $this->user = $user;
     }
 
-    public function handle(Gravatar $gravatar, Filesystem $files)
+    public function handle(Gravatar $gravatar, Filesystem $files, AccountManager $manager)
     {
         if($gravatar->exists($this->user->email))
         {
@@ -47,7 +48,7 @@ class CheckGravatarImage extends Job implements SelfHandling
 
             $files->move($path, $finalPath);
 
-            $this->dispatch(new StoreNewImage($this->user, $finalPath, null, config('media.sizes.user')));
+            $this->dispatch(new StoreNewImage($manager->account(), $this->user, $finalPath, null, config('media.sizes.user')));
 
             $files->delete($finalPath);
         }

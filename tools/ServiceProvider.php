@@ -47,6 +47,16 @@ abstract class ServiceProvider extends Provider
         if (file_exists($routes)) {
             include $routes;
         }
+
+        $this->app['events']->listen('bootstrapped: Illuminate\Foundation\Bootstrap\BootProviders', function($app) use ($dir)
+        {
+            $breadcrumbs = $dir . '/Http/breadcrumbs.php';
+
+            if(file_exists($breadcrumbs))
+            {
+                include $breadcrumbs;
+            }
+        });
     }
 
     /**

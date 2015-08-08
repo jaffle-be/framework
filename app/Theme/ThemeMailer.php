@@ -2,9 +2,8 @@
 
 namespace App\Theme;
 
-use Exception;
-use Illuminate\Mail\Mailer;
 use Illuminate\Contracts\Mail\Mailer as MailContract;
+use Illuminate\Mail\Mailer;
 
 class ThemeMailer implements MailContract{
 

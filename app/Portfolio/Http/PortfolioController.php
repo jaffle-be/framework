@@ -1,7 +1,7 @@
 <?php namespace App\Portfolio\Http;
 
-use App\Http\Controllers\Controller;
 use App\Portfolio\Project;
+use App\System\Http\Controller;
 
 class PortfolioController extends Controller
 {

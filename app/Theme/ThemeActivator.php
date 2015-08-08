@@ -97,11 +97,14 @@ class ThemeActivator
         {
             $default = $setting->defaults;
 
-            $default = $default->toArray();
+            if($default)
+            {
+                $default = $default->toArray();
 
-            $default = array_except($default, ['id', 'created_at', 'updated_at']);
+                $default = array_except($default, ['id', 'created_at', 'updated_at']);
 
-            $setting->value()->create(array_merge(['account_id' => $this->account->id], $default));
+                $setting->value()->create(array_merge(['account_id' => $this->account->id], $default));
+            }
         }
     }
 }

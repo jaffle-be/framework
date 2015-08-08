@@ -31,19 +31,21 @@ class ThemeMigration extends Migration
 
             $setting = $theme->settings()->create($setting);
 
-            $options = $this->options[$setting->key];
-
-            foreach ($options as $option) {
-                $setting->options()->create($option);
-            }
-
-            if(isset($this->defaults[$setting->key]))
+            if(!$setting->boolean)
             {
-                $option = $setting->options()->where('value', $this->defaults[$setting->key])->first();
+                $options = $this->options[$setting->key];
 
-                $setting->defaults()->create(['option_id' => $option->id]);
+                foreach ($options as $option) {
+                    $setting->options()->create($option);
+                }
+
+                if(isset($this->defaults[$setting->key]))
+                {
+                    $option = $setting->options()->where('value', $this->defaults[$setting->key])->first();
+
+                    $setting->defaults()->create(['option_id' => $option->id]);
+                }
             }
-
         }
     }
 
@@ -54,11 +56,7 @@ class ThemeMigration extends Migration
      */
     public function down()
     {
-        $theme = Theme::where('name', $this->name)->first();
-
-        if ($theme) {
-            $theme->delete();
-        }
+        $theme = Theme::where('name', $this->name)->delete();
     }
 
 }

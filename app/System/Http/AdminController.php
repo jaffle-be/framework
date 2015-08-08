@@ -1,4 +1,4 @@
-<?php namespace App\Http\Controllers;
+<?php namespace App\System\Http;
 
 use App\Theme\ThemeManager;
 
