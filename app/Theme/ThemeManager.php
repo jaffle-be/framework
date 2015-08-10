@@ -38,6 +38,11 @@ class ThemeManager
     {
         $account = $manager->account();
 
+        if(!config('system.installed'))
+        {
+            return;
+        }
+
         $selected = $this->selector
             ->where('active', true)
             ->first();
@@ -69,6 +74,11 @@ class ThemeManager
     public function setting($key)
     {
         $theme = $this->current();
+
+        if(!$theme)
+        {
+            return;
+        }
 
         $setting = $theme->settings->get($key);
 
@@ -140,7 +150,7 @@ class ThemeManager
         });
 
         if (!$default) {
-            throw new Exception('Invalid default theme provided');
+            return false;
         }
 
         return $this->activate($default->id, $account);
