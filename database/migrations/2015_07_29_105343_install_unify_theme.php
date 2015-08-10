@@ -231,25 +231,88 @@ class InstallUnifyTheme extends ThemeMigration
                 'name'        => 'you can hire me',
                 'explanation' => 'you can hire me'
             ],
-        ]
+        ],
+
+        [
+            'key' => 'portfolioColumns',
+            'nl'  => [
+                'name'        => 'portfolio columns',
+                'explanation' => 'portfolio columns'
+            ],
+            'fr'  => [
+                'name'        => 'portfolio columns',
+                'explanation' => 'portfolio columns'
+            ],
+            'de'  => [
+                'name'        => 'portfolio columns',
+                'explanation' => 'portfolio columns'
+            ],
+            'en'  => [
+                'name'        => 'portfolio columns',
+                'explanation' => 'portfolio columns'
+            ],
+        ],
+
+        [
+            'key'     => 'portfolioGrid',
+            'boolean' => true,
+            'nl'      => [
+                'name'        => 'portfolio grid',
+                'explanation' => 'portfolio grid'
+            ],
+            'fr'      => [
+                'name'        => 'portfolio grid',
+                'explanation' => 'portfolio grid'
+            ],
+            'de'      => [
+                'name'        => 'portfolio grid',
+                'explanation' => 'portfolio grid'
+            ],
+            'en'      => [
+                'name'        => 'portfolio grid',
+                'explanation' => 'portfolio grid'
+            ],
+        ],
+
+        [
+            'key'     => 'portfolioSpaced',
+            'boolean' => true,
+            'nl'      => [
+                'name'        => 'portfolio spaced',
+                'explanation' => 'portfolio spaced'
+            ],
+            'fr'      => [
+                'name'        => 'portfolio spaced',
+                'explanation' => 'portfolio spaced'
+            ],
+            'de'      => [
+                'name'        => 'portfolio spaced',
+                'explanation' => 'portfolio spaced'
+            ],
+            'en'      => [
+                'name'        => 'portfolio spaced',
+                'explanation' => 'portfolio spaced'
+            ],
+        ],
 
     ];
 
     protected $defaults = [
-        'header'        => 'header_default',
-        'footer'        => 'footer_default',
-        'breadcrumbs'   => 'breadcrumbs-1',
-        'pagination'    => 'pagination-1',
-        'blogOverview'  => 'masonry',
-        'blogDetail'    => 'full-width/large-detail',
-        'contactLayout' => 'contact-1',
-        'teamOverview'  => 'team-1',
-        'teamDetail'    => 'member-1',
+        'header'           => 'header_default',
+        'footer'           => 'footer_default',
+        'breadcrumbs'      => 'breadcrumbs-1',
+        'pagination'       => 'pagination-1',
+        'blogOverview'     => 'masonry',
+        'blogDetail'       => 'full-width/large-detail',
+        'contactLayout'    => 'contact-1',
+        'teamOverview'     => 'team-1',
+        'teamDetail'       => 'member-1',
+        'portfolioColumns' => 3
     ];
 
     protected $options = [
 
-        'header'        => [
+        'header'           => [
 
             ['value' => 'header_default'],
             ['value' => 'header_v1'],
@@ -269,7 +332,7 @@ class InstallUnifyTheme extends ThemeMigration
             ['value' => 'header_v6_transparent'],
         ],
 
-        'footer'        => [
+        'footer'           => [
             ['value' => 'footer_default'],
             ['value' => 'footer_v1'],
             ['value' => 'footer_v2'],
@@ -280,7 +343,7 @@ class InstallUnifyTheme extends ThemeMigration
             ['value' => 'footer_v7'],
         ],
 
-        'breadcrumbs' => [
+        'breadcrumbs'      => [
             ['value' => 'breadcrumbs-1'],
             ['value' => 'breadcrumbs-2'],
             ['value' => 'breadcrumbs-3'],
@@ -288,13 +351,13 @@ class InstallUnifyTheme extends ThemeMigration
             ['value' => 'breadcrumbs-5'],
         ],
 
-        'pagination'    => [
+        'pagination'       => [
             ['value' => 'pagination-1'],
             ['value' => 'pagination-2'],
             ['value' => 'pagination-3'],
         ],
 
-        'blogOverview'  => [
+        'blogOverview'     => [
             ['value' => 'full-width/large-overview'],
             ['value' => 'full-width/large-overview-simple'],
             ['value' => 'full-width/medium-overview'],
@@ -313,7 +376,7 @@ class InstallUnifyTheme extends ThemeMigration
             ['value' => 'timeline'],
         ],
 
-        'blogDetail'    => [
+        'blogDetail'       => [
             ['value' => 'full-width/large-detail'],
             ['value' => 'full-width/large-detail-simple'],
             ['value' => 'sidebar-left/large-detail'],
@@ -322,7 +385,7 @@ class InstallUnifyTheme extends ThemeMigration
             ['value' => 'sidebar-right/large-detail-simple'],
         ],
 
-        'contactLayout' => [
+        'contactLayout'    => [
             ['value' => 'contact-1'],
             ['value' => 'contact-2'],
             ['value' => 'contact-3'],
@@ -330,17 +393,23 @@ class InstallUnifyTheme extends ThemeMigration
             ['value' => 'contact-advanced'],
         ],
 
-        'teamOverview'  => [
+        'teamOverview'     => [
             ['value' => 'team-1'],
             ['value' => 'team-2'],
             ['value' => 'team-3'],
         ],
 
-        'teamDetail'    => [
+        'teamDetail'       => [
             ['value' => 'member-1'],
             ['value' => 'member-2'],
             ['value' => 'member-3'],
-        ]
+        ],
+
+        'portfolioColumns' => [
+            ['value' => '2'],
+            ['value' => '3'],
+            ['value' => '4'],
+        ],
 
     ];
 

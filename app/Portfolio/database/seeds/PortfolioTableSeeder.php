@@ -40,29 +40,29 @@ class PortfolioTableSeeder extends Seeder
 
             $project = App\Portfolio\Project::create([
                 'account_id' => 1,
-                'client_name' => $this->nl->sentence(),
+                'client_name' => $this->nl->sentence(3),
                 'date'        => $this->nl->dateTimeBetween('-3 months', 'now'),
                 'website'     => $this->nl->url,
                 'nl'      => [
-                    'title' => $this->nl->sentence(8),
+                    'title' => $this->nl->sentence(2),
                     'description' => $this->nl->text(1300),
                     'created_at'  => $this->nl->dateTimeBetween('-3 months', 'now'),
                     'updated_at'  => $this->nl->dateTimeBetween('-2 months', 'now'),
                 ],
                 'fr'      => [
-                    'title' => $this->fr->sentence(8),
+                    'title' => $this->fr->sentence(2),
                     'description' => $this->fr->text(1300),
                     'created_at'  => $this->fr->dateTimeBetween('-3 months', 'now'),
                     'updated_at'  => $this->fr->dateTimeBetween('-2 months', 'now'),
                 ],
                 'en'      => [
-                    'title' => $this->en->sentence(8),
+                    'title' => $this->en->sentence(2),
                     'description' => $this->en->text(1300),
                     'created_at'  => $this->en->dateTimeBetween('-3 months', 'now'),
                     'updated_at'  => $this->en->dateTimeBetween('-2 months', 'now'),
                 ],
                 'de'      => [
-                    'title' => $this->de->sentence(8),
+                    'title' => $this->de->sentence(2),
                     'description' => $this->de->text(1300),
                     'created_at'  => $this->de->dateTimeBetween('-3 months', 'now'),
                     'updated_at'  => $this->de->dateTimeBetween('-2 months', 'now'),

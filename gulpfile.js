@@ -244,6 +244,11 @@ function themeFrontLessFile(file)
 
 function ThemeAdminJsTasks(watcher)
 {
+    if(watcher.path.indexOf('.min.js') != -1)
+    {
+        return;
+    }
+
     var theme = watcher.path.substring(watcher.path.indexOf('themes/'));
     theme = theme.substring(theme.indexOf('/') + 1);
     theme = theme.substring(0, theme.indexOf('/resources/assets/'));

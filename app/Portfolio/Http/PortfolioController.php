@@ -12,12 +12,11 @@ class PortfolioController extends Controller
         $projects = $project->with($this->relations())->orderBy('date', 'desc')->get();
 
         $options = [
+            'columns' => $this->theme->setting('portfolioColumns'),
             //grid or full width?
-            'grid' => true,
+            'grid' => $this->theme->setting('portfolioGrid'),
             //space or no space?
-            'spaced' => true,
-            //with or without text
-            'text' => true
+            'spaced' => $this->theme->setting('portfolioSpaced'),
         ];
 
         $tags = $tags->whereHas('projects', function($query){
