@@ -1,5 +1,6 @@
 <?php namespace App\Shop\Http;
 
+use App\Shop\Product\Product;
 use App\System\Http\Controller;
 use Illuminate\Http\Request;
 
@@ -24,8 +25,10 @@ class ShopController extends Controller
         return $this->theme->render('shop.category-' . $view, ['products' => $products]);
     }
 
-    public function product($productSlug)
+    public function product($productSlug, Product $product)
     {
-        return $this->theme->render('shop.product');
+        $product = $product->first();
+
+        return $this->theme->render('shop.product', ['product' => $product]);
     }
 }
