@@ -27,7 +27,7 @@
 <div class="clearfix"></div>
 
 <ul class="nav profile-skills">
-    <li ng-repeat="skill in vm.profile.skills">
+    <li class="profile-skill" ng-repeat="skill in vm.profile.skills">
 
         <form ng-submit="vm.updateSkill(skill)" novalidate name="skillForm">
 
