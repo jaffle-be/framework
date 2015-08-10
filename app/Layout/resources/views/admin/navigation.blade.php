@@ -30,25 +30,25 @@
                 </div>
             </li>
 
-            <li ui-sref-active="active">
-                <a ui-sref="admin.start"><i class="fa fa-tachometer"></i>
-                    <span class="nav-label">@{{ 'DASH' | translate }}</span></a>
-            </li>
+            {{--<li ui-sref-active="active">--}}
+                {{--<a ui-sref="admin.start"><i class="fa fa-tachometer"></i>--}}
+                    {{--<span class="nav-label">@{{ 'DASH' | translate }}</span></a>--}}
+            {{--</li>--}}
 
             <li ng-class="{active: $state.includes('admin.blog')}">
                 <a ui-sref="admin.blog.posts"><i class="fa fa-newspaper-o"></i>
                     <span class="nav-label">@{{ 'BLOG' | translate }}</span></a>
             </li>
 
-            <li ui-sref-active="active">
-                <a ui-sref="admin.products"><i class="fa fa-newspaper-o"></i>
-                    <span class="nav-label">@{{ 'SHOP' | translate }}</span></a>
-            </li>
+            {{--<li ui-sref-active="active">--}}
+                {{--<a ui-sref="admin.products"><i class="fa fa-newspaper-o"></i>--}}
+                    {{--<span class="nav-label">@{{ 'SHOP' | translate }}</span></a>--}}
+            {{--</li>--}}
 
-            <li ng-class="{active: $state.includes('admin.marketing')}">
-                <a ui-sref="admin.marketing.overview"><i class="fa fa-money"></i>
-                    <span class="nav-label">@{{ 'MARKETING' | translate }}</span></a>
-            </li>
+            {{--<li ng-class="{active: $state.includes('admin.marketing')}">--}}
+                {{--<a ui-sref="admin.marketing.overview"><i class="fa fa-money"></i>--}}
+                    {{--<span class="nav-label">@{{ 'MARKETING' | translate }}</span></a>--}}
+            {{--</li>--}}
 
             <li ui-sref-active="active">
                 <a ui-sref="admin.portfolio.overview"><i class="fa fa-newspaper-o"></i>
