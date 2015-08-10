@@ -1,0 +1,51 @@
+.media-image-uploader {
+
+  .loader {
+    margin: 25px 0;
+    min-height: 150px;
+  }
+
+  .item {
+    padding: 15px;
+
+    .media-image{
+      position:relative;
+    }
+
+    .tools{
+
+      height: 40px;
+      background-color:rgba(0, 0, 0, 0.5);
+      padding: 2px;
+
+      position: absolute;
+      bottom: 0; left: 0;width: 100%;
+
+      .tools-inner{
+
+        position:relative;
+
+      }
+
+      .fa.fa-remove {
+        cursor: pointer;
+        font-size: 250%;
+        position: absolute;
+        right: 15px;
+        color: rgba(240, 240, 240, 1);
+
+        &:hover, &:focus, &:active {
+          color: @brand-danger;
+        }
+      }
+    }
+
+    .form-control {
+      text-align: center;
+    }
+
+
+  }
+
+}
+
