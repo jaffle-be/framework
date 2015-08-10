@@ -19,4 +19,9 @@ class Team extends Model
         return $this->belongsToMany('App\Account\Membership', 'account_team_memberships', 'team_id', 'membership_id');
     }
 
+    public function getCubeportfolioAttribute()
+    {
+        return 'cube' . str_slug(ucfirst($this->name));
+    }
+
 }

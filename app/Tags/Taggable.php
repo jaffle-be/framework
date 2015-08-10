@@ -2,7 +2,7 @@
 
 trait Taggable {
 
-    public function Tags()
+    public function tags()
     {
         return $this->morphToMany('App\Tags\Tag', 'taggable');
     }

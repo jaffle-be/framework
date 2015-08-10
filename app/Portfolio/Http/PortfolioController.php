@@ -2,13 +2,14 @@
 
 use App\Portfolio\Project;
 use App\System\Http\Controller;
+use App\Tags\Tag;
 
 class PortfolioController extends Controller
 {
 
-    public function index(Project $project)
+    public function index(Project $project, Tag $tags)
     {
-        $projects = $project->orderBy('date', 'desc')->get();
+        $projects = $project->with($this->relations())->orderBy('date', 'desc')->get();
 
         $options = [
             //grid or full width?
@@ -19,7 +20,11 @@ class PortfolioController extends Controller
             'text' => true
         ];
 
-        return $this->theme->render('portfolio.index', ['projects' => $projects, 'options' => $options]);
+        $tags = $tags->whereHas('projects', function($query){
+            $query->whereNotNull('id');
+        })->get();
+
+        return $this->theme->render('portfolio.index', ['projects' => $projects, 'options' => $options, 'tags' => $tags]);
     }
 
     public function show(Project $portfolio)
@@ -42,7 +47,7 @@ class PortfolioController extends Controller
      */
     protected function relations()
     {
-        return ['images', 'images.translations', 'images.sizes'];
+        return ['images', 'images.translations', 'images.sizes', 'tags', 'tags.translations'];
     }
 
 }

@@ -20,9 +20,20 @@ class Tag extends Model{
         return $this->morphedByMany('App\Blog\Post', 'taggable');
     }
 
+    public function projects()
+    {
+        return $this->morphedByMany('App\Portfolio\Project', 'taggable');
+    }
+
     public function content()
     {
         return $this->hasMany('App\Tags\TaggedContent');
+    }
+
+
+    public function getCubeportfolioAttribute()
+    {
+        return 'cube' . str_slug(ucfirst($this->name));
     }
 
 }
