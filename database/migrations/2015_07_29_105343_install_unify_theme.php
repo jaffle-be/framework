@@ -285,6 +285,7 @@ class InstallUnifyTheme extends ThemeMigration
             ['value' => 'breadcrumbs-2'],
             ['value' => 'breadcrumbs-3'],
             ['value' => 'breadcrumbs-4'],
+            ['value' => 'breadcrumbs-5'],
         ],
 
         'pagination'    => [
