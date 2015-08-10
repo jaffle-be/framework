@@ -70,9 +70,9 @@ class User extends Model implements Authenticatable, MembershipOwner, AddressOwn
 
     public function getNameAttribute()
     {
-        $fullname = $this->fullname;
+        $fullname = trim($this->firstname . ' ' . $this->lastname);
 
-        return $fullname ? : 'John Doe';
+        return $fullname ?: 'John Doe';
     }
 
     public function getFunctionAttribute()
@@ -132,8 +132,4 @@ class User extends Model implements Authenticatable, MembershipOwner, AddressOwn
         return $this->password;
     }
 
-    public function getFullnameAttribute()
-    {
-        return trim( $this->firstname . ' ' . $this->lastname);
-    }
 }

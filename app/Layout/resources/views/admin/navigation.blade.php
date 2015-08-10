@@ -18,7 +18,7 @@
 
                         <span class="clear">
                                 <span class="block m-t-xs fullname">
-                                    <a ui-sref="admin.profile"><strong class="font-bold">{{ $user->fullname ? $user->fullname : 'Mr/Ms J. Doe'}}</strong></a>
+                                    <a ui-sref="admin.profile"><strong class="font-bold">{{ $user->name }}</strong></a>
                              </span>
                         </span>
 
