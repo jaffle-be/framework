@@ -42,7 +42,7 @@
 
                         {{ Lang::get('menu::settings.delete-menu') }}
 
-                        <button class="pull-right btn btn-danger btn-xs" ng-click="vm.deleteMenu()">{{ Lang::get('menu::settings.remove') }}</button>
+                        <button class="pull-right btn btn-danger" ng-click="vm.deleteMenu()"><i class="fa fa-trash"></i></button>
 
                     </div>
 
@@ -104,7 +104,7 @@
 
                     <div class="footer" ng-show="vm.item.id">
                         {{ Lang::get('menu::settings.delete-menu-item') }}
-                        <button class="pull-right btn btn-danger btn-xs" ng-click="vm.deleteItem()">{{ Lang::get('menu::settings.remove') }}</button>
+                        <button class="pull-right btn btn-danger" ng-click="vm.deleteItem()"><i class="fa fa-trash"></i></button>
                     </div>
 
                 </div>

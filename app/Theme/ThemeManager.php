@@ -55,7 +55,7 @@ class ThemeManager
 
         if($selected)
         {
-            $this->current = $selected->theme;
+            $this->current = $selected;
 
             $this->setupNamespace();
         }
@@ -63,10 +63,15 @@ class ThemeManager
 
     public function name()
     {
-        return $this->current ? $this->current->name : null;
+        return $this->current() ? $this->current()->name : null;
     }
 
     public function current()
+    {
+        return $this->current ? $this->current->theme : false;
+    }
+
+    public function selection()
     {
         return $this->current;
     }
@@ -82,18 +87,42 @@ class ThemeManager
 
         $setting = $theme->settings->get($key);
 
-        if($setting->boolean)
+        if(!$setting)
         {
-            return $setting->value ? true : false;
-        }
-        
-        $value = $setting->value;
-
-        if ($value->option) {
-            return $value->option->value;
+            throw new Exception(sprintf('Unknown setting requested: %s', $key));
         }
 
-        return $value->value;
+        switch($setting->getType())
+        {
+            case 'boolean':
+                return $setting->value ? true : false;
+                break;
+            case 'string':
+                if($setting->value)
+                {
+                    return $setting->value->string;
+                }
+                return $key;
+                break;
+            case 'text':
+                if($setting->value)
+                {
+                    return $setting->value->text;
+                }
+
+                return $key;
+
+                break;
+            case 'select':
+                if($setting->value->option)
+                {
+                    return $setting->value->option->value;
+                }
+                return $setting->value->value;
+
+                break;
+        }
+
     }
 
     public function activate($theme, AccountManager $manager)

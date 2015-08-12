@@ -7,7 +7,7 @@ class ThemeSelection extends Model
 {
     use ModelAccountResource;
 
-    protected $table = 'theme_selection';
+    protected $table = 'themes_selections';
 
     protected $fillable = ['theme_id', 'account_id', 'active'];
 

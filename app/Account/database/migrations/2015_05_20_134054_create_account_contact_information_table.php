@@ -24,17 +24,6 @@ class CreateAccountContactInformationTable extends Migration
             $table->string('hours');
             $table->timestamps();
         });
-
-        Schema::create('account_contact_information_translations', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('locale', 5);
-            $table->text('form_description');
-            $table->string('widget_title');
-            $table->text('widget_content');
-            $table->integer('account_contact_information_id', false, true);
-            $table->foreign('account_contact_information_id', 'translation_to_account_contact_information')->references('id')->on('account_contact_information')->onDelete('cascade');
-            $table->timestamps();
-        });
     }
 
     /**
@@ -44,10 +33,6 @@ class CreateAccountContactInformationTable extends Migration
      */
     public function down()
     {
-        Schema::drop('account_contact_information_translations', function (Blueprint $table) {
-            $table->dropForeign('account_contact_information_id');
-        });
-
         Schema::drop('account_contact_information', function (Blueprint $table) {
             $table->dropForeign('account_contact_information_to_account');
         });

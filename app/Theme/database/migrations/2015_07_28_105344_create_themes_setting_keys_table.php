@@ -16,8 +16,10 @@ class CreateThemesSettingKeysTable extends Migration
             $table->increments('id');
             $table->integer('theme_id', false, true);
             $table->foreign('theme_id', 'theme_setting_keys_to_theme')->references('id')->on('themes')->onDelete('cascade');
-            $table->boolean('boolean');
             $table->string('key');
+            $table->boolean('boolean');
+            $table->boolean('string');
+            $table->boolean('text');
             $table->timestamps();
         });
 

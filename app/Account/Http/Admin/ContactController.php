@@ -40,7 +40,7 @@ class ContactController extends AdminController
     {
         $account = $manager->account();
 
-        $account->load(['contactInformation', 'contactInformation.translations']);
+        $account->load(['contactInformation']);
 
         $contact = $account->contactInformation->first();
 
@@ -49,11 +49,9 @@ class ContactController extends AdminController
 
     public function update(AccountContactInformation $accountContactInformation, UpdateInformationRequest $request)
     {
-        $accountContactInformation->load('translations');
-
         $response = $this->dispatchFromArray(UpdateInformation::class, [
             'info' => $accountContactInformation,
-            'input' => translation_input($request, array_merge(['_token'], ['form_description', 'widget_title', 'widget_content']))
+            'input' => translation_input($request, [])
         ]);
     }
 

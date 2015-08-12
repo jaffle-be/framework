@@ -82,7 +82,7 @@ class ThemeActivator
                 'active'     => true
             ]);
 
-            $this->addDefaults($theme);
+            $this->addDefaults($theme, $selector);
 
             return $selector;
         }
@@ -91,7 +91,7 @@ class ThemeActivator
     /**
      * @param Theme $theme
      */
-    protected function addDefaults(Theme $theme)
+    protected function addDefaults(Theme $theme, ThemeSelection $selection)
     {
         foreach($theme->settings as $setting)
         {
@@ -103,7 +103,9 @@ class ThemeActivator
 
                 $default = array_except($default, ['id', 'created_at', 'updated_at']);
 
-                $setting->value()->create(array_merge(['account_id' => $this->account->id], $default));
+                $payload = array_merge(['account_id' => $this->account->id, 'selection_id' => $selection->id], $default);
+
+                $setting->value()->create($payload);
             }
         }
     }

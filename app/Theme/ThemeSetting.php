@@ -15,7 +15,7 @@ class ThemeSetting extends Model
 
     protected $translationForeignKey = 'key_id';
 
-    protected $fillable = ['theme_id', 'boolean', 'key', 'name', 'explanation'];
+    protected $fillable = ['theme_id', 'boolean', 'string', 'text', 'key', 'name', 'explanation'];
 
     protected $casts = [
         'boolean' => 'boolean'
@@ -53,6 +53,21 @@ class ThemeSetting extends Model
         }
 
         return $result;
+    }
+
+    public function getType()
+    {
+        $types = ['boolean', 'string', 'text'];
+
+        foreach($types as $type)
+        {
+            if(isset($this->attributes[$type]) && $this->attributes[$type])
+            {
+                return $type;
+            }
+        }
+
+        return 'select';
     }
 
 }

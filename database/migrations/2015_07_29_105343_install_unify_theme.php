@@ -1,8 +1,8 @@
 <?php
 
-use App\Theme\ThemeMigration;
+use App\Theme\ThemeInstallationMigration;
 
-class InstallUnifyTheme extends ThemeMigration
+class InstallUnifyTheme extends ThemeInstallationMigration
 {
 
     protected $name = 'Unify';
@@ -52,6 +52,195 @@ class InstallUnifyTheme extends ThemeMigration
         ],
 
         [
+            'key' => 'footerAboutTitle',
+            'string' => true,
+            'nl'  => [
+                'name'        => 'footer about title',
+                'explanation' => 'footer about title'
+            ],
+            'fr'  => [
+                'name'        => 'footer about title',
+                'explanation' => 'footer about title'
+            ],
+            'de'  => [
+                'name'        => 'footer about title',
+                'explanation' => 'footer about title'
+            ],
+            'en'  => [
+                'name'        => 'footer about title',
+                'explanation' => 'footer about title'
+            ],
+        ],
+
+        [
+            'key' => 'footerAboutText',
+            'text' => true,
+            'nl'  => [
+                'name'        => 'footer about text',
+                'explanation' => 'footer about text'
+            ],
+            'fr'  => [
+                'name'        => 'footer about text',
+                'explanation' => 'footer about text'
+            ],
+            'de'  => [
+                'name'        => 'footer about text',
+                'explanation' => 'footer about text'
+            ],
+            'en'  => [
+                'name'        => 'footer about text',
+                'explanation' => 'footer about text'
+            ],
+        ],
+
+        [
+            'key' => 'footerPostsTitle',
+            'string' => true,
+            'nl'  => [
+                'name'        => 'footer posts title',
+                'explanation' => 'footer posts title'
+            ],
+            'fr'  => [
+                'name'        => 'footer posts title',
+                'explanation' => 'footer posts title'
+            ],
+            'de'  => [
+                'name'        => 'footer posts title',
+                'explanation' => 'footer posts title'
+            ],
+            'en'  => [
+                'name'        => 'footer posts title',
+                'explanation' => 'footer posts title'
+            ],
+        ],
+
+        [
+            'key' => 'footerLinksTitle',
+            'string' => true,
+            'nl'  => [
+                'name'        => 'footer links title',
+                'explanation' => 'footer links title'
+            ],
+            'fr'  => [
+                'name'        => 'footer links title',
+                'explanation' => 'footer links title'
+            ],
+            'de'  => [
+                'name'        => 'footer links title',
+                'explanation' => 'footer links title'
+            ],
+            'en'  => [
+                'name'        => 'footer links title',
+                'explanation' => 'footer links title'
+            ],
+        ],
+
+        [
+            'key' => 'footerContactTitle',
+            'string' => true,
+            'nl'  => [
+                'name'        => 'footer contact title',
+                'explanation' => 'footer contact title'
+            ],
+            'fr'  => [
+                'name'        => 'footer contact title',
+                'explanation' => 'footer contact title'
+            ],
+            'de'  => [
+                'name'        => 'footer contact title',
+                'explanation' => 'footer contact title'
+            ],
+            'en'  => [
+                'name'        => 'footer contact title',
+                'explanation' => 'footer contact title'
+            ],
+        ],
+
+        [
+            'key' => 'footerSocialIconsTitle',
+            'string' => true,
+            'nl'  => [
+                'name'        => 'footer social icons title',
+                'explanation' => 'footer social icons title'
+            ],
+            'fr'  => [
+                'name'        => 'footer social icons title',
+                'explanation' => 'footer social icons title'
+            ],
+            'de'  => [
+                'name'        => 'footer social icons title',
+                'explanation' => 'footer social icons title'
+            ],
+            'en'  => [
+                'name'        => 'footer social icons title',
+                'explanation' => 'footer social icons title'
+            ],
+        ],
+
+        [
+            'key' => 'footerNewsletterTitle',
+            'string' => true,
+            'nl'  => [
+                'name'        => 'footer newsletter title',
+                'explanation' => 'footer newsletter title'
+            ],
+            'fr'  => [
+                'name'        => 'footer newsletter title',
+                'explanation' => 'footer newsletter title'
+            ],
+            'de'  => [
+                'name'        => 'footer newsletter title',
+                'explanation' => 'footer newsletter title'
+            ],
+            'en'  => [
+                'name'        => 'footer newsletter title',
+                'explanation' => 'footer newsletter title'
+            ],
+        ],
+
+        [
+            'key' => 'footerNewsletterText',
+            'text' => true,
+            'nl'  => [
+                'name'        => 'footer newsletter text',
+                'explanation' => 'footer newsletter text'
+            ],
+            'fr'  => [
+                'name'        => 'footer newsletter text',
+                'explanation' => 'footer newsletter text'
+            ],
+            'de'  => [
+                'name'        => 'footer newsletter text',
+                'explanation' => 'footer newsletter text'
+            ],
+            'en'  => [
+                'name'        => 'footer newsletter text',
+                'explanation' => 'footer newsletter text'
+            ],
+        ],
+
+        [
+            'key' => 'footerTweetsTitle',
+            'string' => true,
+            'nl'  => [
+                'name'        => 'footer recent tweets title',
+                'explanation' => 'footer recent tweets title'
+            ],
+            'fr'  => [
+                'name'        => 'footer recent tweets title',
+                'explanation' => 'footer recent tweets title'
+            ],
+            'de'  => [
+                'name'        => 'footer recent tweets title',
+                'explanation' => 'footer recent tweets title'
+            ],
+            'en'  => [
+                'name'        => 'footer recent tweets title',
+                'explanation' => 'footer recent tweets title'
+            ],
+        ],
+
+        [
             'key' => 'breadcrumbs',
             'nl'  => [
                 'name'        => 'breadcrumbs',
@@ -91,210 +280,6 @@ class InstallUnifyTheme extends ThemeMigration
             ],
         ],
 
-        [
-            'key' => 'blogOverview',
-            'nl'  => [
-                'name'        => 'blog overview',
-                'explanation' => 'blog overview'
-            ],
-            'fr'  => [
-                'name'        => 'blog overview',
-                'explanation' => 'blog overview'
-            ],
-            'de'  => [
-                'name'        => 'blog overview',
-                'explanation' => 'blog overview'
-            ],
-            'en'  => [
-                'name'        => 'blog overview',
-                'explanation' => 'blog overview'
-            ],
-        ],
-
-        [
-            'key' => 'blogDetail',
-            'nl'  => [
-                'name'        => 'blog detail',
-                'explanation' => 'blog detail'
-            ],
-            'fr'  => [
-                'name'        => 'blog detail',
-                'explanation' => 'blog detail'
-            ],
-            'de'  => [
-                'name'        => 'blog detail',
-                'explanation' => 'blog detail'
-            ],
-            'en'  => [
-                'name'        => 'blog detail',
-                'explanation' => 'blog detail'
-            ],
-        ],
-
-        [
-            'key' => 'contactLayout',
-            'nl'  => [
-                'name'        => 'contact layout',
-                'explanation' => 'contact layout'
-            ],
-            'fr'  => [
-                'name'        => 'contact layout',
-                'explanation' => 'contact layout'
-            ],
-            'de'  => [
-                'name'        => 'contact layout',
-                'explanation' => 'contact layout'
-            ],
-            'en'  => [
-                'name'        => 'contact layout',
-                'explanation' => 'contact layout'
-            ],
-        ],
-
-        [
-            'key' => 'teamOverview',
-            'nl'  => [
-                'name'        => 'team overview layout',
-                'explanation' => 'team overview layout'
-            ],
-            'fr'  => [
-                'name'        => 'team overview layout',
-                'explanation' => 'team overview layout'
-            ],
-            'de'  => [
-                'name'        => 'team overview layout',
-                'explanation' => 'team overview layout'
-            ],
-            'en'  => [
-                'name'        => 'team overview layout',
-                'explanation' => 'team overview layout'
-            ],
-        ],
-
-        [
-            'key' => 'teamDetail',
-            'nl'  => [
-                'name'        => 'team detail layout',
-                'explanation' => 'team detail layout'
-            ],
-            'fr'  => [
-                'name'        => 'team detail layout',
-                'explanation' => 'team detail layout'
-            ],
-            'de'  => [
-                'name'        => 'team detail layout',
-                'explanation' => 'team detail layout'
-            ],
-            'en'  => [
-                'name'        => 'team detail layout',
-                'explanation' => 'team detail layout'
-            ],
-        ],
-
-        [
-            'key'     => 'teamHiring',
-            'boolean' => true,
-            'nl'      => [
-                'name'        => 'team is hiring',
-                'explanation' => 'team is hiring'
-            ],
-            'fr'      => [
-                'name'        => 'team is hiring',
-                'explanation' => 'team is hiring'
-            ],
-            'de'      => [
-                'name'        => 'team is hiring',
-                'explanation' => 'team is hiring'
-            ],
-            'en'      => [
-                'name'        => 'team is hiring',
-                'explanation' => 'team is hiring'
-            ],
-        ],
-
-        [
-            'key'     => 'teamHireMe',
-            'boolean' => true,
-            'nl'      => [
-                'name'        => 'you can hire me',
-                'explanation' => 'you can hire me'
-            ],
-            'fr'      => [
-                'name'        => 'you can hire me',
-                'explanation' => 'you can hire me'
-            ],
-            'de'      => [
-                'name'        => 'you can hire me',
-                'explanation' => 'you can hire me'
-            ],
-            'en'      => [
-                'name'        => 'you can hire me',
-                'explanation' => 'you can hire me'
-            ],
-        ],
-
-        [
-            'key' => 'portfolioColumns',
-            'nl'  => [
-                'name'        => 'portfolio columns',
-                'explanation' => 'portfolio columns'
-            ],
-            'fr'  => [
-                'name'        => 'portfolio columns',
-                'explanation' => 'portfolio columns'
-            ],
-            'de'  => [
-                'name'        => 'portfolio columns',
-                'explanation' => 'portfolio columns'
-            ],
-            'en'  => [
-                'name'        => 'portfolio columns',
-                'explanation' => 'portfolio columns'
-            ],
-        ],
-
-        [
-            'key'     => 'portfolioGrid',
-            'boolean' => true,
-            'nl'      => [
-                'name'        => 'portfolio grid',
-                'explanation' => 'portfolio grid'
-            ],
-            'fr'      => [
-                'name'        => 'portfolio grid',
-                'explanation' => 'portfolio grid'
-            ],
-            'de'      => [
-                'name'        => 'portfolio grid',
-                'explanation' => 'portfolio grid'
-            ],
-            'en'      => [
-                'name'        => 'portfolio grid',
-                'explanation' => 'portfolio grid'
-            ],
-        ],
-
-        [
-            'key'     => 'portfolioSpaced',
-            'boolean' => true,
-            'nl'      => [
-                'name'        => 'portfolio spaced',
-                'explanation' => 'portfolio spaced'
-            ],
-            'fr'      => [
-                'name'        => 'portfolio spaced',
-                'explanation' => 'portfolio spaced'
-            ],
-            'de'      => [
-                'name'        => 'portfolio spaced',
-                'explanation' => 'portfolio spaced'
-            ],
-            'en'      => [
-                'name'        => 'portfolio spaced',
-                'explanation' => 'portfolio spaced'
-            ],
-        ],
-
     ];
 
     protected $defaults = [
@@ -302,12 +287,6 @@ class InstallUnifyTheme extends ThemeMigration
         'footer'           => 'footer_default',
         'breadcrumbs'      => 'breadcrumbs-1',
         'pagination'       => 'pagination-1',
-        'blogOverview'     => 'masonry',
-        'blogDetail'       => 'full-width/large-detail',
-        'contactLayout'    => 'contact-1',
-        'teamOverview'     => 'team-1',
-        'teamDetail'       => 'member-1',
-        'portfolioColumns' => 3
     ];
 
     protected $options = [
@@ -355,60 +334,6 @@ class InstallUnifyTheme extends ThemeMigration
             ['value' => 'pagination-1'],
             ['value' => 'pagination-2'],
             ['value' => 'pagination-3'],
-        ],
-
-        'blogOverview'     => [
-            ['value' => 'full-width/large-overview'],
-            ['value' => 'full-width/large-overview-simple'],
-            ['value' => 'full-width/medium-overview'],
-
-            ['value' => 'sidebar-left/large-overview'],
-            ['value' => 'sidebar-left/large-overview-simple'],
-            ['value' => 'sidebar-left/medium-overview'],
-            ['value' => 'sidebar-left/medium-overview-simple'],
-
-            ['value' => 'sidebar-right/large-overview'],
-            ['value' => 'sidebar-right/large-overview-simple'],
-            ['value' => 'sidebar-right/medium-overview'],
-            ['value' => 'sidebar-right/medium-overview-simple'],
-
-            ['value' => 'masonry'],
-            ['value' => 'timeline'],
-        ],
-
-        'blogDetail'       => [
-            ['value' => 'full-width/large-detail'],
-            ['value' => 'full-width/large-detail-simple'],
-            ['value' => 'sidebar-left/large-detail'],
-            ['value' => 'sidebar-left/large-detail-simple'],
-            ['value' => 'sidebar-right/large-detail'],
-            ['value' => 'sidebar-right/large-detail-simple'],
-        ],
-
-        'contactLayout'    => [
-            ['value' => 'contact-1'],
-            ['value' => 'contact-2'],
-            ['value' => 'contact-3'],
-            ['value' => 'contact-4'],
-            ['value' => 'contact-advanced'],
-        ],
-
-        'teamOverview'     => [
-            ['value' => 'team-1'],
-            ['value' => 'team-2'],
-            ['value' => 'team-3'],
-        ],
-
-        'teamDetail'       => [
-            ['value' => 'member-1'],
-            ['value' => 'member-2'],
-            ['value' => 'member-3'],
-        ],
-
-        'portfolioColumns' => [
-            ['value' => '2'],
-            ['value' => '3'],
-            ['value' => '4'],
         ],
 
     ];

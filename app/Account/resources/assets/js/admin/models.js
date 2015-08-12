@@ -35,4 +35,18 @@ angular.module('account')
                 method: 'GET'
             }
         });
+    })
+
+    .factory('Team', function ($resource) {
+        return $resource('api/admin/account/team/:id', {
+            id: '@id',
+        }, {
+            list: {
+                isArray: true,
+                method: 'GET'
+            },
+            update:{
+                method: 'PUT',
+            }
+        })
     });

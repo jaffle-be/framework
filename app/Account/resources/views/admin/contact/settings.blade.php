@@ -65,49 +65,6 @@
 
             </div>
 
-
-            <div class="col-xs-12 col-md-6">
-
-                <div class="ibox" ng-init="vm.options = {{ system_options() }}">
-
-                    <div class="ibox-title">
-                        <h5>Site settings</h5>
-                    </div>
-
-                    <div class="ibox-content">
-
-                        <tabset justified="true">
-
-                            <tab ng-repeat="locale in vm.options.locales" heading="@{{ locale.locale }}"
-                                 active="vm.options.locales[locale.locale].active">
-                                <div class="row">
-
-                                    <div class="form-group col-xs-12">
-                                        <label for="">Contact form description</label>
-                                        <div summernote ng-model="vm.info.translations[locale.locale].form_description" on-change="vm.save()"></div>
-                                    </div>
-
-                                    <div class="form-group col-xs-12">
-                                        <label for="">Contact widget title</label>
-                                        <input class="form-control" type="text" name="widget_title" ng-change="vm.save()" ng-model="vm.info.translations[locale.locale].widget_title"/>
-                                    </div>
-
-                                    <div class="form-group col-xs-12">
-                                        <label for="">Contact widget content</label>
-                                        <div summernote ng-model="vm.info.translations[locale.locale].widget_content" on-change="vm.save()"></div>
-
-                                    </div>
-
-                                </div>
-                            </tab>
-                        </tabset>
-
-                    </div>
-
-                </div>
-
-            </div>
-
         </form>
 
     </div>

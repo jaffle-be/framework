@@ -1,8 +1,8 @@
 <?php
 
-use App\Theme\ThemeMigration;
+use App\Theme\ThemeInstallationMigration;
 
-class InstallMaterializeTheme extends ThemeMigration
+class InstallMaterializeTheme extends ThemeInstallationMigration
 {
 
     protected $name = 'Materialize';

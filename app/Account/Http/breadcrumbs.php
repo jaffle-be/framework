@@ -1,5 +1,7 @@
 <?php
 
+use App\Users\User;
+
 Breadcrumbs::register('store.team.index', function($breadcrumbs){
 
     $breadcrumbs->parent('store.home');
@@ -7,7 +9,9 @@ Breadcrumbs::register('store.team.index', function($breadcrumbs){
 
 });
 
-Breadcrumbs::register('store.team.show', function($breadcrumbs, $member){
+Breadcrumbs::register('store.team.show', function($breadcrumbs, $team){
+
+    $member = User::find($team);
 
     $breadcrumbs->parent('store.team.index');
     $breadcrumbs->push($member->name, route('store.team.show'));

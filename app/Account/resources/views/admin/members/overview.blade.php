@@ -1,8 +1,8 @@
-<div class="wrapper-content" ng-controller="MembershipsController as vm">
+<div class="wrapper-content" ng-controller="MembershipsController as vm" ng-init="vm.options = {{ system_options() }}">
 
     <div class="row">
 
-        <div class="col-md-6 col-lg-4">
+        <div class="col-md-4">
 
             <div class="ibox">
 
@@ -16,7 +16,7 @@
 
                         <ul class="invitations">
                             <li ng-repeat="invitation in vm.invitations">
-                                <a class="pull-right btn btn-danger btn-sm" ng-click="vm.revokeInvitation(invitation)">{{ Lang::get('account::users.remove') }}</a>
+                                <a class="pull-right btn btn-danger" ng-click="vm.revokeInvitation(invitation)"><i class="fa fa-trash"></i></a>
                                 @{{ invitation.email }} <br>
                                 {{ Lang::get('account::users.since') }}: @{{ invitation.created_at | fromNow }}
                             </li>
@@ -41,9 +41,12 @@
 
             </div>
 
+
+            @include('account::admin.teams.widget')
+
         </div>
 
-        <div class="col-md-6 col-lg-8">
+        <div class="col-md-8">
 
             <div class="ibox">
 
@@ -56,19 +59,44 @@
                     <ul class="memberships">
                         <li ng-repeat="membership in vm.memberships" class="clearfix">
 
-                            <div class="img-wrapper">
-                                <img ng-src="@{{ membership.member.images[0].path }}">
-                            </div>
-                            <div class="wrapper">
+                            <div class="row">
+                                <div class="col-md-6 col-xs-12 membership-info">
 
-                                @if($account->owner->id == $user->id)
-                                    <a class="pull-right btn btn-sm btn-danger" ng-click="vm.revokeMembership(membership)">{{ Lang::get('account::users.remove') }}</a>
-                                @endif
+                                    <h4>{{ Lang::get('account::admin.membership-info') }}</h4>
 
-                                <i ng-show="membership.member.id == {{$account->owner->id}}" class="fa fa-key owner" title="{{ Lang::get('account::members.owner') }}"></i>
+                                    <img ng-src="@{{ membership.member.images[0].path }}">
 
-                                <div>@{{ membership.member.firstname + ' ' + membership.member.lastname }}</div>
-                                <a>@{{ membership.member.email }}</a>
+                                    <div>@{{ membership.member.firstname + ' ' + membership.member.lastname }}</div>
+                                    <div><a>@{{ membership.member.email }}</a></div>
+                                    <div>
+                                        <i ng-show="membership.member.id == {{$account->owner->id}}" class="fa fa-key owner" title="{{ Lang::get('account::members.owner') }}"></i>&nbsp;{{ Lang::get('account::members.owner') }}
+                                    </div>
+
+                                    <div class="clearfix"></div>
+
+                                    @if($account->owner->id == $user->id)
+                                        <p>
+                                            <a class="btn btn-danger btn-lg" ng-click="vm.revokeMembership(membership)"><i class="fa fa-trash"></i></a>
+                                        </p>
+                                    @endif
+
+                                </div>
+
+                                <div class="col-md-6 col-xs-12">
+
+                                    <h4>{{ Lang::get('account::admin.teams') }}</h4>
+
+                                    <ul class="nav teams">
+
+                                        <li ng-repeat="team in vm.teams">
+                                            <input type="checkbox" id="team@{{team.id}}forMembership@{{ membership.id }}" class="filled-in" ng-model="membership.teams[team.id].selected" ng-change="vm.toggleTeamMembership(team, membership)">
+                                            <label for="team@{{team.id}}forMembership@{{membership.id}}">@{{ team.translations[vm.options.locale].name }}</label>
+                                        </li>
+
+                                    </ul>
+
+                                </div>
+
                             </div>
                         </li>
                     </ul>

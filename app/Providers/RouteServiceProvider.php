@@ -36,7 +36,6 @@ class RouteServiceProvider extends ServiceProvider
         $router->model('menu', 'App\Menu\Menu');
         $router->model('menu-item', 'App\Menu\MenuItem');
         $router->model('skill', 'App\Users\Skill');
-        $router->model('team', 'App\Users\User');
         $this->pathsToPublish('');
     }
 

@@ -25,14 +25,11 @@ class Post extends Model implements StoresMedia
 
     protected $translatedAttributes = ['title', 'extract', 'content', 'publish_at'];
 
+    protected $dates = ['publish_at'];
+
     public function user()
     {
         return $this->belongsTo('App\Users\User');
-    }
-
-    public function getPublishedAtAttribute()
-    {
-        return $this->getAttribute('created_at');
     }
 
     /**

@@ -41,11 +41,6 @@ Route::group([
         ], function () {
             Route::resource('profile', 'UserController', ['only' => ['index', 'store']]);
             Route::resource('profile/skill', 'SkillController', ['only' => ['index', 'store', 'update', 'destroy']]);
-            Route::resource('team', 'TeamController', ['only' => ['index', 'show', 'store', 'update']]);
         });
     });
-
-
-
-    Route::resource('team', 'TeamController', ['only' => ['index', 'show']]);
 });

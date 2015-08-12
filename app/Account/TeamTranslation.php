@@ -6,6 +6,6 @@ class TeamTranslation extends TranslationModel
 {
     protected $table = 'account_teams_translations';
 
-    protected $fillable = ['name'];
+    protected $fillable = ['name', 'description'];
 
 }

@@ -16,6 +16,8 @@ Route::group([
         //actual resource
         Route::group(['prefix' => 'api/admin/account'], function () {
             Route::resource('account-contact-information', 'ContactController', ['only' => ['index', 'store', 'update']]);
+            Route::resource('team', 'TeamController', ['only' => ['index', 'store', 'destroy', 'update']]);
+            Route::post('team/{team}/toggle-membership', 'TeamController@toggleMembership');
             Route::resource('members/membership', 'MembershipController', ['only' => ['index', 'update', 'destroy']]);
             Route::resource('members/invitation', 'MembershipInvitationController', ['only' => ['index', 'store', 'destroy']]);
         });
@@ -24,6 +26,7 @@ Route::group([
     Route::group(['namespace' => 'App\Account\Http'], function()
     {
         Route::resource('auth/invitation', 'MembershipInvitationController', ['only' => ['show', 'update']]);
+        Route::resource('team', 'TeamController', ['only' => ['index', 'show']]);
     });
 
 });

@@ -10,13 +10,18 @@ class Team extends Model
 
     protected $table = 'account_teams';
 
-    protected $fillable = ['account_id', 'name'];
+    protected $fillable = ['account_id', 'name', 'description'];
 
-    protected $translatedAttributes = ['name'];
+    protected $translatedAttributes = ['name', 'description'];
 
     public function memberships()
     {
         return $this->belongsToMany('App\Account\Membership', 'account_team_memberships', 'team_id', 'membership_id');
+    }
+
+    public function account()
+    {
+        return $this->belongsTo('App\Account\Account');
     }
 
     public function getCubeportfolioAttribute()

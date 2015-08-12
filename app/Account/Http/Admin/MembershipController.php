@@ -22,11 +22,38 @@ class MembershipController extends AdminController
 //        $this->dispatch();
     }
 
+    /**
+     * @param AccountManager $manager
+     *
+     * @return mixed
+     */
     public function index(AccountManager $manager)
     {
         $account = $manager->account();
 
-        $account->load(['memberships', 'memberships.member', 'memberships.member.images']);
+        $account->load(['memberships', 'memberships.member', 'memberships.member.images', 'memberships.teams', 'teams', 'teams.translations']);
+
+        $teams = $account->teams;
+
+        foreach($teams as $team){
+            $team->selected = false;
+        }
+
+        $teams = $teams->keyBy('id');
+
+        foreach ($account->memberships as $membership) {
+
+            $membershipTeams = clone $teams;
+
+            foreach ($membership->teams as $team) {
+
+                $team->selected = true;
+
+                $membershipTeams->put($team->id, $team);
+            }
+
+            $membership->setRelation('teams', $membershipTeams);
+        }
 
         return $account->memberships;
     }
@@ -36,10 +63,10 @@ class MembershipController extends AdminController
         /**
          * cannot destroy a final membership or the owner of an account
          */
-        if($this->dispatchFromArray(RevokeMembership::class, [
+        if ($this->dispatchFromArray(RevokeMembership::class, [
             'membership' => $membership
-        ]))
-        {
+        ])
+        ) {
             $membership->id = false;
         }
 

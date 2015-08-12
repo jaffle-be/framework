@@ -1,40 +1,54 @@
 .memberships, .invitations {
 
+  .membership-info{
+
+    div{
+
+      &:first-of-type{
+        margin-top: 5px;
+      }
+
+      .text-right;
+      margin-bottom: 5px;
+    }
+
+    .owner {
+      margin-right: 5px;
+      font-size: large;
+    }
+
+    img {
+      max-width: 75px;
+      .pull-left;
+      margin-right: 5px;
+    }
+
+    .btn-danger{
+      margin-top: 10px;
+    }
+
+  }
+
+}
+
+//list styles
+.teams, .memberships, .invitations{
+
   list-style: none;
   padding: 0;
 
-  li{
+  li {
     padding: 15px 0;
   }
 
-  li:not(:last-child){
+  li:not(:last-child) {
     margin-bottom: 15px;
     border-bottom: 1px solid @border-color;
   }
+}
 
-  .owner {
-    margin-right: 15px;
-    font-size: x-large;
-    .pull-right;
+.team-list{
+  li{
+    padding: 10px 0;
   }
-
-
-  .img-wrapper{
-    display: inline-block;
-    width: 20%;
-    .pull-left;
-    text-align: right;
-
-    img{
-      max-width: 75px;
-    }
-  }
-
-  .wrapper{
-    display: inline-block;
-    padding-top: 20px;
-    width: 80%;
-    .pull-right;
-  }
-
 }

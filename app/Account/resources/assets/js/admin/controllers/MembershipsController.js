@@ -1,9 +1,15 @@
 angular.module('account')
-    .controller('MembershipsController', function (MembershipService) {
+    .controller('MembershipsController', function (MembershipService, Team) {
 
         this.invitations = [];
         this.invitationErrors = [];
         this.memberships = [];
+        this.teamSummernote = {
+            toolbar: [
+                ['edit',['undo','redo']],
+                ['style', ['bold', 'italic', 'underline', 'superscript', 'subscript', 'strikethrough', 'clear']],
+            ]
+        }
 
         var me = this;
 
@@ -14,6 +20,10 @@ angular.module('account')
 
             MembershipService.invitations(function (invitations) {
                 me.invitations = invitations;
+            });
+
+            MembershipService.teams(function(teams){
+                me.teams = teams;
             });
         };
 
@@ -50,6 +60,52 @@ angular.module('account')
                         return item.id == membership.id;
                     });
                 }
+            });
+        };
+
+        this.toggleTeamMembership = function(team, membership){
+            MembershipService.toggleTeamMembership(team, membership, function(){
+
+            });
+        };
+
+
+        this.createNewTeam = function()
+        {
+            MembershipService.createNewTeam(this.newTeamName, this.options.locale, function(team)
+            {
+                me.teams.push(team);
+                team.selected = false;
+                _.each(me.memberships, function(membership)
+                {
+                    membership.teams[team.id] = team;
+                });
+
+            });
+        };
+
+        this.deleteTeam = function(team)
+        {
+            MembershipService.deleteTeam(team, function()
+            {
+                _.remove(me.teams, function(item){
+                    return item.id == team.id;
+                });
+
+                _.each(me.memberships, function(membership){
+
+                    _.remove(membership.teams, function(item){
+                        return item.id == team.id;
+                    });
+
+                });
+            });
+        };
+
+        this.updateTeam = function(team){
+            MembershipService.updateTeam(team, function()
+            {
+
             });
         };
 

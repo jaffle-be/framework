@@ -12,7 +12,7 @@ class CreateThemesSelectionTable extends Migration
      */
     public function up()
     {
-        Schema::create('theme_selection', function (Blueprint $table) {
+        Schema::create('themes_selections', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('theme_id', false, true);
             $table->foreign('theme_id', 'theme_selection_to_themes')->references('id')->on('themes')->onDelete('cascade');
@@ -30,7 +30,7 @@ class CreateThemesSelectionTable extends Migration
      */
     public function down()
     {
-        Schema::drop('theme_selection', function (Blueprint $table)
+        Schema::drop('themes_selections', function (Blueprint $table)
         {
             $table->dropForeign('theme_selection_to_themes');
             $table->dropForeign('theme_selection_to_accounts');

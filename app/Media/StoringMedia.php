@@ -1,5 +1,6 @@
 <?php namespace App\Media;
 
+use App\System\Scopes\ModelAccountResource;
 use Exception;
 
 trait StoringMedia
@@ -62,6 +63,11 @@ trait StoringMedia
         if(!property_exists(get_class($this), 'media'))
         {
             throw new Exception('Please define media attribute on your model');
+        }
+
+        if($this instanceof ModelAccountResource)
+        {
+            return sprintf('%d/%s/%d/', $this->attributes['account_id'], $this->media, $this->attributes['id']);
         }
 
         return sprintf('%s/%d/', $this->media, $this->attributes['id']);

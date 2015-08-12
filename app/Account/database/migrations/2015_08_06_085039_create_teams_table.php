@@ -28,6 +28,7 @@ class CreateTeamsTable extends Migration
             $table->foreign('team_id', 'translations_to_teams')->references('id')->on('account_teams')->onDelete('cascade');
             $table->string('locale', 5);
             $table->string('name');
+            $table->text('description');
             $table->timestamps();
         });
 

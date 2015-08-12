@@ -29,8 +29,6 @@ angular.module('account')
                 }
                 else
                 {
-                    me.info.translations = InputTranslationHandler(me.options.locales, me.info.translations);
-
                     me.info.$update(function () {
                         $scope.errors = [];
                     }, function(response){

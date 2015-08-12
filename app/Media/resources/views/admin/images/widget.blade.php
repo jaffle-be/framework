@@ -18,7 +18,7 @@
 
                 <div class="tools">
                     <div class="tools-inner">
-                        <i class="fa fa-remove" ng-click="ctrl.deleteImage(img)"></i>
+                        <i class="fa fa-trash" ng-click="ctrl.deleteImage(img)"></i>
                     </div>
                 </div>
             </div>

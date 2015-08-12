@@ -2,9 +2,12 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Jaffle\Tools\ConfigWriter;
 
 class CreateThemesTable extends Migration
 {
+
+    use ConfigWriter;
     /**
      * Run the migrations.
      *
@@ -18,6 +21,8 @@ class CreateThemesTable extends Migration
             $table->string('version', 15);
             $table->timestamps();
         });
+
+        $this->replaceConfigValue(config_path() . '/system.php', 'installed', 'true');
     }
 
     /**
@@ -27,6 +32,9 @@ class CreateThemesTable extends Migration
      */
     public function down()
     {
+        $this->replaceConfigValue(config_path() . '/system.php', 'installed', 'false');
+
         Schema::drop('themes');
     }
+
 }

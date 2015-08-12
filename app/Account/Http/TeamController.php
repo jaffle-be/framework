@@ -1,9 +1,10 @@
-<?php namespace App\Users\Http;
+<?php namespace App\Account\Http;
 
 use App\Account\AccountManager;
 use App\Account\Team;
 use App\System\Http\Controller;
 use App\Users\User;
+use Illuminate\Http\Request;
 
 class TeamController extends Controller
 {
@@ -23,11 +24,13 @@ class TeamController extends Controller
         return $this->theme->render('team.index', ['memberships' => $memberships, 'teams' => $teams]);
     }
 
-    public function show(User $team)
+    public function show(User $user, $team)
     {
-        $team->load(['projects', 'projects.images']);
+        $user = $user->find($team);
 
-        return $this->theme->render('team.detail', ['member' => $team]);
+        $user = $user->load(['projects', 'projects.images']);
+
+        return $this->theme->render('team.detail', ['member' => $user]);
     }
 
 }
