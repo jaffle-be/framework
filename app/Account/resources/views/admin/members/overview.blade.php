@@ -41,14 +41,13 @@
 
             </div>
 
-
-            @include('account::admin.teams.widget')
-
         </div>
 
         <div class="col-md-8">
 
-            <div class="ibox">
+            @include('account::admin.teams.widget')
+
+            <div class="ibox" ng-hide="vm.editingTeams">
 
                 <div class="ibox-title">
                     <h5>{{ Lang::get('account::users.overview') }}</h5>
@@ -84,7 +83,10 @@
 
                                 <div class="col-md-6 col-xs-12">
 
-                                    <h4>{{ Lang::get('account::admin.teams') }}</h4>
+                                    <h4>{{ Lang::get('account::admin.teams') }}
+                                        <button class="btn btn-info pull-right" ng-click="vm.startTeamEditor()">
+                                            <i class="fa fa-pencil"></i></button>
+                                    </h4>
 
                                     <ul class="nav teams">
 

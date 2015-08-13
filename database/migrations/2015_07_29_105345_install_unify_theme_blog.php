@@ -13,6 +13,7 @@ class InstallUnifyThemeBlog extends ThemeSettingMigration
 
         [
             'key' => 'blogOverview',
+            'type' => 'select',
             'nl'  => [
                 'name'        => 'blog overview',
                 'explanation' => 'blog overview'
@@ -33,6 +34,7 @@ class InstallUnifyThemeBlog extends ThemeSettingMigration
 
         [
             'key' => 'blogDetail',
+            'type' => 'select',
             'nl'  => [
                 'name'        => 'blog detail',
                 'explanation' => 'blog detail'

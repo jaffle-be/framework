@@ -4,6 +4,7 @@ angular.module('account')
         this.invitations = [];
         this.invitationErrors = [];
         this.memberships = [];
+        this.editingTeams = false;
         this.teamSummernote = {
             toolbar: [
                 ['edit',['undo','redo']],
@@ -108,6 +109,16 @@ angular.module('account')
 
             });
         };
+
+        this.startTeamEditor = function()
+        {
+            this.editingTeams = true;
+        }
+
+        this.closeTeamEditor = function()
+        {
+            this.editingTeams = false;
+        }
 
         this.load();
 

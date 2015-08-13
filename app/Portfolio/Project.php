@@ -24,6 +24,11 @@ class Project extends Model implements StoresMedia
 
     protected $translatedAttributes = ['title', 'description'];
 
+    public function newCollection(array $models = [])
+    {
+        return new ProjectCollection($models);
+    }
+
     public function collaborators()
     {
         return $this->belongsToMany('App\Users\User', 'portfolio_project_collaborators', 'project_id', 'user_id');

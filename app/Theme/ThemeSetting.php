@@ -15,7 +15,7 @@ class ThemeSetting extends Model
 
     protected $translationForeignKey = 'key_id';
 
-    protected $fillable = ['theme_id', 'boolean', 'string', 'text', 'key', 'name', 'explanation'];
+    protected $fillable = ['theme_id', 'type_id', 'key', 'name', 'explanation'];
 
     protected $casts = [
         'boolean' => 'boolean'
@@ -24,6 +24,11 @@ class ThemeSetting extends Model
     public function options()
     {
         return $this->hasMany('App\Theme\ThemeSettingOption', 'key_id');
+    }
+
+    public function type()
+    {
+        return $this->belongsTo('App\Theme\ThemeSettingType', 'type_id');
     }
 
     public function value()
@@ -43,31 +48,70 @@ class ThemeSetting extends Model
         return $this->hasOne('App\Theme\ThemeSettingDefault', 'key_id');
     }
 
+    /**
+     * Currently only used in the angular part, to return them through an /api/admin call
+     *
+     * @return array
+     */
     public function toArray()
     {
         $result = parent::toArray();
 
-        if($this->boolean)
+        switch($this->type->name)
         {
-            $result['value'] = (bool) $result['value'];
+            case 'boolean':
+                $result['value'] = (bool) $result['value'];
+                break;
+
+            case 'string':
+                break;
+
+            case 'text':
+                break;
+
+            case 'select':
+                break;
+
+            case 'numeric':
+                break;
         }
 
         return $result;
     }
 
-    public function getType()
+    /**
+     * Used when actually getting the value to decide what to do for the given setting.
+     *
+     * @return bool|mixed
+     */
+    public function getValue()
     {
-        $types = ['boolean', 'string', 'text'];
-
-        foreach($types as $type)
-        {
-            if(isset($this->attributes[$type]) && $this->attributes[$type])
-            {
-                return $type;
-            }
+        if ($this->type->name == 'boolean') {
+            return $this->value ? true : false;
         }
 
-        return 'select';
+        if ($this->type->name == 'string' || $this->type->name == 'text') {
+            if ($this->value) {
+                return $this->value->{$this->type->name};
+            }
+
+            return $this->key;
+        }
+
+        if ($this->type->name == 'select') {
+            if ($this->value->option) {
+                return $this->value->option->value;
+            }
+
+            return $this->value->value;
+        }
+
+        if ($this->type->name == 'numeric') {
+            if($this->value)
+            {
+                return $this->value->value;
+            }
+        }
     }
 
 }

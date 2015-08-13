@@ -43,6 +43,11 @@ class User extends Model implements Authenticatable, MembershipOwner, AddressOwn
         'confirmed' => 'boolean'
     ];
 
+    public function socialLinks()
+    {
+        return $this->morphOne('App\Contact\SocialLinks', 'owner');
+    }
+
     public function address()
     {
         return $this->morphOne('App\Contact\Address', 'owner');

@@ -13,6 +13,7 @@ class InstallUnifyTheme extends ThemeInstallationMigration
 
         [
             'key' => 'header',
+            'type' => 'select',
             'nl'  => [
                 'name'        => 'header view',
                 'explanation' => 'header view'
@@ -33,6 +34,7 @@ class InstallUnifyTheme extends ThemeInstallationMigration
 
         [
             'key' => 'footer',
+            'type' => 'select',
             'nl'  => [
                 'name'        => 'footer view',
                 'explanation' => 'footer view'
@@ -52,189 +54,189 @@ class InstallUnifyTheme extends ThemeInstallationMigration
         ],
 
         [
-            'key' => 'footerAboutTitle',
-            'string' => true,
-            'nl'  => [
+            'key'  => 'footerAboutTitle',
+            'type' => 'string',
+            'nl'   => [
                 'name'        => 'footer about title',
                 'explanation' => 'footer about title'
             ],
-            'fr'  => [
+            'fr'   => [
                 'name'        => 'footer about title',
                 'explanation' => 'footer about title'
             ],
-            'de'  => [
+            'de'   => [
                 'name'        => 'footer about title',
                 'explanation' => 'footer about title'
             ],
-            'en'  => [
+            'en'   => [
                 'name'        => 'footer about title',
                 'explanation' => 'footer about title'
             ],
         ],
 
         [
-            'key' => 'footerAboutText',
-            'text' => true,
-            'nl'  => [
+            'key'  => 'footerAboutText',
+            'type' => 'text',
+            'nl'   => [
                 'name'        => 'footer about text',
                 'explanation' => 'footer about text'
             ],
-            'fr'  => [
+            'fr'   => [
                 'name'        => 'footer about text',
                 'explanation' => 'footer about text'
             ],
-            'de'  => [
+            'de'   => [
                 'name'        => 'footer about text',
                 'explanation' => 'footer about text'
             ],
-            'en'  => [
+            'en'   => [
                 'name'        => 'footer about text',
                 'explanation' => 'footer about text'
             ],
         ],
 
         [
-            'key' => 'footerPostsTitle',
-            'string' => true,
-            'nl'  => [
+            'key'  => 'footerPostsTitle',
+            'type' => 'string',
+            'nl'   => [
                 'name'        => 'footer posts title',
                 'explanation' => 'footer posts title'
             ],
-            'fr'  => [
+            'fr'   => [
                 'name'        => 'footer posts title',
                 'explanation' => 'footer posts title'
             ],
-            'de'  => [
+            'de'   => [
                 'name'        => 'footer posts title',
                 'explanation' => 'footer posts title'
             ],
-            'en'  => [
+            'en'   => [
                 'name'        => 'footer posts title',
                 'explanation' => 'footer posts title'
             ],
         ],
 
         [
-            'key' => 'footerLinksTitle',
-            'string' => true,
-            'nl'  => [
+            'key'  => 'footerLinksTitle',
+            'type' => 'string',
+            'nl'   => [
                 'name'        => 'footer links title',
                 'explanation' => 'footer links title'
             ],
-            'fr'  => [
+            'fr'   => [
                 'name'        => 'footer links title',
                 'explanation' => 'footer links title'
             ],
-            'de'  => [
+            'de'   => [
                 'name'        => 'footer links title',
                 'explanation' => 'footer links title'
             ],
-            'en'  => [
+            'en'   => [
                 'name'        => 'footer links title',
                 'explanation' => 'footer links title'
             ],
         ],
 
         [
-            'key' => 'footerContactTitle',
-            'string' => true,
-            'nl'  => [
+            'key'  => 'footerContactTitle',
+            'type' => 'string',
+            'nl'   => [
                 'name'        => 'footer contact title',
                 'explanation' => 'footer contact title'
             ],
-            'fr'  => [
+            'fr'   => [
                 'name'        => 'footer contact title',
                 'explanation' => 'footer contact title'
             ],
-            'de'  => [
+            'de'   => [
                 'name'        => 'footer contact title',
                 'explanation' => 'footer contact title'
             ],
-            'en'  => [
+            'en'   => [
                 'name'        => 'footer contact title',
                 'explanation' => 'footer contact title'
             ],
         ],
 
         [
-            'key' => 'footerSocialIconsTitle',
-            'string' => true,
-            'nl'  => [
+            'key'  => 'footerSocialIconsTitle',
+            'type' => 'string',
+            'nl'   => [
                 'name'        => 'footer social icons title',
                 'explanation' => 'footer social icons title'
             ],
-            'fr'  => [
+            'fr'   => [
                 'name'        => 'footer social icons title',
                 'explanation' => 'footer social icons title'
             ],
-            'de'  => [
+            'de'   => [
                 'name'        => 'footer social icons title',
                 'explanation' => 'footer social icons title'
             ],
-            'en'  => [
+            'en'   => [
                 'name'        => 'footer social icons title',
                 'explanation' => 'footer social icons title'
             ],
         ],
 
         [
-            'key' => 'footerNewsletterTitle',
-            'string' => true,
-            'nl'  => [
+            'key'  => 'footerNewsletterTitle',
+            'type' => 'string',
+            'nl'   => [
                 'name'        => 'footer newsletter title',
                 'explanation' => 'footer newsletter title'
             ],
-            'fr'  => [
+            'fr'   => [
                 'name'        => 'footer newsletter title',
                 'explanation' => 'footer newsletter title'
             ],
-            'de'  => [
+            'de'   => [
                 'name'        => 'footer newsletter title',
                 'explanation' => 'footer newsletter title'
             ],
-            'en'  => [
+            'en'   => [
                 'name'        => 'footer newsletter title',
                 'explanation' => 'footer newsletter title'
             ],
         ],
 
         [
-            'key' => 'footerNewsletterText',
-            'text' => true,
-            'nl'  => [
+            'key'  => 'footerNewsletterText',
+            'type' => 'text',
+            'nl'   => [
                 'name'        => 'footer newsletter text',
                 'explanation' => 'footer newsletter text'
             ],
-            'fr'  => [
+            'fr'   => [
                 'name'        => 'footer newsletter text',
                 'explanation' => 'footer newsletter text'
             ],
-            'de'  => [
+            'de'   => [
                 'name'        => 'footer newsletter text',
                 'explanation' => 'footer newsletter text'
             ],
-            'en'  => [
+            'en'   => [
                 'name'        => 'footer newsletter text',
                 'explanation' => 'footer newsletter text'
             ],
         ],
 
         [
-            'key' => 'footerTweetsTitle',
-            'string' => true,
-            'nl'  => [
+            'key'  => 'footerTweetsTitle',
+            'type' => 'string',
+            'nl'   => [
                 'name'        => 'footer recent tweets title',
                 'explanation' => 'footer recent tweets title'
             ],
-            'fr'  => [
+            'fr'   => [
                 'name'        => 'footer recent tweets title',
                 'explanation' => 'footer recent tweets title'
             ],
-            'de'  => [
+            'de'   => [
                 'name'        => 'footer recent tweets title',
                 'explanation' => 'footer recent tweets title'
             ],
-            'en'  => [
+            'en'   => [
                 'name'        => 'footer recent tweets title',
                 'explanation' => 'footer recent tweets title'
             ],
@@ -242,6 +244,7 @@ class InstallUnifyTheme extends ThemeInstallationMigration
 
         [
             'key' => 'breadcrumbs',
+            'type' => 'select',
             'nl'  => [
                 'name'        => 'breadcrumbs',
                 'explanation' => 'breadcrumbs style'
@@ -262,6 +265,7 @@ class InstallUnifyTheme extends ThemeInstallationMigration
 
         [
             'key' => 'pagination',
+            'type' => 'select',
             'nl'  => [
                 'name'        => 'pagination',
                 'explanation' => 'pagination style'
@@ -283,15 +287,15 @@ class InstallUnifyTheme extends ThemeInstallationMigration
     ];
 
     protected $defaults = [
-        'header'           => 'header_default',
-        'footer'           => 'footer_default',
-        'breadcrumbs'      => 'breadcrumbs-1',
-        'pagination'       => 'pagination-1',
+        'header'      => 'header_default',
+        'footer'      => 'footer_default',
+        'breadcrumbs' => 'breadcrumbs-1',
+        'pagination'  => 'pagination-1',
     ];
 
     protected $options = [
 
-        'header'           => [
+        'header'      => [
 
             ['value' => 'header_default'],
             ['value' => 'header_v1'],
@@ -311,7 +315,7 @@ class InstallUnifyTheme extends ThemeInstallationMigration
             ['value' => 'header_v6_transparent'],
         ],
 
-        'footer'           => [
+        'footer'      => [
             ['value' => 'footer_default'],
             ['value' => 'footer_v1'],
             ['value' => 'footer_v2'],
@@ -322,7 +326,7 @@ class InstallUnifyTheme extends ThemeInstallationMigration
             ['value' => 'footer_v7'],
         ],
 
-        'breadcrumbs'      => [
+        'breadcrumbs' => [
             ['value' => 'breadcrumbs-1'],
             ['value' => 'breadcrumbs-2'],
             ['value' => 'breadcrumbs-3'],
@@ -330,7 +334,7 @@ class InstallUnifyTheme extends ThemeInstallationMigration
             ['value' => 'breadcrumbs-5'],
         ],
 
-        'pagination'       => [
+        'pagination'  => [
             ['value' => 'pagination-1'],
             ['value' => 'pagination-2'],
             ['value' => 'pagination-3'],

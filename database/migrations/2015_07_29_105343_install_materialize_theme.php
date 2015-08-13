@@ -11,6 +11,7 @@ class InstallMaterializeTheme extends ThemeInstallationMigration
 
         [
             'key' => 'header',
+            'type' => 'select',
             'nl'  => [
                 'name'        => 'header view',
                 'explanation' => 'header view'
@@ -31,6 +32,7 @@ class InstallMaterializeTheme extends ThemeInstallationMigration
 
         [
             'key' => 'footer',
+            'type' => 'select',
             'nl'  => [
                 'name'        => 'footer view',
                 'explanation' => 'footer view'

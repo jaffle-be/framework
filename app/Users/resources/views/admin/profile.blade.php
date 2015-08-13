@@ -30,6 +30,12 @@
 
     <div class="col-md-6">
 
+        <div social-links-input owner-id="{{ $user->id }}" owner-type="'user'"></div>
+
+    </div>
+
+    <div class="col-md-6">
+
         <div class="ibox">
 
             <div class="ibox-title">

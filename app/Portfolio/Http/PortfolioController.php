@@ -19,9 +19,7 @@ class PortfolioController extends Controller
             'spaced' => $this->theme->setting('portfolioSpaced'),
         ];
 
-        $tags = $tags->whereHas('projects', function($query){
-            $query->whereNotNull('id');
-        })->get();
+        $tags = $projects->getUniqueTags();
 
         return $this->theme->render('portfolio.index', ['projects' => $projects, 'options' => $options, 'tags' => $tags]);
     }

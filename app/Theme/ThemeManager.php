@@ -92,36 +92,7 @@ class ThemeManager
             throw new Exception(sprintf('Unknown setting requested: %s', $key));
         }
 
-        switch($setting->getType())
-        {
-            case 'boolean':
-                return $setting->value ? true : false;
-                break;
-            case 'string':
-                if($setting->value)
-                {
-                    return $setting->value->string;
-                }
-                return $key;
-                break;
-            case 'text':
-                if($setting->value)
-                {
-                    return $setting->value->text;
-                }
-
-                return $key;
-
-                break;
-            case 'select':
-                if($setting->value->option)
-                {
-                    return $setting->value->option->value;
-                }
-                return $setting->value->value;
-
-                break;
-        }
+        return $setting->getValue();
 
     }
 

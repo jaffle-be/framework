@@ -67,6 +67,13 @@
 
         </form>
 
+
+        <div class="col-xs-12 col-md-6">
+
+            <div social-links-input owner-id="{{ $account->id }}" owner-type="'account'"></div>
+
+        </div>
+
     </div>
 
 

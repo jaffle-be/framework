@@ -29,6 +29,11 @@ class Account extends Model
         return $this->hasMany('App\Account\AccountContactInformation');
     }
 
+    public function socialLinks()
+    {
+        return $this->morphOne('App\Contact\SocialLinks', 'owner');
+    }
+
     public function getOwnerAttribute()
     {
         return $this->ownership->member;

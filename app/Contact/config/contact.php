@@ -10,6 +10,11 @@ return [
     'address_owners' => [
         'account' => 'App\Account\AccountContactInformation',
         'user'    => 'App\Users\User'
+    ],
+
+    'social_links_owners' => [
+        'account' => 'App\Account\Account',
+        'user'    => 'App\Users\User'
     ]
 
 ];

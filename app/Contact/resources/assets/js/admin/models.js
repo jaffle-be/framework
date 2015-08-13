@@ -11,4 +11,14 @@ angular.module('contact')
                 method: 'PUT'
             }
         });
+    })
+    .factory('SocialLinks', function ($resource) {
+        return $resource('api/admin/contact/social-links/:id', {id: '@id'}, {
+            find: {
+                method: 'GET'
+            },
+            update: {
+                method: 'PUT'
+            }
+        });
     });

@@ -13,6 +13,7 @@ class InstallUnifyThemePortfolio extends ThemeSettingMigration
 
         [
             'key' => 'portfolioColumns',
+            'type' => 'select',
             'nl'  => [
                 'name'        => 'portfolio columns',
                 'explanation' => 'portfolio columns'
@@ -33,7 +34,7 @@ class InstallUnifyThemePortfolio extends ThemeSettingMigration
 
         [
             'key'     => 'portfolioGrid',
-            'boolean' => true,
+            'type' => 'boolean',
             'nl'      => [
                 'name'        => 'portfolio grid',
                 'explanation' => 'portfolio grid'
@@ -54,7 +55,7 @@ class InstallUnifyThemePortfolio extends ThemeSettingMigration
 
         [
             'key'     => 'portfolioSpaced',
-            'boolean' => true,
+            'type' => 'boolean',
             'nl'      => [
                 'name'        => 'portfolio spaced',
                 'explanation' => 'portfolio spaced'

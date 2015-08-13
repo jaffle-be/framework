@@ -1,4 +1,4 @@
-<div class="ibox">
+<div class="ibox" ng-show="vm.editingTeams">
 
     <div class="ibox-title">
         <h5>{{ Lang::get('account::team-creator') }}</h5>
@@ -11,6 +11,8 @@
             <tab ng-repeat="locale in vm.options.locales" heading="@{{ locale.locale }}" active="vm.options.locales[locale.locale].active" select="vm.options.locale = locale.locale">
 
             </tab>
+
+            <button class="btn btn-info pull-right" ng-click="vm.closeTeamEditor()"><i class="fa fa-remove"></i></button>
         </tabset>
 
         <form ng-submit="vm.createNewTeam()">

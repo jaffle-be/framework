@@ -13,6 +13,7 @@ class InstallUnifyThemeContact extends ThemeSettingMigration
 
         [
             'key' => 'contactLayout',
+            'type' => 'select',
             'nl'  => [
                 'name'        => 'contact layout',
                 'explanation' => 'contact layout'
@@ -33,7 +34,7 @@ class InstallUnifyThemeContact extends ThemeSettingMigration
 
         [
             'key' => 'contactContactTitle',
-            'string' => true,
+            'type' => 'string',
             'nl'  => [
                 'name'        => 'contact contact info title',
                 'explanation' => 'contact contact info title'
@@ -54,7 +55,7 @@ class InstallUnifyThemeContact extends ThemeSettingMigration
 
         [
             'key' => 'contactHoursTitle',
-            'string' => true,
+            'type' => 'string',
             'nl'  => [
                 'name'        => 'contact openinghours title',
                 'explanation' => 'contact openinghours title'
@@ -76,7 +77,7 @@ class InstallUnifyThemeContact extends ThemeSettingMigration
 
         [
             'key' => 'contactWidgetTitle',
-            'string' => true,
+            'type' => 'string',
             'nl'  => [
                 'name'        => 'contact widget title',
                 'explanation' => 'contact widget title'
@@ -97,7 +98,7 @@ class InstallUnifyThemeContact extends ThemeSettingMigration
 
         [
             'key' => 'contactWidgetText',
-            'text' => true,
+            'type' => 'text',
             'nl'  => [
                 'name'        => 'contact widget text',
                 'explanation' => 'contact widget text'
@@ -119,7 +120,7 @@ class InstallUnifyThemeContact extends ThemeSettingMigration
 
         [
             'key' => 'contactFormTitle',
-            'string' => true,
+            'type' => 'string',
             'nl'  => [
                 'name'        => 'contact form title',
                 'explanation' => 'contact form title'
@@ -140,7 +141,7 @@ class InstallUnifyThemeContact extends ThemeSettingMigration
 
         [
             'key' => 'contactFormText',
-            'text' => true,
+            'type' => 'text',
             'nl'  => [
                 'name'        => 'contact form text',
                 'explanation' => 'contact form text'

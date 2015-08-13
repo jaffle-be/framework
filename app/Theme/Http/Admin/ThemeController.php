@@ -52,7 +52,7 @@ class ThemeController extends AdminController
 
             $setting = $settings->get($setting);
 
-            switch ($setting->getType()) {
+            switch ($setting->type->name) {
                 case 'boolean':
                     $this->updateSettingBoolean($setting, $request, $account, $selection);
                     break;
@@ -62,6 +62,9 @@ class ThemeController extends AdminController
                     break;
                 case 'select':
                     $this->updateSettingSelect($setting, $request, $option, $account, $selection);
+                    break;
+                case 'numeric':
+                    $this->updateSettingNumeric($setting, $request, $account, $selection);
                     break;
             }
         }
@@ -84,7 +87,7 @@ class ThemeController extends AdminController
     {
         $theme = $theme->current();
 
-        $theme->load(['settings', 'settings.options', 'settings.value', 'settings.value.translations']);
+        $theme->load(['settings', 'settings.type', 'settings.options', 'settings.value', 'settings.value.translations']);
 
         return $theme;
     }
@@ -142,6 +145,22 @@ class ThemeController extends AdminController
         }
 
         $value->fill($input);
+
+        $value->save();
+    }
+
+    protected function updateSettingNumeric($setting, $request, Account $account, ThemeSelection $selection)
+    {
+        $value = $setting->value;
+
+        if (!$value) {
+
+            $input = array_merge(['value' => $request->get('value')], ['account_id' => $account->id, 'selection_id' => $selection->id]);
+
+            return $setting->value()->create($input);
+        }
+
+        $value->value = $request->get('value');
 
         $value->save();
     }

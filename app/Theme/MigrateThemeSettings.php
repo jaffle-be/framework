@@ -1,43 +1,38 @@
 <?php namespace App\Theme;
 
 use Exception;
+use Illuminate\Database\Eloquent\Collection;
 
 trait MigrateThemeSettings
 {
 
+    /**
+     * @var Collection
+     */
+    protected static $types = false;
+
     protected function settings(Theme $theme)
     {
-
         foreach ($this->settings as $setting) {
+
+            $type = $this->settingGetType($setting);
+
+            $setting['type_id'] = $type->id;
 
             $setting = $theme->settings()->create($setting);
 
-            $type = $setting->getType();
+            $method = 'settingsHandle' . ucfirst($type->name);
 
-            $method = 'settingsHandle' . ucfirst($type);
-
-            call_user_func([$this, $method], $setting);
+            if(method_exists($this, $method))
+            {
+                call_user_func([$this, $method], $setting);
+            }
         }
     }
 
     protected function settingKeys()
     {
         return array_pluck($this->settings, 'key');
-    }
-
-    protected function settingsHandleBoolean(ThemeSetting $setting)
-    {
-
-    }
-
-    protected function settingsHandleString(ThemeSetting $setting)
-    {
-
-    }
-
-    protected function settingsHandleText(ThemeSetting $setting)
-    {
-
     }
 
     protected function settingsHandleSelect(ThemeSetting $setting)
@@ -54,6 +49,21 @@ trait MigrateThemeSettings
 
             $setting->defaults()->create(['option_id' => $option->id]);
         }
+    }
+
+    protected function settingGetType(array $setting)
+    {
+        if(!static::$types)
+        {
+            static::$types = ThemeSettingType::all()->keyBy('name');
+        }
+
+        if(!static::$types->has($setting['type']))
+        {
+            throw new Exception('Invalid setting type provided');
+        }
+
+        return static::$types->get($setting['type']);
     }
 
 }
