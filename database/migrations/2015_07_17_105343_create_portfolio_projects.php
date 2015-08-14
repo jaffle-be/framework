@@ -16,7 +16,8 @@ class CreatePortfolioProjects extends Migration
             $table->increments('id');
             $table->integer('account_id', false, true);
             $table->foreign('account_id', 'project_to_account')->references('id')->on('accounts')->onDelete('cascade');
-            $table->string('client_name');
+            $table->integer('client_id', false, true)->nullable();
+            $table->foreign('client_id', 'project_to_client')->references('id')->on('account_clients')->onDelete('cascade');
             $table->date('date')->nullable();
             $table->string('website');
             $table->timestamps();
@@ -30,6 +31,9 @@ class CreatePortfolioProjects extends Migration
      */
     public function down()
     {
-        Schema::drop('portfolio_projects');
+        Schema::drop('portfolio_projects', function(Blueprint $table){
+            $table->dropForeign('project_to_account');
+            $table->dropForeign('project_to_client');
+        });
     }
 }

@@ -6,11 +6,23 @@
 
     <div class="ibox-content">
 
-        <form ng-submit="vm.save()" name="projectForm" novalidate class="form-horizontal">
+        <form ng-submit="vm.save()" name="projectForm" novalidate>
 
             <input name="locale" type="hidden" value="@{{ vm.options.locale }}"/>
 
-            <div class="form-group col-xs-12">
+            <div class="row">
+                <div class="form-group col-xs-6">
+                    <label for="website">{{ Lang::get('portfolio::admin.website') }}</label>
+                    <input id="website" type="text" class="form-control" ng-model="vm.project.website">
+                </div>
+
+                <div class="form-group col-xs-6">
+                    <label for="date">{{ Lang::get('portfolio::admin.website') }}</label>
+                    <input id="date" type="text" class="form-control" ng-model="vm.project.date">
+                </div>
+            </div>
+
+            <div class="form-group">
                 <label for="title" class="control-label">{{ Lang::get('portfolio::admin.project-title') }}</label>
 
                 <div>
@@ -18,7 +30,7 @@
                 </div>
             </div>
 
-            <div class="form-group col-xs-12">
+            <div class="form-group">
                 <label for="description" class="control-label">{{ Lang::get('portfolio::admin.project-description') }}</label>
 
                 <div>

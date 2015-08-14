@@ -21,6 +21,8 @@
 
         @include('portfolio::admin.project-images')
 
+        @include('portfolio::admin.project-client')
+
     </div>
 
 </div>

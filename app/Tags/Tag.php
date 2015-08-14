@@ -36,4 +36,9 @@ class Tag extends Model{
         return 'cube' . str_slug(ucfirst($this->name));
     }
 
+    public function newCollection(array $models = [])
+    {
+        return new TagCollection($models);
+    }
+
 }

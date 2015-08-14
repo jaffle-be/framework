@@ -18,7 +18,7 @@ class Project extends Model implements StoresMedia
 
     protected $media = '{account}/portfolio';
 
-    protected $fillable = ['account_id', 'client_name', 'website', 'date', 'title', 'description'];
+    protected $fillable = ['account_id', 'client_id', 'website', 'date', 'title', 'description'];
 
     protected $dates = ['date'];
 
@@ -32,6 +32,11 @@ class Project extends Model implements StoresMedia
     public function collaborators()
     {
         return $this->belongsToMany('App\Users\User', 'portfolio_project_collaborators', 'project_id', 'user_id');
+    }
+
+    public function client()
+    {
+        return $this->belongsTo('App\Account\Client', 'client_id');
     }
 
 }

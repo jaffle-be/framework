@@ -1,6 +1,7 @@
 <?php
 
 use App\Account\Account;
+use App\Account\Client;
 use App\Media\Commands\StoreNewImage;
 use App\Portfolio\Project;
 use App\Users\User;
@@ -27,6 +28,7 @@ class PortfolioTableSeeder extends Seeder
     {
         $projects = Project::all();
         $account = Account::find(1);
+        $clients = Client::all();
 
         foreach($projects as $project)
         {
@@ -40,7 +42,6 @@ class PortfolioTableSeeder extends Seeder
 
             $project = App\Portfolio\Project::create([
                 'account_id' => 1,
-                'client_name' => $this->nl->sentence(3),
                 'date'        => $this->nl->dateTimeBetween('-3 months', 'now'),
                 'website'     => $this->nl->url,
                 'nl'      => [
@@ -97,6 +98,10 @@ class PortfolioTableSeeder extends Seeder
 
                 $project->collaborators()->attach($add);
             }
+
+            $project->client()->associate($clients->random());
+
+            $project->save();
 
         }
     }

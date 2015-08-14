@@ -21,5 +21,6 @@ Route::group([
         });
     });
 
+    Route::resource('tags', 'TagsController', ['only' => ['index', 'show']]);
 
 });

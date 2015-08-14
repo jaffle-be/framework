@@ -38,9 +38,4 @@ class CollaborationController extends AdminController
         }
     }
 
-    public function destroy(Project $portfolio)
-    {
-
-    }
-
 }

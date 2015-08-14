@@ -1,9 +1,10 @@
 angular.module('portfolio')
-    .controller('PortfolioDetailController', function (Portfolio, PortfolioService, MembershipService, $state) {
+    .controller('PortfolioDetailController', function (Portfolio, PortfolioService, MembershipService, Client, $state) {
 
         this.projects = PortfolioService;
         this.memberships = [];
         this.collaborators = [];
+        this.clients = [];
 
         var me = this,
             id = $state.params.id;
@@ -28,6 +29,10 @@ angular.module('portfolio')
 
             MembershipService.list(function(response){
                 me.memberships = response;
+            });
+
+            Client.list({}, function(clients){
+                me.clients = clients;
             });
         };
 

@@ -14,9 +14,9 @@ class PortfolioController extends Controller
         $options = [
             'columns' => $this->theme->setting('portfolioColumns'),
             //grid or full width?
-            'grid' => $this->theme->setting('portfolioGrid'),
+            'grid'    => $this->theme->setting('portfolioGrid'),
             //space or no space?
-            'spaced' => $this->theme->setting('portfolioSpaced'),
+            'spaced'  => $this->theme->setting('portfolioSpaced'),
         ];
 
         $tags = $projects->getUniqueTags();
@@ -30,11 +30,28 @@ class PortfolioController extends Controller
 
         $portfolio->load($relations);
 
+        $tags = $portfolio->tags;
+
         $relatedProjects = $portfolio->with($relations)
-            ->where('id', '<>' , $portfolio->id)
+            ->whereHas('tags', function ($query) use ($tags) {
+                $query->whereIn('id', $tags->lists('id')->toArray());
+            })
+            ->where('id', '<>', $portfolio->id)
             ->orderBy('date', 'desc')
             ->take(4)
             ->get();
+
+        if ($relatedProjects->count() < 4) {
+            $extra = $portfolio->with($relations)
+                ->where('id', '<>', $portfolio->id)
+                ->orderBy('date', 'desc')
+                ->take(4)
+                ->get();
+
+            while ($relatedProjects->count() < 4) {
+                $relatedProjects->push($extra->pop());
+            }
+        }
 
         return $this->theme->render('portfolio.show', ['project' => $portfolio, 'relatedProjects' => $relatedProjects]);
     }
