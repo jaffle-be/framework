@@ -8,7 +8,7 @@
         </div>
     </div>
 
-    <div class="row" ng-controller="AccountContactController as vm">
+    <div class="row" ng-controller="AccountContactController as vm" ng-init="vm.options = {{ system_options() }}">
 
         <form ng-submit="vm.save()" novalidate name="accountContactForm">
 

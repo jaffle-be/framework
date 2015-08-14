@@ -46,7 +46,7 @@
 
                 <div class="form-group">
                 	<label for="bio" class="control-label"></label>
-                	<div summernote id="bio" ng-model="vm.profile.translations[vm.options.locale].bio" on-change="vm.save()"></div>
+                	<div summernote config="vm.options.summernote" id="bio" ng-model="vm.profile.translations[vm.options.locale].bio" on-change="vm.save()"></div>
                 </div>
                 
                 <div class="form-group">

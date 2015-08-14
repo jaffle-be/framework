@@ -31,7 +31,7 @@
                 <label for="extract" class="control-label">{{ Lang::get('blog::admin.post-extract') }}</label>
 
                 <div>
-                    <div summernote ng-model="vm.post.translations[vm.options.locale].extract" on-change="vm.save()"></div>
+                    <div summernote config="vm.options.summernote" ng-model="vm.post.translations[vm.options.locale].extract" on-change="vm.save()"></div>
                 </div>
             </div>
 
@@ -39,7 +39,7 @@
                 <label for="content" class="control-label">{{ Lang::get('blog::admin.post-content') }}</label>
 
                 <div>
-                    <div summernote ng-model="vm.post.translations[vm.options.locale].content" on-change="vm.save()"></div>
+                    <div summernote config="vm.options.summernote" ng-model="vm.post.translations[vm.options.locale].content" on-change="vm.save()"></div>
                 </div>
             </div>
 

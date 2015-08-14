@@ -51,7 +51,7 @@
                     </div>
                 </div>
 
-                <div summernote config="vm.teamSummernote" ng-model="team.translations[vm.options.locale].description" on-change="vm.updateTeam(team)"></div>
+                <div summernote config="vm.options.summernote" ng-model="team.translations[vm.options.locale].description" on-change="vm.updateTeam(team)"></div>
             </li>
 
         </ul>

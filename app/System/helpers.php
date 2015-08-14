@@ -21,5 +21,7 @@ function system_options()
 
     $options['locales'] = array_combine($options['locales'], $locales);
 
+    $options['summernote'] = config('system.summernote');
+
     return json_encode($options);
 }
