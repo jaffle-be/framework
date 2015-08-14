@@ -7,7 +7,16 @@ angular.module('media')
             this.timeouts = [];
 
             //image uploader
-            this.uploader = function (type, id, limit, success) {
+            this.uploader = function (type, id, limit, handlers, ownerIdCallback) {
+
+                if(typeof handlers === 'function')
+                {
+                    //handlers is only a success callback
+                    handlers = {
+                        success: handlers
+                    };
+                }
+
                 var config = {
                     options: {
                         url: 'api/admin/media/image',
@@ -17,20 +26,16 @@ angular.module('media')
                         },
                         clickable: true,
                         maxFileSize: 10,
-                        init: function()
-                        {
-                            this.on('maxfilesexceeded', function(file){
-                                console.log('test');
+                        init: function () {
+                            this.on('maxfilesexceeded', function (file) {
                                 this.removeFile(file);
                             });
                         }
                     },
-                    handlers: {
-                        success: success,
-                    },
+                    handlers: handlers,
                 };
 
-                if(limit)
+                if (limit)
                 {
                     config.options.maxFiles = limit;
                 }
@@ -38,8 +43,7 @@ angular.module('media')
                 return config;
             };
 
-            this.list = function(type, id, success)
-            {
+            this.list = function (type, id, success) {
                 return Image.list({
                     ownerId: id,
                     ownerType: type
@@ -48,7 +52,8 @@ angular.module('media')
 
             this.update = function (type, id, img) {
 
-                if (this.timeouts[img.id]) {
+                if (this.timeouts[img.id])
+                {
                     $timeout.cancel(this.timeouts[img.id]);
                 }
 

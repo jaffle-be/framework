@@ -8,15 +8,27 @@ angular.module('media')
                 locale: '=',
                 ownerId: '=',
                 ownerType: '=',
-                waitFor: '=',
-                titles: '=',
-                limit: '=',
+                waitFor: '=?',
+                titles: '=?',
+                limit: '=?',
+                editsMany: '=?',
+                handlers: '=?',
             },
-            controller: function ($scope, Image, ImageService) {
+            controller: function ($scope, Image, ImageService, toaster) {
+                var me = this;
                 //init base variables and dropzone
-                $scope.images = [];
                 $scope.loaded = false;
                 $scope.ctrl = this;
+
+                if($scope.handlers === undefined)
+                {
+                    $scope.handlers = {}
+                };
+
+                if ($scope.editsMany === undefined)
+                {
+                    $scope.editsMany = false;
+                }
 
                 if ($scope.limit)
                 {
@@ -34,13 +46,39 @@ angular.module('media')
                     });
                 }
 
-                $scope.dropzone = ImageService.uploader($scope.ownerType, $scope.ownerId, $scope.limit, function (file, image, xhr) {
-                    var img = new Image(image);
-                    img.translations = {};
-                    $scope.images.push(img);
-                    this.removeFile(file);
-                    $scope.$apply();
-                });
+                this.dropzone = function () {
+
+                    $scope.dropzone = ImageService.uploader($scope.ownerType, $scope.ownerId, $scope.limit, {
+                        success: function (file, image, xhr) {
+                            var img = new Image(image);
+                            img.translations = {};
+                            $scope.images.push(img);
+
+                            if(typeof $scope.handlers.uploadedImage === 'function')
+                            {
+                                $scope.handlers.uploadedImage(img);
+                            }
+
+                            this.removeFile(file);
+                            $scope.$apply();
+                        },
+                        processing: function () {
+                            this.options.params.ownerId = $scope.ownerId;
+                        },
+                        addedfile: function(file){
+
+                            if($scope.images.length >= $scope.limit)
+                            {
+                                this.removeFile(file);
+                                toaster.pop('error', 'error uploading image', 'File limit reached');
+                                $scope.$apply();
+                            }
+                        }
+                    });
+                };
+
+                this.dropzone();
+
 
                 this.updateImage = function (img) {
                     ImageService.update($scope.ownerType, $scope.ownerId, img);
@@ -51,6 +89,11 @@ angular.module('media')
                         _.remove($scope.images, function (value, index, array) {
                             return value.id == img.id;
                         });
+
+                        if(typeof $scope.handlers.deletedImage === 'function')
+                        {
+                            $scope.handlers.deletedImage(img);
+                        }
                     });
                 };
 
@@ -60,8 +103,6 @@ angular.module('media')
                         $scope.loaded = true;
                     });
                 };
-
-                var me = this;
 
                 //only load when we're working on an existing document
                 if ($scope.waitFor !== undefined)
@@ -78,6 +119,18 @@ angular.module('media')
                 else if ($scope.ownerId)
                 {
                     this.init();
+                }
+
+                if ($scope.editsMany)
+                {
+                    $scope.$watch('ownerId', function (newValue, oldValue) {
+
+                        if (newValue)
+                        {
+                            me.loaded = false;
+                            me.init();
+                        }
+                    });
                 }
             }
 
