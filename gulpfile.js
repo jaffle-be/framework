@@ -421,6 +421,11 @@ gulp.task('publisher', function () {
             prefix: 3
         }));
 
+    gulp.src('bower_components/angularjs-toaster/toaster.min.js')
+        .pipe(copy('./public/js/admin/plugins/angularjs-toaster/', {
+            prefix: 2
+        }));
+
 });
 
 

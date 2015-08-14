@@ -7,6 +7,7 @@
         'ngIdle',                       // Idle timer
         'smart-table',                  //smart table
         'summernote',
+        'toaster',
         'system',
         'tags',
         'media',
