@@ -12,6 +12,7 @@ return [
         'portfolio' => App\Portfolio\Project::class,
         'user' => App\Users\user::class,
         'account-logo' => App\Account\AccountLogo::class,
+        'client' => App\Account\Client::class,
     ],
 
     /**
@@ -60,6 +61,12 @@ return [
         'account-logo' => [
             '340x',
             'x40'
+        ],
+
+        'client' => [
+            '340x',
+            'x40',
+            'x90',
         ]
     ],
 

@@ -66,6 +66,10 @@
                         <a ui-sref="admin.account.members"><i class="fa fa-users"></i>
                             <span class="nav-label">@{{ 'USERS' | translate }}</span></a>
                     </li>
+                    <li ui-sref-active="active">
+                        <a ui-sref="admin.account.clients"><i class="fa fa-users"></i>
+                            <span class="nav-label">@{{ 'CLIENTS' | translate }}</span></a>
+                    </li>
                 </ul>
             </li>
 

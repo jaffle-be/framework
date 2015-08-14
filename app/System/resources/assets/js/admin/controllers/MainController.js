@@ -1,15 +1,10 @@
-function MainController() {
+function MainController($scope, toaster) {
 
-    this.alerts = [];
-
-    this.addAlert = function() {
-        this.alerts.push({msg: 'Another alert!'});
+    this.toaster = {
+        'time-out': 3000,
+        'close-button':true,
+        'progress-bar': true
     };
-
-    this.closeAlert = function(index) {
-        this.alerts.splice(index, 1);
-    };
-
 }
 
 angular

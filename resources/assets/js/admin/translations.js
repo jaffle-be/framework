@@ -12,6 +12,7 @@ angular
                 CONTACT: 'Contact',
                 ACCOUNT: 'Account',
                 USERS: 'Users',
+                CLIENTS: 'Clients',
                 MARKETING: 'Marketing',
 
 

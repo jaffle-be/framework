@@ -45,8 +45,37 @@ angular.module('account')
                 isArray: true,
                 method: 'GET'
             },
-            update:{
+            update: {
                 method: 'PUT',
             }
         })
+    })
+
+    .factory('Client', function ($resource, Image) {
+
+        return $resource('api/admin/account/client/:id', {
+            id: '@id',
+        }, {
+            list: {
+                isArray: true,
+                method: 'GET',
+                transformResponse: function(clients)
+                {
+                    clients = angular.fromJson(clients);
+
+                    _.each(clients, function(client){
+                        if(client.images)
+                        {
+                            client.images = new Image(client.images);
+                        }
+                    });
+
+                    return clients;
+                },
+            },
+            update: {
+                method: 'PUT'
+            }
+        })
+
     });
