@@ -19,7 +19,7 @@ class Post extends Model implements StoresMedia
 
     protected $table = 'posts';
 
-    protected $media = 'blog';
+    protected $media = '{account}/blog';
 
     protected $fillable = ['account_id', 'title', 'extract', 'content', 'publish_at'];
 

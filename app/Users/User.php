@@ -21,7 +21,7 @@ class User extends Model implements Authenticatable, MembershipOwner, AddressOwn
      */
     protected $table = 'users';
 
-    protected $media = 'user';
+    protected $media = '{account}/user';
 
     protected $translatedAttributes = ['bio', 'quote', 'quote_author'];
 

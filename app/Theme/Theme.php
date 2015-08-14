@@ -12,7 +12,7 @@ class Theme extends Model implements StoresMedia
 
     protected $fillable = ['name', 'version'];
 
-    protected $media = 'theme';
+    protected $media = '{acount}/theme';
 
     protected $mediaMultiple = false;
 

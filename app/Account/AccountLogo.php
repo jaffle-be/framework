@@ -17,7 +17,7 @@ class AccountLogo extends Model implements StoresMedia
 {
     use StoringMedia;
 
-    protected $media = 'account/logo';
+    protected $media = '{account}/account/logo';
 
     protected $mediaMultiple = false;
 

@@ -16,7 +16,7 @@ class Project extends Model implements StoresMedia
 
     protected $table = "portfolio_projects";
 
-    protected $media = 'portfolio';
+    protected $media = '{account}/portfolio';
 
     protected $fillable = ['account_id', 'client_name', 'website', 'date', 'title', 'description'];
 
