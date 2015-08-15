@@ -1,16 +1,17 @@
 <?php namespace App\Users\Http\Auth;
 
-use App\Http\Controllers\Controller;
+use App\System\Http\Controller;
 use App\Users\Auth\Commands\Signin;
 use App\Users\Auth\Requests\SigninRequest;
 use App\Users\User;
 use Illuminate\Translation\Translator;
 
-class SigninController extends Controller{
+class SigninController extends Controller
+{
 
     public function index()
     {
-        return view('users::auth.signin');
+        return $this->theme->render('auth.login');
     }
 
     public function store(SignInRequest $request, Translator $lang)
@@ -21,13 +22,10 @@ class SigninController extends Controller{
 
         $response = $this->dispatchFromArray(Signin::class, compact('credentials', 'remember_me'));
 
-        if($response instanceof User)
-        {
-            return redirect()->route('start');
-        }
-        else if(is_string($response) && $response == 'unconfirmed')
-        {
-            $route = route('confirm-email.create', ['email' => $credentials['email']]);
+        if ($response instanceof User) {
+            return redirect('admin/start');//->route($this->routePrefix() . '.dash');
+        } else if (is_string($response) && $response == 'unconfirmed') {
+            $route = route('store.auth.confirm-email.create', ['email' => $credentials['email']]);
 
             $error = $lang->get('users::auth.errors.unconfirmed', ['url' => $route]);
 
@@ -36,5 +34,4 @@ class SigninController extends Controller{
 
         return redirect()->back()->withErrors(['email' => $lang->get('users::auth.errors.failed')]);
     }
-
 }

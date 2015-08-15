@@ -1,5 +1,13 @@
 <?php namespace App\Settings;
 
-class SettingsRepository implements Contracts\SettingsRepositoryInterface{
+class SettingsRepository{
+
+//    public function themeSettings();
+//
+//    public function themeSettingValues();
+//
+//    public function moduleSettings(Module $module);
+//
+//    public function moduleSettingValues(Module $module);
 
 }

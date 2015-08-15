@@ -5,6 +5,13 @@ return [
     'auth' => [
 
         /**
+         * Set the template for the authentication pages.
+         * default
+         * bg
+         */
+        'auth-pages-template' => 'default',
+
+        /**
          * If set to true, the user will not need to confirm his email.
          */
         'auto_confirmation' => false,

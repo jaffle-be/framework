@@ -1,0 +1,36 @@
+@import "../../../../bower_components/bootstrap/less/bootstrap";
+@import "../../../../bower_components/font-awesome/less/font-awesome";
+@import (inline) "../../../../bower_components/animate.css/animate.min.css";
+@import (inline) "../../../../bower_components/dropzone/dist/min/dropzone.min.css";
+@import (inline) "../../../../bower_components/ng-sortable/dist/ng-sortable.min.css";
+@import (inline) '../../../../bower_components/summernote/dist/summernote.css';
+@import (inline) '../../../../bower_components/summernote/dist/summernote-bs3.css';
+@import (inline) '../../../../bower_components/angularjs-toaster/toaster.min.css';
+
+
+@import "inspinia/style.less";
+
+//adjust bootstrap variables to inspinia theme, since inspinia isnt using mixins but simply overriding bootstrap
+//example for a btn
+//when you use the .btn-primary mixing, you wouldn't have the same css as using the actual .btn-primary class
+//since that .btn-primary wasnt made using the regular mixin.
+@brand-primary: @navy;
+
+@fa-font-path: "/fonts";
+
+
+.note-editor{
+  border: 1px solid @panel-default-border;
+}
+
+//this is a port from the materialize css design framework.
+@import "materialize/forms/checkboxes";
+@import "materialize/forms/radios";
+
+@import "tabs";
+@import "blog";
+@import "media";
+@import "account";
+@import "portfolio";
+@import "theme-settings";
+@import "profile";

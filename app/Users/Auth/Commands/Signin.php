@@ -1,12 +1,12 @@
 <?php namespace App\Users\Auth\Commands;
 
-use App\Commands\Command;
+use App\Jobs\Job;
 use App\Users\Contracts\Throttler;
 use App\Users\Contracts\UserRepositoryInterface;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Contracts\Bus\SelfHandling;
 
-class Signin extends Command implements SelfHandling
+class Signin extends Job implements SelfHandling
 {
 
     protected $credentials;

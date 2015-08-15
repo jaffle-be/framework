@@ -74,6 +74,9 @@ return [
 	"url"                  => "The :attribute format is invalid.",
 	"timezone"             => "The :attribute must be a valid zone.",
 
+
+	"vat" => "The :attribute is not a valid VIES vat number.",
+
 	/*
 	|--------------------------------------------------------------------------
 	| Custom Validation Language Lines

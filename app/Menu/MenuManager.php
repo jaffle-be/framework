@@ -1,5 +1,6 @@
 <?php namespace App\Menu;
-use Illuminate\Database\Eloquent\Collection;
+
+use Illuminate\Routing\Router;
 
 /**
  * Class MenuManager
@@ -42,7 +43,7 @@ class MenuManager
     /**
      * @param MenuRepositoryInterface $repository
      */
-    public function __construct(MenuRepositoryInterface $repository)
+    public function __construct(MenuRepositoryInterface $repository, Router $url)
     {
         $this->repository = $repository;
     }
@@ -62,7 +63,7 @@ class MenuManager
      *
      * @return mixed
      */
-    public function items($menu)
+    public function get($menu)
     {
         //by the time the first menu is rendered, we should know all supported menu's for the current theme.
         if (!static::$hasBeenLoaded) {
@@ -71,9 +72,18 @@ class MenuManager
 
         //if the menu is supported by the current theme, we'll render it.
         if (in_array($menu, $this->supports)) {
-
-            return $this->items('items');
+            return $this->loaded[$menu];
         }
+    }
+
+    public function crumbs($menu)
+    {
+        $menu = $this->get($menu);
+
+        //find the active url
+
+        //return home, followed by all the parents, followed by the current page
+        return [];
     }
 
     protected function load()
@@ -83,7 +93,7 @@ class MenuManager
 
         foreach($menus as $menu)
         {
-            $this->loaded[$menu->menu_hook] = $menu;
+            $this->loaded[$menu->name] = $menu;
         }
 
         //set loaded status

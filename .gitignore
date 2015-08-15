@@ -3,5 +3,10 @@ storage
 .idea
 /vendor
 /node_modules
+/public
 .env
-root_theme
+theme_admin
+theme_front
+themes
+bower_components
+dist

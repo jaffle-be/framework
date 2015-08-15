@@ -1,15 +1,20 @@
 <?php namespace App\Pages;
 
-use Illuminate\Support\ServiceProvider;
+use Jaffle\Tools\ServiceProvider;
 
 class PageServiceProvider extends ServiceProvider
 {
+    protected $namespace = 'pages';
 
-    public function boot()
+    public function register()
     {
     }
 
-    public function register()
+    protected function observers()
+    {
+    }
+
+    protected function listeners()
     {
     }
 }

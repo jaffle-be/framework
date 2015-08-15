@@ -1,12 +1,12 @@
 <?php namespace App\Users\Auth\Commands;
 
-use App\Commands\Command;
+use App\Jobs\Job;
 use App\Users\Auth\Tokens\Token;
 use App\Users\Contracts\UserRepositoryInterface;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Contracts\Bus\SelfHandling;
 
-class ConfirmEmail extends Command implements SelfHandling{
+class ConfirmEmail extends Job implements SelfHandling{
 
     protected $token;
 

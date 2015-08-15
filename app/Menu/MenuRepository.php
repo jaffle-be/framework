@@ -27,7 +27,7 @@ class MenuRepository implements MenuRepositoryInterface{
 
     public function getSupportedMenus(array $supports)
     {
-        $query = $this->menu->with(['items']);
+        $query = $this->menu->with(['items', 'items.children']);
 
         $this->menu->scopeSupported($query, $supports);
 

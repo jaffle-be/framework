@@ -1,10 +1,18 @@
 <?php namespace App\Users;
 
+use App\Account\MembershipOwner;
+use App\Contact\AddressOwner;
+use App\Media\StoresMedia;
+use App\Media\StoringMedia;
+use Dimsav\Translatable\Translatable;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 
-class User extends Model implements Authenticatable
+class User extends Model implements Authenticatable, MembershipOwner, AddressOwner, StoresMedia
 {
+
+    use StoringMedia;
+    use Translatable;
 
     /**
      * The database table used by the model.
@@ -13,12 +21,16 @@ class User extends Model implements Authenticatable
      */
     protected $table = 'users';
 
+    protected $media = '{account}/user';
+
+    protected $translatedAttributes = ['bio', 'quote', 'quote_author'];
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-    protected $fillable = ['name', 'email', 'password'];
+    protected $fillable = ['name', 'email', 'password', 'firstname', 'lastname', 'phone', 'vat', 'website', 'bio', 'quote', 'quote_author'];
 
     /**
      * The attributes excluded from the model's JSON form.
@@ -31,6 +43,15 @@ class User extends Model implements Authenticatable
         'confirmed' => 'boolean'
     ];
 
+    public function socialLinks()
+    {
+        return $this->morphOne('App\Contact\SocialLinks', 'owner');
+    }
+
+    public function address()
+    {
+        return $this->morphOne('App\Contact\Address', 'owner');
+    }
 
     public function resetToken()
     {
@@ -40,6 +61,28 @@ class User extends Model implements Authenticatable
     public function confirmationToken()
     {
         return $this->belongsTo('App\Users\Auth\Tokens\Token', 'confirmation_token_id');
+    }
+
+    public function projects()
+    {
+        return $this->belongsToMany('App\Portfolio\Project', 'portfolio_project_collaborators', 'user_id', 'project_id');
+    }
+
+    public function skills()
+    {
+        return $this->belongsToMany('App\Users\Skill', 'user_skills_selection', 'user_id', 'skill_id')->withPivot(['level']);
+    }
+
+    public function getNameAttribute()
+    {
+        $fullname = trim($this->firstname . ' ' . $this->lastname);
+
+        return $fullname ?: 'John Doe';
+    }
+
+    public function getFunctionAttribute()
+    {
+        return isset($this->attributes['function']) ? $this->attributes['function'] : 'Happy teammember';
     }
 
     /**
@@ -93,4 +136,5 @@ class User extends Model implements Authenticatable
     {
         return $this->password;
     }
+
 }

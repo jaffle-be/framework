@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
 class UserTokensTable extends Migration
 {
@@ -25,10 +25,10 @@ class UserTokensTable extends Migration
 
         Schema::table('users', function (Blueprint $table) {
             $table->integer('reset_token_id', false, true)->after('remember_token')->nullable();
-            $table->foreign('reset_token_id', 'user_to_reset_token')->references('id')->on('users_tokens');
+            $table->foreign('reset_token_id', 'user_to_reset_token')->references('id')->on('users_tokens')->onDelete('cascade');
 
             $table->integer('confirmation_token_id', false, true)->after('reset_token_id')->nullable();
-            $table->foreign('confirmation_token_id', 'user_to_confirmation_token')->references('id')->on('users_tokens');
+            $table->foreign('confirmation_token_id', 'user_to_confirmation_token')->references('id')->on('users_tokens')->onDelete('cascade');
         });
     }
 

@@ -1,9 +1,11 @@
 <?php namespace App\Users\Http\Auth;
 
-use App\Http\Controllers\Controller;
+use App\System\Http\Controller;
 use App\Users\Auth\Commands\Signout;
+use Lang;
 
-class SignoutController extends Controller{
+class SignoutController extends Controller
+{
 
     public function index()
     {
@@ -11,7 +13,6 @@ class SignoutController extends Controller{
 
         $this->dispatch($command);
 
-        return redirect()->route('home');
+        return redirect()->route('store.auth.signin.index')->withSuccess(Lang::get('users::general.logout_success'));
     }
-
 }
