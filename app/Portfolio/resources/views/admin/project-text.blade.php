@@ -13,12 +13,12 @@
             <div class="row">
                 <div class="form-group col-xs-6">
                     <label for="website">{{ Lang::get('portfolio::admin.website') }}</label>
-                    <input id="website" type="text" class="form-control" ng-model="vm.project.website">
+                    <input id="website" type="text" class="form-control" ng-model="vm.project.website" ng-change="vm.save()">
                 </div>
 
                 <div class="form-group col-xs-6">
                     <label for="date">{{ Lang::get('portfolio::admin.website') }}</label>
-                    <input id="date" type="text" class="form-control" ng-model="vm.project.date">
+                    <input id="date" type="text" class="form-control" ng-model="vm.project.date" ng-change="vm.save()">
                 </div>
             </div>
 

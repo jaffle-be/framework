@@ -15,6 +15,13 @@ class TagCollection extends Collection
      */
     public function format($format = '<a href=":url">:name</a>', $glue = ' / ')
     {
+        //when the user passed an empty format, so he could change the glue
+        //we still need to use the default format
+        if(empty($format))
+        {
+            $format = '<a href=":url">:name</a>';
+        }
+
         $formats = [];
 
         $replace = [':name', ':url'];
