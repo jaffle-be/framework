@@ -1,6 +1,9 @@
 <?php namespace App\Tags\Http;
 
+use App;
+use App\Account\AccountManager;
 use App\System\Http\Controller;
+use App\Tags\Tag;
 
 class TagsController extends Controller
 {
@@ -10,9 +13,13 @@ class TagsController extends Controller
         return 'show all tags here';
     }
 
-    public function show()
+    public function show(Tag $tag, AccountManager $accountManager)
     {
-        return 'show tag detail here';
+        $content = $tag->content;
+
+        $content->load('taggable');
+
+        return $this->theme->render('tags.show', ['tag' => $tag]);
     }
 
 }

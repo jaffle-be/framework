@@ -2,13 +2,15 @@
 
 use App\Media\StoresMedia;
 use App\Media\StoringMedia;
+use App\Search\Model\Searchable;
+use App\Search\Model\SearchableTrait;
 use App\System\Scopes\ModelAccountResource;
 use App\Tags\Taggable;
 use Dimsav\Translatable\Translatable;
 use Illuminate\Database\Eloquent\Model;
 use Jaffle\Tools\Sluggable;
 
-class Post extends Model implements StoresMedia
+class Post extends Model implements StoresMedia, Searchable
 {
 
     use Translatable;
@@ -16,6 +18,7 @@ class Post extends Model implements StoresMedia
     use StoringMedia;
     use ModelAccountResource;
     use Sluggable;
+    use SearchableTrait;
 
     protected $table = 'posts';
 
