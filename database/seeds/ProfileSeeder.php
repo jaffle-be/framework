@@ -22,19 +22,19 @@ class ProfileSeeder extends Seeder
             $skill = [
                 'nl' => [
                     'name' => $this->nl->sentence(rand(1,2), false),
-                    'explanation' => $this->nl->paragraph(5),
+                    'description' => $this->nl->paragraph(5),
                 ],
                 'fr' => [
                     'name' => $this->nl->sentence(rand(1,2), false),
-                    'explanation' => $this->nl->paragraph(5),
+                    'description' => $this->nl->paragraph(5),
                 ],
                 'en' => [
                     'name' => $this->nl->sentence(rand(1,2), false),
-                    'explanation' => $this->nl->paragraph(5),
+                    'description' => $this->nl->paragraph(5),
                 ],
                 'de' => [
                     'name' => $this->nl->sentence(rand(1,2), false),
-                    'explanation' => $this->nl->paragraph(5),
+                    'description' => $this->nl->paragraph(5),
                 ]
 
             ];
