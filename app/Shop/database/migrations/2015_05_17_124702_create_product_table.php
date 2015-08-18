@@ -26,7 +26,7 @@ class CreateProductTable extends Migration
             $table->softDeletes();
         });
 
-        \Eloquent::unguard();
+        Product::unguard();
 
         Product::create([
             'name' => 'test product 1',
