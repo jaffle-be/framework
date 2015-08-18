@@ -117,7 +117,7 @@ class AccountTableSeeder extends Seeder
 
         $account->contactInformation()->save($info);
 
-        $info->address()->save(new Address([
+        $address = new Address([
             'latitude' => '50.8909351',
             'longitude' => '3.4132522',
             'firstname' => '',
@@ -126,9 +126,11 @@ class AccountTableSeeder extends Seeder
             'box' => '64',
             'postcode' => '8790',
             'city' => 'Waregem',
+        ]);
 
-            'country_id' => 21
-        ]));
+        $address->country_id = 21;
+
+        $info->address()->save($address);
     }
 
 }

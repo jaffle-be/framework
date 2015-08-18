@@ -21,51 +21,6 @@ class CreatePromotionTable extends Migration {
 			$table->float('value');
 			$table->timestamps();
 		});
-
-		Promotion::create([
-			'product_id' => 1,
-			'value'      => 39.99
-		]);
-
-		Promotion::create([
-			'product_id' => 2,
-			'value'      => 29.99
-		]);
-
-		Promotion::create([
-			'product_id' => 3,
-			'value'      => 45.99
-		]);
-
-		Promotion::create([
-			'product_id' => 4,
-			'value'      => 149
-		]);
-
-		Promotion::create([
-			'product_id' => 5,
-			'value'      => 50
-		]);
-
-		Promotion::create([
-			'product_id' => 6,
-			'value'      => 60
-		]);
-
-		Promotion::create([
-			'product_id' => 7,
-			'value'      => 89
-		]);
-
-		Promotion::create([
-			'product_id' => 8,
-			'value'      => 115
-		]);
-
-		Promotion::create([
-			'product_id' => 9,
-			'value'      => 9.99
-		]);
 	}
 
 	/**
