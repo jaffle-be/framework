@@ -1,11 +1,8 @@
 .DS_Store
-storage
 .idea
 /vendor
 /node_modules
 .env
-theme_admin
-theme_front
 themes
 bower_components
 dist
