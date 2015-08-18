@@ -19,6 +19,8 @@ trait MigrateThemeSettings
 
             $setting['type_id'] = $type->id;
 
+            unset($setting['type']);
+
             $setting = $theme->settings()->create($setting);
 
             $method = 'settingsHandle' . ucfirst($type->name);
