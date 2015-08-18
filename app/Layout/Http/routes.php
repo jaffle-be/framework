@@ -1,8 +1,4 @@
 <?php
-//both admins use the same controllers to load the appropriate templates
-//Route::group(['domain' => route_subdomain(), 'namespace' => 'App\Layout\Http', 'prefix' => 'admin'], function () {
-//    Route::resource('templates', 'TemplateController', ['only' => ['show']]);
-//});
 
 Route::group([
     'namespace' => 'App\Layout\Http',

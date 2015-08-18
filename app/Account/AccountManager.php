@@ -26,8 +26,9 @@ class AccountManager
 
     public function boot(Request $request)
     {
-        //we can simply inject the account based of the subdomain that's been set.
-        $subdomain = $this->config->get('app.subdomain');
+        //this alias should be set using your apache or nginx config.
+        //we set the default to our own application.
+        $subdomain = env('APP_ALIAS', 'digiredo');
 
         $this->account = $this->repo->findByAlias($subdomain);
 

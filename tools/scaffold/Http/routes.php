@@ -4,7 +4,6 @@
  * store controllers
  */
 Route::group([
-    'domain' => config('app.subdomain'),
     'namespace' => 'App\Blog\Http\Admin'
 ], function () {
 
@@ -20,6 +19,6 @@ Route::group([
     });
 });
 
-Route::group(['domain' => config('app.subdomain'), 'namespace' => 'App\Blog\Http'], function () {
+Route::group(['namespace' => 'App\Blog\Http'], function () {
 //    Route::resource('blog', 'BlogController', ['as' => 'store', 'only' => ['index', 'show']]);
 });
