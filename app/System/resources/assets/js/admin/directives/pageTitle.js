@@ -20,5 +20,5 @@ function pageTitle($rootScope, $timeout) {
 };
 
 angular
-    .module('app')
+    .module('system')
     .directive('pageTitle', pageTitle)
