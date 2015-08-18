@@ -34,9 +34,13 @@ return [
     |--------------------------------------------------------------------------
     |
     | This handles the separation from client sites to ours in all route files
+    | It should be set through your nginx config or apache config
+    | Do not use it in the .env file, that would make every site use
+    | that subdomain, we will however place a default which is our own
+    | website
     |
     */
-    'subdomain' => env('APP_SUBDOMAIN', 'stores'),
+    'subdomain' => env('APP_SUBDOMAIN', 'digiredo'),
 
     /*
     |--------------------------------------------------------------------------
