@@ -40,7 +40,7 @@ class ThemeServiceProvider extends ServiceProvider
         $files = scandir(config('theme.path'));
 
         $files = array_filter($files, function($file){
-            return !in_array($file, ['.', '..', '.DS_Store']);
+            return !in_array($file, ['.', '..', '.DS_Store', '.gitignore']);
         });
 
         foreach ($files as $theme) {
