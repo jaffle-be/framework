@@ -3,7 +3,6 @@ storage
 .idea
 /vendor
 /node_modules
-/public
 .env
 theme_admin
 theme_front

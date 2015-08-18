@@ -1,15 +1,21 @@
 <?php namespace App\Tags;
 
+use App\Search\Model\Searchable;
+use App\Search\Model\SearchableTrait;
 use App\System\Scopes\ModelAccountResource;
 use Dimsav\Translatable\Translatable;
 use Illuminate\Database\Eloquent\Model;
 
-class Tag extends Model{
+class Tag extends Model implements Searchable
+{
 
     use Translatable;
     use ModelAccountResource;
+    use SearchableTrait;
 
     protected $table = "tags";
+
+    protected $with = 'translations';
 
     protected $fillable = ['account_id', 'name'];
 
@@ -29,7 +35,6 @@ class Tag extends Model{
     {
         return $this->hasMany('App\Tags\TaggedContent');
     }
-
 
     public function getCubeportfolioAttribute()
     {
