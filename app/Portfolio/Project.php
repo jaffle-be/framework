@@ -2,17 +2,20 @@
 
 use App\Media\StoresMedia;
 use App\Media\StoringMedia;
+use App\Search\Model\Searchable;
+use App\Search\Model\SearchableTrait;
 use App\System\Scopes\ModelAccountResource;
 use App\Tags\Taggable;
 use Dimsav\Translatable\Translatable;
 use Illuminate\Database\Eloquent\Model;
 
-class Project extends Model implements StoresMedia
+class Project extends Model implements StoresMedia, Searchable
 {
     use Translatable;
     use Taggable;
     use StoringMedia;
     use ModelAccountResource;
+    use SearchableTrait;
 
     protected $table = "portfolio_projects";
 
@@ -37,6 +40,16 @@ class Project extends Model implements StoresMedia
     public function client()
     {
         return $this->belongsTo('App\Account\Client', 'client_id');
+    }
+
+    /**
+     * Return the type this model uses in Elasticsearch.
+     *
+     * @return mixed
+     */
+    public function getSearchableType()
+    {
+        return 'projects';
     }
 
 }

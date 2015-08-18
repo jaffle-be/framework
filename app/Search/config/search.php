@@ -1,7 +1,11 @@
 <?php
 
 use App\Blog\Post;
+use App\Blog\PostTranslation;
+use App\Portfolio\Project;
+use App\Portfolio\ProjectTranslation;
 use App\Tags\Tag;
+use App\Tags\TagTranslation;
 use App\Users\User;
 
 return [
@@ -31,28 +35,30 @@ return [
         'tags'      => [
             'class' => 'App\Tags\Tag',
             'with'  => [
-                'translations'       => [
-                    'class' => 'App\Tags\TagTranslation',
-                    'key'   => 'tag_id',
-                ],
-//                'hulpverlener' => [
-//                    'class' => 'App\User',
-//                    'key'   => 'hulpverlener_id'
-//                ]
             ]
         ],
 
         'posts' => [
             'class' => Post::class,
             'with' => [
-                'translations' => [
+                'tags' => [
                     'class' => Tag::class,
-                    'key' => 'owner_id'
+                    'key' => 'owner_id',
                 ],
                 'user' => [
                     'class' => User::class,
                     'key' => 'user_id'
                 ],
+            ]
+        ],
+
+        'projects' => [
+            'class' => Project::class,
+            'with' => [
+                'tags' => [
+                    'class' => Tag::class,
+                    'key' => 'owner_id',
+                ]
             ]
         ]
 

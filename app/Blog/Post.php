@@ -28,7 +28,24 @@ class Post extends Model implements StoresMedia, Searchable
 
     protected $translatedAttributes = ['title', 'extract', 'content', 'publish_at'];
 
+    protected $hidden = ['title', 'extract', 'content', 'publish_at'];
+
     protected $dates = ['publish_at'];
+
+    protected static $searchableMapping = [
+        'created_at' => [
+            'type'   => 'date',
+            'format' => 'yyyy-MM-dd HH:mm:ss'
+        ],
+        'updated_at' => [
+            'type'   => 'date',
+            'format' => 'yyyy-MM-dd HH:mm:ss'
+        ],
+        'publish_at' => [
+            'type'   => 'date',
+            'format' => 'yyyy-MM-dd'
+        ],
+    ];
 
     public function user()
     {

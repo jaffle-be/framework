@@ -55,7 +55,7 @@ interface SearchServiceInterface
      *
      * @return mixed
      */
-    public function search(array $params);
+    public function search($type, array $params, $paginated = true);
 
     /**
      * @return \Illuminate\Pagination\Factory

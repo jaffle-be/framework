@@ -19,7 +19,8 @@
     "mews/captcha": "^2.0",
     "thomaswelton/laravel-gravatar": "~1.0",
     "davejamesmiller/laravel-breadcrumbs": "^3.0",
-    "elasticsearch/elasticsearch": "*"
+    "elasticsearch/elasticsearch": "*",
+    "ruflin/elastica": "^2.2"
   },
   "require-dev": {
     "phpunit/phpunit": "~4.0",

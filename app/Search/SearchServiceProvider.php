@@ -38,9 +38,9 @@ class SearchServiceProvider extends ServiceProvider
     {
         $this->app['App\Search\SearchService'] = $this->app->share(function ($app) {
 
-            $config = config('search');
+            $config = new Config(config('search'));
 
-            $client = new Client(array_only($config, ['hosts']));
+            $client = new Client(array_only(config('search'), ['hosts']));
 
             $service = new SearchService($app, $client, $config);
 

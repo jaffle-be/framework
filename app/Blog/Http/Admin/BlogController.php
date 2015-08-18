@@ -62,7 +62,7 @@ class BlogController extends AdminController
 
         $payload = [
             'post'  => $post,
-            'input' => translation_input($request, ['title', 'extract', 'content', 'published_at'])
+            'input' => translation_input($request, ['title', 'extract', 'content', 'publish_at'])
         ];
 
         if (!$this->dispatchFromArray(UpdatePost::class, $payload)) {
