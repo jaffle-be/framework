@@ -71,10 +71,26 @@ class AccountTableSeeder extends Seeder
      */
     protected function account()
     {
-        $account = Account::create([
-            'alias'   => 'digiredo',
-            'domain'  => 'digiredo.local',
-        ]);
+        if(env('APP_ENV') == 'production')
+        {
+            $account = Account::create([
+                'alias'   => 'digiredo',
+                'domain'  => 'digiredo.be',
+            ]);
+        }
+        else if(env('APP_ENV') == 'develop')
+        {
+            $account = Account::create([
+                'alias'   => 'digiredo',
+                'domain'  => 'dev.digiredo.be',
+            ]);
+        }
+        else{
+            $account = Account::create([
+                'alias'   => 'digiredo',
+                'domain'  => 'digiredo.local',
+            ]);
+        }
 
         return $account;
     }
