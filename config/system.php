@@ -1,5 +1,5 @@
 <?php
 
 return [
-    'installed' => true,
+    'installed' => false,
 ];
