@@ -3,6 +3,5 @@
 /vendor
 /node_modules
 .env
-themes
 bower_components
 dist
