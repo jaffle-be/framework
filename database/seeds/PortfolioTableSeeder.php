@@ -101,6 +101,8 @@ class PortfolioTableSeeder extends Seeder
 
             $project->client()->associate($clients->random());
 
+            $project->save();
+
         }
     }
 
