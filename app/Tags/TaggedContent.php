@@ -19,4 +19,9 @@ class TaggedContent extends Model
 
     protected $table = 'taggables';
 
+    public function taggable()
+    {
+        return $this->morphTo();
+    }
+
 }

@@ -169,6 +169,7 @@ return [
         'DaveJamesMiller\Breadcrumbs\ServiceProvider',
         'App\Menu\MenuServiceProvider',
         'App\System\SystemServiceProvider',
+        'App\Search\SearchServiceProvider',
 
 
         Mews\Captcha\CaptchaServiceProvider::class,

@@ -4,15 +4,18 @@ use App\Account\MembershipOwner;
 use App\Contact\AddressOwner;
 use App\Media\StoresMedia;
 use App\Media\StoringMedia;
+use App\Search\Model\Searchable;
+use App\Search\Model\SearchableTrait;
 use Dimsav\Translatable\Translatable;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 
-class User extends Model implements Authenticatable, MembershipOwner, AddressOwner, StoresMedia
+class User extends Model implements Authenticatable, MembershipOwner, AddressOwner, StoresMedia, Searchable
 {
 
     use StoringMedia;
     use Translatable;
+    use SearchableTrait;
 
     /**
      * The database table used by the model.
