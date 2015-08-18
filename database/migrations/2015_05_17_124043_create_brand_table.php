@@ -19,18 +19,6 @@ class CreateBrandTable extends Migration
             $table->string('name');
             $table->timestamps();
         });
-
-        Brand::create([
-            'name' => 'Apple'
-        ]);
-
-        Brand::create([
-            'name' => 'Phillips'
-        ]);
-
-        Brand::create([
-            'name' => 'Samsung',
-        ]);
     }
 
     /**

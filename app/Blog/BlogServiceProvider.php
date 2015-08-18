@@ -19,6 +19,5 @@ class BlogServiceProvider extends ServiceProvider
     protected function observers()
     {
         Post::observe('App\Blog\PostObserver');
-        PostTranslation::observe('App\Blog\PostTranslationObserver');
     }
 }

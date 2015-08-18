@@ -202,6 +202,11 @@ class SearchService implements SearchServiceInterface
 
     public function add(Searchable $type, array $with, $needsLoading = true)
     {
+        //clone object so we do not touch original one.
+        //this was messing with translatable library.
+        //since the parent model saves before the translations,
+        //translations wouldn't be in database and we overwrite them here by loading those translations
+        $type = clone $type;
         /*
          * make sure the relations are initialised when creating a new object
          * else searching might fail since some relations expect to be an array and it would be indexed as null
@@ -224,6 +229,12 @@ class SearchService implements SearchServiceInterface
 
     public function update(Searchable $type, array $with)
     {
+        //clone object so we do not touch original one.
+        //this was messing with translatable library.
+        //since the parent model saves before the translations,
+        //translations wouldn't be in database and we overwrite them here by loading those translations
+        $type = clone $type;
+
         $params = $this->getBaseParams($type);
 
         $type->load($with);

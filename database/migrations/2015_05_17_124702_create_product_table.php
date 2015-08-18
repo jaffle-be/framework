@@ -26,52 +26,6 @@ class CreateProductTable extends Migration
             $table->softDeletes();
         });
 
-        Product::unguard();
-
-        Product::create([
-            'name' => 'test product 1',
-            'brand_id' => 1,
-        ]);
-
-        Product::create([
-            'name' => 'test product 1',
-            'brand_id' => 2,
-        ]);
-
-        Product::create([
-            'name' => 'test product 1',
-            'brand_id' => 3,
-        ]);
-
-        Product::create([
-            'name' => 'test product 2',
-            'brand_id' => 1,
-        ]);
-
-        Product::create([
-            'name' => 'test product 2',
-            'brand_id' => 2,
-        ]);
-
-        Product::create([
-            'name' => 'test product 2',
-            'brand_id' => 3,
-        ]);
-
-        Product::create([
-            'name' => 'test product 3',
-            'brand_id' => 1,
-        ]);
-
-        Product::create([
-            'name' => 'test product 3',
-            'brand_id' => 2,
-        ]);
-
-        Product::create([
-            'name' => 'test product 3',
-            'brand_id' => 3,
-        ]);
     }
 
     /**

@@ -24,7 +24,7 @@ class Post extends Model implements StoresMedia, Searchable
 
     protected $media = '{account}/blog';
 
-    protected $fillable = ['account_id', 'title', 'extract', 'content', 'publish_at'];
+    protected $fillable = ['account_id', 'title', 'extract', 'content', 'publish_at', 'slug_nl', 'slug_fr', 'slug_en', 'slug_de'];
 
     protected $translatedAttributes = ['title', 'extract', 'content', 'publish_at'];
 

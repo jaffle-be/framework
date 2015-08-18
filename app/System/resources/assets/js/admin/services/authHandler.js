@@ -1,18 +1,3 @@
-//when the token is missing, we do a hard reload, so the token is there!
-function csrfHandler($window, $q) {
-    return {
-        responseError: function (response) {
-            //if the response is a 403 we will do a hard reload.
-            if (response.status === 403)
-            {
-                $window.location.reload();
-            }
-
-            return $q.reject(response);
-        }
-    }
-}
-
 function authHandler($window, $q) {
     return {
         responseError: function (response) {
@@ -26,8 +11,7 @@ function authHandler($window, $q) {
     }
 }
 
-angular.module('app')
-    .factory('csrfHandler', csrfHandler)
+angular.module('system')
     .factory('authHandler', authHandler)
 
     //this is needed to ensure we do redirect to signin page when we're going to /admin (instead of a specific page like /admin/start)

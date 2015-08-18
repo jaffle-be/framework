@@ -13,8 +13,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        Model::unguard();
-
         $seeders = ['countryTable', 'accountTable', 'contactTable', 'usersTable', 'menuTable', 'tagTable', 'client', 'membership', 'team', 'profile', 'blogTable', 'portfolioTable'];
 
         foreach ($seeders as $seeds) {

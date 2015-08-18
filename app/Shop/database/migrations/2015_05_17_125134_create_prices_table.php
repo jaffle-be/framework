@@ -21,51 +21,6 @@ class CreatePricesTable extends Migration
             $table->float('value');
             $table->timestamps();
         });
-
-        Price::create([
-            'product_id' => 1,
-            'value'      => 50
-        ]);
-
-        Price::create([
-            'product_id' => 2,
-            'value'      => 35
-        ]);
-
-        Price::create([
-            'product_id' => 3,
-            'value'      => 60
-        ]);
-
-        Price::create([
-            'product_id' => 4,
-            'value'      => 159
-        ]);
-
-        Price::create([
-            'product_id' => 5,
-            'value'      => 60
-        ]);
-
-        Price::create([
-            'product_id' => 6,
-            'value'      => 70
-        ]);
-
-        Price::create([
-            'product_id' => 7,
-            'value'      => 99
-        ]);
-
-        Price::create([
-            'product_id' => 8,
-            'value'      => 123
-        ]);
-
-        Price::create([
-            'product_id' => 9,
-            'value'      => 12.99
-        ]);
     }
 
     /**
