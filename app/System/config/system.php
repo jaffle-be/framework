@@ -2,7 +2,7 @@
 
 return [
 
-    'installed'  => true,
+    'installed'  => false,
 
     'summernote' => [
         'toolbar' => [
