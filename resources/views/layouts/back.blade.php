@@ -34,7 +34,7 @@
 {{--<!-- Main Angular scripts-->--}}
 <script src=" {{ asset('/js/admin/angular/angular.min.js') }}"></script>
 <script src=" {{ asset('/js/admin/angular-smart-table/smart-table.min.js') }}"></script>
-<script src=" {{ asset('/js/admin/oclazyload/ocLazyLoad.min.js') }}"></script>
+<script src=" {{ asset('/js/admin/ocLazyLoad/ocLazyLoad.min.js') }}"></script>
 <script src=" {{ asset('/js/admin/angular-translate/angular-translate.min.js') }}"></script>
 <script src=" {{ asset('/js/admin/angular-ui-router/angular-ui-router.min.js') }}"></script>
 <script src=" {{ asset('/js/admin/bootstrap/ui-bootstrap-tpls.min.js') }}"></script>

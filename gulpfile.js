@@ -64,7 +64,7 @@ gulp.task('admin-compile', ['admin-plugins', 'admin-scripts', 'admin-less']);
 
 gulp.task('admin-less', function()
 {
-    gulp.src(['app/system/resources/assets/less/admin/main.less'])
+    gulp.src(['app/System/resources/assets/less/admin/main.less'])
         .pipe(plumber())
         .pipe(less())
         .pipe(gulp.dest('public/css/admin'))
@@ -201,7 +201,7 @@ gulp.task('admin-plugins', function () {
             prefix: 3
         }));
 
-    gulp.src('bower_components/ngStorage/ngStorage.min.js')
+    gulp.src('bower_components/ngstorage/ngStorage.min.js')
         .pipe(copy('./public/js/admin/ngStorage/', {
             prefix: 2
         }));
