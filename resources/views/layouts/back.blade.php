@@ -58,7 +58,7 @@
 
 @if($theme && is_file(public_path('themes/'. $theme->name .'/assets/js/admin/' . lcfirst($theme->name) . '.min.js')))
 
-    <script src=" {{ theme_asset('/js/admin/' . $theme->name .'.min.js') }}"></script>
+    <script src=" {{ theme_asset('/js/admin/' . lcfirst($theme->name .'.min.js')) }}"></script>
 
 @else
     {{--mock theme, angular expects this module--}}
