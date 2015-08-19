@@ -2,7 +2,7 @@
 
 return [
 
-    'locale'  => App::getLocale(),
+    'locale'  =>    app()->getLocale(),
 
     'locales' => ['nl', 'fr', 'en', 'de']
 
