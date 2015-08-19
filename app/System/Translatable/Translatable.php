@@ -1,7 +1,7 @@
 <?php namespace App\System\Translatable;
 
 use App;
-use Dimsav\Translatable\Exception\LocalesNotDefinedException;
+use App\System\Translatable\Exception\LocalesNotDefinedException;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\MassAssignmentException;
 use Illuminate\Database\Eloquent\Model;
