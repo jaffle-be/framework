@@ -2,6 +2,7 @@
 
 namespace App\System;
 
+use App\System\Queue\RedisConnector;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Factory;
 
@@ -30,6 +31,10 @@ class SystemServiceProvider extends ServiceProvider{
                 'theme' => $theme,
                 'user' => $guard->user()
             ]);
+        });
+
+        $this->app['queue']->extend('redis', function() use ($app){
+            return new RedisConnector($app['redis']);
         });
     }
 

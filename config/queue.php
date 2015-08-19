@@ -68,7 +68,7 @@ return [
 
 		'redis' => [
 			'driver' => 'redis',
-			'queue'  => env('APP_NAME') . ':default',
+			'queue'  => 'default',
 			'expire' => 60,
 		],
 
