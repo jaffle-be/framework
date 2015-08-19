@@ -175,7 +175,7 @@ trait SearchableTrait
 
                 $locale_map = $related->getSearchableMapping([]);
 
-                foreach (config('blog.locales') as $locale) {
+                foreach (config('system.locales') as $locale) {
                     $nested_map[$locale] = [
                         'type'       => 'nested',
                         'properties' => $locale_map
