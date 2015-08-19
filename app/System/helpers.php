@@ -9,7 +9,9 @@
  */
 function system_options()
 {
-    $options = config('blog');
+    $options['locale'] = app()->getLocale();
+
+    $options['locales'] = config('system.locales');
 
     $locales = array_map(function ($item) {
 
