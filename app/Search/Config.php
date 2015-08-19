@@ -1,6 +1,6 @@
 <?php namespace App\Search;
 
-use Dimsav\Translatable\Translatable;
+use App\System\Translatable\Translatable;
 
 class Config
 {

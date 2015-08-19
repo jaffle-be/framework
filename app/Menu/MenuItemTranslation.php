@@ -1,6 +1,6 @@
 <?php namespace App\Menu;
 
-use Jaffle\Tools\TranslationModel;
+use App\System\Translatable\TranslationModel;
 
 class MenuItemTranslation extends TranslationModel
 {

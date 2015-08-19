@@ -1,6 +1,6 @@
 <?php namespace App\Shop;
 
-use Jaffle\Tools\ServiceProvider;
+use App\System\ServiceProvider;
 
 class ShopServiceProvider extends ServiceProvider
 {

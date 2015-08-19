@@ -1,6 +1,6 @@
 <?php namespace App\Theme;
 
-use Jaffle\Tools\TranslationModel;
+use App\System\Translatable\TranslationModel;
 
 class ThemeSettingTranslation extends TranslationModel
 {

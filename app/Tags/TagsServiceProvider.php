@@ -1,6 +1,6 @@
 <?php namespace App\Tags;
 
-use Jaffle\Tools\ServiceProvider;
+use App\System\ServiceProvider;
 
 class TagsServiceProvider extends ServiceProvider{
 

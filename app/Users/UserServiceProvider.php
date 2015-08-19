@@ -1,6 +1,6 @@
 <?php namespace App\Users;
 
-use Jaffle\Tools\ServiceProvider;
+use App\System\ServiceProvider;
 
 class UserServiceProvider extends ServiceProvider
 {

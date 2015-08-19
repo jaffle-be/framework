@@ -1,11 +1,10 @@
 <?php namespace App\Users;
 
-use Dimsav\Translatable\Translatable;
 use Illuminate\Database\Eloquent\Model;
 
 class Skill extends Model
 {
-    use Translatable;
+    use \App\System\Translatable\Translatable;
 
     protected $table = 'user_skills';
 

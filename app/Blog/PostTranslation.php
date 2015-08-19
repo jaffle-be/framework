@@ -2,7 +2,7 @@
 
 use App\Search\Model\Searchable;
 use App\Search\Model\SearchableTrait;
-use Jaffle\Tools\TranslationModel;
+use App\System\Translatable\TranslationModel;
 
 class PostTranslation extends TranslationModel implements Searchable
 {
@@ -16,10 +16,10 @@ class PostTranslation extends TranslationModel implements Searchable
     protected $dates = ['publish_at'];
 
     protected static $searchableMapping = [
-        'publish_at' => [
-            'type'   => 'date',
-            'format' => 'yyyy-MM-dd'
-        ],
+//        'publish_at' => [
+//            'type'   => 'date',
+//            'format' => 'yyyy-MM-dd HH:mm:ss'
+//        ],
         'created_at' => [
             'type'   => 'date',
             'format' => 'yyyy-MM-dd HH:mm:ss'

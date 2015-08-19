@@ -6,12 +6,11 @@ use App\Search\Model\Searchable;
 use App\Search\Model\SearchableTrait;
 use App\System\Scopes\ModelAccountResource;
 use App\Tags\Taggable;
-use Dimsav\Translatable\Translatable;
 use Illuminate\Database\Eloquent\Model;
 
 class Project extends Model implements StoresMedia, Searchable
 {
-    use Translatable;
+    use \App\System\Translatable\Translatable;
     use Taggable;
     use StoringMedia;
     use ModelAccountResource;

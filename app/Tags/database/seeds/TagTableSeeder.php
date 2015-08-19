@@ -1,9 +1,9 @@
 <?php
 
+use App\System\Seeder;
 use App\Tags\Tag;
 use Illuminate\Foundation\Bus\DispatchesCommands;
 use Illuminate\Support\Collection;
-use Jaffle\Tools\Seeder;
 
 class TagTableSeeder extends Seeder
 {

@@ -1,13 +1,12 @@
 <?php namespace App\Theme;
 
 use App\System\Scopes\ModelAccountResource;
-use Dimsav\Translatable\Translatable;
 use Illuminate\Database\Eloquent\Model;
 
 class ThemeSettingValue extends Model
 {
     use ModelAccountResource;
-    use Translatable;
+    use \App\System\Translatable\Translatable;
 
     protected $table = 'themes_setting_values';
 

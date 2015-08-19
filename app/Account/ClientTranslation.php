@@ -1,6 +1,6 @@
 <?php namespace App\Account;
 
-use Jaffle\Tools\TranslationModel;
+use App\System\Translatable\TranslationModel;
 
 class ClientTranslation extends TranslationModel
 {

@@ -1,6 +1,6 @@
 <?php namespace App\Menu;
 
-use Jaffle\Tools\ServiceProvider;
+use App\System\ServiceProvider;
 
 class MenuServiceProvider extends ServiceProvider
 {

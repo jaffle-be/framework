@@ -1,6 +1,6 @@
 <?php namespace App\Modules;
 
-use Jaffle\Tools\ServiceProvider;
+use App\System\ServiceProvider;
 
 class ModuleServiceProvider extends ServiceProvider
 {

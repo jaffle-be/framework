@@ -1,6 +1,6 @@
 <?php namespace App\Portfolio;
 
-use Jaffle\Tools\ServiceProvider;
+use App\System\ServiceProvider;
 
 class PortfolioServiceProvider extends ServiceProvider
 {

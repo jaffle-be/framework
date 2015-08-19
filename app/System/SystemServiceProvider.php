@@ -4,7 +4,6 @@ namespace App\System;
 
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Factory;
-use Jaffle\Tools\ServiceProvider;
 
 class SystemServiceProvider extends ServiceProvider{
 
@@ -41,7 +40,13 @@ class SystemServiceProvider extends ServiceProvider{
      */
     public function register()
     {
+        $this->mergeConfigFrom(
+            __DIR__.'/config/system.php', 'system'
+        );
 
+        $this->app->booted(function($app){
+            $app['newrelic']->setAppName(env('APP_NAME'));
+        });
     }
 
     protected function observers()

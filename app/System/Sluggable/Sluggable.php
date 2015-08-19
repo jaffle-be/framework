@@ -1,4 +1,4 @@
-<?php namespace Jaffle\Tools;
+<?php namespace App\System\Sluggable;
 
 trait Sluggable
 {

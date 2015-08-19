@@ -1,11 +1,10 @@
 <?php namespace App\Theme;
 
-use Dimsav\Translatable\Translatable;
 use Illuminate\Database\Eloquent\Model;
 
 class ThemeSettingOption extends Model
 {
-    use translatable;
+    use \App\System\Translatable\translatable;
 
     protected $table = 'themes_setting_options';
 

@@ -2,7 +2,7 @@
 
 namespace App\System\Country;
 
-use Jaffle\Tools\TranslationModel;
+use App\System\Translatable\TranslationModel;
 
 class CountryTranslation extends TranslationModel{
 

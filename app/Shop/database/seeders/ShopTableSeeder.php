@@ -1,7 +1,7 @@
 <?php
 
+use App\System\Seeder;
 use Illuminate\Foundation\Bus\DispatchesCommands;
-use Jaffle\Tools\Seeder;
 
 class ShopTableSeeder extends Seeder
 {

@@ -2,7 +2,7 @@
 
 use App\Account\Account;
 use App\Account\Team;
-use Jaffle\Tools\Seeder;
+use App\System\Seeder;
 
 class TeamSeeder extends Seeder
 {

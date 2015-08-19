@@ -2,7 +2,7 @@
 
 namespace App\Theme;
 
-use Jaffle\Tools\ServiceProvider;
+use App\System\ServiceProvider;
 
 class ThemeServiceProvider extends ServiceProvider
 {

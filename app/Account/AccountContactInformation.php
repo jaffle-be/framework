@@ -3,7 +3,6 @@
 namespace App\Account;
 
 use App\Contact\AddressOwner;
-use Dimsav\Translatable\Translatable;
 use Illuminate\Database\Eloquent\Model;
 
 class AccountContactInformation extends Model implements AddressOwner{

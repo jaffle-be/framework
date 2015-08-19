@@ -1,12 +1,11 @@
 <?php namespace App\Menu;
 
 use App\System\Scopes\ModelAutoSort;
-use Dimsav\Translatable\Translatable;
 use Illuminate\Database\Eloquent\Model;
 
 class MenuItem extends Model{
 
-    use Translatable;
+    use \App\System\Translatable\Translatable;
     use ModelAutoSort;
 
     protected $table = 'menu_items';

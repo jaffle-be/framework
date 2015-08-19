@@ -1,7 +1,7 @@
 <?php
 
 use App\Account\Client;
-use Jaffle\Tools\Seeder;
+use App\System\Seeder;
 
 class ClientSeeder extends Seeder
 {

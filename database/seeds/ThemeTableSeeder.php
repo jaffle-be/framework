@@ -1,6 +1,6 @@
 <?php
 
-use Jaffle\Tools\Seeder;
+use App\System\Seeder;
 
 class ThemeTableSeeder extends Seeder
 {

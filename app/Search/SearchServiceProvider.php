@@ -2,8 +2,8 @@
 
 namespace App\Search;
 
+use App\System\ServiceProvider;
 use Elasticsearch\Client;
-use Jaffle\Tools\ServiceProvider;
 
 class SearchServiceProvider extends ServiceProvider
 {

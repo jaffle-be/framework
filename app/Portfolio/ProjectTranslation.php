@@ -2,7 +2,7 @@
 
 use App\Search\Model\Searchable;
 use App\Search\Model\SearchableTrait;
-use Jaffle\Tools\TranslationModel;
+use App\System\Translatable\TranslationModel;
 
 class ProjectTranslation extends TranslationModel implements Searchable
 {
