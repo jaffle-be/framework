@@ -2,7 +2,6 @@
 
 namespace App\System\Country;
 
-use Dimsav\Translatable\Test\Model\CountryTranslation;
 use Illuminate\Foundation\Application;
 
 class CountryRepository {
