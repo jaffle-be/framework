@@ -6,7 +6,7 @@ Route::group([
 ], function () {
 
     Route::group([
-        'namespace' => 'admin',
+        'namespace' => 'Admin',
     ], function()
     {
         Route::group(['prefix' => 'templates/admin'], function () {

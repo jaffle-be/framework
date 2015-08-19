@@ -9,7 +9,7 @@ Route::group([
 ], function () {
 
     Route::group([
-        'namespace' => 'admin'
+        'namespace' => 'Admin'
     ], function () {
         Route::group(['prefix' => 'templates/admin'], function () {
             //template files, load at top so we do not end up in the show method
