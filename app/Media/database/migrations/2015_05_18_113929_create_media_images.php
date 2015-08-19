@@ -33,7 +33,7 @@ class CreateMediaImages extends Migration
             $table->increments('id');
             $table->integer('image_id', false, true);
             $table->foreign('image_id', 'image_translation_to_image')->references('id')->on('media_images')->onDelete('cascade');
-            $table->enum('locale', config('translatable.locales'));
+            $table->string('locale');
             $table->string('title');
             $table->timestamps();
         });
