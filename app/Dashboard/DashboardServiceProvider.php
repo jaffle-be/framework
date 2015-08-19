@@ -1,6 +1,6 @@
 <?php namespace App\Dashboard;
 
-use Jaffle\Tools\ServiceProvider;
+use App\System\ServiceProvider;
 
 class DashboardServiceProvider extends ServiceProvider
 {

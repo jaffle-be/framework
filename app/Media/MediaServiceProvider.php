@@ -1,6 +1,6 @@
 <?php namespace App\Media;
 
-use Jaffle\Tools\ServiceProvider;
+use App\System\ServiceProvider;
 
 class MediaServiceProvider extends ServiceProvider
 {

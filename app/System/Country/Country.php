@@ -2,12 +2,11 @@
 
 namespace App\System\Country;
 
-use Jaffle\Tools\Translatable;
 use Illuminate\Database\Eloquent\Model;
 
 class Country extends Model{
 
-    use Translatable;
+    use \App\System\Translatable\Translatable;
 
     protected $table = "country";
 

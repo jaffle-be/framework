@@ -1,4 +1,4 @@
-<?php namespace Jaffle\Tools;
+<?php namespace App\System;
 
 use Illuminate\Support\ServiceProvider as Provider;
 use ReflectionClass;
@@ -13,6 +13,7 @@ abstract class ServiceProvider extends Provider
     ];
 
     protected $publishing = [
+        '/config',
         '/database/migrations',
         '/database/seeds',
         '/database/images',

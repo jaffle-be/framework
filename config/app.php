@@ -164,7 +164,7 @@ return [
 
         Mews\Captcha\CaptchaServiceProvider::class,
         Thomaswelton\LaravelGravatar\LaravelGravatarServiceProvider::class,
-        'Dimsav\Translatable\TranslatableServiceProvider',
+        'Intouch\LaravelNewrelic\NewrelicServiceProvider',
         'Intervention\Image\ImageServiceProvider',
         'App\Layout\LayoutServiceProvider',
         'App\Dashboard\DashboardServiceProvider',
@@ -231,6 +231,7 @@ return [
         'Menu' => 'App\Menu\Facade\Menu',
         'Gravatar' => 'Thomaswelton\LaravelGravatar\Facades\Gravatar',
         'Breadcrumbs' => 'DaveJamesMiller\Breadcrumbs\Facade',
+        'Newrelic' => 'Intouch\LaravelNewrelic\Facades\Newrelic',
 
     ],
 

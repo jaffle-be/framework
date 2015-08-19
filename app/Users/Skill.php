@@ -1,11 +1,10 @@
 <?php namespace App\Users;
 
-use Jaffle\Tools\Translatable;
 use Illuminate\Database\Eloquent\Model;
 
 class Skill extends Model
 {
-    use Translatable;
+    use \App\System\Translatable\Translatable;
 
     protected $table = 'user_skills';
 

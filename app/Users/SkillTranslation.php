@@ -1,6 +1,6 @@
 <?php namespace App\Users;
 
-use Jaffle\Tools\TranslationModel;
+use App\System\Translatable\TranslationModel;
 
 class SkillTranslation extends TranslationModel
 {

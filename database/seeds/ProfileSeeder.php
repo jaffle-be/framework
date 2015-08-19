@@ -1,8 +1,8 @@
 <?php
 
+use App\System\Seeder;
 use App\Users\Skill;
 use App\Users\User;
-use Jaffle\Tools\Seeder;
 
 class ProfileSeeder extends Seeder
 {

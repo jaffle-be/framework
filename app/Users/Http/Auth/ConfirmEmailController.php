@@ -6,6 +6,7 @@ use App\Users\Auth\Commands\SendConfirmationEmail;
 use App\Users\Contracts\TokenRepositoryInterface;
 use App\Users\Contracts\UserRepositoryInterface;
 use Illuminate\Http\Request;
+use Lang;
 
 class ConfirmEmailController extends Controller
 {

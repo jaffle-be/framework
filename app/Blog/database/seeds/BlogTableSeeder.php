@@ -4,8 +4,8 @@ use App\Account\Account;
 use App\Blog\Post;
 use App\Media\Commands\StoreNewImage;
 use App\Media\ImageDimensionHelpers;
+use App\System\Seeder;
 use Illuminate\Foundation\Bus\DispatchesCommands;
-use Jaffle\Tools\Seeder;
 
 class BlogTableSeeder extends Seeder
 {

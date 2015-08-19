@@ -1,6 +1,6 @@
 <?php namespace App\Marketing;
 
-use Jaffle\Tools\ServiceProvider;
+use App\System\ServiceProvider;
 
 class MarketingServiceProvider extends ServiceProvider
 {

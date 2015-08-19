@@ -4,8 +4,8 @@ use App\Account\Account;
 use App\Account\AccountContactInformation;
 use App\Account\Role;
 use App\Contact\Address;
+use App\System\Seeder;
 use Illuminate\Foundation\Bus\DispatchesCommands;
-use Jaffle\Tools\Seeder;
 
 class AccountTableSeeder extends Seeder
 {

@@ -1,6 +1,6 @@
 <?php namespace App\Settings;
 
-use Jaffle\Tools\ServiceProvider;
+use App\System\ServiceProvider;
 
 class SettingServiceProvider extends ServiceProvider
 {

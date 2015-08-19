@@ -1,6 +1,6 @@
 <?php namespace App\Media;
 
-use Jaffle\Tools\TranslationModel;
+use App\System\Translatable\TranslationModel;
 
 class ImageTranslation extends TranslationModel{
 

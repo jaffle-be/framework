@@ -1,6 +1,6 @@
 <?php namespace App\Blog;
 
-use Jaffle\Tools\ServiceProvider;
+use App\System\ServiceProvider;
 
 class BlogServiceProvider extends ServiceProvider
 {

@@ -1,6 +1,6 @@
 <?php namespace App\Search;
 
-use Jaffle\Tools\Translatable;
+use App\System\Translatable\Translatable;
 
 class Config
 {

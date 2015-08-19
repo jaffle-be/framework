@@ -6,18 +6,16 @@ use App\Search\Model\Searchable;
 use App\Search\Model\SearchableTrait;
 use App\System\Scopes\ModelAccountResource;
 use App\Tags\Taggable;
-use Jaffle\Tools\Translatable;
 use Illuminate\Database\Eloquent\Model;
-use Jaffle\Tools\Sluggable;
 
 class Post extends Model implements StoresMedia, Searchable
 {
 
-    use Translatable;
+    use \App\System\Translatable\Translatable;
     use Taggable;
     use StoringMedia;
     use ModelAccountResource;
-    use Sluggable;
+    use \App\System\Sluggable\Sluggable;
     use SearchableTrait;
 
     protected $table = 'posts';
@@ -41,10 +39,10 @@ class Post extends Model implements StoresMedia, Searchable
             'type'   => 'date',
             'format' => 'yyyy-MM-dd HH:mm:ss'
         ],
-        'publish_at' => [
-            'type'   => 'date',
-            'format' => 'yyyy-MM-dd'
-        ],
+//        'publish_at' => [
+//            'type'   => 'date',
+//            'format' => 'yyyy-MM-dd HH:mm:ss'
+//        ],
     ];
 
     public function user()

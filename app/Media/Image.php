@@ -1,13 +1,12 @@
 <?php namespace App\Media;
 
 use App\System\Scopes\ModelAccountResource;
-use Jaffle\Tools\Translatable;
 use Illuminate\Database\Eloquent\Model;
 
 class Image extends Model
 {
 
-    use Translatable;
+    use \App\System\Translatable\Translatable;
     use ModelAccountResource;
 
     protected $table = 'media_images';

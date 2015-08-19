@@ -1,12 +1,11 @@
 <?php namespace App\Account;
 
-use Jaffle\Tools\Translatable;
 use Illuminate\Database\Eloquent\Model;
 
 class Team extends Model
 {
 
-    use Translatable;
+    use \App\System\Translatable\Translatable;
 
     protected $table = 'account_teams';
 

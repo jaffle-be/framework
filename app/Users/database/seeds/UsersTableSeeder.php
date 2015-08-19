@@ -1,7 +1,7 @@
 <?php
 
+use App\System\Seeder;
 use App\Users\User;
-use Jaffle\Tools\Seeder;
 
 class UsersTableSeeder extends Seeder{
 

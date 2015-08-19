@@ -1,6 +1,6 @@
 <?php namespace App\Contact;
 
-use Jaffle\Tools\ServiceProvider;
+use App\System\ServiceProvider;
 
 class ContactServiceProvider extends ServiceProvider
 {

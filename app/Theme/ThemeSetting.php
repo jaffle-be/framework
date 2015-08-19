@@ -1,13 +1,12 @@
 <?php namespace App\Theme;
 
-use Jaffle\Tools\Translatable;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
 class ThemeSetting extends Model
 {
 
-    use translatable;
+    use \App\System\Translatable\translatable;
 
     protected $table = 'themes_setting_keys';
 

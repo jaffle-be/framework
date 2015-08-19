@@ -2,12 +2,11 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
-use Jaffle\Tools\ConfigWriter;
 
 class CreateThemesTable extends Migration
 {
 
-    use ConfigWriter;
+    use \App\System\ConfigWriter;
     /**
      * Run the migrations.
      *

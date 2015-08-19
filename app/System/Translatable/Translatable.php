@@ -1,4 +1,4 @@
-<?php namespace Jaffle\Tools;
+<?php namespace App\System\Translatable;
 
 use App;
 use Dimsav\Translatable\Exception\LocalesNotDefinedException;

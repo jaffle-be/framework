@@ -1,4 +1,4 @@
-<?php namespace Jaffle\Tools;
+<?php namespace App\System\Translatable;
 
 use Illuminate\Database\Eloquent\Model;
 

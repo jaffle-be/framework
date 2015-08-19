@@ -1,8 +1,8 @@
 <?php
 
 use App\Account\Membership;
+use App\System\Seeder;
 use App\Users\User;
-use Jaffle\Tools\Seeder;
 
 class MembershipSeeder extends Seeder
 {

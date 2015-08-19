@@ -2,7 +2,7 @@
 
 use App\Menu\Menu;
 use App\Menu\MenuItem;
-use Jaffle\Tools\Seeder;
+use App\System\Seeder;
 
 class MenuTableSeeder extends Seeder{
 

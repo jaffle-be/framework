@@ -1,6 +1,6 @@
 <?php namespace App\Pages;
 
-use Jaffle\Tools\ServiceProvider;
+use App\System\ServiceProvider;
 
 class PageServiceProvider extends ServiceProvider
 {

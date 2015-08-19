@@ -1,11 +1,8 @@
 <?php
-namespace Jaffle\Tools;
+namespace App\System;
 
-use Closure;
 use Faker\Factory as Faker;
 use Illuminate\Database\Seeder as BaseSeeder;
-use Illuminate\Support\Str;
-
 
 abstract class Seeder extends BaseSeeder
 {

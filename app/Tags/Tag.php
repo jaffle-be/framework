@@ -3,13 +3,12 @@
 use App\Search\Model\Searchable;
 use App\Search\Model\SearchableTrait;
 use App\System\Scopes\ModelAccountResource;
-use Jaffle\Tools\Translatable;
 use Illuminate\Database\Eloquent\Model;
 
 class Tag extends Model implements Searchable
 {
 
-    use Translatable;
+    use \App\System\Translatable\Translatable;
     use ModelAccountResource;
     use SearchableTrait;
 

@@ -4,9 +4,9 @@ use App\Account\Account;
 use App\Account\Client;
 use App\Media\Commands\StoreNewImage;
 use App\Portfolio\Project;
+use App\System\Seeder;
 use App\Users\User;
 use Illuminate\Foundation\Bus\DispatchesCommands;
-use Jaffle\Tools\Seeder;
 
 class PortfolioTableSeeder extends Seeder
 {

@@ -1,8 +1,8 @@
 <?php
 
 use App\System\Country\Country;
+use App\System\Seeder;
 use Illuminate\Foundation\Bus\DispatchesCommands;
-use Jaffle\Tools\Seeder;
 
 class CountryTableSeeder extends Seeder
 {

@@ -1,6 +1,6 @@
 <?php namespace App\Layout;
 
-use Jaffle\Tools\ServiceProvider;
+use App\System\ServiceProvider;
 
 class LayoutServiceProvider extends ServiceProvider
 {
