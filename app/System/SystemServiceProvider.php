@@ -6,7 +6,8 @@ use App\System\Queue\RedisConnector;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Factory;
 
-class SystemServiceProvider extends ServiceProvider{
+class SystemServiceProvider extends ServiceProvider
+{
 
     protected $namespace = 'system';
 
@@ -18,22 +19,25 @@ class SystemServiceProvider extends ServiceProvider{
         $app = $this->app;
 
         /** @var Factory $view */
-        $this->app['view']->composer('*', function(View $view) use ($app)
-        {
-            $accounts = $this->app->make('App\Account\AccountManager');
+        $this->app['view']->composer('*', function (View $view) use ($app) {
 
-            $theme = $this->app->make('App\Theme\Theme');
+            if (!isset($view['account'])) {
+                $accounts = $this->app->make('App\Account\AccountManager');
+                $view->with('account', $accounts->account());
+            }
 
-            $guard = $this->app->make('auth');
+            if (!isset($view['theme'])) {
+                $theme = $this->app->make('App\Theme\Theme');
+                $view->with('theme', $theme);
+            }
 
-            $view->with([
-                'account' => $accounts->account(),
-                'theme' => $theme,
-                'user' => $guard->user()
-            ]);
+            if (!isset($view['user'])) {
+                $guard = $this->app->make('auth');
+                $view->with('user', $guard->user());
+            }
         });
 
-        $this->app['queue']->extend('redis', function() use ($app){
+        $this->app['queue']->extend('redis', function () use ($app) {
             return new RedisConnector($app['redis']);
         });
     }
@@ -46,10 +50,10 @@ class SystemServiceProvider extends ServiceProvider{
     public function register()
     {
         $this->mergeConfigFrom(
-            __DIR__.'/config/system.php', 'system'
+            __DIR__ . '/config/system.php', 'system'
         );
 
-        $this->app->booted(function($app){
+        $this->app->booted(function ($app) {
             $app['newrelic']->setAppName(env('APP_NAME'));
         });
     }
