@@ -31,7 +31,7 @@ class CreatePostsTable extends Migration
             $table->increments('id');
             $table->integer('post_id', false, true);
             $table->foreign('post_id', 'post_translation_to_post')->references('id')->on('posts')->onDelete('cascade');
-            $table->enum('locale', config('translatable.locales'))->index();
+            $table->string('locale');
             $table->string('title');
             $table->text('extract');
             $table->text('content');
