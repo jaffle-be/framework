@@ -53,7 +53,7 @@ abstract class ServiceProvider extends Provider
          * why? we need to make sure that our breadcrumbs use the config value fetched from the database.
          * In the boot method, the connection isn't available yet.
          */
-        $this->app['events']->listen('bootstrapped: Illuminate\Foundation\Bootstrap\BootProviders', function($app) use ($dir)
+        $this->app->booted(function() use ($dir)
         {
             $breadcrumbs = $dir . '/Http/breadcrumbs.php';
 
