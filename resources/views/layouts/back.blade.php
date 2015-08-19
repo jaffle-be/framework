@@ -56,7 +56,7 @@
 <script src=" {{ asset('/js/admin/models.min.js') }}"></script>
 <script src=" {{ asset('/js/admin/controllers.min.js') }}"></script>
 
-@if($theme && is_file(public_path('themes/'. $theme->name .'/assets/js/admin/' . $theme->name . '.min.js')))
+@if($theme && is_file(public_path('themes/'. $theme->name .'/assets/js/admin/' . lcfirst($theme->name) . '.min.js')))
 
     <script src=" {{ theme_asset('/js/admin/' . $theme->name .'.min.js') }}"></script>
 
