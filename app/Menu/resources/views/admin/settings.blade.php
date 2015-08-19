@@ -28,7 +28,7 @@
 
                             <li ng-repeat="item in vm.menu.items" as-sortable-item>
 
-                                <a ng-click="vm.item = item">@{{ item.name }}</a>
+                                <a ng-click="vm.item = item">@{{ item.translations[vm.options.locale].name }}</a>
                                 <span>@{{ item.children.length }}</span>
                                 <span class="sorter" as-sortable-item-handle><i class="fa fa-arrows"></i></span>
 
