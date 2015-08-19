@@ -3,7 +3,7 @@
 use App\Media\StoresMedia;
 use App\Media\StoringMedia;
 use App\System\Scopes\ModelAccountResource;
-use Dimsav\Translatable\Translatable;
+use Jaffle\Tools\Translatable;
 use Illuminate\Database\Eloquent\Model;
 
 class Client extends Model implements StoresMedia

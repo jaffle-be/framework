@@ -1,6 +1,6 @@
 <?php namespace App\Account;
 
-use Dimsav\Translatable\Translatable;
+use Jaffle\Tools\Translatable;
 use Illuminate\Database\Eloquent\Model;
 
 class Team extends Model

@@ -1,6 +1,6 @@
 <?php namespace App\Users;
 
-use Dimsav\Translatable\Translatable;
+use Jaffle\Tools\Translatable;
 use Illuminate\Database\Eloquent\Model;
 
 class Skill extends Model

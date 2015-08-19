@@ -2,7 +2,7 @@
 
 namespace App\System\Country;
 
-use Dimsav\Translatable\Translatable;
+use Jaffle\Tools\Translatable;
 use Illuminate\Database\Eloquent\Model;
 
 class Country extends Model{

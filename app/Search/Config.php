@@ -1,6 +1,6 @@
 <?php namespace App\Search;
 
-use Dimsav\Translatable\Translatable;
+use Jaffle\Tools\Translatable;
 
 class Config
 {

@@ -1,7 +1,7 @@
 <?php namespace App\Menu;
 
 use App\System\Scopes\ModelAutoSort;
-use Dimsav\Translatable\Translatable;
+use Jaffle\Tools\Translatable;
 use Illuminate\Database\Eloquent\Model;
 
 class MenuItem extends Model{

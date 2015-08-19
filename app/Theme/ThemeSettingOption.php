@@ -1,6 +1,6 @@
 <?php namespace App\Theme;
 
-use Dimsav\Translatable\Translatable;
+use Jaffle\Tools\Translatable;
 use Illuminate\Database\Eloquent\Model;
 
 class ThemeSettingOption extends Model

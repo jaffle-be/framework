@@ -1,7 +1,7 @@
 <?php namespace App\Media;
 
 use App\System\Scopes\ModelAccountResource;
-use Dimsav\Translatable\Translatable;
+use Jaffle\Tools\Translatable;
 use Illuminate\Database\Eloquent\Model;
 
 class Image extends Model
