@@ -161,7 +161,7 @@ return [
         'App\System\SystemServiceProvider',
         'App\Search\SearchServiceProvider',
 
-
+        Barryvdh\Debugbar\ServiceProvider::class,
         Mews\Captcha\CaptchaServiceProvider::class,
         Thomaswelton\LaravelGravatar\LaravelGravatarServiceProvider::class,
         'Intouch\LaravelNewrelic\NewrelicServiceProvider',
