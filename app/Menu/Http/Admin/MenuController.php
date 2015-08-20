@@ -9,7 +9,7 @@ class MenuController extends AdminController
 
     public function index(Menu $menu)
     {
-        return $menu->with(['items', 'items.translations', 'items.children', 'items.children.translations'])->get();
+        return $menu->with($this->relations())->get();
     }
 
     public function store(Request $request, Menu $menu)
@@ -23,12 +23,13 @@ class MenuController extends AdminController
 
     public function destroy(Menu $menu)
     {
-        if($menu->delete())
+        //it should never actually delete the menu itself, as it's provided by the current theme.
+        foreach($menu->items as $item)
         {
-            $menu->id = false;
+            $item->delete();
         }
 
-        return $menu;
+        return $menu->with($this->relations())->find($menu->id);
     }
 
     public function sort(Menu $menu, Request $request)
@@ -41,6 +42,16 @@ class MenuController extends AdminController
             $model->sort = $position;
             $model->save();
         }
+    }
+
+    /**
+     * @return array
+     */
+    protected function relations()
+    {
+        $relations = ['items', 'items.translations', 'items.children', 'items.children.translations'];
+
+        return $relations;
     }
 
 }
