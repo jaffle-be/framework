@@ -7,7 +7,7 @@
             <tab ng-repeat="locale in vm.options.locales" heading="@{{ locale.locale }}" st-click-refresh active="vm.options.locales[locale.locale].active" select="vm.changeTab(locale.locale)">
 
                 <div class="ibox-title">
-                    <h5>{{ Lang::get('portfolio::admin.project-index') }}</h5>
+                    <h5>{{ Lang::get('portfolio::admin.project.index') }}</h5>
                 </div>
 
             </tab>
@@ -25,17 +25,17 @@
 
                             <div class="col-xs-3">
                                 <div class="dropdown" data-api="dropdown">
-                                    <a class="btn btn-default dropdown-toggle" data-toggle="dropdown" href="#">{{ Lang::get('dash/general.acties') }}&nbsp;<span class="caret">&nbsp;</span></a>
+                                    <a class="btn btn-default dropdown-toggle" data-toggle="dropdown" href="#">{{ Lang::get('portfolio::admin.actions.actions') }}&nbsp;<span class="caret">&nbsp;</span></a>
                                     <ul class="dropdown-menu">
                                         <li>
-                                            <a class="select-all" data-trigger="select-all" href="">{{ Lang::get('dash/general.select_all') }}</a>
+                                            <a class="select-all" data-trigger="select-all" href="">{{ Lang::get('portfolio::admin.actions.select_all') }}</a>
                                         </li>
                                         <li>
-                                            <a class="select-none" data-trigger="select-none" href="">{{ Lang::get('dash/general.select_none') }}</a>
+                                            <a class="select-none" data-trigger="select-none" href="">{{ Lang::get('portfolio::admin.actions.select_none') }}</a>
                                         </li>
                                         <li class="divider"></li>
                                         <li>
-                                            <a class="remove" data-trigger="remove" href="">{{ Lang::get('dash/general.remove') }}</a>
+                                            <a class="remove" data-trigger="remove" href="">{{ Lang::get('portfolio::admin.actions.remove') }}</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -50,7 +50,7 @@
                                 </div>
                             </div>
                             <div class="col-xs-3">
-                                <a class="btn btn-sm btn-primary pull-right" ng-click="vm.newProject()">{{ Lang::get('portfolio::new_project') }}</a>
+                                <a class="btn btn-sm btn-primary pull-right" ng-click="vm.newProject()">{{ Lang::get('portfolio::admin.project.new-project') }}</a>
                             </div>
 
                         </div>
@@ -99,7 +99,7 @@
             </table>
 
             <div>
-                <a class="btn btn-block btn-primary btn-lg" ng-click="vm.newProject()">{{ Lang::get('portfolio::new_project') }}</a>
+                <a class="btn btn-block btn-primary btn-lg" ng-click="vm.newProject()">{{ Lang::get('portfolio::admin.project.new-project') }}</a>
             </div>
 
         </div>

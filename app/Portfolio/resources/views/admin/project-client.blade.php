@@ -1,7 +1,7 @@
 <div class="ibox">
 
     <div class="ibox-title">
-        <h5>{{ Lang::get('portfolio::admin.client') }}</h5>
+        <h5>{{ Lang::get('portfolio::admin.project.client') }}</h5>
     </div>
 
     <div class="ibox-content">
