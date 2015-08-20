@@ -5,6 +5,7 @@ use App\Account\Client;
 use App\Media\Commands\StoreNewImage;
 use App\Portfolio\Project;
 use App\System\Seeder;
+use App\Tags\Tag;
 use App\Users\User;
 use Illuminate\Foundation\Bus\DispatchesCommands;
 
@@ -37,8 +38,10 @@ class PortfolioTableSeeder extends Seeder
 
         $users = User::all();
         $users = $users->lists('id')->toArray();
+        //flip so we can use array_rand
+        $tags = array_flip(Tag::lists('id')->toArray());
 
-        for ($i = 0; $i < 20; $i++) {
+        for ($i = 0; $i < 35; $i++) {
 
             $project = App\Portfolio\Project::create([
                 'account_id' => 1,
@@ -98,6 +101,8 @@ class PortfolioTableSeeder extends Seeder
 
                 $project->collaborators()->attach($add);
             }
+
+            $project->tags()->sync(array_rand($tags, 2));
 
             $project->client()->associate($clients->random());
 
