@@ -1,7 +1,7 @@
 <div class="ibox" ng-show="vm.editingTeams">
 
     <div class="ibox-title">
-        <h5>{{ Lang::get('account::team-creator') }}</h5>
+        <h5>{{ Lang::get('account::admin.team.create') }}</h5>
     </div>
 
     <div class="ibox-content">
@@ -21,7 +21,7 @@
 
                 <div class="input-group">
 
-                    <input type="text" class="form-control" autocomplete="off" placeholder="{{ Lang::get('account::admin.new-team') }}" ng-model="vm.newTeamName">
+                    <input type="text" class="form-control" autocomplete="off" placeholder="{{ Lang::get('account::admin.team.new-team') }}" ng-model="vm.newTeamName">
 
                     <div class="input-group-btn">
                         <button type="submit" class="btn btn-success"><i class="fa fa-plus"></i></button>

@@ -4,9 +4,9 @@
 
     <div class="container">
 
-        {{ Lang::get('account::user.invite') }}
+        {{ Lang::get('account::users.invite') }}
 
-        <a class="btn btn-primary btn-lg" href="{{ route('store.auth.invitation.show', $invitation->token) }}">Accept me</a>
+        <a class="btn btn-primary btn-lg" href="{{ route('store.auth.invitation.show', $invitation->token) }}">{{ Lang::get('account::users.accept') }}</a>
 
     </div>
 

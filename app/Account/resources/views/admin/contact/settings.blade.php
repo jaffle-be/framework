@@ -17,7 +17,7 @@
                 <div class="ibox">
 
                     <div class="ibox-title">
-                        <h5>Other info</h5>
+                        <h5>{{ Lang::get('account::admin.contact.info') }}</h5>
                     </div>
 
                     <div class="ibox-content">
@@ -26,34 +26,32 @@
 
                         <input-errors errors="vm.errors"></input-errors>
 
-
                         <div class="row">
 
-
                             <div class="form-group col-xs-12">
-                                <label for="">Email</label>
+                                <label for="">{{ Lang::get('account::admin.contact.email') }}</label>
                                 <input class="form-control" type="text" name="email" id="email" ng-model="vm.info.email" ng-change="vm.save()"/>
                             </div>
 
 
                             <div class="form-group col-xs-12">
-                                <label for="">Phone</label>
+                                <label for="">{{ Lang::get('account::admin.contact.phone') }}</label>
                                 <input class="form-control" type="text" name="phone" id="phone" ng-change="vm.save()" ng-model="vm.info.phone"/>
                             </div>
 
                             <div class="form-group col-xs-12">
-                                <label for="">Vat number</label>
+                                <label for="">{{ Lang::get('account::admin.contact.vat') }}</label>
                                 <input class="form-control" type="text" name="vat" id="vat" ng-change="vm.save()" ng-model="vm.info.vat"/>
 
                             </div>
 
                             <div class="form-group col-xs-12">
-                                <label for="">Website</label>
+                                <label for="">{{ Lang::get('account::admin.contact.website') }}</label>
                                 <input class="form-control" type="text" name="website" ng-change="vm.save()" id="website" ng-model="vm.info.website"/>
                             </div>
 
                             <div class="form-group col-xs-12">
-                                <label>Hours</label>
+                                <label>{{ Lang::get('account::admin.contact.hours') }}</label>
                                 <textarea class="form-control" name="hours" ng-change="vm.save()" ng-model="vm.info.hours"></textarea>
                             </div>
 

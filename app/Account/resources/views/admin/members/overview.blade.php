@@ -7,7 +7,7 @@
             <div class="ibox">
 
                 <div class="ibox-title">
-                    <h5>{{ Lang::get('account::users.send-invite') }}</h5>
+                    <h5>{{ Lang::get('account::admin.users.send-invite') }}</h5>
                 </div>
 
                 <div class="ibox-content">
@@ -18,21 +18,21 @@
                             <li ng-repeat="invitation in vm.invitations">
                                 <a class="pull-right btn btn-danger" ng-click="vm.revokeInvitation(invitation)"><i class="fa fa-trash"></i></a>
                                 @{{ invitation.email }} <br>
-                                {{ Lang::get('account::users.since') }}: @{{ invitation.created_at | fromNow }}
+                                {{ Lang::get('account::admin.users.since') }}: @{{ invitation.created_at | fromNow }}
                             </li>
                         </ul>
 
                         <br>
 
                         <form name="invitationForm">
-                            <input autocomplete="off" class="form-control" type="text" name="email" id="email" placeholder="{{ Lang::get('account::users.email') }}"/>
+                            <input autocomplete="off" class="form-control" type="text" name="email" id="email" placeholder="{{ Lang::get('account::admin.users.email') }}"/>
 
                         </form>
 
                     </div>
 
                     <div class="text-center">
-                        <button class="btn btn-primary btn-lg" ng-click="vm.sendInvitation()">{{ Lang::get('account::users.send') }}</button>
+                        <button class="btn btn-primary btn-lg" ng-click="vm.sendInvitation()">{{ Lang::get('account::admin.users.send') }}</button>
                     </div>
 
                     <input-errors errors="vm.invitationErrors"></input-errors>
@@ -50,7 +50,7 @@
             <div class="ibox" ng-hide="vm.editingTeams">
 
                 <div class="ibox-title">
-                    <h5>{{ Lang::get('account::users.overview') }}</h5>
+                    <h5>{{ Lang::get('account::admin.users.overview') }}</h5>
                 </div>
 
                 <div class="ibox-content">
@@ -61,14 +61,14 @@
                             <div class="row">
                                 <div class="col-md-6 col-xs-12 membership-info">
 
-                                    <h4>{{ Lang::get('account::admin.membership-info') }}</h4>
+                                    <h4>{{ Lang::get('account::admin.members.membership') }}</h4>
 
                                     <img ng-src="@{{ membership.member.images[0].path }}">
 
                                     <div>@{{ membership.member.firstname + ' ' + membership.member.lastname }}</div>
                                     <div><a>@{{ membership.member.email }}</a></div>
                                     <div>
-                                        <i ng-show="membership.member.id == {{$account->owner->id}}" class="fa fa-key owner" title="{{ Lang::get('account::members.owner') }}"></i>&nbsp;{{ Lang::get('account::members.owner') }}
+                                        <i ng-show="membership.member.id == {{$account->owner->id}}" class="fa fa-key owner" title="{{ Lang::get('account::admin.members.owner') }}"></i>&nbsp;{{ Lang::get('account::admin.members.owner') }}
                                     </div>
 
                                     <div class="clearfix"></div>
@@ -83,7 +83,7 @@
 
                                 <div class="col-md-6 col-xs-12">
 
-                                    <h4>{{ Lang::get('account::admin.teams') }}
+                                    <h4>{{ Lang::get('account::admin.team.teams') }}
                                         <button class="btn btn-info pull-right" ng-click="vm.startTeamEditor()">
                                             <i class="fa fa-pencil"></i></button>
                                     </h4>

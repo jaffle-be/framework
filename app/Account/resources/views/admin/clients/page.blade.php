@@ -3,7 +3,7 @@
     <div class="ibox" ng-controller="ClientsController as vm" ng-init="vm.options = {{ system_options() }}">
 
         <div class="ibox-title">
-            <h5>{{ Lang::get('account::admin.clients') }}</h5>
+            <h5>{{ Lang::get('account::admin.clients.clients') }}</h5>
         </div>
 
         <div class="ibox-content">
@@ -22,7 +22,7 @@
 
                     <p class="text-center">
                         <button class="btn btn-primary" ng-click="vm.freshClient()">
-                            <i class="fa fa-plus"></i> {{ Lang::get('account::admin.new_client') }}</button>
+                            <i class="fa fa-plus"></i> {{ Lang::get('account::admin.clients.create') }}</button>
                     </p>
 
                     <ul class="nav clients">
@@ -55,7 +55,7 @@
 
                     <div class="form-group">
 
-                        <label for="">{{ Lang::get('account::admin.client_name') }}</label>
+                        <label for="">{{ Lang::get('account::admin.clients.name') }}</label>
 
                         <input type="text" class="form-control" ng-model="vm.client.name" ng-change="vm.save()">
 
@@ -63,7 +63,7 @@
 
                     <div class="form-group">
 
-                        <label for="">{{ Lang::get('account::admin.client_website') }}</label>
+                        <label for="">{{ Lang::get('account::admin.clients.website') }}</label>
 
                         <input type="text" class="form-control" ng-model="vm.client.website" ng-change="vm.save()">
 
@@ -71,7 +71,7 @@
 
                     <div class="form-group">
 
-                        <label for="">{{ Lang::get('account::admin.client_description') }}</label>
+                        <label for="">{{ Lang::get('account::admin.clients.description') }}</label>
 
                         <input summernote config="vm.options.summernote" type="text" class="form-control" ng-model="vm.client.translations[vm.options.locale].description" ng-change="vm.save()">
 
