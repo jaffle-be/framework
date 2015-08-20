@@ -53,6 +53,8 @@ class ThemeManager
             $selected = $this->setupDefaultTheme($manager);
         }
 
+        $selected->load($this->relations());
+
         if($selected)
         {
             $this->current = $selected;
@@ -154,6 +156,14 @@ class ThemeManager
         }
 
         return $this->activate($default->id, $account);
+    }
+
+    /**
+     * @return array
+     */
+    protected function relations()
+    {
+        return ['theme', 'theme.settings', 'theme.settings.value', 'theme.settings.type', 'theme.settings.options', 'theme.settings.defaults'];
     }
 
 }
