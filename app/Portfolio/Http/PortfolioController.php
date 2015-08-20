@@ -48,7 +48,7 @@ class PortfolioController extends Controller
                 ->take(4)
                 ->get();
 
-            while ($relatedProjects->count() < 4) {
+            while ($relatedProjects->count() < 4 && $extra->count() > 0) {
                 $relatedProjects->push($extra->pop());
             }
         }
