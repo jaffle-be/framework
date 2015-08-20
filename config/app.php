@@ -169,8 +169,6 @@ return [
         'App\Layout\LayoutServiceProvider',
         'App\Dashboard\DashboardServiceProvider',
         'App\Media\MediaServiceProvider',
-        'App\Settings\SettingServiceProvider',
-        'App\Modules\ModuleServiceProvider',
         'App\Shop\ShopServiceProvider',
         'App\Contact\ContactServiceProvider',
         'App\Blog\BlogServiceProvider',
