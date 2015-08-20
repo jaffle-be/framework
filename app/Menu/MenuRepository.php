@@ -20,17 +20,25 @@ class MenuRepository implements MenuRepositoryInterface{
 
     public function getAllMenus()
     {
-        $query = $this->menu->with(['items']);
+        $query = $this->menu->with($this->relations());
 
         return $query->get();
     }
 
     public function getSupportedMenus(array $supports)
     {
-        $query = $this->menu->with(['items', 'items.children']);
+        $query = $this->menu->with($this->relations());
 
         $this->menu->scopeSupported($query, $supports);
 
         return $query->get();
+    }
+
+    /**
+     * @return array
+     */
+    protected function relations()
+    {
+        return ['items', 'items.children', 'items.translations', 'items.children.translations'];
     }
 }
