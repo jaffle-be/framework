@@ -10,7 +10,7 @@
 
         <button type="button" class="cg-notify-close" ng-click="$close()">
             <span aria-hidden="true">&times;</span>
-            <span class="cg-notify-sr-only">Close</span>
+            <span class="cg-notify-sr-only">{{ Lang::get('layout::admin.close') }}</span>
         </button>
     </div>
 

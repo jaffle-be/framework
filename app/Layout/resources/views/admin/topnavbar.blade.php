@@ -11,7 +11,7 @@
         <ul class="nav navbar-top-links navbar-right">
             <li>
                 <a href="/auth/signout" target="_self">
-                    <i class="fa fa-sign-out"></i> Log out
+                    <i class="fa fa-sign-out"></i> {{ Lang::get('layout::admin.logout') }}
                 </a>
             </li>
         </ul>

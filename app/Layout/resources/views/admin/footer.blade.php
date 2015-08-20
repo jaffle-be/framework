@@ -1,8 +1,15 @@
 <div class="footer fixed">
     <div class="pull-right">
-        10GB of <strong>250GB</strong> Free.
+        {{ Lang::get('layout::admin.website-by') }}
+        <strong>{{ str_replace('-' . env('APP_ENV'), '', env('APP_NAME')) }}</strong>
     </div>
     <div>
-        <strong>Copyright</strong> Example Company &copy; 2014-2015
+        <? $year = Carbon\Carbon::now()->format('Y') ?>
+
+        @if($year != 2015)
+            <strong>Copyright</strong> &copy; 2015-{{ $year }}
+        @else
+                <strong>Copyright</strong> &copy; 2015
+        @endif
     </div>
 </div>
