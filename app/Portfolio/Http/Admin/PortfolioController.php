@@ -1,5 +1,6 @@
 <?php namespace App\Portfolio\Http\Admin;
 
+use App\Account\AccountManager;
 use App\Portfolio\Jobs\UpdateProject;
 use App\Portfolio\Project;
 use App\System\Http\AdminController;
@@ -52,9 +53,11 @@ class PortfolioController extends AdminController
         return $project;
     }
 
-    public function store(Project $project)
+    public function store(Project $project, AccountManager $accounts)
     {
         $project->newInstance();
+
+        $project->account_id = $accounts->account()->id;
 
         return $project->save() ? $project : json_encode(['status' => 'noke']);
     }
