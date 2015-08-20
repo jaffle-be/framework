@@ -73,6 +73,92 @@ class InstallUnifyThemePortfolio extends ThemeSettingMigration
                 'explanation' => 'portfolio spaced'
             ],
         ],
+
+
+        [
+            'key' => 'portfolioMainTitleOverview',
+            'type' => 'string',
+            'nl'   => [
+                'name'        => 'portfolio main title overview',
+                'explanation' => 'portfolio main title overview'
+            ],
+            'fr'   => [
+                'name'        => 'portfolio main title overview',
+                'explanation' => 'portfolio main title overview'
+            ],
+            'de'   => [
+                'name'        => 'portfolio main title overview',
+                'explanation' => 'portfolio main title overview'
+            ],
+            'en'   => [
+                'name'        => 'portfolio main title overview',
+                'explanation' => 'portfolio main title overview'
+            ],
+        ],
+
+
+        [
+            'key' => 'portfolioMainTitleDetail',
+            'type' => 'string',
+            'nl'   => [
+                'name'        => 'portfolio main title detail',
+                'explanation' => 'portfolio main title detail'
+            ],
+            'fr'   => [
+                'name'        => 'portfolio main title detail',
+                'explanation' => 'portfolio main title detail'
+            ],
+            'de'   => [
+                'name'        => 'portfolio main title detail',
+                'explanation' => 'portfolio main title detail'
+            ],
+            'en'   => [
+                'name'        => 'portfolio main title detail',
+                'explanation' => 'portfolio main title detail'
+            ],
+        ],
+
+        [
+            'key' => 'portfolioProjectDetails',
+            'type' => 'string',
+            'nl'   => [
+                'name'        => 'portfolio project details title',
+                'explanation' => 'portfolio project details title'
+            ],
+            'fr'   => [
+                'name'        => 'portfolio project details title',
+                'explanation' => 'portfolio project details title'
+            ],
+            'de'   => [
+                'name'        => 'portfolio project details title',
+                'explanation' => 'portfolio project details title'
+            ],
+            'en'   => [
+                'name'        => 'portfolio project details title',
+                'explanation' => 'portfolio project details title'
+            ],
+        ],
+
+        [
+            'key' => 'portfolioProjectDescription',
+            'type' => 'string',
+            'nl'   => [
+                'name'        => 'portfolio project description title',
+                'explanation' => 'portfolio project description title'
+            ],
+            'fr'   => [
+                'name'        => 'portfolio project description title',
+                'explanation' => 'portfolio project description title'
+            ],
+            'de'   => [
+                'name'        => 'portfolio project description title',
+                'explanation' => 'portfolio project description title'
+            ],
+            'en'   => [
+                'name'        => 'portfolio project description title',
+                'explanation' => 'portfolio project description title'
+            ],
+        ],
     ];
 
     protected $defaults = [

@@ -117,6 +117,48 @@ class InstallUnifyThemeTeam extends ThemeSettingMigration
         ],
 
         [
+            'key' => 'teamAboutTitle',
+            'type' => 'string',
+            'nl'   => [
+                'name'        => 'team about title',
+                'explanation' => 'team about title'
+            ],
+            'fr'   => [
+                'name'        => 'team about title',
+                'explanation' => 'team about title'
+            ],
+            'de'   => [
+                'name'        => 'team about title',
+                'explanation' => 'team about title'
+            ],
+            'en'   => [
+                'name'        => 'team about title',
+                'explanation' => 'team about title'
+            ],
+        ],
+
+        [
+            'key' => 'teamAboutMemberMainTitle',
+            'type' => 'string',
+            'nl'   => [
+                'name'        => 'team about main title',
+                'explanation' => 'team about main title'
+            ],
+            'fr'   => [
+                'name'        => 'team about main title',
+                'explanation' => 'team about main title'
+            ],
+            'de'   => [
+                'name'        => 'team about main title',
+                'explanation' => 'team about main title'
+            ],
+            'en'   => [
+                'name'        => 'team about main title',
+                'explanation' => 'team about main title'
+            ],
+        ],
+
+        [
             'key'  => 'teamMemberAboutTitle',
             'type' => 'string',
             'nl'   => [

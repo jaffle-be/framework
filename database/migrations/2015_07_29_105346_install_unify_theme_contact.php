@@ -32,6 +32,28 @@ class InstallUnifyThemeContact extends ThemeSettingMigration
             ],
         ],
 
+
+        [
+            'key' => 'contactMainTitle',
+            'type' => 'string',
+            'nl'   => [
+                'name'        => 'contact main title',
+                'explanation' => 'contact main title'
+            ],
+            'fr'   => [
+                'name'        => 'contact main title',
+                'explanation' => 'contact main title'
+            ],
+            'de'   => [
+                'name'        => 'contact main title',
+                'explanation' => 'contact main title'
+            ],
+            'en'   => [
+                'name'        => 'contact main title',
+                'explanation' => 'contact main title'
+            ],
+        ],
+
         [
             'key' => 'contactContactTitle',
             'type' => 'string',

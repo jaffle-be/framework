@@ -9,6 +9,11 @@ class InstallUnifyThemeBlog extends ThemeSettingMigration
 
     protected $version = '1.0';
 
+    protected $defaults = [
+        'blogOverview'     => 'masonry',
+        'blogDetail'       => 'full-width/large-detail',
+    ];
+
     protected $settings = [
 
         [
@@ -52,11 +57,49 @@ class InstallUnifyThemeBlog extends ThemeSettingMigration
                 'explanation' => 'blog detail'
             ],
         ],
-    ];
 
-    protected $defaults = [
-        'blogOverview'     => 'masonry',
-        'blogDetail'       => 'full-width/large-detail',
+        [
+            'key' => 'blogMainTitleOverview',
+            'type' => 'string',
+            'nl'   => [
+                'name'        => 'blog main title overview',
+                'explanation' => 'blog main title overview'
+            ],
+            'fr'   => [
+                'name'        => 'blog main title overview',
+                'explanation' => 'blog main title overview'
+            ],
+            'de'   => [
+                'name'        => 'blog main title overview',
+                'explanation' => 'blog main title overview'
+            ],
+            'en'   => [
+                'name'        => 'blog main title overview',
+                'explanation' => 'blog main title overview'
+            ],
+        ],
+
+        [
+            'key' => 'blogMainTitleDetail',
+            'type' => 'string',
+            'nl'   => [
+                'name'        => 'blog main title detail',
+                'explanation' => 'blog main title detail'
+            ],
+            'fr'   => [
+                'name'        => 'blog main title detail',
+                'explanation' => 'blog main title detail'
+            ],
+            'de'   => [
+                'name'        => 'blog main title detail',
+                'explanation' => 'blog main title detail'
+            ],
+            'en'   => [
+                'name'        => 'blog main title detail',
+                'explanation' => 'blog main title detail'
+            ],
+        ],
+
     ];
 
     protected $options = [
