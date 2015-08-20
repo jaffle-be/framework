@@ -22,7 +22,7 @@ class SearchController extends Controller
                         "query" => [
                             "multi_match" => [
                                 "query"  => $request->get('query'),
-                                "fields" => ["translations.en.title", "translations.en.extract", "translations.en.content"]
+                                "fields" => ["translations.$locale.title", "translations.$locale.extract", "translations.$locale.content"]
                             ]
                         ]
                     ]
@@ -38,8 +38,10 @@ class SearchController extends Controller
                     "nested" => [
                         "path"  => "translations." . $locale,
                         "query" => [
-                            "match" => [
-                                "translations." . $locale . ".title" => $request->get('query')
+                            "multi_match" => [
+                                "query" => $request->get('query'),
+                                "fields" => ["translations.$locale.title", "translations.$locale.description"]
+
                             ]
                         ]
                     ]
@@ -49,23 +51,4 @@ class SearchController extends Controller
 
         return $this->theme->render('search.index', ['posts' => $posts, 'projects' => $projects]);
     }
-
-    /**
-     * @return array
-     */
-    protected function localizedColumns()
-    {
-        $locale = app()->getLocale();
-
-        $columns = [
-            'translations.' . $locale . '.title',
-            'translations.' . $locale . '.extract',
-            'translations.' . $locale . '.content',
-        ];
-
-//        return ['title', 'extract', 'content'];
-
-        return $columns;
-    }
-
 }
