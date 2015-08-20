@@ -2,7 +2,5 @@
 
 interface MenuRepositoryInterface {
 
-    public function getAllMenus();
-
     public function getSupportedMenus(array $supports);
 }

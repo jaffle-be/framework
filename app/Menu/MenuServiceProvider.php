@@ -9,7 +9,7 @@ class MenuServiceProvider extends ServiceProvider
 
     public function register()
     {
-        $this->app->bind('App\Menu\MenuRepositoryInterface', 'App\Menu\MenuRepository');
+        $this->app->bind('App\Menu\MenuRepositoryInterface', 'App\Menu\CachedMenuRepository');
 
         $this->app->singleton('App\Menu\MenuManager', function ($app) {
             return new MenuManager($app['App\Menu\MenuRepositoryInterface'], $app['router']);

@@ -21,7 +21,7 @@ class ThemeServiceProvider extends ServiceProvider
         //why is this here? for the facade we aren't even using?
         //we don't have a binding for the actual theme injection? (do we inject Theme anywhere?)
         $this->app->singleton('App\Theme\ThemeManager', function ($app) {
-            $theme = new ThemeManager($app['view'], new ThemeSelection(), new Theme());
+            $theme = new ThemeManager($app['view'], new ThemeSelection(), new Theme(), $app['cache']->driver());
 
             $theme->boot($app['App\Account\AccountManager']);
 

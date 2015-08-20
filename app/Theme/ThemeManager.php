@@ -4,6 +4,7 @@ namespace App\Theme;
 
 use App\Account\AccountManager;
 use Exception;
+use Illuminate\Contracts\Cache\Repository;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\View\Factory;
 
@@ -27,11 +28,12 @@ class ThemeManager
      */
     protected $supported;
 
-    public function __construct(Factory $view, ThemeSelection $selector, Theme $theme)
+    public function __construct(Factory $view, ThemeSelection $selector, Theme $theme, Repository $cache)
     {
         $this->view = $view;
         $this->selector = $selector;
         $this->theme = $theme;
+        $this->cache = $cache;
     }
 
     public function boot(AccountManager $manager)
@@ -43,17 +45,26 @@ class ThemeManager
             return;
         }
 
-        $selected = $this->selector
-            ->where('active', true)
-            ->first();
+        $selected = $this->cache->sear('theme', function() use ($manager){
 
-        //we default to the unify theme
+            $selected = $this->selector
+                ->where('active', true)
+                ->first();
 
-        if (!$selected) {
-            $selected = $this->setupDefaultTheme($manager);
-        }
+            //we default to the unify theme
 
-        $selected->load($this->relations());
+            if (!$selected) {
+                $selected = $this->setupDefaultTheme($manager);
+            }
+
+            if($selected)
+            {
+                $selected->load($this->relations());
+            }
+
+            return $selected;
+
+        });
 
         if($selected)
         {
@@ -163,7 +174,7 @@ class ThemeManager
      */
     protected function relations()
     {
-        return ['theme', 'theme.settings', 'theme.settings.value', 'theme.settings.type', 'theme.settings.options', 'theme.settings.defaults'];
+        return ['theme', 'theme.settings', 'theme.settings.value', 'theme.settings.value.option', 'theme.settings.type', 'theme.settings.options', 'theme.settings.defaults'];
     }
 
 }

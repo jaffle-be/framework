@@ -18,13 +18,6 @@ class MenuRepository implements MenuRepositoryInterface{
         $this->item = $item;
     }
 
-    public function getAllMenus()
-    {
-        $query = $this->menu->with($this->relations());
-
-        return $query->get();
-    }
-
     public function getSupportedMenus(array $supports)
     {
         $query = $this->menu->with($this->relations());
