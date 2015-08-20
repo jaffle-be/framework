@@ -20,8 +20,5 @@
     </div>
     <!-- End page wrapper-->
 
-    <!-- Right Sidebar -->
-    <div ng-include="'templates/admin/layout/right_sidebar'"></div>
-
 </div>
 <!-- End wrapper-->
