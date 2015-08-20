@@ -1,5 +1,6 @@
 <?php namespace App\Blog\Http\Admin;
 
+use App\Account\AccountManager;
 use App\Blog\Jobs\UpdatePost;
 use App\Blog\Post;
 use App\System\Http\AdminController;
@@ -32,11 +33,13 @@ class BlogController extends AdminController
         return $query->paginate();
     }
 
-    public function store(Request $request, Post $post, Guard $guard)
+    public function store(Request $request, Post $post, Guard $guard, AccountManager $accounts)
     {
         $input = translation_input($request);
 
         $post = $post->newInstance($input);
+
+        $post->account_id = $accounts->account()->id;
 
         $post->user()->associate($guard->user());
 
