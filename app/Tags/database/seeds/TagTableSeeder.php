@@ -12,24 +12,25 @@ class TagTableSeeder extends Seeder
 
     public function run()
     {
-        $tags = new Collection();
+        $tags = ['Design', 'CMS', 'Copy', 'Branding', 'Tutorial', 'Business restructuring', 'Photography', 'Film', 'Analytics'];
 
-        for ($i = 0; $i < 15; $i++) {
-            $tags->push(Tag::create([
+        foreach($tags as $tag)
+        {
+            Tag::create([
                 'account_id' => 1,
                 'nl' => [
-                    'name' => $this->nl->word,
+                    'name' => $tag,
                 ],
                 'fr' => [
-                    'name' => $this->fr->word,
+                    'name' => $tag,
                 ],
                 'en' => [
-                    'name' => $this->en->word,
+                    'name' => $tag,
                 ],
                 'de' => [
-                    'name' => $this->de->word,
+                    'name' => $tag,
                 ]
-            ]));
+            ]);
         }
     }
 }
