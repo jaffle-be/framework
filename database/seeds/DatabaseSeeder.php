@@ -13,7 +13,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $seeders = ['countryTable', 'accountTable', 'tagTable', 'contactTable', 'usersTable', 'menuTable', 'tagTable', 'client', 'membership', 'team', 'profile', 'blogTable', 'portfolioTable', 'shopTable'];
+        $seeders = ['countryTable', 'accountTable', 'menuTable', 'usersTable',/* 'tagTable', 'contactTable', 'client', 'membership', 'team', 'profile', 'shopTable', 'blogTable', 'portfolioTable'*/];
 
         foreach ($seeders as $seeds) {
             $this->seed($seeds);
