@@ -12,7 +12,7 @@
         <div class="ibox">
 
             <div class="ibox-title">
-                <h5>{{ Lang::get('users::profile.basic-info') }}</h5>
+                <h5>{{ Lang::get('users::admin.profile.basic-info') }}</h5>
             </div>
 
             <div class="ibox-content">
@@ -39,7 +39,7 @@
         <div class="ibox">
 
             <div class="ibox-title">
-                <h5>{{ Lang::get('users::profile.bio') }}</h5>
+                <h5>{{ Lang::get('users::admin.profile.bio') }}</h5>
             </div>
 
             <div class="ibox-content">
@@ -75,7 +75,7 @@
         <div class="ibox">
 
             <div class="ibox-title">
-                <h5>{{ Lang::get('users::profile.skills') }}</h5>
+                <h5>{{ Lang::get('users::admin.profile.skills') }}</h5>
             </div>
 
             <div class="ibox-content">

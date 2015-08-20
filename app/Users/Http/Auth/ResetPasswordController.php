@@ -39,6 +39,6 @@ class ResetPasswordController extends Controller
         //always redirect to signin if we get here.
         //the request was validated for correct input, so if the reset was no success,
         //we simply bail out for security reasons.
-        return redirect()->route('store.auth.signin.index')->withSuccess(Lang::get('users::general.request-handled'));
+        return redirect()->route('store.auth.signin.index')->withSuccess(Lang::get('users::front.request-handled'));
     }
 }

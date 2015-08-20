@@ -41,7 +41,7 @@ class ConfirmEmailController extends Controller
             $this->dispatchFromArray(SendConfirmationEmail::class, ['user' => $user]);
         }
 
-        return redirect()->route('store.auth.signin.index')->withSuccess(Lang::get('users::general.request-handled'));
+        return redirect()->route('store.auth.signin.index')->withSuccess(Lang::get('users::front.request-handled'));
     }
 
     /**

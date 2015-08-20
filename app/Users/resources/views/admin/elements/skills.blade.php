@@ -8,7 +8,7 @@
             <div class="input-group-addon">
                 <i class="fa fa-refresh" ng-show="searching"></i><i class="fa fa-search" ng-hide="searching"></i></div>
 
-            <input type="text" class="form-control" placeholder="{{ Lang::get('blog::admin.skill') }}"
+            <input type="text" class="form-control" placeholder="{{ Lang::get('users::admin.skill.skill') }}"
                    typeahead="skill.translations[vm.options.locale].name for skill in vm.searchSkill($viewValue, vm.options.locale)"
                    typeahead-loading="searching"
                    typeahead-on-select="vm.addSkill($item, $model, $label)"
@@ -47,7 +47,7 @@
                 <div class="form-group col-xs-4">
                     <div class="input-group">
                         <span class="input-group-addon">
-                            {{ Lang::get('users::admin.level') }}
+                            {{ Lang::get('users::admin.skill.level') }}
                         </span>
                         <input type="text" name="level" id="level" class="form-control" ng-model="skill.pivot.level" ng-change="vm.updateSkill(skill)"/>
 
@@ -60,7 +60,7 @@
             <div class="form-group col-xs-12">
 
                 <div class="form-group">
-                    <label for="">{{ Lang::get('users::admin.global-skill-description') }}</label>
+                    <label for="">{{ Lang::get('users::admin.skill.description') }}</label>
                     <div summernote config="vm.options.summernote" ng-model="skill.translations[vm.options.locale].description" on-change="vm.updateSkill(skill)"></div>
                 </div>
 
