@@ -61,7 +61,7 @@ class PortfolioController extends Controller
      */
     protected function relations()
     {
-        return ['images', 'images.translations', 'images.sizes', 'tags', 'tags.translations'];
+        return ['translations', 'images', 'images.translations', 'images.sizes', 'tags', 'tags.translations'];
     }
 
 }
