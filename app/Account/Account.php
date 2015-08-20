@@ -53,20 +53,44 @@ class Account extends Model
         return $this->hasMany('App\Account\Team');
     }
 
-    public function logo($size = null)
+    public function logo($width = null, $height = null)
     {
-        $logo = new AccountLogo([
-            'id' => $this->getKey()
-        ]);
+        static $cached = null;
 
-        if (!$size) {
-            $size = '40';
+        if (empty($width) && empty($height)) {
+            $height = '40';
         }
 
-        $logo = $logo->images;
+        if ($cached === null) {
+            $cached = new AccountLogo([
+                'id' => $this->getKey()
+            ]);
 
-        if ($logo) {
-            return $logo->sizes()->dimension(null, $size)->first()->path;
+            if ($cached->images) {
+                $cached->images;
+
+                $cached->images->sizes;
+
+                $cached = $cached->images;
+            } else {
+                //set cached false so we do not try to reload or set to images
+                $cached = false;
+            }
+        }
+
+        if ($cached) {
+            $image = $cached->sizes->filter(function ($image) use ($width, $height) {
+
+                if (!empty($with)) {
+                    return $image->width == $width;
+                }
+
+                if (!empty($height)) {
+                    return $image->height == $height;
+                }
+            })->first();
+
+            return $image->path;
         }
     }
 
