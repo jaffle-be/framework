@@ -14,6 +14,20 @@ class PortfolioTableSeeder extends Seeder
 
     use DispatchesCommands;
 
+    protected $image_names = [
+        'PORTFOLIO_O14A0456.jpg',
+        'PORTFOLIO_O14A0464.jpg',
+        'PORTFOLIO_O14A0465.jpg',
+        'PORTFOLIO_IMG_0331.jpg',
+        'PORTFOLIO_IMG_0324.jpg',
+    ];
+
+    protected $image_sizes = [];
+
+    protected $prefix;
+
+    protected $images;
+
     public function __construct(\Intervention\Image\ImageManager $images)
     {
         $this->images = $images;
@@ -24,7 +38,6 @@ class PortfolioTableSeeder extends Seeder
 
         parent::__construct();
     }
-
     public function run()
     {
         \DB::connection()->disableQueryLog();
@@ -115,88 +128,5 @@ class PortfolioTableSeeder extends Seeder
         }
     }
 
-    protected $image_names = [
-        'PORTFOLIO_O14A0456.jpg',
-        'PORTFOLIO_O14A0464.jpg',
-        'PORTFOLIO_O14A0465.jpg',
-        'PORTFOLIO_IMG_0331.jpg',
-        'PORTFOLIO_IMG_0324.jpg',
-    ];
-
-    protected $image_sizes = [];
-
-    protected $prefix;
-
-    protected $images;
-
-
-    protected function newImage($post, $account)
-    {
-        $image = rand(0, count($this->image_names) - 1);
-
-        $this->dispatchFromArray(StoreNewImage::class, [
-            'account' => $account,
-            'owner'   => $post,
-            'path'    => $this->prefix . $this->image_names[$image],
-            'sizes'   => $this->image_sizes,
-            'seeding' => true
-        ]);
-    }
-
-    /**
-     * @return array
-     * @throws Exception
-     */
-    protected function dimensions($size)
-    {
-        if (strpos($size, 'x') === false && is_numeric($size)) {
-            return array($size, null);
-        }
-
-        list($width, $height) = explode('x', $size);
-
-        if (!is_numeric($width) || !is_numeric($height)) {
-            throw new Exception('Invalid image size provided');
-        }
-
-        return array($width, $height);
-    }
-
-    /**
-     * @param $images
-     * @param $sizes
-     *
-     * @return mixed
-     */
-    protected function preImageCaching()
-    {
-        //run images cachings.
-        foreach ($this->image_names as $image) {
-
-            $path = $this->prefix . $image;
-
-            foreach ($this->image_sizes as $size) {
-
-                list($width, $height) = $this->dimensions($size);
-
-                $constraint = $this->constraint($width, $height);
-
-                $this->images->cache(function ($image) use ($path, $width, $height, $constraint) {
-                    $image->make($path)->resize($width, $height, $constraint);
-                });
-            }
-        }
-    }
-
-    protected function constraint($width, $height)
-    {
-        if ($width === null || $height === null) {
-            return function ($constraint) {
-                $constraint->aspectRatio();
-            };
-        }
-
-        return null;
-    }
 
 }

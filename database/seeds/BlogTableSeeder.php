@@ -11,7 +11,6 @@ class BlogTableSeeder extends Seeder
 {
 
     use DispatchesCommands;
-    use ImageDimensionHelpers;
 
     protected $image_names = [
         'BLOG_IMG_9908.jpg',
@@ -31,7 +30,7 @@ class BlogTableSeeder extends Seeder
     {
         $this->images = $images;
 
-        $this->image_sizes = config('media.sizes.blog');;
+        $this->image_sizes = config('media.sizes.blog');
 
         $this->prefix = __DIR__ . '/../images/';
 
@@ -117,42 +116,6 @@ class BlogTableSeeder extends Seeder
         }
     }
 
-    protected function newImage($post, $account)
-    {
-        $image = rand(0, count($this->image_names) - 1);
 
-        $this->dispatchFromArray(StoreNewImage::class, [
-            'account' => $account,
-            'owner'   => $post,
-            'path'    => $this->prefix . $this->image_names[$image],
-            'sizes'   => $this->image_sizes,
-            'seeding' => true
-        ]);
-    }
 
-    /**
-     * @param $images
-     * @param $sizes
-     *
-     * @return mixed
-     */
-    protected function preImageCaching()
-    {
-        //run images cachings.
-        foreach ($this->image_names as $image) {
-
-            $path = $this->prefix . $image;
-
-            foreach ($this->image_sizes as $size) {
-
-                list($width, $height) = $this->dimensions($size);
-
-                $constraint = $this->constraint($width, $height);
-
-                $this->images->cache(function ($image) use ($path, $width, $height, $constraint) {
-                    $image->make($path)->resize($width, $height, $constraint);
-                });
-            }
-        }
-    }
 }
