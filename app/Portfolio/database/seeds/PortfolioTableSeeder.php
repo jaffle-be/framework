@@ -27,6 +27,8 @@ class PortfolioTableSeeder extends Seeder
 
     public function run()
     {
+        $this->preImageCaching();
+        
         $projects = Project::all();
         $account = Account::find(1);
         $clients = Client::all();
