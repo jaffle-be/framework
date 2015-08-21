@@ -27,8 +27,10 @@ class PortfolioTableSeeder extends Seeder
 
     public function run()
     {
+        \DB::connection()->disableQueryLogging();
+
         $this->preImageCaching();
-        
+
         $projects = Project::all();
         $account = Account::find(1);
         $clients = Client::all();
