@@ -21,6 +21,8 @@ class ThemeManager
 
     protected $current;
 
+    protected $repository;
+
     /**
      * We store the supported themes here once they are fetched.
      *
@@ -28,43 +30,20 @@ class ThemeManager
      */
     protected $supported;
 
-    public function __construct(Factory $view, ThemeSelection $selector, Theme $theme, Repository $cache)
+    public function __construct(Factory $view, ThemeRepositoryInterface $repository)
     {
         $this->view = $view;
-        $this->selector = $selector;
-        $this->theme = $theme;
-        $this->cache = $cache;
+        $this->repository = $repository;
     }
 
-    public function boot(AccountManager $manager)
+    public function boot()
     {
-        $account = $manager->account();
-
         if(!config('system.installed'))
         {
             return;
         }
 
-        $selected = $this->cache->sear('theme', function() use ($manager){
-
-            $selected = $this->selector
-                ->where('active', true)
-                ->first();
-
-            //we default to the unify theme
-
-            if (!$selected) {
-                $selected = $this->setupDefaultTheme($manager);
-            }
-
-            if($selected)
-            {
-                $selected->load($this->relations());
-            }
-
-            return $selected;
-
-        });
+        $selected = $this->repository->current();
 
         if($selected)
         {
@@ -91,47 +70,17 @@ class ThemeManager
 
     public function setting($key)
     {
-        $theme = $this->current();
-
-        if(!$theme)
+        if(!$theme = $this->current())
         {
             return;
         }
 
-        $setting = $theme->settings->get($key);
-
-        if(!$setting)
+        if(!$setting = $theme->settings->get($key))
         {
             throw new Exception(sprintf('Unknown setting requested: %s', $key));
         }
 
         return $setting->getValue();
-
-    }
-
-    public function activate($theme, AccountManager $manager)
-    {
-        $activator = new ThemeActivator($this->theme, $manager, $this->selector);
-
-        return $activator->activate($theme);
-    }
-
-    /**
-     * @param null $theme
-     *
-     * @return Collection
-     */
-    public function supported($theme = null)
-    {
-        if (!$this->supported) {
-            $this->supported = $this->theme->orderBy('name')->get();
-        }
-
-        if ($theme) {
-            return $this->supported->contains('name', $theme);
-        }
-
-        return $this->supported;
     }
 
     public function render($view, array $data = [])
@@ -148,33 +97,9 @@ class ThemeManager
         $this->view->addNamespace('theme.' . $name, config('theme.path') . '/' . $name . '/views');
     }
 
-    protected function setupDefaultTheme(AccountManager $account)
+    public function __call($name, $arguments)
     {
-        $themes = $this->supported();
-
-        if (!$themes->count()) {
-            return false;
-        }
-
-        $default = config('theme.default');
-
-        $default = array_first($themes, function ($key, $theme) use ($default) {
-            return $theme->name == $default;
-        });
-
-        if (!$default) {
-            return false;
-        }
-
-        return $this->activate($default->id, $account);
-    }
-
-    /**
-     * @return array
-     */
-    protected function relations()
-    {
-        return ['theme', 'theme.settings', 'theme.settings.value', 'theme.settings.value.option', 'theme.settings.type', 'theme.settings.options', 'theme.settings.defaults'];
+        return call_user_func_array([$this->repository, $name], $arguments);
     }
 
 }

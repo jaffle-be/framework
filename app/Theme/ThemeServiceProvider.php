@@ -18,34 +18,23 @@ class ThemeServiceProvider extends ServiceProvider
     {
         $this->mergeConfigFrom(__DIR__ . '/config/theme.php', 'theme');
 
-        //why is this here? for the facade we aren't even using?
-        //we don't have a binding for the actual theme injection? (do we inject Theme anywhere?)
-        $this->app->singleton('App\Theme\ThemeManager', function ($app) {
-            $theme = new ThemeManager($app['view'], new ThemeSelection(), new Theme(), $app['cache']->driver());
+        $this->app->bind('theme', 'App\Theme\ThemeManager');
 
-            $theme->boot($app['App\Account\AccountManager']);
+        $this->app->singleton('App\Theme\ThemeManager', function ($app) {
+            $theme = new ThemeManager($app['view'], $app['App\Theme\ThemeRepositoryInterface']);
+
+            $theme->boot();
 
             return $theme;
-        });
-
-        $this->app->bind('theme', function ($app) {
-
-            return $app->make('App\Theme\ThemeManager');
         });
 
         $this->app->bind('App\Theme\Theme', function ($app) {
             return $app->make('theme')->current();
         });
 
-        $files = scandir(config('theme.path'));
+        $this->registerRepositories();
 
-        $files = array_filter($files, function($file){
-            return !in_array($file, ['.', '..', '.DS_Store', '.gitignore']);
-        });
-
-        foreach ($files as $theme) {
-            $this->app->register(sprintf('Themes\\%s\\%sServiceProvider', $theme, $theme));
-        }
+        $this->registerThemeServiceProviders();
     }
 
     protected function observers()
@@ -54,6 +43,39 @@ class ThemeServiceProvider extends ServiceProvider
 
     protected function listeners()
     {
+
+    }
+
+    protected function registerRepositories()
+    {
+        //you need this defined, do not resolve from container,
+        // as the Theme will fail and result in endless nesting.
+        $this->app->bind('App\Theme\ThemeRepository', function()
+        {
+            return new ThemeRepository(new ThemeSelection(), new Theme(), app('App\Account\AccountManager'));
+        });
+
+        $this->app->bind('App\Theme\ThemeRepositoryInterface', 'App\Theme\CachedThemeRepository');
+    }
+
+    protected function registerThemeServiceProviders()
+    {
+        /**
+         * @todo improve registering theme service providers
+         *
+         *       This should only happen once at the theme selection page.
+         *       else, we should use the account one, or fallback to our default theme.
+         */
+
+        $files = scandir(config('theme.path'));
+
+        $files = array_filter($files, function ($file) {
+            return !in_array($file, ['.', '..', '.DS_Store', '.gitignore']);
+        });
+
+        foreach ($files as $theme) {
+            $this->app->register(sprintf('Themes\\%s\\%sServiceProvider', $theme, $theme));
+        }
     }
 
 }

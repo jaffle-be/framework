@@ -1,10 +1,7 @@
 <?php namespace App\Theme\Http\Admin;
 
-use App\Account\Account;
 use App\Account\AccountManager;
 use App\System\Http\AdminController;
-use App\Theme\ThemeManager;
-use App\Theme\ThemeSelection;
 use App\Theme\ThemeSettingOption;
 use Illuminate\Http\Request;
 
@@ -39,40 +36,36 @@ class ThemeController extends AdminController
         ]);
     }
 
-    public function setting($theme, $setting, ThemeManager $themes, Request $request, ThemeSettingOption $option, AccountManager $accounts)
+    public function setting($theme, $setting, Request $request, ThemeSettingOption $option)
     {
-        $current = $themes->current();
+        $current = $this->theme->current();
 
-        $account = $accounts->account();
-
-        $selection = $themes->selection();
-
-        if ($current && $current->id == $theme) {
+        if ($current && $current->getKey() == $theme) {
             $settings = $current->settings->keyBy('id');
 
             $setting = $settings->get($setting);
 
             switch ($setting->type->name) {
                 case 'boolean':
-                    $this->updateSettingBoolean($setting, $request, $account, $selection);
+                    $this->theme->updateBoolean($setting, $request->get('checked'));
                     break;
                 case 'string':
                 case 'text':
-                    $this->updateSettingString($setting, $request, $account, $selection);
+                    $this->theme->updateString($setting, translation_input($request, []));
                     break;
                 case 'select':
-                    $this->updateSettingSelect($setting, $request, $option, $account, $selection);
+                    $this->theme->updateSelect($setting, $request->get('option'), $option);
                     break;
                 case 'numeric':
-                    $this->updateSettingNumeric($setting, $request, $account, $selection);
+                    $this->theme->updateNumeric($setting, $request->get('value'));
                     break;
             }
         }
     }
 
-    public function activate($theme, AccountManager $account)
+    public function activate($theme)
     {
-        if ($this->theme->activate($theme, $account)) {
+        if ($this->theme->activate($theme)) {
             return json_encode(array(
                 'status' => 'oke'
             ));
@@ -83,86 +76,9 @@ class ThemeController extends AdminController
         ));
     }
 
-    public function current(ThemeManager $theme)
+    public function current()
     {
-        $theme = $theme->current();
-
-        $theme->load(['settings', 'settings.type', 'settings.options', 'settings.value', 'settings.value.translations']);
-
-        return $theme;
-    }
-
-    /**
-     * @param         $setting
-     * @param Request $request
-     * @param         $account
-     */
-    protected function updateSettingBoolean($setting, Request $request, Account $account, ThemeSelection $selection)
-    {
-        $checked = $request->get('checked');
-
-        $setting->value()->delete();
-
-        if ($checked) {
-            $setting->value()->create([
-                'value'        => true,
-                'account_id'   => $account->id,
-                'selection_id' => $selection->id,
-            ]);
-        }
-    }
-
-    /**
-     * @param                    $setting
-     * @param Request            $request
-     * @param ThemeSettingOption $option
-     * @param                    $account
-     */
-    protected function updateSettingSelect($setting, Request $request, ThemeSettingOption $option, Account $account, ThemeSelection $selection)
-    {
-        $option = $option->find($request->get('option'));
-
-        $setting->value()->delete();
-
-        $setting->value()->create([
-            'option_id'  => $option->id,
-            'account_id' => $account->id,
-            'selection_id' => $selection->id,
-        ]);
-    }
-
-    protected function updateSettingString($setting, $request, Account $account, ThemeSelection $selection)
-    {
-        $value = $setting->value;
-
-        $input = translation_input($request, []);
-
-        if (!$value) {
-
-            $input = array_merge(['account_id' => $account->id, 'selection_id' => $selection->id], $input);
-
-            return $setting->value()->create($input);
-        }
-
-        $value->fill($input);
-
-        $value->save();
-    }
-
-    protected function updateSettingNumeric($setting, $request, Account $account, ThemeSelection $selection)
-    {
-        $value = $setting->value;
-
-        if (!$value) {
-
-            $input = array_merge(['value' => $request->get('value')], ['account_id' => $account->id, 'selection_id' => $selection->id]);
-
-            return $setting->value()->create($input);
-        }
-
-        $value->value = $request->get('value');
-
-        $value->save();
+        return $this->theme->current();
     }
 
 }
