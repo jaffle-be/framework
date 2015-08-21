@@ -2,7 +2,6 @@
 
 use App\Account\Account;
 use App\Account\Client;
-use App\Media\Commands\StoreNewImage;
 use App\Portfolio\Project;
 use App\System\Seeder;
 use App\Tags\Tag;
@@ -11,8 +10,6 @@ use Illuminate\Foundation\Bus\DispatchesCommands;
 
 class PortfolioTableSeeder extends Seeder
 {
-
-    use DispatchesCommands;
 
     protected $image_names = [
         'PORTFOLIO_O14A0456.jpg',

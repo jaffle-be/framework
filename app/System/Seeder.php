@@ -1,12 +1,15 @@
 <?php
 namespace App\System;
 
+use App\Media\Commands\StoreNewImage;
 use App\Media\ImageDimensionHelpers;
 use Faker\Factory as Faker;
 use Illuminate\Database\Seeder as BaseSeeder;
+use Illuminate\Foundation\Bus\DispatchesCommands;
 
 abstract class Seeder extends BaseSeeder
 {
+    use DispatchesCommands;
     use ImageDimensionHelpers;
 
     /**

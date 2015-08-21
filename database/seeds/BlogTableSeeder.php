@@ -2,15 +2,10 @@
 
 use App\Account\Account;
 use App\Blog\Post;
-use App\Media\Commands\StoreNewImage;
-use App\Media\ImageDimensionHelpers;
 use App\System\Seeder;
-use Illuminate\Foundation\Bus\DispatchesCommands;
 
 class BlogTableSeeder extends Seeder
 {
-
-    use DispatchesCommands;
 
     protected $image_names = [
         'BLOG_IMG_9908.jpg',
