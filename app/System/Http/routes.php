@@ -18,5 +18,4 @@ Route::group([
             Route::resource('system', 'SystemController', ['only' => ['index']]);
         });
     });
-
 });
