@@ -40,6 +40,7 @@ class BlogTableSeeder extends Seeder
 
     public function run()
     {
+        \DB::connection()->disableQueryLogging();
         $account = Account::find(1);
 
         $this->preImageCaching();
