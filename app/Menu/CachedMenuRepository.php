@@ -23,15 +23,56 @@ class CachedMenuRepository implements MenuRepositoryInterface
         $this->account = $manager->account();
     }
 
-    public function getSupportedMenus(array $supports)
+    public function findMenu($id)
     {
-        if (!$this->cache->has('menus')) {
-            $this->cache->sear('menus', function () use ($supports) {
-                return $this->menu->getSupportedMenus($supports);
-            });
-        }
+        return $this->menu->findMenu($id);
+    }
 
-        return $this->cache->get('menus');
+    public function getMenus()
+    {
+        return $this->cache->sear('menus', function (){
+            return $this->menu->getMenus();
+        });
+    }
+
+    function __call($name, $arguments)
+    {
+        /**
+         * simple strategy: for any database altering method we do the following:
+         * - call the parent method
+         * - bust the cache
+         */
+
+        $result = call_user_func_array([$this->menu, $name], $arguments);
+
+        $this->cache->forget('menus');
+
+        return $result;
+    }
+
+    public function createMenu(array $payload)
+    {
+        return $this->__call(__FUNCTION__, func_get_args());
+    }
+
+    public function cleanMenu(Menu $menu)
+    {
+        return $this->__call(__FUNCTION__, func_get_args());
+    }
+
+    public function sortMenu($menu, $order)
+    {
+        return $this->__call(__FUNCTION__, func_get_args());
+    }
+
+    public function createItem(array $payload)
+    {
+        return $this->__call(__FUNCTION__, func_get_args());
+    }
+
+    public function updateItem(MenuItem $item, array $payload)
+    {
+        return $this->__call(__FUNCTION__, func_get_args());
     }
 
 }

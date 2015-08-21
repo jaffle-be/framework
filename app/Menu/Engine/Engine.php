@@ -16,8 +16,6 @@ class Engine {
         return $this->view->make($theme, [
             'items' => $items
         ]);
-
-        return sprintf('rendering theme %s with %d items in the menu', $theme, count($items));
     }
 
 }

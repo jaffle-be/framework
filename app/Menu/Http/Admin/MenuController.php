@@ -1,57 +1,49 @@
 <?php namespace App\Menu\Http\Admin;
 
 use App\Menu\Menu;
+use App\Menu\MenuManager;
 use App\System\Http\AdminController;
+use App\Theme\ThemeManager;
 use Illuminate\Http\Request;
 
 class MenuController extends AdminController
 {
 
-    public function index(Menu $menu)
+    protected $menu;
+
+    public function __construct(ThemeManager $theme, MenuManager $menu)
     {
-        return $menu->with($this->relations())->get();
+        $this->menu = $menu;
+
+        parent::__construct($theme);
     }
 
-    public function store(Request $request, Menu $menu)
+    public function index()
+    {
+        return $this->menu->getMenus();
+    }
+
+    public function store(Request $request)
     {
         $this->validate($request, ['name' => 'required']);
 
-        return $menu->create([
+        return $this->menu->createMenu([
             'name' => $request->get('name')
         ]);
     }
 
     public function destroy(Menu $menu)
     {
-        //it should never actually delete the menu itself, as it's provided by the current theme.
-        foreach($menu->items as $item)
-        {
-            $item->delete();
-        }
+        $this->menu->cleanMenu($menu);
 
-        return $menu->with($this->relations())->find($menu->id);
+        return $this->menu->findMenu($menu->id);
     }
 
     public function sort(Menu $menu, Request $request)
     {
         $order = $request->get('order');
 
-        foreach($order as $position => $key)
-        {
-            $model = $menu->items->find($key);
-            $model->sort = $position;
-            $model->save();
-        }
-    }
-
-    /**
-     * @return array
-     */
-    protected function relations()
-    {
-        $relations = ['items', 'items.translations', 'items.children', 'items.children.translations'];
-
-        return $relations;
+        $this->menu->sortMenu($menu, $order);
     }
 
 }

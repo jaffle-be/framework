@@ -49,6 +49,17 @@ class MenuManager
     }
 
     /**
+     * @param $name
+     * @param $arguments
+     *
+     * @return mixed
+     */
+    function __call($name, $arguments)
+    {
+        return call_user_func_array([$this->repository, $name], $arguments);
+    }
+
+    /**
      * @param       $menu
      * @param array $options
      */
@@ -89,7 +100,7 @@ class MenuManager
     protected function load()
     {
         //retrieve all menus from db
-        $menus = $this->repository->getSupportedMenus($this->supports);
+        $menus = $this->repository->getMenus();
 
         foreach($menus as $menu)
         {

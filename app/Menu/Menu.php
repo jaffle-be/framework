@@ -15,16 +15,4 @@ class Menu extends Model{
     {
         return $this->hasMany('App\Menu\MenuItem', 'menu_id')->whereNull('parent_id');
     }
-
-    public function scopeSupported($query, array $supported)
-    {
-        if(empty($supported))
-        {
-            $query->whereNull($this->getKeyName());
-        }
-        else
-        {
-            $query->whereIn('name', $supported);
-        }
-    }
 }
