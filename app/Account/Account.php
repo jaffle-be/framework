@@ -55,13 +55,8 @@ class Account extends Model
 
     public function logo($width = null, $height = null)
     {
-        static $cached = null;
+        $cached = app('cache')->sear('account-logo', function () {
 
-        if (empty($width) && empty($height)) {
-            $height = '40';
-        }
-
-        if ($cached === null) {
             $cached = new AccountLogo([
                 'id' => $this->getKey()
             ]);
@@ -71,11 +66,14 @@ class Account extends Model
 
                 $cached->images->sizes;
 
-                $cached = $cached->images;
-            } else {
-                //set cached false so we do not try to reload or set to images
-                $cached = false;
+                return $cached->images;
             }
+
+            return false;
+        });
+
+        if (empty($width) && empty($height)) {
+            $height = '40';
         }
 
         if ($cached) {

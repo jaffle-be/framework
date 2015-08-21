@@ -2,14 +2,17 @@
 
 namespace App\Account;
 
+use Illuminate\Contracts\Cache\Repository;
+
 class AccountRepository
 {
 
     protected $account;
 
-    public function __construct(Account $account)
+    public function __construct(Account $account, Repository $cache)
     {
         $this->account = $account;
+        $this->cache = $cache;
     }
 
     public function findByDomain($domain)
@@ -43,8 +46,10 @@ class AccountRepository
             return null;
         }
 
-        return $this->account->where('alias', $alias)
-            ->take(1)->first();
+        return $this->cache->sear('account', function() use ($alias){
+            return $this->account->with(['contactInformation', 'contactInformation.address', 'socialLinks'])->where('alias', $alias)
+                ->take(1)->first();
+        });
     }
 
 }

@@ -15,11 +15,6 @@ class ContactController extends Controller{
     {
         $account = $manager->account();
 
-        $account->load([
-            'contactInformation',
-            'contactInformation.address'
-        ]);
-
         $contact = $account->contactInformation->first();
 
         $success = $session->get('success');
