@@ -9,6 +9,14 @@ class InstallUnifyTheme extends ThemeInstallationMigration
 
     protected $version = '1.0';
 
+    protected $defaults = [
+        'header'      => 'header_default',
+        'footer'      => 'footer_default',
+        'breadcrumbs' => 'breadcrumbs-1',
+        'pagination'  => 'pagination-1',
+        'errorPage'    => 'one',
+    ];
+
     protected $settings = [
 
         [
@@ -284,13 +292,27 @@ class InstallUnifyTheme extends ThemeInstallationMigration
             ],
         ],
 
-    ];
+        [
+            'key' => 'errorPage',
+            'type' => 'select',
+            'nl'  => [
+                'name'        => 'error page',
+                'explanation' => 'error page style'
+            ],
+            'fr'  => [
+                'name'        => 'error page',
+                'explanation' => 'error page style'
+            ],
+            'de'  => [
+                'name'        => 'error page',
+                'explanation' => 'error page style'
+            ],
+            'en'  => [
+                'name'        => 'error page',
+                'explanation' => 'error page style'
+            ],
+        ],
 
-    protected $defaults = [
-        'header'      => 'header_default',
-        'footer'      => 'footer_default',
-        'breadcrumbs' => 'breadcrumbs-1',
-        'pagination'  => 'pagination-1',
     ];
 
     protected $options = [
@@ -338,6 +360,13 @@ class InstallUnifyTheme extends ThemeInstallationMigration
             ['value' => 'pagination-1'],
             ['value' => 'pagination-2'],
             ['value' => 'pagination-3'],
+        ],
+
+        'errorPage'  => [
+            ['value' => 'one'],
+            ['value' => 'two'],
+            ['value' => 'three'],
+            ['value' => 'four'],
         ],
 
     ];

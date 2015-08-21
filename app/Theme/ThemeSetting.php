@@ -17,7 +17,8 @@ class ThemeSetting extends Model
     protected $fillable = ['theme_id', 'type_id', 'key', 'name', 'explanation'];
 
     protected $casts = [
-        'boolean' => 'boolean'
+        'boolean' => 'boolean',
+        'key' => 'string',
     ];
 
     public function options()
