@@ -21,7 +21,7 @@ class AccountMiddleware {
 
         if(!$account)
         {
-            return response('Invalid account provided', 403);
+            return abort(403, 'Invalid account provided');
         }
 
         return $next($request);
