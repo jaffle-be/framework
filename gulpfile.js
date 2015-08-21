@@ -17,41 +17,9 @@ var gulp = require('gulp'),
 
 
 //default task to run
-gulp.task('default', ['admin-compile', 'front-compile']);
+gulp.task('default', ['compile']);
 
-//file is divided into 2 global parts:
-// - front part
-// - admin part
-
-//each part has its own compiler function
-//and a watcher function
-
-//the compiler should be used when deploying
-//the watcher should be used only when developing
-
-
-/**
- *
- *          FRONT SECTION
- *
- *
- */
-gulp.task('front-compile', ['front-less']);
-
-gulp.task('front-less', function()
-{
-    gulp.src(['app/System/resources/assets/less/front/main.less'])
-        .pipe(plumber())
-        .pipe(less())
-        .pipe(minify())
-        .pipe(gulp.dest('public/css/front'))
-        .pipe(minify())
-        .pipe(rename(function(path){
-            path.extname = '.min.css';
-        }))
-        .pipe(gulp.dest('public/css/front'))
-});
-
+gulp.task('watch', ['watch']);
 
 /**
  *
@@ -60,9 +28,19 @@ gulp.task('front-less', function()
  *
  */
 
-gulp.task('admin-compile', ['admin-plugins', 'admin-scripts', 'admin-less']);
+gulp.task('compile', ['plugins', 'scripts', 'less']);
 
-gulp.task('admin-less', function()
+gulp.task('watch', ['watch-scripts', 'watch-less']);
+
+gulp.task('watch-less', function()
+{
+    watch(['app/System/resources/assets/less/admin/**.less'], function()
+    {
+        gulp.start('less');
+    });
+});
+
+gulp.task('less', function()
 {
     gulp.src(['app/System/resources/assets/less/admin/main.less'])
         .pipe(plumber())
@@ -75,7 +53,14 @@ gulp.task('admin-less', function()
         .pipe(gulp.dest('public/css/admin'))
 });
 
-gulp.task('admin-scripts', function () {
+gulp.task('watch-scripts', function()
+{
+    watch('app/*/resources/assets/js/admin/*/*.js', function(){
+        gulp.start('scripts');
+    });
+});
+
+gulp.task('scripts', function () {
     /**
      * there are 4 types of components.
      * - module components that exist out of 1 file with a name of 'component'.js
@@ -144,7 +129,7 @@ gulp.task('admin-scripts', function () {
 
 });
 
-gulp.task('admin-plugins', function () {
+gulp.task('plugins', function () {
     gulp.src('bower_components/font-awesome/fonts/**')
         .pipe(copy('./public/fonts', {
             prefix: 3
