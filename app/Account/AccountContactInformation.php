@@ -3,9 +3,12 @@
 namespace App\Account;
 
 use App\Contact\AddressOwner;
+use App\Contact\OwnsAddress;
 use Illuminate\Database\Eloquent\Model;
 
 class AccountContactInformation extends Model implements AddressOwner{
+
+    use OwnsAddress;
 
     protected $table = "account_contact_information";
 
@@ -14,11 +17,6 @@ class AccountContactInformation extends Model implements AddressOwner{
     public function account()
     {
         return $this->belongsTo('App\Account\Account');
-    }
-
-    public function address()
-    {
-        return $this->morphOne('App\Contact\Address', 'owner');
     }
 
 }

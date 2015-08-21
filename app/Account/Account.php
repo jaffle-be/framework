@@ -1,9 +1,11 @@
 <?php namespace App\Account;
 
+use App\Contact\HasSocialLinks;
 use Illuminate\Database\Eloquent\Model;
 
 class Account extends Model
 {
+    use HasSocialLinks;
 
     protected $table = "accounts";
 
@@ -29,11 +31,6 @@ class Account extends Model
         return $this->hasMany('App\Account\AccountContactInformation');
     }
 
-    public function socialLinks()
-    {
-        return $this->morphOne('App\Contact\SocialLinks', 'owner');
-    }
-
     public function getOwnerAttribute()
     {
         return $this->ownership->member;
@@ -55,22 +52,7 @@ class Account extends Model
 
     public function logo($width = null, $height = null)
     {
-        $cached = app('cache')->sear('account-logo', function () {
-
-            $cached = new AccountLogo([
-                'id' => $this->getKey()
-            ]);
-
-            if ($cached->images) {
-                $cached->images;
-
-                $cached->images->sizes;
-
-                return $cached->images;
-            }
-
-            return false;
-        });
+        $cached = $this->cachedLogo();
 
         if (empty($width) && empty($height)) {
             $height = '40';
@@ -90,6 +72,26 @@ class Account extends Model
 
             return $image->path;
         }
+    }
+
+    protected function cachedLogo()
+    {
+        return app('cache')->sear('account-logo', function () {
+
+            $cached = new AccountLogo([
+                'id' => $this->getKey()
+            ]);
+
+            if ($cached->images) {
+                $cached->images;
+
+                $cached->images->sizes;
+
+                return $cached->images;
+            }
+
+            return false;
+        });
     }
 
 }

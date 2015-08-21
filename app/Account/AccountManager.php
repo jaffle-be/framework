@@ -15,7 +15,7 @@ class AccountManager
 
     protected $account = false;
 
-    public function __construct(AccountRepository $account, Repository $config, Application $application)
+    public function __construct(AccountRepositoryInterface $account, Repository $config, Application $application)
     {
         $this->repo = $account;
 
@@ -41,6 +41,11 @@ class AccountManager
     public function account()
     {
         return $this->account;
+    }
+
+    function __call($name, $arguments)
+    {
+        return call_user_func_array([$this->repo, $name], $arguments);
     }
 
 }

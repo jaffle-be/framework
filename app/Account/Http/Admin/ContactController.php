@@ -15,14 +15,7 @@ class ContactController extends AdminController
     {
         $account = $manager->account();
 
-        $account->load(['contactInformation', 'contactInformation.address']);
-
         $contact = $account->contactInformation->first();
-
-        if(!$contact)
-        {
-            $contact = $account->contactInformation()->create([]);
-        }
 
         $address = $contact ? $contact->address : null;
 
@@ -40,19 +33,17 @@ class ContactController extends AdminController
     {
         $account = $manager->account();
 
-        $account->load(['contactInformation']);
-
-        $contact = $account->contactInformation->first();
-
-        return $contact;
+        return $account->contactInformation->first();
     }
 
-    public function update(AccountContactInformation $accountContactInformation, UpdateInformationRequest $request)
+    public function update(AccountContactInformation $accountContactInformation, UpdateInformationRequest $request, AccountManager $manager)
     {
         $response = $this->dispatchFromArray(UpdateInformation::class, [
-            'info' => $accountContactInformation,
+            'info'  => $accountContactInformation,
             'input' => translation_input($request, [])
         ]);
+
+        $manager->updated();
     }
 
 }

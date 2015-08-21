@@ -4,7 +4,7 @@ namespace App\Account;
 
 use Illuminate\Contracts\Cache\Repository;
 
-class AccountRepository
+class AccountRepository implements AccountRepositoryInterface
 {
 
     protected $account;
@@ -46,10 +46,23 @@ class AccountRepository
             return null;
         }
 
-        return $this->cache->sear('account', function() use ($alias){
-            return $this->account->with(['contactInformation', 'contactInformation.address', 'socialLinks'])->where('alias', $alias)
-                ->take(1)->first();
-        });
+        $account = $this->account->with(['contactInformation', 'contactInformation.address', 'socialLinks'])->where('alias', $alias)
+            ->take(1)->first();
+
+        //make sure we always have a contactInformation, when we need to link address using google maps plugin
+        $contact = $account->contactInformation->first();
+
+        if(!$contact)
+        {
+            $contact = $account->contactInformation()->create([]);
+        }
+
+        return $account;
+    }
+
+    public function updated()
+    {
+
     }
 
 }

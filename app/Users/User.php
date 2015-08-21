@@ -2,18 +2,23 @@
 
 use App\Account\MembershipOwner;
 use App\Contact\AddressOwner;
+use App\Contact\HasSocialLinks;
+use App\Contact\OwnsAddress;
 use App\Media\StoresMedia;
 use App\Media\StoringMedia;
 use App\Search\Model\Searchable;
 use App\Search\Model\SearchableTrait;
+use App\System\Translatable\Translatable;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 
 class User extends Model implements Authenticatable, MembershipOwner, AddressOwner, StoresMedia, Searchable
 {
 
+    use OwnsAddress;
     use StoringMedia;
-    use \App\System\Translatable\Translatable;
+    use Translatable;
+    use HasSocialLinks;
     use SearchableTrait;
 
     /**
@@ -44,16 +49,6 @@ class User extends Model implements Authenticatable, MembershipOwner, AddressOwn
     protected $cast = [
         'confirmed' => 'boolean'
     ];
-
-    public function socialLinks()
-    {
-        return $this->morphOne('App\Contact\SocialLinks', 'owner');
-    }
-
-    public function address()
-    {
-        return $this->morphOne('App\Contact\Address', 'owner');
-    }
 
     public function resetToken()
     {
