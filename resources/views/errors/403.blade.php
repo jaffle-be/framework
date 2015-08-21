@@ -10,9 +10,9 @@
             <div class="col-md-8 col-md-offset-2">
                 <div class="error-v1">
                     <span class="error-v1-title">403</span>
-                    <span>That’s an error!</span>
+                    <span>What? Did someone forget to pay the bill?</span>
 
-                    <p>The requested URL was not found on this server. That’s all we know.</p>
+                    <p>If you believe you did, <br>or you don't know what happened, <br>feel free to contact the guys who made this.</p>
                     <a class="btn-u btn-bordered" href="index.html">Back Home</a>
                 </div>
             </div>
