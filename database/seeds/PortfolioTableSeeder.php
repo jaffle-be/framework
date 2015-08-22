@@ -53,7 +53,7 @@ class PortfolioTableSeeder extends Seeder
         //flip so we can use array_rand
         $tags = array_flip(Tag::lists('id')->toArray());
 
-        for ($i = 0; $i < 35; $i++) {
+        for ($i = 0; $i < 10; $i++) {
 
             $project = App\Portfolio\Project::create([
                 'account_id' => 1,
