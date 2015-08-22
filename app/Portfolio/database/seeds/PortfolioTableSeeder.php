@@ -36,7 +36,6 @@ class PortfolioTableSeeder extends Seeder
     }
     public function run()
     {
-        \DB::connection()->disableQueryLog();
 
         $this->preImageCaching();
 

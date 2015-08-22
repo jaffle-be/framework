@@ -40,6 +40,7 @@ abstract class Seeder extends BaseSeeder
             $this->de = Faker::create('de_DE');
             $this->faker = $this->en;
         }
+        \DB::disableQueryLog();
     }
 
     /**

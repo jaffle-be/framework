@@ -6,7 +6,6 @@ use App\Portfolio\Project;
 use App\System\Seeder;
 use App\Tags\Tag;
 use App\Users\User;
-use Illuminate\Foundation\Bus\DispatchesCommands;
 
 class PortfolioTableSeeder extends Seeder
 {
@@ -37,7 +36,6 @@ class PortfolioTableSeeder extends Seeder
     }
     public function run()
     {
-        \DB::connection()->disableQueryLog();
 
         $this->preImageCaching();
 
