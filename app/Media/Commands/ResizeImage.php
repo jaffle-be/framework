@@ -53,18 +53,20 @@ class ResizeImage extends Job implements SelfHandling
             }
 
             $image->resize($width, $height, $constraint);
-        }, 5, true)->save($path);
-
-        //always fetch the actual width and height from the image,
-        //one of them could have been null to auto scale the image.
-        $width = $image->getWidth();
-        $height = $image->getHeight();
+        }, 60, true)->save($path);
 
         if ($image) {
+            //always fetch the actual width and height from the image,
+            //one of them could have been null to auto scale the image.
+            $width = $image->getWidth();
+            $height = $image->getHeight();
+
             //use html public path to store in database
             $path = $this->getPath($files, true);
 
             $media->createImage($this->getPayload($width, $height, $path), $this->image);
+
+            unset($image);
         }
     }
 
