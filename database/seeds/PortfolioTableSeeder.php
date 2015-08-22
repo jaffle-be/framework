@@ -39,14 +39,8 @@ class PortfolioTableSeeder extends Seeder
 
         $this->preImageCaching();
 
-        $projects = Project::all();
         $account = Account::find(1);
         $clients = Client::all();
-
-        foreach($projects as $project)
-        {
-            $project->delete();
-        }
 
         $users = User::all();
         $users = $users->lists('id')->toArray();
