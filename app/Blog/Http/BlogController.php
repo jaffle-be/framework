@@ -20,7 +20,7 @@ class BlogController extends Controller
     {
         $post->load($this->relations(1140));
 
-        $related = $post->with($this->relations(360))->get()->shuffle()->take(3);
+        $related = $post->with($this->relations(460))->get()->shuffle()->take(3);
 
         return $this->theme->render('blog.' . $this->theme->setting('blogDetail'), ['post' => $post, 'related' => $related]);
     }
