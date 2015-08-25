@@ -47,6 +47,29 @@ class Image extends Model
 
         }
 
+        $thumbnail = $this->sizes->filter(function($item) use ($width, $height){
+            if(!empty($width) && !empty($height))
+            {
+                return $item->width == $width && $item->height == $height;
+            }
+
+            if(!empty($width))
+            {
+                return $item->width == $width;
+            }
+
+            if(!empty($height))
+            {
+                return $item->height == $height;
+            }
+            return false;
+        })->first();
+
+        if($thumbnail)
+        {
+            return $thumbnail->path;
+        }
+
         if ($image = $this->sizes->first()) {
 
             return $image->path;
