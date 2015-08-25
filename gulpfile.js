@@ -1,5 +1,4 @@
 var gulp = require('gulp'),
-    SubTask = require('gulp-subtask')(gulp),
     debug = require('gulp-debug'),
     tap = require('gulp-tap'),
     less = require('gulp-less'),
