@@ -1,11 +1,6 @@
 <div class="row wrapper wrapper-content" ng-controller="BlogDetailController as vm" ng-init="vm.options = {{ system_options() }}">
 
-    <tabset>
-
-        <tab ng-repeat="locale in vm.options.locales" heading="@{{ locale.locale }}" active="vm.options.locales[locale.locale].active" select="vm.options.locale = locale.locale">
-        </tab>
-
-    </tabset>
+    @include('system::admin.locale-tabs')
 
     <div class="col-xs-12">
 

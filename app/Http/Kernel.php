@@ -23,6 +23,7 @@ class Kernel extends HttpKernel
         //since we want to be able to redirect the user to
         //a special section to reactivate their account.
         'App\Account\Http\Middleware\AccountMiddleware',
+        'App\System\Http\Middleware\LocaleMiddleware',
     ];
 
     /**

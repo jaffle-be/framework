@@ -86,10 +86,10 @@
                         <div class="form-group">
 
                             <label for="locale">
-                                @{{ locale.locale }}
+                                @{{ locale.slug }}
                             </label>
 
-                            <input class="form-control" type="text" name="locale" id="locale" ng-model="vm.item.translations[locale.locale].name" ng-change="vm.saveItem()"/>
+                            <input class="form-control" type="text" name="locale" id="locale" ng-model="vm.item.translations[locale.slug].name" ng-change="vm.saveItem()"/>
 
                         </div>
 

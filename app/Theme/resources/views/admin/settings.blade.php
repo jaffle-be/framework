@@ -46,6 +46,12 @@
 
     </div>
 
+    <div class="row">
+
+        @include('system::admin.locales')
+
+    </div>
+
     <div class="row" ng-show="vm.theme">
 
         @include('menu::admin.settings')

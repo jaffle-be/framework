@@ -1,12 +1,6 @@
 <div class="wrapper-content" ng-controller="ProfileController as vm" ng-init="vm.options = {{ system_options() }}">
 
-    <tabset>
-
-        <tab ng-repeat="locale in vm.options.locales" heading="@{{ locale.locale }}" active="vm.options.locales[locale.locale].active" select="vm.options.locale = locale.locale">
-        </tab>
-
-    </tabset>
-
+    @include('system::locale-tabs')
 
     <div class="col-md-6">
         <div class="ibox">

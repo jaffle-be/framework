@@ -46,7 +46,7 @@ class AccountRepository implements AccountRepositoryInterface
             return null;
         }
 
-        $account = $this->account->with(['contactInformation', 'contactInformation.address', 'socialLinks'])->where('alias', $alias)
+        $account = $this->account->with(['contactInformation', 'contactInformation.address', 'socialLinks', 'locales', 'locales.translations'])->where('alias', $alias)
             ->take(1)->first();
 
         //make sure we always have a contactInformation, when we need to link address using google maps plugin

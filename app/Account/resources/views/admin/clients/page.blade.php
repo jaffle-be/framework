@@ -8,13 +8,7 @@
 
         <div class="ibox-content">
 
-            <tabset>
-
-                <tab ng-repeat="locale in vm.options.locales" heading="@{{ locale.locale }}" active="vm.options.locales[locale.locale].active" select="vm.options.locale = locale.locale">
-
-                </tab>
-            </tabset>
-
+            @include('system::admin.locale-tabs')
 
             <div class="row">
 

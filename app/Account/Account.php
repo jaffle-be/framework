@@ -11,6 +11,11 @@ class Account extends Model
 
     protected $fillable = ['alias', 'domain'];
 
+    public function locales()
+    {
+        return $this->belongsToMany('App\System\Locale', 'account_locales');
+    }
+
     public function memberships()
     {
         return $this->hasMany('App\Account\Membership');

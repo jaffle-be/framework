@@ -2,17 +2,12 @@
 
     <div class="ibox" st-table="vm.projects" st-pipe="vm.list">
 
-        <tabset>
+        @include('system::admin.locale-tabs', ['clickRefresh' => true])
 
-            <tab ng-repeat="locale in vm.options.locales" heading="@{{ locale.locale }}" st-click-refresh active="vm.options.locales[locale.locale].active" select="vm.changeTab(locale.locale)">
+        <div class="ibox-title">
+            <h5>{{ Lang::get('portfolio::admin.project.index') }}</h5>
+        </div>
 
-                <div class="ibox-title">
-                    <h5>{{ Lang::get('portfolio::admin.project.index') }}</h5>
-                </div>
-
-            </tab>
-
-        </tabset>
 
         <div class="ibox-content">
 

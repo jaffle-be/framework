@@ -5,6 +5,9 @@ Route::group([
     'as' => 'store.',
 ], function () {
 
+
+    Route::get('locale', ['uses' => 'SystemController@locale', 'as' => 'locale']);
+
     Route::group([
         'namespace' => 'Admin',
     ], function()
@@ -16,6 +19,7 @@ Route::group([
         //actual resource
         Route::group(['prefix' => 'api/admin'], function () {
             Route::resource('system', 'SystemController', ['only' => ['index']]);
+            Route::post('system/locale', 'SystemController@locale');
         });
     });
 });

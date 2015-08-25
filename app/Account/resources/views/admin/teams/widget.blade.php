@@ -2,18 +2,13 @@
 
     <div class="ibox-title">
         <h5>{{ Lang::get('account::admin.team.create') }}</h5>
+        <button class="btn btn-info btn-xs pull-right" ng-click="vm.closeTeamEditor()"><i class="fa fa-remove"></i></button>
+        <div class="clearfix"></div>
     </div>
 
     <div class="ibox-content">
 
-        <tabset>
-
-            <tab ng-repeat="locale in vm.options.locales" heading="@{{ locale.locale }}" active="vm.options.locales[locale.locale].active" select="vm.options.locale = locale.locale">
-
-            </tab>
-
-            <button class="btn btn-info pull-right" ng-click="vm.closeTeamEditor()"><i class="fa fa-remove"></i></button>
-        </tabset>
+        @include('system::admin.locale-tabs')
 
         <form ng-submit="vm.createNewTeam()">
 
