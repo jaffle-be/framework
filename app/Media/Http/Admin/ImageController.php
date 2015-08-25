@@ -19,14 +19,12 @@ class ImageController extends AdminController
     public function index(Request $request)
     {
         $owner = $this->owner($request);
-
-        $sizes = $this->sizes($request);
-
+        
         $images = $owner->images;
 
         if($images)
         {
-            $images->load($this->relations($sizes));
+            $images->load($this->relations());
 
             if(!$images instanceof Collection)
             {
@@ -37,25 +35,12 @@ class ImageController extends AdminController
         return $images;
     }
 
-    protected function relations($sizes)
+    protected function relations()
     {
-        sort($sizes);
-
-        $size_to_use = 340;
-
-        while ($size = array_pop($sizes)) {
-            if ($size >= 340) {
-                $size_to_use = $size;
-            }
-            else{
-                break;
-            }
-        }
-
         return [
             'translations',
-            'sizes' => function ($query) use ($size_to_use) {
-                $query->dimension($size_to_use);
+            'sizes' => function ($query){
+                $query->dimension(340);
             }
         ];
     }
@@ -105,16 +90,14 @@ class ImageController extends AdminController
             'sizes' => $sizes,
         ]);
 
-        $image->load($this->relations($sizes));
+        $image->load($this->relations());
 
         return $image;
     }
 
     public function update(Image $image, Request $request)
     {
-        $sizes = $this->sizes($request);
-
-        $image->load($this->relations($sizes));
+        $image->load($this->relations());
 
         $owner = $this->owner($request);
 
