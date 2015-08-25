@@ -1,1 +1,1 @@
-{!! Theme::render('errors.500.' . Theme::setting('errorPage')) !!}
+{!! Theme::render('errors.500.' . Theme::setting('layoutErrorPage')) !!}

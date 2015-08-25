@@ -38,7 +38,7 @@ class ThemeSetting extends Model
 
     public function newCollection(array $items = [])
     {
-        $collection = new Collection($items);
+        $collection = new ThemeSettingCollection($items);
 
         return $collection->keyBy('key');
     }

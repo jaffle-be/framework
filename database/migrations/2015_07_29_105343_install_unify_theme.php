@@ -10,59 +10,59 @@ class InstallUnifyTheme extends ThemeInstallationMigration
     protected $version = '1.0';
 
     protected $defaults = [
-        'header'      => 'header_default',
-        'footer'      => 'footer_default',
-        'breadcrumbs' => 'breadcrumbs-1',
-        'pagination'  => 'pagination-1',
-        'errorPage'    => 'one',
+        'layoutHeader' => 'header_default',
+        'layoutFooter' => 'footer_default',
+        'layoutBreadcrumbs'  => 'breadcrumbs-1',
+        'layoutPagination'   => 'pagination-1',
+        'layoutErrorPage'    => 'one',
     ];
 
     protected $settings = [
 
         [
-            'key' => 'header',
+            'key'  => 'layoutHeader',
             'type' => 'select',
-            'nl'  => [
+            'nl'   => [
                 'name'        => 'header view',
                 'explanation' => 'header view'
             ],
-            'fr'  => [
+            'fr'   => [
                 'name'        => 'header view',
                 'explanation' => 'header view'
             ],
-            'de'  => [
+            'de'   => [
                 'name'        => 'header view',
                 'explanation' => 'header view'
             ],
-            'en'  => [
+            'en'   => [
                 'name'        => 'header view',
                 'explanation' => 'header view'
             ],
         ],
 
         [
-            'key' => 'footer',
+            'key'  => 'layoutFooter',
             'type' => 'select',
-            'nl'  => [
+            'nl'   => [
                 'name'        => 'footer view',
                 'explanation' => 'footer view'
             ],
-            'fr'  => [
+            'fr'   => [
                 'name'        => 'footer view',
                 'explanation' => 'footer view'
             ],
-            'de'  => [
+            'de'   => [
                 'name'        => 'footer view',
                 'explanation' => 'footer view'
             ],
-            'en'  => [
+            'en'   => [
                 'name'        => 'footer view',
                 'explanation' => 'footer view'
             ],
         ],
 
         [
-            'key'  => 'footerAboutTitle',
+            'key'  => 'layoutFooterAboutTitle',
             'type' => 'string',
             'nl'   => [
                 'name'        => 'footer about title',
@@ -83,7 +83,7 @@ class InstallUnifyTheme extends ThemeInstallationMigration
         ],
 
         [
-            'key'  => 'footerAboutText',
+            'key'  => 'layoutFooterAboutText',
             'type' => 'text',
             'nl'   => [
                 'name'        => 'footer about text',
@@ -104,7 +104,7 @@ class InstallUnifyTheme extends ThemeInstallationMigration
         ],
 
         [
-            'key'  => 'footerPostsTitle',
+            'key'  => 'layoutFooterPostsTitle',
             'type' => 'string',
             'nl'   => [
                 'name'        => 'footer posts title',
@@ -125,7 +125,7 @@ class InstallUnifyTheme extends ThemeInstallationMigration
         ],
 
         [
-            'key'  => 'footerLinksTitle',
+            'key'  => 'layoutFooterLinksTitle',
             'type' => 'string',
             'nl'   => [
                 'name'        => 'footer links title',
@@ -146,7 +146,7 @@ class InstallUnifyTheme extends ThemeInstallationMigration
         ],
 
         [
-            'key'  => 'footerContactTitle',
+            'key'  => 'layoutFooterContactTitle',
             'type' => 'string',
             'nl'   => [
                 'name'        => 'footer contact title',
@@ -167,7 +167,7 @@ class InstallUnifyTheme extends ThemeInstallationMigration
         ],
 
         [
-            'key'  => 'footerSocialIconsTitle',
+            'key'  => 'layoutFooterSocialIconsTitle',
             'type' => 'string',
             'nl'   => [
                 'name'        => 'footer social icons title',
@@ -188,7 +188,7 @@ class InstallUnifyTheme extends ThemeInstallationMigration
         ],
 
         [
-            'key'  => 'footerNewsletterTitle',
+            'key'  => 'layoutFooterNewsletterTitle',
             'type' => 'string',
             'nl'   => [
                 'name'        => 'footer newsletter title',
@@ -209,7 +209,7 @@ class InstallUnifyTheme extends ThemeInstallationMigration
         ],
 
         [
-            'key'  => 'footerNewsletterText',
+            'key'  => 'layoutFooterNewsletterText',
             'type' => 'text',
             'nl'   => [
                 'name'        => 'footer newsletter text',
@@ -230,7 +230,7 @@ class InstallUnifyTheme extends ThemeInstallationMigration
         ],
 
         [
-            'key'  => 'footerTweetsTitle',
+            'key'  => 'layoutFooterTweetsTitle',
             'type' => 'string',
             'nl'   => [
                 'name'        => 'footer recent tweets title',
@@ -251,63 +251,63 @@ class InstallUnifyTheme extends ThemeInstallationMigration
         ],
 
         [
-            'key' => 'breadcrumbs',
+            'key'  => 'layoutBreadcrumbs',
             'type' => 'select',
-            'nl'  => [
+            'nl'   => [
                 'name'        => 'breadcrumbs',
                 'explanation' => 'breadcrumbs style'
             ],
-            'fr'  => [
+            'fr'   => [
                 'name'        => 'breadcrumbs',
                 'explanation' => 'breadcrumbs style'
             ],
-            'de'  => [
+            'de'   => [
                 'name'        => 'breadcrumbs',
                 'explanation' => 'breadcrumbs style'
             ],
-            'en'  => [
+            'en'   => [
                 'name'        => 'breadcrumbs',
                 'explanation' => 'breadcrumbs style'
             ],
         ],
 
         [
-            'key' => 'pagination',
+            'key'  => 'layoutPagination',
             'type' => 'select',
-            'nl'  => [
+            'nl'   => [
                 'name'        => 'pagination',
                 'explanation' => 'pagination style'
             ],
-            'fr'  => [
+            'fr'   => [
                 'name'        => 'pagination',
                 'explanation' => 'pagination style'
             ],
-            'de'  => [
+            'de'   => [
                 'name'        => 'pagination',
                 'explanation' => 'pagination style'
             ],
-            'en'  => [
+            'en'   => [
                 'name'        => 'pagination',
                 'explanation' => 'pagination style'
             ],
         ],
 
         [
-            'key' => 'errorPage',
+            'key'  => 'layoutErrorPage',
             'type' => 'select',
-            'nl'  => [
+            'nl'   => [
                 'name'        => 'error page',
                 'explanation' => 'error page style'
             ],
-            'fr'  => [
+            'fr'   => [
                 'name'        => 'error page',
                 'explanation' => 'error page style'
             ],
-            'de'  => [
+            'de'   => [
                 'name'        => 'error page',
                 'explanation' => 'error page style'
             ],
-            'en'  => [
+            'en'   => [
                 'name'        => 'error page',
                 'explanation' => 'error page style'
             ],
@@ -317,7 +317,7 @@ class InstallUnifyTheme extends ThemeInstallationMigration
 
     protected $options = [
 
-        'header'      => [
+        'layoutHeader' => [
 
             ['value' => 'header_default'],
             ['value' => 'header_v1'],
@@ -337,7 +337,7 @@ class InstallUnifyTheme extends ThemeInstallationMigration
             ['value' => 'header_v6_transparent'],
         ],
 
-        'footer'      => [
+        'layoutFooter' => [
             ['value' => 'footer_default'],
             ['value' => 'footer_v1'],
             ['value' => 'footer_v2'],
@@ -348,7 +348,7 @@ class InstallUnifyTheme extends ThemeInstallationMigration
             ['value' => 'footer_v7'],
         ],
 
-        'breadcrumbs' => [
+        'layoutBreadcrumbs'  => [
             ['value' => 'breadcrumbs-1'],
             ['value' => 'breadcrumbs-2'],
             ['value' => 'breadcrumbs-3'],
@@ -356,13 +356,13 @@ class InstallUnifyTheme extends ThemeInstallationMigration
             ['value' => 'breadcrumbs-5'],
         ],
 
-        'pagination'  => [
+        'layoutPagination'   => [
             ['value' => 'pagination-1'],
             ['value' => 'pagination-2'],
             ['value' => 'pagination-3'],
         ],
 
-        'errorPage'  => [
+        'layoutErrorPage'    => [
             ['value' => 'one'],
             ['value' => 'two'],
             ['value' => 'three'],
