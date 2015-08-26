@@ -2,7 +2,7 @@
 
     @include('system::admin.locale-tabs')
 
-    <div class="col-xs-12">
+    {{--<div class="col-xs-12">
 
         <div class="alert alert-danger">
             <div class="title">Drafting</div>
@@ -17,7 +17,7 @@
             </p>
         </div>
 
-    </div>
+    </div>--}}
 
     <div class="col-xs-12 col-lg-7">
 
