@@ -10,6 +10,10 @@
 
 @import "inspinia/style.less";
 
+
+//correct bootstrap glyphicons font path
+@icon-font-path: '/fonts/';
+
 //adjust bootstrap variables to inspinia theme, since inspinia isnt using mixins but simply overriding bootstrap
 //example for a btn
 //when you use the .btn-primary mixing, you wouldn't have the same css as using the actual .btn-primary class
@@ -29,6 +33,33 @@
 //this is a port from the materialize css design framework.
 @import "materialize/forms/checkboxes";
 @import "materialize/forms/radios";
+
+//fix overriding default btn colors
+div.datepicker{
+  .btn-default{
+    color: #333;
+    background-color: #fff;
+  }
+
+  li{
+    padding: 5px;
+
+    &::after{
+      content: ' ';
+      clear:both;
+    }
+  }
+
+
+  & :focus {
+    //remove ugly focus, specifically for datepicker,
+    //but then we had to outline each element individually,
+    //which is a tiresome thing to do
+    outline: none;
+  }
+
+}
+
 
 @import "tabs";
 @import "blog";

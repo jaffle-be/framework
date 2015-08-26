@@ -134,6 +134,11 @@ gulp.task('plugins', function () {
             prefix: 3
         }));
 
+    gulp.src('bower_components/bootstrap/dist/fonts/**')
+        .pipe(copy('./public/fonts', {
+            prefix: 4
+        }));
+
     gulp.src('bower_components/angular/angular.min.js')
         .pipe(copy('./public/js/admin/angular/', {
             prefix: 2
