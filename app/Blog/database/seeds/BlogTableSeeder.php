@@ -57,7 +57,7 @@ class BlogTableSeeder extends Seeder
                     'content'    => $this->nl->realText(500),
                     'created_at' => $this->nl->dateTimeBetween('-3 months', 'now'),
                     'updated_at' => $this->nl->dateTimeBetween('-2 months', 'now'),
-                    'publish_at' => $this->nl->dateTimeBetween('-1 months', '+3 months')
+                    'publish_at' => rand(0,1)  ? $this->nl->dateTimeBetween('-1 months', '+3 months') : null,
                 ],
                 'fr'      => [
                     'title'      => $this->fr->sentence(),
@@ -65,7 +65,7 @@ class BlogTableSeeder extends Seeder
                     'content'    => $this->fr->realText(500),
                     'created_at' => $this->nl->dateTimeBetween('-3 months', 'now'),
                     'updated_at' => $this->nl->dateTimeBetween('-2 months', 'now'),
-                    'publish_at' => $this->nl->dateTimeBetween('-1 months', '+3 months')
+                    'publish_at' => rand(0,1)  ? $this->nl->dateTimeBetween('-1 months', '+3 months') : null,
                 ],
                 'en'      => [
                     'title'      => $this->en->sentence(),
@@ -73,7 +73,7 @@ class BlogTableSeeder extends Seeder
                     'content'    => $this->en->realText(500),
                     'created_at' => $this->nl->dateTimeBetween('-3 months', 'now'),
                     'updated_at' => $this->nl->dateTimeBetween('-2 months', 'now'),
-                    'publish_at' => $this->nl->dateTimeBetween('-1 months', '+3 months')
+                    'publish_at' => rand(0,1)  ? $this->nl->dateTimeBetween('-1 months', '+3 months') : null,
                 ],
                 'de'      => [
                     'title'      => $this->de->sentence(),
@@ -81,7 +81,7 @@ class BlogTableSeeder extends Seeder
                     'content'    => $this->de->realText(500),
                     'created_at' => $this->nl->dateTimeBetween('-3 months', 'now'),
                     'updated_at' => $this->nl->dateTimeBetween('-2 months', 'now'),
-                    'publish_at' => $this->nl->dateTimeBetween('-1 months', '+3 months')
+                    'publish_at' => rand(0,1)  ? $this->nl->dateTimeBetween('-1 months', '+3 months') : null,
                 ]
             ]);
 
