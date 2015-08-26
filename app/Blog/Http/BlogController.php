@@ -18,9 +18,9 @@ class BlogController extends Controller
 
     public function show(Post $post)
     {
-        $post->load($this->relations(1140));
+        $post->load($this->relations());
 
-        $related = $post->with($this->relations(460))->get()->shuffle()->take(3);
+        $related = $post->with($this->relations())->get()->shuffle()->take(3);
 
         return $this->theme->render('blog.' . $this->theme->setting('blogDetail'), ['post' => $post, 'related' => $related]);
     }
