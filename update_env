@@ -1,0 +1,44 @@
+#!/usr/bin/env bash
+
+# we want to replace the .env variables with the docker container ips
+
+
+
+
+echo $web_info;
+
+
+# sed -e groups need escaping
+
+
+function get_ip {
+    # $1 is the name of the container
+    #
+    local info=$(docker inspect $1 | grep '"IPAddress"');
+    sed -e 's/"IPAddress": "\(.*\)",/\1/g' <<< $info
+
+    return 1;
+}
+
+
+function update_ip {
+    # $1 is the name of the container
+    # $2 is the name of the env variable
+
+    if [ $# -lt 2 ]
+    then
+        echo 'expecting $container_name $env_variable_name as arguments';
+        return 0;
+    fi
+
+    local ip=$(get_ip $1);
+
+    echo 'updating ' $2 ' with ip: ' $ip;
+    sed -i -e 's/'$2'=\(.*\)/'$2'='$ip'/g' .env
+
+    return 1;
+}
+
+update_ip framework_mysql_1 DB_HOST
+update_ip framework_elasticsearch_1 ES_HOST
+update_ip framework_redis_1 REDIS_HOST
