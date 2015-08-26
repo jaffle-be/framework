@@ -10,6 +10,8 @@ class SearchController extends Controller
 
     public function index(Request $request, Post $post, SearchServiceInterface $search)
     {
+        dd('still need to make sure documents returned are published ones');
+        
         $locale = app()->getLocale();
 
         $posts = $search->search('posts', [
