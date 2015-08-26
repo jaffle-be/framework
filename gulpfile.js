@@ -54,7 +54,7 @@ gulp.task('less', function()
 
 gulp.task('watch-scripts', function()
 {
-    watch('app/*/resources/assets/js/admin/*/*.js', function(){
+    watch(['app/*/resources/assets/js/admin/*/*.js', 'app/*/resources/assets/js/admin/models.js', 'app/*/resources/assets/js/admin/config.js', 'app/*/resources/assets/js/admin/translations.js'], function(){
         gulp.start('scripts');
     });
 });
