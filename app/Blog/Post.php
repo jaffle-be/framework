@@ -5,17 +5,19 @@ use App\Media\StoringMedia;
 use App\Search\Model\Searchable;
 use App\Search\Model\SearchableTrait;
 use App\System\Scopes\ModelAccountResource;
+use App\System\Sluggable\Sluggable;
+use App\System\Translatable\Translatable;
 use App\Tags\Taggable;
 use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model implements StoresMedia, Searchable
 {
 
-    use \App\System\Translatable\Translatable;
+    use Translatable;
     use Taggable;
     use StoringMedia;
     use ModelAccountResource;
-    use \App\System\Sluggable\Sluggable;
+    use Sluggable;
     use SearchableTrait;
 
     protected $table = 'posts';
