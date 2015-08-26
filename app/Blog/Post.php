@@ -20,6 +20,11 @@ class Post extends Model implements StoresMedia, Searchable
     use Sluggable;
     use SearchableTrait;
 
+    public static function bootPostFrontScope()
+    {
+        static::addGlobalScope(new PostFrontScope());
+    }
+
     protected $table = 'posts';
 
     protected $media = '{account}/blog';

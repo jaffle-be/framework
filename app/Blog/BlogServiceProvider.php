@@ -18,6 +18,7 @@ class BlogServiceProvider extends ServiceProvider
 
     protected function observers()
     {
+        Post::bootPostFrontScope();
         Post::observe('App\Blog\PostObserver');
     }
 }
