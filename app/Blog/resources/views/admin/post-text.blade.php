@@ -28,6 +28,14 @@
                             <input ng-change="vm.save()" autocomplete="off" type="text" name="title" id="title" class="form-control" ng-model="vm.post.translations[vm.options.locale].title"/>
                         </div>
                     </div>
+
+                    <div class="form-group  col-xs-12">
+                        <label for="title" class="control-label">{{ Lang::get('blog::admin.post.slug') }}</label>
+
+                        <div>
+                            <input ng-change="vm.save()" autocomplete="off" type="text" name="title" id="title" class="form-control" ng-model="vm.post['slug_' + vm.options.locale]" ng-disabled="vm.post.translations[vm.options.locale].publish_at"/>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="col-xs-4">
