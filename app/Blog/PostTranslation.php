@@ -3,6 +3,7 @@
 use App\Search\Model\Searchable;
 use App\Search\Model\SearchableTrait;
 use App\System\Translatable\TranslationModel;
+use Carbon\Carbon;
 
 class PostTranslation extends TranslationModel implements Searchable
 {
@@ -29,6 +30,15 @@ class PostTranslation extends TranslationModel implements Searchable
             'format' => 'yyyy-MM-dd HH:mm:ss'
         ],
     ];
+
+    public function toArray()
+    {
+        $data = parent::toArray();
+
+        $data['publish_at'] = $this->publish_at->format('d/m/Y');
+
+        return $data;
+    }
 
     public function user()
     {
