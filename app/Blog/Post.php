@@ -9,6 +9,7 @@ use App\System\Sluggable\Sluggable;
 use App\System\Translatable\Translatable;
 use App\Tags\Taggable;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\Request;
 
 class Post extends Model implements StoresMedia, Searchable
 {
@@ -22,7 +23,13 @@ class Post extends Model implements StoresMedia, Searchable
 
     public static function bootPostFrontScope()
     {
-        static::addGlobalScope(new PostFrontScope());
+        /** @var Request $request */
+        $request = app('request');
+
+        if(!starts_with($request->getRequestUri(), ['/admin', '/api']))
+        {
+            static::addGlobalScope(new PostFrontScope());
+        }
     }
 
     protected $table = 'posts';
