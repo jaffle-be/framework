@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 # dont forget to remove new lines in the pattern when searching
 # 
 # you also might need to change the breadcrumbs and footer versioning
