@@ -16,6 +16,13 @@ class PostTranslation extends TranslationModel implements Searchable
 
     protected $dates = ['publish_at'];
 
+    protected $touches = ['post'];
+
+    public function post()
+    {
+        return $this->belongsTo('App\Blog\Post');
+    }
+
     protected static $searchableMapping = [
 //        'publish_at' => [
 //            'type'   => 'date',
@@ -35,8 +42,10 @@ class PostTranslation extends TranslationModel implements Searchable
     {
         if($value)
         {
-            $this->attributes['publish_at'] = Carbon::createFromFormat('d/m/Y', $value);
+            $value = Carbon::createFromFormat('d/m/Y', $value);
         }
+
+        $this->attributes['publish_at'] = $value;
     }
 
     public function toArray()

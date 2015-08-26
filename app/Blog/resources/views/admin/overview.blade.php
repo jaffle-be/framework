@@ -73,8 +73,8 @@
                         </div>
                     </td>
                     <td>@{{ post.tags.length }}</td>
-                    <td>@{{ post.translations[vm.options.locale].created_at | fromNow }}</td>
-                    <td>@{{ post.translations[vm.options.locale].updated_at | fromNow }}</td>
+                    <td>@{{ post.created_at | fromNow }}</td>
+                    <td>@{{ post.updated_at | fromNow }}</td>
                 </tr>
                 <tr>
                     <td class="text-center" st-pagination st-items-by-page="vm.rpp" colspan="6" st-change="vm.list"></td>
