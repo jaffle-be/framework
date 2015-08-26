@@ -31,11 +31,22 @@ class PostTranslation extends TranslationModel implements Searchable
         ],
     ];
 
+    public function setPublishAtAttribute($value)
+    {
+        if($value)
+        {
+            $this->attributes['publish_at'] = Carbon::createFromFormat('d/m/Y', $value);
+        }
+    }
+
     public function toArray()
     {
         $data = parent::toArray();
 
-        $data['publish_at'] = $this->publish_at->format('d/m/Y');
+        if($data['publish_at'])
+        {
+            $data['publish_at'] = $this->publish_at->format('d/m/Y');
+        }
 
         return $data;
     }

@@ -18,14 +18,40 @@
 
             <input name="locale" type="hidden" value="@{{ vm.options.locale }}"/>
 
-            <div class="form-group col-xs-12">
-                <label for="title" class="control-label">{{ Lang::get('blog::admin.post.title') }}</label>
+            <div class="row">
 
-                <div>
-                    <input ng-change="vm.save()" autocomplete="off" type="text" name="title" id="title" class="form-control" ng-model="vm.post.translations[vm.options.locale].title"/>
+                <div class="col-xs-8">
+                    <div class="form-group col-xs-12">
+                        <label for="title" class="control-label">{{ Lang::get('blog::admin.post.title') }}</label>
+
+                        <div>
+                            <input ng-change="vm.save()" autocomplete="off" type="text" name="title" id="title" class="form-control" ng-model="vm.post.translations[vm.options.locale].title"/>
+                        </div>
+                    </div>
                 </div>
-            </div>
 
+                <div class="col-xs-4">
+
+                    <div class="form-group col-xs-12">
+
+                        <label for="publish_at">{{ Lang::get('blog::admin.post.publish_at') }}</label>
+
+                        <div class="input-group datepicker">
+
+                            <input datepicker-popup="dd/MM/yyyy" show-weeks="false" is-open="status.datepickerStatus" type="text" class="form-control" ng-model="vm.post.translations[vm.options.locale].publish_at" ng-click="vm.openDatepicker($event)" ng-change="vm.save()"/>
+
+                            <div class="input-group-btn">
+                                <span type="button" class="btn btn-default" ng-click="vm.openDatepicker($event)">
+                                    <i class="glyphicon glyphicon-calendar"></i></span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="clearfix"></div>
+
+            </div>
 
             <div class="form-group col-xs-12">
                 <label for="extract" class="control-label">{{ Lang::get('blog::admin.post.extract') }}</label>

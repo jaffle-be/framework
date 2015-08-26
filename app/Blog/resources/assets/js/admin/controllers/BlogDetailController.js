@@ -1,7 +1,10 @@
 angular.module('blog')
-    .controller('BlogDetailController', function ($state, Blog, BlogService) {
+    .controller('BlogDetailController', function ($scope, $state, Blog, BlogService) {
 
         this.posts = BlogService;
+        $scope.status = {
+            datepickerStatus : false
+        };
 
         var me = this,
             id = $state.params.id;
@@ -38,6 +41,13 @@ angular.module('blog')
             this.posts.publish(this.post, function () {
                 me.drafting = false;
             });
+        };
+
+        this.openDatepicker = function($event)
+        {
+            $scope.status.datepickerStatus = !$scope.status.datepickerStatus;
+            $event.preventDefault();
+            $event.stopPropagation();
         };
 
         this.load(id);

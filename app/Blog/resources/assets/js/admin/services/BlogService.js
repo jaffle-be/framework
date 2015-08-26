@@ -16,6 +16,8 @@ angular.module('blog')
 
             this.save = function (post) {
 
+                post = angular.copy(post);
+
                 if (this.locked)
                     return;
 

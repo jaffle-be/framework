@@ -18,7 +18,19 @@ angular.module('blog')
                 }
             },
             update: {
-                method: 'PUT'
+                method: 'PUT',
+                transformRequest: function(data)
+                {
+                    _.each(data.translations, function(item){
+                        if( item.publish_at instanceof Date)
+                        {
+                            var date = moment(item.publish_at)
+                            item.publish_at = date.format('DD/MM/YYYY');
+                        }
+                    });
+
+                    return angular.toJson(data);
+                }
             }
         });
     });
