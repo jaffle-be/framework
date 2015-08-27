@@ -24,10 +24,10 @@ class PostTranslation extends TranslationModel implements Searchable
     }
 
     protected static $searchableMapping = [
-//        'publish_at' => [
-//            'type'   => 'date',
-//            'format' => 'yyyy-MM-dd HH:mm:ss'
-//        ],
+        'publish_at' => [
+            'type'   => 'date',
+            'format' => 'yyyy-MM-dd'
+        ],
         'created_at' => [
             'type'   => 'date',
             'format' => 'yyyy-MM-dd HH:mm:ss'
@@ -38,23 +38,13 @@ class PostTranslation extends TranslationModel implements Searchable
         ],
     ];
 
-    public function setPublishAtAttribute($value)
-    {
-        if($value)
-        {
-            $value = Carbon::createFromFormat('d/m/Y', $value);
-        }
-
-        $this->attributes['publish_at'] = $value;
-    }
-
     public function toArray()
     {
         $data = parent::toArray();
 
         if($data['publish_at'])
         {
-            $data['publish_at'] = $this->publish_at->format('d/m/Y');
+            $data['publish_at'] = $this->publish_at->format('Y-m-d');
         }
 
         return $data;

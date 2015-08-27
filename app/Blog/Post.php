@@ -42,8 +42,6 @@ class Post extends Model implements StoresMedia, Searchable
 
     protected $hidden = ['title', 'extract', 'content', 'publish_at'];
 
-    protected $dates = ['publish_at'];
-
     protected static $searchableMapping = [
         'created_at' => [
             'type'   => 'date',
@@ -53,10 +51,6 @@ class Post extends Model implements StoresMedia, Searchable
             'type'   => 'date',
             'format' => 'yyyy-MM-dd HH:mm:ss'
         ],
-//        'publish_at' => [
-//            'type'   => 'date',
-//            'format' => 'yyyy-MM-dd HH:mm:ss'
-//        ],
     ];
 
     public function user()

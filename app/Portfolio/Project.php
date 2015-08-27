@@ -6,6 +6,7 @@ use App\Search\Model\Searchable;
 use App\Search\Model\SearchableTrait;
 use App\System\Scopes\ModelAccountResource;
 use App\Tags\Taggable;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class Project extends Model implements StoresMedia, Searchable
@@ -39,6 +40,18 @@ class Project extends Model implements StoresMedia, Searchable
     public function client()
     {
         return $this->belongsTo('App\Account\Client', 'client_id');
+    }
+
+    public function toArray()
+    {
+        $data = parent::toArray();
+
+        if($data['date'])
+        {
+            $data['date'] = $this->date->format('Y-m-d');
+        }
+
+        return $data;
     }
 
     /**

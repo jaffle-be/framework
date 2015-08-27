@@ -14,6 +14,14 @@ angular.module('blog')
                     {
                         response.translations = {};
                     }
+
+                    _.each(response.translations, function(translation){
+                        if(translation.publish_at)
+                        {
+                            translation.publish_at = moment(translation.publish_at, 'YYYY-MM-DD').format('DD/MM/YYYY')
+                        }
+                    });
+
                     return response;
                 }
             },
@@ -22,10 +30,17 @@ angular.module('blog')
                 transformRequest: function(data)
                 {
                     _.each(data.translations, function(item){
+
+                        if(item.publish_at instanceof String)
+                        {
+                            var date = moment(item.publish_at, 'DD/MM/YYYY');
+                            item.publish_at = date.format('YYYY-MM-DD');
+                        }
+
                         if( item.publish_at instanceof Date)
                         {
                             var date = moment(item.publish_at)
-                            item.publish_at = date.format('DD/MM/YYYY');
+                            item.publish_at = date.format('YYYY-MM-DD');
                         }
                     });
 
