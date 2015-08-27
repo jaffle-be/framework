@@ -16,28 +16,34 @@ angular.module('blog')
 
             this.save = function (post) {
 
-                post = angular.copy(post);
+                //use a copy, so the response will not reset the form to the last saved instance while typing.
+                var destination = angular.copy(post);
 
                 if (this.locked)
                     return;
 
-                if (!post.id) {
+                if (!destination.id)
+                {
                     this.locked = true;
 
-                    return post.$save(function () {
+                    return destination.$save(function () {
                         me.locked = false;
-                        $state.go('admin.blog.post', {id: post.id});
+                        $state.go('admin.blog.post', {id: destination.id});
                     });
                 }
-                else {
-                    if (this.timeout) {
+                else
+                {
+                    if (this.timeout)
+                    {
                         $timeout.cancel(this.timeout);
                     }
 
                     this.timeout = $timeout(function () {
-                        return post.$update();
+                        return destination.$update();
                     }, 400);
                 }
+
+
             };
         }
 
