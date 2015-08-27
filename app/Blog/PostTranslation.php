@@ -42,7 +42,7 @@ class PostTranslation extends TranslationModel implements Searchable
     {
         $data = parent::toArray();
 
-        if($data['publish_at'])
+        if(isset($data['publish_at']) && $data['publish_at'])
         {
             $data['publish_at'] = $this->publish_at->format('Y-m-d');
         }
