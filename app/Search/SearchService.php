@@ -116,7 +116,7 @@ class SearchService implements SearchServiceInterface
 
             if ($trigger) {
                 $callback = function (Searchable $type) use ($me, $listener, $with) {
-                    return $me->$listener($type, array_keys($with));
+                    return $me->$listener($type);
                 };
 
                 $dispatcher->listen($trigger, $callback, 15);
@@ -155,7 +155,7 @@ class SearchService implements SearchServiceInterface
             $documents = $result->get();
 
             foreach ($documents as $document) {
-                $this->update($document, $with);
+                $this->update($document);
             }
         });
     }
@@ -182,7 +182,7 @@ class SearchService implements SearchServiceInterface
 
         $type->with($relations)->chunk(250, function ($documents) use ($me, $relations) {
             foreach ($documents as $document) {
-                $me->add($document, $relations, false);
+                $me->add($document, false);
             }
         });
     }
@@ -200,7 +200,7 @@ class SearchService implements SearchServiceInterface
         }
     }
 
-    public function add(Searchable $type, array $with, $needsLoading = true)
+    public function add(Searchable $type, $needsLoading = true)
     {
         //clone object so we do not touch original one.
         //this was messing with translatable library.
@@ -212,13 +212,13 @@ class SearchService implements SearchServiceInterface
          * else searching might fail since some relations expect to be an array and it would be indexed as null
          */
         if ($needsLoading) {
-            $type->load(array_values($with));
+            $type->load(array_keys($this->config->getWith($type->getSearchableType())));
         }
 
         $this->client->index($this->data($type));
     }
 
-    public function delete(Searchable $type, array $with)
+    public function delete(Searchable $type)
     {
         $params = $this->data($type);
 
@@ -227,7 +227,7 @@ class SearchService implements SearchServiceInterface
         $this->client->delete($params);
     }
 
-    public function update(Searchable $type, array $with)
+    public function update(Searchable $type)
     {
         //clone object so we do not touch original one.
         //this was messing with translatable library.
@@ -236,8 +236,8 @@ class SearchService implements SearchServiceInterface
         $type = clone $type;
 
         $params = $this->getBaseParams($type);
-
-        $type->load($with);
+        
+        $type->load(array_keys($this->config->getWith($type->getSearchableType())));
 
         $params = array_merge($params, [
             'id'   => $type->getSearchableId(),

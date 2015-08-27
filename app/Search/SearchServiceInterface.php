@@ -32,21 +32,21 @@ interface SearchServiceInterface
      *
      * @param Searchable $type
      */
-    public function add(Searchable $type, array $with, $needsLoading = true);
+    public function add(Searchable $type, $needsLoading = true);
 
     /**
      * Delete from index.
      *
      * @param Searchable $type
      */
-    public function delete(Searchable $type, array $with);
+    public function delete(Searchable $type);
 
     /**
      * Update a document in the index.
      *
      * @param Searchable $type
      */
-    public function update(Searchable $type, array $with);
+    public function update(Searchable $type);
 
     /**
      * Search the index
