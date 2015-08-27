@@ -17,7 +17,7 @@ class SystemController extends Controller
             $session->set('locale', $request->get('locale'));
         }
 
-        return redirect()->back();
+        return redirect()->route('store.home');
     }
 
     /**
