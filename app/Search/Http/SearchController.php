@@ -10,8 +10,6 @@ class SearchController extends Controller
 
     public function index(Request $request, Post $post, SearchServiceInterface $search)
     {
-        dd('still need to make sure documents returned are published ones');
-        
         $locale = app()->getLocale();
 
         $posts = $search->search('posts', [
@@ -19,12 +17,30 @@ class SearchController extends Controller
             'type'  => 'posts',
             'body'  => [
                 "query" => [
-                    "nested" => [
-                        "path"  => "translations.en",
+                    "filtered" => [
                         "query" => [
-                            "multi_match" => [
-                                "query"  => $request->get('query'),
-                                "fields" => ["translations.$locale.title", "translations.$locale.extract", "translations.$locale.content"]
+                            "nested" => [
+                                "path"  => "translations.$locale",
+                                "query" => [
+                                    "multi_match" => [
+                                        "query"  => $request->get('query'),
+                                        "fields" => ["translations.$locale.title", "translations.$locale.extract", "translations.$locale.content"]
+                                    ]
+                                ]
+                            ]
+                        ],
+                        "filter" => [
+                            "nested" => [
+                                "path" => "translations.$locale",
+                                "filter" => [
+                                    "bool" => [
+                                        "must" => [
+                                            "range" => [
+                                                "translations.$locale.publish_at" => ['lte' => 'now']
+                                            ]
+                                        ]
+                                    ]
+                                ]
                             ]
                         ]
                     ]
@@ -41,7 +57,7 @@ class SearchController extends Controller
                         "path"  => "translations." . $locale,
                         "query" => [
                             "multi_match" => [
-                                "query" => $request->get('query'),
+                                "query"  => $request->get('query'),
                                 "fields" => ["translations.$locale.title", "translations.$locale.description"]
 
                             ]
