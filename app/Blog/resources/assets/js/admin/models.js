@@ -30,8 +30,7 @@ angular.module('blog')
                 transformRequest: function(data)
                 {
                     _.each(data.translations, function(item){
-
-                        if(item.publish_at instanceof String)
+                        if(typeof item.publish_at == "string")
                         {
                             var date = moment(item.publish_at, 'DD/MM/YYYY');
                             item.publish_at = date.format('YYYY-MM-DD');
@@ -42,6 +41,7 @@ angular.module('blog')
                             var date = moment(item.publish_at)
                             item.publish_at = date.format('YYYY-MM-DD');
                         }
+
                     });
 
                     return angular.toJson(data);
