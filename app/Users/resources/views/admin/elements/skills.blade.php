@@ -61,7 +61,7 @@
 
                 <div class="form-group">
                     <label for="">{{ Lang::get('users::admin.skill.description') }}</label>
-                    <div summernote config="vm.options.summernote" ng-model="skill.translations[vm.options.locale].description" on-change="vm.updateSkill(skill)"></div>
+                    <div summernote config="vm.options.summernote" ng-model="skill.translations[vm.options.locale].description" ng-change="vm.updateSkill(skill)"></div>
                 </div>
 
             </div>
