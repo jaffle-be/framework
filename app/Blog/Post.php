@@ -26,6 +26,11 @@ class Post extends Model implements StoresMedia, Searchable
         /** @var Request $request */
         $request = app('request');
 
+        if(app()->runningInConsole())
+        {
+            return;
+        }
+
         if(!starts_with($request->getRequestUri(), ['/admin', '/api']))
         {
             static::addGlobalScope(new PostFrontScope());
