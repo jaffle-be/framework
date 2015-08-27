@@ -134,23 +134,27 @@ trait Translatable
     public function save(array $options = [])
     {
         if ($this->exists) {
-            if (count($this->getDirty()) > 0) {
-                // If $this->exists and dirty, parent::save() has to return true. If not,
-                // an error has occurred. Therefore we shouldn't save the translations.
-                if (parent::save($options)) {
-                    return $this->saveTranslations();
-                }
+            //this might need a db transaction.
+            //if the parent returns true, but the translations return false
+            //we information partially while still returning false to the developer.
+            //didn't implement yet, since i'm not sure what would happen if a transaction was allready started
 
-                return false;
-            } else {
-                // If $this->exists and not dirty, parent::save() skips saving and returns
-                // false. So we have to save the translations
-                if ($saved = $this->saveTranslations()) {
-                    $this->fireModelEvent('saved', false);
-                }
+            //the original library had a check for dirty() fields, and only ran the parent save when it was actually
+            //dirty, which was a bad idea, since it skipped firing events. we also changed the order in which they get fired.
+            //since translation is a dependency of the base model, we should first save the dependency
+            //this was also interfering with elasticsearch auto indexing, since it was updating the old information
+            //into the cluster as the translation savings were only being done after.
+            //this happens because in the document saving method, we clone the object and reload all the relations
+            //for that document. (i know, not perfect, but it's easier for now to do it like that then to make sure each and every user action
+            //holds all the elasticsearch relations before the save. which will never be the case)
 
-                return $saved;
+            if($this->saveTranslations())
+            {
+                return parent::save($options);
             }
+
+            return false;
+
         } elseif (parent::save($options)) {
             // We save the translations only if the instance is saved in the database.
             return $this->saveTranslations();

@@ -1,15 +1,16 @@
 <?php namespace App\Search;
 
 use App\System\Translatable\Translatable;
+use Exception;
 
 class Config
 {
 
     protected $index;
 
-    protected $types;
+    protected $types = [];
 
-    protected $invertedTypes;
+    protected $inverted = [];
 
     public function __construct(array $config)
     {
@@ -22,7 +23,7 @@ class Config
 
         $this->types = $this->config['types'];
 
-        $this->invertedTypes = $this->invertTypes($this->config['types']);
+        $this->invertTypes();
     }
 
     public function getIndex()
@@ -42,24 +43,16 @@ class Config
 
     public function getWith($type)
     {
-        $trait = Translatable::class;
-        $class = $this->getClass($type);
-        $stuff = class_uses($class);
-
         $with = isset($this->types[$type]['with']) ? $this->types[$type]['with'] : [];
 
-        //if the type uses that translatable model, we will automatically handle those mappings
-        if(in_array($trait, $stuff))
+        if($this->usesTranslations($type))
         {
-            $object = new $class;
-
-            $classname = $object->getTranslationModelName();
+            $instance = $this->getInstance($type);
 
             $with = array_merge($with, ['translations' => [
-                'class' => $classname,
-                'key' => $object->translations()->getForeignKey(),
+                'class' => $instance->getTranslationModelName(),
+                'key'   => $instance->translations()->getForeignKey(),
             ]]);
-
         }
 
         return $with;
@@ -72,7 +65,7 @@ class Config
 
     public function getInvertedTypes()
     {
-        return $this->invertedTypes;
+        return $this->inverted;
     }
 
     /**
@@ -83,28 +76,71 @@ class Config
      *
      * @return array
      */
-    protected function invertTypes($types)
+    protected function invertTypes()
     {
-        $inverted = [];
+        foreach ($this->types as $type => $config) {
 
-        foreach ($types as $type => $config) {
-            foreach ($config['with'] as $relation => $class) {
+            $parent = $config['class'];
 
-                $key = $class['class'];
+            foreach ($this->getWith($type) as $relation => $nestedConfig) {
 
-                if (!array_key_exists($key, $inverted)) {
-                    $inverted[$key] = [];
-                }
+                $nested = $nestedConfig['class'];
 
-                $inverted[$key][] = [
-                    'class'    => $config['class'],
-                    'key'      => $class['key'],
-                    'relation' => $relation
-                ];
+                $key = $nestedConfig['key'];
+
+                $this->invert($nested, $parent, $key, $relation);
             }
         }
+    }
 
-        return $inverted;
+    /**
+     * @param $type
+     *
+     * @return array
+     */
+    protected function usesTranslations($type)
+    {
+        $trait = Translatable::class;
+        $class = $this->getClass($type);
+        $stuff = class_uses($class);
+
+        return in_array($trait, $stuff);
+    }
+
+    /**
+     * @param $key
+     * @param $inverted
+     * @param $config
+     * @param $class
+     * @param $relation
+     *
+     * @return mixed
+     */
+    protected function invert($nested, $parent, $key, $relation)
+    {
+        if (!array_key_exists($nested, $this->inverted)) {
+            $this->inverted[$nested] = [];
+        }
+
+        $this->inverted[$nested][] = [
+            'class'    => $parent,
+            'key'      => $key,
+            'relation' => $relation
+        ];
+    }
+
+    /**
+     * @param $type
+     *
+     * @return mixed
+     */
+    protected function getInstance($type)
+    {
+        $class = $this->getClass($type);
+
+        $object = new $class;
+
+        return $object;
     }
 
 }
