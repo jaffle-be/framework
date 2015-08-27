@@ -41,10 +41,6 @@ return [
         'posts' => [
             'class' => Post::class,
             'with' => [
-                'tags' => [
-                    'class' => Tag::class,
-                    'key' => 'owner_id',
-                ],
                 'user' => [
                     'class' => User::class,
                     'key' => 'user_id'
@@ -55,10 +51,7 @@ return [
         'projects' => [
             'class' => Project::class,
             'with' => [
-                'tags' => [
-                    'class' => Tag::class,
-                    'key' => 'owner_id',
-                ]
+
             ]
         ]
 
