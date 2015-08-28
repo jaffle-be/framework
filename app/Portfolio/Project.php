@@ -47,7 +47,7 @@ class Project extends Model implements StoresMedia, Searchable, StoresTags
     {
         $data = parent::toArray();
 
-        if($data['date'])
+        if(isset($data['date']) && $data['date'])
         {
             $data['date'] = $this->date->format('Y-m-d');
         }
