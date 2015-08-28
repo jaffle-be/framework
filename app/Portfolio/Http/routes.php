@@ -17,7 +17,7 @@ Route::group([
 
         //actual resource
         Route::group(['prefix' => 'api/admin'], function () {
-            Route::resource('portfolio', 'PortfolioController', ['only' => ['index', 'show', 'store', 'update']]);
+            Route::resource('portfolio', 'PortfolioController');
             Route::resource('portfolio/{portfolio}/collaboration', 'CollaborationController', ['only' => ['index', 'store']]);
         });
     });

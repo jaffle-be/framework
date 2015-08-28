@@ -78,4 +78,14 @@ class PortfolioController extends AdminController
         return $project;
     }
 
+    public function destroy(Project $project)
+    {
+        if($project->delete())
+        {
+            $project->id = false;
+        }
+
+        return $project;
+    }
+
 }

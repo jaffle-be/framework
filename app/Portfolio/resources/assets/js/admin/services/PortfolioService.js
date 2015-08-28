@@ -42,6 +42,10 @@ angular.module('portfolio')
                     member: collaborator.id,
                     status: collaborator.selected
                 },success);
+            },
+            delete: function(project, success)
+            {
+                project.$delete().then(success);
             }
 
         };

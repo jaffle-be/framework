@@ -41,6 +41,14 @@ angular.module('portfolio')
             PortfolioService.save(me.project);
         };
 
+        this.delete = function()
+        {
+            PortfolioService.delete(me.project, function()
+            {
+                $state.go('admin.portfolio.overview');
+            });
+        }
+
         this.toggleCollaboration = function(collaborator)
         {
             PortfolioService.toggleCollaboration(me.project, collaborator);

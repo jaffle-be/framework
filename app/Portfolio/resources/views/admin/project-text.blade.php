@@ -1,7 +1,15 @@
 <div class="ibox">
 
     <div class="ibox-title">
-        <h5>{{ Lang::get('portfolio::admin.project.details') }}</h5>
+        <div class="row">
+            <div class="col-xs-8">
+                <h5>{{ Lang::get('portfolio::admin.project.details') }}</h5>
+            </div>
+            <div class="col-xs-4">
+                <span class="pull-right btn btn-danger btn-sm" ng-really="vm.delete()"><i class="fa fa-trash"></i></span>
+            </div>
+        </div>
+        
     </div>
 
     <div class="ibox-content">
