@@ -75,6 +75,16 @@ class BlogController extends AdminController
         return $post;
     }
 
+    public function destroy(Post $post)
+    {
+        if($post->delete())
+        {
+            $post->id = false;
+        }
+
+        return $post;
+    }
+
     public function overview()
     {
         return view('blog::admin.overview');

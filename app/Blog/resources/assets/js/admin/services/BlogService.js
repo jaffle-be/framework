@@ -42,9 +42,12 @@ angular.module('blog')
                         return destination.$update();
                     }, 400);
                 }
-
-
             };
+
+            this.delete = function(post, success)
+            {
+                post.$delete().then(success);
+            }
         }
 
         return new Service();

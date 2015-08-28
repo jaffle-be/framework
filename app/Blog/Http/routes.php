@@ -20,7 +20,7 @@ Route::group([
 
         //actual resource
         Route::group(['prefix' => 'api/admin'], function () {
-            Route::resource('blog', 'BlogController', ['only' => ['index', 'show', 'store', 'update']]);
+            Route::resource('blog', 'BlogController');
         });
     });
 

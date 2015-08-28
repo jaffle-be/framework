@@ -50,5 +50,13 @@ angular.module('blog')
             $event.stopPropagation();
         };
 
+        this.delete = function()
+        {
+            this.posts.delete(me.post, function()
+            {
+                $state.go('admin.blog.posts');
+            });
+        };
+
         this.load(id);
     });
