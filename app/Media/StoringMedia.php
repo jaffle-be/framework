@@ -6,7 +6,7 @@ trait StoringMedia
 {
     use ImageDimensionHelpers;
 
-    protected function mediaStoresMultiple()
+    public function mediaStoresMultiple()
     {
         static $multiple;
 
