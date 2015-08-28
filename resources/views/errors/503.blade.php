@@ -1,41 +1,54 @@
-<html>
-	<head>
-		<link href='//fonts.googleapis.com/css?family=Lato:100' rel='stylesheet' type='text/css'>
+<!DOCTYPE html>
+<!--[if IE 8]>
+<html lang="en" class="ie8"> <![endif]-->
+<!--[if IE 9]>
+<html lang="en" class="ie9"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en"> <!--<![endif]-->
+<head>
+	<title>503</title>
 
-		<style>
-			body {
-				margin: 0;
-				padding: 0;
-				width: 100%;
-				height: 100%;
-				color: #B0BEC5;
-				display: table;
-				font-weight: 100;
-				font-family: 'Lato';
-			}
+	<!-- Meta -->
+	<meta charset="utf-8">
+	<meta content="width=device-width, initial-scale=1.0" name="viewport">
+	<meta content="" name="description">
+	<meta content="" name="author">
 
-			.container {
-				text-align: center;
-				display: table-cell;
-				vertical-align: middle;
-			}
+	<!-- Favicon -->
+	<link rel="shortcut icon" href="favicon.ico">
 
-			.content {
-				text-align: center;
-				display: inline-block;
-			}
+	<!-- Web Fonts -->
+	<link rel="shortcut" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans:400,300,600&subset=cyrillic,latin">
 
-			.title {
-				font-size: 72px;
-				margin-bottom: 40px;
-			}
-		</style>
-	</head>
-	<body>
-		<div class="container">
-			<div class="content">
-				<div class="title">Be right back.</div>
+	<!-- CSS Global Compulsory -->
+	<link rel="stylesheet" href="{{asset('css/front/main.min.css') }}">
+
+	<link rel="stylesheet" href="{{asset('themes/Unify/assets/css/styles.min.css') }}">
+
+	<!-- CSS page/content level -->
+	<link rel="stylesheet" href="{{ asset('themes/Unify/assets/css/pages/page_404_error.css') }}">
+
+	<!-- CSS Implementing Plugins -->
+	<link rel="stylesheet" href="{{asset('themes/Unify/assets/plugins/line-icons/line-icons.css') }}">
+	<link rel="stylesheet" href="{{asset('themes/Unify/assets/plugins/scrollbar/css/jquery.mCustomScrollbar.css')}}">
+
+</head>
+
+<body>
+
+<div class="container content">
+	<div class="row">
+		<div class="col-md-8 col-md-offset-2">
+			<div class="error-v1">
+				<span class="error-v1-title">503</span>
+				<span>Hmm, we'll be right back. We're probably deploying a hotfix or a new release</span>
+
+				<p>This usually doesn't take more then 5 minutes.</p>
 			</div>
 		</div>
-	</body>
+	</div>
+</div>
+
+
+</body>
 </html>

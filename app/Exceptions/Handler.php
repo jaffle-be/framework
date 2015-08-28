@@ -57,4 +57,19 @@ class Handler extends ExceptionHandler
         return parent::render($request, $e);
     }
 
+    /**
+     * Convert the given exception into a Response instance.
+     *
+     * @param  \Exception  $e
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    protected function convertExceptionToResponse(Exception $e)
+    {
+        //make sure we don't have any previous output.
+        //we want clean error pages so we don't confuse the user.
+        ob_clean();
+
+        return response()->view('errors.500', [], 500);
+    }
+
 }
