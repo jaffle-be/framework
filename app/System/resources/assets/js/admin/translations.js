@@ -20,6 +20,9 @@ angular
                 WELCOME: 'Welcome Amelia',
                 MESSAGEINFO: 'You have 42 messages and 6 notifications.',
                 SEARCH: 'Search for something...',
+                REMOVE: 'Remove',
+                CANCEL: 'Cancel',
+                CONFIRM: 'Are you sure you want to do this?',
 
             });
 
