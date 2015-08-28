@@ -5,6 +5,7 @@ namespace App\System;
 use App\System\Queue\RedisConnector;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Factory;
+use Blade;
 
 class SystemServiceProvider extends ServiceProvider
 {
@@ -16,29 +17,17 @@ class SystemServiceProvider extends ServiceProvider
         parent::boot();
         $this->validators();
 
-        $app = $this->app;
+        $this->viewGlobals();
+        //using facade, since it's actually not bound straight to the container
+        Blade::directive('copyright', function($expression) {
 
-        /** @var Factory $view */
-        $this->app['view']->composer('*', function (View $view) use ($app) {
+            $format = "%s &copy; <a target=\"_blank\" href=\"%s\">%s</a> All Rights Reserved.";
 
-            if (!isset($view['account'])) {
-                $accounts = $this->app->make('App\Account\AccountManager');
-                $view->with('account', $accounts->account());
-            }
-
-            if (!isset($view['theme'])) {
-                $theme = $this->app->make('App\Theme\Theme');
-                $view->with('theme', $theme);
-            }
-
-            if (!isset($view['user'])) {
-                $guard = $this->app->make('auth');
-                $view->with('user', $guard->user());
-            }
+            return sprintf($format, \Carbon\Carbon::now()->format('Y'), "http://digiredo.be", "Digiredo");
         });
 
-        $this->app['queue']->extend('redis', function () use ($app) {
-            return new RedisConnector($app['redis']);
+        $this->app['queue']->extend('redis', function (){
+            return new RedisConnector(app('redis'));
         });
     }
 
@@ -69,6 +58,31 @@ class SystemServiceProvider extends ServiceProvider
     protected function validators()
     {
         $this->app->make('validator')->extend('vat', 'App\System\Validators\Vat@validate');
+    }
+
+    /**
+     * @return \Illuminate\Contracts\Foundation\Application
+     */
+    protected function viewGlobals()
+    {
+        /** @var Factory $view */
+        $this->app['view']->composer('*', function (View $view) {
+
+            if (!isset($view['account'])) {
+                $accounts = app('App\Account\AccountManager');
+                $view->with('account', $accounts->account());
+            }
+
+            if (!isset($view['theme'])) {
+                $theme = app('App\Theme\Theme');
+                $view->with('theme', $theme);
+            }
+
+            if (!isset($view['user'])) {
+                $guard = app('auth');
+                $view->with('user', $guard->user());
+            }
+        });
     }
 
 }
