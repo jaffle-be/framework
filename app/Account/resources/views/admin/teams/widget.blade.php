@@ -40,7 +40,7 @@
                         <input type="text" class="form-control" ng-model="team.translations[vm.options.locale].name" ng-change="vm.updateTeam(team)">
 
                         <div class="input-group-btn">
-                            <button type="submit" class="btn btn-danger" ng-click="vm.deleteTeam(team)"><i class="fa fa-trash"></i></button>
+                            <button type="submit" class="btn btn-danger" ng-really="vm.deleteTeam(team)"><i class="fa fa-trash"></i></button>
                         </div>
 
                     </div>

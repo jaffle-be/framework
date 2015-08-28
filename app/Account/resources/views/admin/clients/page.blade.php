@@ -41,7 +41,7 @@
                     <div class="text-right">
                         <button type="button" class="btn btn-primary" ng-hide="vm.client.id || vm.saving" ng-click="vm.createClient()">
                             <i class="fa fa-save"></i></button>
-                        <button type="button" class="btn btn-danger" ng-show="vm.client.id" ng-click="vm.deleteClient()">
+                        <button type="button" class="btn btn-danger" ng-show="vm.client.id" ng-really="vm.deleteClient()">
                             <i class="fa fa-trash"></i></button>
                         <button type="button" class="btn btn-info" ng-click="vm.stopEditing()"><i class="fa fa-remove"></i>
                         </button>

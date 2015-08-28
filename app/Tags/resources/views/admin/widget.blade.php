@@ -36,7 +36,7 @@
                     <input autocomplete="off" ng-change="ctrl.updateTag(tag)" class="form-control" type="text" name="@{{ locale }}" ng-model="tag.translations[locale].name"/>
 
                     <div class="input-group-btn">
-                        <button ng-click="ctrl.deleteTag(tag)" class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                        <button ng-really="ctrl.deleteTag(tag)" class="btn btn-danger"><i class="fa fa-trash"></i></button>
                     </div>
                 </div>
 

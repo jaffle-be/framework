@@ -37,7 +37,7 @@
                         <input autocomplete="off" ng-change="vm.updateSkill(skill)" class="form-control" type="text" ng-model="skill.translations[vm.options.locale].name"/>
 
                         <span class="input-group-btn">
-                            <button ng-click="vm.deleteSkill(skill)" class="btn btn-danger"><i class="fa fa-trash"></i>
+                            <button ng-really="vm.deleteSkill(skill)" class="btn btn-danger"><i class="fa fa-trash"></i>
                             </button>
                         </span>
                     </div>

@@ -20,10 +20,6 @@
 
                     <div class="content">
 
-                        <p>
-                            <button class="btn btn-primary" ng-click="vm.newItem()">{{ Lang::get('menu::admin.new-item') }}</button>
-                        </p>
-
                         <ul class="menu-items" data-as-sortable="vm.sortables" data-ng-model="vm.menu.items">
 
                             <li ng-repeat="item in vm.menu.items" as-sortable-item>
@@ -40,12 +36,18 @@
 
                     <div class="footer">
 
-                        {{ Lang::get('menu::admin.delete-menu') }}
+                        <div class="row">
 
-                        <button class="pull-right btn btn-danger" ng-click="vm.deleteMenu()"><i class="fa fa-trash"></i></button>
+                            <div class="col-xs-6">
+                                <button class="btn btn-primary" ng-click="vm.newItem()">{{ Lang::get('menu::admin.new-item') }}</button>
+                            </div>
+                            <div class="col-xs-6">
+                                <button class="pull-right btn btn-danger" ng-really="vm.deleteMenu()" title="{{ Lang::get('menu::admin.delete-menu') }}">
+                                    <i class="fa fa-trash"></i></button>
+                            </div>
+                        </div>
 
                     </div>
-
 
                 </div>
 
@@ -104,7 +106,8 @@
 
                     <div class="footer" ng-show="vm.item.id">
                         {{ Lang::get('menu::admin.delete-menu-item') }}
-                        <button class="pull-right btn btn-danger" ng-click="vm.deleteItem()"><i class="fa fa-trash"></i></button>
+                        <button class="pull-right btn btn-danger" ng-really="vm.deleteItem()"><i class="fa fa-trash"></i>
+                        </button>
                     </div>
 
                 </div>
@@ -117,32 +120,32 @@
 
     {{--<div class="row" ng-show="vm.item.children.length">--}}
 
-        {{--<div class="col-md-6">--}}
-            {{--<div class="ibox">--}}
+    {{--<div class="col-md-6">--}}
+    {{--<div class="ibox">--}}
 
-                {{--<div class="ibox-title">--}}
-                    {{--<h5>children</h5>--}}
-                {{--</div>--}}
+    {{--<div class="ibox-title">--}}
+    {{--<h5>children</h5>--}}
+    {{--</div>--}}
 
-                {{--<div class="ibox-content">--}}
+    {{--<div class="ibox-content">--}}
 
-                {{--</div>--}}
+    {{--</div>--}}
 
-            {{--</div>--}}
-        {{--</div>--}}
-        {{--<div class="col-md-6">--}}
-            {{--<div class="ibox">--}}
+    {{--</div>--}}
+    {{--</div>--}}
+    {{--<div class="col-md-6">--}}
+    {{--<div class="ibox">--}}
 
-                {{--<div class="ibox-title">--}}
-                    {{--<h5>child details</h5>--}}
-                {{--</div>--}}
+    {{--<div class="ibox-title">--}}
+    {{--<h5>child details</h5>--}}
+    {{--</div>--}}
 
-                {{--<div class="ibox-content">--}}
+    {{--<div class="ibox-content">--}}
 
-                {{--</div>--}}
+    {{--</div>--}}
 
-            {{--</div>--}}
-        {{--</div>--}}
+    {{--</div>--}}
+    {{--</div>--}}
 
     {{--</div>--}}
 

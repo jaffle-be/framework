@@ -16,7 +16,7 @@
 
                         <ul class="invitations">
                             <li ng-repeat="invitation in vm.invitations">
-                                <a class="pull-right btn btn-danger" ng-click="vm.revokeInvitation(invitation)"><i class="fa fa-trash"></i></a>
+                                <a class="pull-right btn btn-danger" ng-really="vm.revokeInvitation(invitation)"><i class="fa fa-trash"></i></a>
                                 @{{ invitation.email }} <br>
                                 {{ Lang::get('account::admin.users.since') }}: @{{ invitation.created_at | fromNow }}
                             </li>
@@ -75,7 +75,7 @@
 
                                     @if($account->owner->id == $user->id)
                                         <p>
-                                            <a class="btn btn-danger btn-lg" ng-click="vm.revokeMembership(membership)"><i class="fa fa-trash"></i></a>
+                                            <a class="btn btn-danger btn-lg" ng-really="vm.revokeMembership(membership)"><i class="fa fa-trash"></i></a>
                                         </p>
                                     @endif
 
