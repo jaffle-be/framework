@@ -16,10 +16,19 @@ class Cleanup
     {
         if($owner instanceof StoresMedia)
         {
-            foreach($owner->images as $image)
+
+            if($owner->mediaStoresMultiple())
+            {
+                foreach($owner->images as $image)
+                {
+                    $image->delete();
+                };
+
+            }
+            elseif ($image = $owner->images)
             {
                 $image->delete();
-            };
+            }
 
             $this->files->deleteDirectory(public_path(config('media.path') . '/' . $owner->getMediaFolder()));
         }
