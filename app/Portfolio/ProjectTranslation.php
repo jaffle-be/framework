@@ -13,6 +13,6 @@ class ProjectTranslation extends TranslationModel implements Searchable
 
     protected $fillable = ['title', 'description'];
 
-    protected $hidden = ['created_at', 'updated_at', 'project_id'];
+    protected $hidden = ['project_id'];
 
 }
