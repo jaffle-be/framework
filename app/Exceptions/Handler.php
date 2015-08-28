@@ -67,9 +67,15 @@ class Handler extends ExceptionHandler
     {
         //make sure we don't have any previous output.
         //we want clean error pages so we don't confuse the user.
-        ob_clean();
 
-        return response()->view('errors.500', [], 500);
+        if(!env('APP_DEBUG'))
+        {
+            ob_clean();
+
+            return response()->view('errors.500', [], 500);
+        }
+
+        return parent::convertExceptionToResponse($e);
     }
 
 }
