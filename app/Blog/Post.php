@@ -7,11 +7,12 @@ use App\Search\Model\SearchableTrait;
 use App\System\Scopes\ModelAccountResource;
 use App\System\Sluggable\Sluggable;
 use App\System\Translatable\Translatable;
+use App\Tags\StoresTags;
 use App\Tags\Taggable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 
-class Post extends Model implements StoresMedia, Searchable
+class Post extends Model implements StoresMedia, Searchable, StoresTags
 {
 
     use Translatable;

@@ -5,11 +5,12 @@ use App\Media\StoringMedia;
 use App\Search\Model\Searchable;
 use App\Search\Model\SearchableTrait;
 use App\System\Scopes\ModelAccountResource;
+use App\Tags\StoresTags;
 use App\Tags\Taggable;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
-class Project extends Model implements StoresMedia, Searchable
+class Project extends Model implements StoresMedia, Searchable, StoresTags
 {
     use \App\System\Translatable\Translatable;
     use Taggable;

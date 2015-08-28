@@ -8,7 +8,7 @@ class TagsServiceProvider extends ServiceProvider{
 
     public function listeners()
     {
-
+        $this->app['events']->listen('eloquent.deleted: *', 'App\Tags\Cleanup');
     }
 
     public function observers()
