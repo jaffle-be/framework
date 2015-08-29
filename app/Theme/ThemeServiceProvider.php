@@ -9,6 +9,15 @@ class ThemeServiceProvider extends ServiceProvider
 
     protected $namespace = 'theme';
 
+    public function boot()
+    {
+        parent::boot();
+
+        $this->app->booted(function($app){
+            $this->app->make('theme')->boot();
+        });
+    }
+
     /**
      * Register the service provider.
      *
@@ -21,11 +30,7 @@ class ThemeServiceProvider extends ServiceProvider
         $this->app->bind('theme', 'App\Theme\ThemeManager');
 
         $this->app->singleton('App\Theme\ThemeManager', function ($app) {
-            $theme = new ThemeManager($app['view'], $app['App\Theme\ThemeRepositoryInterface']);
-
-            $theme->boot();
-
-            return $theme;
+            return new ThemeManager($app['view'], $app['App\Theme\ThemeRepositoryInterface']);
         });
 
         $this->app->bind('App\Theme\Theme', function ($app) {

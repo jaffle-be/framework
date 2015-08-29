@@ -29,8 +29,10 @@ class MenuServiceProvider extends ServiceProvider
 
     protected function listeners()
     {
-        $this->app['menu']->register('primary menu');
-        $this->app['menu']->register('secondary menu');
+        $this->app->booted(function(){
+            $this->app['menu']->register('primary menu');
+            $this->app['menu']->register('secondary menu');
+        });
     }
 
     protected function observers()

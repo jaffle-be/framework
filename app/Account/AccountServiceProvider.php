@@ -12,7 +12,10 @@ class AccountServiceProvider extends ServiceProvider
 
         if(!$this->app->runningInConsole())
         {
-            $this->app->make('App\Account\AccountManager')->boot($this->app['request']);
+            $this->app->booted(function ($app) {
+                $app['App\Account\AccountManager']->boot($app['request']);
+            });
+
         }
     }
 
