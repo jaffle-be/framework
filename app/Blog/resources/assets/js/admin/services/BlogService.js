@@ -1,6 +1,6 @@
 angular.module('blog')
 
-    .factory('BlogService', function (Blog, $state, $timeout) {
+    .factory('BlogService', function (Blog, $state, $timeout, $http) {
 
         function Service() {
             //when creating, it should get locked so it won't trigger another save, till we have the id back from the server.
@@ -47,7 +47,14 @@ angular.module('blog')
             this.delete = function(post, success)
             {
                 post.$delete().then(success);
-            }
+            };
+
+            this.batchDelete = function(posts, success)
+            {
+                $http.post('/api/admin/blog/batch-delete', {
+                    posts: posts
+                }).then(success);
+            };
         }
 
         return new Service();

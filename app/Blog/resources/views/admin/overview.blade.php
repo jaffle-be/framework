@@ -22,14 +22,14 @@
                                     <a class="btn btn-default dropdown-toggle" data-toggle="dropdown" href="#">{{ Lang::get('blog::admin.actions.actions') }}&nbsp;<span class="caret">&nbsp;</span></a>
                                     <ul class="dropdown-menu">
                                         <li>
-                                            <a class="select-all" data-trigger="select-all" href="">{{ Lang::get('blog::admin.actions.select-all') }}</a>
+                                            <a select-all="vm.posts" href="">{{ Lang::get('blog::admin.actions.select-all') }}</a>
                                         </li>
                                         <li>
-                                            <a class="select-none" data-trigger="select-none" href="">{{ Lang::get('blog::admin.actions.select-none') }}</a>
+                                            <a select-none="vm.posts" href="">{{ Lang::get('blog::admin.actions.select-none') }}</a>
                                         </li>
                                         <li class="divider"></li>
                                         <li>
-                                            <a class="remove" data-trigger="remove" href="">{{ Lang::get('blog::admin.actions.remove') }}</a>
+                                            <a ng-really="vm.batchDelete()" href="">{{ Lang::get('blog::admin.actions.remove') }}</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -49,7 +49,6 @@
 
                         </div>
 
-
                     </th>
                 </tr>
                 </thead>
@@ -60,7 +59,7 @@
                 <tr ng-repeat="post in vm.posts" ui-sref="admin.blog.post({id: post.id})" class="blog-post-overview">
                     <td width="10%" ng-click="$event.stopPropagation()">
                         <p>
-                            <input type="checkbox" class="filled-in" id="row@{{ $index + 1 }}" checked="checked" />
+                            <input type="checkbox" class="filled-in" id="row@{{ $index + 1 }}" ng-checked="post.isSelected" />
                             <label for="row@{{ $index + 1 }}">@{{ $index + 1 }}</label>
                         </p>
                     </td>

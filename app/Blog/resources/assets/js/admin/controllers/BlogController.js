@@ -34,19 +34,25 @@ angular.module('blog')
 
         this.list = function (table) {
             me.table = table;
-            me.loading = true;
-            //cannot use this here
-            var pagination = table.pagination;
-            var page = Math.ceil(pagination.start / me.rpp) + 1;
+            me.loadPosts()
+        };
 
+        this.getPage = function(start)
+        {
+            return Math.ceil(start / me.rpp) + 1;
+        };
+
+        this.loadPosts = function()
+        {
+            me.loading = true;
             Blog.query({
-                page: page,
-                query: table.search.predicateObject ? table.search.predicateObject.query : '',
+                page: me.getPage(me.table.pagination.start),
+                query: me.table.search.predicateObject ? me.table.search.predicateObject.query : '',
                 locale: me.options.locale,
             }, function (response) {
                 me.total = response.total;
                 me.posts = response.data;
-                pagination.numberOfPages = response.last_page;
+                me.table.pagination.numberOfPages = response.last_page;
                 me.loading = false;
             });
         };
@@ -54,5 +60,22 @@ angular.module('blog')
         this.check = function ($event) {
             $event.stopPropagation();
             return false;
+        }
+
+        this.batchDelete = function()
+        {
+            var posts = [];
+
+            _.each(this.posts, function(post){
+                if(post.isSelected)
+                {
+                    posts.push(post.id);
+                }
+            });
+
+            BlogService.batchDelete(posts, function()
+            {
+                me.loadPosts();
+            });
         }
     });

@@ -85,6 +85,22 @@ class BlogController extends AdminController
         return $post;
     }
 
+    public function batchDestroy(Request $request, Post $post)
+    {
+        $ids = $request->get('posts', []);
+
+        if(is_array($ids) && count($ids))
+        {
+            $posts = $post->whereIn('id', $ids)
+                ->get();
+
+            foreach($posts as $post)
+            {
+                $post->delete();
+            }
+        }
+    }
+
     public function overview()
     {
         return view('blog::admin.overview');

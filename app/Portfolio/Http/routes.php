@@ -18,6 +18,7 @@ Route::group([
         //actual resource
         Route::group(['prefix' => 'api/admin'], function () {
             Route::resource('portfolio', 'PortfolioController');
+            Route::post('portfolio/batch-delete', 'PortfolioController@batchDestroy');
             Route::resource('portfolio/{portfolio}/collaboration', 'CollaborationController', ['only' => ['index', 'store']]);
         });
     });

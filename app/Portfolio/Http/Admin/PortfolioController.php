@@ -88,4 +88,19 @@ class PortfolioController extends AdminController
         return $project;
     }
 
+    public function batchDestroy(Request $request, Project $project)
+    {
+        $projectids = $request->get('projects', []);
+
+        if(is_array($projectids) && count($projectids))
+        {
+            $projects = $project->whereIn('id', $projectids)->get();
+
+            foreach($projects as $project)
+            {
+                $project->delete();
+            }
+        }
+    }
+
 }
