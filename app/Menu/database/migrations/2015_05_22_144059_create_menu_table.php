@@ -17,7 +17,8 @@ class CreateMenuTable extends Migration
             $table->increments('id');
             $table->integer('account_id', false, true);
             $table->foreign('account_id', 'menu_to_account')->references('id')->on('accounts')->onDelete('cascade');
-            $table->string('name')->unique();
+            $table->string('name');
+            $table->unique(['account_id', 'name']);
             $table->timestamps();
         });
     }
