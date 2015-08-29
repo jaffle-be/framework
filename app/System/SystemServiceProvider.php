@@ -16,20 +16,16 @@ class SystemServiceProvider extends ServiceProvider
     public function boot()
     {
         parent::boot();
-        $this->validators();
-
-        $this->viewGlobals();
-        //using facade, since it's actually not bound straight to the container
-        Blade::directive('copyright', function($expression) {
-
-            $format = "%s &copy; <a target=\"_blank\" href=\"%s\">%s</a> All Rights Reserved.";
-
-            return sprintf($format, \Carbon\Carbon::now()->format('Y'), "http://digiredo.be", "Digiredo");
-        });
 
         $this->extendCache();
 
         $this->extendQueues();
+
+        $this->validators();
+
+        $this->viewGlobals();
+
+        $this->bladeCopyright();
     }
 
     /**
@@ -97,6 +93,19 @@ class SystemServiceProvider extends ServiceProvider
     {
         $this->app->extend('cache', function(){
             return new CacheManager(app());
+        });
+    }
+
+    protected function bladeCopyright()
+    {
+        /*
+         * using facade, since it's actually not bound straight to the container
+         */
+        Blade::directive('copyright', function ($expression) {
+
+            $format = "%s &copy; <a target=\"_blank\" href=\"%s\">%s</a> All Rights Reserved.";
+
+            return sprintf($format, \Carbon\Carbon::now()->format('Y'), "http://digiredo.be", "Digiredo");
         });
     }
 

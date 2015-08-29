@@ -15,15 +15,6 @@ class MenuServiceProvider extends ServiceProvider
             return new MenuManager($app['App\Menu\MenuRepositoryInterface'], $app['router']);
         });
 
-        $this->app->extend('breadcrumbs', function()
-        {
-            $breadcrumbs = $this->app->make('App\Menu\Breadcrumbs');
-
-            $breadcrumbs->setView(config('breadcrumbs.view'));
-
-            return $breadcrumbs;
-        });
-
         $this->app->bind('menu', 'App\Menu\MenuManager');
     }
 
