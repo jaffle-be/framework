@@ -2,6 +2,7 @@
 
 namespace App\System;
 
+use App\System\Cache\CacheManager;
 use App\System\Queue\RedisConnector;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Factory;
@@ -25,6 +26,8 @@ class SystemServiceProvider extends ServiceProvider
 
             return sprintf($format, \Carbon\Carbon::now()->format('Y'), "http://digiredo.be", "Digiredo");
         });
+
+        $this->extendCache();
 
         $this->extendQueues();
     }
@@ -89,4 +92,12 @@ class SystemServiceProvider extends ServiceProvider
             return new RedisConnector(app('redis'));
         });
     }
+
+    protected function extendCache()
+    {
+        $this->app->extend('cache', function(){
+            return new CacheManager(app());
+        });
+    }
+
 }
