@@ -146,8 +146,15 @@ return [
         'App\Providers\EventServiceProvider',
         'App\Providers\RouteServiceProvider',
 
-        //keep these at the top.
-        //some providers depend on the existence of our account or user
+        /*
+         * keep these at the top.
+         * some providers depend on the existence of our account or user
+         * and the system provider needs to extend some base services, so
+         * this one needs to be first!
+         * if not, caches setup before the system provider gets booted,
+         * will use the standard driver instead of the system one
+         */
+        'App\System\SystemServiceProvider',
         'App\Users\UserServiceProvider',
         'App\Account\AccountServiceProvider',
 
@@ -158,7 +165,6 @@ return [
         //regular providers
         'DaveJamesMiller\Breadcrumbs\ServiceProvider',
         'App\Menu\MenuServiceProvider',
-        'App\System\SystemServiceProvider',
         'App\Search\SearchServiceProvider',
 
         Barryvdh\Debugbar\ServiceProvider::class,
