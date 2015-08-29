@@ -26,9 +26,7 @@ class SystemServiceProvider extends ServiceProvider
             return sprintf($format, \Carbon\Carbon::now()->format('Y'), "http://digiredo.be", "Digiredo");
         });
 
-        $this->app['queue']->extend('redis', function (){
-            return new RedisConnector(app('redis'));
-        });
+        $this->extendQueues();
     }
 
     /**
@@ -85,4 +83,10 @@ class SystemServiceProvider extends ServiceProvider
         });
     }
 
+    protected function extendQueues()
+    {
+        $this->app['queue']->extend('redis', function () {
+            return new RedisConnector(app('redis'));
+        });
+    }
 }
