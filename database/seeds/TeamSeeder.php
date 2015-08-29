@@ -3,43 +3,49 @@
 use App\Account\Account;
 use App\Account\Team;
 use App\System\Seeder;
+use Illuminate\Database\Eloquent\Collection;
 
 class TeamSeeder extends Seeder
 {
 
     public function run()
     {
-        $teller = 0;
+        foreach([1,2] as $account)
+        {
+            $teller = 0;
 
-        while ($teller < 3) {
-            Team::create([
-                'account_id' => 1,
-                'nl'         => [
-                    'name'        => $this->faker->sentence(2),
-                    'description' => $this->faker->paragraph(5),
-                ],
-                'en'         => [
-                    'name'        => $this->faker->sentence(2),
-                    'description' => $this->faker->paragraph(5),
-                ],
-                'fr'         => [
-                    'name'        => $this->faker->sentence(2),
-                    'description' => $this->faker->paragraph(5),
-                ],
-                'de'         => [
-                    'name'        => $this->faker->sentence(2),
-                    'description' => $this->faker->paragraph(5),
-                ],
-            ]);
+            $teams = new Collection();
 
-            $teller++;
-        }
+            while ($teller < 3) {
+                $teams->push(Team::create([
+                    'account_id' => $account,
+                    'nl'         => [
+                        'name'        => $this->faker->sentence(2),
+                        'description' => $this->faker->paragraph(5),
+                    ],
+                    'en'         => [
+                        'name'        => $this->faker->sentence(2),
+                        'description' => $this->faker->paragraph(5),
+                    ],
+                    'fr'         => [
+                        'name'        => $this->faker->sentence(2),
+                        'description' => $this->faker->paragraph(5),
+                    ],
+                    'de'         => [
+                        'name'        => $this->faker->sentence(2),
+                        'description' => $this->faker->paragraph(5),
+                    ],
+                ]));
 
-        $account = Account::find(1);
-        $teams = array_flip([1, 2, 3]);
+                $teller++;
+            }
 
-        foreach ($account->memberships as $membership) {
-            $membership->teams()->attach(array_rand($teams, rand(1, 3)));
+            $account = Account::find($account);
+            $teams = array_flip($teams->lists('id')->toArray());
+
+            foreach ($account->memberships as $membership) {
+                $membership->teams()->attach(array_rand($teams, rand(1, 3)));
+            }
         }
     }
 

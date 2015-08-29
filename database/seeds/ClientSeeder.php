@@ -8,30 +8,37 @@ class ClientSeeder extends Seeder
 
     public function run()
     {
-        $teller = 0;
+        $accounts = [1,2];
 
-        while ($teller < 15) {
-            Client::create([
-                'account_id' => 1,
-                'name'       => $this->faker->userName,
-                'website'    => $this->faker->url,
-                'nl'         => [
+        foreach($accounts as $account)
+        {
+            $teller = 0;
 
-                    'description' => $this->faker->paragraph(5),
-                ],
-                'en'         => [
-                    'description' => $this->faker->paragraph(5),
-                ],
-                'fr'         => [
-                    'description' => $this->faker->paragraph(5),
-                ],
-                'de'         => [
-                    'description' => $this->faker->paragraph(5),
-                ],
-            ]);
+            while ($teller < 15) {
+                Client::create([
+                    'account_id' => $account,
+                    'name'       => $this->faker->userName,
+                    'website'    => $this->faker->url,
+                    'nl'         => [
 
-            $teller++;
+                        'description' => $this->faker->paragraph(5),
+                    ],
+                    'en'         => [
+                        'description' => $this->faker->paragraph(5),
+                    ],
+                    'fr'         => [
+                        'description' => $this->faker->paragraph(5),
+                    ],
+                    'de'         => [
+                        'description' => $this->faker->paragraph(5),
+                    ],
+                ]);
+
+                $teller++;
+            }
+
         }
+
 
     }
 

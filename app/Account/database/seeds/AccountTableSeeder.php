@@ -13,16 +13,21 @@ class AccountTableSeeder extends Seeder
 
     public function run()
     {
-        $account = $this->account();
-        $this->roles();
+        $account = $this->account('digiredo');
+        $this->roles($account);
+        $this->contactInformation($account);
+        $this->membershipInvitations($account);
+
+        $account = $this->account('cloudcreations');
+        $this->roles($account);
         $this->contactInformation($account);
         $this->membershipInvitations($account);
     }
 
-    protected function roles()
+    protected function roles($account)
     {
         Role::create([
-            'account_id' => 1,
+            'account_id' => $account->id,
             'nl' => [
                 'name' => 'admin',
             ],
@@ -38,7 +43,7 @@ class AccountTableSeeder extends Seeder
         ]);
 
         Role::create([
-            'account_id' => 1,
+            'account_id' => $account->id,
             'nl' => [
                 'name' => 'guest',
             ],
@@ -69,26 +74,26 @@ class AccountTableSeeder extends Seeder
     /**
      * @return static
      */
-    protected function account()
+    protected function account($name)
     {
         if(env('APP_ENV') == 'production')
         {
             $account = Account::create([
-                'alias'   => 'digiredo',
-                'domain'  => 'digiredo.be',
+                'alias'   => $name,
+                'domain'  => "$name.be",
             ]);
         }
         else if(env('APP_ENV') == 'develop')
         {
             $account = Account::create([
-                'alias'   => 'digiredo',
-                'domain'  => 'dev.digiredo.be',
+                'alias'   => '' . $name . '',
+                'domain'  => "dev.$name.be",
             ]);
         }
         else{
             $account = Account::create([
-                'alias'   => 'digiredo',
-                'domain'  => 'digiredo.local',
+                'alias'   => $name,
+                'domain'  => "$name.local",
             ]);
         }
 

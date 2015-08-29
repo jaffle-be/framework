@@ -12,25 +12,29 @@ class TagTableSeeder extends Seeder
 
     public function run()
     {
-        $tags = ['Design', 'CMS', 'Copy', 'Branding', 'Tutorial', 'Business restructuring', 'Photography', 'Film', 'Analytics'];
-
-        foreach($tags as $tag)
+        foreach([1,2] as $account)
         {
-            Tag::create([
-                'account_id' => 1,
-                'nl' => [
-                    'name' => $tag,
-                ],
-                'fr' => [
-                    'name' => $tag,
-                ],
-                'en' => [
-                    'name' => $tag,
-                ],
-                'de' => [
-                    'name' => $tag,
-                ]
-            ]);
+            $tags = ['Design', 'CMS', 'Copy', 'Branding', 'Tutorial', 'Business restructuring', 'Photography', 'Film', 'Analytics'];
+
+            foreach($tags as $tag)
+            {
+                Tag::create([
+                    'account_id' => $account,
+                    'nl' => [
+                        'name' => $tag,
+                    ],
+                    'fr' => [
+                        'name' => $tag,
+                    ],
+                    'en' => [
+                        'name' => $tag,
+                    ],
+                    'de' => [
+                        'name' => $tag,
+                    ]
+                ]);
+            }
         }
+
     }
 }
