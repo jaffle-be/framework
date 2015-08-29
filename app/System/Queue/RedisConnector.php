@@ -1,5 +1,7 @@
 <?php namespace App\System\Queue;
 
+use Illuminate\Support\Arr;
+
 class RedisConnector extends \Illuminate\Queue\Connectors\RedisConnector
 {
 
@@ -11,10 +13,13 @@ class RedisConnector extends \Illuminate\Queue\Connectors\RedisConnector
      */
     public function connect(array $config)
     {
-        //prefix our queue with our app name when we're running multiple sites on the same server.
-        $config['queue'] = env('APP_NAME') . ':' . $config['queue'];
+        $queue = new RedisQueue(
+            $this->redis, $config['queue'], Arr::get($config, 'connection', $this->connection)
+        );
 
-        return parent::connect($config);
+        $queue->setExpire(Arr::get($config, 'expire', 60));
+
+        return $queue;
     }
 
 }
