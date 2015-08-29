@@ -1,9 +1,12 @@
 <?php namespace App\Shop\Product;
 
 use App\Media\StoresMedia;
+use App\Media\StoringMedia;
 use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model implements StoresMedia{
+
+    use StoringMedia;
 
     protected $table = 'products';
 
