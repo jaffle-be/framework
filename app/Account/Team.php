@@ -1,11 +1,13 @@
 <?php namespace App\Account;
 
+use App\System\Scopes\ModelAccountResource;
+use App\System\Translatable\Translatable;
 use Illuminate\Database\Eloquent\Model;
 
 class Team extends Model
 {
-
-    use \App\System\Translatable\Translatable;
+    use ModelAccountResource;
+    use Translatable;
 
     protected $table = 'account_teams';
 
