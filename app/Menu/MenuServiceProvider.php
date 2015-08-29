@@ -35,6 +35,6 @@ class MenuServiceProvider extends ServiceProvider
 
     protected function observers()
     {
-        MenuItem::observe($this->app->make('App\Menu\MenuItemObserver'));
+
     }
 }
