@@ -8,11 +8,6 @@ use App\Tags\Tag;
 class TagsController extends Controller
 {
 
-    public function index()
-    {
-        return 'show all tags here';
-    }
-
     public function show(Tag $tag, AccountManager $accountManager)
     {
         $content = $tag->content;
