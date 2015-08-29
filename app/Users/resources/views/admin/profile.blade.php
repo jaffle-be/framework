@@ -1,6 +1,6 @@
 <div class="wrapper-content" ng-controller="ProfileController as vm" ng-init="vm.options = {{ system_options() }}">
 
-    @include('system::locale-tabs')
+    @include('system::admin.locale-tabs')
 
     <div class="col-md-6">
         <div class="ibox">
