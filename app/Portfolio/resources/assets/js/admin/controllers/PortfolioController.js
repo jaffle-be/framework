@@ -1,5 +1,10 @@
 angular.module('portfolio')
-    .controller('PortfolioController', function (Portfolio, PortfolioService, $state) {
+    .controller('PortfolioController', function (Portfolio, PortfolioService, $state, $scope, $sce) {
+
+        $scope.renderHtml = function(html_code)
+        {
+            return $sce.trustAsHtml(html_code);
+        };
 
         //start with true so we don't see the layout flash
         this.loading = true;

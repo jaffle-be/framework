@@ -69,9 +69,10 @@
                     <td width="60%">
                         <div class="">
                             <img class="pull-left img-responsive img-rounded" ng-src="@{{ project.images[0].sizes[0].path }}"/>
-                            <h4>@{{ project.translations[vm.options.locale].title }}</h4>
-                            @{{ project.translations[vm.options.locale].description }}
+                            <h4 ng-bind-html="renderHtml(project.translations[vm.options.locale].title)"></h4>
+                            <span ng-bind-html="renderHtml(project.translations[vm.options.locale].description)"></span>
                         </div>
+
                     </td>
                     <td>@{{ project.tags.length }}</td>
                     <td>@{{ project.translations[vm.options.locale].created_at | fromNow }}</td>

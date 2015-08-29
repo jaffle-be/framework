@@ -68,8 +68,8 @@
                     <td>
                         <div class="">
                             <img class="pull-left img-responsive img-rounded" ng-src="@{{ post.images[0].sizes[0].path }}"/>
-                            <h4>@{{ post.translations[vm.options.locale].title }}</h4>
-                            @{{ post.translations[vm.options.locale].extract }}
+                            <h4 ng-bind-html="renderHtml(post.translations[vm.options.locale].title)"></h4>
+                            <span ng-bind-html="renderHtml(post.translations[vm.options.locale].extract)"></span>
                         </div>
                     </td>
                     <td>@{{ post.tags.length }}</td>

@@ -1,5 +1,10 @@
 angular.module('blog')
-    .controller('BlogController', function ($scope, Blog, BlogService) {
+    .controller('BlogController', function ($scope, Blog, BlogService, $sce) {
+
+        $scope.renderHtml = function(html_code)
+        {
+            return $sce.trustAsHtml(html_code);
+        };
 
         //start with true so we don't see the layout flash
         this.loading = true;
