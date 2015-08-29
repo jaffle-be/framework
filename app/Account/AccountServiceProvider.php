@@ -4,18 +4,15 @@ use App\System\ServiceProvider;
 
 class AccountServiceProvider extends ServiceProvider
 {
+
     protected $namespace = 'account';
 
     public function boot()
     {
         parent::boot();
 
-        if(!$this->app->runningInConsole())
-        {
-            $this->app->booted(function ($app) {
-                $app['App\Account\AccountManager']->boot($app['request']);
-            });
-
+        if (!$this->app->runningInConsole()) {
+            $this->app['App\Account\AccountManager']->boot($this->app['request']);
         }
     }
 
@@ -42,26 +39,20 @@ class AccountServiceProvider extends ServiceProvider
 
     protected function cacheBusting()
     {
-        $this->app['events']->listen('eloquent.saved: App\\Contact\\Address', function($address)
-        {
-            if($address->owner_type == AccountContactInformation::class)
-            {
+        $this->app['events']->listen('eloquent.saved: App\\Contact\\Address', function ($address) {
+            if ($address->owner_type == AccountContactInformation::class) {
                 $this->app['App\Account\AccountManager']->updated();
             }
         });
 
-        $this->app['events']->listen('eloquent.saved: App\\Contact\\SocialLinks', function($links)
-        {
-            if($links->owner_type == Account::class)
-            {
+        $this->app['events']->listen('eloquent.saved: App\\Contact\\SocialLinks', function ($links) {
+            if ($links->owner_type == Account::class) {
                 $this->app['App\Account\AccountManager']->updated();
             }
         });
 
-        $this->app['events']->listen('eloquent.saved: App\\Media\\Image', function($image)
-        {
-            if($image->owner_type == AccountLogo::class)
-            {
+        $this->app['events']->listen('eloquent.saved: App\\Media\\Image', function ($image) {
+            if ($image->owner_type == AccountLogo::class) {
                 app('cache')->forget('account-logo');
             }
         });
