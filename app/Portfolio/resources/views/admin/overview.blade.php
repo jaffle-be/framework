@@ -75,8 +75,8 @@
 
                     </td>
                     <td>@{{ project.tags.length }}</td>
-                    <td>@{{ project.translations[vm.options.locale].created_at | fromNow }}</td>
-                    <td>@{{ project.translations[vm.options.locale].updated_at | fromNow }}</td>
+                    <td>@{{ project.translations[vm.options.locale] ? project.translations[vm.options.locale].created_at : project.created_at | fromNow }}</td>
+                    <td>@{{ project.translations[vm.options.locale] ? project.translations[vm.options.locale].updated_at : project.updated_at | fromNow }}</td>
                 </tr>
                 <tr>
                     <td class="text-center" st-pagination st-items-by-page="vm.rpp" colspan="6" st-change="vm.list"></td>
