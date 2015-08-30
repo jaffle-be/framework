@@ -1,10 +1,13 @@
 angular.module('portfolio')
-    .controller('PortfolioDetailController', function (Portfolio, PortfolioService, MembershipService, Client, $state) {
+    .controller('PortfolioDetailController', function ($scope, Portfolio, PortfolioService, MembershipService, Client, $state) {
 
         this.projects = PortfolioService;
         this.memberships = [];
         this.collaborators = [];
         this.clients = [];
+        $scope.status = {
+            datepickerStatus : false
+        };
 
         var me = this,
             id = $state.params.id;
@@ -47,11 +50,18 @@ angular.module('portfolio')
             {
                 $state.go('admin.portfolio.overview');
             });
-        }
+        };
 
         this.toggleCollaboration = function(collaborator)
         {
             PortfolioService.toggleCollaboration(me.project, collaborator);
+        };
+
+        this.openDatepicker = function($event)
+        {
+            $scope.status.datepickerStatus = !$scope.status.datepickerStatus;
+            $event.preventDefault();
+            $event.stopPropagation();
         };
 
         this.load(id);

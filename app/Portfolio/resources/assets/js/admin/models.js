@@ -17,11 +17,31 @@ angular.module('portfolio')
                         response.translations = {};
                     }
 
+                    if(response.date)
+                    {
+                        response.date = moment(response.date, 'YYYY-MM-DD').format('DD/MM/YYYY');
+                    }
+
                     return response;
                 }
             },
             update: {
                 method: 'PUT',
+                transformRequest: function(request)
+                {
+                    if(typeof request.date == 'string')
+                    {
+                        request.date = moment(request.date, 'DD/MM/YYYY').format('YYYY-MM-DD');
+                    }
+
+                    if(request.date instanceof Date)
+                    {
+                        var date = moment(request.date);
+                        request.date = date.format('YYYY-MM-DD')
+                    }
+
+                    return angular.toJson(request)
+                }
             },
             collaborators: {
                 isArray:true,

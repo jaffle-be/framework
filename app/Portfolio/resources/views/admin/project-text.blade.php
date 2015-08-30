@@ -24,9 +24,19 @@
                     <input id="website" type="text" class="form-control" ng-model="vm.project.website" ng-change="vm.save()">
                 </div>
 
-                <div class="form-group col-xs-6">
+                <div class="form-group col-xs-4 col-xs-offset-2">
+
                     <label for="date">{{ Lang::get('portfolio::admin.project.date') }}</label>
-                    <input id="date" type="text" class="form-control" ng-model="vm.project.date" ng-change="vm.save()">
+
+                    <div class="input-group datepicker">
+
+                        <input datepicker-popup="dd/MM/yyyy" show-weeks="false" is-open="status.datepickerStatus" type="text" class="form-control" ng-model="vm.project.date" ng-click="vm.openDatepicker($event)" ng-change="vm.save()"/>
+
+                        <div class="input-group-btn">
+                                <span type="button" class="btn btn-default" ng-click="vm.openDatepicker($event)">
+                                    <i class="fa fa-calendar"></i></span>
+                        </div>
+                    </div>
                 </div>
             </div>
 
