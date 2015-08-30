@@ -22,7 +22,7 @@ class Post extends Model implements StoresMedia, Searchable, StoresTags
     use Sluggable;
     use SearchableTrait;
 
-    public static function bootPostFrontScope()
+    public static function bootPostScopeFront()
     {
         /** @var Request $request */
         $request = app('request');
@@ -34,7 +34,7 @@ class Post extends Model implements StoresMedia, Searchable, StoresTags
 
         if(!starts_with($request->getRequestUri(), ['/admin', '/api']))
         {
-            static::addGlobalScope(new PostFrontScope());
+            static::addGlobalScope(new PostScopeFront());
         }
     }
 

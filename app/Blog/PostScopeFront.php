@@ -4,7 +4,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\ScopeInterface;
 use Illuminate\Database\Eloquent\Builder;
 
-class PostFrontScope implements ScopeInterface
+class PostScopeFront implements ScopeInterface
 {
 
     public function apply(Builder $query, Model $model)
