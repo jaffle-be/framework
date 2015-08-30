@@ -33,15 +33,16 @@ class PortfolioController extends AdminController
         $value = $request->get('query');
         $locale = $request->get('locale');
 
-        $query->whereHas('translations', function ($q) use ($value, $locale) {
-            if ($value) {
+        if ($value) {
+            $query->whereHas('translations', function ($q) use ($value, $locale) {
+
                 $q->where('locale', $locale);
                 $q->where(function ($q) use ($value) {
                     $q->where('title', 'like', '%' . $value . '%')
                         ->orWhere('description', 'like', '%' . $value . '%');
                 });
-            }
-        });
+            });
+        }
 
         return $query->paginate();
     }
