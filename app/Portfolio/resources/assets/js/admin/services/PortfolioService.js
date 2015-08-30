@@ -14,6 +14,9 @@ angular.module('portfolio')
             {
                 if(project.id)
                 {
+                    //use a copy, so the response will not reset the form to the last saved instance while typing.
+                    var destination = angular.copy(project);
+
                     if(this.timeout)
                     {
                         $timeout.cancel(this.timeout);
@@ -21,7 +24,7 @@ angular.module('portfolio')
 
                     this.timeout = $timeout(function()
                     {
-                        return project.$update(success);
+                        return destination.$update(success);
                     }, 400);
                 }
                 else{
