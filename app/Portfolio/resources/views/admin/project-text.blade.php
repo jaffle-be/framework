@@ -9,7 +9,7 @@
                 <span class="pull-right btn btn-danger btn-sm" ng-really="vm.delete()"><i class="fa fa-trash"></i></span>
             </div>
         </div>
-        
+
     </div>
 
     <div class="ibox-content">
@@ -19,12 +19,12 @@
             <input name="locale" type="hidden" value="@{{ vm.options.locale }}"/>
 
             <div class="row">
-                <div class="form-group col-xs-6">
+                <div class="form-group col-xs-8">
                     <label for="website">{{ Lang::get('portfolio::admin.project.website') }}</label>
                     <input id="website" type="text" class="form-control" ng-model="vm.project.website" ng-change="vm.save()">
                 </div>
 
-                <div class="form-group col-xs-4 col-xs-offset-2">
+                <div class="form-group col-xs-4">
 
                     <label for="date">{{ Lang::get('portfolio::admin.project.date') }}</label>
 
@@ -40,13 +40,27 @@
                 </div>
             </div>
 
-            <div class="form-group">
-                <label for="title" class="control-label">{{ Lang::get('portfolio::admin.project.title') }}</label>
+            <div class="row">
+                <div class="form-group col-xs-8">
+                    <label for="title" class="control-label">{{ Lang::get('portfolio::admin.project.title') }}</label>
 
-                <div>
-                    <input ng-change="vm.save()" type="text" name="title" id="title" class="form-control" ng-model="vm.project.translations[vm.options.locale].title"/>
+                    <div>
+                        <input ng-change="vm.save()" type="text" name="title" id="title" class="form-control" ng-model="vm.project.translations[vm.options.locale].title"/>
+                    </div>
+                </div>
+
+                <div class="form-group col-xs-offset-1 col-xs-3">
+
+                    <div class="control-label">&nbsp;</div>
+
+                    <input type="checkbox" class="filled-in" id="published" ng-model="vm.project.translations[vm.options.locale].published" ng-change="vm.save()"/>
+                    <label for="published">{{ Lang::get('portfolio::admin.project.published') }}</label>
+
+
                 </div>
             </div>
+
+
 
             <div class="form-group">
                 <label for="description" class="control-label">{{ Lang::get('portfolio::admin.project.description') }}</label>

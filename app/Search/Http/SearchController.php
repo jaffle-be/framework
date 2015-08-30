@@ -94,7 +94,7 @@ class SearchController extends Controller
             'body'  => [
                 "query" => [
                     "filtered" => [
-                        "query" => [
+                        "query"  => [
                             "nested" => [
                                 "path"  => "translations." . $locale,
                                 "query" => [
@@ -110,8 +110,21 @@ class SearchController extends Controller
                         "filter" => [
                             "bool" => [
                                 "must" => [
-                                    "term" => [
-                                        "account_id" => $manager->account()->id,
+                                    [
+                                        "term" => [
+                                            "account_id" => $manager->account()->id,
+                                        ]
+                                    ],
+                                    [
+                                        "nested" => [
+                                            "path"  => "translations.$locale",
+                                            "query" => [
+                                                "term" => [
+                                                    "translations.$locale.published" => true
+                                                ]
+                                            ]
+                                        ]
+
                                     ]
                                 ]
                             ],

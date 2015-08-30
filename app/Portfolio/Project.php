@@ -22,11 +22,27 @@ class Project extends Model implements StoresMedia, Searchable, StoresTags
 
     protected $media = '{account}/portfolio';
 
-    protected $fillable = ['account_id', 'client_id', 'website', 'date', 'title', 'description'];
+    protected $fillable = ['account_id', 'client_id', 'website', 'date', 'published', 'title', 'description'];
 
     protected $dates = ['date'];
 
-    protected $translatedAttributes = ['title', 'description'];
+    protected $translatedAttributes = ['published', 'title', 'description'];
+
+    public static function bootProjectScopeFront()
+    {
+        /** @var Request $request */
+        $request = app('request');
+
+        if(app()->runningInConsole())
+        {
+            return;
+        }
+
+        if(!starts_with($request->getRequestUri(), ['/admin', '/api']))
+        {
+            static::addGlobalScope(new ProjectScopeFront());
+        }
+    }
 
     public function newCollection(array $models = [])
     {

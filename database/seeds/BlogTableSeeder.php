@@ -86,44 +86,6 @@ class BlogTableSeeder extends Seeder
 
     protected function texts($run)
     {
-        if($run > 1)
-        {
-            return [
-                'nl'      => [
-                    'title'      => 'a smaller sentence',
-                    'extract'    => 'some stupid random text the same for each non digiredo account. some stupid random text the same for each non digiredo account. some stupid random text the same for each non digiredo account. some stupid random text the same for each non digiredo account.some stupid random text the same for each non digiredo account',
-                    'content'    => 'some stupid random text the same for each non digiredo account. some stupid random text the same for each non digiredo account. some stupid random text the same for each non digiredo account. some stupid random text the same for each non digiredo account.some stupid random text the same for each non digiredo account',
-                    'created_at' => $this->nl->dateTimeBetween('-3 months', 'now'),
-                    'updated_at' => $this->nl->dateTimeBetween('-2 months', 'now'),
-                    'publish_at' => rand(0,1)  ? $this->nl->dateTimeBetween('-1 months', '+3 months') : null,
-                ],
-                'fr'      => [
-                    'title'      => 'a smaller sentence',
-                    'extract'    => 'some stupid random text the same for each non digiredo account. some stupid random text the same for each non digiredo account. some stupid random text the same for each non digiredo account. some stupid random text the same for each non digiredo account.some stupid random text the same for each non digiredo account',
-                    'content'    => 'some stupid random text the same for each non digiredo account. some stupid random text the same for each non digiredo account. some stupid random text the same for each non digiredo account. some stupid random text the same for each non digiredo account.some stupid random text the same for each non digiredo account',
-                    'created_at' => $this->nl->dateTimeBetween('-3 months', 'now'),
-                    'updated_at' => $this->nl->dateTimeBetween('-2 months', 'now'),
-                    'publish_at' => rand(0,1)  ? $this->nl->dateTimeBetween('-1 months', '+3 months') : null,
-                ],
-                'en'      => [
-                    'title'      => 'a smaller sentence',
-                    'extract'    => 'some stupid random text the same for each non digiredo account. some stupid random text the same for each non digiredo account. some stupid random text the same for each non digiredo account. some stupid random text the same for each non digiredo account.some stupid random text the same for each non digiredo account',
-                    'content'    => 'some stupid random text the same for each non digiredo account. some stupid random text the same for each non digiredo account. some stupid random text the same for each non digiredo account. some stupid random text the same for each non digiredo account.some stupid random text the same for each non digiredo account',
-                    'created_at' => $this->nl->dateTimeBetween('-3 months', 'now'),
-                    'updated_at' => $this->nl->dateTimeBetween('-2 months', 'now'),
-                    'publish_at' => rand(0,1)  ? $this->nl->dateTimeBetween('-1 months', '+3 months') : null,
-                ],
-                'de'      => [
-                    'title'      => 'a smaller sentence',
-                    'extract'    => 'some stupid random text the same for each non digiredo account. some stupid random text the same for each non digiredo account. some stupid random text the same for each non digiredo account. some stupid random text the same for each non digiredo account.some stupid random text the same for each non digiredo account',
-                    'content'    => 'some stupid random text the same for each non digiredo account. some stupid random text the same for each non digiredo account. some stupid random text the same for each non digiredo account. some stupid random text the same for each non digiredo account.some stupid random text the same for each non digiredo account',
-                    'created_at' => $this->nl->dateTimeBetween('-3 months', 'now'),
-                    'updated_at' => $this->nl->dateTimeBetween('-2 months', 'now'),
-                    'publish_at' => rand(0,1)  ? $this->nl->dateTimeBetween('-1 months', '+3 months') : null,
-                ]
-            ];
-        }
-
         return [
             'nl'      => [
                 'title'      => $this->nl->sentence(),

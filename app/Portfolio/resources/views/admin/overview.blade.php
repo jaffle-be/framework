@@ -11,10 +11,10 @@
 
         <div class="ibox-content">
 
-            <table  class="table table-hover table-striped table-responsive" ng-show="vm.projects">
+            <table class="table table-hover table-striped table-responsive vertical" ng-show="vm.projects">
                 <thead>
                 <tr>
-                    <th colspan="6">
+                    <th colspan="7">
 
                         <div class="row">
 
@@ -56,14 +56,12 @@
                 </thead>
                 <tbody ng-hide="vm.loading">
                 <tr>
-                    <td class="text-center" st-pagination st-items-by-page="vm.rpp" colspan="6" st-change="vm.list"></td>
+                    <td class="text-center" st-pagination st-items-by-page="vm.rpp" colspan="7" st-change="vm.list"></td>
                 </tr>
                 <tr ng-repeat="project in vm.projects" ui-sref="admin.portfolio.detail({id: project.id})" class="portfolio-overview">
                     <td width="10%" ng-click="$event.stopPropagation()">
-                        <p>
-                            <input type="checkbox" class="filled-in" id="row@{{ $index + 1 }}" ng-checked="project.isSelected" />
-                            <label for="row@{{ $index + 1 }}">@{{ $index + 1 }}</label>
-                        </p>
+                        <input type="checkbox" class="filled-in" id="row@{{ $index + 1 }}" ng-checked="project.isSelected"/>
+                        <label for="row@{{ $index + 1 }}">@{{ $index + 1 }}</label>
                     </td>
                     <td width="0%">&nbsp;</td>
                     <td width="60%">
@@ -74,6 +72,7 @@
                         </div>
 
                     </td>
+                    <td><i class="fa fa-check" ng-show="project.translations[vm.options.locale].published"></i></td>
                     <td>@{{ project.tags.length }}</td>
                     <td>@{{ project.translations[vm.options.locale] ? project.translations[vm.options.locale].created_at : project.created_at | fromNow }}</td>
                     <td>@{{ project.translations[vm.options.locale] ? project.translations[vm.options.locale].updated_at : project.updated_at | fromNow }}</td>

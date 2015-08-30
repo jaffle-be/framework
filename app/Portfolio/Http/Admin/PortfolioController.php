@@ -69,7 +69,7 @@ class PortfolioController extends AdminController
 
         $payload = [
             'project'  => $project,
-            'input' => translation_input($request, ['title', 'description'])
+            'input' => translation_input($request, ['published', 'title', 'description'])
         ];
 
         if (!$this->dispatchFromArray(UpdateProject::class, $payload)) {

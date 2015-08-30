@@ -9,6 +9,7 @@ return [
 
     'project' => [
         'client' => 'client',
+        'published' => 'published',
         'collaborators' => 'made by',
         'date' => 'realisation date',
         'description' => 'info',

@@ -11,8 +11,12 @@ class ProjectTranslation extends TranslationModel implements Searchable
 
     protected $table = 'portfolio_project_translations';
 
-    protected $fillable = ['title', 'description'];
+    protected $fillable = ['published', 'title', 'description'];
 
     protected $hidden = ['project_id'];
+
+    protected $casts = [
+        'published' => 'boolean'
+    ];
 
 }

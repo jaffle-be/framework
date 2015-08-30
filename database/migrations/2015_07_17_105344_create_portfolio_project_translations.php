@@ -17,6 +17,7 @@ class CreatePortfolioProjectTranslations extends Migration
             $table->string('locale', 3);
             $table->integer('project_id', false, true);
             $table->foreign('project_id', 'project_translations_to_project')->references('id')->on('portfolio_projects')->onDelete('cascade');
+            $table->boolean('published');
             $table->string('title');
             $table->text('description');
             $table->timestamps();
