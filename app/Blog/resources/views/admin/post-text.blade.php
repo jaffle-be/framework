@@ -50,7 +50,7 @@
 
                             <div class="input-group-btn">
                                 <span type="button" class="btn btn-default" ng-click="vm.openDatepicker($event)">
-                                    <i class="glyphicon glyphicon-calendar"></i></span>
+                                    <i class="fa fa-calendar"></i></span>
                             </div>
                         </div>
 
