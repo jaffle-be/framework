@@ -17,9 +17,21 @@ class InstallUnifyThemeBlog extends ThemeSettingMigration
             'nl' => "Wat er bij ons gebeurt"
         ],
         'blogMainTitleDetail' => [
-            'en' => "This one was perticullarly special",
+            'en' => "This one was particularly special",
             'nl' => "Nieuws"
         ],
+        'blogSidebarRecentPostsTitle' => [
+            'en' => 'Recent posts',
+            'nl' => 'Laatste nieuws',
+        ],
+        'blogSidebarSocialLinksTitle' => [
+            'en' => 'Get social',
+            'nl' => 'Doe sociaal',
+        ],
+        'blogSidebarTagsTitle' => [
+            'en' => 'Take a peek',
+            'nl' => 'Neem een kijkje',
+        ]
     ];
 
     protected $settings = [
@@ -105,6 +117,69 @@ class InstallUnifyThemeBlog extends ThemeSettingMigration
             'en'   => [
                 'name'        => 'blog main title detail',
                 'explanation' => 'blog main title detail'
+            ],
+        ],
+
+        [
+            'key' => 'blogSidebarRecentPostsTitle',
+            'type' => 'string',
+            'nl'   => [
+                'name'        => 'recent posts sidebar title',
+                'explanation' => 'recent posts sidebar title'
+            ],
+            'fr'   => [
+                'name'        => 'recent posts sidebar title',
+                'explanation' => 'recent posts sidebar title'
+            ],
+            'de'   => [
+                'name'        => 'recent posts sidebar title',
+                'explanation' => 'recent posts sidebar title'
+            ],
+            'en'   => [
+                'name'        => 'recent posts sidebar title',
+                'explanation' => 'recent posts sidebar title'
+            ],
+        ],
+
+        [
+            'key' => 'blogSidebarSocialLinksTitle',
+            'type' => 'string',
+            'nl'   => [
+                'name'        => 'blog social links sidebar title',
+                'explanation' => 'blog social links sidebar title'
+            ],
+            'fr'   => [
+                'name'        => 'blog social links sidebar title',
+                'explanation' => 'blog social links sidebar title'
+            ],
+            'de'   => [
+                'name'        => 'blog social links sidebar title',
+                'explanation' => 'blog social links sidebar title'
+            ],
+            'en'   => [
+                'name'        => 'blog social links sidebar title',
+                'explanation' => 'blog social links sidebar title'
+            ],
+        ],
+
+        [
+            'key' => 'blogSidebarTagsTitle',
+            'type' => 'string',
+            'nl'   => [
+                'name'        => 'blog tags sidebar title',
+                'explanation' => 'blog tags sidebar title'
+            ],
+            'fr'   => [
+                'name'        => 'blog tags sidebar title',
+                'explanation' => 'blog tags sidebar title'
+            ],
+            'de'   => [
+                'name'        => 'blog tags sidebar title',
+                'explanation' => 'blog tags sidebar title'
+            ],
+            'en'   => [
+                'name'        => 'blog tags sidebar title',
+                'explanation' => 'blog tags sidebar title'
             ],
         ],
 
