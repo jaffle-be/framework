@@ -4,6 +4,7 @@ use App\Search\Model\Searchable;
 use App\Search\Model\SearchableTrait;
 use App\System\Translatable\TranslationModel;
 use Carbon\Carbon;
+use Illuminate\Http\Request;
 
 class PostTranslation extends TranslationModel implements Searchable
 {
@@ -17,6 +18,22 @@ class PostTranslation extends TranslationModel implements Searchable
     protected $dates = ['publish_at'];
 
     protected $touches = ['post'];
+
+    public static function bootPostTranslationScopeFront()
+    {
+        /** @var Request $request */
+        $request = app('request');
+
+        if(app()->runningInConsole())
+        {
+            return;
+        }
+
+        if(!starts_with($request->getRequestUri(), ['/admin', '/api']))
+        {
+            static::addGlobalScope(new PostTranslationScopeFront());
+        }
+    }
 
     public function post()
     {
