@@ -9,7 +9,7 @@ Breadcrumbs::register('store.blog.index', function($breadcrumbs){
 
 });
 
-Breadcrumbs::register('store.blog.show', function($breadcrumbs, Post $post){
+Breadcrumbs::register('store.blog.show', function($breadcrumbs){
     $breadcrumbs->parent('store.blog.index');
-    $breadcrumbs->push($post->title, 'store.blog.show');
+    $breadcrumbs->push('Post', 'store.blog.show');
 });
