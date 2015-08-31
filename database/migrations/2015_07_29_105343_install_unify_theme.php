@@ -381,7 +381,6 @@ class InstallUnifyTheme extends ThemeInstallationMigration
             ['value' => 'footer_v4'],
             ['value' => 'footer_v5'],
             ['value' => 'footer_v6'],
-            ['value' => 'footer_v7'],
         ],
 
         'layoutBreadcrumbs'  => [
