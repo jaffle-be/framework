@@ -9,6 +9,39 @@ class InstallUnifyThemeContact extends ThemeSettingMigration
 
     protected $version = '1.0';
 
+    protected $defaults = [
+        'contactLayout'    => 'contact-1',
+        'contactMainTitle' => [
+            'nl' => "Contacteer ons",
+            'en' => "Contact us",
+        ],
+        'contactContactTitle' => [
+            'nl' => "Zeg eens hallo",
+            'en' => "Get in touch",
+        ],
+        'contactHoursTitle' => [
+            'nl' => "Wanneer zijn wij bereikbaar",
+            'en' => "Hmmm, when are we available",
+        ],
+        'contactWidgetTitle' => [
+            'nl' => "Waarom van je laten horen",
+            'en' => "Why you should get in touch",
+        ],
+        'contactWidgetText' => [
+            'nl' => "We doen meer dan je initieel zou denken. Helaas kunnen we onze site niet constant updaten, want er moet ook gewerkt worden aan zaken die ons klanten vooruithelpen.",
+            'en' => "We offer more then you think, we can hardly put all our productions up here, or we'd be out of time actually doing things that matter.
+Not sure if we could help you? Please, by all means, do not hesitate to ask",
+        ],
+        'contactFormTitle' => [
+            'nl' => "Dus je zou echt iets willen zeggen",
+            'en' => "So you got something to say",
+        ],
+        'contactFormText' => [
+            'nl' => "Kan je het to the point houden? Zo blijft het tof en snel voor jij en ons team. Zo kunnen we ook makkelijker iedereen een antwoord geven.",
+            'en' => "To keep things fast and fun for both you and our team, please get to the point quickly",
+        ],
+    ];
+
     protected $settings = [
 
         [
@@ -182,10 +215,6 @@ class InstallUnifyThemeContact extends ThemeSettingMigration
             ],
         ],
 
-    ];
-
-    protected $defaults = [
-        'contactLayout'    => 'contact-1',
     ];
 
     protected $options = [

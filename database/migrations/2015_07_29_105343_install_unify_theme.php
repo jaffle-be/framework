@@ -12,6 +12,42 @@ class InstallUnifyTheme extends ThemeInstallationMigration
     protected $defaults = [
         'layoutHeader' => 'header_default',
         'layoutFooter' => 'footer_default',
+        'layoutFooterAboutTitle' => [
+            "en" => "Who we are",
+            "nl" => "Wie wij zijn",
+        ],
+        'layoutFooterAboutText' => [
+            "en" => "We're a group of people all with a passion for their jobs. This makes us a group of professionals, ready to help you and your firm get re-digitalised",
+            "nl" => "We zijn een groep mensen die stuk voor stuk een passie hebben voor iets. Samen vormen we een geheel van professionals die uw bedrijf snel digitaal verder helpen.",
+        ],
+        'layoutFooterPostsTitle' => [
+            "en" => "What happens here",
+            "nl" => "Onze laatste updates",
+        ],
+        'layoutFooterLinksTitle' => [
+            "en" => "Read these",
+            "nl" => "Interessante links",
+        ],
+        'layoutFooterContactTitle' => [
+            "en" => "Get in touch",
+            "nl" => "Laat van je horen",
+        ],
+        'layoutFooterSocialIconsTitle' => [
+            "en" => "Time to get social",
+            "nl" => "Time to get social",
+        ],
+        'layoutFooterNewsletterTitle' => [
+            "en" => "Stay up to date",
+            "nl" => "Op de hoogte blijven",
+        ],
+        'layoutFooterNewsletterText' => [
+            "en" => "fill in your email and from time to time, we'll keep in touch. All so you can easily keep track of what we're up to.",
+            "nl" => "vul je email in als je sneller op de hoogte wil blijven van wat er bij ons leeft.",
+        ],
+        'layoutFooterTweetsTitle' => [
+            "en" => "Tweets in action",
+            "nl" => "Tweets in action",
+        ],
         'layoutBreadcrumbs'  => 'breadcrumbs-1',
         'layoutPagination'   => 'pagination-1',
         'layoutErrorPage'    => 'one',

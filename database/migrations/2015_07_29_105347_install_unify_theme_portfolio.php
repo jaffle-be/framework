@@ -9,6 +9,26 @@ class InstallUnifyThemePortfolio extends ThemeSettingMigration
 
     protected $version = '1.0';
 
+    protected $defaults = [
+        'portfolioColumns' => 3,
+        'portfolioMainTitleOverview' => [
+            'nl' => "Wat we allemaal gemaakt hebben",
+            'en' => "What we've been creating",
+        ],
+        'portfolioMainTitleDetail' => [
+            'nl' => "Dus je wil meer weten over dit project",
+            'en' => "So you wanne learn more about this",
+        ],
+        'portfolioProjectDetails' => [
+            'nl' => "De reutemeteut",
+            'en' => "The details",
+        ],
+        'portfolioProjectDescription' => [
+            'nl' => "Ons verhaal",
+            'en' => "Our story about this",
+        ],
+    ];
+
     protected $settings = [
 
         [
@@ -159,10 +179,6 @@ class InstallUnifyThemePortfolio extends ThemeSettingMigration
                 'explanation' => 'portfolio project description title'
             ],
         ],
-    ];
-
-    protected $defaults = [
-        'portfolioColumns' => 3
     ];
 
     protected $options = [

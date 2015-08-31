@@ -9,6 +9,71 @@ class InstallUnifyThemeTeam extends ThemeSettingMigration
 
     protected $version = '1.0';
 
+    protected $defaults = [
+        'teamOverview' => 'team-1',
+        'teamDetail'   => 'member-1',
+        'teamAboutTitle' => [
+            'nl' => "Dit zijn wij",
+            'en' => "Yes we can",
+        ],
+        'teamAboutMemberMainTitle' => [
+            'nl' => "Deze collega staat voor je klaar",
+            'en' => "This person will jump to get your things done",
+        ],
+        'teamMemberAboutTitle' => [
+            'nl' => "Wat zij/hij effectief doet",
+            'en' => "What she/he actually does",
+        ],
+        'teamMemberSkillsTitle' => [
+            'nl' => "Een greep uit de sterktes",
+            'en' => "A sneak peek on the skills",
+        ],
+        'teamMemberPortfolioTitle' => [
+            'nl' => "Meegewerkt aan",
+            'en' => "Helped with",
+        ],
+        'teamMemberPortfolioText' => [
+            'nl' => "Iedereen bij ons kan plots meewerken aan een specifiek project. Iedereen doet enkel waar hij goed in is en daar proberen we ons echt aan te houden.",
+            'en' => "All our team members are able to suddenly jump in on a project and help out. Why? We are pretty peculiar about letting people only do what they were born to do.",
+        ],
+        'teamMemberCounterLabel1' => [
+            'nl' => "Koffie",
+            'en' => "Coffees",
+        ],
+        'teamMemberCounterLabel2' => [
+            'nl' => "Bier",
+            'en' => "Beers",
+        ],
+        'teamMemberCounterLabel3' => [
+            'nl' => "Fastfood",
+            'en' => "Fastfood",
+        ],
+        'teamMemberCounterLabel4' => [
+            'nl' => "Water",
+            'en' => "Water",
+        ],
+        'teamHiringTitle' => [
+            'nl' => "Wil je met ons samenwerken",
+            'en' => "Want to work with us",
+        ],
+        'teamHiringText' => [
+            'nl' => "Neem gerust contact op en laat van je horen. We kunnen altijd extra mensen gebruiken.",
+            'en' => "Get in touch as we can always use an extra hand or skill.",
+        ],
+        'teamHiringButton' => [
+            'nl' => "Goed idee",
+            'en' => "Sounds nice",
+        ],
+        'teamHireMeText' => [
+            'nl' => "Je wil beroep doen op mijn diensten? Of je twijfelt of ik je kan helpen?",
+            'en' => "You would like me to help you with a job? Or you're not sure if I could help you?",
+        ],
+        'teamHireMeButton' => [
+            'nl' => "Geef een seintje",
+            'en' => "Get in touch",
+        ],
+    ];
+
     protected $settings = [
 
         [
@@ -92,6 +157,67 @@ class InstallUnifyThemeTeam extends ThemeSettingMigration
             'en'   => [
                 'name'        => 'you can hire me',
                 'explanation' => 'you can hire me'
+            ],
+        ],
+
+        [
+            'key' => 'teamHiringTitle',
+            'type' => 'string',
+            'nl' => [
+                'name' => "Wil je met ons samenwerken",
+                'description' => "Wil je met ons samenwerken",
+            ],
+            'en' => [
+                'name' => "Want to work with us",
+                'description' => "Want to work with us",
+            ],
+        ],
+        [
+            'key' => 'teamHiringText',
+            'type' => 'string',
+            'nl' => [
+                'name' => "Neem gerust contact op en laat van je horen. We kunnen altijd extra mensen gebruiken.",
+                'description' => "Neem gerust contact op en laat van je horen. We kunnen altijd extra mensen gebruiken.",
+            ],
+            'en' => [
+                'name' => "Get in touch as we can always use an extra hand or skill.",
+                'description' => "Get in touch as we can always use an extra hand or skill.",
+            ],
+        ],
+        [
+            'key' => 'teamHiringButton',
+            'type' => 'string',
+            'nl' => [
+                'name' => "Goed idee",
+                'description' => "Goed idee",
+            ],
+            'en' => [
+                'name' => "Sounds nice",
+                'description' => "Sounds nice",
+            ],
+        ],
+        [
+            'key' => 'teamHireMeText',
+            'type' => 'string',
+            'nl' => [
+                'name' => "Je wil beroep doen op mijn diensten? Of je twijfelt of ik je kan helpen?",
+                'description' => "Je wil beroep doen op mijn diensten? Of je twijfelt of ik je kan helpen?",
+            ],
+            'en' => [
+                'name' => "You would like me to help you with a job? Or you're not sure if I could help you?",
+                'description' => "You would like me to help you with a job? Or you're not sure if I could help you?",
+            ],
+        ],
+        [
+            'key' => 'teamHireMeButton',
+            'type' => 'string',
+            'nl' => [
+                'name' => "Geef een seintje",
+                'description' => "Geef een seintje",
+            ],
+            'en' => [
+                'name' => "Get in touch",
+                'description' => "Get in touch",
             ],
         ],
 
@@ -430,11 +556,6 @@ class InstallUnifyThemeTeam extends ThemeSettingMigration
                 'explanation' => 'team member counter value 4'
             ],
         ],
-    ];
-
-    protected $defaults = [
-        'teamOverview' => 'team-1',
-        'teamDetail'   => 'member-1',
     ];
 
     protected $options = [

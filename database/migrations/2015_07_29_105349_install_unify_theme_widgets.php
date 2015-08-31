@@ -9,6 +9,14 @@ class InstallUnifyThemeWidgets extends ThemeSettingMigration
 
     protected $version = '1.0';
 
+    protected $defaults = [
+        'widgetOurClientsTitle' => [
+            'nl' => "Wie je reeds voorging",
+            'en' => "These people put their trust in us",
+        ]
+
+    ];
+
     protected $settings = [
 
         [
@@ -31,10 +39,6 @@ class InstallUnifyThemeWidgets extends ThemeSettingMigration
                 'explanation' => 'widgetOurClientsTitle'
             ],
         ],
-    ];
-
-    protected $defaults = [
-
     ];
 
     protected $options = [

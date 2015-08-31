@@ -19,8 +19,9 @@ class CreateThemesDefaultsTable extends Migration
 
             $table->integer('option_id', false, true)->nullable();
             $table->foreign('option_id', 'theme_setting_defaults_to_option')->references('id')->on('themes_setting_options')->onDelete('cascade');
+            $table->text('value');
             $table->timestamps();
-        });;
+        });
     }
 
     /**

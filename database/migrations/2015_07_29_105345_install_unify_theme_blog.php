@@ -12,6 +12,14 @@ class InstallUnifyThemeBlog extends ThemeSettingMigration
     protected $defaults = [
         'blogOverview'     => 'masonry',
         'blogDetail'       => 'full-width/large-detail',
+        'blogMainTitleOverview' => [
+            'en' => "What happens at digiredo, stays at digiredo",
+            'nl' => "Wat er bij ons gebeurt"
+        ],
+        'blogMainTitleDetail' => [
+            'en' => "This one was perticullarly special",
+            'nl' => "Nieuws"
+        ],
     ];
 
     protected $settings = [

@@ -185,13 +185,15 @@ class ThemeRepository implements ThemeRepositoryInterface
             $default = $setting->defaults;
 
             if ($default) {
-                $default = $default->toArray();
 
-                $default = array_except($default, ['id', 'created_at', 'updated_at']);
-
-                $payload = array_merge(['account_id' => $account, 'selection_id' => $selection], $default);
-
-                $setting->value()->create($payload);
+                if($setting->type->name == 'select')
+                {
+                    $this->setupSelectDefault($selection, $default, $account, $setting);
+                }
+                elseif(in_array($setting->type->name, ['string', 'text']))
+                {
+                    $this->setupJsonDefault($selection, $default, $account, $setting);
+                }
             }
         }
     }
@@ -214,6 +216,37 @@ class ThemeRepository implements ThemeRepositoryInterface
             ->first();
 
         return $selected;
+    }
+
+    /**
+     * @param ThemeSelection $selection
+     * @param                $default
+     * @param                $account
+     * @param                $setting
+     */
+    protected function setupSelectDefault($selection, ThemeSettingDefault $default, $account,ThemeSetting $setting)
+    {
+        $default = $default->toArray();
+
+        $default = array_except($default, ['id', 'created_at', 'updated_at']);
+
+        $payload = array_merge(['account_id' => $account, 'selection_id' => $selection], $default);
+
+        $setting->value()->create($payload);
+    }
+
+    protected function setupJsonDefault($selection, ThemeSettingDefault $default, $account, ThemeSetting $setting)
+    {
+        $json = json_decode($default->value);
+
+        $type = $setting->type->name;
+
+        $setting->value()->create([
+            'account_id' => $account,
+            'selection_id' => $selection,
+            'nl' => [ $type => $json->nl],
+            'en' => [ $type => $json->en],
+        ]);
     }
 
 }

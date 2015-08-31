@@ -53,6 +53,16 @@ trait MigrateThemeSettings
         }
     }
 
+    protected function settingsHandleString(ThemeSetting $setting)
+    {
+        $this->settingJsonHandle($setting);
+    }
+
+    protected function settingsHandleText(ThemeSetting $setting)
+    {
+        $this->settingJsonHandle($setting);
+    }
+
     protected function settingGetType(array $setting)
     {
         if(!static::$types)
@@ -66,6 +76,14 @@ trait MigrateThemeSettings
         }
 
         return static::$types->get($setting['type']);
+    }
+
+    protected function settingJsonHandle(ThemeSetting $setting)
+    {
+        if(isset($this->defaults[$setting->key]))
+        {
+            $setting->defaults()->create(['value' => json_encode($this->defaults[$setting->key])]);
+        }
     }
 
 }
