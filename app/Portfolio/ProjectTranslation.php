@@ -19,4 +19,20 @@ class ProjectTranslation extends TranslationModel implements Searchable
         'published' => 'boolean'
     ];
 
+    public static function bootProjectTranslationScopeFront()
+    {
+        /** @var Request $request */
+        $request = app('request');
+
+        if(app()->runningInConsole())
+        {
+            return;
+        }
+
+        if(!starts_with($request->getRequestUri(), ['/admin', '/api']))
+        {
+            static::addGlobalScope(new ProjectTranslationScopeFront());
+        }
+    }
+
 }

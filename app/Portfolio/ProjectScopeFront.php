@@ -9,11 +9,7 @@ class ProjectScopeFront implements ScopeInterface
 
     public function apply(Builder $query, Model $model)
     {
-        $query->whereHas('translations', function($query){
-
-            $query->where('locale', app()->getLocale())
-                ->where('published', 1);
-        });
+        $query->has('translations');
     }
 
     public function remove(Builder $query, Model $model)

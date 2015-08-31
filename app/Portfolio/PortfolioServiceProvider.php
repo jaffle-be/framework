@@ -20,5 +20,6 @@ class PortfolioServiceProvider extends ServiceProvider
     {
         Project::observe(ProjectObserver::class);
         Project::bootProjectScopeFront();
+        ProjectTranslation::bootProjectTranslationScopeFront();
     }
 }
