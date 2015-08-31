@@ -9,6 +9,7 @@ use App\System\Sluggable\Sluggable;
 use App\System\Translatable\Translatable;
 use App\Tags\StoresTags;
 use App\Tags\Taggable;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 
@@ -74,6 +75,20 @@ class Post extends Model implements StoresMedia, Searchable, StoresTags
     public function newCollection(array $models = [])
     {
         return new PostCollection($models);
+    }
+
+    public function scopeLatest(Builder $builder)
+    {
+        $builder->leftJoin('post_translations as latest', function($join){
+            $join->on('posts.id', '=', 'latest.post_id')
+                ->where('latest.locale', '=', app()->getLocale());
+        })
+            ->orderBy('latest.publish_at');
+    }
+
+    public function scopeRelated(Builder $builder)
+    {
+
     }
 
 }

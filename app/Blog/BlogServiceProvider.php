@@ -8,7 +8,7 @@ class BlogServiceProvider extends ServiceProvider
 
     public function register()
     {
-
+        $this->app->bind('App\Blog\PostRepositoryInterface', 'App\Blog\PostRepository');
     }
 
     protected function listeners()
