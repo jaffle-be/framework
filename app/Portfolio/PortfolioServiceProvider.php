@@ -8,7 +8,7 @@ class PortfolioServiceProvider extends ServiceProvider
 
     public function register()
     {
-
+        $this->app->bind('App\Portfolio\PortfolioRepositoryInterface', 'App\Portfolio\PortfolioRepository');
     }
 
     protected function listeners()
