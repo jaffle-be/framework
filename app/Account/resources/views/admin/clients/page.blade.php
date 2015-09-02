@@ -23,10 +23,10 @@
                         <li ng-repeat="client in vm.clients">
 
                             <div class="row">
-                            <span class="col-xs-6">
+                            <span class="col-xs-10">
                                 <img ng-show="client.images" ng-src="@{{ client.images.thumbnail('x90') }}" alt=""> @{{ client.name }}
                             </span>
-                            <span class="col-xs-6 text-right"><button class="btn btn-info" ng-click="vm.startEditing(client)">
+                            <span class="col-xs-2 text-right"><button class="btn btn-info" ng-click="vm.startEditing(client)">
                                     <i class="fa fa-pencil"></i></button>
                             </span>
                             </div>
