@@ -50,8 +50,6 @@ class ThemeMailer implements MailContract{
      */
     public function send($view, array $data, $callback)
     {
-        $theme = $this->theme->name();
-
         $data = array_merge($data, [
             'theme' => $this->theme,
             'theme_template' => $this->resolveThemeTemplate()
