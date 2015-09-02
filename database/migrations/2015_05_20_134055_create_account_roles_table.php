@@ -17,7 +17,6 @@ class CreateAccountRolesTable extends Migration
             $table->increments('id');
             $table->integer('account_id', false, true);
             $table->foreign('account_id', 'account_membership_roles_to_account')->references('id')->on('accounts')->onDelete('cascade');
-            $table->string('name');
             $table->timestamps();
         });
 
