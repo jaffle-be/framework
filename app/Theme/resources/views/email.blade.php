@@ -1,1 +1,0 @@
-@include($theme->name . '::emails.layout.' . $theme_template)

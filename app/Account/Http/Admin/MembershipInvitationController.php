@@ -34,7 +34,7 @@ class MembershipInvitationController extends AdminController
         $mailer->send('account::admin.members.invitation.email', ['invitation' => $invitation], function ($message) use ($invitation, $account, $lang) {
             $message->to($invitation->email);
             $message->from($account->contactInformation->first()->email);
-            $message->subject($lang->get('account::members.you-are-invited'));
+            $message->subject($lang->get('account::admin.users.you-are-invited'));
         });
 
         return $invitation;

@@ -17,3 +17,11 @@ Breadcrumbs::register('store.team.show', function($breadcrumbs, $team){
     $breadcrumbs->push($member->name, route('store.team.show'));
 
 });
+
+
+Breadcrumbs::register('store.api.admin.account.members.invitation.store', function($breadcrumbs){
+
+    $breadcrumbs->parent('store.home');
+    $breadcrumbs->push(Lang::get('account::admin.users.invitation'));
+
+});

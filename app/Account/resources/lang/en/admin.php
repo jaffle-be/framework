@@ -30,13 +30,16 @@ return [
     ],
 
     'users'   => [
-        'email'       => 'email',
-        'invite'      => 'invite',
-        'overview'    => 'overview',
-        'send'        => 'send',
-        'send-invite' => 'send invitation',
-        'since'       => 'since',
-        'accept'      => 'accept',
+        'email'           => 'email',
+        'invite'          => 'invite',
+        'invitation'      => 'Invitation',
+        'invitation-text' => "You are invited to join. Click the link, fill in your credentials and go!",
+        'you-are-invited' => "You are invited to join",
+        'overview'        => 'overview',
+        'send'            => 'send',
+        'send-invite'     => 'send invitation',
+        'since'           => 'since',
+        'accept'          => 'accept',
     ],
 
 ];

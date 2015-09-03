@@ -1,12 +1,16 @@
-@extends('theme::email')
+@extends(Theme::email())
 
 @section('content')
 
     <div class="container">
 
-        {{ Lang::get('account::users.invite') }}
+        <div class="content-sm text-center">
 
-        <a class="btn btn-primary btn-lg" href="{{ route('store.auth.invitation.show', $invitation->token) }}">{{ Lang::get('account::users.accept') }}</a>
+            <p class="margin-bottom-40">{{ Lang::get('account::admin.users.invitation-text') }}</p>
+
+            <a class="btn btn-u btn-lg" href="{{ route('store.auth.invitation.show', $invitation->token) }}">{{ Lang::get('account::admin.users.accept') }}</a>
+
+        </div>
 
     </div>
 

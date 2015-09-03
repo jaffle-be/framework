@@ -53,6 +53,18 @@ class ThemeManager
         }
     }
 
+    public function email()
+    {
+        $theme = $this->current();
+
+        if(!$theme)
+        {
+            throw new Exception('Need a theme set to be able to send emails');
+        }
+
+        return ucfirst(strtolower($theme->name)) . '::' . strtolower($theme->name) . '-email';
+    }
+
     public function name()
     {
         return $this->current() ? $this->current()->name : null;
