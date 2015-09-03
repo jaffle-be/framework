@@ -28,7 +28,7 @@ class AccountManager
     {
         //this alias should be set using your apache or nginx config.
         //we set the default to our own application.
-        $subdomain = env('APP_ALIAS', 'digiredo');
+        $subdomain = env('APP_ALIAS');
 
         $this->account = $this->repo->findByAlias($subdomain);
 
