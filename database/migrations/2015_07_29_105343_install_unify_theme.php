@@ -357,7 +357,6 @@ class InstallUnifyTheme extends ThemeInstallationMigration
 
             ['value' => 'header_default'],
             ['value' => 'header_v1'],
-            ['value' => 'header_v2'],
             ['value' => 'header_v3'],
             ['value' => 'header_v4'],
             ['value' => 'header_v5'],
