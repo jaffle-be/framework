@@ -10,5 +10,5 @@ Breadcrumbs::register('store.portfolio.index', function($breadcrumbs){
 
 Breadcrumbs::register('store.portfolio.show', function($breadcrumbs, Project $project){
     $breadcrumbs->parent('store.portfolio.index');
-    $breadcrumbs->push($project->title, route('store.portfolio.index'));
+    $breadcrumbs->push('Project', route('store.portfolio.index'));
 });
