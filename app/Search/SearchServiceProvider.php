@@ -4,6 +4,7 @@ namespace App\Search;
 
 use App\System\ServiceProvider;
 use Elasticsearch\Client;
+use Elasticsearch\ClientBuilder;
 
 class SearchServiceProvider extends ServiceProvider
 {
@@ -40,7 +41,9 @@ class SearchServiceProvider extends ServiceProvider
 
             $config = new Config(config('search'));
 
-            $client = new Client(array_only(config('search'), ['hosts']));
+            $client = ClientBuilder::create()
+                ->setHosts(config('search.hosts'))
+                ->build();
 
             $service = new SearchService($app, $client, $config);
 
