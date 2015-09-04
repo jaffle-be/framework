@@ -1,5 +1,5 @@
 <?php
 
 return [
-    'breadcrumb' => 'contact us',
+    'breadcrumb' => 'Contact',
 ];
