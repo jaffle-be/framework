@@ -29,7 +29,7 @@ class TeamController extends Controller
     {
         $user = $user->find($team);
 
-        $user = $user->load(['projects', 'projects.images']);
+        $user = $user->load(['images', 'socialLinks', 'skills', 'projects', 'projects.images']);
 
         return $this->theme->render('team.detail', ['member' => $user]);
     }
