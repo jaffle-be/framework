@@ -20,7 +20,7 @@ class Signup extends Job implements SelfHandling
 
     protected $user;
 
-    public function __construct($email, $password, MembershipInvitation $invitation = null, User $user)
+    public function __construct($email, $password, MembershipInvitation $invitation = null, User $user = null)
     {
         $this->email = $email;
         $this->password = $password;
@@ -33,7 +33,7 @@ class Signup extends Job implements SelfHandling
         $connection = $user->getConnection();
         $connection->beginTransaction();
 
-        //we allready have a user with this email.
+        //we already have a user with this email.
         try {
 
             if (!$this->user) {
