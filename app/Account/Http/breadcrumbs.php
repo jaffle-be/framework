@@ -9,13 +9,10 @@ Breadcrumbs::register('store.team.index', function($breadcrumbs){
 
 });
 
-Breadcrumbs::register('store.team.show', function($breadcrumbs, $team){
-
-    $member = User::find($team);
+Breadcrumbs::register('store.team.show', function($breadcrumbs){
 
     $breadcrumbs->parent('store.team.index');
-    $breadcrumbs->push($member->name, route('store.team.show'));
-
+    $breadcrumbs->push('Member', route('store.team.show'));
 });
 
 
