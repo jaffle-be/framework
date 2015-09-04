@@ -35,6 +35,10 @@ class InstallUnifyThemeWidgets extends ThemeSettingMigration
             'nl' => 'Stuk voor stuk worden projecten met de nodige zorg en stiptheid aan de klant afgeleverd. Hieronder zie je enkele resultaten van mensen die elk door hun passie uit te voeren samen werken aan een compleet project',
             'en' => 'Each project will be handled with extreme care and deadlines will be met 99% of the time. Below you can see some of the results our team of passionate people created'
         ],
+        'widgetsPortfolioSeeAll'            => [
+            'nl' => 'Bekijk alle projecten',
+            'en' => 'See all projects'
+        ],
         'widgetsRecentPostsTitle'          => [
             'nl' => 'We schrijven ook af en toe iets',
             'en' => 'We also like to write down our thoughts'
@@ -258,6 +262,18 @@ class InstallUnifyThemeWidgets extends ThemeSettingMigration
             'en' => [
                 'name' => 'portfolio intro',
                 'description' => 'portfolio intro',
+            ],
+        ],
+        [
+            'key' => 'widgetsPortfolioSeeAll',
+            'type' => 'text',
+            'nl' => [
+                'name' => 'portfolio see all',
+                'description' => 'portfolio see all',
+            ],
+            'en' => [
+                'name' => 'portfolio see all',
+                'description' => 'portfolio see all',
             ],
         ],
         [
