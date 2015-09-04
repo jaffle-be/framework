@@ -175,16 +175,6 @@ class InstallUnifyThemeWidgets extends ThemeSettingMigration
             'en' => 'crazy function (CEO)'
         ],
 
-        'widgetsMasterSliderTitle' => [
-            'nl' => 'Je eigen website een beetje moe?',
-            'en' => 'Tired of your current website?',
-        ],
-
-        'widgetsMasterSliderText' => [
-            'nl' => 'Laat je soigneren bij digiredo',
-            'en' => 'Be amazed by digiredo',
-        ],
-
     ];
 
     protected $settings = [
@@ -692,30 +682,6 @@ class InstallUnifyThemeWidgets extends ThemeSettingMigration
             ],
         ],
 
-        [
-            'key' => 'widgetsMasterSliderTitle',
-            'type' => 'string',
-            'nl' => [
-                'name' => 'master slider title',
-                'description' => 'master slider title',
-            ],
-            'en' => [
-                'name' => 'master slider title',
-                'description' => 'master slider title',
-            ],
-        ],
-        [
-            'key' => 'widgetsMasterSliderText',
-            'type' => 'text',
-            'nl' => [
-                'name' => 'master slider text',
-                'description' => 'master slider text',
-            ],
-            'en' => [
-                'name' => 'master slider text',
-                'description' => 'master slider text',
-            ],
-        ],
     ];
 
     protected $options = [
