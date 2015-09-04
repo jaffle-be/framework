@@ -178,6 +178,15 @@ class InstallUnifyThemeWidgets extends ThemeSettingMigration
             'nl' => 'zotte functie (CEO)',
             'en' => 'crazy function (CEO)'
         ],
+        'widgetsCalloutTitle'      => [
+            'nl' => 'Nog vragen? Je wil erin vliegen?',
+            'en' => 'Still have questions? Want to start?'
+        ],
+        'widgetsCalloutButton'      => [
+            'nl' => 'Laat het weten',
+            'en' => 'Let us know'
+        ],
+
 
     ];
 
@@ -695,6 +704,30 @@ class InstallUnifyThemeWidgets extends ThemeSettingMigration
             'en' => [
                 'name' => 'testimonial function 2',
                 'description' => 'testimonial function 2',
+            ],
+        ],
+        [
+            'key' => 'widgetsCalloutTitle',
+            'type' => 'string',
+            'nl' => [
+                'name' => 'callout title',
+                'description' => 'callout title',
+            ],
+            'en' => [
+                'name' => 'callout title',
+                'description' => 'callout title',
+            ],
+        ],
+        [
+            'key' => 'widgetsCalloutButton',
+            'type' => 'string',
+            'nl' => [
+                'name' => 'callout button',
+                'description' => 'callout button',
+            ],
+            'en' => [
+                'name' => 'callout button',
+                'description' => 'callout button',
             ],
         ],
 
