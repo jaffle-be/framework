@@ -33,14 +33,10 @@ class SendConfirmationEmail extends Job implements SelfHandling, ShouldBeQueued
         $this->account = $manager->account();
     }
 
-    /**
-     * @param ThemeMailer              $mail
-     * @param Translator               $lang
-     * @param TokenRepositoryInterface $tokens
-     * @param AccountManager           $account
-     */
     public function handle(ThemeMailer $mail, Translator $lang, TokenRepositoryInterface $tokens)
     {
+        $this->setup();
+
         try{
             $token = $tokens->createNewToken(Token::TYPE_CONFIRMATION, $this->user->email);
 
