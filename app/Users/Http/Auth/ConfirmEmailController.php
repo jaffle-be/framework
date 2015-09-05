@@ -1,5 +1,6 @@
 <?php namespace App\Users\Http\Auth;
 
+use App\Account\AccountManager;
 use App\System\Http\Controller;
 use App\Users\Auth\Commands\ConfirmEmail;
 use App\Users\Auth\Commands\SendConfirmationEmail;
@@ -33,12 +34,12 @@ class ConfirmEmailController extends Controller
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(Request $request, UserRepositoryInterface $users)
+    public function store(Request $request, UserRepositoryInterface $users, AccountManager $manager)
     {
         $user = $users->findUserByEmail($request->get('email'));
 
         if ($user) {
-            $this->dispatchFromArray(SendConfirmationEmail::class, ['user' => $user]);
+            $this->dispatchFromArray(SendConfirmationEmail::class, ['user' => $user, 'manager' => $manager]);
         }
 
         return redirect()->route('store.auth.signin.index')->withSuccess(Lang::get('users::front.request-handled'));
