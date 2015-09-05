@@ -1,17 +1,20 @@
 <?php namespace App\Jobs;
 
-abstract class Job {
+use Illuminate\Contracts\Config\Repository;
 
-    protected $alias;
+abstract class Job {
 
     protected $email_from;
 
     protected $email_from_name;
 
-    public function setup()
+    public function setupEmailConfig()
     {
-        putenv('APP_ALIAS=' . $this->job->alias());
-        putenv('EMAIL_FROM=' . $this->job->email_from());
-        putenv('EMAIL_FROM_NAME=' . $this->job->email_from_name());
+        /** @var Repository $config */
+        $config = app('config');
+
+        $config->set([
+            'mail.from' => ['address' => $this->job->email_from(), 'name' => $this->job->email_from_name()]
+        ]);
     }
 }
