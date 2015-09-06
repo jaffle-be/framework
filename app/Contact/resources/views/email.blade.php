@@ -9,15 +9,15 @@
 
         <tr>
             <td width="100%" bgcolor="#ffffff" style="padding: 20px;">
-                <strong>{{ Lang::get('contact::front.email.name') }}</strong>{{ $name }},<br>
-                <strong>{{ Lang::get('contact::front.email.email') }}</strong>{{$email}}<br><br>
+                <strong>{{ ucfirst(Lang::get('contact::front.email.name')) }}:</strong>&nbsp;{{ $name }},<br>
+                <strong>{{ ucfirst(Lang::get('contact::front.email.email')) }}:</strong>&nbsp;{{ $email }}<br><br>
 
-                <h4>{{ Lang::get('contact::front.email.subject') }}{{ $subject }}</h4>
-
-                <br>
-
-                <label style="display:block;">{{ Lang::get('contact::front.email.message') }}</label>
                 <p>
+                    <strong>{{ ucfirst(Lang::get('contact::front.email.subject')) }}:</strong>&nbsp;{{ $subject }}
+                </p>
+
+                <p>
+                    <strong>{{ ucfirst(Lang::get('contact::front.email.message')) }}</strong>:&nbsp;
                     {{ $contact_message }}
                 </p>
 

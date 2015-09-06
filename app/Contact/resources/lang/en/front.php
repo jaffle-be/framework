@@ -6,5 +6,7 @@ return [
         'intro' => 'Someone wants to contact us.',
         'subject' => 'subject',
         'message' => 'message',
+        'email' => 'email',
+        'name' => 'name',
     ]
 ];
