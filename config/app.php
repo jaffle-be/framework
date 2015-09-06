@@ -236,6 +236,7 @@ return [
         'Gravatar' => 'Thomaswelton\LaravelGravatar\Facades\Gravatar',
         'Breadcrumbs' => 'DaveJamesMiller\Breadcrumbs\Facade',
         'Newrelic' => 'Intouch\LaravelNewrelic\Facades\Newrelic',
+        'Captcha' => Mews\Captcha\Facades\Captcha::class,
 
     ],
 
