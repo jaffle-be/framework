@@ -15,4 +15,11 @@ class RedisJob extends \Illuminate\Queue\Jobs\RedisJob
         return Arr::get(json_decode($this->job, true), 'EMAIL_FROM_NAME');
     }
 
+    public function app_url()
+    {
+        app('log')->notice(Arr::get(json_decode($this->job, true), 'APP_URL'));
+
+        return Arr::get(json_decode($this->job, true), 'APP_URL');
+    }
+
 }

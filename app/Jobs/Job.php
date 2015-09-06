@@ -8,7 +8,7 @@ abstract class Job {
 
     protected $email_from_name;
 
-    public function setupEmailConfig()
+    public function setup()
     {
         /** @var Repository $config */
         $config = app('config');
@@ -16,5 +16,9 @@ abstract class Job {
         $config->set([
             'mail.from' => ['address' => $this->job->email_from(), 'name' => $this->job->email_from_name()]
         ]);
+
+        $config->set('app.url', $this->job->app_url());
+
+        app('url')->forceRootUrl($config->get('app.url'));
     }
 }

@@ -30,7 +30,9 @@ class RedisQueue extends \Illuminate\Queue\RedisQueue
 
         $payload = $this->setMeta($payload, 'EMAIL_FROM', env('EMAIL_FROM'));
 
-        return $this->setMeta($payload, 'EMAIL_FROM_NAME', env('EMAIL_FROM_NAME'));
+        $payload = $this->setMeta($payload, 'EMAIL_FROM', env('EMAIL_FROM'));
+
+        return $this->setMeta($payload, 'APP_URL', env('APP_URL'));
     }
 
     /**

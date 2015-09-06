@@ -6,6 +6,7 @@ use App\Users\Auth\Commands\ConfirmEmail;
 use App\Users\Auth\Commands\SendConfirmationEmail;
 use App\Users\Contracts\TokenRepositoryInterface;
 use App\Users\Contracts\UserRepositoryInterface;
+use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Http\Request;
 use Lang;
 
@@ -53,12 +54,17 @@ class ConfirmEmailController extends Controller
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function show($token, TokenRepositoryInterface $tokens)
+    public function show($token, TokenRepositoryInterface $tokens, Guard $guard)
     {
         $token = $tokens->findTokenByValue($token);
 
         if ($token) {
-            $this->dispatchFromArray(ConfirmEmail::class, ['token' => $token]);
+            $user = $this->dispatchFromArray(ConfirmEmail::class, ['token' => $token]);
+
+            if($user)
+            {
+                return redirect('admin/start');
+            }
         }
 
         return redirect()->route('store.home');

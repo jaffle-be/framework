@@ -36,6 +36,8 @@ class ConfirmEmail extends Job implements SelfHandling{
 
         //token can always be deleted
         $this->token->delete();
+
+        return $user;
     }
 
 }

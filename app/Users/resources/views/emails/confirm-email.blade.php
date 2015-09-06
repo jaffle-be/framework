@@ -30,7 +30,7 @@
                             <table align="center">
                                 <tr>
                                     <td valign="top" style="padding: 7px 15px; text-align: center; background-color: #74C52C;" class="center">
-                                        {!! Lang::get('users::emails.confirm-email.link', ['url' => route('store.auth.confirm-email.show', [$token->value]) ]) !!}
+                                        <a style="color: #fff; font-size: 12px; font-weight: bold; text-decoration: none; font-family: Arial, sans-serif; text-alight: center;" href="{{ route('store.auth.confirm-email.show', [$token->value]) }}">{{ Lang::get('users::emails.confirm-email.link') }}</a>
                                     </td>
                                 </tr>
                             </table>
@@ -44,15 +44,5 @@
     <!--End Discount -->
 
     <div style="height:15px">&nbsp;</div><!-- divider -->
-
-    <!-- Start Headliner-->
-    <table width="700" border="0" cellpadding="0" cellspacing="0" align="center" class="deviceWidth">
-        <tr>
-            <td valign="top" style="padding: 0px " class="center">
-                {{ Lang::get('users::emails.confirm-email.outro') }}
-            </td>
-        </tr>
-    </table>
-    <!-- Start Headliner-->
 
 @stop

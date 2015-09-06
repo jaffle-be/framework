@@ -23,7 +23,7 @@ class SigninController extends Controller
         $response = $this->dispatchFromArray(Signin::class, compact('credentials', 'remember_me'));
 
         if ($response instanceof User) {
-            return redirect('admin/start');//->route($this->routePrefix() . '.dash');
+            return redirect('admin/start');
         } else if (is_string($response) && $response == 'unconfirmed') {
             $route = route('store.auth.confirm-email.create', ['email' => $credentials['email']]);
 

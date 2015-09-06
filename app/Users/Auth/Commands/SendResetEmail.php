@@ -1,12 +1,13 @@
 <?php namespace App\Users\Auth\Commands;
 
+use App\Account\AccountManager;
 use App\Jobs\Job;
+use App\Theme\ThemeMailer;
 use App\Users\Auth\Tokens\Token;
 use App\Users\Contracts\TokenRepositoryInterface;
 use App\Users\Contracts\UserRepositoryInterface;
 use Exception;
 use Illuminate\Contracts\Bus\SelfHandling;
-use Illuminate\Contracts\Mail\Mailer;
 use Illuminate\Contracts\Queue\ShouldBeQueued;
 use Illuminate\Log\Writer;
 use Illuminate\Queue\InteractsWithQueue;
@@ -22,24 +23,30 @@ class SendResetEmail extends Job implements SelfHandling, ShouldBeQueued
      */
     protected $email;
 
+    protected $account;
+
     /**
      * Create a new command instance.
      *
      * @return void
      */
-    public function __construct($email)
+    public function __construct($email, AccountManager $manager)
     {
         $this->email = $email;
+
+        $this->account = $manager->account();
     }
 
     /**
-     * @param Mailer                   $mail
+     * @param ThemeMailer                   $mail
      * @param TokenRepositoryInterface $tokens
      * @param Translator               $lang
      * @param UserRepositoryInterface  $users
      */
-    public function handle(Mailer $mail, TokenRepositoryInterface $tokens, Translator $lang, UserRepositoryInterface $users, Writer $log)
+    public function handle(ThemeMailer $mail, TokenRepositoryInterface $tokens, Translator $lang, UserRepositoryInterface $users, Writer $log)
     {
+        $this->setup();
+
         try {
             $user = $users->findUserByEmail($this->email);
 
@@ -57,8 +64,10 @@ class SendResetEmail extends Job implements SelfHandling, ShouldBeQueued
 
                 $send = $mail->send('users::emails.reset-password', [
                     'user'  => $user,
-                    'token' => $token
+                    'token' => $token,
+                    'account' => $this->account,
                 ], function ($message) use ($user, $subject) {
+                    $message->from($this->job->email_from(), $this->job->email_from_name());
                     $message->to($user->email);
                     $message->subject($subject);
                 });
