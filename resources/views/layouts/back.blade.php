@@ -10,6 +10,7 @@
     <!-- Page title set in pageTitle directive -->
     <title page-title></title>
 
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&lang=en">
     <link id="loadBefore" href="{{ asset('/css/admin/main.css') }}" rel="stylesheet">
 
 

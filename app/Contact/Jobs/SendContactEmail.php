@@ -84,6 +84,7 @@ class SendContactEmail extends Job implements SelfHandling, ShouldBeQueued
         $payload = [
             'account' => $this->account,
             'contact_message' => $this->message,
+            'subject' => $subject,
             'email' => $this->email,
             'name' => $this->name
         ];
