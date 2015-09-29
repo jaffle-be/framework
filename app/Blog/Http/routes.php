@@ -25,6 +25,6 @@ Route::group([
         });
     });
 
-
-    Route::resource('blog', 'BlogController', ['only' => ['index', 'show']]);
+    Route::get('blog', ['uses' => 'BlogController@index', 'as' => 'blog.index']);
+    Route::get('blog/{post}', ['uses' => 'BlogController@show', 'as' => 'blog.show']);
 });

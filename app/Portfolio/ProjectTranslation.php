@@ -2,12 +2,15 @@
 
 use App\Search\Model\Searchable;
 use App\Search\Model\SearchableTrait;
+use App\System\Sluggable\Sluggable;
 use App\System\Translatable\TranslationModel;
+use Cviebrock\EloquentSluggable\SluggableInterface;
+use Cviebrock\EloquentSluggable\SluggableTrait;
 
-class ProjectTranslation extends TranslationModel implements Searchable
+class ProjectTranslation extends TranslationModel implements Searchable, SluggableInterface
 {
 
-    use SearchableTrait;
+    use SearchableTrait, Sluggable, SluggableTrait;
 
     protected $table = 'portfolio_project_translations';
 
@@ -18,6 +21,11 @@ class ProjectTranslation extends TranslationModel implements Searchable
     protected $casts = [
         'published' => 'boolean'
     ];
+
+    public function project()
+    {
+        return $this->belongsTo('App\Portfolio\Project');
+    }
 
     public static function bootProjectTranslationScopeFront()
     {

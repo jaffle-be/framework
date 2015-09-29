@@ -29,9 +29,11 @@ class RouteServiceProvider extends ServiceProvider
         $router->model('image', 'App\Media\Image');
         $router->model('tag', 'App\Tags\Tag');
         $router->model('blog', 'App\Blog\Post');
+        $router->model('post', 'App\Blog\PostTranslation');
         $router->model('address', 'App\Contact\Address');
         $router->model('account_contact_information', 'App\Account\AccountContactInformation');
         $router->model('portfolio', 'App\Portfolio\Project');
+        $router->model('project', 'App\Portfolio\ProjectTranslation');
         $router->model('membership', 'App\Account\Membership');
         $router->model('menu', 'App\Menu\Menu');
         $router->model('menu-item', 'App\Menu\MenuItem');

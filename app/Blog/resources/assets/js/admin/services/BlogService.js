@@ -39,7 +39,11 @@ angular.module('blog')
                     }
 
                     this.timeout = $timeout(function () {
-                        return destination.$update();
+                        return destination.$update(function(){
+                            _.each(post.translations, function(item, locale){
+                                item.slug = destination.translations[locale].slug
+                            });
+                        });
                     }, 400);
                 }
             };

@@ -164,6 +164,7 @@ return [
 
         //regular providers
         'DaveJamesMiller\Breadcrumbs\ServiceProvider',
+        'Cviebrock\EloquentSluggable\SluggableServiceProvider',
         'App\Menu\MenuServiceProvider',
         'App\Search\SearchServiceProvider',
 

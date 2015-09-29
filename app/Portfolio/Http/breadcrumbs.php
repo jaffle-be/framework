@@ -8,7 +8,7 @@ Breadcrumbs::register('store.portfolio.index', function($breadcrumbs){
 });
 
 
-Breadcrumbs::register('store.portfolio.show', function($breadcrumbs, Project $project){
+Breadcrumbs::register('store.portfolio.show', function($breadcrumbs){
     $breadcrumbs->parent('store.portfolio.index');
     $breadcrumbs->push('Project', route('store.portfolio.index'));
 });

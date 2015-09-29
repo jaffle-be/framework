@@ -48,15 +48,7 @@ class BlogTableSeeder extends Seeder
 
             for ($i = 0; $i < 40; $i++) {
 
-                $payload = array_merge([
-                    'slug_nl' => str_slug($this->nl->sentence() . rand(0, 1000000)),
-                    'slug_fr' => str_slug($this->fr->sentence() . rand(0, 1000000)),
-                    'slug_en' => str_slug($this->en->sentence() . rand(0, 1000000)),
-                    'slug_de' => str_slug($this->de->sentence() . rand(0, 1000000)),
-
-                ], $this->texts($accountid));
-
-                $post = new Post($payload);
+                $post = new Post($this->texts($accountid));
 
                 $post->user_id = 1;
                 $post->account_id = $account->id;

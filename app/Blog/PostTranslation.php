@@ -4,16 +4,24 @@ use App\Search\Model\Searchable;
 use App\Search\Model\SearchableTrait;
 use App\System\Translatable\TranslationModel;
 use Carbon\Carbon;
+use Cviebrock\EloquentSluggable\SluggableInterface;
+use App\System\Sluggable\Sluggable;
+use Cviebrock\EloquentSluggable\SluggableTrait;
 use Illuminate\Http\Request;
 
-class PostTranslation extends TranslationModel implements Searchable
+class PostTranslation extends TranslationModel implements Searchable, SluggableInterface
 {
 
-    use SearchableTrait;
+    use SearchableTrait, SluggableTrait, Sluggable;
 
     protected $table = 'post_translations';
 
     protected $fillable = ['title', 'extract', 'content', 'publish_at'];
+
+    protected $sluggable = [
+        'build_from' => 'title',
+        'save_to'    => 'slug',
+    ];
 
     protected $dates = ['publish_at'];
 

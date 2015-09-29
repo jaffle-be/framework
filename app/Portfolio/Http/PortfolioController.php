@@ -1,6 +1,7 @@
 <?php namespace App\Portfolio\Http;
 
 use App\Portfolio\Project;
+use App\Portfolio\ProjectTranslation;
 use App\System\Http\Controller;
 use App\Tags\Tag;
 
@@ -24,26 +25,28 @@ class PortfolioController extends Controller
         return $this->theme->render('portfolio.index', ['projects' => $projects, 'options' => $options, 'tags' => $tags]);
     }
 
-    public function show(Project $portfolio)
+    public function show(ProjectTranslation $portfolio)
     {
         $relations = $this->relations();
 
-        $portfolio->load($relations);
+        $project = $portfolio->project;
 
-        $tags = $portfolio->tags;
+        $project->load($relations);
 
-        $relatedProjects = $portfolio->with($relations)
+        $tags = $project->tags;
+
+        $relatedProjects = $project->with($relations)
             ->whereHas('tags', function ($query) use ($tags) {
                 $query->whereIn('id', $tags->lists('id')->toArray());
             })
-            ->where('id', '<>', $portfolio->id)
+            ->where('id', '<>', $project->id)
             ->orderBy('date', 'desc')
             ->take(4)
             ->get();
 
         if ($relatedProjects->count() < 4) {
-            $extra = $portfolio->with($relations)
-                ->where('id', '<>', $portfolio->id)
+            $extra = $project->with($relations)
+                ->where('id', '<>', $project->id)
                 ->orderBy('date', 'desc')
                 ->take(4)
                 ->get();
@@ -53,7 +56,7 @@ class PortfolioController extends Controller
             }
         }
 
-        return $this->theme->render('portfolio.show', ['project' => $portfolio, 'relatedProjects' => $relatedProjects]);
+        return $this->theme->render('portfolio.show', ['project' => $project, 'relatedProjects' => $relatedProjects]);
     }
 
     /**

@@ -20,7 +20,6 @@ class Post extends Model implements StoresMedia, Searchable, StoresTags
     use Taggable;
     use StoringMedia;
     use ModelAccountResource;
-    use Sluggable;
     use SearchableTrait;
 
     public static function bootPostScopeFront()
@@ -43,7 +42,7 @@ class Post extends Model implements StoresMedia, Searchable, StoresTags
 
     protected $media = '{account}/blog';
 
-    protected $fillable = ['account_id', 'title', 'extract', 'content', 'publish_at', 'slug_nl', 'slug_fr', 'slug_en', 'slug_de'];
+    protected $fillable = ['account_id', 'title', 'extract', 'content', 'publish_at'];
 
     protected $translatedAttributes = ['title', 'extract', 'content', 'publish_at'];
 

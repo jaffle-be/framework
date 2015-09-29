@@ -20,10 +20,6 @@ class CreatePostsTable extends Migration
 
             $table->integer('user_id', false, true);
             $table->foreign('user_id', 'post_to_user')->references('id')->on('users')->onDelete('cascade');
-            $table->string('slug_nl', 200);
-            $table->string('slug_fr', 200);
-            $table->string('slug_en', 200);
-            $table->string('slug_de', 200);
             $table->timestamps();
         });
 
@@ -33,6 +29,7 @@ class CreatePostsTable extends Migration
             $table->foreign('post_id', 'post_translation_to_post')->references('id')->on('posts')->onDelete('cascade');
             $table->string('locale');
             $table->string('title');
+            $table->string('slug')->nullable();
             $table->text('extract');
             $table->text('content');
             $table->date('publish_at')->nullable()->index();

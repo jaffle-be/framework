@@ -24,6 +24,7 @@ Route::group([
     });
 
 
-    Route::resource('portfolio', 'PortfolioController', ['only' => ['index', 'show']]);
+    Route::get('portfolio', ['uses' => 'PortfolioController@index', 'as' => 'portfolio.index']);
+    Route::get('portfolio/{project}', ['uses' => 'PortfolioController@show', 'as' => 'portfolio.show']);
 
 });
