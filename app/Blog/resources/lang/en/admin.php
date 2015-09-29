@@ -8,17 +8,18 @@ return [
         'select-none' => 'none',
     ],
 
-    'post' => [
-        'content'        => 'content',
-        'create'         => 'new post',
-        'details'        => 'details',
-        'drafting'       => 'drafting',
-        'extract'        => 'extract',
-        'images'         => 'images',
-        'index'          => 'overview',
-        'tags'           => 'tags',
-        'title'          => 'title',
+    'post'    => [
+        'content'    => 'content',
+        'create'     => 'new post',
+        'details'    => 'details',
+        'drafting'   => 'drafting',
+        'extract'    => 'extract',
+        'images'     => 'images',
+        'index'      => 'overview',
+        'tags'       => 'tags',
+        'title'      => 'title',
+        'slug'       => 'slug',
+        'publish_at' => 'publish at',
     ],
-
 
 ];
