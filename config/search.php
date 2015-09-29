@@ -20,7 +20,7 @@ return [
      * All the hosts that are in the cluster.
      */
     'hosts'    => [
-        env('ES_HOST'),
+        env('ES_HOST', 'localhost:9200'),
     ],
 
     /**

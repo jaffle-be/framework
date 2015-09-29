@@ -7,9 +7,11 @@ use Elasticsearch\Client;
 use Exception;
 use Illuminate\Container\Container;
 use Illuminate\Events\Dispatcher;
+use Illuminate\Support\Collection;
 
 class SearchService implements SearchServiceInterface
 {
+
     use SearchResponder;
 
     /**
@@ -236,7 +238,7 @@ class SearchService implements SearchServiceInterface
         $type = clone $type;
 
         $params = $this->getBaseParams($type);
-        
+
         $type->load(array_keys($this->config->getWith($type->getSearchableType())));
 
         $params = array_merge($params, [
@@ -256,11 +258,48 @@ class SearchService implements SearchServiceInterface
      *
      * @return mixed
      */
-    public function search($type, array $params, $with = [], $paginated = true)
+    public function search($type, array $params, $with = [], $paginated = 15, \Closure $highlighter = null)
+    {
+        if (isset($params['body']['sort'])) {
+            $params = $this->cleanSort($params);
+        }
+
+        if ($paginated) {
+            $params['from'] = (app('request')->get('page', 1) - 1) * $paginated;
+            $params['size'] = $paginated;
+        }
+
+        $result = $this->client->search($params);
+
+        if($highlighter)
+        {
+            //if we have a highlighter, we simply loop through the results and overwrite the original field.
+            //this is dangerous though, a dev should not be using Elasticsearch results to manipulate data.
+            //data should always be manipulated through your relational database.
+            foreach($result['hits']['hits'] as &$hit)
+            {
+                if(isset($hit['highlight']))
+                {
+                    $hit["_source"] = $highlighter($hit['_source'], $hit['highlight']);
+                }
+
+            }
+        }
+
+        return $this->response($result, $with, $paginated, $this->container->make($this->config->getClass($type)));
+    }
+
+    public function aggregate(array $params)
     {
         $result = $this->client->search($params);
 
-        return $this->response($result, $with, $paginated, $this->container->make($this->config->getClass($type)));
+        //the resultset contains an array of aggregations.
+        //if we only have one aggregation, we return an aggregation result,
+        //if we have multiple, we'll return a collection of aggregation results.
+        //but its always an array, so we can implement the same logic at first
+        $aggregations = $result['aggregations'];
+
+        return $aggregations;
     }
 
     public function getPaginator()
@@ -404,6 +443,53 @@ class SearchService implements SearchServiceInterface
             'id'    => $type->getSearchableId(),
             'body'  => $type->getSearchableDocument(),
         ];
+    }
+
+    public function getClient()
+    {
+        return $this->client;
+    }
+
+    protected function cleanSort($params)
+    {
+        //sorts best have a unmapped_type parameter, so queries won't fail for empty document sets.
+        $sort = $params['body']['sort'];
+
+        foreach ($sort as $key => $sorting) {
+            //the initial value of sorting is always an array
+            //either
+            //['column_name' => 'sort_order']
+            //or a complex one
+            //['column_name' => [array]]
+
+            $value_keys = array_keys($sorting);
+
+            $column = array_pop($value_keys);
+
+            if (is_array($sorting[$column])) {
+                //the sorting is already set up as a object/array value (depends if you look at it from json or php)
+                //so we only need to verify the existence of the unmapped_type parameter.
+                if (!isset($sorting[$column]['unmapped_type'])) {
+                    //lets take boolean, as its probably one of the fastest.
+                    $sorting[$column]['unmapped_type'] = 'boolean';
+                }
+            } else {
+                //the value represents the order in which to sort.
+                $sorting[$column] = [
+                    "order"         => $sorting[$column],
+                    "unmapped_type" => 'boolean'
+                ];
+            }
+
+            //update the original array
+            $sort[$key] = $sorting;
+        }
+
+        //put the local reference back into the complete array
+        $params['body']['sort'] = $sort;
+
+        //return the entire array as a result.
+        return $params;
     }
 
 }

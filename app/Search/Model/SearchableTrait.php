@@ -4,7 +4,6 @@ namespace App\Search\Model;
 use App;
 use App\Search\Query\Query;
 use App\Search\SearchServiceInterface;
-use Elastica\Search;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\Relation;
 
@@ -97,13 +96,11 @@ trait SearchableTrait
     }
 
     /**
-     * @return Query
+     * @return SearchServiceInterface
      */
     public function search()
     {
-        $this->getSearchableService();
-
-        return new Search();
+        return $this->getSearchableService();
     }
 
     /**
@@ -260,7 +257,17 @@ trait SearchableTrait
     {
         $class = $build['class'];
 
-        return new $class($relation_data);
+        $class = new $class();
+
+        $class->unguard();
+
+        $instance = $class->newInstance();
+
+        $instance->fill($relation_data);
+
+        $class->reguard();
+
+        return $instance;
     }
 
     protected function searchableShiftTranslations(array $data)

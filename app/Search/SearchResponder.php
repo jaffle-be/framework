@@ -1,6 +1,7 @@
 <?php namespace App\Search;
 
 use App\Search\Model\Searchable;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Pagination\Paginator;
 
