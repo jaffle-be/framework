@@ -56,7 +56,9 @@ class PostFrontPresenter extends BasePresenter
             $float = $alignment[$key];
 
             $images[] = [
-                'counter' => $key,
+                //always leave the first image for blog page detail layout
+                //to use it
+                'counter' => $key + 1,
                 'pattern' => $pattern,
                 'float'   => str_replace(':', '.pull-', $float)
             ];
