@@ -4,6 +4,8 @@ use App\Media\StoresMedia;
 use App\Media\StoringMedia;
 use App\Search\Model\Searchable;
 use App\Search\Model\SearchableTrait;
+use App\System\Presenter\PresentableEntity;
+use App\System\Presenter\PresentableTrait;
 use App\System\Scopes\ModelAccountResource;
 use App\System\Sluggable\Sluggable;
 use App\System\Translatable\Translatable;
@@ -13,9 +15,10 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 
-class Post extends Model implements StoresMedia, Searchable, StoresTags
+class Post extends Model implements StoresMedia, Searchable, StoresTags, PresentableEntity
 {
 
+    use PresentableTrait;
     use Translatable;
     use Taggable;
     use StoringMedia;
@@ -47,6 +50,8 @@ class Post extends Model implements StoresMedia, Searchable, StoresTags
     protected $translatedAttributes = ['title', 'extract', 'content', 'publish_at'];
 
     protected $hidden = ['title', 'extract', 'content', 'publish_at'];
+
+    protected $presenter = 'App\Blog\Presenter\PostFrontPresenter';
 
     protected static $searchableMapping = [
         'created_at' => [

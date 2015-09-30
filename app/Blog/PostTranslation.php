@@ -2,10 +2,9 @@
 
 use App\Search\Model\Searchable;
 use App\Search\Model\SearchableTrait;
-use App\System\Translatable\TranslationModel;
-use Carbon\Carbon;
-use Cviebrock\EloquentSluggable\SluggableInterface;
 use App\System\Sluggable\Sluggable;
+use App\System\Translatable\TranslationModel;
+use Cviebrock\EloquentSluggable\SluggableInterface;
 use Cviebrock\EloquentSluggable\SluggableTrait;
 use Illuminate\Http\Request;
 
