@@ -7,6 +7,7 @@ use App\System\Queue\RedisConnector;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Factory;
 use Blade;
+use Webuni\CommonMark\AttributesExtension\AttributesExtension;
 
 class SystemServiceProvider extends ServiceProvider
 {
@@ -41,6 +42,11 @@ class SystemServiceProvider extends ServiceProvider
 
         $this->app->booted(function ($app) {
             $app['newrelic']->setAppName(env('APP_NAME'));
+        });
+
+        $this->app->booted(function($app)
+        {
+            $app['markdown.environment']->addExtension(new AttributesExtension());
         });
     }
 
