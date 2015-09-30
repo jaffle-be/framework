@@ -16,10 +16,6 @@ class InstallUnifyThemeBlog extends ThemeSettingMigration
             'en' => "What happens at digiredo, stays at digiredo",
             'nl' => "Wat er bij ons gebeurt"
         ],
-        'blogMainTitleDetail' => [
-            'en' => "This one was particularly special",
-            'nl' => "Nieuws"
-        ],
         'blogSidebarRecentPostsTitle' => [
             'en' => 'Recent posts',
             'nl' => 'Laatste nieuws',
@@ -96,27 +92,6 @@ class InstallUnifyThemeBlog extends ThemeSettingMigration
             'en'   => [
                 'name'        => 'blog main title overview',
                 'explanation' => 'blog main title overview'
-            ],
-        ],
-
-        [
-            'key' => 'blogMainTitleDetail',
-            'type' => 'string',
-            'nl'   => [
-                'name'        => 'blog main title detail',
-                'explanation' => 'blog main title detail'
-            ],
-            'fr'   => [
-                'name'        => 'blog main title detail',
-                'explanation' => 'blog main title detail'
-            ],
-            'de'   => [
-                'name'        => 'blog main title detail',
-                'explanation' => 'blog main title detail'
-            ],
-            'en'   => [
-                'name'        => 'blog main title detail',
-                'explanation' => 'blog main title detail'
             ],
         ],
 

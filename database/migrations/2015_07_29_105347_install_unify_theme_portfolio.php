@@ -15,10 +15,6 @@ class InstallUnifyThemePortfolio extends ThemeSettingMigration
             'nl' => "Wat we allemaal gemaakt hebben",
             'en' => "What we've been creating",
         ],
-        'portfolioMainTitleDetail' => [
-            'nl' => "Dus je wil meer weten over dit project",
-            'en' => "So you wanne learn more about this",
-        ],
         'portfolioProjectDetails' => [
             'nl' => "De reutemeteut",
             'en' => "The details",
@@ -113,28 +109,6 @@ class InstallUnifyThemePortfolio extends ThemeSettingMigration
             'en'   => [
                 'name'        => 'portfolio main title overview',
                 'explanation' => 'portfolio main title overview'
-            ],
-        ],
-
-
-        [
-            'key' => 'portfolioMainTitleDetail',
-            'type' => 'string',
-            'nl'   => [
-                'name'        => 'portfolio main title detail',
-                'explanation' => 'portfolio main title detail'
-            ],
-            'fr'   => [
-                'name'        => 'portfolio main title detail',
-                'explanation' => 'portfolio main title detail'
-            ],
-            'de'   => [
-                'name'        => 'portfolio main title detail',
-                'explanation' => 'portfolio main title detail'
-            ],
-            'en'   => [
-                'name'        => 'portfolio main title detail',
-                'explanation' => 'portfolio main title detail'
             ],
         ],
 
