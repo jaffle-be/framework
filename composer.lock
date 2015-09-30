@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "49ebd6b20d0ebd00cfdfd31f5b7d47e2",
+    "hash": "0d55dd68055a564e63115392a3cc28e7",
     "packages": [
         {
             "name": "barryvdh/laravel-debugbar",
@@ -3033,6 +3033,61 @@
                 "environment"
             ],
             "time": "2015-05-30 15:59:26"
+        },
+        {
+            "name": "webuni/commonmark-attributes-extension",
+            "version": "0.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/webuni/commonmark-attributes-extension.git",
+                "reference": "94aa18b444e0ffba256010e98abc7a9aa99ad22f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/webuni/commonmark-attributes-extension/zipball/94aa18b444e0ffba256010e98abc7a9aa99ad22f",
+                "reference": "94aa18b444e0ffba256010e98abc7a9aa99ad22f",
+                "shasum": ""
+            },
+            "require": {
+                "league/commonmark": "^0.11",
+                "php": ">=5.4"
+            },
+            "require-dev": {
+                "fabpot/php-cs-fixer": "^1.9",
+                "phpunit/phpunit": "^4.3",
+                "symfony/var-dumper": "^2.7",
+                "webuni/commonmark-table-extension": "~0.3"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "0.3-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Webuni\\CommonMark\\AttributesExtension\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Martin Hasoň",
+                    "email": "martin.hason@gmail.com",
+                    "role": "Lead Developer"
+                }
+            ],
+            "description": "The attributes extension adds a syntax to define attributes on the various HTML elements in CommonMark PHP implementation.",
+            "homepage": "https://github.com/webuni/commonmark-attributes-extension",
+            "keywords": [
+                "attributes",
+                "commonmark",
+                "markdown"
+            ],
+            "time": "2015-09-26 10:26:05"
         }
     ],
     "packages-dev": [
