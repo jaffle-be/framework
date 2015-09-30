@@ -44,7 +44,6 @@
 <script src=" {{ asset('/js/admin/angular-idle/angular-idle.min.js') }}"></script>
 <script src=" {{ asset('/js/admin/angular-resource/angular-resource.min.js') }}"></script>
 <script src=" {{ asset('/js/admin/angular-cookies/angular-cookies.min.js') }}"></script>
-<script src=" {{ asset('/js/admin/angular-summernote/angular-summernote.min.js') }}"></script>
 <script src=" {{ asset('/js/admin/angularjs-toaster/toaster.min.js') }}"></script>
 
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBcPQMkol7H0kSnSSqYkJpRicrKfxWHC4o&libraries=places&v=3.exp"></script>

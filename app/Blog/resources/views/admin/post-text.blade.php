@@ -63,7 +63,7 @@
                 <label for="extract" class="control-label">{{ Lang::get('blog::admin.post.extract') }}</label>
 
                 <div>
-                    <div summernote config="vm.options.summernote" ng-model="vm.post.translations[vm.options.locale].extract" ng-change="vm.save()"></div>
+                    <textarea auto-size class="form-control autosize" ng-model="vm.post.translations[vm.options.locale].extract" ng-change="vm.save()"></textarea>
                 </div>
             </div>
 
@@ -71,7 +71,7 @@
                 <label for="content" class="control-label">{{ Lang::get('blog::admin.post.content') }}</label>
 
                 <div>
-                    <div summernote config="vm.options.summernote" ng-model="vm.post.translations[vm.options.locale].content" ng-change="vm.save()"></div>
+                    <textarea auto-size class="form-control autosize-lg" ng-model="vm.post.translations[vm.options.locale].content" ng-change="vm.save()"></textarea>
                 </div>
             </div>
 

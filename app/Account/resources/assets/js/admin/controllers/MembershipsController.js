@@ -5,12 +5,6 @@ angular.module('account')
         this.invitationErrors = [];
         this.memberships = [];
         this.editingTeams = false;
-        this.teamSummernote = {
-            toolbar: [
-                ['edit',['undo','redo']],
-                ['style', ['bold', 'italic', 'underline', 'superscript', 'subscript', 'strikethrough', 'clear']],
-            ]
-        }
 
         var me = this;
 

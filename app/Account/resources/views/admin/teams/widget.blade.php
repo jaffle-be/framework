@@ -46,7 +46,7 @@
                     </div>
                 </div>
 
-                <div summernote config="vm.options.summernote" ng-model="team.translations[vm.options.locale].description" ng-change="vm.updateTeam(team)"></div>
+                <textarea class="form-control autosize-lg" auto-size ng-model="team.translations[vm.options.locale].description" ng-change="vm.updateTeam(team)"></textarea>
             </li>
 
         </ul>

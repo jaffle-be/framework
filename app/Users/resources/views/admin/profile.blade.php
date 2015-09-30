@@ -40,7 +40,7 @@
 
                 <div class="form-group">
                 	<label for="bio" class="control-label"></label>
-                	<div summernote config="vm.options.summernote" id="bio" ng-model="vm.profile.translations[vm.options.locale].bio" ng-change="vm.save()"></div>
+                	<textarea class="form-control autosize-lg" auto-size id="bio" ng-model="vm.profile.translations[vm.options.locale].bio" ng-change="vm.save()"></textarea>
                 </div>
                 
                 <div class="form-group">

@@ -61,7 +61,7 @@
 
                 <div class="form-group">
                     <label for="">{{ Lang::get('users::admin.skill.description') }}</label>
-                    <div summernote config="vm.options.summernote" ng-model="skill.translations[vm.options.locale].description" ng-change="vm.updateSkill(skill)"></div>
+                    <textarea class="form-control autosize-lg" auto-size ng-model="skill.translations[vm.options.locale].description" ng-change="vm.updateSkill(skill)"></textarea>
                 </div>
 
             </div>

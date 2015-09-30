@@ -114,7 +114,7 @@ gulp.task('scripts', function () {
         'bower_components/moment/min/moment-with-locales.min.js',
         'bower_components/dropzone/dist/min/dropzone.min.js',
         'bower_components/lodash/lodash.min.js',
-        'bower_components/summernote/dist/summernote.min.js',
+        'bower_components/autosize/dist/autosize.min.js',
         'app/system/resources/assets/js/admin/core.js',
     ])
         .pipe(maps.init())
@@ -203,11 +203,6 @@ gulp.task('plugins', function () {
     gulp.src('bower_components/angular-cookies/angular-cookies.min.js')
         .pipe(copy('./public/js/admin/angular-cookies/', {
             prefix: 2
-        }));
-
-    gulp.src('bower_components/angular-summernote/dist/angular-summernote.min.js')
-        .pipe(copy('./public/js/admin/angular-summernote/', {
-            prefix: 3
         }));
 
     gulp.src('bower_components/angularjs-toaster/toaster.min.js')

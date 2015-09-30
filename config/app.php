@@ -171,6 +171,7 @@ return [
         Barryvdh\Debugbar\ServiceProvider::class,
         Mews\Captcha\CaptchaServiceProvider::class,
         Thomaswelton\LaravelGravatar\LaravelGravatarServiceProvider::class,
+        'GrahamCampbell\Markdown\MarkdownServiceProvider',
         'Intouch\LaravelNewrelic\NewrelicServiceProvider',
         'Intervention\Image\ImageServiceProvider',
         'App\Layout\LayoutServiceProvider',
@@ -238,6 +239,7 @@ return [
         'Breadcrumbs' => 'DaveJamesMiller\Breadcrumbs\Facade',
         'Newrelic' => 'Intouch\LaravelNewrelic\Facades\Newrelic',
         'Captcha' => Mews\Captcha\Facades\Captcha::class,
+        'Markdown' => 'GrahamCampbell\Markdown\Facades\Markdown'
 
     ],
 

@@ -28,7 +28,6 @@
     "lodash": "~3.9.3",
     "angular-typeahead": "~0.2.3",
     "ng-sortable": "~1.2.2",
-    "angular-summernote": "~0.4.0",
     "angularjs-toaster": "~0.4.15",
     "angular-smart-table": "~2.1.2"
   },

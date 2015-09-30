@@ -17,8 +17,6 @@ function system_options()
         return $item->activated == true;
     })->toArray();
 
-    $options['summernote'] = config('system.summernote');
-
     return json_encode($options);
 }
 

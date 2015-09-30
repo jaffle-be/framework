@@ -3,8 +3,6 @@
 @import (inline) "../../../../../../bower_components/animate.css/animate.min.css";
 @import (inline) "../../../../../../bower_components/dropzone/dist/min/dropzone.min.css";
 @import (inline) "../../../../../../bower_components/ng-sortable/dist/ng-sortable.min.css";
-@import (inline) '../../../../../../bower_components/summernote/dist/summernote.css';
-@import (inline) '../../../../../../bower_components/summernote/dist/summernote-bs3.css';
 @import (inline) '../../../../../../bower_components/angularjs-toaster/toaster.min.css';
 
 
@@ -26,13 +24,16 @@
 @fa-font-path: "/fonts";
 
 
+.autosize{
+  min-height: 150px;
+}
+
+.autosize-lg{
+  min-height: 250px;
+}
 
 .table.vertical tbody>tr>td{
   vertical-align: middle;
-}
-
-.note-editor{
-  border: 1px solid @panel-default-border;
 }
 
 //this is a port from the materialize css design framework.

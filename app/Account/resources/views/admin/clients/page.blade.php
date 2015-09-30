@@ -67,7 +67,7 @@
 
                         <label for="">{{ Lang::get('account::admin.clients.description') }}</label>
 
-                        <div summernote config="vm.options.summernote" type="text" class="form-control" ng-model="vm.client.translations[vm.options.locale].description" ng-change="vm.save()"></div>
+                        <textarea class="form-control autosize-lg" auto-size type="text" class="form-control" ng-model="vm.client.translations[vm.options.locale].description" ng-change="vm.save()"></textarea>
 
                     </div>
 
