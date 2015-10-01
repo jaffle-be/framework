@@ -41,10 +41,7 @@ class Image extends Model
     {
         if (!$this->relationLoaded('sizes')) {
 
-            $this->load(['sizes' => function($query) use ($width, $height){
-                $query->dimension($width, $height);
-            }]);
-
+            $this->load(['sizes']);
         }
 
         $thumbnail = $this->sizes->filter(function($item) use ($width, $height){
