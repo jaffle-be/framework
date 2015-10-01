@@ -40,7 +40,7 @@ class ImageController extends AdminController
         return [
             'translations',
             'sizes' => function ($query){
-                $query->dimension(340);
+                $query->dimension(512);
             }
         ];
     }
