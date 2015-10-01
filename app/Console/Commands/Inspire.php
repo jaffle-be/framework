@@ -3,30 +3,39 @@
 use Illuminate\Console\Command;
 use Illuminate\Foundation\Inspiring;
 
-class Inspire extends Command {
+class Inspire extends Command
+{
 
-	/**
-	 * The console command name.
-	 *
-	 * @var string
-	 */
-	protected $name = 'inspire';
+    /**
+     * The name and signature of the console command.
+     *
+     * @var string
+     */
+    protected $signature = 'inspire';
 
-	/**
-	 * The console command description.
-	 *
-	 * @var string
-	 */
-	protected $description = 'Display an inspiring quote';
+    /**
+     * The console command description.
+     *
+     * @var string
+     */
+    protected $description = 'Inspire me';
 
-	/**
-	 * Execute the console command.
-	 *
-	 * @return mixed
-	 */
-	public function handle()
-	{
-		$this->comment(PHP_EOL.Inspiring::quote().PHP_EOL);
-	}
+    /**
+     *
+     */
+    public function __construct()
+    {
+        parent::__construct();
+    }
+
+    /**
+     * Execute the console command.
+     *
+     * @return mixed
+     */
+    public function handle()
+    {
+        $this->comment(PHP_EOL . Inspiring::quote() . PHP_EOL);
+    }
 
 }
