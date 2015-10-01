@@ -10,7 +10,7 @@ return [
     'owners' => [
         'blog'      => App\Blog\Post::class,
         'portfolio' => App\Portfolio\Project::class,
-        'user' => App\Users\user::class,
+        'user' => App\Users\User::class,
         'account-logo' => App\Account\AccountLogo::class,
         'client' => App\Account\Client::class,
     ],
