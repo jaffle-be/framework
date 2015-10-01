@@ -30,7 +30,6 @@ class CreatePostsTable extends Migration
             $table->string('locale');
             $table->string('title');
             $table->string('slug')->nullable();
-            $table->text('extract');
             $table->text('content');
             $table->date('publish_at')->nullable()->index();
             $table->timestamps();

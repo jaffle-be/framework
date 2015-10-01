@@ -45,11 +45,11 @@ class Post extends Model implements StoresMedia, Searchable, StoresTags, Present
 
     protected $media = '{account}/blog';
 
-    protected $fillable = ['account_id', 'title', 'extract', 'content', 'publish_at'];
+    protected $fillable = ['account_id', 'title', 'content', 'publish_at'];
 
-    protected $translatedAttributes = ['title', 'extract', 'content', 'publish_at'];
+    protected $translatedAttributes = ['title', 'content', 'publish_at'];
 
-    protected $hidden = ['title', 'extract', 'content', 'publish_at'];
+    protected $hidden = ['title', 'content', 'publish_at'];
 
     protected $presenter = 'App\Blog\Presenter\PostFrontPresenter';
 

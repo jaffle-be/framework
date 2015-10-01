@@ -15,7 +15,7 @@ class PostTranslation extends TranslationModel implements Searchable, SluggableI
 
     protected $table = 'post_translations';
 
-    protected $fillable = ['title', 'extract', 'content', 'publish_at'];
+    protected $fillable = ['title', 'content', 'publish_at'];
 
     protected $sluggable = [
         'build_from' => 'title',

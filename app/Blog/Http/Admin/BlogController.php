@@ -24,7 +24,6 @@ class BlogController extends AdminController
                 $q->where('locale', $locale);
                 $q->where(function ($q) use ($value) {
                     $q->where('title', 'like', '%' . $value . '%')
-                        ->orWhere('extract', 'like', '%' . $value . '%')
                         ->orWhere('content', 'like', '%' . $value . '%');
                 });
             });
@@ -65,7 +64,7 @@ class BlogController extends AdminController
 
         $payload = [
             'post'  => $post,
-            'input' => translation_input($request, ['title', 'extract', 'content', 'publish_at'])
+            'input' => translation_input($request, ['title', 'content', 'publish_at'])
         ];
 
         if (!$this->dispatchFromArray(UpdatePost::class, $payload)) {

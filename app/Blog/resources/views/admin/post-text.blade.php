@@ -60,14 +60,6 @@
             </div>
 
             <div class="form-group col-xs-12">
-                <label for="extract" class="control-label">{{ Lang::get('blog::admin.post.extract') }}</label>
-
-                <div>
-                    <textarea auto-size class="form-control autosize" ng-model="vm.post.translations[vm.options.locale].extract" ng-change="vm.save()"></textarea>
-                </div>
-            </div>
-
-            <div class="form-group col-xs-12">
                 <label for="content" class="control-label">{{ Lang::get('blog::admin.post.content') }}</label>
 
                 <div>

@@ -20,11 +20,41 @@ class PostFrontPresenter extends BasePresenter
         return Markdown::convertToHtml($content);
     }
 
+    public function extract()
+    {
+        $content = $this->entity->content;
+
+        $content = $this->stripShortcodes($content);
+
+        return $this->snippet($content);
+    }
+
+    protected function snippet($str, $wordCount = 60) {
+        return implode(
+            '',
+            array_slice(
+                preg_split(
+                    '/([\s,\.;\?\!]+)/',
+                    $str,
+                    $wordCount*2+1,
+                    PREG_SPLIT_DELIM_CAPTURE
+                ),
+                0,
+                $wordCount*2-1
+            )
+        ) . '&nbsp;...';
+    }
+
     protected function compileShortcodes($content)
     {
         $content = $this->compileImageShortcode($content);
 
         return $content;
+    }
+
+    protected function stripShortcodes($content)
+    {
+        return preg_replace('/#image(:left|:right)?#/', '', $content);
     }
 
     protected function compileImageShortcode($content)

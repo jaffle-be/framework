@@ -13,7 +13,6 @@ return [
         'create'     => 'new post',
         'details'    => 'details',
         'drafting'   => 'drafting',
-        'extract'    => 'extract',
         'images'     => 'images',
         'index'      => 'overview',
         'tags'       => 'tags',
