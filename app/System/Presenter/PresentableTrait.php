@@ -19,7 +19,18 @@ trait PresentableTrait
 
         if(!$this->presenterInstance)
         {
-            $this->presenterInstance = new $this->presenter($this);
+            try{
+                $presenter = app($this->presenter);
+
+                $presenter->setPresentableEntity($this);
+
+                $this->presenterInstance = $presenter;
+            }
+            catch(\Exception $e)
+            {
+                throw new \Exception('There is a problem building your entity presenter: ' . $this->presenter);
+            }
+
         }
 
         return $this->presenterInstance;

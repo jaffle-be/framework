@@ -1,11 +1,14 @@
 <?php namespace App\System\Presenter;
 
-abstract class BasePresenter
+abstract class BasePresenter implements EntityPresenter
 {
 
+    /**
+     * @var PresentableEntity
+     */
     protected $entity;
 
-    public function __construct(PresentableEntity $entity)
+    public function setPresentableEntity(PresentableEntity $entity)
     {
         $this->entity = $entity;
     }
