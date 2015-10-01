@@ -26,6 +26,10 @@ class PostFrontPresenter extends BasePresenter
 
         $content = $this->stripShortcodes($content);
 
+        $content = Markdown::convertToHtml($content);
+
+        $content = strip_tags($content);
+
         return $this->snippet($content);
     }
 
