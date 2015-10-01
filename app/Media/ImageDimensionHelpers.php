@@ -21,19 +21,7 @@ trait ImageDimensionHelpers
             throw new Exception('Invalid image dimension provided');
         }
 
-        if(starts_with($size, 'x'))
-        {
-            $width= null;
-            $height = str_replace('x', '', $size);
-        }
-        else if(ends_with($size, 'x'))
-        {
-            $width = str_replace('x', '', $size);
-            $height = null;
-        }
-        else{
-            list($width, $height) = explode('x', $size);
-        }
+        list($width, $height) = explode('x', $size, 2);
 
         if($this->bothAreNull($width, $height) || $this->hasNonNumeric($width, $height) )
         {
@@ -45,17 +33,17 @@ trait ImageDimensionHelpers
 
     protected function hasNonNumeric($width, $height)
     {
-        return (!is_null($width) && !is_numeric($width)) || (!is_null($height) && !is_numeric($height));
+        return (!empty($width) && !is_numeric($width)) || (!empty($height) && !is_numeric($height));
     }
 
     protected function bothAreNull($width, $height)
     {
-        return is_null($width) && is_null($height);
+        return empty($width) && empty($height);
     }
 
     protected function constraint($width, $height)
     {
-        if ($width === null || $height === null) {
+        if (empty($width) || empty($height)) {
             return function ($constraint) {
                 $constraint->aspectRatio();
             };
