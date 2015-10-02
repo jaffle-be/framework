@@ -1,5 +1,7 @@
 <?php namespace App\Blog;
 
+use App\Users\User;
+
 class PostRepository implements PostRepositoryInterface
 {
 
@@ -16,6 +18,15 @@ class PostRepository implements PostRepositoryInterface
     public function getRelatedPosts(Post $post)
     {
         return $this->post->with($this->relations())->limit(100)->get()->shuffle()->take(3);
+    }
+
+    public function getAuthorArticles(User $author)
+    {
+        return $this->post->with($this->relations())
+            ->authoredBy($author)
+            ->latest()
+            ->limit(9)
+            ->get();
     }
 
     public function getLatestPosts($limit)

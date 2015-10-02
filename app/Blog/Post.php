@@ -11,6 +11,7 @@ use App\System\Sluggable\Sluggable;
 use App\System\Translatable\Translatable;
 use App\Tags\StoresTags;
 use App\Tags\Taggable;
+use App\Users\User;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
@@ -84,6 +85,11 @@ class Post extends Model implements StoresMedia, Searchable, StoresTags, Present
     public function scopeLatest(Builder $builder)
     {
         $builder->orderBy('post_translations.publish_at');
+    }
+
+    public function scopeAuthoredBy(Builder $builder, User $user)
+    {
+        $builder->where('user_id', $user->id);
     }
 
     public function scopeRelated(Builder $builder)
