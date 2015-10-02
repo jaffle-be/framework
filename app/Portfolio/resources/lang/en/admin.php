@@ -19,6 +19,7 @@ return [
         'new-project' => 'new project',
         'tags' => 'tags',
         'title' => 'title',
+        'slug' => 'slug',
         'website' => 'website',
     ],
 ];
