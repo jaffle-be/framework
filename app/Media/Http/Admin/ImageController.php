@@ -13,7 +13,7 @@ class ImageController extends AdminController
 
     public function widget()
     {
-        return view('media::admin.images.widget');
+        return view('media::admin.image');
     }
 
     public function index(Request $request)
