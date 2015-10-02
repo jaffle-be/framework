@@ -2,6 +2,7 @@
 
 use App\Account\AccountManager;
 use App\Account\Team;
+use App\Blog\PostRepositoryInterface;
 use App\System\Http\Controller;
 use App\Users\User;
 
@@ -25,13 +26,15 @@ class TeamController extends Controller
         return $this->theme->render('team.index', ['memberships' => $memberships, 'teams' => $teams]);
     }
 
-    public function show(User $user, $team)
+    public function show(User $user, $team, PostRepositoryInterface $posts)
     {
         $user = $user->find($team);
 
         $user = $user->load(['images', 'socialLinks', 'skills', 'projects', 'projects.images']);
 
-        return $this->theme->render('team.detail', ['member' => $user]);
+        $posts = $posts->getAuthorArticles($user);
+
+        return $this->theme->render('team.detail', ['member' => $user, 'posts' => $posts]);
     }
 
     protected function memberRelations($prefix = null)
