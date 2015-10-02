@@ -23,10 +23,12 @@ class CreateMediaImages extends Migration
             $table->foreign('original_id', 'thumbnail_to_original_images')->references('id')->on('media_images')->onDelete('cascade');
             $table->string('path');
             $table->string('filename');
-            $table->string('extension');
+            $table->string('extension', 15);
             $table->integer('width');
             $table->integer('height');
             $table->timestamps();
+
+            $table->index(['owner_type', 'owner_id'], 'media_image_owners');
         });
 
         Schema::create('media_image_translations', function(Blueprint $table){
@@ -35,6 +37,8 @@ class CreateMediaImages extends Migration
             $table->foreign('image_id', 'image_translation_to_image')->references('id')->on('media_images')->onDelete('cascade');
             $table->string('locale');
             $table->string('title');
+
+            $table->dropIndex('media_image_owners');
             $table->timestamps();
         });
     }
