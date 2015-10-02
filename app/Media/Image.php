@@ -1,6 +1,7 @@
 <?php namespace App\Media;
 
 use App\System\Scopes\ModelAccountResource;
+use App\System\Scopes\ModelAutoSort;
 use App\System\Translatable\Translatable;
 use Illuminate\Database\Eloquent\Model;
 
@@ -9,6 +10,7 @@ class Image extends Model
 
     use Translatable;
     use ModelAccountResource;
+    use ModelAutoSort;
 
     protected $table = 'media_images';
 

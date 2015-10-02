@@ -18,7 +18,9 @@
 
                 <div class="tools">
                     <div class="tools-inner">
-                        <i class="fa fa-trash" ng-really="ctrl.deleteImage(img)"></i>
+                        <span><i ng-show="($index != images.length - 1)" ng-click="ctrl.moveDown(img, $index)" class="fa fa-arrow-down"></i></span>
+                        <span><i ng-show="($index != 0)" ng-click="ctrl.moveUp(img, $index)" class="fa fa-arrow-up"></i></span>
+                        <span><i class="fa fa-trash" ng-really="ctrl.deleteImage(img)"></i></span>
                     </div>
                 </div>
             </div>

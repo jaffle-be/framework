@@ -123,4 +123,18 @@ class ImageController extends AdminController
         }
     }
 
+    public function sort(Request $request)
+    {
+        $owner = $this->owner($request);
+
+        $owner->load('images');
+
+        foreach($request->get('order') as $position => $id)
+        {
+            $image = $owner->images->find($id);
+            $image->sort = $position;
+            $image->save();
+        }
+    }
+
 }

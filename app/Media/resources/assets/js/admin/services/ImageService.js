@@ -1,5 +1,5 @@
 angular.module('media')
-    .factory('ImageService', function (Image, $timeout, $state) {
+    .factory('ImageService', function (Image, $timeout, $state, $http) {
 
         function Service() {
 
@@ -70,6 +70,16 @@ angular.module('media')
                     ownerId: id,
                     ownerType: type
                 }, success);
+            };
+
+            this.sort = function(type, id, images)
+            {
+                var order = _.pluck(images, 'id');
+                $http.post('api/admin/media/image/sort', {
+                    ownerId: id,
+                    ownerType: type,
+                    order: order
+                });
             };
 
         }

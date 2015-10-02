@@ -20,10 +20,10 @@ angular.module('media')
                 $scope.loaded = false;
                 $scope.ctrl = this;
 
-                if($scope.handlers === undefined)
+                if ($scope.handlers === undefined)
                 {
                     $scope.handlers = {}
-                };
+                }
 
                 if ($scope.editsMany === undefined)
                 {
@@ -54,7 +54,7 @@ angular.module('media')
                             img.translations = {};
                             $scope.images.push(img);
 
-                            if(typeof $scope.handlers.uploadedImage === 'function')
+                            if (typeof $scope.handlers.uploadedImage === 'function')
                             {
                                 $scope.handlers.uploadedImage(img);
                             }
@@ -65,9 +65,9 @@ angular.module('media')
                         processing: function () {
                             this.options.params.ownerId = $scope.ownerId;
                         },
-                        addedfile: function(file){
+                        addedfile: function (file) {
 
-                            if($scope.images.length >= $scope.limit)
+                            if ($scope.images.length >= $scope.limit)
                             {
                                 this.removeFile(file);
                                 toaster.pop('error', 'error uploading image', 'File limit reached');
@@ -90,11 +90,31 @@ angular.module('media')
                             return value.id == img.id;
                         });
 
-                        if(typeof $scope.handlers.deletedImage === 'function')
+                        if (typeof $scope.handlers.deletedImage === 'function')
                         {
                             $scope.handlers.deletedImage(img);
                         }
                     });
+                };
+
+                //move up means lower index
+                this.moveUp = function (img, index) {
+                    if (index - 1 >= 0)
+                    {
+                        $scope.images[index] = $scope.images[index - 1];
+                        $scope.images[index - 1] = img;
+                        ImageService.sort($scope.ownerType, $scope.ownerId, $scope.images);
+                    }
+                };
+
+                //move down means higher index
+                this.moveDown = function (img, index) {
+                    if (index + 1 <= $scope.images.length - 1)
+                    {
+                        $scope.images[index] = $scope.images[index + 1];
+                        $scope.images[index + 1] = img;
+                        ImageService.sort($scope.ownerType, $scope.ownerId, $scope.images);
+                    }
                 };
 
                 this.init = function () {
@@ -109,7 +129,6 @@ angular.module('media')
                 {
                     $scope.$watch('waitFor', function (newValue, oldValue) {
                         //only trigger if value changed from something false to something true.
-
                         if (newValue)
                         {
                             me.init();

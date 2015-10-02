@@ -17,6 +17,7 @@ Route::group([
         //actual resource
         Route::group(['prefix' => 'api/admin/media'], function () {
             Route::resource('image', 'ImageController', ['only' => ['index', 'store', 'update', 'destroy']]);
+            Route::post('image/sort', 'ImageController@sort');
         });
     });
 
