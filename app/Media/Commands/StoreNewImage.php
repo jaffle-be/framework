@@ -77,8 +77,12 @@ class StoreNewImage extends Job implements SelfHandling
     protected $seeding;
 
     /**
-     * @param string $currentPath
-     * @param array  $sizes
+     * @param Account     $account
+     * @param StoresMedia $owner
+     * @param string      $path
+     * @param null        $rename
+     * @param array       $sizes
+     * @param bool        $seeding
      */
     public function __construct(Account $account, StoresMedia $owner, $path, $rename = null, array $sizes = [], $seeding = false)
     {
@@ -108,8 +112,8 @@ class StoreNewImage extends Job implements SelfHandling
 
             foreach ($this->sizes as $size) {
                 $this->dispatchFromArray(ResizeImage::class, [
-                    'image' => $image,
-                    'size'  => $size,
+                    'image'      => $image,
+                    'size'       => $size,
                     'cachedPath' => $this->currentPath,
                 ]);
             }
@@ -160,11 +164,11 @@ class StoreNewImage extends Job implements SelfHandling
     {
         return [
             'account_id' => $this->account->id,
-            'path'      => $this->path,
-            'filename'  => $this->rename,
-            'extension' => $this->extension,
-            'width'     => $this->width,
-            'height'    => $this->height,
+            'path'       => $this->path,
+            'filename'   => $this->rename,
+            'extension'  => $this->extension,
+            'width'      => $this->width,
+            'height'     => $this->height,
         ];
     }
 

@@ -1,12 +1,13 @@
 <?php namespace App\Media;
 
 use App\System\Scopes\ModelAccountResource;
+use App\System\Translatable\Translatable;
 use Illuminate\Database\Eloquent\Model;
 
 class Image extends Model
 {
 
-    use \App\System\Translatable\Translatable;
+    use Translatable;
     use ModelAccountResource;
 
     protected $table = 'media_images';
