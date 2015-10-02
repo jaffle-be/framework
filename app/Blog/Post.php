@@ -83,11 +83,7 @@ class Post extends Model implements StoresMedia, Searchable, StoresTags, Present
 
     public function scopeLatest(Builder $builder)
     {
-        $builder->leftJoin('post_translations as latest', function($join){
-            $join->on('posts.id', '=', 'latest.post_id')
-                ->where('latest.locale', '=', app()->getLocale());
-        })
-            ->orderBy('latest.publish_at');
+        $builder->orderBy('post_translations.publish_at');
     }
 
     public function scopeRelated(Builder $builder)
