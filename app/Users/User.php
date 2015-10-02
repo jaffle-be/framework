@@ -70,6 +70,11 @@ class User extends Model implements Authenticatable, MembershipOwner, AddressOwn
         return $this->belongsToMany('App\Users\Skill', 'user_skills_selection', 'user_id', 'skill_id')->withPivot(['level']);
     }
 
+    public function posts()
+    {
+        return $this->hasMany('App\Blog\Post', 'user_id');
+    }
+
     public function getNameAttribute()
     {
         $fullname = trim($this->firstname . ' ' . $this->lastname);
