@@ -36,6 +36,10 @@ class InstallUnifyThemeTeam extends ThemeSettingMigration
             'nl' => "Iedereen bij ons kan plots meewerken aan een specifiek project. Iedereen doet enkel waar hij goed in is en daar proberen we ons echt aan te houden.",
             'en' => "All our team members are able to suddenly jump in on a project and help out. Why? We are pretty peculiar about letting people only do what they were born to do.",
         ],
+        'teamMemberMyPosts' => [
+            'nl' => "Wat ik allemaal geschreven heb",
+            'en' => "This is what I wrote",
+        ],
         'teamMemberCounterLabel1' => [
             'nl' => "Koffie",
             'en' => "Coffees",
@@ -386,6 +390,27 @@ class InstallUnifyThemeTeam extends ThemeSettingMigration
             'en'   => [
                 'name'        => 'team member portfolio text',
                 'explanation' => 'team member portfolio text'
+            ],
+        ],
+
+        [
+            'key'  => 'teamMemberMyPosts',
+            'type' => 'string',
+            'nl'   => [
+                'name'        => 'team member my posts',
+                'explanation' => 'team member my posts'
+            ],
+            'fr'   => [
+                'name'        => 'team member my posts',
+                'explanation' => 'team member my posts'
+            ],
+            'de'   => [
+                'name'        => 'team member my posts',
+                'explanation' => 'team member my posts'
+            ],
+            'en'   => [
+                'name'        => 'team member my posts',
+                'explanation' => 'team member my posts'
             ],
         ],
 
