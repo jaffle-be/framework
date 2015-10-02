@@ -56,10 +56,16 @@
                     <input type="checkbox" class="filled-in" id="published" ng-model="vm.project.translations[vm.options.locale].published" ng-change="vm.save()"/>
                     <label for="published">{{ Lang::get('portfolio::admin.project.published') }}</label>
 
-
                 </div>
-            </div>
 
+                <div class="form-group col-xs-8">
+                    <label for="slug" class="control-label">{{ Lang::get('portfolio::admin.project.slug') }}</label>
+
+                    <span class="form-control slug" ng-bind="vm.project.translations[vm.options.locale].slug"></span>
+                </div>
+
+
+            </div>
 
 
             <div class="form-group">
