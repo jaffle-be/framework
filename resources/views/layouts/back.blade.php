@@ -16,7 +16,7 @@
 
 </head>
 
-<body ng-controller="MainController as main" class="fixed-sidebar fixed-nav">
+<body ng-controller="MainController as main" class="fixed-sidebar fixed-nav skin-1">
 
 <toaster-container toaster-options="main.toaster"></toaster-container>
 
