@@ -6,7 +6,6 @@
                 <h5>{{ Lang::get('blog::admin.post.details') }}</h5>
             </div>
             <div class="col-xs-4 text-right">
-                {{--<span id="publisher" class="btn-sm btn btn-info" ng-click="vm.publish()" ng-show="vm.drafting">{{ Lang::get('blog::admin.post.drafting') }}</span>--}}
                 <span id="reset" class="btn-sm btn btn-danger" ng-really="vm.delete()"><i class="fa fa-trash"></i></span>
             </div>
         </div>
