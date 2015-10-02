@@ -102,12 +102,9 @@ class StoreNewImage extends Job implements SelfHandling
 
         $this->prepare($images, $files, $config);
 
-        $image = $repo->createImage($this->getPayload());
+        $image = $repo->createImage($this->owner, $this->getPayload());
 
         if ($image) {
-            $this->owner->images()->save($image);
-
-            $this->owner->save();
 
             foreach ($this->sizes as $size) {
                 $this->dispatchFromArray(ResizeImage::class, [

@@ -13,7 +13,33 @@ class MediaRepository implements MediaRepositoryInterface{
         $this->images = $images;
     }
 
-    public function createImage(array $payload, Image $original = null)
+    /**
+     * @param StoresMedia $owner
+     * @param array       $payload
+     * @param Image|null  $original
+     *
+     * @return bool|static
+     */
+    public function createImage(StoresMedia $owner, array $payload)
+    {
+        //create image
+        $image = $this->images->newInstance($payload);
+
+        $image->owner()->associate($owner);
+
+        //sorting is 0 indexed
+        $image->sort = $owner->images->count();
+
+        return $image->save() ? $image : false;
+    }
+
+    /**
+     * @param array      $payload
+     * @param Image|null $original
+     *
+     * @return mixed
+     */
+    public function createThumbnailImage(array $payload, Image $original = null)
     {
         //create image
         $image = $this->images->newInstance($payload);
@@ -29,4 +55,5 @@ class MediaRepository implements MediaRepositoryInterface{
 
         return $image;
     }
+
 }

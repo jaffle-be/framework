@@ -3,10 +3,18 @@
 interface MediaRepositoryInterface {
 
     /**
-     * @param array      $payload
-     * @param Image $original
+     * @param StoresMedia $owner
+     * @param array       $payload
      *
      * @return Image|bool
      */
-    public function createImage(array $payload , Image $original = null);
+    public function createImage(StoresMedia $owner, array $payload);
+
+    /**
+     * @param array       $payload
+     * @param Image|null  $original
+     *
+     * @return mixed
+     */
+    public function createThumbnailImage(array $payload , Image $original = null);
 }
