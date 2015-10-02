@@ -81,7 +81,6 @@ class BlogTableSeeder extends Seeder
         return [
             'nl'      => [
                 'title'      => $this->nl->sentence(),
-                'extract'    => $this->nl->realText(100),
                 'content'    => $this->nl->realText(500),
                 'created_at' => $this->nl->dateTimeBetween('-3 months', 'now'),
                 'updated_at' => $this->nl->dateTimeBetween('-2 months', 'now'),
@@ -89,7 +88,6 @@ class BlogTableSeeder extends Seeder
             ],
             'fr'      => [
                 'title'      => $this->fr->sentence(),
-                'extract'    => $this->fr->realText(100),
                 'content'    => $this->fr->realText(500),
                 'created_at' => $this->nl->dateTimeBetween('-3 months', 'now'),
                 'updated_at' => $this->nl->dateTimeBetween('-2 months', 'now'),
@@ -97,7 +95,6 @@ class BlogTableSeeder extends Seeder
             ],
             'en'      => [
                 'title'      => $this->en->sentence(),
-                'extract'    => $this->en->realText(100),
                 'content'    => $this->en->realText(500),
                 'created_at' => $this->nl->dateTimeBetween('-3 months', 'now'),
                 'updated_at' => $this->nl->dateTimeBetween('-2 months', 'now'),
@@ -105,7 +102,6 @@ class BlogTableSeeder extends Seeder
             ],
             'de'      => [
                 'title'      => $this->de->sentence(),
-                'extract'    => $this->de->realText(100),
                 'content'    => $this->de->realText(500),
                 'created_at' => $this->nl->dateTimeBetween('-3 months', 'now'),
                 'updated_at' => $this->nl->dateTimeBetween('-2 months', 'now'),
