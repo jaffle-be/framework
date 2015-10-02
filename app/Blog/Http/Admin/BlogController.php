@@ -90,7 +90,7 @@ class BlogController extends AdminController
 
         if(is_array($ids) && count($ids))
         {
-            $posts = $post->whereIn('id', $ids)
+            $posts = $post->whereIn('posts.id', $ids)
                 ->get();
 
             foreach($posts as $post)
