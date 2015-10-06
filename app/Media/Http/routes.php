@@ -12,14 +12,16 @@ Route::group([
         Route::group(['prefix' => 'templates/admin/media'], function () {
             //template files, load at top so we do not end up in the show method
             Route::get('image/widget', 'ImageController@widget');
+            Route::get('video/widget', 'VideoController@widget');
         });
 
         //actual resource
         Route::group(['prefix' => 'api/admin/media'], function () {
             Route::resource('image', 'ImageController', ['only' => ['index', 'store', 'update', 'destroy']]);
             Route::post('image/sort', 'ImageController@sort');
+            Route::resource('video', 'VideoController', ['only' => ['index', 'store', 'update', 'destroy']]);
+            Route::post('video/sort', 'VideoController@sort');
+            Route::get('video/search', 'VideoController@search');
         });
     });
-
-
 });

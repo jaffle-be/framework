@@ -27,6 +27,7 @@ class RouteServiceProvider extends ServiceProvider
         parent::boot($router);
 
         $router->model('image', 'App\Media\Image');
+        $router->model('video', 'App\Media\Video\Video');
         $router->model('tag', 'App\Tags\Tag');
         $router->model('blog', 'App\Blog\Post');
         $router->model('post', 'App\Blog\PostTranslation');

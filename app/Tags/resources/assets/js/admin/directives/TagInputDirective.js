@@ -15,8 +15,6 @@ angular.module('tags')
                 $scope.ctrl = this;
 
                 this.updateTag = function (tag) {
-                    console.log(tag);
-
                     TagService.update($scope.ownerType, $scope.ownerId, tag);
                 };
 

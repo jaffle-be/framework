@@ -1,0 +1,96 @@
+<?php namespace App\Media\Commands;
+
+use Alaouy\Youtube\Youtube;
+use App\Account\AccountManager;
+use App\Jobs\Job;
+use App\Media\MediaRepositoryInterface;
+use App\Media\StoresMedia;
+use App\Media\Video\VideoGenericFormatter;
+use Illuminate\Contracts\Bus\SelfHandling;
+
+class AddNewVideo extends Job implements SelfHandling
+{
+
+    use VideoGenericFormatter;
+
+    /**
+     * @var StoresMedia
+     */
+    protected $owner;
+
+    /**
+     * @var
+     */
+    protected $title;
+
+    /**
+     * @var
+     */
+    protected $input;
+
+    public function __construct(StoresMedia $owner, $input)
+    {
+        $this->owner = $owner;
+        //stores url, id, title
+        //will store id when adding using search
+        //will store url when adding using url
+        $this->input = $input;
+    }
+
+    public function handle(AccountManager $accounts, MediaRepositoryInterface $media)
+    {
+        if ($this->input['mode'] == 'youtube') {
+            $info = $this->handleYoutube();
+        } else if ($this->input['mode'] == 'vimeo') {
+            $info = $this->handleVimeo();
+        }
+
+        if (!$info) {
+            return false;
+        }
+
+        $input = array_merge(array_except($this->input, ['url', 'mode']), [
+            'provider'           => $this->input['mode'],
+            'provider_id'        => $info['provider_id'],
+            'provider_thumbnail' => $info['provider_thumbnail'],
+            'width'              => $info['width'],
+            'height'             => $info['height'],
+            'account_id'         => $accounts->account()->id,
+        ]);
+
+        return $media->createVideo($this->owner, $input);
+    }
+
+    protected function handleYoutube()
+    {
+        /** @var Youtube $youtube */
+        $youtube = app('youtube');
+
+        try {
+            if (isset($this->input['url']) && $this->input['url']) {
+                $id = $youtube->parseVIdFromURL($this->input['url']);
+            } else {
+                $id = $this->input['provider_id'];
+            }
+
+            $info = $youtube->getVideoInfo($id);
+
+            return $this->youtubeVideoResponse($info);
+        }
+        catch (\Exception $e) {
+            app('log')->notice('handling youtube video failed', ['message' => $e->getMessage(), 'info' => $info]);
+
+            return false;
+        }
+    }
+
+    protected function handleVimeo()
+    {
+        $vimeo = app('Vinkla\Vimeo\VimeoManager');
+
+        $response = $vimeo->request('/videos/' . $this->input['provider_id']);
+
+        return $this->vimeoVideoResponse($response['body']);
+    }
+
+}

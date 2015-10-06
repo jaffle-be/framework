@@ -12,7 +12,7 @@
             <tab heading="{{ Lang::get('blog::admin.post.videos') }}">
                 <div class="ibox-content">
 
-                    test
+                    <video-input owner-type="'blog'" owner-id="$state.params.id" locale="vm.options.locale"></video-input>
 
                 </div>
             </tab>
