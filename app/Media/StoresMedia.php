@@ -4,6 +4,8 @@ interface StoresMedia {
 
     public function images();
 
+    public function videos();
+
     public function getMediaFolder();
 
     public function mediaStoresMultiple();

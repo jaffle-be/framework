@@ -1,5 +1,7 @@
 <?php namespace App\Media;
 
+use App\Media\Video\Video;
+
 class MediaRepository implements MediaRepositoryInterface{
     
     protected $media;
@@ -31,6 +33,17 @@ class MediaRepository implements MediaRepositoryInterface{
         $image->sort = $owner->images->count();
 
         return $image->save() ? $image : false;
+    }
+
+    public function createVideo(StoresMedia $owner, array $payload)
+    {
+        $video = new Video($payload);
+
+        $video->owner()->associate($owner);
+
+        $video->sort = $owner->videos->count();
+
+        return $video->save() ? $video : false;
     }
 
     /**
