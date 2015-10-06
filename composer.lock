@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "7d22142a2dea3a1e7646b100334b94c9",
+    "hash": "5bd2a0c1850eacd42c21c7cad55d3a72",
     "packages": [
         {
             "name": "alaouy/youtube",
@@ -532,46 +532,6 @@
             "time": "2015-09-23 18:47:51"
         },
         {
-            "name": "fbf/laravel-youtube",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/twarlop/Laravel-Youtube.git",
-                "reference": "e4e92288895be7e68a9295358768a1fe1a7c41c0"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/twarlop/Laravel-Youtube/zipball/e4e92288895be7e68a9295358768a1fe1a7c41c0",
-                "reference": "e4e92288895be7e68a9295358768a1fe1a7c41c0",
-                "shasum": ""
-            },
-            "require": {
-                "google/apiclient": "*",
-                "illuminate/support": "5.*",
-                "php": ">=5.3.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "Fbf\\LaravelYoutube\\": "src/"
-                }
-            },
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Neil Crookes",
-                    "email": "neil.crookes@fivebyfiveuk.com"
-                }
-            ],
-            "description": "A Laravel package to upload videos to a YouTube channel",
-            "support": {
-                "source": "https://github.com/twarlop/Laravel-Youtube/tree/master"
-            },
-            "time": "2015-10-03 12:18:12"
-        },
-        {
             "name": "fzaninotto/faker",
             "version": "v1.5.0",
             "source": {
@@ -624,47 +584,63 @@
             "time": "2015-05-29 06:29:14"
         },
         {
-            "name": "google/apiclient",
-            "version": "1.1.5",
+            "name": "graham-campbell/manager",
+            "version": "v2.2.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/google/google-api-php-client.git",
-                "reference": "2bc00ec4e8fa1a5eec793d800fac339f30b730db"
+                "url": "https://github.com/GrahamCampbell/Laravel-Manager.git",
+                "reference": "b386c08594a3e1ff7d0f3401d545460f609c6c1e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/google/google-api-php-client/zipball/2bc00ec4e8fa1a5eec793d800fac339f30b730db",
-                "reference": "2bc00ec4e8fa1a5eec793d800fac339f30b730db",
+                "url": "https://api.github.com/repos/GrahamCampbell/Laravel-Manager/zipball/b386c08594a3e1ff7d0f3401d545460f609c6c1e",
+                "reference": "b386c08594a3e1ff7d0f3401d545460f609c6c1e",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.2.1"
+                "illuminate/contracts": "5.0.*|5.1.*",
+                "illuminate/support": "5.0.*|5.1.*",
+                "php": ">=5.5.9"
             },
             "require-dev": {
-                "phpunit/phpunit": "3.7.*",
-                "squizlabs/php_codesniffer": "~2.3"
+                "graham-campbell/testbench-core": "~1.0",
+                "mockery/mockery": "^0.9.4",
+                "phpunit/phpunit": "^4.7.6"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.1.x-dev"
+                    "dev-master": "2.2-dev"
                 }
             },
             "autoload": {
-                "classmap": [
-                    "src/"
-                ]
+                "psr-4": {
+                    "GrahamCampbell\\Manager\\": "src/"
+                }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
-                "Apache-2.0"
+                "MIT"
             ],
-            "description": "Client library for Google APIs",
-            "homepage": "http://developers.google.com/api-client-library/php",
+            "authors": [
+                {
+                    "name": "Graham Campbell",
+                    "email": "graham@alt-three.com"
+                }
+            ],
+            "description": "Manager Provides Some Manager Functionality For Laravel 5",
             "keywords": [
-                "google"
+                "Graham Campbell",
+                "GrahamCampbell",
+                "Laravel Manager",
+                "Laravel-Manager",
+                "connector",
+                "framework",
+                "interface",
+                "laravel",
+                "manager"
             ],
-            "time": "2015-09-23 04:19:33"
+            "time": "2015-06-26 17:39:20"
         },
         {
             "name": "graham-campbell/markdown",
@@ -3204,6 +3180,102 @@
             "time": "2015-09-22 13:59:32"
         },
         {
+            "name": "vimeo/vimeo-api",
+            "version": "1.2.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/vimeo/vimeo.php.git",
+                "reference": "e48b19db7febe8431c5e8c609ea9ffe61e1b9e3d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/vimeo/vimeo.php/zipball/e48b19db7febe8431c5e8c609ea9ffe61e1b9e3d",
+                "reference": "e48b19db7febe8431c5e8c609ea9ffe61e1b9e3d",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Vimeo\\": "src/Vimeo"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Vimeo",
+                    "homepage": "http://vimeo.com"
+                }
+            ],
+            "description": "Official PHP library for the Vimeo API.",
+            "homepage": "https://github.com/vimeo/vimeo.php",
+            "keywords": [
+                "video",
+                "vimeo"
+            ],
+            "time": "2015-06-02 21:55:45"
+        },
+        {
+            "name": "vinkla/vimeo",
+            "version": "3.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/vinkla/vimeo.git",
+                "reference": "b3a72c10b9cbff2a5f38bdd85b8069dcd62dfcd4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/vinkla/vimeo/zipball/b3a72c10b9cbff2a5f38bdd85b8069dcd62dfcd4",
+                "reference": "b3a72c10b9cbff2a5f38bdd85b8069dcd62dfcd4",
+                "shasum": ""
+            },
+            "require": {
+                "graham-campbell/manager": "~2.2",
+                "illuminate/contracts": "5.0.*|5.1.*",
+                "illuminate/support": "5.0.*|5.1.*",
+                "php": ">=5.5.9",
+                "vimeo/vimeo-api": "~1.0"
+            },
+            "require-dev": {
+                "graham-campbell/testbench": "~3.0",
+                "mockery/mockery": "^0.9.4",
+                "phpunit/phpunit": "^4.7.6"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.1-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Vinkla\\Vimeo\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Vincent Klaiber",
+                    "email": "hello@vinkla.com"
+                }
+            ],
+            "description": "A Vimeo bridge for Laravel",
+            "keywords": [
+                "laravel",
+                "video",
+                "vimeo"
+            ],
+            "time": "2015-06-30 14:01:25"
+        },
+        {
             "name": "vlucas/phpdotenv",
             "version": "v1.1.1",
             "source": {
@@ -4371,9 +4443,7 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "fbf/laravel-youtube": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],
