@@ -16,13 +16,31 @@
 
                 </div>
             </tab>
-            <tab heading="{{ Lang::get('blog::admin.post.files') }}">
+            <tab heading="{{ Lang::get('blog::admin.post.infographic') }}">
                 <div class="ibox-content">
 
-                    test 2
+                    <div class="alert alert-info">
+                        images containing context should be uploaded here.
+                        the difference with regular images would be
+                        that the url is also a translatable attribute.
+                        this would allow to show a different image when viewing in a different locale
+                    </div>
 
                 </div>
             </tab>
+
+            <tab heading="{{ Lang::get('blog::admin.post.files') }}">
+                <div class="ibox-content">
+
+                    <div class="alert alert-info">
+                        all other file types should be uploaded here.
+                        The files should probably not be inlined into the article separatly.
+                        It should instead add a list of all the files for the resource automatically
+                    </div>
+
+                </div>
+            </tab>
+
         </tabset>
     </div>
 

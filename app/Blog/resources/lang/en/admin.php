@@ -26,6 +26,7 @@ return [
         'publish_at'   => 'publish at',
         'add_video'    => 'add a video',
         'added_videos' => 'added videos',
+        'infographic'  => 'infographic',
     ],
 
 ];
