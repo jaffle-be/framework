@@ -17,6 +17,23 @@ class Video extends Model
 
     protected $translatedAttributes = ['title'];
 
+    public function getEmbedAttribute()
+    {
+        if($this->provider == 'youtube')
+        {
+            $format = '<iframe width="%d" height="%d" src="https://www.youtube.com/embed/%s" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>';
+        }
+        elseif($this->provider == 'vimeo')
+        {
+            $format = '<iframe width="%d" height="%d" src="//player.vimeo.com/video/%d" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>';
+        }
+
+        if(isset($format))
+        {
+            return sprintf($format,  $this->attributes['width'], $this->attributes['height'], $this->attributes['provider_id']);
+        }
+    }
+
     public function account()
     {
         return $this->belongsTo('App\Account\Account');

@@ -7,6 +7,12 @@ use Markdown;
 class PostFrontPresenter extends BasePresenter
 {
 
+    /**
+     * Returns the entire post, fully loaded with shortcodes
+     * Ready to be displayed onto your website.
+     *
+     * @return mixed
+     */
     public function content()
     {
         $content = $this->entity->content;
@@ -20,6 +26,16 @@ class PostFrontPresenter extends BasePresenter
         return Markdown::convertToHtml($content);
     }
 
+    /**
+     * The extract should not contain any style or media
+     * It should simply be a text snippet.
+     *
+     * Therefor, at the end, we always strip all tags
+     * We also strip out any shortcodes, which would only
+     * inject either media or custom marked up content.
+     *
+     * @return string
+     */
     public function extract()
     {
         $content = $this->entity->content;
@@ -52,6 +68,8 @@ class PostFrontPresenter extends BasePresenter
     protected function compileShortcodes($content)
     {
         $content = $this->compileImageShortcode($content);
+
+        $content = $this->compileVideoShortcode($content);
 
         return $content;
     }
@@ -195,6 +213,36 @@ class PostFrontPresenter extends BasePresenter
         $path = $big ? $img->path : $img->thumbnail(460);
 
         return asset($path);
+    }
+
+    protected function compileVideoShortcode($content)
+    {
+        $count = $this->getWantedVideos($content);
+
+        $counter = 0;
+
+        while($counter < $count)
+        {
+            $replacement = '';
+
+            if($video = $this->videos->get($counter))
+            {
+                $replacement = $video->embed;
+            }
+
+            $content = preg_replace('/#video#/', $replacement, $content, 1);
+
+            $counter++;
+        }
+
+        return $content;
+    }
+
+    protected function getWantedVideos($content)
+    {
+        preg_match_all('/#video#/', $content, $matches);
+
+        return count($matches[0]);
     }
 
 }
