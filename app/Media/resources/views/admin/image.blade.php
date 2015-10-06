@@ -1,3 +1,9 @@
+<div ng-class="{'col-md-6': limit == 1}">
+    <form action="" class="dropzone" dropzone="dropzone" ng-show="!locked || limit == 1">
+        <input name="_token" type="hidden" value="{{ csrf_token() }}"/>
+    </form>
+</div>
+
 <div class="media-image-uploader" ng-class="{'col-md-6': limit == 1}">
 
     <div class="loader" ng-show="!loaded">
@@ -9,7 +15,7 @@
 
     </div>
 
-    <div class="item" ng-show="loaded" ng-repeat="img in images track by $index" ng-class="{clearfix: $index%2==0, 'col-md-6':limit!=1}">
+    <div class="item" ng-show="loaded" ng-repeat="img in images track by $index">
 
         <form ng-submit="ctrl.updateImage(img)" novalidate name="imageForm">
 
@@ -34,10 +40,4 @@
 
     <div class="clearfix"></div>
 
-</div>
-
-<div ng-class="{'col-md-6': limit == 1}">
-    <form action="" class="dropzone" dropzone="dropzone" ng-show="!locked || limit == 1">
-        <input name="_token" type="hidden" value="{{ csrf_token() }}"/>
-    </form>
 </div>
