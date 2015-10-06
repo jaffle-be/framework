@@ -171,6 +171,8 @@ return [
         Barryvdh\Debugbar\ServiceProvider::class,
         Mews\Captcha\CaptchaServiceProvider::class,
         Thomaswelton\LaravelGravatar\LaravelGravatarServiceProvider::class,
+        Vinkla\Vimeo\VimeoServiceProvider::class,
+        'Alaouy\Youtube\YoutubeServiceProvider',
         'GrahamCampbell\Markdown\MarkdownServiceProvider',
         'Intouch\LaravelNewrelic\NewrelicServiceProvider',
         'Intervention\Image\ImageServiceProvider',
