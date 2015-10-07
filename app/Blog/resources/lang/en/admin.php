@@ -27,6 +27,9 @@ return [
         'add_video'    => 'add a video',
         'added_videos' => 'added videos',
         'infographic'  => 'infographic',
+        'links'        => 'links',
+        'seo'          => 'seo',
+        'categories'   => 'categories',
     ],
 
 ];
