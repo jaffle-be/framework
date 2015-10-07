@@ -34,7 +34,6 @@ class MediaRepository implements MediaRepositoryInterface{
     /**
      * @param StoresMedia $owner
      * @param array       $payload
-     * @param Image|null  $original
      *
      * @return bool|static
      */

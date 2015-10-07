@@ -5,6 +5,14 @@ use App\Media\Video\Video;
 interface MediaRepositoryInterface {
 
     /**
+     * @param $type
+     * @param $id
+     *
+     * @return StoresMedia
+     */
+    public function findOwner($type, $id);
+
+    /**
      * @param StoresMedia $owner
      * @param array       $payload
      *
