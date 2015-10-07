@@ -2,14 +2,22 @@
 
 use Illuminate\Filesystem\Filesystem;
 
+/**
+ * Cleanup the media files that are linked to a resource when the resource
+ * itself gets deleted.
+ *
+ * @package App\Media
+ */
 class Cleanup
 {
 
     protected $files;
 
-    public function __construct(Filesystem $files)
+    public function __construct(Filesystem $files, Configurator $configurator)
     {
         $this->files = $files;
+
+        $this->configurator = $configurator;
     }
 
     public function handle($owner)
@@ -30,7 +38,7 @@ class Cleanup
                 $image->delete();
             }
 
-            $this->files->deleteDirectory(public_path(config('media.path') . '/' . $owner->getMediaFolder()));
+            $this->files->deleteDirectory($this->configurator->getPublicPath($owner));
         }
     }
 

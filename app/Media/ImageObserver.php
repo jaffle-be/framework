@@ -27,11 +27,15 @@ class ImageObserver {
      */
     public function deleting(Image $image)
     {
-        $image->translations()->delete();
-
-        foreach($image->sizes as $size)
+        //only try deleting translations and thumbnails when we are no thumbnail
+        if($image->original_id === null)
         {
-            $size->delete();
+            $image->translations()->delete();
+
+            foreach($image->sizes as $size)
+            {
+                $size->delete();
+            }
         }
     }
 
@@ -40,7 +44,7 @@ class ImageObserver {
      */
     public function deleted(Image $image)
     {
-        $this->files->delete($image->path);
+        $this->files->delete(public_path($image->path));
     }
 
 }

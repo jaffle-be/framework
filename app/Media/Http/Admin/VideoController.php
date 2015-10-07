@@ -2,9 +2,11 @@
 
 use Alaouy\Youtube\Youtube;
 use App\Media\Commands\AddNewVideo;
+use App\Media\MediaRepositoryInterface;
 use App\Media\Video\Video;
 use App\Media\Video\VideoGenericFormatter;
 use App\System\Http\AdminController;
+use App\Theme\ThemeManager;
 use Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -13,6 +15,15 @@ use Illuminate\Support\Collection;
 class VideoController extends AdminController
 {
     use VideoGenericFormatter;
+
+    protected $media;
+
+    public function __construct(ThemeManager $theme, MediaRepositoryInterface $media)
+    {
+        $this->media = $media;
+
+        parent::__construct($theme);
+    }
 
     public function widget()
     {
@@ -61,17 +72,7 @@ class VideoController extends AdminController
         $id = $request->get('ownerId');
         $type = $request->get('ownerType');
 
-        $owners = config('media.owners');
-
-        if (!isset($owners[$type])) {
-            throw new Exception('Invalid owner type provided for videos');
-        }
-
-        $class = $owners[$type];
-
-        $class = new $class();
-
-        return $class->findOrFail($id);
+        return $this->media->findOwner($type, $id);
     }
 
     public function store(Request $request)

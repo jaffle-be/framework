@@ -8,11 +8,20 @@ return [
     'path'   => 'media',
 
     'owners' => [
-        'blog'      => App\Blog\Post::class,
-        'portfolio' => App\Portfolio\Project::class,
-        'user' => App\Users\User::class,
+        'blog'         => App\Blog\Post::class,
+        'portfolio'    => App\Portfolio\Project::class,
+        'user'         => App\Users\User::class,
         'account-logo' => App\Account\AccountLogo::class,
-        'client' => App\Account\Client::class,
+        'client'       => App\Account\Client::class,
+    ],
+
+    'admin'  => [
+        'image' => [
+            '512x',
+        ],
+        'video' => [
+
+        ]
     ],
 
     /**
@@ -23,7 +32,9 @@ return [
      */
     'sizes'  => [
 
-        'blog' => [
+        //these values should be coming from the theme
+        //we should simply add the values used in the admin
+        'blog'         => [
             '1140x',
             '512x',
             '460x',
@@ -32,7 +43,7 @@ return [
             '60x',
         ],
 
-        'portfolio' => [
+        'portfolio'    => [
             '1280x',
             '512x',
             '340x',
@@ -40,7 +51,7 @@ return [
             '150x',
         ],
 
-        'user' => [
+        'user'         => [
             '1280x',
             '512x',
             '340x',
@@ -53,12 +64,16 @@ return [
             'x40'
         ],
 
-        'client' => [
+        'client'       => [
             '512x',
             '340x',
             'x40',
             'x90',
         ]
     ],
+
+    'videos' => [
+        //these values should be coming from the theme
+    ]
 
 ];

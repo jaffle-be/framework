@@ -4,15 +4,31 @@ use App\Media\Video\Video;
 
 class MediaRepository implements MediaRepositoryInterface{
     
-    protected $media;
-
-    protected $type;
-
     protected $images;
 
-    public function __construct(Image $images)
+    protected $config;
+
+    protected $videos;
+
+    public function __construct(Configurator $config, Image $images, Video $videos)
     {
+        $this->config = $config;
+
         $this->images = $images;
+
+        $this->videos = $videos;
+    }
+
+    public function findOwner($type, $id)
+    {
+        if($this->config->typeExists($type))
+        {
+            $class = $this->config->classname($type);
+
+            $class = new $class();
+
+            return $class->findorFail($id);
+        }
     }
 
     /**
@@ -30,14 +46,17 @@ class MediaRepository implements MediaRepositoryInterface{
         $image->owner()->associate($owner);
 
         //sorting is 0 indexed
-        $image->sort = $owner->images->count();
+        if($owner->mediaStoresMultiple())
+        {
+            $image->sort = $owner->images->count();
+        }
 
         return $image->save() ? $image : false;
     }
 
     public function createVideo(StoresMedia $owner, array $payload)
     {
-        $video = new Video($payload);
+        $video = $this->videos->newInstance($payload);
 
         $video->owner()->associate($owner);
 

@@ -67,7 +67,7 @@ trait StoringMedia
         }
     }
 
-    public function getMediaFolder()
+    public function getMediaFolder($size = null)
     {
         if(!property_exists(get_class($this), 'media'))
         {
@@ -78,7 +78,12 @@ trait StoringMedia
 
         $media = str_replace('{account}', $account, $this->media);
 
-        return sprintf('%s/%d/', $media, $this->attributes['id']);
+        if(!$size)
+        {
+            return sprintf('%s/%d/', $media, $this->attributes['id']);
+        }
+
+        return sprintf('%s/%d/%s/', $media, $this->attributes['id'], $size);
     }
 
 }
