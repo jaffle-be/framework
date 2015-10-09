@@ -2,6 +2,10 @@
 
 trait ModelAccountResource
 {
+    public function account()
+    {
+        return $this->belongsTo('App\Account\Account');
+    }
 
     public static function bootModelAccountResource()
     {

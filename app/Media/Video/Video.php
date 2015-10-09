@@ -34,11 +34,6 @@ class Video extends Model
         }
     }
 
-    public function account()
-    {
-        return $this->belongsTo('App\Account\Account');
-    }
-
     public function owner()
     {
         return $this->morphTo();

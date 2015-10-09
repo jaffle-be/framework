@@ -20,11 +20,6 @@ class Image extends Model
 
     protected $hidden = ['account_id', 'filename', 'extension', 'width', 'height', 'owner_id', 'owner_type', 'created_at', 'updated_at', 'original_id'];
 
-    public function account()
-    {
-        return $this->belongsTo('App\Account\Account');
-    }
-
     public function original()
     {
         return $this->belongsTo('App\Media\Image', 'original_id');
