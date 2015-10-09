@@ -44,7 +44,7 @@ class ImageController extends AdminController
         {
             $images->load($this->relations());
 
-            if(!$images instanceof Collection)
+            if(!$owner->mediaStoresMultiple())
             {
                 $images = new Collection([$images]);
             }

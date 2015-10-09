@@ -16,6 +16,8 @@ class StoreNewImage extends Job implements SelfHandling
 
     use DispatchesCommands;
 
+    protected $account;
+
     /**
      * @var StoresMedia
      */
@@ -35,11 +37,6 @@ class StoreNewImage extends Job implements SelfHandling
      * @var null|string
      */
     protected $rename;
-
-    /**
-     * @var array
-     */
-    protected $sizes;
 
     /**
      * @var string
@@ -67,19 +64,13 @@ class StoreNewImage extends Job implements SelfHandling
     protected $path;
 
     /**
-     * @var
-     */
-    protected $seeding;
-
-    /**
      * @param Account     $account
      * @param StoresMedia $owner
      * @param string      $path
      * @param null        $rename
      * @param array       $sizes
-     * @param bool        $seeding
      */
-    public function __construct(Account $account, StoresMedia $owner, $path, $rename = null, array $sizes = [], $seeding = false)
+    public function __construct(Account $account, StoresMedia $owner, $path, $rename = null)
     {
         $this->account = $account;
         $this->owner = $owner;
@@ -89,8 +80,6 @@ class StoreNewImage extends Job implements SelfHandling
         $this->extension = pathinfo($path, PATHINFO_EXTENSION);
         $this->basename = pathinfo($this->currentPath, PATHINFO_BASENAME);
         $this->rename = $rename;
-        $this->sizes = $sizes;
-        $this->seeding = $seeding;
     }
 
     public function handle(MediaRepositoryInterface $repo, ImageManager $images, Filesystem $files, Configurator $config)
@@ -107,7 +96,7 @@ class StoreNewImage extends Job implements SelfHandling
 
         if ($image) {
 
-            foreach ($this->sizes as $size) {
+            foreach ($config->getImageSizes($this->owner) as $size) {
                 $this->dispatchFromArray(ResizeImage::class, [
                     'image'      => $image,
                     'size'       => $size,

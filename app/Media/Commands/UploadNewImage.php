@@ -2,7 +2,6 @@
 
 use App\Account\AccountManager;
 use App\Jobs\Job;
-use App\Media\Configurator;
 use App\Media\StoresMedia;
 use Illuminate\Contracts\Bus\SelfHandling;
 use Illuminate\Filesystem\Filesystem;
@@ -24,15 +23,10 @@ class UploadNewImage extends Job implements SelfHandling
      */
     protected $image;
 
-    /**
-     * @var array
-     */
-    protected $sizes;
 
     /**
      * @param StoresMedia  $owner
      * @param UploadedFile $image
-     * @param array        $sizes
      */
     public function __construct(StoresMedia $owner, UploadedFile $image)
     {
@@ -40,7 +34,7 @@ class UploadNewImage extends Job implements SelfHandling
         $this->image = $image;
     }
 
-    public function handle(Filesystem $files, AccountManager $manager, Configurator $config)
+    public function handle(Filesystem $files, AccountManager $manager)
     {
         $temp_dir = storage_path('media') . '/' . $this->owner->getMediaFolder();
 
@@ -60,7 +54,6 @@ class UploadNewImage extends Job implements SelfHandling
             'account' => $manager->account(),
             'owner' => $this->owner,
             'path'  => $final_path,
-            'sizes' => $config->getImageSizes($this->owner)
         ]);
 
         $files->delete($final_path);
