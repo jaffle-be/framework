@@ -3,6 +3,7 @@ namespace App\System;
 
 use App\Media\Commands\StoreNewImage;
 use App\Media\ImageDimensionHelpers;
+use Exception;
 use Faker\Factory as Faker;
 use Illuminate\Database\Seeder as BaseSeeder;
 use Illuminate\Foundation\Bus\DispatchesCommands;
@@ -56,7 +57,9 @@ abstract class Seeder extends BaseSeeder
 
             $path = $this->prefix . $image;
 
-            foreach ($this->image_sizes as $size) {
+            $media = app('App\Media\Configurator');
+
+            foreach ($media->getImageSizes($this->model) as $size) {
 
                 list($width, $height) = $this->dimensions($size);
 
@@ -69,16 +72,36 @@ abstract class Seeder extends BaseSeeder
         }
     }
 
+    protected function validateSeederModel()
+    {
+        if(!isset($this->image_names))
+        {
+            throw new Exception('need to set image_names when calling this function');
+
+        }
+
+        if(!isset($this->model))
+        {
+            throw new Exception('need to set the model when calling this function');
+
+        }
+
+        if(!isset($this->prefix))
+        {
+            throw new Exception('need to set prefix when calling this function');
+
+        }
+    }
+
     protected function newImage($owner, $account)
     {
+        $this->validateSeederModel();
         $image = rand(0, count($this->image_names) - 1);
 
         $this->dispatchFromArray(StoreNewImage::class, [
             'account' => $account,
             'owner'   => $owner,
             'path'    => $this->prefix . $this->image_names[$image],
-            'sizes'   => $this->image_sizes,
-            'seeding' => true
         ]);
     }
 

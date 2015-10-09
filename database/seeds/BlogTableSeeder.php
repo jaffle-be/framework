@@ -15,8 +15,6 @@ class BlogTableSeeder extends Seeder
         'BLOG_O14A0436.jpg',
     ];
 
-    protected $image_sizes = [];
-
     protected $prefix;
 
     protected $images;
@@ -25,7 +23,7 @@ class BlogTableSeeder extends Seeder
     {
         $this->images = $images;
 
-        $this->image_sizes = config('media.sizes.blog');
+        $this->model = new Post();
 
         $this->prefix = __DIR__ . '/../images/';
 

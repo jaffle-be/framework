@@ -18,8 +18,6 @@ class PortfolioTableSeeder extends Seeder
         'PORTFOLIO_IMG_0324.jpg',
     ];
 
-    protected $image_sizes = [];
-
     protected $prefix;
 
     protected $images;
@@ -28,7 +26,7 @@ class PortfolioTableSeeder extends Seeder
     {
         $this->images = $images;
 
-        $this->image_sizes = config('media.sizes.portfolio');
+        $this->model = new Project();
 
         $this->prefix = __DIR__ . '/../images/';
 
