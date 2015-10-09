@@ -6,13 +6,13 @@ use App\Media\Configurator;
 use App\Media\Media;
 use App\Media\MediaRepositoryInterface;
 use App\Media\StoresMedia;
+use App\System\Locale;
 use Exception;
 use Illuminate\Contracts\Bus\SelfHandling;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Foundation\Bus\DispatchesCommands;
-use Intervention\Image\ImageManager;
 
-class StoreNewImage extends Job implements SelfHandling
+class StoreNewFile extends Job implements SelfHandling
 {
 
     use DispatchesCommands;
@@ -23,6 +23,11 @@ class StoreNewImage extends Job implements SelfHandling
      * @var StoresMedia
      */
     protected $owner;
+
+    /**
+     * @var Locale
+     */
+    protected $locale;
 
     /**
      * @var string
@@ -67,14 +72,15 @@ class StoreNewImage extends Job implements SelfHandling
     /**
      * @param Account     $account
      * @param StoresMedia $owner
+     * @param Locale      $locale
      * @param string      $path
      * @param null        $rename
-     * @param array       $sizes
      */
-    public function __construct(Account $account, StoresMedia $owner, $path, $rename = null)
+    public function __construct(Account $account, StoresMedia $owner, Locale $locale, $path, $rename = null)
     {
         $this->account = $account;
         $this->owner = $owner;
+        $this->locale = $locale;
         $this->currentPath = $path;
         $this->directory = pathinfo($path, PATHINFO_DIRNAME);
         $this->filename = pathinfo($path, PATHINFO_FILENAME);
@@ -83,50 +89,25 @@ class StoreNewImage extends Job implements SelfHandling
         $this->rename = $rename;
     }
 
-    public function handle(MediaRepositoryInterface $repo, ImageManager $images, Filesystem $files, Configurator $config)
+    public function handle(MediaRepositoryInterface $repo, Filesystem $files, Configurator $config)
     {
         if (!$files->exists($this->currentPath)) {
             return false;
         }
 
-        $this->dimensions($images);
         $this->newName();
         $this->handleFile($files, $config);
 
         try{
-            $image = $repo->createImage($this->owner, $this->getPayload());
+            return $repo->createFile($this->owner, $this->getPayload());
         }
-        catch(Exception $e)
+        catch(Exception $exception)
         {
+            //probably duplicate file error, always remove created file on error.
             $files->delete(public_path($this->path));
 
             return false;
         }
-
-        if ($image) {
-
-            foreach ($config->getImageSizes($this->owner) as $size) {
-                $this->dispatchFromArray(ResizeImage::class, [
-                    'image'      => $image,
-                    'size'       => $size,
-                    'cachedPath' => $this->currentPath,
-                ]);
-            }
-
-            return $image;
-        }
-
-        return false;
-    }
-
-    /**
-     * set the filename, extension and the size
-     */
-    protected function dimensions(ImageManager $image)
-    {
-        $resource = $image->make($this->currentPath);
-        $this->width = $resource->width();
-        $this->height = $resource->height();
     }
 
     protected function handleFile(Filesystem $files, Configurator $config)
@@ -161,11 +142,10 @@ class StoreNewImage extends Job implements SelfHandling
     {
         return [
             'account_id' => $this->account->id,
+            'locale_id'  => $this->locale->id,
             'path'       => $this->path,
             'filename'   => $this->rename,
             'extension'  => $this->extension,
-            'width'      => $this->width,
-            'height'     => $this->height,
         ];
     }
 }

@@ -11,6 +11,10 @@ trait MediaShortcodes
 
         $content = $this->compileVideoShortcode($content);
 
+        $content = $this->compileInfographicShortcode($content);
+
+        $content = $this->compileFileShortcode($content);
+
         return $content;
     }
 
@@ -18,7 +22,11 @@ trait MediaShortcodes
     {
         $content = preg_replace('/#image(:left|:right)?#/', '', $content);
 
-        $content = str_replace('#video#', '', $content);
+        $content = preg_replace('/#video#/', '', $content);
+
+        $content = preg_replace('/#infographic#/', '', $content);
+
+        $content = preg_replace('/#file#/', '', $content);
 
         return $content;
     }
@@ -121,7 +129,7 @@ trait MediaShortcodes
      */
     protected function handleFullWidth($title, $link)
     {
-        return sprintf('{.full-width}' . PHP_EOL . '![%s](%s){.img-responsive.full-width}', $title, $link);
+        return sprintf('{.full-width.blog-img}' . PHP_EOL . '![%s](%s){.img-responsive.full-width}', $title, $link);
     }
 
     /**
@@ -185,6 +193,82 @@ trait MediaShortcodes
     protected function getWantedVideos($content)
     {
         preg_match_all('/#video#/', $content, $matches);
+
+        return count($matches[0]);
+    }
+
+    protected function compileInfographicShortcode($content)
+    {
+        $count = $this->getWantedInfographics($content);
+
+        $counter = 0;
+
+        while($counter < $count)
+        {
+            $replacement = '';
+
+            if($infographic = $this->infographics->get($counter))
+            {
+                $replacement = $this->handleFullWidth($infographic->title, asset($infographic->path));
+            }
+
+            $content = preg_replace('/#infographic#/', $replacement, $content, 1);
+
+            $counter++;
+        }
+
+        return $content;
+    }
+
+    /**
+     *
+     * Return a sorted array with all requested images.
+     *
+     * @param $content
+     *
+     * @return int
+     */
+    protected function getWantedInfographics($content)
+    {
+        preg_match_all('/#infographic#/', $content, $matches);
+
+        return count($matches[0]);
+    }
+
+    protected function compileFileShortcode($content)
+    {
+        $count = $this->getWantedFiles($content);
+
+        $counter = 0;
+
+        while($counter < $count)
+        {
+            $replacement = '';
+
+            if($file = $this->files->get($counter))
+            {
+                $replacement = sprintf('[%s](%s)', $file->title ? : $file->filename, asset($file->path));
+            }
+
+            $content = preg_replace('/#file#/', $replacement, $content, 1);
+
+            $counter++;
+        }
+
+        return $content;
+    }
+
+    /**
+     *
+     * Return a sorted array with all requested images.
+     *
+     * @param $content
+     *
+     * @return int
+     */
+    protected function getWantedFiles($content)
+    {
+        preg_match_all('/#file#/', $content, $matches);
 
         return count($matches[0]);
     }

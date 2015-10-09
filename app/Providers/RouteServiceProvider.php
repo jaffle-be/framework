@@ -28,6 +28,8 @@ class RouteServiceProvider extends ServiceProvider
 
         $router->model('image', 'App\Media\Image');
         $router->model('video', 'App\Media\Video\Video');
+        $router->model('infographic', 'App\Media\Infographics\Infographic');
+        $router->model('file', 'App\Media\Files\File');
         $router->model('tag', 'App\Tags\Tag');
         $router->model('blog', 'App\Blog\Post');
         $router->model('post', 'App\Blog\PostTranslation');

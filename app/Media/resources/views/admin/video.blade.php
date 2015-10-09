@@ -1,7 +1,5 @@
 <div class="video-widget">
 
-    <h3>{{ Lang::get('blog::admin.post.add_video') }}</h3>
-
     <tabset justified="true">
 
         <tab class="youtube" select="ctrl.setMode('youtube')">
@@ -51,15 +49,13 @@
 
     <button class="btn btn-block btn-primary" ng-click="ctrl.youtube.addVideo(ctrl.videos, locale, ownerType, ownerId)">add</button>
 
-    <hr>
+    <hr ng-show="ctrl.videos[locale].length">
 
     {{--videolist--}}
-    <div class="videos" ng-show="ctrl.videos">
-
-        <h3>{{ Lang::get('blog::admin.post.added_videos') }}</h3>
+    <div class="videos" ng-show="ctrl.videos[locale]">
 
         <ul class="clearfix">
-            <li ng-repeat="video in ctrl.videos track by $index" class="item video">
+            <li ng-repeat="video in ctrl.videos[locale] track by $index" class="item video">
 
                 <div class="media-image">
                     <img class="img-responsive" ng-src="@{{ video.provider_thumbnail }}"/>
@@ -74,7 +70,11 @@
                 </div>
 
                 <div class="form-group" ng-hide="!locale">
-                    <input autocomplete="off" ng-change="ctrl.updateImage(video)" class="form-control" type="text" ng-model="video.translations[locale].title" placeholder="{{ Lang::get('blog::admin.title') }}"/>
+                    <input autocomplete="off" ng-change="ctrl.updateVideo(video)" class="form-control" type="text" ng-model="video.title" placeholder="{{ Lang::get('blog::admin.title') }}"/>
+                </div>
+
+                <div class="form-group" ng-hide="!locale">
+                    <textarea auto-size class="form-control" ng-model="video.description" ng-change="ctrl.updateVideo(video)" placeholder="{{ Lang::get('blog::admin.description') }}"></textarea>
                 </div>
 
             </li>

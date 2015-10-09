@@ -6,6 +6,7 @@ use App\Jobs\Job;
 use App\Media\MediaRepositoryInterface;
 use App\Media\StoresMedia;
 use App\Media\Video\VideoGenericFormatter;
+use App\System\Locale;
 use Illuminate\Contracts\Bus\SelfHandling;
 
 class AddNewVideo extends Job implements SelfHandling
@@ -37,7 +38,7 @@ class AddNewVideo extends Job implements SelfHandling
         $this->input = $input;
     }
 
-    public function handle(AccountManager $accounts, MediaRepositoryInterface $media)
+    public function handle(AccountManager $accounts, MediaRepositoryInterface $media, Locale $locale)
     {
         if ($this->input['mode'] == 'youtube') {
             $info = $this->handleYoutube();
@@ -49,13 +50,18 @@ class AddNewVideo extends Job implements SelfHandling
             return false;
         }
 
+        $locale = $locale->whereSlug($this->input['locale'])->firstOrFail();
+
         $input = array_merge(array_except($this->input, ['url', 'mode']), [
             'provider'           => $this->input['mode'],
             'provider_id'        => $info['provider_id'],
             'provider_thumbnail' => $info['provider_thumbnail'],
+            'title'              => $info['title'],
+            'description'        => $info['description'],
             'width'              => $info['width'],
             'height'             => $info['height'],
             'account_id'         => $accounts->account()->id,
+            'locale_id'          => $locale->id,
         ]);
 
         return $media->createVideo($this->owner, $input);
@@ -78,7 +84,12 @@ class AddNewVideo extends Job implements SelfHandling
             return $this->youtubeVideoResponse($info);
         }
         catch (\Exception $e) {
-            app('log')->notice('handling youtube video failed', ['message' => $e->getMessage(), 'info' => $info]);
+
+            if (isset($info)) {
+                app('log')->notice('handling youtube video failed', ['message' => $e->getMessage(), 'info' => $info]);
+            } else {
+                app('log')->notice('handling youtube video failed', ['message' => $e->getMessage()]);
+            }
 
             return false;
         }
@@ -88,9 +99,17 @@ class AddNewVideo extends Job implements SelfHandling
     {
         $vimeo = app('Vinkla\Vimeo\VimeoManager');
 
-        $response = $vimeo->request('/videos/' . $this->input['provider_id']);
+        if (isset($this->input['url']) && $this->input['url']) {
+            $id = substr(parse_url($this->input['url'], PHP_URL_PATH), 1);
+        } else {
+            $id = $this->input['provider_id'];
+        }
 
-        return $this->vimeoVideoResponse($response['body']);
+        if ($id) {
+            $response = $vimeo->request('/videos/' . $id);
+
+            return $this->vimeoVideoResponse($response['body']);
+        }
     }
 
 }

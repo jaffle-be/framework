@@ -1,20 +1,20 @@
 <?php namespace App\Media\Commands;
 
 use App\Jobs\Job;
-use App\Media\Image;
 use App\Media\ImageDimensionHelpers;
+use App\Media\Infographics\Infographic;
 use App\Media\MediaRepositoryInterface;
 use Exception;
 use Illuminate\Contracts\Bus\SelfHandling;
 use Illuminate\Filesystem\Filesystem;
 use Intervention\Image\ImageManager;
 
-class ResizeImage extends Job implements SelfHandling
+class ResizeInfographic extends Job implements SelfHandling
 {
 
     use ImageDimensionHelpers;
 
-    protected $image;
+    protected $graphic;
 
     protected $size;
 
@@ -26,15 +26,15 @@ class ResizeImage extends Job implements SelfHandling
 
     protected $extension;
 
-    public function __construct(Image $image, $size, $cachedPath = false)
+    public function __construct(Infographic $graphic, $size, $cachedPath = false)
     {
-        $this->image = $image;
+        $this->graphic = $graphic;
         $this->size = $size;
         $this->cachedPath = $cachedPath;
 
-        $this->filename = pathinfo($image->path, PATHINFO_BASENAME);
-        $this->directory = pathinfo($image->path, PATHINFO_DIRNAME);
-        $this->extension = pathinfo($image->path, PATHINFO_EXTENSION);
+        $this->filename = pathinfo($graphic->path, PATHINFO_BASENAME);
+        $this->directory = pathinfo($graphic->path, PATHINFO_DIRNAME);
+        $this->extension = pathinfo($graphic->path, PATHINFO_EXTENSION);
     }
 
     public function handle(MediaRepositoryInterface $media, ImageManager $images, Filesystem $files)
@@ -45,40 +45,39 @@ class ResizeImage extends Job implements SelfHandling
 
         $constraint = $this->constraint($width, $height);
 
-        $image = $images->cache(function ($image) use ($width, $height, $constraint) {
+        $graphic = $images->cache(function ($img) use ($width, $height, $constraint) {
 
             if ($this->cachedPath) {
-                $image = $image->make($this->cachedPath);
+                $img = $img->make($this->cachedPath);
             } else {
-                $image = $image->make(public_path($this->image->path));
+                $img = $img->make(public_path($this->graphic->path));
             }
 
-            $image->resize($width, $height, $constraint);
+            $img->resize($width, $height, $constraint);
         }, 60, true)->save($path);
 
-        if ($image) {
+        if ($graphic) {
             //always fetch the actual width and height from the image,
             //one of them could have been null to auto scale the image.
-            $width = $image->getWidth();
-            $height = $image->getHeight();
+            $width = $graphic->getWidth();
+            $height = $graphic->getHeight();
 
-            //use html public path to store in database
+            //use htmlable public path to store in database
             $path = $this->getPath($files, true);
 
             try{
-                $media->createThumbnailImage($this->getPayload($width, $height, $path), $this->image);
+                $media->createThumbnailInfographic($this->getPayload($width, $height, $path), $this->graphic);
             }
             catch(Exception $e)
             {
                 $files->delete(public_path($path));
 
-                unset($image);
+                unset($graphic);
 
                 return false;
             }
 
-
-            unset($image);
+            unset($graphic);
         }
     }
 

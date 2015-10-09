@@ -59,7 +59,12 @@ angular.module('media')
                 //we'll get it back from the answer and use that to add to the videos array.
 
                 var success = function (video) {
-                    videos.push(video);
+                    if(!videos[locale])
+                    {
+                        videos[locale] = [];
+                    }
+
+                    videos[locale].push(video);
                     me.input.url = '';
                     me.input.title = '';
                     me.preview = false;
@@ -69,11 +74,9 @@ angular.module('media')
 
                     //make sure the response is not a full html document.
                     //why? this would pop a toast for each character in that document :-)
-                    if(typeof response.data == 'array' && response.data.length < 10)
+                    if(typeof response.data == 'string')
                     {
-                        _.each(response.data, function (item) {
-                            toaster.pop('error', item[0]);
-                        });
+                        toaster.error(response.data);
                     }
                 };
 
@@ -81,9 +84,11 @@ angular.module('media')
                     mode: this.mode,
                     ownerType: owner_type,
                     ownerId: owner_id,
-                    translations: {}
+                    translations: {},
+                    title: this.input.title,
+                    description: this.input.description,
+                    locale: locale
                 };
-                payload.translations[locale] = {title: this.input.title};
 
                 if(this.preview)
                 {
@@ -114,6 +119,7 @@ angular.module('media')
                 this.url = '';
 
                 this.youtube = youtube;
+                this.youtube.scope = $scope;
 
                 this.search = function()
                 {
@@ -131,19 +137,19 @@ angular.module('media')
                 this.moveUp = function (video, index) {
                     if (index - 1 >= 0)
                     {
-                        this.videos[index] = this.videos[index - 1];
-                        this.videos[index - 1] = video;
-                        VideoService.sort($scope.ownerType, $scope.ownerId, this.videos);
+                        this.videos[$scope.locale][index] = this.videos[$scope.locale][index - 1];
+                        this.videos[$scope.locale][index - 1] = video;
+                        VideoService.sort($scope.ownerType, $scope.ownerId, this.videos[$scope.locale]);
                     }
                 };
 
                 //move down means higher index
                 this.moveDown = function (video, index) {
-                    if (index + 1 <= this.videos.length - 1)
+                    if (index + 1 <= this.videos[$scope.locale].length - 1)
                     {
-                        this.videos[index] = this.videos[index + 1];
-                        this.videos[index + 1] = video;
-                        VideoService.sort($scope.ownerType, $scope.ownerId, this.videos);
+                        this.videos[$scope.locale][index] = this.videos[$scope.locale][index + 1];
+                        this.videos[$scope.locale][index + 1] = video;
+                        VideoService.sort($scope.ownerType, $scope.ownerId, this.videos[$scope.locale]);
                     }
                 };
 
@@ -153,7 +159,7 @@ angular.module('media')
 
                 this.deleteVideo = function (video) {
                     VideoService.delete($scope.ownerType, $scope.ownerId, video, function () {
-                        _.remove(me.videos, function (value, index, array) {
+                        _.remove(me.videos[$scope.locale], function (value, index, array) {
                             return value.id == video.id;
                         });
                     });
@@ -161,7 +167,7 @@ angular.module('media')
 
                 this.init = function () {
                     VideoService.list($scope.ownerType, $scope.ownerId, function (response) {
-                        me.videos = response;
+                        me.videos = response.data;
                         $scope.loaded = true;
                     });
                 };

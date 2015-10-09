@@ -43,6 +43,16 @@ trait StoringMedia
         return $this->morphOne('App\Media\Video\Video', 'owner');
     }
 
+    public function infographics()
+    {
+        return $this->morphMany('App\Media\Infographics\Infographic', 'owner');
+    }
+
+    public function files()
+    {
+        return $this->morphMany('App\Media\Files\File', 'owner');
+    }
+
     public function sizes($width = null, $height = null)
     {
         $this->images()->dimension($width, $height);

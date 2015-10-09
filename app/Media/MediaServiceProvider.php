@@ -1,5 +1,7 @@
 <?php namespace App\Media;
 
+use App\Media\Files\File;
+use App\Media\Infographics\Infographic;
 use App\System\ServiceProvider;
 
 class MediaServiceProvider extends ServiceProvider
@@ -33,5 +35,7 @@ class MediaServiceProvider extends ServiceProvider
     protected function observers()
     {
         Image::observe('App\Media\ImageObserver');
+        Infographic::observe('App\Media\Infographics\InfographicObserver');
+        File::observe('App\Media\Files\FileObserver');
     }
 }

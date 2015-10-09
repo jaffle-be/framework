@@ -1,5 +1,5 @@
 angular.module('media')
-    .factory('VideoService', function (Video, $timeout, $state, $http) {
+    .factory('VideoService', function (Video, VideoResource, $timeout, $state, $http) {
 
         function Service() {
 
@@ -14,10 +14,12 @@ angular.module('media')
             };
 
             this.search = function (mode, query, success) {
-                return $http.get('api/admin/media/video/search', {params: {
-                    mode: mode,
-                    query: query
-                }}).then(success);
+                return $http.get('api/admin/media/video/search', {
+                    params: {
+                        mode: mode,
+                        query: query
+                    }
+                }).then(success);
             };
 
             this.addLink = function (payload, success, error) {
@@ -28,7 +30,7 @@ angular.module('media')
                 }
 
                 this.timeouts['creating'] = $timeout(function () {
-                    var video = new Video(payload);
+                    var video = new VideoResource(payload);
 
                     video.$save().then(success, error);
                 }, 400);
@@ -64,9 +66,7 @@ angular.module('media')
                     order: order
                 });
             };
-
         }
 
         return new Service();
-
     });

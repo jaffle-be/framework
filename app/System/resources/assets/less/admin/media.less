@@ -57,6 +57,17 @@
       text-align: center;
     }
   }
+
+  .files li{
+    &:not(:last-child){
+      border-bottom: 1px solid @border-color;
+      margin-bottom: 10px;
+    }
+  }
+}
+
+body > .nav.files .item{
+  background-color: #FFF;
 }
 
 .video-widget {
@@ -124,7 +135,6 @@
       padding: 0;
       list-style: none;
       position:relative;
-
     }
 
   }

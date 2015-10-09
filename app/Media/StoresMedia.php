@@ -6,6 +6,8 @@ interface StoresMedia {
 
     public function videos();
 
+    public function infographics();
+
     public function getMediaFolder($size = null);
 
     public function mediaStoresMultiple();

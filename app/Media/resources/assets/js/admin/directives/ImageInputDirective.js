@@ -62,6 +62,12 @@ angular.module('media')
                             this.removeFile(file);
                             $scope.$apply();
                         },
+                        error: function(file, message)
+                        {
+                            toaster.error(message);
+                            this.removeFile(file);
+                            $scope.$apply();
+                        },
                         processing: function () {
                             this.options.params.ownerId = $scope.ownerId;
                         },

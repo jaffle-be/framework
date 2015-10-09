@@ -6,13 +6,14 @@ use App\Media\Configurator;
 use App\Media\Media;
 use App\Media\MediaRepositoryInterface;
 use App\Media\StoresMedia;
+use App\System\Locale;
 use Exception;
 use Illuminate\Contracts\Bus\SelfHandling;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Foundation\Bus\DispatchesCommands;
 use Intervention\Image\ImageManager;
 
-class StoreNewImage extends Job implements SelfHandling
+class StoreNewInfographic extends Job implements SelfHandling
 {
 
     use DispatchesCommands;
@@ -23,6 +24,11 @@ class StoreNewImage extends Job implements SelfHandling
      * @var StoresMedia
      */
     protected $owner;
+
+    /**
+     * @var Locale
+     */
+    protected $locale;
 
     /**
      * @var string
@@ -67,14 +73,15 @@ class StoreNewImage extends Job implements SelfHandling
     /**
      * @param Account     $account
      * @param StoresMedia $owner
+     * @param Locale      $locale
      * @param string      $path
      * @param null        $rename
-     * @param array       $sizes
      */
-    public function __construct(Account $account, StoresMedia $owner, $path, $rename = null)
+    public function __construct(Account $account, StoresMedia $owner, Locale $locale, $path, $rename = null)
     {
         $this->account = $account;
         $this->owner = $owner;
+        $this->locale = $locale;
         $this->currentPath = $path;
         $this->directory = pathinfo($path, PATHINFO_DIRNAME);
         $this->filename = pathinfo($path, PATHINFO_FILENAME);
@@ -94,9 +101,9 @@ class StoreNewImage extends Job implements SelfHandling
         $this->handleFile($files, $config);
 
         try{
-            $image = $repo->createImage($this->owner, $this->getPayload());
+            $image = $repo->createInfographic($this->owner, $this->getPayload());
         }
-        catch(Exception $e)
+        catch(Exception $query)
         {
             $files->delete(public_path($this->path));
 
@@ -106,8 +113,8 @@ class StoreNewImage extends Job implements SelfHandling
         if ($image) {
 
             foreach ($config->getImageSizes($this->owner) as $size) {
-                $this->dispatchFromArray(ResizeImage::class, [
-                    'image'      => $image,
+                $this->dispatchFromArray(ResizeInfographic::class, [
+                    'graphic'    => $image,
                     'size'       => $size,
                     'cachedPath' => $this->currentPath,
                 ]);
@@ -161,6 +168,7 @@ class StoreNewImage extends Job implements SelfHandling
     {
         return [
             'account_id' => $this->account->id,
+            'locale_id'  => $this->locale->id,
             'path'       => $this->path,
             'filename'   => $this->rename,
             'extension'  => $this->extension,

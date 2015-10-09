@@ -1,28 +1,38 @@
 <?php namespace App\Media;
 
+use App\Media\Files\File;
+use App\Media\Infographics\Infographic;
 use App\Media\Video\Video;
 
-class MediaRepository implements MediaRepositoryInterface{
-    
+class MediaRepository implements MediaRepositoryInterface
+{
+
     protected $images;
 
     protected $config;
 
     protected $videos;
 
-    public function __construct(Configurator $config, Image $images, Video $videos)
+    protected $infographics;
+
+    protected $files;
+
+    public function __construct(Configurator $config, Image $images, Video $videos, Infographic $infographics, File $files)
     {
         $this->config = $config;
 
         $this->images = $images;
 
         $this->videos = $videos;
+
+        $this->infographics = $infographics;
+
+        $this->files = $files;
     }
 
     public function findOwner($type, $id)
     {
-        if($this->config->typeExists($type))
-        {
+        if ($this->config->typeExists($type)) {
             $class = $this->config->classname($type);
 
             $class = new $class();
@@ -45,8 +55,7 @@ class MediaRepository implements MediaRepositoryInterface{
         $image->owner()->associate($owner);
 
         //sorting is 0 indexed
-        if($owner->mediaStoresMultiple())
-        {
+        if ($owner->mediaStoresMultiple()) {
             $image->sort = $owner->images->count();
         }
 
@@ -75,8 +84,7 @@ class MediaRepository implements MediaRepositoryInterface{
         //create image
         $image = $this->images->newInstance($payload);
 
-        if($original)
-        {
+        if ($original) {
             $image->original()->associate($original);
 
             $image->account_id = $original->account_id;
@@ -85,6 +93,75 @@ class MediaRepository implements MediaRepositoryInterface{
         $image = $image->save() ? $image : false;
 
         return $image;
+    }
+
+    /**
+     * @param StoresMedia $owner
+     * @param array       $payload
+     *
+     * @return Image|bool
+     */
+    public function createInfographic(StoresMedia $owner, array $payload)
+    {
+        //create infographic
+        $graphic = $this->infographics->newInstance($payload);
+
+        $graphic->owner()->associate($owner);
+
+        $locale_id = $payload['locale_id'];
+
+        $graphic->sort = $owner->infographics->filter(function($item) use ($locale_id)
+        {
+            return $item->locale_id == $locale_id;
+        })->count();
+
+        return $graphic->save() ? $graphic : false;
+    }
+
+    /**
+     * @param array            $payload
+     * @param Infographic|null $original
+     *
+     * @return Infographic|bool
+     */
+    public function createThumbnailInfographic(array $payload, Infographic $original = null)
+    {
+        //create image
+        $graphic = $this->infographics->newInstance($payload);
+
+        if ($original) {
+            $graphic->original()->associate($original);
+
+            $graphic->account_id = $original->account_id;
+
+            $graphic->locale_id = $original->locale_id;
+        }
+
+        $graphic = $graphic->save() ? $graphic : false;
+
+        return $graphic;
+    }
+
+    /**
+     * @param StoresMedia $owner
+     * @param array       $payload
+     *
+     * @return File|bool
+     */
+    public function createFile(StoresMedia $owner, array $payload)
+    {
+        $file = $this->files->newInstance($payload);
+
+        $file->owner()->associate($owner);
+
+        $locale_id = $payload['locale_id'];
+
+        $file->sort = $owner->files->filter(function($item) use ($locale_id)
+        {
+            return $item->locale_id == $locale_id;
+        })->count();
+
+        return $file->save() ? $file : false;
     }
 
 }

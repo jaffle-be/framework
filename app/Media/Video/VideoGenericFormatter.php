@@ -1,16 +1,22 @@
 <?php namespace App\Media\Video;
 
+use Illuminate\Http\JsonResponse;
+
 trait VideoGenericFormatter
 {
 
-    protected function vimeoReponse($body)
+    protected function vimeoReponse($response)
     {
         $me = $this;
 
-        return array_map(function ($video) use ($me) {
+        if($response->status == 200)
+        {
+            return array_map(function ($video) use ($me) {
 
-            return $me->vimeoVideoResponse($video);
-        }, $body->data);
+                return $me->vimeoVideoResponse($video);
+            }, $response->body->data);
+        }
+        return new JsonResponse($response->body, $response->status);
     }
 
     protected function vimeoVideoResponse($video)

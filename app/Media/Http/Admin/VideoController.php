@@ -36,35 +36,7 @@ class VideoController extends AdminController
 
         $videos = $owner->videos;
 
-        if ($videos) {
-            $videos->load($this->relations());
-
-            if (!$videos instanceof Collection) {
-                $videos = new Collection([$videos]);
-            }
-        }
-
-        return $videos;
-    }
-
-    protected function relations()
-    {
-        return [
-            'translations',
-        ];
-    }
-
-    protected function sizes(Request $request)
-    {
-        $type = $request->get('ownerType');
-
-        $sizes = config('media.sizes');
-
-        if (!isset($sizes[$type])) {
-            throw new \Exception('No valid sizes for this media type defined');
-        }
-
-        return $sizes[$type];
+        return $videos->byLocale();
     }
 
     protected function owner(Request $request)
@@ -83,7 +55,7 @@ class VideoController extends AdminController
 
         $owner = $this->owner($request);
 
-        $input = translation_input($request);
+        $input = $request->except(['_token']);
 
         $video = $this->dispatchFromArray(AddNewVideo::class, [
             'input' => $input,
@@ -91,7 +63,7 @@ class VideoController extends AdminController
         ]);
 
         if (!$video) {
-            return new JsonResponse(['url' => ['Dit not match any youtube movie']], 422);
+            return new JsonResponse('Dit not match any movie', 422);
         }
 
         return $video;
@@ -99,13 +71,11 @@ class VideoController extends AdminController
 
     public function update(Video $video, Request $request)
     {
-        $video->load($this->relations());
-
         $owner = $this->owner($request);
 
         if ($video->owner->id == $owner->id) {
 
-            $input = translation_input($request, ['_token', 'title']);
+            $input = $request->except(['_token', '_method']);
 
             $video->fill($input);
 
@@ -157,7 +127,7 @@ class VideoController extends AdminController
 
             $response = json_decode(json_encode($vimeo->request('/videos', ['query' => $request->get('query'), 'per_page' => 10])));
 
-            return $this->vimeoReponse($response->body);
+            return $this->vimeoReponse($response);
         }
     }
 
