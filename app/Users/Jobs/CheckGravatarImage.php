@@ -48,7 +48,7 @@ class CheckGravatarImage extends Job implements SelfHandling
 
             $files->move($path, $finalPath);
 
-            $this->dispatch(new StoreNewImage($manager->account(), $this->user, $finalPath, null, config('media.sizes.user')));
+            $this->dispatch(new StoreNewImage($manager->account(), $this->user, $finalPath));
 
             $files->delete($finalPath);
         }
