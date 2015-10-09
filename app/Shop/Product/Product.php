@@ -13,9 +13,14 @@ class Product extends Model implements StoresMedia{
     protected $fillable = ['name', 'text'];
 
 
-    public function getMediaFolder()
+    public function getMediaFolder($size = null)
     {
-        return sprintf('products/%d/%d/', $this->attributes['brand_id'], $this->attributes['id']);
+        if(!$size)
+        {
+            sprintf('products/%d/%d/', $this->attributes['brand_id'], $this->attributes['id']);
+        }
+
+        return sprintf('products/%d/%d/%s', $this->attributes['brand_id'], $this->attributes['id']);
     }
 
     public function getRouteKeyName()
