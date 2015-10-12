@@ -8,7 +8,7 @@ class Google extends MetaTagProvider
 
     protected function tag($key, $value)
     {
-        return '<meta itemprop="' . strip_tags($key) . '" content="' . strip_tags($value) . '" />';
+        return '<meta itemprop="' . strip_tags($key) . '" content="' . strip_tags($value) . '">';
     }
 
     protected function handle(SeoEntity $seo)

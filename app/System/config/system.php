@@ -86,9 +86,16 @@ return [
         ],
 
         'providers'       => [
+            App\System\Seo\Providers\Generic::class,
             App\System\Seo\Providers\Google::class,
             App\System\Seo\Providers\Twitter::class,
             App\System\Seo\Providers\Facebook::class,
+        ],
+
+        'generic' => [
+            'title'       => 'Digiredo', // set false to total remove
+            'description' => 'A multipurpose platform', // set false to total remove
+            'keywords' => ['a multipurpose larangular platform']
         ],
 
         'twitter'         => [
@@ -114,6 +121,10 @@ return [
             'url'         => false,
             'images'      => [],
         ],
+
+        'owners' => [
+            'blog' => App\Blog\Post::class
+        ]
 
     ],
 ];

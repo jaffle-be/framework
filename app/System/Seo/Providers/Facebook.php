@@ -7,6 +7,16 @@ class Facebook extends MetaTagProvider
 {
     protected $prefix = 'og:';
 
+    protected function tag($key, $value)
+    {
+        if(!property_exists($this, 'prefix'))
+        {
+            throw new \Exception('Need to define the prefix property for generating meta tags');
+        }
+
+        return '<meta property="' . $this->prefix . strip_tags($key) . '" content="' . strip_tags($value) . '">';
+    }
+
     protected function handle(SeoEntity $seo)
     {
         $type = $seo->getSeoTypeFacebook();

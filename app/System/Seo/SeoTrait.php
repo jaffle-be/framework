@@ -2,12 +2,49 @@
 
 use App\Media\StoresMedia;
 use App\System\Presenter\PresentableEntity;
+use App\System\Locale;
 
 trait SeoTrait
 {
 
+    public function seo()
+    {
+        return $this->morphMany('App\System\Seo\SeoProperty', 'owner');
+    }
+
+    protected function getSeoCustomisation($field)
+    {
+        static $locale;
+
+        if(!$locale)
+        {
+            $locale = app()->getLocale();
+
+            $locale = Locale::whereSlug($locale)->first();
+        }
+
+        if($this->seo)
+        {
+            $localised = $this->seo->first(function ($key, $item) use ($locale) {
+                return $item->locale_id == $locale->id;
+            });
+
+            if($localised)
+            {
+                return $localised->$field;
+            }
+        }
+
+        return false;
+    }
+
     public function getSeoTitle()
     {
+        if($seo = $this->getSeoCustomisation('title'))
+        {
+            return $seo;
+        }
+
         if ($this instanceof PresentableEntity) {
             return $this->present()->title;
         }
@@ -17,9 +54,10 @@ trait SeoTrait
 
     public function getSeoDescription()
     {
-        //do we have a custom defined for this specific resource?
-        //we should use our polymorphic relation to seo for this
-        //(which we still need to create)
+        if($seo = $this->getSeoCustomisation('description'))
+        {
+            return $seo;
+        }
 
         //use customised seo field if provided.
         $hasCustomSeoAttribute = property_exists($this, 'seo') && is_array($this->seo) && isset($this->seo['extract']);
@@ -45,7 +83,10 @@ trait SeoTrait
 
     public function getSeoKeywords()
     {
-        //get it from custom defined
+        if($seo = $this->getSeoCustomisation('description'))
+        {
+            return $seo;
+        }
 
         //we could use most significant terms? search engines must use some sort of same implementation.
         //therefor our keywords to our documents will always be scored 'perfect' in their algorithms, should boost us.
@@ -95,6 +136,5 @@ trait SeoTrait
     {
         return $this->user->fullName;
     }
-
 
 }

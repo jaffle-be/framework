@@ -150,7 +150,7 @@ abstract class MetaTagProvider
             throw new \Exception('Need to define the prefix property for generating meta tags');
         }
 
-        return '<meta property="' . $this->prefix . strip_tags($key) . '" content="' . strip_tags($value) . '" />';
+        return '<meta name="' . $this->prefix . strip_tags($key) . '" content="' . strip_tags($value) . '">';
     }
 
 }

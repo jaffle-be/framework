@@ -75,4 +75,56 @@ return [
     */
     'always_fillable'    => false,
 
+    'seo'                => [
+
+        'webmaster_tools' => [
+            'google'    => null,
+            'bing'      => null,
+            'alexa'     => null,
+            'pinterest' => null,
+            'yandex'    => null
+        ],
+
+        'providers'       => [
+            App\System\Seo\Providers\Generic::class,
+            App\System\Seo\Providers\Google::class,
+            App\System\Seo\Providers\Twitter::class,
+            App\System\Seo\Providers\Facebook::class,
+        ],
+
+        'generic' => [
+            'title'       => 'Digiredo', // set false to total remove
+            'description' => 'A multipurpose platform', // set false to total remove
+            'keywords' => ['a multipurpose larangular platform']
+        ],
+
+        'twitter'         => [
+            'card'    => 'summary_large_image',
+            'site'    => '@digiredo',
+            'creator' => '@digiredo',
+        ],
+
+        'facebook'        => [
+            'type'        => 'website',
+            'title'       => 'Digiredo', // set false to total remove
+            'description' => 'A multipurpose platform', // set false to total remove
+            'url'         => false,
+            'site_name'   => 'digiredo.be',
+            'images'      => [],
+        ],
+
+        'google'          => [
+            'type'        => 'website',
+            'site_name'   => 'digiredo.be',
+            'title'       => 'Digiredo', // set false to total remove
+            'description' => 'A multipurpose platform', // set false to total remove
+            'url'         => false,
+            'images'      => [],
+        ],
+
+        'owners' => [
+            'blog' => App\Blog\Post::class
+        ]
+
+    ],
 ];

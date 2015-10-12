@@ -51,10 +51,9 @@
             <tab heading="{{ Lang::get('blog::admin.post.seo') }}">
 
                 <div class="ibox-content">
-                    <div class="alert alert-info">
-                        should display the input boxes like we have in wordpress yoast.
-                        start with a very simple version...
-                    </div>
+
+                    <seo-input locale="vm.options.locale" owner-type="'blog'" owner-id="$state.params.id"></seo-input>
+
                 </div>
 
             </tab>
