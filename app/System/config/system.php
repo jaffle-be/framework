@@ -95,7 +95,7 @@ return [
         'generic' => [
             'title'       => 'Digiredo', // set false to total remove
             'description' => 'A multipurpose platform', // set false to total remove
-            'keywords' => ['a multipurpose larangular platform']
+            'keywords' => 'a multipurpose larangular platform'
         ],
 
         'twitter'         => [
