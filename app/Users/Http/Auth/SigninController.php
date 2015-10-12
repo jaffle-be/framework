@@ -1,12 +1,12 @@
 <?php namespace App\Users\Http\Auth;
 
-use App\System\Http\Controller;
+use App\System\Http\FrontController;
 use App\Users\Auth\Commands\Signin;
 use App\Users\Auth\Requests\SigninRequest;
 use App\Users\User;
 use Illuminate\Translation\Translator;
 
-class SigninController extends Controller
+class SigninController extends FrontController
 {
 
     public function index()

@@ -1,8 +1,8 @@
 <?php namespace App\Shop\Http;
 
-use App\System\Http\Controller;
+use App\System\Http\FrontController;
 
-class CheckoutController extends Controller{
+class CheckoutController extends FrontController{
 
     public function index()
     {

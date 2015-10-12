@@ -2,10 +2,10 @@
 
 use App\Portfolio\Project;
 use App\Portfolio\ProjectTranslation;
-use App\System\Http\Controller;
+use App\System\Http\FrontController;
 use App\Tags\Tag;
 
-class PortfolioController extends Controller
+class PortfolioController extends FrontController
 {
 
     public function index(Project $project, Tag $tags)

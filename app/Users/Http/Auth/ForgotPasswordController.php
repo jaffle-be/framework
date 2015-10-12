@@ -1,12 +1,12 @@
 <?php namespace App\Users\Http\Auth;
 
 use App\Account\AccountManager;
-use App\System\Http\Controller;
+use App\System\Http\FrontController;
 use App\Users\Auth\Commands\SendResetEmail;
 use App\Users\Auth\Requests\ForgotPasswordRequest;
 use Lang;
 
-class ForgotPasswordController extends Controller
+class ForgotPasswordController extends FrontController
 {
 
     public function index()

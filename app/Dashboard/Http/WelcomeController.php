@@ -2,13 +2,13 @@
 
 use App\Account\MembershipInvitation;
 use App\Media\Media;
-use App\System\Http\Controller;
+use App\System\Http\FrontController;
 use App\Theme\Theme;
 use Illuminate\Foundation\Bus\DispatchesCommands;
 use Illuminate\Http\Request;
 use Illuminate\Session\Store;
 
-class WelcomeController extends Controller
+class WelcomeController extends FrontController
 {
     use DispatchesCommands;
 

@@ -3,9 +3,9 @@
 use App\Blog\Post;
 use App\Blog\PostRepositoryInterface;
 use App\Blog\PostTranslation;
-use App\System\Http\Controller;
+use App\System\Http\FrontController;
 
-class BlogController extends Controller
+class BlogController extends FrontController
 {
 
     public function index(Post $post, PostRepositoryInterface $posts)

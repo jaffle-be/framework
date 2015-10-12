@@ -1,13 +1,13 @@
 <?php namespace App\Users\Http\Auth;
 
-use App\System\Http\Controller;
+use App\System\Http\FrontController;
 use App\Users\Auth\Commands\ResetPassword;
 use App\Users\Auth\Requests\ResetPasswordRequest;
 use App\Users\Auth\Tokens\TokenRepository;
 use Illuminate\Contracts\Auth\Guard;
 use Lang;
 
-class ResetPasswordController extends Controller
+class ResetPasswordController extends FrontController
 {
 
     /**

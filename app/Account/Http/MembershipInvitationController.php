@@ -1,12 +1,12 @@
 <?php namespace App\Account\Http;
 
 use App\Account\MembershipRepository;
-use App\System\Http\Controller;
+use App\System\Http\FrontController;
 use App\Users\Auth\Commands\Signup;
 use App\Users\User;
 use Illuminate\Contracts\Auth\Guard;
 
-class MembershipInvitationController extends Controller
+class MembershipInvitationController extends FrontController
 {
 
     public function show(MembershipRepository $repository, $invitation, Guard $guard)

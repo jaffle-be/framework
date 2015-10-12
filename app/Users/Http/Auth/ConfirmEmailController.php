@@ -1,7 +1,7 @@
 <?php namespace App\Users\Http\Auth;
 
 use App\Account\AccountManager;
-use App\System\Http\Controller;
+use App\System\Http\FrontController;
 use App\Users\Auth\Commands\ConfirmEmail;
 use App\Users\Auth\Commands\SendConfirmationEmail;
 use App\Users\Contracts\TokenRepositoryInterface;
@@ -10,7 +10,7 @@ use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Http\Request;
 use Lang;
 
-class ConfirmEmailController extends Controller
+class ConfirmEmailController extends FrontController
 {
 
     /**

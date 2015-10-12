@@ -1,13 +1,13 @@
 <?php namespace App\Users\Http\Auth;
 
 use App\Account\MembershipInvitation;
-use App\System\Http\Controller;
+use App\System\Http\FrontController;
 use App\Users\Auth\Commands\Signup;
 use App\Users\Auth\Requests\SignupRequest;
 use App\Users\User;
 use Illuminate\Auth\Guard;
 
-class SignupController extends Controller
+class SignupController extends FrontController
 {
 
     public function index()

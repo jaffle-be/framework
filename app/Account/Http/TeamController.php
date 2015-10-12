@@ -3,10 +3,10 @@
 use App\Account\AccountManager;
 use App\Account\Team;
 use App\Blog\PostRepositoryInterface;
-use App\System\Http\Controller;
+use App\System\Http\FrontController;
 use App\Users\User;
 
-class TeamController extends Controller
+class TeamController extends FrontController
 {
 
     public function index(AccountManager $accountManager, Team $team)

@@ -1,10 +1,10 @@
 <?php namespace App\Users\Http\Auth;
 
-use App\System\Http\Controller;
+use App\System\Http\FrontController;
 use App\Users\Auth\Commands\Signout;
 use Lang;
 
-class SignoutController extends Controller
+class SignoutController extends FrontController
 {
 
     public function index()

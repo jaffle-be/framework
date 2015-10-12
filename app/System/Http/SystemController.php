@@ -5,7 +5,7 @@ use App\Account\AccountManager;
 use Illuminate\Http\Request;
 use Illuminate\Session\Store;
 
-class SystemController extends Controller
+class SystemController extends FrontController
 {
 
     public function locale(Store $session, Request $request, AccountManager $accounts)
