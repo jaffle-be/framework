@@ -128,7 +128,14 @@ abstract class MetaTagProvider
                 // if empty jump to next
                 if (empty($value)) continue;
 
-                $html[] = $this->tag($key, $value);
+                if($this->hasCustomRenderMethod($key))
+                {
+                    $html[] = $this->customRenderMethod($key, $value);
+                }
+                else{
+                    $html[] = $this->tag($key, $value);
+                }
+
             endif;
         endforeach;
 
@@ -185,4 +192,31 @@ abstract class MetaTagProvider
             return $key;
         endif;
     }
+
+    protected function hasCustomRenderMethod($key)
+    {
+        $method = $this->customRenderMethodName($key);
+
+        return method_exists($this, $method);
+    }
+
+    protected function customRenderMethod($key, $value)
+    {
+        $method = $this->customRenderMethodName($key);
+
+        return call_user_func([$this, $method], $key, $value);
+    }
+
+    /**
+     * @param $key
+     *
+     * @return string
+     */
+    protected function customRenderMethodName($key)
+    {
+        $method = 'render' . ucfirst($key);
+
+        return $method;
+    }
+
 }

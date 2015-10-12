@@ -6,6 +6,11 @@ use App\System\Seo\SeoEntity;
 class Generic extends MetaTagProvider
 {
 
+    protected function renderTitle($key, $value)
+    {
+        return "<title>$value</title>";
+    }
+
     protected function handle(SeoEntity $seo)
     {
         $this->addProperty('title', $seo->getSeoTitle());
