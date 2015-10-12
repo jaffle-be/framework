@@ -24,6 +24,8 @@ class BlogController extends FrontController
 
         $post->load($posts->relations());
 
+        $this->seo->setEntity($post);
+
         $related = $posts->getRelatedPosts($post);
 
         return $this->theme->render('blog.' . $this->theme->setting('blogDetail'), ['post' => $post, 'related' => $related]);

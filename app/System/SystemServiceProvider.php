@@ -40,6 +40,13 @@ class SystemServiceProvider extends ServiceProvider
             __DIR__ . '/config/system.php', 'system'
         );
 
+        $this->app->singleton('seo', function($app)
+        {
+            return new Seo\SeoManager($app['config']);
+        });
+
+        $this->app->bind('App\System\Seo\SeoManager', 'seo');
+
         $this->app->booted(function ($app) {
             $app['newrelic']->setAppName(env('APP_NAME'));
         });

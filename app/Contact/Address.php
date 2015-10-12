@@ -24,12 +24,32 @@ class Address extends Model{
 
     public function format()
     {
-        return sprintf('%s %s, %s %s', $this->attributes['street'], $this->attributes['box'], $this->attributes['postcode'], $this->attributes['city']);
+        $street = $this->microtag('streetAddress', $this->attributes['street']);
+
+        $box = $this->microtag('postOfficeBoxNumber', $this->attributes['box']);
+
+        $postal = $this->microtag('postalCode', $this->attributes['postcode']);
+
+        $city = $this->microtag('addressLocality', $this->attributes['city']);
+
+        $country = $this->microtag('addressCountry', $this->country->iso_code_2, true);
+
+        return sprintf('%s %s, %s %s %s', $street, $box, $postal, $city, $country);
     }
 
     public function country()
     {
         return $this->belongsTo('App\System\Country\Country', 'country_id');
+    }
+
+    protected function microtag($type, $value, $hidden = false)
+    {
+        if($hidden)
+        {
+            $hidden = 'style="display:none;"';
+        }
+
+        return sprintf('<span itemprop="%s" %s>%s</span>', $type, $hidden, $value);
     }
 
 }
