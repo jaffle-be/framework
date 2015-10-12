@@ -120,18 +120,10 @@ abstract class MetaTagProvider
             // multiple properties
             if (is_array($value)):
 
-                $subListPrefix = (is_string($property)) ? $property : $prefix;
-                $subList       = $this->eachProperties($value, $subListPrefix);
-
-                $html[] = $subList;
+                $html = $this->handleMultipleProperties($prefix, $property, $value, $html);
             else:
-                if (is_numeric($property)):
-                    $key = $prefix . $property;
-                elseif(is_string($prefix)):
-                    $key = (is_string($property)) ? $prefix . ':' . $property : $prefix;
-                else:
-                    $key = $property;
-                endif;
+
+                $key = $this->getPropertyKey($prefix, $property);
 
                 // if empty jump to next
                 if (empty($value)) continue;
@@ -153,4 +145,44 @@ abstract class MetaTagProvider
         return '<meta name="' . $this->prefix . strip_tags($key) . '" content="' . strip_tags($value) . '">';
     }
 
+    /**
+     * @param $prefix
+     * @param $property
+     * @param $value
+     * @param $html
+     *
+     * @return array
+     */
+    protected function handleMultipleProperties($prefix, $property, $value, $html)
+    {
+        $subListPrefix = (is_string($property)) ? $property : $prefix;
+        $subList = $this->eachProperties($value, $subListPrefix);
+
+        $html[] = $subList;
+
+        return $html;
+    }
+
+    /**
+     * @param $prefix
+     * @param $property
+     *
+     * @return string
+     */
+    protected function getPropertyKey($prefix, $property)
+    {
+        if (is_numeric($property)):
+            $key = $prefix . $property;
+
+            return $key;
+        elseif (is_string($prefix)):
+            $key = (is_string($property)) ? $prefix . ':' . $property : $prefix;
+
+            return $key;
+        else:
+            $key = $property;
+
+            return $key;
+        endif;
+    }
 }
