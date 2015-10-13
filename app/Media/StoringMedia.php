@@ -1,6 +1,7 @@
 <?php namespace App\Media;
 
 use Exception;
+use InvalidArgumentException;
 
 trait StoringMedia
 {
@@ -77,8 +78,13 @@ trait StoringMedia
         }
     }
 
-    public function getMediaFolder($size = null)
+    public function getMediaFolder($type, $size = null)
     {
+        if(!in_array($type, ['files', 'images', 'videos', 'infographics']))
+        {
+            throw new InvalidArgumentException('Need valid media type to return a proper folder');
+        }
+
         if(!property_exists(get_class($this), 'media'))
         {
             throw new Exception('Please define media attribute on your model');
@@ -90,10 +96,10 @@ trait StoringMedia
 
         if(!$size)
         {
-            return sprintf('%s/%d/', $media, $this->attributes['id']);
+            return sprintf('%s/%d/%s/', $media, $this->attributes['id'], $type);
         }
 
-        return sprintf('%s/%d/%s/', $media, $this->attributes['id'], $size);
+        return sprintf('%s/%d/%s/%s/', $media, $this->attributes['id'], $type, $size);
     }
 
 }

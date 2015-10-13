@@ -81,7 +81,7 @@ class RemoveSize extends Command
             $this->handleImage($owner->images);
         }
 
-        $this->files->deleteDirectory(rtrim($this->config->getPublicPath($owner, $size), '/'));
+        $this->files->deleteDirectory(rtrim($this->config->getPublicPath($owner, 'images', $size), '/'));
     }
 
     /**

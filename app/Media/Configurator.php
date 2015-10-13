@@ -1,13 +1,14 @@
 <?php namespace App\Media;
 
 use App\Theme\Theme;
+use App\Theme\ThemeManager;
 use Illuminate\Contracts\Config\Repository;
 use InvalidArgumentException;
 
 class Configurator
 {
 
-    public function __construct(Repository $config, Theme $theme)
+    public function __construct(Repository $config, ThemeManager $theme)
     {
         $this->config = $config;
 
@@ -36,14 +37,19 @@ class Configurator
         return array_values(array_intersect_key($this->owners, array_flip([$type])));
     }
 
-    public function getPublicPath(StoresMedia $owner, $size = null)
+    public function getPublicPath(StoresMedia $owner, $type, $size = null)
     {
-        return public_path($this->getAbstractPath($owner, $size));
+        return public_path($this->getAbstractPath($owner, $type, $size));
     }
 
-    public function getAbstractPath(StoresMedia $owner, $size = null)
+    public function getAbstractPath(StoresMedia $owner, $type, $size = null)
     {
-        return $this->config->get('media.path') . '/' . $owner->getMediaFolder($size);
+        if(!in_array($type, ['images', 'infographics', 'files', 'videos']))
+        {
+            throw new InvalidArgumentException('Need to pass a proper media type');
+        }
+
+        return $this->config->get('media.path') . '/' . $owner->getMediaFolder($type, $size);
     }
 
     /**
@@ -60,7 +66,16 @@ class Configurator
         $alias = $this->alias($owner);
 
         //get the dimensions defined in the theme that's currently being used.
-        $config = $this->config->get($this->theme->name . '.media.images.' . $alias);
+
+        if(!$current = $this->theme->current())
+        {
+            $name = $this->config->get('theme.default');
+        }
+        else{
+            $name = $current->name;
+        }
+
+        $config = $this->config->get($name . '.media.images.' . $alias);
 
         //add our dimension for the admin, flip to be able to merge
         $sizes = array_merge(array_flip($config), array_flip($this->config->get('media.admin.image')));

@@ -43,7 +43,7 @@ class UploadNewFile extends Job implements SelfHandling
 
     public function handle(Filesystem $files, AccountManager $manager)
     {
-        $temp_dir = storage_path('media') . '/' . $this->owner->getMediaFolder();
+        $temp_dir = storage_path('media') . '/' . $this->owner->getMediaFolder('files');
 
         $name = $this->uniqueName();
 

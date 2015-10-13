@@ -8,7 +8,7 @@ interface StoresMedia {
 
     public function infographics();
 
-    public function getMediaFolder($size = null);
+    public function getMediaFolder($type, $size = null);
 
     public function mediaStoresMultiple();
 

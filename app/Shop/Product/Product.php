@@ -3,6 +3,7 @@
 use App\Media\StoresMedia;
 use App\Media\StoringMedia;
 use Illuminate\Database\Eloquent\Model;
+use InvalidArgumentException;
 
 class Product extends Model implements StoresMedia{
 
@@ -13,8 +14,13 @@ class Product extends Model implements StoresMedia{
     protected $fillable = ['name', 'text'];
 
 
-    public function getMediaFolder($size = null)
+    public function getMediaFolder($type, $size = null)
     {
+        if(!in_array($type, ['files', 'images', 'videos', 'infographics']))
+        {
+            throw new InvalidArgumentException('need proper media type to return media folder');
+        }
+
         if(!$size)
         {
             sprintf('products/%d/%d/', $this->attributes['brand_id'], $this->attributes['id']);

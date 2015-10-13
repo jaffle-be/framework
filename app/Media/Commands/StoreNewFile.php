@@ -112,8 +112,8 @@ class StoreNewFile extends Job implements SelfHandling
 
     protected function handleFile(Filesystem $files, Configurator $config)
     {
-        $abstract = $config->getAbstractPath($this->owner);
-        $public = $config->getPublicPath($this->owner);
+        $abstract = $config->getAbstractPath($this->owner, 'files');
+        $public = $config->getPublicPath($this->owner, 'files');
 
         if (!$files->isDirectory($public)) {
             $files->makeDirectory($public, 0755, true);
