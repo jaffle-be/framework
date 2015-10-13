@@ -33,6 +33,7 @@ class CreateMediaInfographics extends Migration
             $table->timestamps();
 
             $table->index(['owner_type', 'owner_id'], 'media_infographic_owners');
+            $table->unique(['owner_type', 'owner_id', 'locale_id', 'filename']);
         });
     }
 

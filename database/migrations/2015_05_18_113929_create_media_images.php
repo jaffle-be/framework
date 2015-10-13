@@ -30,6 +30,7 @@ class CreateMediaImages extends Migration
             $table->timestamps();
 
             $table->index(['owner_type', 'owner_id'], 'media_image_owners');
+            $table->unique(['owner_type', 'owner_id', 'filename']);
         });
 
         Schema::create('media_image_translations', function(Blueprint $table){
