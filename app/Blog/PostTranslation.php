@@ -2,20 +2,23 @@
 
 use App\Search\Model\Searchable;
 use App\Search\Model\SearchableTrait;
+use App\System\Presenter\PresentableEntity;
+use App\System\Presenter\PresentableTrait;
 use App\System\Sluggable\Sluggable;
 use App\System\Translatable\TranslationModel;
 use Cviebrock\EloquentSluggable\SluggableInterface;
 use Cviebrock\EloquentSluggable\SluggableTrait;
 use Illuminate\Http\Request;
 
-class PostTranslation extends TranslationModel implements Searchable, SluggableInterface
+class PostTranslation extends TranslationModel implements Searchable, SluggableInterface, PresentableEntity
 {
-
-    use SearchableTrait, SluggableTrait, Sluggable;
+    use SearchableTrait, SluggableTrait, Sluggable, PresentableTrait;
 
     protected $table = 'post_translations';
 
     protected $fillable = ['title', 'content', 'publish_at'];
+
+    protected $presenter = 'App\Blog\Presenter\PostFrontPresenter';
 
     protected $sluggable = [
         'build_from' => 'title',
@@ -69,6 +72,13 @@ class PostTranslation extends TranslationModel implements Searchable, SluggableI
         if(isset($data['publish_at']) && $data['publish_at'])
         {
             $data['publish_at'] = $this->publish_at->format('Y-m-d');
+        }
+
+        $request = app('request');
+
+        if(starts_with($request->getRequestUri(), '/api'))
+        {
+            $data['extract'] = $this->present()->extract;
         }
 
         return $data;
