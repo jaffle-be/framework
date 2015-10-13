@@ -6,7 +6,6 @@ use App\Media\MediaRepositoryInterface;
 use App\System\Http\AdminController;
 use App\System\Locale;
 use App\Theme\ThemeManager;
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 
 class InfographicController extends AdminController

@@ -4,9 +4,9 @@ namespace App\System;
 
 use App\System\Cache\CacheManager;
 use App\System\Queue\RedisConnector;
+use Blade;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Factory;
-use Blade;
 use Webuni\CommonMark\AttributesExtension\AttributesExtension;
 
 class SystemServiceProvider extends ServiceProvider

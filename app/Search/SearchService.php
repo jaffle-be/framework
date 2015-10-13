@@ -7,7 +7,6 @@ use Elasticsearch\Client;
 use Exception;
 use Illuminate\Container\Container;
 use Illuminate\Events\Dispatcher;
-use Illuminate\Support\Collection;
 
 class SearchService implements SearchServiceInterface
 {

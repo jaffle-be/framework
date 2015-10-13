@@ -3,11 +3,12 @@
 use App\Media\StoresMedia;
 use App\Media\StoringMedia;
 use App\System\Scopes\ModelAccountResource;
+use App\System\Translatable\Translatable;
 use Illuminate\Database\Eloquent\Model;
 
 class Client extends Model implements StoresMedia
 {
-    use \App\System\Translatable\Translatable;
+    use Translatable;
     use StoringMedia;
     use ModelAccountResource;
 

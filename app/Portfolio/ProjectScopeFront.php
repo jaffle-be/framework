@@ -1,8 +1,8 @@
 <?php namespace App\Portfolio;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\ScopeInterface;
-use Illuminate\Database\Eloquent\Builder;
 
 class ProjectScopeFront implements ScopeInterface
 {

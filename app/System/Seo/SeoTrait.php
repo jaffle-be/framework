@@ -1,8 +1,8 @@
 <?php namespace App\System\Seo;
 
 use App\Media\StoresMedia;
-use App\System\Presenter\PresentableEntity;
 use App\System\Locale;
+use App\System\Presenter\PresentableEntity;
 
 trait SeoTrait
 {

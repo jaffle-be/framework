@@ -2,9 +2,7 @@
 
 namespace App\Theme;
 
-use App\Account\AccountManager;
 use Exception;
-use Illuminate\Contracts\Cache\Repository;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\View\Factory;
 

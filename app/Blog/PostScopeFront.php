@@ -1,9 +1,9 @@
 <?php namespace App\Blog;
 
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\ScopeInterface;
-use Illuminate\Database\Eloquent\Builder;
 
 class PostScopeFront implements ScopeInterface
 {

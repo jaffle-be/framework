@@ -2,7 +2,6 @@
 
 use App\Account\AccountManager;
 use App\Jobs\Job;
-use App\Media\Configurator;
 use App\Media\StoresMedia;
 use App\System\Locale;
 use Illuminate\Contracts\Bus\SelfHandling;

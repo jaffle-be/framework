@@ -1,7 +1,5 @@
 <?php
 
-use App\Portfolio\Project;
-
 Breadcrumbs::register('store.portfolio.index', function($breadcrumbs){
     $breadcrumbs->parent('store.home');
     $breadcrumbs->push('Projects', route('store.portfolio.index'));

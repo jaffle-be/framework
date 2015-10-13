@@ -3,7 +3,6 @@
 use App\System\Scopes\ModelAccountResource;
 use App\System\Scopes\ModelAutoSort;
 use App\System\Scopes\ModelLocaleSpecificResource;
-use App\System\Translatable\Translatable;
 use Illuminate\Database\Eloquent\Model;
 
 class Video extends Model

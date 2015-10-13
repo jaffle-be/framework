@@ -7,10 +7,8 @@ use App\Media\Video\Video;
 use App\Media\Video\VideoGenericFormatter;
 use App\System\Http\AdminController;
 use App\Theme\ThemeManager;
-use Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Collection;
 
 class VideoController extends AdminController
 {

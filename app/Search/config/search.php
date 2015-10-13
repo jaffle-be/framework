@@ -1,11 +1,7 @@
 <?php
 
 use App\Blog\Post;
-use App\Blog\PostTranslation;
 use App\Portfolio\Project;
-use App\Portfolio\ProjectTranslation;
-use App\Tags\Tag;
-use App\Tags\TagTranslation;
 use App\Users\User;
 
 return [

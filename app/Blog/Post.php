@@ -9,7 +9,6 @@ use App\System\Presenter\PresentableTrait;
 use App\System\Scopes\ModelAccountResource;
 use App\System\Seo\SeoEntity;
 use App\System\Seo\SeoTrait;
-use App\System\Sluggable\Sluggable;
 use App\System\Translatable\Translatable;
 use App\Tags\StoresTags;
 use App\Tags\Taggable;

@@ -2,7 +2,6 @@
 namespace App\Search\Model;
 
 use App;
-use App\Search\Query\Query;
 use App\Search\SearchServiceInterface;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\Relation;

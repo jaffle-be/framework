@@ -1,7 +1,5 @@
 <?php
 
-use App\Users\User;
-
 Breadcrumbs::register('store.team.index', function($breadcrumbs){
 
     $breadcrumbs->parent('store.home');
