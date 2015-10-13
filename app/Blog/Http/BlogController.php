@@ -15,7 +15,7 @@ class BlogController extends FrontController
          */
         $posts = Post::with($posts->relations())->orderBy('created_at', 'desc')->paginate();
 
-        return $this->theme->render('blog.' . $this->theme->setting('blogOverview'), ['posts' => $posts])->render();
+        return $this->theme->render('blog.overview', ['posts' => $posts])->render();
     }
 
     public function show(PostTranslation $post, PostRepositoryInterface $posts)
@@ -28,6 +28,6 @@ class BlogController extends FrontController
 
         $related = $posts->getRelatedPosts($post);
 
-        return $this->theme->render('blog.' . $this->theme->setting('blogDetail'), ['post' => $post, 'related' => $related]);
+        return $this->theme->render('blog.detail', ['post' => $post, 'related' => $related]);
     }
 }
