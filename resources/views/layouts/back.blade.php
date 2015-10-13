@@ -12,7 +12,8 @@
 
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&lang=en">
     <link id="loadBefore" href="{{ asset('/css/admin/main.css') }}" rel="stylesheet">
-
+    <meta name="csrf-token" content="{{ csrf_token() }}"/>
+    <meta name="account-alias" content="{{ $account->alias }}"/>
 
 </head>
 

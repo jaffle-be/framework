@@ -3,6 +3,7 @@
 use App\Account\Account;
 use App\Account\Membership;
 use App\Account\MembershipOwner;
+use App\Account\Role;
 use App\Jobs\Job;
 use Illuminate\Contracts\Bus\SelfHandling;
 

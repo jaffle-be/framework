@@ -1,5 +1,6 @@
 (function () {
     angular.module('app', [
+        'pusher-angular',
         'ui.router',                    // Routing
         'oc.lazyLoad',                  // ocLazyLoad
         'ui.bootstrap',                 // Ui Bootstrap
