@@ -5,12 +5,7 @@
 
             <div class="ibox">
 
-                <div class="ibox-title">
-                    <h5>{{ Lang::get('menu::admin.menu') }}</h5>
-                </div>
-
-                <div class="ibox-content ibox-with-footer">
-
+                <div class="ibox-tabs">
 
                     <tabset>
 
@@ -18,7 +13,7 @@
 
                     </tabset>
 
-                    <div class="content">
+                    <div class="ibox-content ibox-with-footer">
 
                         <ul class="menu-items" data-as-sortable="vm.sortables" data-ng-model="vm.menu.items">
 
@@ -32,19 +27,19 @@
 
                         </ul>
 
-                    </div>
+                        <div class="footer">
 
-                    <div class="footer">
+                            <div class="row">
 
-                        <div class="row">
-
-                            <div class="col-xs-6">
-                                <button class="btn btn-primary" ng-click="vm.newItem()">{{ Lang::get('menu::admin.new-item') }}</button>
+                                <div class="col-xs-6">
+                                    <button class="btn btn-primary" ng-click="vm.newItem()">{{ Lang::get('menu::admin.new-item') }}</button>
+                                </div>
+                                <div class="col-xs-6">
+                                    <button class="pull-right btn btn-danger" ng-really="vm.deleteMenu()" title="{{ Lang::get('menu::admin.delete-menu') }}">
+                                        <i class="fa fa-trash"></i></button>
+                                </div>
                             </div>
-                            <div class="col-xs-6">
-                                <button class="pull-right btn btn-danger" ng-really="vm.deleteMenu()" title="{{ Lang::get('menu::admin.delete-menu') }}">
-                                    <i class="fa fa-trash"></i></button>
-                            </div>
+
                         </div>
 
                     </div>
