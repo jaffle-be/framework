@@ -209,4 +209,14 @@ gulp.task('plugins', function () {
         .pipe(copy('./public/js/admin/angularjs-toaster/', {
             prefix: 2
         }));
+
+    gulp.src('bower_components/pusher/dist/pusher.min.js')
+        .pipe(copy('./public/js/admin/pusher/', {
+            prefix: 3
+        }));
+
+    gulp.src('bower_components/pusher-angular/lib/pusher-angular.min.js')
+        .pipe(copy('./public/js/admin/pusher-angular/', {
+            prefix: 3
+        }));
 });
