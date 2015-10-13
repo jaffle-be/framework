@@ -1,4 +1,4 @@
-<div class="wrapper wrapper-content">
+<div class="row wrapper-content">
 
     <div class="ibox" ng-controller="ClientsController as vm" ng-init="vm.options = {{ system_options() }}">
 

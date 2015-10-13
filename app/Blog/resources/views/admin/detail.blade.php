@@ -1,6 +1,22 @@
-<div class="row wrapper wrapper-content" ng-controller="BlogDetailController as vm" ng-init="vm.options = {{ system_options() }}">
+<div class="row wrapper-content" ng-controller="BlogDetailController as vm" ng-init="vm.options = {{ system_options() }}">
 
     @include('system::admin.locale-tabs')
+
+    <div class="row">
+        <div class="col-xs-12 col-sm-7 col-md-8 col-lg-9">
+
+            @include('blog::admin.post-text')
+
+        </div>
+
+        <div class="col-xs-12 col-sm-5 col-md-4 col-lg-3" ng-show="vm.post.id">
+
+            @include('blog::admin.post-tags')
+
+            @include('blog::admin.post-images')
+
+        </div>
+    </div>
 
     {{--<div class="col-xs-12">
 
@@ -18,19 +34,5 @@
         </div>
 
     </div>--}}
-
-    <div class="col-xs-12 col-sm-7 col-md-8 col-lg-9">
-
-        @include('blog::admin.post-text')
-
-    </div>
-
-    <div class="col-xs-12 col-sm-5 col-md-4 col-lg-3" ng-show="vm.post.id">
-
-        @include('blog::admin.post-tags')
-
-        @include('blog::admin.post-images')
-
-    </div>
 
 </div>

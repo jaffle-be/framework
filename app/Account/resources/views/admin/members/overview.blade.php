@@ -1,4 +1,4 @@
-<div class="wrapper-content" ng-controller="MembershipsController as vm" ng-init="vm.options = {{ system_options() }}">
+<div class="row wrapper-content" ng-controller="MembershipsController as vm" ng-init="vm.options = {{ system_options() }}">
 
     <div class="row">
 
