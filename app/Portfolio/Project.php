@@ -4,6 +4,8 @@ use App\Media\StoresMedia;
 use App\Media\StoringMedia;
 use App\Search\Model\Searchable;
 use App\Search\Model\SearchableTrait;
+use App\System\Presenter\PresentableEntity;
+use App\System\Presenter\PresentableTrait;
 use App\System\Scopes\ModelAccountResource;
 use App\System\Translatable\Translatable;
 use App\Tags\StoresTags;
@@ -11,9 +13,10 @@ use App\Tags\Taggable;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
-class Project extends Model implements StoresMedia, Searchable, StoresTags
+class Project extends Model implements StoresMedia, Searchable, StoresTags, PresentableEntity
 {
     use Translatable;
+    use PresentableTrait;
     use Taggable;
     use StoringMedia;
     use ModelAccountResource;
@@ -28,6 +31,8 @@ class Project extends Model implements StoresMedia, Searchable, StoresTags
     protected $dates = ['date'];
 
     protected $translatedAttributes = ['published', 'title', 'description'];
+
+    protected $presenter = 'App\Portfolio\Presenter\ProjectFrontPresenter';
 
     public static function bootProjectScopeFront()
     {
