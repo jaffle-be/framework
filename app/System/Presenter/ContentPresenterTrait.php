@@ -45,11 +45,20 @@ trait ContentPresenterTrait
             $content = $this->stripShortcodes($content);
         }
 
+        $content = $this->removeCodeSamples($content);
+
         $content = Markdown::convertToHtml($content);
 
         $content = strip_tags($content);
 
         return $this->snippet($content, 60, $chars);
+    }
+
+    protected function removeCodeSamples($content)
+    {
+        $content = preg_replace('/````(.|\s)*?````/', '', $content);
+
+        return $content;
     }
 
 
