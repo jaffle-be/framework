@@ -4,15 +4,15 @@ use App\Search\Model\Searchable;
 use App\Search\Model\SearchableTrait;
 use App\System\Presenter\PresentableEntity;
 use App\System\Presenter\PresentableTrait;
-use App\System\Sluggable\Sluggable;
+use App\System\Sluggable\OwnsSlug;
+use App\System\Sluggable\SiteSluggable;
 use App\System\Translatable\TranslationModel;
 use Cviebrock\EloquentSluggable\SluggableInterface;
-use Cviebrock\EloquentSluggable\SluggableTrait;
 use Illuminate\Http\Request;
 
-class PostTranslation extends TranslationModel implements Searchable, SluggableInterface, PresentableEntity
+class PostTranslation extends TranslationModel implements Searchable, SluggableInterface, OwnsSlug, PresentableEntity
 {
-    use SearchableTrait, SluggableTrait, Sluggable, PresentableTrait;
+    use SearchableTrait, SiteSluggable, PresentableTrait;
 
     protected $table = 'post_translations';
 
@@ -22,12 +22,16 @@ class PostTranslation extends TranslationModel implements Searchable, SluggableI
 
     protected $sluggable = [
         'build_from' => 'title',
-        'save_to'    => 'slug',
     ];
 
     protected $dates = ['publish_at'];
 
     protected $touches = ['post'];
+
+    public function getAccount()
+    {
+        return $this->post->account;
+    }
 
     public static function bootPostTranslationScopeFront()
     {

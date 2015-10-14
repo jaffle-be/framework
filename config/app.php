@@ -186,6 +186,10 @@ return [
         'App\Tags\TagsServiceProvider',
         'App\Marketing\MarketingServiceProvider',
         'App\Portfolio\PortfolioServiceProvider',
+
+
+        //keep at bottom for generic routes to work
+        'App\System\Uri\UriServiceProvider',
     ],
 
     /*

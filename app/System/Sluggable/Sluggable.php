@@ -1,7 +1,10 @@
 <?php namespace App\System\Sluggable;
 
+use Cviebrock\EloquentSluggable\SluggableTrait;
+
 trait Sluggable
 {
+    use SluggableTrait;
 
     public function getRouteKeyName()
     {

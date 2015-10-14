@@ -29,7 +29,6 @@ class CreatePostsTable extends Migration
             $table->foreign('post_id', 'post_translation_to_post')->references('id')->on('posts')->onDelete('cascade');
             $table->string('locale');
             $table->string('title');
-            $table->string('slug')->nullable();
             $table->text('content');
             $table->date('publish_at')->nullable()->index();
             $table->timestamps();
@@ -48,11 +47,8 @@ class CreatePostsTable extends Migration
             $table->dropForeign('post_translation_to_post');
         });
 
-
         Schema::drop('posts', function (Blueprint $table) {
             $table->dropForeign('post_to_user');
         });
-
-
     }
 }

@@ -63,6 +63,7 @@ class SystemServiceProvider extends ServiceProvider
 
     protected function listeners()
     {
+        $this->automateUriCleanup();
     }
 
     protected function validators()
@@ -120,6 +121,11 @@ class SystemServiceProvider extends ServiceProvider
 
             return sprintf($format, \Carbon\Carbon::now()->format('Y'), "http://digiredo.be", "Digiredo");
         });
+    }
+
+    protected function automateUriCleanup()
+    {
+        $this->app['events']->listen('eloquent.deleted: *', 'App\System\Uri\Cleanup');
     }
 
 }

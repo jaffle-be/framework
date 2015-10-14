@@ -12,7 +12,7 @@ use Cviebrock\EloquentSluggable\SluggableTrait;
 class ProjectTranslation extends TranslationModel implements Searchable, SluggableInterface, PresentableEntity
 {
 
-    use SearchableTrait, Sluggable, SluggableTrait, PresentableTrait;
+    use SearchableTrait, Sluggable, PresentableTrait;
 
     protected $table = 'portfolio_project_translations';
 
@@ -46,7 +46,6 @@ class ProjectTranslation extends TranslationModel implements Searchable, Sluggab
             static::addGlobalScope(new ProjectTranslationScopeFront());
         }
     }
-
 
     public function toArray()
     {
