@@ -67,15 +67,5 @@
   },
   "config": {
     "preferred-install": "dist"
-  },
-  "web": {
-    "client_id": "905373656309-3i83b9l19blslhsvqreo4vu007kjm7ls.apps.googleusercontent.com",
-    "auth_uri": "https://accounts.google.com/o/oauth2/auth",
-    "token_uri": "https://accounts.google.com/o/oauth2/token",
-    "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
-    "client_secret": "I9cfMHo62122tqLPGvz7-73D",
-    "redirect_uris": [
-      "http://digiredo.be/youtube-upload-example/oauth2-callback"
-    ]
   }
 }
