@@ -8,6 +8,12 @@ use InvalidArgumentException;
 class Configurator
 {
 
+    protected $config;
+
+    protected $owners;
+
+    protected $theme;
+
     public function __construct(Repository $config, ThemeManager $theme)
     {
         $this->config = $config;
@@ -37,14 +43,21 @@ class Configurator
         return array_values(array_intersect_key($this->owners, array_flip([$type])));
     }
 
+    public function getPublicBasePath(StoresMedia $owner)
+    {
+        return public_path($this->config->get('media.path') . '/' . $owner->getMediaFolder());
+    }
+
     public function getPublicPath(StoresMedia $owner, $type, $size = null)
     {
-        return public_path($this->getAbstractPath($owner, $type, $size));
+        $path = $this->config->get('media.path') . '/' . $owner->getMediaFolder($type, $size);
+
+        return public_path($path);
     }
 
     public function getAbstractPath(StoresMedia $owner, $type, $size = null)
     {
-        if(!in_array($type, ['images', 'infographics', 'files', 'videos']))
+        if(!$this->isSupportedMediaType($type))
         {
             throw new InvalidArgumentException('Need to pass a proper media type');
         }
@@ -128,5 +141,22 @@ class Configurator
         return $this->owners[$alias];
     }
 
+    /**
+     * @return array
+     */
+    public function getSupportedMediaTypes()
+    {
+        return ['images', 'infographics', 'files', 'videos'];
+    }
+
+    /**
+     * @param $type
+     *
+     * @return bool
+     */
+    public function isSupportedMediaType($type)
+    {
+        return in_array($type, $this->getSupportedMediaTypes());
+    }
 
 }

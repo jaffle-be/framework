@@ -78,9 +78,21 @@ trait StoringMedia
         }
     }
 
-    public function getMediaFolder($type, $size = null)
+    public function getMediaFolder($type = null, $size = null)
     {
-        if(!in_array($type, ['files', 'images', 'videos', 'infographics']))
+        $account = isset($this->attributes['account_id']) ? $this->attributes['account_id'] : app('App\Account\AccountManager')->account()->id;
+
+        $media = str_replace('{account}', $account, $this->media);
+
+        /** @var Configurator $config */
+        $config = app('App\Media\Configurator');
+
+        if(empty($type))
+        {
+            return sprintf('%s/%d/', $media, $this->attributes['id']);
+        }
+
+        if(!empty($type) && !$config->isSupportedMediaType($type))
         {
             throw new InvalidArgumentException('Need valid media type to return a proper folder');
         }
@@ -89,10 +101,6 @@ trait StoringMedia
         {
             throw new Exception('Please define media attribute on your model');
         }
-
-        $account = isset($this->attributes['account_id']) ? $this->attributes['account_id'] : app('App\Account\AccountManager')->account()->id;
-
-        $media = str_replace('{account}', $account, $this->media);
 
         if(!$size)
         {

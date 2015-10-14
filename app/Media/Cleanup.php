@@ -38,7 +38,7 @@ class Cleanup
                 $image->delete();
             }
 
-            $this->files->deleteDirectory($this->configurator->getPublicPath($owner));
+            $this->files->deleteDirectory($this->configurator->getPublicBasePath($owner));
         }
     }
 

@@ -24,6 +24,8 @@ class MediaServiceProvider extends ServiceProvider
         $this->app->bind('Intervention\Image\ImageManager', 'image');
         $this->app->bind('App\Media\MediaRepositoryInterface', 'App\Media\MediaRepository');
 
+        $this->app->singleton('App\Media\Configurator');
+
         $this->commands(['App\Media\Console\Rebatch', 'App\Media\Console\RemoveSize']);
     }
 
