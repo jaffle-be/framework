@@ -3,14 +3,17 @@
 use App\Media\StoresMedia;
 use App\Media\StoringMedia;
 use App\Search\Model\SearchableTrait;
+use App\System\Presenter\PresentableEntity;
 use App\System\Presenter\PresentableTrait;
 use App\System\Scopes\ModelAccountResource;
+use App\System\Seo\SeoEntity;
 use App\System\Seo\SeoTrait;
 use App\System\Translatable\Translatable;
 use Illuminate\Database\Eloquent\Model;
 
-class Page extends Model implements StoresMedia
+class Page extends Model implements StoresMedia, SeoEntity, PresentableEntity
 {
+
     use PresentableTrait;
     use Translatable;
     use StoringMedia;
@@ -28,7 +31,7 @@ class Page extends Model implements StoresMedia
 
     protected $hidden = ['title', 'content', 'published'];
 
-    protected $presenter = 'App\Blog\Presenter\PostFrontPresenter';
+    protected $presenter = 'App\Pages\Presenter\PageFrontPresenter';
 
     public function user()
     {

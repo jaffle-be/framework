@@ -2,13 +2,13 @@
 
 use App\Blog\Http\BlogFrontControlling;
 use App\Blog\PostTranslation;
+use App\Pages\Http\PagesFrontControlling;
 use App\Pages\PageTranslation;
 use App\System\Uri\Uri;
-use Illuminate\Foundation\Bus\DispatchesJobs;
 
 class UriController extends FrontController
 {
-    use BlogFrontControlling;
+    use BlogFrontControlling, PagesFrontControlling;
 
     public function handle(Uri $uri, Uri $suburi = null, Uri $subesturi = null)
     {
@@ -25,7 +25,9 @@ class UriController extends FrontController
         }
         else if($owner instanceof PageTranslation)
         {
-            return $this->renderPageDetail($owner);
+            $repo = app('App\Pages\PageRepositoryInterface');
+
+            return $this->renderPageDetail($owner, $repo);
         }
     }
 

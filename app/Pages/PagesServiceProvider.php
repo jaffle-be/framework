@@ -8,7 +8,7 @@ class PagesServiceProvider extends ServiceProvider
 
     public function register()
     {
-
+        $this->app->singleton('App\Pages\PageRepositoryInterface', 'App\Pages\PageRepository');
     }
 
     protected function listeners()

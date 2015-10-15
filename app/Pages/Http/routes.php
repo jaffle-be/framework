@@ -4,7 +4,8 @@
  * store controllers
  */
 Route::group([
-    'namespace' => 'App\Pages\Http\Admin'
+    'namespace' => 'App\Pages\Http\Admin',
+    'as' => 'store.'
 ], function () {
 
     Route::group(['prefix' => 'templates/admin'], function () {

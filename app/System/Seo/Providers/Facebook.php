@@ -26,7 +26,11 @@ class Facebook extends MetaTagProvider
 
         if($type == 'article')
         {
-            $this->addProperty('article:published_time', $seo->publish_at->format(DATE_ATOM));
+            if($seo->publish_at)
+            {
+                $this->addProperty('article:published_time', $seo->publish_at->format(DATE_ATOM));
+            }
+
             $this->addProperty('article:modified_time', $seo->updated_at->format(DATE_ATOM));
             $this->addProperty('article:author', 'digiredo.be');
         }

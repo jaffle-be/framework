@@ -17,7 +17,11 @@ class Google extends MetaTagProvider
         $this->addProperty('type', $type);
 
         if ($type == 'article') {
-            $this->addProperty('datePublished', $seo->publish_at->format(DATE_ATOM));
+            if($seo->publish_at)
+            {
+                $this->addProperty('datePublished', $seo->publish_at->format(DATE_ATOM));
+            }
+
             $this->addProperty('dateModified', $seo->updated_at->format(DATE_ATOM));
             $this->addProperty('publisher', 'digiredo.be');
             $this->addProperty('author', $seo->getSeoAuthor());
