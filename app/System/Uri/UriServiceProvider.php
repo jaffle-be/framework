@@ -13,9 +13,7 @@ class UriServiceProvider extends ServiceProvider
     public function boot()
     {
         //this is only meant to handle wildcard routes to the defined uris in our uri table
-        app('router')->get('{uri}/{suburi?}/{subesturi?}', function(){
-            return 'wildcard without subpath';
-        });
+        app('router')->get('{uri}/{suburi?}/{subesturi?}', 'App\System\Http\UriController@handle');
     }
 
     /**

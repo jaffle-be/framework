@@ -1,12 +1,14 @@
 <?php namespace App\System\Uri;
 
+use App\System\Scopes\ModelLocaleSpecificResource;
 use App\System\Sluggable\Sluggable;
-use Cviebrock\EloquentSluggable\SluggableInterface;
-use Cviebrock\EloquentSluggable\SluggableTrait;
 use Illuminate\Database\Eloquent\Model;
 
 class Uri extends Model
 {
+    use Sluggable;
+    use ModelLocaleSpecificResource;
+
     protected $table = 'uris';
 
     protected $fillable = ['account_id', 'canonical_id', 'locale_id', 'uri', 'owner_type', 'owner_id'];

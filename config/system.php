@@ -123,7 +123,8 @@ return [
         ],
 
         'owners' => [
-            'blog' => App\Blog\Post::class
+            'pages' => App\Pages\Page::class,
+            'blog' => App\Blog\Post::class,
         ]
 
     ],

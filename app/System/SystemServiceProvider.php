@@ -2,8 +2,10 @@
 
 namespace App\System;
 
+use App\Pages\Page;
 use App\System\Cache\CacheManager;
 use App\System\Queue\RedisConnector;
+use App\System\Uri\Uri;
 use Blade;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Factory;

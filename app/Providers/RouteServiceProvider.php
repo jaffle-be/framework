@@ -31,6 +31,8 @@ class RouteServiceProvider extends ServiceProvider
         $router->model('infographic', 'App\Media\Infographics\Infographic');
         $router->model('file', 'App\Media\Files\File');
         $router->model('tag', 'App\Tags\Tag');
+        $router->model('pages', 'App\Pages\Page');
+        $router->model('page', 'App\Pages\PageTranslation');
         $router->model('blog', 'App\Blog\Post');
         $router->model('post', 'App\Blog\PostTranslation');
         $router->model('address', 'App\Contact\Address');
@@ -43,6 +45,9 @@ class RouteServiceProvider extends ServiceProvider
         $router->model('skill', 'App\Users\Skill');
         $router->model('client', 'App\Account\Client');
         $router->model('tags', 'App\Tags\Tag');
+        $router->model('uri', 'App\System\Uri\Uri');
+        $router->model('suburi', 'App\System\Uri\Uri');
+        $router->model('subesturi', 'App\System\Uri\Uri');
         $this->pathsToPublish('');
     }
 

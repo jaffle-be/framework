@@ -88,11 +88,6 @@ class PostTranslation extends TranslationModel implements Searchable, SluggableI
         return $data;
     }
 
-    public function user()
-    {
-        return $this->belongsTo('App\Users\User');
-    }
-
     public function scopeLastPublished($query, $locale = null)
     {
         if (empty($locale)) {

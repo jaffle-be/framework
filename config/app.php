@@ -182,6 +182,7 @@ return [
         'App\Media\MediaServiceProvider',
         'App\Shop\ShopServiceProvider',
         'App\Contact\ContactServiceProvider',
+        'App\Pages\PagesServiceProvider',
         'App\Blog\BlogServiceProvider',
         'App\Tags\TagsServiceProvider',
         'App\Marketing\MarketingServiceProvider',

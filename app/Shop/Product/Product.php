@@ -14,7 +14,7 @@ class Product extends Model implements StoresMedia{
     protected $fillable = ['name', 'text'];
 
 
-    public function getMediaFolder($type, $size = null)
+    public function getMediaFolder($type = null, $size = null)
     {
         if(!in_array($type, ['files', 'images', 'videos', 'infographics']))
         {

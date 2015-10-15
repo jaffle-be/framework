@@ -8,6 +8,11 @@ trait SiteSluggable
 {
     use Sluggable;
 
+    protected function needsSlugging()
+    {
+        return $this->exists;
+    }
+
     public function getRouteKeyName()
     {
         if (!starts_with(app('request')->getRequestUri(), ['/admin', '/api'])) {

@@ -8,6 +8,7 @@ return [
     'path'   => 'media',
 
     'owners' => [
+        'pages'        => App\Pages\Page::class,
         'blog'         => App\Blog\Post::class,
         'portfolio'    => App\Portfolio\Project::class,
         'user'         => App\Users\User::class,

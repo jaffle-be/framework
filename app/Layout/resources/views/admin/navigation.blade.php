@@ -35,6 +35,11 @@
                     {{--<span class="nav-label">@{{ 'DASH' | translate }}</span></a>--}}
             {{--</li>--}}
 
+            <li ng-class="{active: $state.includes('admin.pages')}">
+                <a ui-sref="admin.pages.overview"><i class="fa fa-file-text-o"></i>
+                    <span class="nav-label">@{{ 'PAGES' | translate }}</span></a>
+            </li>
+
             <li ng-class="{active: $state.includes('admin.blog')}">
                 <a ui-sref="admin.blog.posts"><i class="fa fa-newspaper-o"></i>
                     <span class="nav-label">@{{ 'BLOG' | translate }}</span></a>
@@ -51,7 +56,7 @@
             {{--</li>--}}
 
             <li ui-sref-active="active">
-                <a ui-sref="admin.portfolio.overview"><i class="fa fa-newspaper-o"></i>
+                <a ui-sref="admin.portfolio.overview"><i class="fa fa-file-image-o"></i>
                     <span class="nav-label">@{{ 'PORTFOLIO' | translate }}</span></a>
             </li>
 

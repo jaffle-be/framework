@@ -3,6 +3,7 @@
 use App\Media\Files\File;
 use App\Media\Infographics\Infographic;
 use App\Media\Video\Video;
+use InvalidArgumentException;
 
 class MediaRepository implements MediaRepositoryInterface
 {
@@ -32,13 +33,15 @@ class MediaRepository implements MediaRepositoryInterface
 
     public function findOwner($type, $id)
     {
-        if ($this->config->typeExists($type)) {
+        if ($this->config->isSupportedMediaOwner($type)) {
             $class = $this->config->classname($type);
 
             $class = new $class();
 
             return $class->findorFail($id);
         }
+
+        throw new InvalidArgumentException('Invalid owner type provided');
     }
 
     /**

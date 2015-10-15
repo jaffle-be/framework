@@ -4,6 +4,17 @@ return [
 
     'media' => [
         'images' => [
+
+            //these should allow the most thumbnails.
+            //since we'll be allowing more control by the use of columns
+            'pages'         => [
+                '1140x',
+                '460x',
+                '340x',
+                '150x',
+                '60x',
+            ],
+
             'blog'         => [
                 '1140x',
                 '460x',

@@ -7,6 +7,7 @@ angular
 
                 // Define all menu elements
                 DASH: 'Dashboard',
+                PAGES: 'Pages',
                 BLOG: 'Blog',
                 SHOP: 'Shop',
                 CONTACT: 'Contact',

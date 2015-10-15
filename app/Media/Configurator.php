@@ -26,11 +26,6 @@ class Configurator
         $this->theme = $theme;
     }
 
-    public function typeExists($type)
-    {
-        return count($this->getTypes($type)) > 0;
-    }
-
     public function getTypes($type = 'all')
     {
         if ($type == 'all' || $type === null) {
@@ -157,6 +152,11 @@ class Configurator
     public function isSupportedMediaType($type)
     {
         return in_array($type, $this->getSupportedMediaTypes());
+    }
+
+    public function isSupportedMediaOwner($type)
+    {
+        return count($this->getTypes($type)) > 0;
     }
 
 }
