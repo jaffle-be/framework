@@ -4,6 +4,7 @@ use App\Search\Model\Searchable;
 use App\Search\Model\SearchableTrait;
 use App\System\Presenter\PresentableEntity;
 use App\System\Presenter\PresentableTrait;
+use App\System\Scopes\FrontScoping;
 use App\System\Sluggable\OwnsSlug;
 use App\System\Sluggable\SiteSluggable;
 use App\System\Translatable\TranslationModel;
@@ -12,7 +13,7 @@ use Illuminate\Http\Request;
 
 class PageTranslation extends TranslationModel implements Searchable, SluggableInterface, OwnsSlug, PresentableEntity
 {
-    use SearchableTrait, SiteSluggable, PresentableTrait;
+    use SearchableTrait, SiteSluggable, PresentableTrait, FrontScoping;
 
     protected $table = 'page_translations';
 

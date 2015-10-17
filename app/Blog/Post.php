@@ -6,6 +6,7 @@ use App\Search\Model\Searchable;
 use App\Search\Model\SearchableTrait;
 use App\System\Presenter\PresentableEntity;
 use App\System\Presenter\PresentableTrait;
+use App\System\Scopes\FrontScoping;
 use App\System\Scopes\ModelAccountResource;
 use App\System\Seo\SeoEntity;
 use App\System\Seo\SeoTrait;
@@ -27,22 +28,7 @@ class Post extends Model implements StoresMedia, Searchable, StoresTags, Present
     use ModelAccountResource;
     use SearchableTrait;
     use SeoTrait;
-
-    public static function bootPostScopeFront()
-    {
-        /** @var Request $request */
-        $request = app('request');
-
-        if(app()->runningInConsole())
-        {
-            return;
-        }
-
-        if(!starts_with($request->getRequestUri(), ['/admin', '/api']))
-        {
-            static::addGlobalScope(new PostScopeFront());
-        }
-    }
+    use FrontScoping;
 
     protected $table = 'posts';
 

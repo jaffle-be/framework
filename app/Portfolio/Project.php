@@ -6,6 +6,7 @@ use App\Search\Model\Searchable;
 use App\Search\Model\SearchableTrait;
 use App\System\Presenter\PresentableEntity;
 use App\System\Presenter\PresentableTrait;
+use App\System\Scopes\FrontScoping;
 use App\System\Scopes\ModelAccountResource;
 use App\System\Translatable\Translatable;
 use App\Tags\StoresTags;
@@ -20,6 +21,7 @@ class Project extends Model implements StoresMedia, Searchable, StoresTags, Pres
     use StoringMedia;
     use ModelAccountResource;
     use SearchableTrait;
+    use FrontScoping;
 
     protected $table = "portfolio_projects";
 
@@ -32,22 +34,6 @@ class Project extends Model implements StoresMedia, Searchable, StoresTags, Pres
     protected $translatedAttributes = ['published', 'title', 'description'];
 
     protected $presenter = 'App\Portfolio\Presenter\ProjectFrontPresenter';
-
-    public static function bootProjectScopeFront()
-    {
-        /** @var Request $request */
-        $request = app('request');
-
-        if(app()->runningInConsole())
-        {
-            return;
-        }
-
-        if(!starts_with($request->getRequestUri(), ['/admin', '/api']))
-        {
-            static::addGlobalScope(new ProjectScopeFront());
-        }
-    }
 
     public function newCollection(array $models = [])
     {
