@@ -29,6 +29,8 @@ class UriController extends FrontController
 
             return $this->renderPageDetail($owner, $repo);
         }
+
+        abort(404);
     }
 
     /**

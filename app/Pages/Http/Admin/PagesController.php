@@ -81,6 +81,8 @@ class PagesController extends AdminController
             return response('500', 'something bad happened');
         }
 
+        $page->load($this->relations());
+
         return $page;
     }
 
@@ -99,6 +101,18 @@ class PagesController extends AdminController
             }
         }
     }
+
+    public function destroy(Page $page)
+    {
+        //make sure to load the relations, in order to delete morphing relations.
+        if($page->delete())
+        {
+            $page->id = false;
+        }
+
+        return $page;
+    }
+
 
     protected function relations()
     {

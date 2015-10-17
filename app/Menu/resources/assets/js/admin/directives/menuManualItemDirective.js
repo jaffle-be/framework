@@ -11,10 +11,7 @@ angular.module('menu')
             },
             controller: function ($scope) {
                 this.newName = '';
-                //active menu
-                this.menu = {};
                 $scope.vm = this;
-                var me = this;
 
                 this.saveItem = function (delayed) {
                     //only save existing
@@ -47,6 +44,13 @@ angular.module('menu')
                     {
                         if(!response.id)
                         {
+                            //when deleting an item that was linked to a page object,
+                            //we need to add the returned page object to the available pages for that menu
+                            if(response.page)
+                            {
+                                $scope.menu.availablePages.push(response.page);
+                            }
+
                             _.remove($scope.menu.items, function(item)
                             {
                                 return item.id == $scope.item.id;

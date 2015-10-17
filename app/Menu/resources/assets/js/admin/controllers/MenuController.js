@@ -4,6 +4,13 @@ angular.module('menu')
         this.menus = [];
         //active menu
         this.menu = {};
+        this.tabs = {
+            manual: true,
+            page: false,
+            route: false,
+        };
+
+        var me = this;
 
         //the item we are editing
         this.item;
@@ -17,38 +24,26 @@ angular.module('menu')
             });
         };
 
-        this.availablePages = [
-            {
-                id: 1,
-                translations: {
-                    nl: {
-                        title: 'test nl',
-                    },
-                    en: {
-                        title: 'test en',
-                    }
-                }
-            },
-            {
-                id: 2,
-                translations: {
-                    nl: {
-                        title: 'test nl 2',
-                    },
-                    en: {
-                        title: 'test en 2',
-                    }
-                }
-            }
-        ];
+        this.startEditing = function(item)
+        {
+            this.selectTab('manual');
+            this.item = item
+        };
+
+        this.selectTab = function(tab)
+        {
+            _.each(this.tabs, function(active, type){
+                me.tabs[type] = false;
+            });
+
+            this.tabs[tab] = true;
+        };
 
         this.sortables = {
             orderChanged: function(event) {
                 me.saveSort()
             }
         };
-
-        var me = this;
 
         this.createMenu = function () {
             MenuService.create(this.newName, function (menu) {

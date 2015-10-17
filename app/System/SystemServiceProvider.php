@@ -66,6 +66,7 @@ class SystemServiceProvider extends ServiceProvider
     protected function listeners()
     {
         $this->automateUriCleanup();
+        $this->automateUriCreation();
     }
 
     protected function validators()
@@ -127,7 +128,13 @@ class SystemServiceProvider extends ServiceProvider
 
     protected function automateUriCleanup()
     {
+        $this->app['events']->listen('eloquent.deleting: *', 'App\System\Uri\CleanupPrepping');
         $this->app['events']->listen('eloquent.deleted: *', 'App\System\Uri\Cleanup');
+    }
+
+    protected function automateUriCreation()
+    {
+        $this->app['events']->listen('eloquent.created: *', 'App\System\Uri\Creator');
     }
 
 }

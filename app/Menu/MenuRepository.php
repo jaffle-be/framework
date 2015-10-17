@@ -108,7 +108,7 @@ class MenuRepository implements MenuRepositoryInterface{
      */
     protected function relations()
     {
-        return ['items', 'items.children', 'items.translations', 'items.children.translations'];
+        return ['items', 'items.children', 'items.translations', 'items.children.translations', 'items.page', /*'items.routable'*/];
     }
 
     protected function itemRelations()

@@ -1,7 +1,5 @@
 <?php namespace App\Menu;
 
-use Illuminate\Routing\Router;
-
 /**
  * Class MenuManager
  *
@@ -43,7 +41,7 @@ class MenuManager
     /**
      * @param MenuRepositoryInterface $repository
      */
-    public function __construct(MenuRepositoryInterface $repository, Router $url)
+    public function __construct(MenuRepositoryInterface $repository)
     {
         $this->repository = $repository;
     }

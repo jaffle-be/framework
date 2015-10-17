@@ -19,6 +19,9 @@ class CreateMenuItemsTable extends Migration
             $table->foreign('menu_id', 'items_to_menu')->references('id')->on('menus')->onDelete('cascade');
             $table->integer('parent_id', false, true)->nullable();
             $table->foreign('parent_id', 'menu_item_to_parent')->references('id')->on('menu_items')->onDelete('cascade');
+            $table->integer('page_id', false, true)->nullable();
+            $table->foreign('page_id', 'menu_item_to_page')->references('id')->on('pages')->onDelete('cascade');
+
             $table->smallInteger('sort');
             $table->string('url');
             $table->boolean('target_blank');
@@ -50,6 +53,7 @@ class CreateMenuItemsTable extends Migration
 
         Schema::drop('menu_items', function (Blueprint $table) {
             $table->dropForeign('menu_item_to_parent');
+            $table->dropForeign('menu_item_to_page');
         });
     }
 

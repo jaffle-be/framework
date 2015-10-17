@@ -7,9 +7,9 @@ class PageController extends FrontController
 {
     use PagesFrontControlling;
 
-    public function show(Page $page)
+    public function show(Page $page, PageRepositoryInterface $pages)
     {
-        return $this->renderPageDetail($page);
+        return $this->renderPageDetail($page, $pages);
     }
 
 }

@@ -17,9 +17,9 @@
 
                         <ul class="menu-items" data-as-sortable="vm.sortables" data-ng-model="vm.menu.items">
 
-                            <li ng-repeat="item in vm.menu.items" as-sortable-item>
+                            <li ng-repeat="item in vm.menu.items" as-sortable-item ng-class="{active: vm.item.id == item.id}">
 
-                                <a ng-click="vm.item = item">@{{ item.translations[vm.options.locale].name }}</a>
+                                <a ng-click="vm.startEditing(item)">@{{ item.translations[vm.options.locale].name }}</a>
                                 <span>@{{ item.children.length }}</span>
                                 <span class="sorter" as-sortable-item-handle><i class="fa fa-arrows"></i></span>
 
@@ -58,15 +58,15 @@
 
                     <tabset>
 
-                        <tab heading="{{ Lang::get('menu::admin.manual-item') }}">
+                        <tab heading="{{ Lang::get('menu::admin.manual-item') }}" active="vm.tabs['manual']" select="vm.selectTab('manual')">
                             @include('menu::admin.manual-item')
                         </tab>
 
-                        <tab heading="{{ Lang::get('menu::admin.page-item') }}">
+                        <tab heading="{{ Lang::get('menu::admin.page-item') }}" active="vm.tabs['page']" select="vm.selectTab('page')">
                             @include('menu::admin.page-item')
                         </tab>
 
-                        <tab heading="{{ Lang::get('menu::admin.linkable-route') }}">
+                        <tab heading="{{ Lang::get('menu::admin.linkable-route') }}" active="vm.tabs['route']" select="vm.selectTab('route')">
                             @include('menu::admin.route-item')
                         </tab>
 

@@ -24,6 +24,8 @@ class MenuServiceProvider extends ServiceProvider
             $this->app['menu']->register('primary menu');
             $this->app['menu']->register('secondary menu');
         });
+
+        $this->app['events']->listen('eloquent.saved:*', 'App\Menu\SavedMenuHookable');
     }
 
     protected function observers()

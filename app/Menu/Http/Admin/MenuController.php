@@ -2,9 +2,11 @@
 
 use App\Menu\Menu;
 use App\Menu\MenuManager;
+use App\Pages\PageRepository;
 use App\System\Http\AdminController;
 use App\Theme\ThemeManager;
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
 
 class MenuController extends AdminController
 {
@@ -25,9 +27,23 @@ class MenuController extends AdminController
         parent::__construct($theme);
     }
 
-    public function index()
+    public function index(PageRepository $pages)
     {
-        return $this->menu->getMenus();
+        $menus = $this->menu->getMenus();
+
+        foreach ($menus as $menu) {
+            $usedPages = new Collection();
+
+            foreach ($menu->items as $item) {
+                if ($item->page) {
+                    $usedPages->push($item->page);
+                }
+            }
+
+            $menu->availablePages = $pages->with('translations')->but($usedPages)->get();
+        }
+
+        return $menus;
     }
 
     public function store(Request $request)
