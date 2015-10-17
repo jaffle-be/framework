@@ -26,7 +26,7 @@ class MenuItem extends Model implements PresentableEntity{
 
     public function parent()
     {
-
+        return $this->belongsTo('App\Menu\MenuItem');
     }
 
     public function menu()
