@@ -1,5 +1,5 @@
 web:
-    image: web
+    build: ../../../docker/containers/ubuntu/
     ports:
         - "80:80" # web
         - "2222:22" # ssh
@@ -41,3 +41,13 @@ redis:
         REDIS_PASS: "pass"
     volumes_from:
         - redis_vol
+
+redis_vol:
+    image: ubuntu:14.04
+    volumes:
+        - ~/databases/redis:/databases/redis
+
+db_vol:
+    image: ubuntu:14.04
+    volumes:
+        - ~/databases/mysql:/databases/mysql
