@@ -50,8 +50,6 @@ angular.module('pages')
 
             this.delete = function(page, success)
             {
-                console.log(page);
-
                 page.$delete().then(success);
             };
 
@@ -61,6 +59,22 @@ angular.module('pages')
                     pages: pages
                 }).then(success);
             };
+
+            this.link = function(parent, page, success)
+            {
+                $http.post('/api/admin/pages/link-subpage', {
+                    parent: parent.id,
+                    page: page.id
+                }).then(success);
+            }
+
+            this.unlink = function(parent, page, success)
+            {
+                $http.post('/api/admin/pages/unlink-subpage', {
+                    parent: parent.id,
+                    page: page.id
+                }).then(success);
+            }
         }
 
         return new Service();

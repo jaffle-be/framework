@@ -41,12 +41,27 @@ class Page extends Model implements StoresMedia, SeoEntity, PresentableEntity, M
         return $this->belongsTo('App\Users\User');
     }
 
+    public function parent()
+    {
+        return $this->belongsTo('App\Pages\Page');
+    }
+
+    public function children()
+    {
+        return $this->hasMany('App\Pages\Page', 'parent_id');
+    }
+
     public function scopeBut(Builder $builder, Collection $pages)
     {
         if($pages->count() > 0)
         {
             $builder->whereNotIn($this->getKeyName(), $pages->lists($this->getKeyName())->toArray());
         }
+    }
+
+    public function scopeOrphans(Builder $builder)
+    {
+        $builder->whereNull('parent_id');
     }
 
     /**

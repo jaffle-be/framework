@@ -4,6 +4,9 @@
 
         <tabset>
 
+            @include('pages::admin.page-subpages')
+
+
             <tab heading="{{ Lang::get('pages::admin.page.links') }}">
 
                 <div class="ibox-content">

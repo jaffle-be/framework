@@ -18,6 +18,8 @@ Route::group([
     Route::group(['prefix' => 'api/admin'], function () {
         Route::resource('pages', 'PagesController');
         Route::post('pages/batch-delete', 'PagesController@batchDestroy');
+        Route::post('pages/link-subpage', 'PagesController@linkSubpage');
+        Route::post('pages/unlink-subpage', 'PagesController@unlinkSubpage');
     });
 });
 

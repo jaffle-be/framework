@@ -17,8 +17,8 @@ class CreatePagesTables extends Migration
             $table->increments('id');
             $table->integer('account_id', false, true);
             $table->foreign('account_id', 'page_to_account')->references('id')->on('accounts')->onDelete('cascade');
-            $table->integer('parent_page_id', false, true)->nullable();
-            $table->foreign('parent_page_id', 'page_to_parent_page')->references('id')->on('pages')->onDelete('cascade');
+            $table->integer('parent_id', false, true)->nullable();
+            $table->foreign('parent_id', 'page_to_parent_page')->references('id')->on('pages')->onDelete('cascade');
             $table->integer('user_id', false, true);
             $table->foreign('user_id', 'page_to_user')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();

@@ -3,9 +3,11 @@
 use App\Account\AccountManager;
 use App\Pages\Jobs\UpdatePage;
 use App\Pages\Page;
+use App\Pages\PageRepositoryInterface;
 use App\System\Http\AdminController;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
 
 class PagesController extends AdminController
 {
@@ -61,9 +63,22 @@ class PagesController extends AdminController
         ));
     }
 
-    public function show(Page $page)
+    public function show(Page $page, PageRepositoryInterface $pages)
     {
         $page->load($this->relations());
+
+        //make sure one cannot select itself as a subpage
+        $but = new Collection([$page]);
+
+        if($page->parent)
+        {
+            $but->push($page->parent);
+        }
+
+        //make sure one cannot select a page B to add as a subpage to page A when page A is already a child of page B
+        $availablePages = $pages->with(['translations'])->orphans()->but($but)->get();
+
+        $page->availablePages = $availablePages;
 
         return $page;
     }
@@ -113,10 +128,35 @@ class PagesController extends AdminController
         return $page;
     }
 
+    public function linkSubpage(Request $request, Page $page)
+    {
+        $parent = $page->findOrFail($request->get('parent'));
+
+        $page = $page->findOrFail($request->get('page'));
+
+        if(!$page->parent_id)
+        {
+            $parent->children()->save($page);
+        }
+    }
+
+    public function unlinkSubpage(Request $request, Page $page)
+    {
+        $parent = $page->findOrFail($request->get('parent'));
+
+        $page = $page->findOrFail($request->get('page'));
+
+        if($page->parent_id == $parent->id)
+        {
+            $page->parent_id = null;
+            $page->save();
+        }
+    }
+
 
     protected function relations()
     {
-        return ['translations', 'translations.slug'];
+        return ['translations', 'translations.slug', 'children', 'children.translations'];
     }
 
 
