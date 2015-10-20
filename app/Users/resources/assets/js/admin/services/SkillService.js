@@ -10,12 +10,14 @@ angular.module('users')
 
             this.update = function (skill) {
 
+                var temp = angular.copy(skill);
+
                 if (this.timeouts[skill.id]) {
                     $timeout.cancel(this.timeouts[skill.id]);
                 }
 
                 this.timeouts[skill.id] = $timeout(function () {
-                    return skill.$update({
+                    return temp.$update({
                     });
                 }, 400);
             };

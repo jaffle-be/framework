@@ -43,8 +43,10 @@ angular.module('media')
                     $timeout.cancel(this.timeouts[video.id]);
                 }
 
+                var temp = angular.copy(video);
+
                 this.timeouts[video.id] = $timeout(function () {
-                    video.$update({
+                    temp.$update({
                         ownerId: id,
                         ownerType: type
                     });

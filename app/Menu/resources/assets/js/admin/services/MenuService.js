@@ -16,9 +16,12 @@ angular.module('menu')
                 menu.$delete({}, success);
             },
             saveItem: function (item, delayed, success) {
+
+                var destination = angular.copy(item);
+
                 if (!delayed)
                 {
-                    return item.$update({}, success);
+                    return destination.$update({}, success);
                 }
 
                 if (this.timeout)
@@ -27,7 +30,7 @@ angular.module('menu')
                 }
 
                 this.timeout = $timeout(function () {
-                    item.$update({}, success);
+                    destination.$update({}, success);
                 }, 400);
             },
             createItem: function (item, success) {

@@ -17,7 +17,8 @@ angular.module('contact')
                     address.$save().then(callback, error);
                 }
                 else{
-                    address.$update().then(callback, error);
+                    var destination = angular.copy(address);
+                    destination.$update().then(callback, error);
                 }
 
             };

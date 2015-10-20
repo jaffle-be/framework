@@ -27,8 +27,10 @@ angular.module('contact')
                         $timeout.cancel(timeout);
                     }
 
+                    var destination = angular.copy($scope.links);
+
                     timeout = $timeout(function(){
-                        $scope.links.$update({
+                        destination.$update({
                             ownerType: $scope.ownerType,
                             ownerId: $scope.ownerId
                         });

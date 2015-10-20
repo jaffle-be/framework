@@ -29,7 +29,10 @@ angular.module('account')
                 }
                 else
                 {
-                    me.info.$update(function () {
+                    //don't update UI with returned object
+                    var info  = angular.copy(me.info);
+
+                    info.$update(function () {
                         $scope.errors = [];
                     }, function(response){
                         $scope.errors = response.data;

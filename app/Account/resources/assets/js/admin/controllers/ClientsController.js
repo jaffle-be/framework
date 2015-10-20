@@ -71,13 +71,16 @@ angular.module('account')
                 return;
             }
 
+            //don't update UI with returned object
+            var client = angular.copy(me.client);
+
             if (this.timeouts[this.client.id])
             {
                 $timeout.cancel(this.timeouts[this.client.id]);
             }
 
             this.timeouts[this.client.id] = $timeout(function () {
-                me.client.$update();
+                client.$update();
             }, 400);
         };
 
