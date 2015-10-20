@@ -31,6 +31,19 @@ trait MediaShortcodes
         return $content;
     }
 
+    protected function formatMediaShortcodes($content)
+    {
+        $content = preg_replace('/(.*)(#image(:left|:right)?#)(.*)/', "$1\n$2\n$4", $content);
+
+        $content = preg_replace('/(.*)#video#(.*)/', "$1\n#video#\n$2", $content);
+
+        $content = preg_replace('/(.*)#infographic#(.*)/', "$1\n#infographic#\n$2", $content);
+
+        $content = preg_replace('/(.*)#file#(.*)/', "$1\n#file#\n$2", $content);
+
+        return $content;
+    }
+
     protected function compileImageShortcode($content)
     {
         $images = $this->getWantedImages($content);

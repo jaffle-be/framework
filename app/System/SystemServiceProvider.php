@@ -67,6 +67,7 @@ class SystemServiceProvider extends ServiceProvider
     {
         $this->automateUriCleanup();
         $this->automateUriCreation();
+        $this->automateContentFormatting();
     }
 
     protected function validators()
@@ -135,6 +136,11 @@ class SystemServiceProvider extends ServiceProvider
     protected function automateUriCreation()
     {
         $this->app['events']->listen('eloquent.created: *', 'App\System\Uri\Creator');
+    }
+
+    protected function automateContentFormatting()
+    {
+        $this->app['events']->listen('eloquent.saving: *', 'App\System\Presenter\ShortCodeFormatter');
     }
 
 }

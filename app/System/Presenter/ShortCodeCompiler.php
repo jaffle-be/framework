@@ -2,6 +2,12 @@
 
 trait ShortCodeCompiler
 {
+
+    protected function formatShortcodes($content)
+    {
+        return $this->loopShortcodes('format', $content);
+    }
+
     protected function compileShortcodes($content)
     {
         return $this->loopShortcodes('compile', $content);
