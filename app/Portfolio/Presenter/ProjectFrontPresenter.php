@@ -13,6 +13,4 @@ class ProjectFrontPresenter extends BasePresenter
 
     protected $shortcodes = ['media'];
 
-    protected $contentPresenterField = 'content';
-
 }
