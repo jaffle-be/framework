@@ -20,6 +20,7 @@ Route::group([
         Route::post('pages/batch-delete', 'PagesController@batchDestroy');
         Route::post('pages/link-subpage', 'PagesController@linkSubpage');
         Route::post('pages/unlink-subpage', 'PagesController@unlinkSubpage');
+        Route::post('pages/sort-subpages', 'PagesController@sortSubpages');
     });
 });
 

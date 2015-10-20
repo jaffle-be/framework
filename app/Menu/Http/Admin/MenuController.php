@@ -40,7 +40,7 @@ class MenuController extends AdminController
                 }
             }
 
-            $menu->availablePages = $pages->with('translations')->but($usedPages)->get();
+            $menu->availablePages = $pages->with('translations')->mainPages()->but($usedPages)->get();
         }
 
         return $menus;

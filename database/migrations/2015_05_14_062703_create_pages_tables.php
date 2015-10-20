@@ -21,6 +21,7 @@ class CreatePagesTables extends Migration
             $table->foreign('parent_id', 'page_to_parent_page')->references('id')->on('pages')->onDelete('cascade');
             $table->integer('user_id', false, true);
             $table->foreign('user_id', 'page_to_user')->references('id')->on('users')->onDelete('cascade');
+            $table->smallInteger('sort');
             $table->timestamps();
         });
 

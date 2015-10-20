@@ -39,7 +39,7 @@ class MenuItemController extends AdminController
     {
         $input = translation_input($request, ['name']);
 
-        if ($input['page_id']) {
+        if (isset($input['page_id'])) {
             //make sure to set the default labels for the menu item
             $page = $page->findOrFail($input['page_id']);
 

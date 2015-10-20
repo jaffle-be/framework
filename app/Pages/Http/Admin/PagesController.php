@@ -5,6 +5,7 @@ use App\Pages\Jobs\UpdatePage;
 use App\Pages\Page;
 use App\Pages\PageRepositoryInterface;
 use App\System\Http\AdminController;
+use Exception;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
@@ -136,6 +137,10 @@ class PagesController extends AdminController
 
         if(!$page->parent_id)
         {
+            $count = $parent->children()->count();
+
+            $page->sort = $count;
+
             $parent->children()->save($page);
         }
     }
@@ -153,6 +158,29 @@ class PagesController extends AdminController
         }
     }
 
+    public function sortSubpages(Request $request, Page $page)
+    {
+        $parent = $request->get('page');
+
+        $parent = $page->findOrFail($parent);
+
+        $children = $page->where('parent_id', $parent->id)
+            ->whereIn('id', $request->get('order'))
+            ->get();
+
+        foreach($request->get('order') as $position => $id)
+        {
+            $child = $children->find($id);
+
+            if(!$child)
+            {
+                throw new Exception('trying to sort a page not belonging to this parent');
+            }
+
+            $child->sort = $position;
+            $child->save();
+        }
+    }
 
     protected function relations()
     {

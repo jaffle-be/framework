@@ -75,6 +75,15 @@ angular.module('pages')
                     page: page.id
                 }).then(success);
             }
+
+            this.sortSubpages = function(page)
+            {
+                var order = _.pluck(page.children, 'id');
+                $http.post('/api/admin/pages/sort-subpages', {
+                    page: page.id,
+                    order: order
+                });
+            }
         }
 
         return new Service();

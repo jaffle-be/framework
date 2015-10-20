@@ -71,7 +71,11 @@ class MenuRepository implements MenuRepositoryInterface{
 
     public function createItem(array $payload)
     {
-        $item = $this->item->create($payload);
+        $item = $this->item->newInstance($payload);
+
+        $item->sort = $this->item->where('menu_id', $payload['menu_id'])->whereNull('parent_id')->count();
+
+        $item->save();
 
         if($item)
         {

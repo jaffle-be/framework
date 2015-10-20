@@ -7,6 +7,7 @@ use App\Search\Model\SearchableTrait;
 use App\System\Presenter\PresentableEntity;
 use App\System\Presenter\PresentableTrait;
 use App\System\Scopes\ModelAccountResource;
+use App\System\Scopes\ModelAutoSort;
 use App\System\Seo\SeoEntity;
 use App\System\Seo\SeoTrait;
 use App\System\Translatable\Translatable;
@@ -23,6 +24,7 @@ class Page extends Model implements StoresMedia, SeoEntity, PresentableEntity, M
     use ModelAccountResource;
     use SearchableTrait;
     use SeoTrait;
+    use ModelAutoSort;
 
     protected $table = 'pages';
 
@@ -43,12 +45,16 @@ class Page extends Model implements StoresMedia, SeoEntity, PresentableEntity, M
 
     public function parent()
     {
-        return $this->belongsTo('App\Pages\Page');
+        return $this->belongsTo('App\Pages\Page', 'parent_id');
     }
 
     public function children()
     {
         return $this->hasMany('App\Pages\Page', 'parent_id');
+    }
+
+    public function scopeMainPages(Builder $builder){
+        $builder->whereNull('parent_id');
     }
 
     public function scopeBut(Builder $builder, Collection $pages)
