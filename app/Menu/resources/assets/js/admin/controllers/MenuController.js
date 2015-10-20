@@ -1,6 +1,5 @@
 angular.module('menu')
     .controller('MenuController', function (MenuService, MenuItem) {
-        this.newName = '';
         this.menus = [];
         //active menu
         this.menu = {};
@@ -22,12 +21,18 @@ angular.module('menu')
             this.item = new MenuItem({
                 menu_id: me.menu.id
             });
+            this.selectTab('manual');
         };
 
         this.startEditing = function(item)
         {
             this.selectTab('manual');
             this.item = item
+        };
+
+        this.selectMenu = function(menu)
+        {
+            this.menu = menu;
         };
 
         this.selectTab = function(tab)

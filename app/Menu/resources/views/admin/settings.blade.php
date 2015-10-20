@@ -9,7 +9,7 @@
 
                     <tabset>
 
-                        <tab ng-repeat="menu in vm.menus" heading="@{{ menu.name }}" select="vm.menu = menu"></tab>
+                        <tab ng-repeat="menu in vm.menus" heading="@{{ menu.name }}" select="vm.selectMenu(menu)"></tab>
 
                     </tabset>
 

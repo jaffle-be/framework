@@ -12,6 +12,17 @@ angular.module('menu')
             controller: function ($scope) {
                 this.newName = '';
                 $scope.vm = this;
+                var me = this;
+
+                //make sure to reset the item when selecting a different menu,
+                //but also when something else was added to the menu. or removed.
+                $scope.$watch('menu', function(newValue, oldValue){
+
+                    if(newValue)
+                    {
+                        me.initItem();
+                    }
+                });
 
                 this.saveItem = function (delayed) {
                     //only save existing
@@ -32,9 +43,6 @@ angular.module('menu')
                 this.createItem = function () {
                     MenuService.createItem($scope.item, function (item) {
                         $scope.menu.items.push(item);
-                        $scope.item = new MenuItem({
-                            menu_id: $scope.menu.id
-                        })
                     });
                 };
 
@@ -56,10 +64,19 @@ angular.module('menu')
                                 return item.id == $scope.item.id;
                             });
 
-                            $scope.item = false;
+                            //i don't understand why i need to call this manually? we have a watcher at the top?
+                            //a watcher that works for pushing on a property array, but not for removing?
+                            me.initItem();
                         }
                     });
                 };
+
+                this.initItem = function()
+                {
+                    $scope.item = new MenuItem({
+                        menu_id: $scope.menu.id
+                    });
+                }
 
             }
         }
