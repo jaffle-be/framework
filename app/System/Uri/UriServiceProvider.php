@@ -16,7 +16,7 @@ class UriServiceProvider extends ServiceProvider
         //we made a service provider to keep at the bottom of our provider inclusions (in config/app.php)
         //if we didn't do this, this smart route would overwrite about any route we had defined elsewhere.
         app('router')->group(['as' => 'store.'], function($router){
-            $router->get('{uri}/{suburi?}/{subesturi?}', ['uses' => 'App\System\Http\UriController@handle', 'as' => 'pages.show']);
+            $router->get('{uri}/{suburi?}/{subesturi?}', ['uses' => 'App\System\Http\UriController@handle', 'as' => 'uri.show']);
         });
     }
 

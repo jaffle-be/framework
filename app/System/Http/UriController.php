@@ -19,7 +19,7 @@ class UriController extends FrontController
 
         if($owner instanceof PostTranslation)
         {
-            $repo = app('App\Blog\BlogRepositoryInterface');
+            $repo = app('App\Blog\PostRepositoryInterface');
 
             return $this->renderPostDetail($owner, $repo);
         }
