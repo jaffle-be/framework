@@ -27,11 +27,11 @@ class Project extends Model implements StoresMedia, Searchable, StoresTags, Pres
 
     protected $media = '{account}/portfolio';
 
-    protected $fillable = ['account_id', 'client_id', 'website', 'date', 'published', 'title', 'description'];
+    protected $fillable = ['account_id', 'client_id', 'website', 'date', 'published', 'title', 'content'];
 
     protected $dates = ['date'];
 
-    protected $translatedAttributes = ['published', 'title', 'description'];
+    protected $translatedAttributes = ['published', 'title', 'content'];
 
     protected $presenter = 'App\Portfolio\Presenter\ProjectFrontPresenter';
 

@@ -17,7 +17,7 @@ class ProjectTranslation extends TranslationModel implements Searchable, Sluggab
 
     protected $table = 'portfolio_project_translations';
 
-    protected $fillable = ['published', 'title', 'description'];
+    protected $fillable = ['published', 'title', 'content'];
 
     protected $hidden = ['project_id'];
 

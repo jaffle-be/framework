@@ -69,10 +69,10 @@
 
 
             <div class="form-group">
-                <label for="description" class="control-label">{{ Lang::get('portfolio::admin.project.description') }}</label>
+                <label for="content" class="control-label">{{ Lang::get('portfolio::admin.project.content') }}</label>
 
                 <div>
-                    <textarea class="form-control autosize-lg" auto-size ng-model="vm.project.translations[vm.options.locale].description" ng-change="vm.save()"></textarea>
+                    <textarea class="form-control autosize-lg" auto-size ng-model="vm.project.translations[vm.options.locale].content" ng-change="vm.save()"></textarea>
                 </div>
             </div>
 

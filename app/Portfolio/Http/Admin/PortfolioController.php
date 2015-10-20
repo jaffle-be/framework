@@ -39,7 +39,7 @@ class PortfolioController extends AdminController
                 $q->where('locale', $locale);
                 $q->where(function ($q) use ($value) {
                     $q->where('title', 'like', '%' . $value . '%')
-                        ->orWhere('description', 'like', '%' . $value . '%');
+                        ->orWhere('content', 'like', '%' . $value . '%');
                 });
             });
         }
@@ -69,7 +69,7 @@ class PortfolioController extends AdminController
 
         $payload = [
             'project'  => $project,
-            'input' => translation_input($request, ['published', 'title', 'description'])
+            'input' => translation_input($request, ['published', 'title', 'content'])
         ];
 
         if (!$this->dispatchFromArray(UpdateProject::class, $payload)) {

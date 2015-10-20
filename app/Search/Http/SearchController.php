@@ -100,7 +100,7 @@ class SearchController extends FrontController
                                 "query" => [
                                     "multi_match" => [
                                         "query"  => $request->get('query'),
-                                        "fields" => ["translations.$locale.title", "translations.$locale.description"]
+                                        "fields" => ["translations.$locale.title", "translations.$locale.content"]
 
                                     ]
                                 ]

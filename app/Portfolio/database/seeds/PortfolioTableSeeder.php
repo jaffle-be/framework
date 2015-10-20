@@ -56,28 +56,28 @@ class PortfolioTableSeeder extends Seeder
                     'nl'      => [
                         'published' => rand(0,1),
                         'title' => $this->nl->sentence(2),
-                        'description' => $this->nl->text(1300),
+                        'content' => $this->nl->text(1300),
                         'created_at'  => $this->nl->dateTimeBetween('-3 months', 'now'),
                         'updated_at'  => $this->nl->dateTimeBetween('-2 months', 'now'),
                     ],
                     'fr'      => [
                         'published' => rand(0,1),
                         'title' => $this->fr->sentence(2),
-                        'description' => $this->fr->text(1300),
+                        'content' => $this->fr->text(1300),
                         'created_at'  => $this->fr->dateTimeBetween('-3 months', 'now'),
                         'updated_at'  => $this->fr->dateTimeBetween('-2 months', 'now'),
                     ],
                     'en'      => [
                         'published' => rand(0,1),
                         'title' => $this->en->sentence(2),
-                        'description' => $this->en->text(1300),
+                        'content' => $this->en->text(1300),
                         'created_at'  => $this->en->dateTimeBetween('-3 months', 'now'),
                         'updated_at'  => $this->en->dateTimeBetween('-2 months', 'now'),
                     ],
                     'de'      => [
                         'published' => rand(0,1),
                         'title' => $this->de->sentence(2),
-                        'description' => $this->de->text(1300),
+                        'content' => $this->de->text(1300),
                         'created_at'  => $this->de->dateTimeBetween('-3 months', 'now'),
                         'updated_at'  => $this->de->dateTimeBetween('-2 months', 'now'),
                     ]
