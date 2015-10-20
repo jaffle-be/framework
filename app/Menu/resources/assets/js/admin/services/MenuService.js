@@ -1,5 +1,5 @@
 angular.module('menu')
-    .factory('MenuService', function ($timeout, $http, Menu, MenuItem) {
+    .factory('MenuService', function ($timeout, $http, Menu, MenuItem, toaster) {
 
         return {
 
@@ -31,7 +31,14 @@ angular.module('menu')
                 }, 400);
             },
             createItem: function (item, success) {
-                return item.$save({}, success);
+                return item.$save({}).then(success, function(response){
+                    if(response.status == 422)
+                    {
+                        _.each(response.data, function(item){
+                            toaster.pop('error', item[0]);
+                        });
+                    }
+                });
             },
             deleteItem: function (item, success) {
                 return item.$delete({}, success);

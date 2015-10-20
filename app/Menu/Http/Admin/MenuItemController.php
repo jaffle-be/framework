@@ -1,5 +1,6 @@
 <?php namespace App\Menu\Http\Admin;
 
+use App\Account\AccountManager;
 use App\Menu\Menu;
 use App\Menu\MenuItem;
 use App\Menu\MenuManager;
@@ -21,9 +22,11 @@ class MenuItemController extends AdminController
      * @param ThemeManager $theme
      * @param MenuManager  $menu
      */
-    public function __construct(ThemeManager $theme, MenuManager $menu)
+    public function __construct(ThemeManager $theme, MenuManager $menu, AccountManager $account)
     {
         $this->menu = $menu;
+
+        $this->account = $account;
 
         parent::__construct($theme);
     }
@@ -50,6 +53,19 @@ class MenuItemController extends AdminController
                     $input[$locale->slug]['name'] = $translation->title;
                 }
             }
+        } else {
+
+            $rules = [
+                'url'          => 'required',
+            ];
+
+            foreach ($this->account->account()->locales as $locale) {
+                $rules = array_merge($rules, [
+                    "translations.{$locale->slug}.name" => 'required',
+                ]);
+            }
+
+            $this->validate($request, $rules);
         }
 
         return $this->menu->createItem($input);
