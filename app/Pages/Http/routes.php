@@ -25,5 +25,5 @@ Route::group([
 });
 
 Route::group(['namespace' => 'App\Pages\Http'], function () {
-//    Route::resource('pages', 'PagesController', ['as' => 'store', 'only' => ['index', 'show']]);
+
 });

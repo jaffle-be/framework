@@ -2,7 +2,6 @@
 
 use App\Blog\Post;
 use App\Blog\PostRepositoryInterface;
-use App\Blog\PostTranslation;
 use App\System\Http\FrontController;
 
 class BlogController extends FrontController
@@ -19,9 +18,4 @@ class BlogController extends FrontController
         return $this->theme->render('blog.overview', ['posts' => $posts])->render();
     }
 
-    public function show(PostTranslation $post, PostRepositoryInterface $posts)
-    {
-        //extracted for reuse in our uri controller
-        return $this->renderPostDetail($post, $posts);
-    }
 }
