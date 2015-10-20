@@ -33,7 +33,7 @@ class MenuRepository implements MenuRepositoryInterface{
 
     public function getMenus()
     {
-        return $this->menu->with($this->relations())->get();
+        return $this->menu->with($this->relations())->orderBy('id')->get();
     }
 
     public function createMenu(array $payload)
