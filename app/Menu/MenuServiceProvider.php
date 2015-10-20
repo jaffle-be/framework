@@ -22,7 +22,7 @@ class MenuServiceProvider extends ServiceProvider
     {
         $this->app->booted(function(){
             $this->app['menu']->register('primary menu');
-            $this->app['menu']->register('secondary menu');
+            $this->app['menu']->register('footer menu');
         });
 
         $this->app['events']->listen('eloquent.saved:*', 'App\Menu\SavedMenuHookable');
