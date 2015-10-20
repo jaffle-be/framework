@@ -26,7 +26,7 @@ class MenuTableSeeder extends Seeder{
             ]);
 
             Menu::create([
-                'name' => 'secondary menu',
+                'name' => 'footer menu',
                 'account_id' => $account,
             ]);
 
