@@ -1,5 +1,7 @@
 <?php
 
+use App\Module\Module;
+use App\Module\ModuleRoute;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
@@ -23,7 +25,7 @@ class CreatePostsTable extends Migration
             $table->timestamps();
         });
 
-        Schema::create('post_translations', function(Blueprint $table){
+        Schema::create('post_translations', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('post_id', false, true);
             $table->foreign('post_id', 'post_translation_to_post')->references('id')->on('posts')->onDelete('cascade');
@@ -34,6 +36,26 @@ class CreatePostsTable extends Migration
             $table->timestamps();
         });
 
+        //install the module itself.
+        $module = Module::create([
+            'namespace' => 'blog',
+            'nl'     => [
+                'name' => 'Blog',
+            ],
+            'en'     => [
+                'name' => 'Blog',
+            ],
+            'fr'     => [
+                'name' => 'Blog',
+            ],
+            'de'     => [
+                'name' => 'Blog',
+            ]
+        ]);
+
+        $module->routes()->save(new ModuleRoute([
+            'name' => 'store.blog.index'
+        ]));
     }
 
     /**
@@ -43,12 +65,14 @@ class CreatePostsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('post_translations', function (Blueprint $table){
+        Schema::drop('post_translations', function (Blueprint $table) {
             $table->dropForeign('post_translation_to_post');
         });
 
         Schema::drop('posts', function (Blueprint $table) {
             $table->dropForeign('post_to_user');
         });
+
+        Module::where('namespace', 'blog')->delete();
     }
 }

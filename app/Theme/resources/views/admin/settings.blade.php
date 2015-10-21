@@ -52,6 +52,12 @@
 
     </div>
 
+    <div class="row">
+
+        @include('module::admin.modules')
+
+    </div>
+
     <div class="row" ng-show="vm.theme">
 
         @include('menu::admin.settings')

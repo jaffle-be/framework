@@ -1,4 +1,5 @@
 <?php
+use App\Module\Module;
 
 /**
  * Used to help set the configuration through json on the front side.
@@ -16,6 +17,8 @@ function system_options()
     $options['locales'] = system_locales()->filter(function($item){
         return $item->activated == true;
     })->toArray();
+
+    $options['systemModules'] = system_modules()->toArray();
 
     return json_encode($options);
 }
@@ -41,6 +44,24 @@ function system_locales()
     });
 
     return $systemLocales->keyBy('slug');
+}
+
+/**
+ * Return all supported modules
+ *
+ * @return \Illuminate\Database\Eloquent\Collection|static[]
+ */
+function system_modules()
+{
+    $accountModules = app('App\Account\AccountManager')->account()->modules;
+
+    $modules = Module::with('translations')->get();
+
+    $modules->each(function ($module) use ($accountModules) {
+        $module->activated = $accountModules->contains($module->id);
+    });
+
+    return $modules;
 }
 
 function store_route($name, array $arguments = [])

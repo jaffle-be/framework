@@ -156,6 +156,7 @@ return [
          */
         'App\System\SystemServiceProvider',
         'App\Users\UserServiceProvider',
+        'App\Module\ModuleServiceProvider',
         'App\Account\AccountServiceProvider',
 
         //load all providers that use settings which might be used by other components here

@@ -1,5 +1,7 @@
 <?php
 
+use App\Module\Module;
+use App\Module\ModuleRoute;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
@@ -37,6 +39,27 @@ class CreatePagesTables extends Migration
             $table->timestamps();
         });
 
+        //install the module itself.
+        $module = Module::create([
+            'namespace' => 'pages',
+            'nl'     => [
+                'name' => 'Pages',
+            ],
+            'en'     => [
+                'name' => 'Pages',
+            ],
+            'fr'     => [
+                'name' => 'Pages',
+            ],
+            'de'     => [
+                'name' => 'Pages',
+            ]
+        ]);
+
+        $module->routes()->save(new ModuleRoute([
+            'name' => 'store.pages.index'
+        ]));
+
     }
 
     /**
@@ -54,5 +77,7 @@ class CreatePagesTables extends Migration
             $table->dropForeign('page_to_account');
             $table->dropForeign('page_to_parent_page');
         });
+
+        Module::where('namespace', 'pages')->delete();
     }
 }
