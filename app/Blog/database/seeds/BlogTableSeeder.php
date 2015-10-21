@@ -32,7 +32,7 @@ class BlogTableSeeder extends Seeder
 
     public function run()
     {
-        foreach([1,2] as $accountid)
+        foreach([1] as $accountid)
         {
             $account = Account::find($accountid);
 
@@ -44,7 +44,7 @@ class BlogTableSeeder extends Seeder
             //flip array since array_rand returns the keys from an array
             $tags = array_flip($tags);
 
-            for ($i = 0; $i < 40; $i++) {
+            for ($i = 0; $i < 15; $i++) {
 
                 $post = new Post($this->texts($accountid));
 

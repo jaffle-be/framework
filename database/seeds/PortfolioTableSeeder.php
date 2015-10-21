@@ -34,7 +34,7 @@ class PortfolioTableSeeder extends Seeder
     }
     public function run()
     {
-        foreach([1,2] as $accountid)
+        foreach([1] as $accountid)
         {
 
             $this->preImageCaching();
