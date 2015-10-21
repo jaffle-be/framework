@@ -2,9 +2,13 @@
 
     <div class="ibox-tabs">
 
-        <tabset>
+        <tabset justified="true">
 
-            <tab heading="{{ Lang::get('blog::admin.post.tags') }}">
+            <tab>
+
+                <tab-heading>
+                    <i class="fa fa-tag"></i>
+                </tab-heading>
 
                 <div class="ibox-content">
 
@@ -25,7 +29,11 @@
             </tab>
 
 
-            <tab heading="{{ Lang::get('blog::admin.post.links') }}">
+            <tab>
+
+                <tab-heading>
+                    <i class="fa fa-link"></i>
+                </tab-heading>
 
                 <div class="ibox-content">
 
@@ -48,7 +56,10 @@
             </tab>
 
 
-            <tab heading="{{ Lang::get('blog::admin.post.seo') }}">
+            <tab>
+                <tab-heading>
+                    <i class="fa fa-search"></i>
+                </tab-heading>
 
                 <div class="ibox-content">
 

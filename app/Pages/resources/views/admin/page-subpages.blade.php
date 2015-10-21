@@ -1,4 +1,8 @@
-<tab heading="{{ Lang::get('pages::admin.page.sub_pages') }}">
+<tab>
+
+    <tab-heading>
+        <i class="fa fa-map-signs"></i>
+    </tab-heading>
 
     <div class="ibox-content">
 

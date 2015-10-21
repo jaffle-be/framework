@@ -1,12 +1,37 @@
 <div class="ibox">
 
-    <div class="ibox-title">
-        <h5>{{ Lang::get('portfolio::admin.project.tags') }}</h5>
-    </div>
+    <div class="ibox-tabs">
 
-    <div class="ibox-content">
+        <tabset justified="true">
 
-        <tag-input owner-type="'portfolio'" owner-id="$state.params.id" locale="vm.options.locale"></tag-input>
+            <tab>
+
+                <tab-heading>
+                    <i class="fa fa-tag"></i>
+                </tab-heading>
+
+                <div class="ibox-content">
+
+                    <tag-input locale="vm.options.locale" owner-type="'portfolio'" owner-id="$state.params.id"></tag-input>
+
+                </div>
+
+            </tab>
+
+            <tab>
+                <tab-heading>
+                    <i class="fa fa-search"></i>
+                </tab-heading>
+
+                <div class="ibox-content">
+
+                    <seo-input locale="vm.options.locale" owner-type="'portfolio'" owner-id="$state.params.id"></seo-input>
+
+                </div>
+
+            </tab>
+
+        </tabset>
 
     </div>
 

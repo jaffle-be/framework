@@ -2,12 +2,14 @@
 
     <div class="ibox-tabs">
 
-        <tabset>
+        <tabset justified="true">
 
             @include('pages::admin.page-subpages')
 
-
-            <tab heading="{{ Lang::get('pages::admin.page.links') }}">
+            <tab>
+                <tab-heading>
+                    <i class="fa fa-link"></i>
+                </tab-heading>
 
                 <div class="ibox-content">
 
@@ -30,7 +32,10 @@
             </tab>
 
 
-            <tab heading="{{ Lang::get('pages::admin.page.seo') }}">
+            <tab>
+                <tab-heading>
+                    <i class="fa fa-search"></i>
+                </tab-heading>
 
                 <div class="ibox-content">
 
