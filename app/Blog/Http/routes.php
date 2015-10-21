@@ -25,5 +25,16 @@ Route::group([
         });
     });
 
-    Route::get('blog', ['uses' => 'BlogController@index', 'as' => 'blog.index']);
+    //FRONT ROUTES
+    if(env('APP_MULTIPLE_LOCALES'))
+    {
+        foreach(config('system.locales') as $locale)
+        {
+            Route::get("$locale/blog", ['uses' => 'BlogController@index', 'as' => "$locale.blog.index"]);
+        }
+    }
+    else{
+        Route::get('blog', ['uses' => 'BlogController@index', 'as' => 'blog.index']);
+    }
+
 });

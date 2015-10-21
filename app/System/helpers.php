@@ -42,3 +42,15 @@ function system_locales()
 
     return $systemLocales->keyBy('slug');
 }
+
+function store_route($name, array $arguments = [])
+{
+    if(env('APP_MULTIPLE_LOCALES'))
+    {
+        $locale = app()->getLocale();
+
+        $name = str_replace('store.', "store.$locale.", $name);
+    }
+
+    return route($name, $arguments);
+}

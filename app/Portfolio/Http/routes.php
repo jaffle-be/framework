@@ -23,8 +23,17 @@ Route::group([
         });
     });
 
-
-    Route::get('portfolio', ['uses' => 'PortfolioController@index', 'as' => 'portfolio.index']);
-    Route::get('portfolio/{project}', ['uses' => 'PortfolioController@show', 'as' => 'portfolio.show']);
+    if(env('APP_MULTIPLE_LOCALES'))
+    {
+        foreach(config('system.locales') as $locale)
+        {
+            Route::get("$locale/portfolio", ['uses' => 'PortfolioController@index', 'as' => "$locale.portfolio.index"]);
+            Route::get("$locale/portfolio/{project}", ['uses' => 'PortfolioController@show', 'as' => "$locale.portfolio.show"]);
+        }
+    }
+    else{
+        Route::get('portfolio', ['uses' => 'PortfolioController@index', 'as' => 'portfolio.index']);
+        Route::get('portfolio/{project}', ['uses' => 'PortfolioController@show', 'as' => 'portfolio.show']);
+    }
 
 });

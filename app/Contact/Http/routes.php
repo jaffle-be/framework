@@ -5,8 +5,6 @@ Route::group([
     'as' => 'store.'
 ], function () {
 
-    Route::resource('contact', 'ContactController', ['only' => ['index', 'store']]);
-
     Route::group(['namespace' => 'Admin'], function()
     {
         Route::group(['prefix' => 'api/admin'], function()
@@ -21,5 +19,18 @@ Route::group([
             Route::get('social-links/widget', 'SocialLinksController@widget');
         });
     });
+
+
+    if(env('APP_MULTIPLE_LOCALES'))
+    {
+        foreach(config('system.locales') as $locale)
+        {
+            Route::resource("$locale/contact", 'ContactController', ['only' => ['index', 'store']]);
+        }
+    }
+    else{
+        Route::resource('contact', 'ContactController', ['only' => ['index', 'store']]);
+    }
+
 
 });
