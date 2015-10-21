@@ -8,17 +8,20 @@ use App\System\Presenter\PresentableEntity;
 use App\System\Presenter\PresentableTrait;
 use App\System\Scopes\FrontScoping;
 use App\System\Scopes\ModelAccountResource;
+use App\System\Seo\SeoEntity;
+use App\System\Seo\SeoTrait;
 use App\System\Translatable\Translatable;
 use App\Tags\StoresTags;
 use App\Tags\Taggable;
 use Illuminate\Database\Eloquent\Model;
 
-class Project extends Model implements StoresMedia, Searchable, StoresTags, PresentableEntity
+class Project extends Model implements StoresMedia, Searchable, StoresTags, PresentableEntity, SeoEntity
 {
     use Translatable;
     use PresentableTrait;
     use Taggable;
     use StoringMedia;
+    use SeoTrait;
     use ModelAccountResource;
     use SearchableTrait;
     use FrontScoping;

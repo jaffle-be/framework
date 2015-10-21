@@ -125,6 +125,7 @@ return [
         'owners' => [
             'pages' => App\Pages\Page::class,
             'blog' => App\Blog\Post::class,
+            'portfolio' => App\Portfolio\Project::class,
         ]
 
     ],

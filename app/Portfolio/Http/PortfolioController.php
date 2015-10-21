@@ -33,6 +33,8 @@ class PortfolioController extends FrontController
 
         $project->load($relations);
 
+        $this->seo->setEntity($project);
+
         $tags = $project->tags;
 
         $relatedProjects = $project->with($relations)

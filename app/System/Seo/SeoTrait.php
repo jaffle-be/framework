@@ -3,6 +3,7 @@
 use App\Media\StoresMedia;
 use App\System\Locale;
 use App\System\Presenter\PresentableEntity;
+use App\Users\User;
 
 trait SeoTrait
 {
@@ -83,7 +84,7 @@ trait SeoTrait
 
     public function getSeoKeywords()
     {
-        if($seo = $this->getSeoCustomisation('description'))
+        if($seo = $this->getSeoCustomisation('keywords'))
         {
             return $seo;
         }
@@ -134,7 +135,10 @@ trait SeoTrait
 
     public function getSeoAuthor()
     {
-        return $this->user->fullName;
+        if($this->user instanceof User)
+        {
+            return $this->user->fullName;
+        }
     }
 
 }
