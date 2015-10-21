@@ -47,8 +47,7 @@ class SystemController extends AdminController
         $repository->updated();
 
         //broadcast event
-        $channel = 'private-' . $accounts->account()->alias;
-        app('pusher')->trigger($channel, 'system.hard-reload', []);
+        app('pusher')->trigger(pusher_system_channel(), 'system.hard-reload', []);
     }
 
 }

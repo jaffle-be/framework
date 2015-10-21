@@ -18,10 +18,16 @@ class ModuleController extends AdminController
         {
             //attach module
             $account->modules()->attach($module->id);
+
+            //broadcast event
+            app('pusher')->trigger(pusher_system_channel(), 'system.hard-reload', []);
         }
         else{
             //detach module
             $account->modules()->detach($module->id);
+
+            //broadcast event
+            app('pusher')->trigger(pusher_system_channel(), 'system.hard-reload', []);
         }
     }
 

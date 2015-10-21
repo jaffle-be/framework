@@ -75,3 +75,10 @@ function store_route($name, array $arguments = [])
 
     return route($name, $arguments);
 }
+
+function pusher_system_channel()
+{
+    $accounts = app('App\Account\AccountManager');
+
+    return 'private-' . $accounts->account()->alias;
+}
