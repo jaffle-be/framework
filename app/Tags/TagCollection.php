@@ -27,7 +27,7 @@ class TagCollection extends Collection
         $replace = [':name', ':url'];
 
         foreach ($this->items as $tag) {
-            $by = [$tag->name, route('store.tags.show', [$tag])];
+            $by = [$tag->name, store_route('store.tags.show', [$tag])];
 
             $formattedTag = str_replace($replace, $by, $format);
 
