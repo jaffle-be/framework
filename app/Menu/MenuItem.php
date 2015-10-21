@@ -16,7 +16,7 @@ class MenuItem extends Model implements PresentableEntity{
 
     protected $translatedAttributes = ['name'];
 
-    protected $fillable = ['name', 'menu_id', 'parent_id', 'url', 'target_blank', 'page_id'];
+    protected $fillable = ['name', 'menu_id', 'parent_id', 'url', 'target_blank', 'page_id', 'module_route_id'];
 
     protected $presenter = 'App\Menu\Presenter\MenuItemFrontPresenter';
 
@@ -44,9 +44,9 @@ class MenuItem extends Model implements PresentableEntity{
         return $this->belongsTo('App\Pages\Page');
     }
 
-    public function routable()
+    public function route()
     {
-        return $this->belongsTo('App\System\Uri\Routable');
+        return $this->belongsTo('App\Module\ModuleRoute', 'module_route_id');
     }
 
     public function getTargetAttribute()

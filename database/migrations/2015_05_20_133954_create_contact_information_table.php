@@ -29,6 +29,40 @@ class CreateContactInformationTable extends Migration
             $table->foreign('country_id', 'contact_address_to_country')->references('id')->on('country');
             $table->timestamps();
         });
+
+        //install the module itself.
+        $module = Module::create([
+            'namespace' => 'contact',
+            'nl'     => [
+                'name' => 'Contact',
+            ],
+            'en'     => [
+                'name' => 'Contact',
+            ],
+            'fr'     => [
+                'name' => 'Contact',
+            ],
+            'de'     => [
+                'name' => 'Contact',
+            ]
+        ]);
+
+        $module->routes()->save(new ModuleRoute([
+            'name' => 'store.contact.index',
+            'nl' => [
+                'title' => 'contact'
+            ],
+            'en' => [
+                'title' => 'contact'
+            ],
+            'fr' => [
+                'title' => 'contact'
+            ],
+            'de' => [
+                'title' => 'contact'
+            ],
+
+        ]));
     }
 
     /**
@@ -41,6 +75,8 @@ class CreateContactInformationTable extends Migration
         Schema::drop('contact_address', function (Blueprint $table) {
             $table->dropForeign('contact_address_to_country');
         });
+
+        Module::where('namespace', 'contact')->delete();
     }
 
 }

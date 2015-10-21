@@ -8,7 +8,7 @@
 
     <div class="ibox-content ibox-with-footer">
 
-        <div class="form-group" ng-show="!item.page_id">
+        <div class="form-group" ng-show="!item.page_id && !item.module_route_id">
 
             <div class="well well-sm">{{ Lang::get('menu::admin.url-explanation') }}</div>
 

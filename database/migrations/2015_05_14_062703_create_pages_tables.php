@@ -56,10 +56,6 @@ class CreatePagesTables extends Migration
             ]
         ]);
 
-        $module->routes()->save(new ModuleRoute([
-            'name' => 'store.pages.index'
-        ]));
-
     }
 
     /**

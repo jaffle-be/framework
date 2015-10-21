@@ -39,6 +39,40 @@ class CreateTeamsTable extends Migration
             $table->foreign('membership_id', 'team_membership_to_membership')->references('id')->on('account_memberships')->onDelete('cascade');
             $table->timestamps();
         });
+
+        //install the module itself.
+        $module = Module::create([
+            'namespace' => 'team',
+            'nl'     => [
+                'name' => 'Team',
+            ],
+            'en'     => [
+                'name' => 'Team',
+            ],
+            'fr'     => [
+                'name' => 'Team',
+            ],
+            'de'     => [
+                'name' => 'Team',
+            ]
+        ]);
+
+        $module->routes()->save(new ModuleRoute([
+            'name' => 'store.team.index',
+            'nl' => [
+                'title' => 'team'
+            ],
+            'en' => [
+                'title' => 'team'
+            ],
+            'fr' => [
+                'title' => 'team'
+            ],
+            'de' => [
+                'title' => 'team'
+            ],
+
+        ]));
     }
 
     /**
@@ -60,5 +94,7 @@ class CreateTeamsTable extends Migration
         Schema::drop('account_teams', function (Blueprint $table) {
             $table->dropForeign('teams_to_accounts');
         });
+
+        Module::where('namespace', 'team')->delete();
     }
 }

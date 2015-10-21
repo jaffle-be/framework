@@ -19,4 +19,9 @@ class Module extends Model
         return $this->hasMany('App\Module\ModuleRoute', 'module_id');
     }
 
+    public function newCollection(array $models = [])
+    {
+        return new ModuleCollection($models);
+    }
+
 }

@@ -43,7 +43,20 @@ class CreatePortfolioProjects extends Migration
         ]);
 
         $module->routes()->save(new ModuleRoute([
-            'name' => 'store.portfolio.index'
+            'name' => 'store.portfolio.index',
+            'nl' => [
+                'title' => 'portfolio overview'
+            ],
+            'en' => [
+                'title' => 'portfolio overview'
+            ],
+            'fr' => [
+                'title' => 'portfolio overview'
+            ],
+            'de' => [
+                'title' => 'portfolio overview'
+            ],
+
         ]));
     }
 

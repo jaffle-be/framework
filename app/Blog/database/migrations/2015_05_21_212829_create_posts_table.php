@@ -54,7 +54,20 @@ class CreatePostsTable extends Migration
         ]);
 
         $module->routes()->save(new ModuleRoute([
-            'name' => 'store.blog.index'
+            'name' => 'store.blog.index',
+            'nl' => [
+                'title' => 'blog overview'
+            ],
+            'en' => [
+                'title' => 'blog overview'
+            ],
+            'fr' => [
+                'title' => 'blog overview'
+            ],
+            'de' => [
+                'title' => 'blog overview'
+            ],
+
         ]));
     }
 

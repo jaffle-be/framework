@@ -59,6 +59,11 @@ angular.module('menu')
                                 $scope.menu.availablePages.push(response.page);
                             }
 
+                            if(response.route)
+                            {
+                                $scope.menu.availableRoutes.push(response.route);
+                            }
+
                             _.remove($scope.menu.items, function(item)
                             {
                                 return item.id == $scope.item.id;

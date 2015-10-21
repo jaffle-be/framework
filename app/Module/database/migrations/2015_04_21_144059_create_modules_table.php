@@ -36,6 +36,15 @@ class CreateModulesTable extends Migration
             $table->string('name');
             $table->timestamps();
         });
+
+        Schema::create('module_route_translations', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('module_route_id', false, true);
+            $table->foreign('module_route_id', 'translation_to_module_route')->references('id')->on('module_routes')->onDelete('cascade');
+            $table->string('locale', 5);
+            $table->string('title');
+            $table->timestamps();
+        });
     }
 
     /**
@@ -47,6 +56,10 @@ class CreateModulesTable extends Migration
     {
         Schema::drop('module_translations', function (Blueprint $table) {
             $table->dropForeign('translation_to_module');
+        });
+
+        Schema::drop('module_route_translations', function (Blueprint $table) {
+            $table->dropForeign('translation_to_module_route');
         });
 
         Schema::drop('module_routes', function(Blueprint $table)
