@@ -14,32 +14,33 @@ Route::group([
     'as'        => 'store.',
 ], function () {
 
-    Route::group([
-        'prefix'    => 'auth',
-        'namespace' => 'Auth'
-    ], function () {
-
-        if(env('APP_MULTIPLE_LOCALES'))
-        {
-            foreach(config('system.locales') as $locale)
-            {
-                Route::resource("$locale/signup", 'SignupController', ['only' => ['index', 'store']]);
-                Route::resource("$locale/confirm-email", 'ConfirmEmailController', ['only' => ['show', 'create', 'store']]);
-                Route::resource("$locale/signin", 'SigninController', ['only' => ['index', 'store']]);
-                Route::resource("$locale/signout", 'SignoutController', ['only' => ['index']]);
-                Route::resource("$locale/forgot-password", 'ForgotPasswordController', ['only' => ['index', 'store']]);
-                Route::resource("$locale/reset-password", 'ResetPasswordController', ['only' => ['show', 'update']]);
-            }
+    if (env('APP_MULTIPLE_LOCALES')) {
+        foreach (config('system.locales') as $locale) {
+            Route::group([
+                'prefix'    => "$locale/auth",
+                'namespace' => 'Auth'
+            ], function () {
+                Route::resource("signup", 'SignupController', ['only' => ['index', 'store']]);
+                Route::resource("confirm-email", 'ConfirmEmailController', ['only' => ['show', 'create', 'store']]);
+                Route::resource("signin", 'SigninController', ['only' => ['index', 'store']]);
+                Route::resource("signout", 'SignoutController', ['only' => ['index']]);
+                Route::resource("forgot-password", 'ForgotPasswordController', ['only' => ['index', 'store']]);
+                Route::resource("reset-password", 'ResetPasswordController', ['only' => ['show', 'update']]);
+            });
         }
-        else{
+    } else {
+        Route::group([
+            'prefix'    => 'auth',
+            'namespace' => 'Auth'
+        ], function () {
             Route::resource('signup', 'SignupController', ['only' => ['index', 'store']]);
             Route::resource('confirm-email', 'ConfirmEmailController', ['only' => ['show', 'create', 'store']]);
             Route::resource('signin', 'SigninController', ['only' => ['index', 'store']]);
             Route::resource('signout', 'SignoutController', ['only' => ['index']]);
             Route::resource('forgot-password', 'ForgotPasswordController', ['only' => ['index', 'store']]);
             Route::resource('reset-password', 'ResetPasswordController', ['only' => ['show', 'update']]);
-        }
-    });
+        });
+    }
 
     Route::group([
         'namespace' => 'Admin',
