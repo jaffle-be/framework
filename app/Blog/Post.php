@@ -6,8 +6,10 @@ use App\Search\Model\Searchable;
 use App\Search\Model\SearchableTrait;
 use App\System\Presenter\PresentableEntity;
 use App\System\Presenter\PresentableTrait;
+use App\System\Scopes\FrontScoping;
 use App\System\Scopes\ModelAccountResource;
-use App\System\Sluggable\Sluggable;
+use App\System\Seo\SeoEntity;
+use App\System\Seo\SeoTrait;
 use App\System\Translatable\Translatable;
 use App\Tags\StoresTags;
 use App\Tags\Taggable;
@@ -16,7 +18,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 
-class Post extends Model implements StoresMedia, Searchable, StoresTags, PresentableEntity
+class Post extends Model implements StoresMedia, Searchable, StoresTags, PresentableEntity, SeoEntity
 {
 
     use PresentableTrait;
@@ -25,22 +27,8 @@ class Post extends Model implements StoresMedia, Searchable, StoresTags, Present
     use StoringMedia;
     use ModelAccountResource;
     use SearchableTrait;
-
-    public static function bootPostScopeFront()
-    {
-        /** @var Request $request */
-        $request = app('request');
-
-        if(app()->runningInConsole())
-        {
-            return;
-        }
-
-        if(!starts_with($request->getRequestUri(), ['/admin', '/api']))
-        {
-            static::addGlobalScope(new PostScopeFront());
-        }
-    }
+    use SeoTrait;
+    use FrontScoping;
 
     protected $table = 'posts';
 

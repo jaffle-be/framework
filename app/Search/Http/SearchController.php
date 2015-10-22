@@ -3,11 +3,11 @@
 use App\Account\AccountManager;
 use App\Blog\Post;
 use App\Search\SearchServiceInterface;
-use App\System\Http\Controller;
+use App\System\Http\FrontController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 
-class SearchController extends Controller
+class SearchController extends FrontController
 {
 
     public function index(Request $request, Post $post, SearchServiceInterface $search, AccountManager $account)
@@ -100,7 +100,7 @@ class SearchController extends Controller
                                 "query" => [
                                     "multi_match" => [
                                         "query"  => $request->get('query'),
-                                        "fields" => ["translations.$locale.title", "translations.$locale.description"]
+                                        "fields" => ["translations.$locale.title", "translations.$locale.content"]
 
                                     ]
                                 ]

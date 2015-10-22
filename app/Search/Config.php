@@ -1,7 +1,6 @@
 <?php namespace App\Search;
 
 use App\System\Translatable\Translatable;
-use Exception;
 
 class Config
 {

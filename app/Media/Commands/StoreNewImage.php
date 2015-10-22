@@ -2,11 +2,12 @@
 
 use App\Account\Account;
 use App\Jobs\Job;
+use App\Media\Configurator;
 use App\Media\Media;
 use App\Media\MediaRepositoryInterface;
 use App\Media\StoresMedia;
+use Exception;
 use Illuminate\Contracts\Bus\SelfHandling;
-use Illuminate\Contracts\Config\Repository;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Foundation\Bus\DispatchesCommands;
 use Intervention\Image\ImageManager;
@@ -15,6 +16,8 @@ class StoreNewImage extends Job implements SelfHandling
 {
 
     use DispatchesCommands;
+
+    protected $account;
 
     /**
      * @var StoresMedia
@@ -35,11 +38,6 @@ class StoreNewImage extends Job implements SelfHandling
      * @var null|string
      */
     protected $rename;
-
-    /**
-     * @var array
-     */
-    protected $sizes;
 
     /**
      * @var string
@@ -67,24 +65,13 @@ class StoreNewImage extends Job implements SelfHandling
     protected $path;
 
     /**
-     * @var
-     */
-    protected $prefix;
-
-    /**
-     * @var
-     */
-    protected $seeding;
-
-    /**
      * @param Account     $account
      * @param StoresMedia $owner
      * @param string      $path
      * @param null        $rename
      * @param array       $sizes
-     * @param bool        $seeding
      */
-    public function __construct(Account $account, StoresMedia $owner, $path, $rename = null, array $sizes = [], $seeding = false)
+    public function __construct(Account $account, StoresMedia $owner, $path, $rename = null)
     {
         $this->account = $account;
         $this->owner = $owner;
@@ -94,23 +81,31 @@ class StoreNewImage extends Job implements SelfHandling
         $this->extension = pathinfo($path, PATHINFO_EXTENSION);
         $this->basename = pathinfo($this->currentPath, PATHINFO_BASENAME);
         $this->rename = $rename;
-        $this->sizes = $sizes;
-        $this->seeding = $seeding;
     }
 
-    public function handle(MediaRepositoryInterface $repo, ImageManager $images, Filesystem $files, Repository $config)
+    public function handle(MediaRepositoryInterface $repo, ImageManager $images, Filesystem $files, Configurator $config)
     {
         if (!$files->exists($this->currentPath)) {
             return false;
         }
 
-        $this->prepare($images, $files, $config);
+        $this->dimensions($images);
+        $this->newName();
+        $this->handleFile($files, $config);
 
-        $image = $repo->createImage($this->owner, $this->getPayload());
+        try{
+            $image = $repo->createImage($this->owner, $this->getPayload());
+        }
+        catch(Exception $e)
+        {
+            $files->delete(public_path($this->path));
+
+            return false;
+        }
 
         if ($image) {
 
-            foreach ($this->sizes as $size) {
+            foreach ($config->getImageSizes($this->owner) as $size) {
                 $this->dispatchFromArray(ResizeImage::class, [
                     'image'      => $image,
                     'size'       => $size,
@@ -129,19 +124,22 @@ class StoreNewImage extends Job implements SelfHandling
      */
     protected function dimensions(ImageManager $image)
     {
-        $this->width = $image->make($this->currentPath)->width();
-        $this->height = $image->make($this->currentPath)->height();
+        $resource = $image->make($this->currentPath);
+        $this->width = $resource->width();
+        $this->height = $resource->height();
     }
 
-    protected function handleFile(Filesystem $files, Repository $config)
+    protected function handleFile(Filesystem $files, Configurator $config)
     {
-        $subFolder = $config->get('media.path') . '/' . $this->prefix;
+        $abstract = $config->getAbstractPath($this->owner, 'images');
+        $public = $config->getPublicPath($this->owner, 'images');
 
-        if (!$files->isDirectory(public_path($subFolder))) {
-            $files->makeDirectory(public_path($subFolder), 0755, true);
+        if (!$files->isDirectory($public)) {
+            $files->makeDirectory($public, 0755, true);
         }
 
-        $path = $subFolder . $this->rename;
+        //abstract path to actual file
+        $path = $abstract . $this->rename;
 
         //always copy the file first
         $files->copy($this->currentPath, public_path($path));
@@ -151,7 +149,6 @@ class StoreNewImage extends Job implements SelfHandling
 
     protected function newName()
     {
-
         if (empty($this->rename)) {
             $this->rename = $this->basename;
         }
@@ -170,23 +167,5 @@ class StoreNewImage extends Job implements SelfHandling
             'width'      => $this->width,
             'height'     => $this->height,
         ];
-    }
-
-    /**
-     * @param ImageManager $images
-     * @param Filesystem   $files
-     * @param Repository   $config
-     */
-    protected function prepare(ImageManager $images, Filesystem $files, Repository $config)
-    {
-        $this->dimensions($images);
-        $this->newName();
-        $this->prefix();
-        $this->handleFile($files, $config);
-    }
-
-    protected function prefix()
-    {
-        $this->prefix = $this->owner->getMediaFolder();
     }
 }

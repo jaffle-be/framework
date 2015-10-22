@@ -62,6 +62,19 @@ angular.module('media')
                             this.removeFile(file);
                             $scope.$apply();
                         },
+                        error: function(file, message, response)
+                        {
+                            //added to avoid large popup when we try uploading a file which is too large
+                            if(response.status == 413)
+                            {
+                                toaster.error(response.statusText);
+                            }
+                            else{
+                                toaster.error(message);
+                            }
+                            this.removeFile(file);
+                            $scope.$apply();
+                        },
                         processing: function () {
                             this.options.params.ownerId = $scope.ownerId;
                         },

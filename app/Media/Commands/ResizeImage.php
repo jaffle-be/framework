@@ -4,6 +4,7 @@ use App\Jobs\Job;
 use App\Media\Image;
 use App\Media\ImageDimensionHelpers;
 use App\Media\MediaRepositoryInterface;
+use Exception;
 use Illuminate\Contracts\Bus\SelfHandling;
 use Illuminate\Filesystem\Filesystem;
 use Intervention\Image\ImageManager;
@@ -64,7 +65,18 @@ class ResizeImage extends Job implements SelfHandling
             //use html public path to store in database
             $path = $this->getPath($files, true);
 
-            $media->createThumbnailImage($this->getPayload($width, $height, $path), $this->image);
+            try{
+                $media->createThumbnailImage($this->getPayload($width, $height, $path), $this->image);
+            }
+            catch(Exception $e)
+            {
+                $files->delete(public_path($path));
+
+                unset($image);
+
+                return false;
+            }
+
 
             unset($image);
         }

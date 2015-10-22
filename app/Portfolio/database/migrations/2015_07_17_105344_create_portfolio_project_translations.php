@@ -20,7 +20,7 @@ class CreatePortfolioProjectTranslations extends Migration
             $table->boolean('published');
             $table->string('title');
             $table->string('slug')->nullable();
-            $table->text('description');
+            $table->text('content');
             $table->timestamps();
         });
     }

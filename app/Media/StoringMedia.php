@@ -1,6 +1,7 @@
 <?php namespace App\Media;
 
 use Exception;
+use InvalidArgumentException;
 
 trait StoringMedia
 {
@@ -33,6 +34,26 @@ trait StoringMedia
         return $this->morphOne('App\Media\Image', 'owner');
     }
 
+    public function videos()
+    {
+        if($this->mediaStoresMultiple())
+        {
+            return $this->morphMany('App\Media\Video\Video', 'owner');
+        }
+
+        return $this->morphOne('App\Media\Video\Video', 'owner');
+    }
+
+    public function infographics()
+    {
+        return $this->morphMany('App\Media\Infographics\Infographic', 'owner');
+    }
+
+    public function files()
+    {
+        return $this->morphMany('App\Media\Files\File', 'owner');
+    }
+
     public function sizes($width = null, $height = null)
     {
         $this->images()->dimension($width, $height);
@@ -57,18 +78,36 @@ trait StoringMedia
         }
     }
 
-    public function getMediaFolder()
+    public function getMediaFolder($type = null, $size = null)
     {
+        $account = isset($this->attributes['account_id']) ? $this->attributes['account_id'] : app('App\Account\AccountManager')->account()->id;
+
+        $media = str_replace('{account}', $account, $this->media);
+
+        /** @var Configurator $config */
+        $config = app('App\Media\Configurator');
+
+        if(empty($type))
+        {
+            return sprintf('%s/%d/', $media, $this->attributes['id']);
+        }
+
+        if(!empty($type) && !$config->isSupportedMediaType($type))
+        {
+            throw new InvalidArgumentException('Need valid media type to return a proper folder');
+        }
+
         if(!property_exists(get_class($this), 'media'))
         {
             throw new Exception('Please define media attribute on your model');
         }
 
-        $account = isset($this->attributes['account_id']) ? $this->attributes['account_id'] : app('App\Account\AccountManager')->account()->id;
+        if(!$size)
+        {
+            return sprintf('%s/%d/%s/', $media, $this->attributes['id'], $type);
+        }
 
-        $media = str_replace('{account}', $account, $this->media);
-
-        return sprintf('%s/%d/', $media, $this->attributes['id']);
+        return sprintf('%s/%d/%s/%s/', $media, $this->attributes['id'], $type, $size);
     }
 
 }

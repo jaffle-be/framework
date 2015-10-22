@@ -3,13 +3,31 @@
 use App\Media\Commands\UpdateImage;
 use App\Media\Commands\UploadNewImage;
 use App\Media\Image;
+use App\Media\MediaRepositoryInterface;
+use App\Media\StoresMedia;
 use App\System\Http\AdminController;
-use Exception;
+use App\Theme\ThemeManager;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 
 class ImageController extends AdminController
 {
+
+    /**
+     * @var MediaRepositoryInterface
+     */
+    protected $media;
+
+    /**
+     * @param ThemeManager             $theme
+     * @param MediaRepositoryInterface $media
+     */
+    public function __construct(ThemeManager $theme, MediaRepositoryInterface $media)
+    {
+        $this->media = $media;
+
+        parent::__construct($theme);
+    }
 
     public function widget()
     {
@@ -19,14 +37,14 @@ class ImageController extends AdminController
     public function index(Request $request)
     {
         $owner = $this->owner($request);
-        
+
         $images = $owner->images;
 
         if($images)
         {
             $images->load($this->relations());
 
-            if(!$images instanceof Collection)
+            if(!$owner->mediaStoresMultiple())
             {
                 $images = new Collection([$images]);
             }
@@ -45,49 +63,15 @@ class ImageController extends AdminController
         ];
     }
 
-    protected function sizes(Request $request)
-    {
-        $type = $request->get('ownerType');
-
-        $sizes = config('media.sizes');
-
-        if (!isset($sizes[$type])) {
-            throw new \Exception('No valid sizes for this media type defined');
-        }
-
-        return $sizes[$type];
-    }
-
-    protected function owner(Request $request)
-    {
-        $id = $request->get('ownerId');
-        $type = $request->get('ownerType');
-
-        $owners = config('media.owners');
-
-        if (!isset($owners[$type])) {
-            throw new Exception('Invalid owner type provided for images');
-        }
-
-        $class = $owners[$type];
-
-        $class = new $class();
-
-        return $class->findOrFail($id);
-    }
-
     public function store(Request $request)
     {
         $owner = $this->owner($request);
-
-        $sizes = $this->sizes($request);
 
         $file = $request->file('file');
 
         $image = $this->dispatchFromArray(UploadNewImage::class, [
             'owner' => $owner,
             'image' => $file,
-            'sizes' => $sizes,
         ]);
 
         $image->load($this->relations());
@@ -135,6 +119,16 @@ class ImageController extends AdminController
             $image->sort = $position;
             $image->save();
         }
+    }
+
+    /**
+     * @param Request $request
+     *
+     * @return StoresMedia
+     */
+    protected function owner(Request $request)
+    {
+        return $this->media->findOwner($request->get('ownerType'), $request->get('ownerId'));
     }
 
 }

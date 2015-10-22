@@ -11,9 +11,4 @@ class MembershipInvitation extends Model
 
     protected $fillable = ['email', 'token'];
 
-    public function account()
-    {
-        return $this->belongsTo('App\Account\Account');
-    }
-
 }

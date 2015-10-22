@@ -2,11 +2,13 @@
 
 namespace App\System;
 
+use App\Pages\Page;
 use App\System\Cache\CacheManager;
 use App\System\Queue\RedisConnector;
+use App\System\Uri\Uri;
+use Blade;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Factory;
-use Blade;
 use Webuni\CommonMark\AttributesExtension\AttributesExtension;
 
 class SystemServiceProvider extends ServiceProvider
@@ -40,6 +42,13 @@ class SystemServiceProvider extends ServiceProvider
             __DIR__ . '/config/system.php', 'system'
         );
 
+        $this->app->singleton('seo', function($app)
+        {
+            return new Seo\SeoManager($app['config']);
+        });
+
+        $this->app->bind('App\System\Seo\SeoManager', 'seo');
+
         $this->app->booted(function ($app) {
             $app['newrelic']->setAppName(env('APP_NAME'));
         });
@@ -56,6 +65,9 @@ class SystemServiceProvider extends ServiceProvider
 
     protected function listeners()
     {
+        $this->automateUriCleanup();
+        $this->automateUriCreation();
+        $this->automateContentFormatting();
     }
 
     protected function validators()
@@ -113,6 +125,22 @@ class SystemServiceProvider extends ServiceProvider
 
             return sprintf($format, \Carbon\Carbon::now()->format('Y'), "http://digiredo.be", "Digiredo");
         });
+    }
+
+    protected function automateUriCleanup()
+    {
+        $this->app['events']->listen('eloquent.deleting: *', 'App\System\Uri\CleanupPrepping');
+        $this->app['events']->listen('eloquent.deleted: *', 'App\System\Uri\Cleanup');
+    }
+
+    protected function automateUriCreation()
+    {
+        $this->app['events']->listen('eloquent.created: *', 'App\System\Uri\Creator');
+    }
+
+    protected function automateContentFormatting()
+    {
+        $this->app['events']->listen('eloquent.saving: *', 'App\System\Presenter\ShortCodeFormatter');
     }
 
 }

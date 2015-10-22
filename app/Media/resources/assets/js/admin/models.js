@@ -38,7 +38,7 @@ angular.module('media')
 
         var behaviours = {
             thumbnail: function (thumbnail) {
-                if(this.path)
+                if (this.path)
                 {
                     var pattern = /\/([^\/]+)$/;
                     var replace = '/' + thumbnail + '/$1';
@@ -51,4 +51,116 @@ angular.module('media')
         resource.prototype = angular.extend({}, resource.prototype, behaviours);
 
         return resource;
+    })
+    .factory('VideoResource', function ($resource) {
+
+        var placeholders = {
+            id: '@id'
+        };
+
+        return $resource('api/admin/media/video/:id', placeholders, {
+            update: {
+                method: 'PUT'
+            }
+        });
+    })
+    .factory('Video', function ($resource, VideoResource, $http) {
+
+        var video = {
+            list: function (params, success) {
+                return $http({
+                    url: 'api/admin/media/video',
+                    method: 'GET',
+                    params: params,
+                    transformResponse: function (response) {
+                        response = angular.fromJson(response);
+                        //our videos are keyed by locale, so we need to manually handle the response
+                        //angular can not figure this out on its own.
+                        response = _.each(response, function (locale_videos, locale) {
+                            response[locale] = _.map(locale_videos, function (video) {
+                                return new VideoResource(video);
+                            });
+                        });
+
+                        return response;
+                    }
+                }).then(success);
+            }
+        };
+
+        return angular.extend(video, VideoResource);
+    }).factory('InfographicResource', function ($resource) {
+
+        var placeholders = {
+            id: '@id'
+        };
+
+        return $resource('api/admin/media/infographic/:id', placeholders, {
+            update: {
+                method: 'PUT'
+            }
+        });
+    })
+    .factory('Infographic', function ($http, InfographicResource) {
+
+        var infographic = {
+            list: function (params, success) {
+                return $http({
+                    url: 'api/admin/media/infographic',
+                    method: 'GET',
+                    params: params,
+                    transformResponse: function (response) {
+                        response = angular.fromJson(response);
+                        //our infographics are keyed by locale, so we need to manually handle the response
+                        //angular can not figure this out on its own.
+                        response = _.each(response, function (locale_graphics, locale) {
+                            response[locale] = _.map(locale_graphics, function (graphic) {
+                                return new InfographicResource(graphic);
+                            });
+                        });
+
+                        return response;
+                    }
+                }).then(success);
+            },
+        };
+
+        return $.extend(infographic, InfographicResource);
+    })
+    .factory('FileResource', function ($resource) {
+
+        var placeholders = {
+            id: '@id'
+        };
+
+        return $resource('api/admin/media/file/:id', placeholders, {
+            update: {
+                method: 'PUT'
+            }
+        });
+    }).factory('File', function ($http, FileResource) {
+
+        var file = {
+            list: function (params, success) {
+                return $http({
+                    url: 'api/admin/media/file',
+                    method: 'GET',
+                    params: params,
+                    transformResponse: function (response) {
+                        response = angular.fromJson(response);
+                        //our files are keyed by locale, so we need to manually handle the response
+                        //angular can not figure this out on its own.
+                        response = _.each(response, function (locale_files, locale) {
+                            response[locale] = _.map(locale_files, function (file) {
+                                return new FileResource(file);
+                            });
+                        });
+
+                        return response;
+                    }
+                }).then(success);
+            }
+        };
+
+        return $.extend(file, FileResource);
     });

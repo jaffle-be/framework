@@ -20,6 +20,7 @@ trait PresentableTrait
         if(!$this->presenterInstance)
         {
             try{
+
                 $presenter = app($this->presenter);
 
                 $presenter->setPresentableEntity($this);

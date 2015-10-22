@@ -12,7 +12,8 @@
 
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&lang=en">
     <link id="loadBefore" href="{{ asset('/css/admin/main.css') }}" rel="stylesheet">
-
+    <meta name="csrf-token" content="{{ csrf_token() }}"/>
+    <meta name="account-alias" content="{{ $account->alias }}"/>
 
 </head>
 
@@ -27,13 +28,14 @@
 {{--why is this file used? its mostly for position i think? not to sure though --}}
 {{--<script src=" {{ asset('/js/admin/plugins/jquery-ui/jquery-ui.js') }}"></script>--}}
 <script src=" {{ asset('/js/admin/bootstrap/bootstrap.min.js') }}"></script>
-
+<script src=" {{ asset('/js/admin/pusher/pusher.min.js') }}"></script>
 
 {{--<!-- Custom and plugin javascript -->--}}
 <script src=" {{ asset('/js/admin/core.min.js') }}"></script>
 
 {{--<!-- Main Angular scripts-->--}}
 <script src=" {{ asset('/js/admin/angular/angular.min.js') }}"></script>
+<script src=" {{ asset('/js/admin/pusher-angular/pusher-angular.min.js') }}"></script>
 <script src=" {{ asset('/js/admin/angular-smart-table/smart-table.min.js') }}"></script>
 <script src=" {{ asset('/js/admin/ocLazyLoad/ocLazyLoad.min.js') }}"></script>
 <script src=" {{ asset('/js/admin/angular-translate/angular-translate.min.js') }}"></script>

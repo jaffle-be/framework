@@ -1,33 +1,87 @@
 <?php namespace App\Media\Console;
 
+use App\Media\Configurator;
 use App\Media\StoresMedia;
 use Illuminate\Console\Command;
+use Illuminate\Filesystem\Filesystem;
 
 class RemoveSize extends Command
 {
     protected $signature = 'media:remove-size {size} {type=all}';
 
+    /**
+     * @var Configurator
+     */
+    protected $config;
+
+    /**
+     * @var Filesystem
+     */
+    protected $files;
+
+    /**
+     * Create a new console command instance.
+     *
+     * @return void
+     */
+    public function __construct(Configurator $config, Filesystem $files)
+    {
+        $this->config = $config;
+
+        $this->files = $files;
+
+        parent::__construct();
+    }
+
     public function handle()
     {
-        foreach($this->getTypes() as $type)
+        $types = $this->config->getTypes($this->argument('type'));
+
+        foreach($types as $type)
         {
-            $entity = app($type);
-
-            $entity->chunk(250, function($owners){
-
-                list($width, $height) = explode('x', $this->argument('size'), 2);
-
-                $owners->load(['images', 'images.sizes' => function($query) use ($width, $height){
-                    $query->dimension($width, $height);
-                }]);
-
-                foreach($owners as $owner)
-                {
-                    /* @var StoresMedia $owner */
-                    $this->handleOwner($owner);
-                }
-            });
+            $this->handleType($type);
         }
+    }
+
+    /**
+     * @param $type
+     */
+    protected function handleType($type)
+    {
+        $entity = app($type);
+
+        $entity->chunk(250, function ($owners) {
+
+            $size = $this->argument('size');
+
+            list($width, $height) = explode('x', $size, 2);
+
+            $owners->load(['images', 'images.sizes' => function ($query) use ($width, $height) {
+                $query->dimension($width, $height);
+            }]);
+
+            foreach ($owners as $owner) {
+                /* @var StoresMedia $owner */
+                $this->handleOwner($owner, $size);
+            }
+        });
+    }
+
+    /**
+     * @param $owner
+     * @param $this
+     */
+    function handleOwner(StoresMedia $owner, $size)
+    {
+        if ($owner->mediaStoresMultiple()) {
+            foreach ($owner->images as $image) {
+                $this->handleImage($image);
+            }
+        } else if ($owner->images) {
+            $this->handleImage($owner->images);
+        }
+
+        $this->files->deleteDirectory(rtrim($this->config->getPublicPath($owner, 'images', $size), '/'));
     }
 
     /**
@@ -38,35 +92,6 @@ class RemoveSize extends Command
         foreach ($image->sizes as $size) {
             $size->delete();
         }
-    }
-
-    /**
-     * @param $owner
-     * @param $this
-     */
-    function handleOwner($owner)
-    {
-        if ($owner->mediaStoresMultiple()) {
-            foreach ($owner->images as $image) {
-                $this->handleImage($image);
-            }
-        } else if ($owner->images) {
-            $this->handleImage($owner->images);
-        }
-    }
-
-    protected function getTypes()
-    {
-        $type = $this->argument('type');
-
-        if ($type == 'all') {
-            //use all defined owners
-            return array_values(config('media.owners'));
-        }
-
-        //make sure the type provided is a known type.
-        //type argument in console should be passed by its alias defined in the owners config.
-        return array_values(array_intersect_key(config('media.owners'), array_flip([$type])));
     }
 
 }

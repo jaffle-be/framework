@@ -21,8 +21,10 @@ angular.module('tags')
                     $timeout.cancel(this.timeouts[tag.id]);
                 }
 
+                var temp = angular.copy(tag);
+
                 this.timeouts[tag.id] = $timeout(function () {
-                    return tag.$update({
+                    return temp.$update({
                         ownerType: type,
                         ownerId: id
                     });

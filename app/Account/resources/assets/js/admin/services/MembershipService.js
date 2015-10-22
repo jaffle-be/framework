@@ -51,8 +51,11 @@ angular.module('account')
                     $timeout.cancel(this.timeout);
                 }
 
+                //don't update UI with returned object
+                var destination = angular.copy(team);
+
                 this.timeout = $timeout(function(){
-                    team.$update().then(success);
+                    destination.$update().then(success);
                 }, 400);
 
             }

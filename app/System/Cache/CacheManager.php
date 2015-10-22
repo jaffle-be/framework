@@ -1,6 +1,5 @@
 <?php namespace App\System\Cache;
 
-use App\Account\AccountManager;
 use Illuminate\Support\Arr;
 
 class CacheManager extends \Illuminate\Cache\CacheManager

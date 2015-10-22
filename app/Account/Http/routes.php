@@ -28,7 +28,17 @@ Route::group([
     Route::group(['namespace' => 'App\Account\Http'], function()
     {
         Route::resource('auth/invitation', 'MembershipInvitationController', ['only' => ['show', 'update']]);
-        Route::resource('team', 'TeamController', ['only' => ['index', 'show']]);
+
+        if(env('APP_MULTIPLE_LOCALES'))
+        {
+            foreach(config('system.locales') as $locale)
+            {
+                Route::resource("$locale/team", 'TeamController', ['only' => ['index', 'show']]);
+            }
+        }
+        else{
+            Route::resource('team', 'TeamController', ['only' => ['index', 'show']]);
+        }
     });
 
 });

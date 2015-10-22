@@ -1,14 +1,14 @@
-<div class="wrapper wrapper-content">
+<div class="row wrapper-content" ng-controller="ClientsController as vm" ng-init="vm.options = {{ system_options() }}">
 
-    <div class="ibox" ng-controller="ClientsController as vm" ng-init="vm.options = {{ system_options() }}">
+    @include('system::admin.locale-tabs')
+
+    <div class="ibox">
 
         <div class="ibox-title">
             <h5>{{ Lang::get('account::admin.clients.clients') }}</h5>
         </div>
 
         <div class="ibox-content">
-
-            @include('system::admin.locale-tabs')
 
             <div class="row">
 

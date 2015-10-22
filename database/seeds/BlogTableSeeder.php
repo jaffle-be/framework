@@ -15,8 +15,6 @@ class BlogTableSeeder extends Seeder
         'BLOG_O14A0436.jpg',
     ];
 
-    protected $image_sizes = [];
-
     protected $prefix;
 
     protected $images;
@@ -25,7 +23,7 @@ class BlogTableSeeder extends Seeder
     {
         $this->images = $images;
 
-        $this->image_sizes = config('media.sizes.blog');
+        $this->model = new Post();
 
         $this->prefix = __DIR__ . '/../images/';
 
@@ -34,7 +32,7 @@ class BlogTableSeeder extends Seeder
 
     public function run()
     {
-        foreach([1,2] as $accountid)
+        foreach([1] as $accountid)
         {
             $account = Account::find($accountid);
 
@@ -46,7 +44,7 @@ class BlogTableSeeder extends Seeder
             //flip array since array_rand returns the keys from an array
             $tags = array_flip($tags);
 
-            for ($i = 0; $i < 40; $i++) {
+            for ($i = 0; $i < 15; $i++) {
 
                 $post = new Post($this->texts($accountid));
 

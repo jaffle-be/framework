@@ -12,7 +12,7 @@ return [
         'published' => 'published',
         'collaborators' => 'made by',
         'date' => 'realisation date',
-        'description' => 'info',
+        'content' => 'info',
         'details' => 'details',
         'images' => 'images',
         'index' => 'overview',

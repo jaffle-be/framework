@@ -4,6 +4,7 @@ use App\Account\AccountManager;
 use App\Account\AccountRepositoryInterface;
 use App\System\Http\AdminController;
 use Illuminate\Config\Repository;
+use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Foundation\Application;
 use Illuminate\Http\Request;
 
@@ -16,20 +17,37 @@ class SystemController extends AdminController
         return system_options();
     }
 
+    public function pusher(Request $request, Guard $guard, AccountManager $manager)
+    {
+        $user = $guard->user();
+        $account = $manager->account();
+
+        //if the user has access to this channel. setup the connection.
+        $channelname = $request->get('channel_name');
+
+        $alias = str_replace('private-', '', $channelname);
+
+        //check if the alias equals the current one.
+        if ($account->alias == $alias && $account->members->contains($user->id)) {
+            return app('pusher')->socket_auth($request->get('channel_name'), $request->get('socket_id'));
+        }
+    }
+
     public function locale(Request $request, AccountManager $accounts, AccountRepositoryInterface $repository)
     {
         $account = $accounts->account();
 
-        if($request->get('activated'))
-        {
+        if ($request->get('activated')) {
             $account->locales()->attach($request->get('id'));
-        }
-        else{
+        } else {
             $account->locales()->detach($request->get('id'));
         }
 
         //bust cache
         $repository->updated();
+
+        //broadcast event
+        app('pusher')->trigger(pusher_system_channel(), 'system.hard-reload', []);
     }
 
 }

@@ -17,15 +17,17 @@
     "teepluss/theme": "^2.0",
     "mews/captcha": "^2.0",
     "thomaswelton/laravel-gravatar": "~1.0",
-    "davejamesmiller/laravel-breadcrumbs": "^3.0",
+    "davejamesmiller/laravel-breadcrumbs": "~3.0",
     "elasticsearch/elasticsearch": "~2.0",
     "intouch/laravel-newrelic": "~2.0",
-    "barryvdh/laravel-debugbar": "^2.0",
-    "cviebrock/eloquent-sluggable": "^3.0",
+    "barryvdh/laravel-debugbar": "~2.0",
+    "cviebrock/eloquent-sluggable": "dev-master",
     "graham-campbell/markdown": "~5.0",
-    "webuni/commonmark-attributes-extension": "^0.3.0",
+    "webuni/commonmark-attributes-extension": "~0.3.0",
     "thujohn/twitter": "^2.0",
-    "alaouy/Youtube": "*"
+    "alaouy/Youtube": "*",
+    "vinkla/vimeo": "^3.0",
+    "vinkla/pusher": "^2.1"
   },
   "require-dev": {
     "phpunit/phpunit": "~4.0",
@@ -65,15 +67,5 @@
   },
   "config": {
     "preferred-install": "dist"
-  },
-  "web": {
-    "client_id": "905373656309-3i83b9l19blslhsvqreo4vu007kjm7ls.apps.googleusercontent.com",
-    "auth_uri": "https://accounts.google.com/o/oauth2/auth",
-    "token_uri": "https://accounts.google.com/o/oauth2/token",
-    "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
-    "client_secret": "I9cfMHo62122tqLPGvz7-73D",
-    "redirect_uris": [
-      "http://digiredo.be/youtube-upload-example/oauth2-callback"
-    ]
   }
 }

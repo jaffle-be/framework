@@ -3,11 +3,11 @@
 use App\Account\AccountManager;
 use App\Contact\Jobs\SendContactEmail;
 use App\Contact\Requests\ContactRequest;
-use App\System\Http\Controller;
+use App\System\Http\FrontController;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Session\Store;
 
-class ContactController extends Controller{
+class ContactController extends FrontController{
 
     use DispatchesJobs;
 

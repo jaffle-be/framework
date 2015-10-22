@@ -10,7 +10,6 @@ use Illuminate\Contracts\Bus\SelfHandling;
 use Illuminate\Contracts\Queue\ShouldBeQueued;
 use Illuminate\Mail\Message;
 use Illuminate\Queue\InteractsWithQueue;
-use Illuminate\Translation\Translator;
 
 //this should probably move to the account module. as its sending a contact mail for the account
 //has nothing to do with address info or anything.

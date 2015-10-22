@@ -1,8 +1,8 @@
 <?php
 
+use App\System\Locale;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
-use App\System\Locale;
 
 class CreateLocalesTable extends Migration
 {

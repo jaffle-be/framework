@@ -1,5 +1,7 @@
 <?php
 
+use App\Module\Module;
+use App\Module\ModuleRoute;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
@@ -29,6 +31,40 @@ class CreateContactInformationTable extends Migration
             $table->foreign('country_id', 'contact_address_to_country')->references('id')->on('country');
             $table->timestamps();
         });
+
+        //install the module itself.
+        $module = Module::create([
+            'namespace' => 'contact',
+            'nl'     => [
+                'name' => 'Contact',
+            ],
+            'en'     => [
+                'name' => 'Contact',
+            ],
+            'fr'     => [
+                'name' => 'Contact',
+            ],
+            'de'     => [
+                'name' => 'Contact',
+            ]
+        ]);
+
+        $module->routes()->save(new ModuleRoute([
+            'name' => 'store.contact.index',
+            'nl' => [
+                'title' => 'contact'
+            ],
+            'en' => [
+                'title' => 'contact'
+            ],
+            'fr' => [
+                'title' => 'contact'
+            ],
+            'de' => [
+                'title' => 'contact'
+            ],
+
+        ]));
     }
 
     /**

@@ -15,7 +15,7 @@ class CreateAccountRolesTable extends Migration
     {
         Schema::create('account_membership_roles', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('account_id', false, true);
+            $table->integer('account_id', false, true)->nullable();
             $table->foreign('account_id', 'account_membership_roles_to_account')->references('id')->on('accounts')->onDelete('cascade');
             $table->timestamps();
         });

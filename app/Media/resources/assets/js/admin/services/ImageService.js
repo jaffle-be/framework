@@ -57,8 +57,10 @@ angular.module('media')
                     $timeout.cancel(this.timeouts[img.id]);
                 }
 
+                var temp = angular.copy(img);
+
                 this.timeouts[img.id] = $timeout(function () {
-                    return img.$update({
+                    return temp.$update({
                         ownerId: id,
                         ownerType: type
                     });

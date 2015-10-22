@@ -1,5 +1,6 @@
 (function () {
     angular.module('app', [
+        'pusher-angular',
         'ui.router',                    // Routing
         'oc.lazyLoad',                  // ocLazyLoad
         'ui.bootstrap',                 // Ui Bootstrap
@@ -25,6 +26,8 @@
         'portfolio',
         'theme',
         'theme-active',                 //the active theme should use this scope to load
+        'pages',
+        'module',
     ])
 })();
 // Other libraries are loaded dynamically in the config.js file using the library ocLazyLoad

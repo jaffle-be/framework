@@ -82,7 +82,7 @@ abstract class ServiceProvider extends Provider
             }
         });
 
-        $this->publishes($publish);
+        $this->publishes($publish, $this->namespace);
     }
 
     /**

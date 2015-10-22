@@ -16,6 +16,11 @@ class Account extends Model
         return $this->belongsToMany('App\System\Locale', 'account_locales');
     }
 
+    public function modules()
+    {
+        return $this->belongsToMany('App\Module\Module', 'account_modules', 'account_id', 'module_id');
+    }
+
     public function memberships()
     {
         return $this->hasMany('App\Account\Membership');

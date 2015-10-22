@@ -56,7 +56,7 @@
             <div class="form-group col-xs-12">
                 <label for="slug" class="control-label">{{ Lang::get('blog::admin.post.slug') }}</label>
 
-                <span class="form-control slug" ng-bind="vm.post.translations[vm.options.locale].slug"></span>
+                <span class="form-control slug" ng-bind="vm.post.translations[vm.options.locale].slug.uri"></span>
             </div>
 
             <div class="form-group col-xs-12">

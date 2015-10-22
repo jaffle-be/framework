@@ -1,9 +1,11 @@
 <?php namespace App\Media\Console;
 
 use App\Media\Commands\ResizeImage;
+use App\Media\Configurator;
 use App\Media\Image;
 use App\Media\StoresMedia;
 use Illuminate\Console\Command;
+use Illuminate\Contracts\Filesystem\Filesystem;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 
 class Rebatch extends Command
@@ -13,60 +15,41 @@ class Rebatch extends Command
 
     protected $signature = 'media:rebatch {type=all} {--sizes=all} {--force}';
 
+    protected $files;
+
+    public function __construct(Configurator $config, Filesystem $files)
+    {
+        $this->config = $config;
+
+        $this->files = $files;
+
+        parent::__construct();
+    }
+
     public function handle()
     {
         $force = $this->option('force');
 
-        $types = $this->getTypes();
+        //get the types to rebatch.
+        $types = $this->config->getTypes($this->argument('type'));
+
+        $sizes = $this->option('sizes');
 
         foreach ($types as $type) {
 
             $entity = app($type);
 
-            $sizes = $this->sizesForType($type);
-
-            $this->handleType($entity, $sizes, $force);
+            $this->handleType($entity, $this->sizesForType($type, $sizes), $force);
         }
     }
 
-    protected function sizesForType($type)
+    protected function sizesForType($type, $requested)
     {
-        $sizes = config('media.sizes');
-
-        $owners = config('media.owners');
-
-        $index = array_search($type, $owners);
-
-        if ($index === false) {
-            return [];
+        if (class_exists($type)) {
+            return $this->config->getImageSizes(new $type, $requested);
         }
 
-        $requested = $this->option('sizes');
-
-        if($requested == 'all')
-        {
-            return $sizes[$index];
-        }
-
-        //the option passed can be , separated list of aliases
-        //explode them and make sure to use the actual class instead of the alias
-        $requested = explode(',', $requested);
-
-        return array_intersect($sizes[$index], $requested);
-    }
-
-    protected function getTypes()
-    {
-        $type = $this->argument('type');
-
-        if ($type == 'all') {
-            //use all defined owners
-            return array_values(config('media.owners'));
-        }
-
-        //make sure the type provided is a known type.
-        //type argument in console should be passed by its alias defined in the owners config.
-        return array_values(array_intersect_key(config('media.owners'), array_flip([$type])));
+        return $this->config->getImageSizes(new $this->config->classname($type), $requested);
     }
 
     /**
@@ -76,6 +59,19 @@ class Rebatch extends Command
      */
     protected function handleType(StoresMedia $type, array $sizes, $force)
     {
+        //if(forcing a rebatch) then delete all thumbs for the requested sizes here.
+        //this will avoid alot of extra work down the road. we'd be calling this command for every image if not.
+        if($force)
+        {
+            foreach($sizes as $size)
+            {
+                $this->call('media:remove-size', [
+                    'size' => $size,
+                    'type' => $this->config->alias($type),
+                ]);
+            }
+        }
+
         $type->chunk(250, function ($owners) use ($sizes, $force) {
             $owners->load(['images', 'images.sizes']);
 
@@ -93,7 +89,6 @@ class Rebatch extends Command
     protected function handleOwner(StoresMedia $owner, array $sizes, $force)
     {
         if ($owner->mediaStoresMultiple()) {
-
             //check which sizes aren't there.
             //only resize those.
             foreach ($owner->images as $image) {
@@ -112,11 +107,9 @@ class Rebatch extends Command
      */
     protected function handleImage(array $sizes, Image $image, $force)
     {
-        if($force)
-        {
+        if ($force) {
             $resizes = $sizes;
-        }
-        else{
+        } else {
             $resizes = $this->sizesToResize($image, $sizes);
         }
 
@@ -137,7 +130,7 @@ class Rebatch extends Command
 
             $info = pathinfo($path);
 
-            $path = $info['dirname'] . DIRECTORY_SEPARATOR . $size . DIRECTORY_SEPARATOR . $info['basename'];
+            $path = $info['dirname'] . '/' . $size . '/' . $info['basename'];
 
             if (!$this->imageHasSize($image, $path)) {
                 $resizing[] = $size;

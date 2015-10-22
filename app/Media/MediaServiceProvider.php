@@ -1,5 +1,7 @@
 <?php namespace App\Media;
 
+use App\Media\Files\File;
+use App\Media\Infographics\Infographic;
 use App\System\ServiceProvider;
 
 class MediaServiceProvider extends ServiceProvider
@@ -22,6 +24,8 @@ class MediaServiceProvider extends ServiceProvider
         $this->app->bind('Intervention\Image\ImageManager', 'image');
         $this->app->bind('App\Media\MediaRepositoryInterface', 'App\Media\MediaRepository');
 
+        $this->app->singleton('App\Media\Configurator');
+
         $this->commands(['App\Media\Console\Rebatch', 'App\Media\Console\RemoveSize']);
     }
 
@@ -33,5 +37,7 @@ class MediaServiceProvider extends ServiceProvider
     protected function observers()
     {
         Image::observe('App\Media\ImageObserver');
+        Infographic::observe('App\Media\Infographics\InfographicObserver');
+        File::observe('App\Media\Files\FileObserver');
     }
 }

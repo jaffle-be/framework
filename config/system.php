@@ -2,7 +2,7 @@
 
 return [
 
-    'installed'  => true,
+    'installed'          => true,
 
     /*
     |--------------------------------------------------------------------------
@@ -12,7 +12,7 @@ return [
     | Contains an array with the applications available locales.
     |
     */
-    'locales' => ['en', 'nl', 'fr', 'de'],
+    'locales'            => ['en', 'nl', 'fr', 'de'],
 
     /*
     |--------------------------------------------------------------------------
@@ -24,7 +24,7 @@ return [
     | instance, this value will be overridden by the property
     | $useTranslationFallback when defined
     */
-    'use_fallback' => false,
+    'use_fallback'       => false,
 
     /*
     |--------------------------------------------------------------------------
@@ -36,7 +36,7 @@ return [
     | set it to false.
     |
     */
-    'fallback_locale' => 'en',
+    'fallback_locale'    => 'en',
 
     /*
     |--------------------------------------------------------------------------
@@ -59,7 +59,7 @@ return [
     | translation model.
     |
     */
-    'locale_key' => 'locale',
+    'locale_key'         => 'locale',
 
     /*
     |--------------------------------------------------------------------------
@@ -73,6 +73,60 @@ return [
     | Set this to true only if you understand the security risks.
     |
     */
-    'always_fillable' => false,
+    'always_fillable'    => false,
 
+    'seo'                => [
+
+        'webmaster_tools' => [
+            'google'    => null,
+            'bing'      => null,
+            'alexa'     => null,
+            'pinterest' => null,
+            'yandex'    => null
+        ],
+
+        'providers'       => [
+            App\System\Seo\Providers\Generic::class,
+            App\System\Seo\Providers\Google::class,
+            App\System\Seo\Providers\Twitter::class,
+            App\System\Seo\Providers\Facebook::class,
+        ],
+
+        'generic' => [
+            'title'       => 'Digiredo', // set false to total remove
+            'description' => 'A multipurpose platform', // set false to total remove
+            'keywords' => 'a multipurpose larangular platform'
+        ],
+
+        'twitter'         => [
+            'card'    => 'summary_large_image',
+            'site'    => '@digiredo',
+            'creator' => '@digiredo',
+        ],
+
+        'facebook'        => [
+            'type'        => 'website',
+            'title'       => 'Digiredo', // set false to total remove
+            'description' => 'A multipurpose platform', // set false to total remove
+            'url'         => false,
+            'site_name'   => 'digiredo.be',
+            'images'      => [],
+        ],
+
+        'google'          => [
+            'type'        => 'website',
+            'site_name'   => 'digiredo.be',
+            'title'       => 'Digiredo', // set false to total remove
+            'description' => 'A multipurpose platform', // set false to total remove
+            'url'         => false,
+            'images'      => [],
+        ],
+
+        'owners' => [
+            'pages' => App\Pages\Page::class,
+            'blog' => App\Blog\Post::class,
+            'portfolio' => App\Portfolio\Project::class,
+        ]
+
+    ],
 ];

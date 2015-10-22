@@ -68,7 +68,7 @@
                         <div class="">
                             <img class="pull-left img-responsive img-rounded" ng-src="@{{ project.images[0].sizes[0].path }}"/>
                             <h4 ng-bind-html="renderHtml(project.translations[vm.options.locale].title)"></h4>
-                            <span ng-bind-html="renderHtml(project.translations[vm.options.locale].description)"></span>
+                            <span ng-bind-html="renderHtml(project.translations[vm.options.locale].extract)"></span>
                         </div>
 
                     </td>

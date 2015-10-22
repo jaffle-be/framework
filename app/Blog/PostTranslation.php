@@ -2,44 +2,36 @@
 
 use App\Search\Model\Searchable;
 use App\Search\Model\SearchableTrait;
-use App\System\Sluggable\Sluggable;
+use App\System\Presenter\PresentableEntity;
+use App\System\Presenter\PresentableTrait;
+use App\System\Scopes\FrontScoping;
+use App\System\Sluggable\OwnsSlug;
+use App\System\Sluggable\SiteSluggable;
 use App\System\Translatable\TranslationModel;
 use Cviebrock\EloquentSluggable\SluggableInterface;
-use Cviebrock\EloquentSluggable\SluggableTrait;
 use Illuminate\Http\Request;
 
-class PostTranslation extends TranslationModel implements Searchable, SluggableInterface
+class PostTranslation extends TranslationModel implements Searchable, SluggableInterface, OwnsSlug, PresentableEntity
 {
-
-    use SearchableTrait, SluggableTrait, Sluggable;
+    use SearchableTrait, SiteSluggable, PresentableTrait, FrontScoping;
 
     protected $table = 'post_translations';
 
     protected $fillable = ['title', 'content', 'publish_at'];
 
+    protected $presenter = 'App\Blog\Presenter\PostFrontPresenter';
+
     protected $sluggable = [
         'build_from' => 'title',
-        'save_to'    => 'slug',
     ];
 
     protected $dates = ['publish_at'];
 
     protected $touches = ['post'];
 
-    public static function bootPostTranslationScopeFront()
+    public function getAccount()
     {
-        /** @var Request $request */
-        $request = app('request');
-
-        if(app()->runningInConsole())
-        {
-            return;
-        }
-
-        if(!starts_with($request->getRequestUri(), ['/admin', '/api']))
-        {
-            static::addGlobalScope(new PostTranslationScopeFront());
-        }
+        return $this->post->account;
     }
 
     public function post()
@@ -71,12 +63,14 @@ class PostTranslation extends TranslationModel implements Searchable, SluggableI
             $data['publish_at'] = $this->publish_at->format('Y-m-d');
         }
 
-        return $data;
-    }
+        $request = app('request');
 
-    public function user()
-    {
-        return $this->belongsTo('App\Users\User');
+        if(starts_with($request->getRequestUri(), '/api'))
+        {
+            $data['extract'] = $this->present()->extract;
+        }
+
+        return $data;
     }
 
     public function scopeLastPublished($query, $locale = null)

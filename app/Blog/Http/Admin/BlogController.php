@@ -112,6 +112,6 @@ class BlogController extends AdminController
 
     protected function relations()
     {
-        return ['translations'];
+        return ['translations', 'translations.slug'];
     }
 }

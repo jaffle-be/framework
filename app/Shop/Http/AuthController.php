@@ -1,8 +1,8 @@
 <?php namespace App\Shop\Http;
 
-use App\System\Http\Controller;
+use App\System\Http\FrontController;
 
-class AuthController extends Controller{
+class AuthController extends FrontController{
 
     public function register()
     {

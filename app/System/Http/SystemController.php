@@ -5,7 +5,7 @@ use App\Account\AccountManager;
 use Illuminate\Http\Request;
 use Illuminate\Session\Store;
 
-class SystemController extends Controller
+class SystemController extends FrontController
 {
 
     public function locale(Store $session, Request $request, AccountManager $accounts)
@@ -17,7 +17,7 @@ class SystemController extends Controller
             $session->set('locale', $request->get('locale'));
         }
 
-        return redirect()->route('store.home');
+        return redirect()->route('store.'. $request->get('locale') . '.home');
     }
 
     /**

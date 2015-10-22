@@ -6,7 +6,7 @@ class TranslationModel extends Model{
 
     public function newCollection(array $items = [])
     {
-        return new TranslationCollection($items);
+        return new SimpleTranslationCollection($items);
     }
 
 }

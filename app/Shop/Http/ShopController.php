@@ -1,10 +1,10 @@
 <?php namespace App\Shop\Http;
 
 use App\Shop\Product\Product;
-use App\System\Http\Controller;
+use App\System\Http\FrontController;
 use Illuminate\Http\Request;
 
-class ShopController extends Controller
+class ShopController extends FrontController
 {
 
     public function index()

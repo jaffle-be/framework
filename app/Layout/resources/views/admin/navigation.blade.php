@@ -22,7 +22,7 @@
                              </span>
                         </span>
 
-                    <a target="_blank" href="{{ route('store.home') }}" class="text-muted text-xs block">{{ $account->alias }}</a>
+                    <a target="_blank" href="{{ store_route('store.home') }}" class="text-muted text-xs block">{{ $account->alias }}</a>
 
                 </div>
                 <div class="logo-element">
@@ -34,6 +34,11 @@
                 {{--<a ui-sref="admin.start"><i class="fa fa-tachometer"></i>--}}
                     {{--<span class="nav-label">@{{ 'DASH' | translate }}</span></a>--}}
             {{--</li>--}}
+
+            <li ng-class="{active: $state.includes('admin.pages')}">
+                <a ui-sref="admin.pages.overview"><i class="fa fa-file-text-o"></i>
+                    <span class="nav-label">@{{ 'PAGES' | translate }}</span></a>
+            </li>
 
             <li ng-class="{active: $state.includes('admin.blog')}">
                 <a ui-sref="admin.blog.posts"><i class="fa fa-newspaper-o"></i>
@@ -51,7 +56,7 @@
             {{--</li>--}}
 
             <li ui-sref-active="active">
-                <a ui-sref="admin.portfolio.overview"><i class="fa fa-newspaper-o"></i>
+                <a ui-sref="admin.portfolio.overview"><i class="fa fa-file-image-o"></i>
                     <span class="nav-label">@{{ 'PORTFOLIO' | translate }}</span></a>
             </li>
 

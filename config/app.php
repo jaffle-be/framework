@@ -156,6 +156,7 @@ return [
          */
         'App\System\SystemServiceProvider',
         'App\Users\UserServiceProvider',
+        'App\Module\ModuleServiceProvider',
         'App\Account\AccountServiceProvider',
 
         //load all providers that use settings which might be used by other components here
@@ -171,6 +172,9 @@ return [
         Barryvdh\Debugbar\ServiceProvider::class,
         Mews\Captcha\CaptchaServiceProvider::class,
         Thomaswelton\LaravelGravatar\LaravelGravatarServiceProvider::class,
+        Vinkla\Vimeo\VimeoServiceProvider::class,
+        Vinkla\Pusher\PusherServiceProvider::class,
+        'Alaouy\Youtube\YoutubeServiceProvider',
         'GrahamCampbell\Markdown\MarkdownServiceProvider',
         'Intouch\LaravelNewrelic\NewrelicServiceProvider',
         'Intervention\Image\ImageServiceProvider',
@@ -179,10 +183,15 @@ return [
         'App\Media\MediaServiceProvider',
         'App\Shop\ShopServiceProvider',
         'App\Contact\ContactServiceProvider',
+        'App\Pages\PagesServiceProvider',
         'App\Blog\BlogServiceProvider',
         'App\Tags\TagsServiceProvider',
         'App\Marketing\MarketingServiceProvider',
         'App\Portfolio\PortfolioServiceProvider',
+
+
+        //keep at bottom for generic routes to work
+        'App\System\Uri\UriServiceProvider',
     ],
 
     /*

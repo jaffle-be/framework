@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "7d22142a2dea3a1e7646b100334b94c9",
+    "hash": "a43902a4e346b52ab2bef93c6f89f18c",
     "packages": [
         {
             "name": "alaouy/youtube",
@@ -224,16 +224,16 @@
         },
         {
             "name": "cviebrock/eloquent-sluggable",
-            "version": "3.0.0",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cviebrock/eloquent-sluggable.git",
-                "reference": "eaf7b573d7c82f004fc3efde0e0f9f63200d4c32"
+                "reference": "7dec2a45a87cd0fd7dece9a8b93188bc2f864705"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cviebrock/eloquent-sluggable/zipball/eaf7b573d7c82f004fc3efde0e0f9f63200d4c32",
-                "reference": "eaf7b573d7c82f004fc3efde0e0f9f63200d4c32",
+                "url": "https://api.github.com/repos/cviebrock/eloquent-sluggable/zipball/7dec2a45a87cd0fd7dece9a8b93188bc2f864705",
+                "reference": "7dec2a45a87cd0fd7dece9a8b93188bc2f864705",
                 "shasum": ""
             },
             "require": {
@@ -270,7 +270,7 @@
                 "laravel",
                 "slug"
             ],
-            "time": "2015-07-06 15:09:35"
+            "time": "2015-09-29 14:17:24"
         },
         {
             "name": "danielstjules/stringy",
@@ -532,46 +532,6 @@
             "time": "2015-09-23 18:47:51"
         },
         {
-            "name": "fbf/laravel-youtube",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/twarlop/Laravel-Youtube.git",
-                "reference": "e4e92288895be7e68a9295358768a1fe1a7c41c0"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/twarlop/Laravel-Youtube/zipball/e4e92288895be7e68a9295358768a1fe1a7c41c0",
-                "reference": "e4e92288895be7e68a9295358768a1fe1a7c41c0",
-                "shasum": ""
-            },
-            "require": {
-                "google/apiclient": "*",
-                "illuminate/support": "5.*",
-                "php": ">=5.3.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "Fbf\\LaravelYoutube\\": "src/"
-                }
-            },
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Neil Crookes",
-                    "email": "neil.crookes@fivebyfiveuk.com"
-                }
-            ],
-            "description": "A Laravel package to upload videos to a YouTube channel",
-            "support": {
-                "source": "https://github.com/twarlop/Laravel-Youtube/tree/master"
-            },
-            "time": "2015-10-03 12:18:12"
-        },
-        {
             "name": "fzaninotto/faker",
             "version": "v1.5.0",
             "source": {
@@ -624,60 +584,76 @@
             "time": "2015-05-29 06:29:14"
         },
         {
-            "name": "google/apiclient",
-            "version": "1.1.5",
+            "name": "graham-campbell/manager",
+            "version": "v2.2.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/google/google-api-php-client.git",
-                "reference": "2bc00ec4e8fa1a5eec793d800fac339f30b730db"
+                "url": "https://github.com/GrahamCampbell/Laravel-Manager.git",
+                "reference": "2fb1898f21107d94a30f4660e5147c5bad04c7b9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/google/google-api-php-client/zipball/2bc00ec4e8fa1a5eec793d800fac339f30b730db",
-                "reference": "2bc00ec4e8fa1a5eec793d800fac339f30b730db",
+                "url": "https://api.github.com/repos/GrahamCampbell/Laravel-Manager/zipball/2fb1898f21107d94a30f4660e5147c5bad04c7b9",
+                "reference": "2fb1898f21107d94a30f4660e5147c5bad04c7b9",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.2.1"
+                "illuminate/contracts": "5.0.*|5.1.*",
+                "illuminate/support": "5.0.*|5.1.*",
+                "php": ">=5.5.9"
             },
             "require-dev": {
-                "phpunit/phpunit": "3.7.*",
-                "squizlabs/php_codesniffer": "~2.3"
+                "graham-campbell/testbench-core": "~1.0",
+                "mockery/mockery": "^0.9.4",
+                "phpunit/phpunit": "~4.8|~5.0"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.1.x-dev"
+                    "dev-master": "2.2-dev"
                 }
             },
             "autoload": {
-                "classmap": [
-                    "src/"
-                ]
+                "psr-4": {
+                    "GrahamCampbell\\Manager\\": "src/"
+                }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
-                "Apache-2.0"
+                "MIT"
             ],
-            "description": "Client library for Google APIs",
-            "homepage": "http://developers.google.com/api-client-library/php",
+            "authors": [
+                {
+                    "name": "Graham Campbell",
+                    "email": "graham@alt-three.com"
+                }
+            ],
+            "description": "Manager Provides Some Manager Functionality For Laravel 5",
             "keywords": [
-                "google"
+                "Graham Campbell",
+                "GrahamCampbell",
+                "Laravel Manager",
+                "Laravel-Manager",
+                "connector",
+                "framework",
+                "interface",
+                "laravel",
+                "manager"
             ],
-            "time": "2015-09-23 04:19:33"
+            "time": "2015-10-06 16:53:10"
         },
         {
             "name": "graham-campbell/markdown",
-            "version": "v5.0.0",
+            "version": "v5.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/GrahamCampbell/Laravel-Markdown.git",
-                "reference": "52c764b822cb35d5663ea178f399db228bfd16b7"
+                "reference": "990e9ef977376331ba1ed50fe36adfbe7e34677f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/GrahamCampbell/Laravel-Markdown/zipball/52c764b822cb35d5663ea178f399db228bfd16b7",
-                "reference": "52c764b822cb35d5663ea178f399db228bfd16b7",
+                "url": "https://api.github.com/repos/GrahamCampbell/Laravel-Markdown/zipball/990e9ef977376331ba1ed50fe36adfbe7e34677f",
+                "reference": "990e9ef977376331ba1ed50fe36adfbe7e34677f",
                 "shasum": ""
             },
             "require": {
@@ -690,12 +666,12 @@
             "require-dev": {
                 "graham-campbell/testbench": "~3.0",
                 "mockery/mockery": "^0.9.4",
-                "phpunit/phpunit": "^4.7.6"
+                "phpunit/phpunit": "~4.8|~5.0"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "5.0-dev"
+                    "dev-master": "5.1-dev"
                 }
             },
             "autoload": {
@@ -725,7 +701,7 @@
                 "laravel",
                 "markdown"
             ],
-            "time": "2015-09-19 22:30:34"
+            "time": "2015-10-06 16:53:34"
         },
         {
             "name": "guzzlehttp/guzzle",
@@ -2102,6 +2078,50 @@
             "time": "2015-07-16 15:26:57"
         },
         {
+            "name": "pusher/pusher-php-server",
+            "version": "v2.2.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/pusher/pusher-http-php.git",
+                "reference": "79d755cc5d5b02b67779e2a40782fd6e3726657d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/pusher/pusher-http-php/zipball/79d755cc5d5b02b67779e2a40782fd6e3726657d",
+                "reference": "79d755cc5d5b02b67779e2a40782fd6e3726657d",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "php": ">=5.2"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "lib/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Library for interacting with the Pusher REST API",
+            "homepage": "https://github.com/pusher/pusher-php-server",
+            "keywords": [
+                "events",
+                "php-pusher-server",
+                "publish",
+                "pusher",
+                "realtime",
+                "rest",
+                "trigger"
+            ],
+            "time": "2015-05-13 11:01:46"
+        },
+        {
             "name": "react/promise",
             "version": "v2.2.1",
             "source": {
@@ -3050,16 +3070,16 @@
         },
         {
             "name": "thomaswelton/laravel-gravatar",
-            "version": "1.0.0",
+            "version": "1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thomaswelton/laravel-gravatar.git",
-                "reference": "c688c5823778a22f511358fd0717aa44f5655a26"
+                "reference": "e01b473a4e89c8ebb203d0616e12894f5dd84c45"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thomaswelton/laravel-gravatar/zipball/c688c5823778a22f511358fd0717aa44f5655a26",
-                "reference": "c688c5823778a22f511358fd0717aa44f5655a26",
+                "url": "https://api.github.com/repos/thomaswelton/laravel-gravatar/zipball/e01b473a4e89c8ebb203d0616e12894f5dd84c45",
+                "reference": "e01b473a4e89c8ebb203d0616e12894f5dd84c45",
                 "shasum": ""
             },
             "require": {
@@ -3067,10 +3087,15 @@
                 "php": ">=5.4.0",
                 "thomaswelton/gravatarlib": "0.1.x"
             },
+            "require-dev": {
+                "mockery/mockery": "0.9.*",
+                "phpunit/phpunit": "4.8.*"
+            },
             "type": "library",
             "autoload": {
-                "psr-0": {
-                    "Thomaswelton\\LaravelGravatar": "src/"
+                "psr-4": {
+                    "Thomaswelton\\LaravelGravatar\\": "src/",
+                    "Thomaswelton\\Tests\\LaravelGravatar\\": "tests/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -3096,7 +3121,7 @@
                 "laravel",
                 "laravel5"
             ],
-            "time": "2015-05-14 15:26:16"
+            "time": "2015-10-13 14:42:42"
         },
         {
             "name": "thujohn/twitter",
@@ -3144,16 +3169,16 @@
         },
         {
             "name": "twig/twig",
-            "version": "v1.22.2",
+            "version": "v1.22.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "79249fc8c9ff62e41e217e0c630e2e00bcadda6a"
+                "reference": "ebfc36b7e77b0c1175afe30459cf943010245540"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/79249fc8c9ff62e41e217e0c630e2e00bcadda6a",
-                "reference": "79249fc8c9ff62e41e217e0c630e2e00bcadda6a",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/ebfc36b7e77b0c1175afe30459cf943010245540",
+                "reference": "ebfc36b7e77b0c1175afe30459cf943010245540",
                 "shasum": ""
             },
             "require": {
@@ -3201,7 +3226,165 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2015-09-22 13:59:32"
+            "time": "2015-10-13 07:07:02"
+        },
+        {
+            "name": "vimeo/vimeo-api",
+            "version": "1.2.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/vimeo/vimeo.php.git",
+                "reference": "e48b19db7febe8431c5e8c609ea9ffe61e1b9e3d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/vimeo/vimeo.php/zipball/e48b19db7febe8431c5e8c609ea9ffe61e1b9e3d",
+                "reference": "e48b19db7febe8431c5e8c609ea9ffe61e1b9e3d",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Vimeo\\": "src/Vimeo"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Vimeo",
+                    "homepage": "http://vimeo.com"
+                }
+            ],
+            "description": "Official PHP library for the Vimeo API.",
+            "homepage": "https://github.com/vimeo/vimeo.php",
+            "keywords": [
+                "video",
+                "vimeo"
+            ],
+            "time": "2015-06-02 21:55:45"
+        },
+        {
+            "name": "vinkla/pusher",
+            "version": "2.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/vinkla/pusher.git",
+                "reference": "608757c2199fc00ded9c95642ad83dbff362a1c9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/vinkla/pusher/zipball/608757c2199fc00ded9c95642ad83dbff362a1c9",
+                "reference": "608757c2199fc00ded9c95642ad83dbff362a1c9",
+                "shasum": ""
+            },
+            "require": {
+                "graham-campbell/manager": "~2.2",
+                "illuminate/contracts": "5.0.*|5.1.*",
+                "illuminate/support": "5.0.*|5.1.*",
+                "php": ">=5.5.9",
+                "pusher/pusher-php-server": "~2.0"
+            },
+            "require-dev": {
+                "graham-campbell/testbench": "~3.0",
+                "mockery/mockery": "^0.9.4",
+                "phpunit/phpunit": "^4.8|^5.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.1-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Vinkla\\Pusher\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Vincent Klaiber",
+                    "email": "hello@vinkla.com"
+                }
+            ],
+            "description": "A Pusher bridge for Laravel",
+            "keywords": [
+                "api",
+                "events",
+                "http",
+                "laravel",
+                "php-pusher-server",
+                "publish",
+                "pusher",
+                "realtime",
+                "rest",
+                "trigger"
+            ],
+            "time": "2015-10-07 06:23:03"
+        },
+        {
+            "name": "vinkla/vimeo",
+            "version": "3.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/vinkla/vimeo.git",
+                "reference": "479e8938bca835b0b6644475ae852dc1f6fdbe25"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/vinkla/vimeo/zipball/479e8938bca835b0b6644475ae852dc1f6fdbe25",
+                "reference": "479e8938bca835b0b6644475ae852dc1f6fdbe25",
+                "shasum": ""
+            },
+            "require": {
+                "graham-campbell/manager": "~2.2",
+                "illuminate/contracts": "5.0.*|5.1.*",
+                "illuminate/support": "5.0.*|5.1.*",
+                "php": ">=5.5.9",
+                "vimeo/vimeo-api": "~1.0"
+            },
+            "require-dev": {
+                "graham-campbell/testbench": "~3.0",
+                "mockery/mockery": "^0.9.4",
+                "phpunit/phpunit": "^4.8|^5.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.1-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Vinkla\\Vimeo\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Vincent Klaiber",
+                    "email": "hello@vinkla.com"
+                }
+            ],
+            "description": "A Vimeo bridge for Laravel",
+            "keywords": [
+                "laravel",
+                "video",
+                "vimeo"
+            ],
+            "time": "2015-10-07 06:23:10"
         },
         {
             "name": "vlucas/phpdotenv",
@@ -3582,16 +3765,16 @@
         },
         {
             "name": "phpunit/php-code-coverage",
-            "version": "2.2.3",
+            "version": "2.2.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-code-coverage.git",
-                "reference": "ef1ca6835468857944d5c3b48fa503d5554cff2f"
+                "reference": "eabf68b476ac7d0f73793aada060f1c1a9bf8979"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/ef1ca6835468857944d5c3b48fa503d5554cff2f",
-                "reference": "ef1ca6835468857944d5c3b48fa503d5554cff2f",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/eabf68b476ac7d0f73793aada060f1c1a9bf8979",
+                "reference": "eabf68b476ac7d0f73793aada060f1c1a9bf8979",
                 "shasum": ""
             },
             "require": {
@@ -3640,7 +3823,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2015-09-14 06:51:16"
+            "time": "2015-10-06 15:47:00"
         },
         {
             "name": "phpunit/php-file-iterator",
@@ -3822,16 +4005,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "4.8.10",
+            "version": "4.8.12",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "463163747474815c5ccd4ae12b5b355ec12158e8"
+                "reference": "00194eb95989190a73198390ceca081ad3441a7f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/463163747474815c5ccd4ae12b5b355ec12158e8",
-                "reference": "463163747474815c5ccd4ae12b5b355ec12158e8",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/00194eb95989190a73198390ceca081ad3441a7f",
+                "reference": "00194eb95989190a73198390ceca081ad3441a7f",
                 "shasum": ""
             },
             "require": {
@@ -3890,7 +4073,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2015-10-01 09:14:30"
+            "time": "2015-10-12 03:36:47"
         },
         {
             "name": "phpunit/phpunit-mock-objects",
@@ -4182,16 +4365,16 @@
         },
         {
             "name": "sebastian/global-state",
-            "version": "1.0.0",
+            "version": "1.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/global-state.git",
-                "reference": "c7428acdb62ece0a45e6306f1ae85e1c05b09c01"
+                "reference": "bc37d50fea7d017d3d340f230811c9f1d7280af4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/global-state/zipball/c7428acdb62ece0a45e6306f1ae85e1c05b09c01",
-                "reference": "c7428acdb62ece0a45e6306f1ae85e1c05b09c01",
+                "url": "https://api.github.com/repos/sebastianbergmann/global-state/zipball/bc37d50fea7d017d3d340f230811c9f1d7280af4",
+                "reference": "bc37d50fea7d017d3d340f230811c9f1d7280af4",
                 "shasum": ""
             },
             "require": {
@@ -4229,7 +4412,7 @@
             "keywords": [
                 "global state"
             ],
-            "time": "2014-10-06 09:23:50"
+            "time": "2015-10-12 03:26:01"
         },
         {
             "name": "sebastian/recursion-context",
@@ -4372,7 +4555,7 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "fbf/laravel-youtube": 20
+        "cviebrock/eloquent-sluggable": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

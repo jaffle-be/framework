@@ -15,8 +15,8 @@ sed -i "s/blog/${lower}/g" "${root}/BlogServiceProvider.php"
 sed -i "s/Blog/${name}/g" "${root}/Http/routes.php"
 sed -i "s/blog/${lower}/g" "${root}/Http/routes.php"
 
-sed -i "s/Blog/${name}/g" "${root}/Http/routes.php"
-sed -i "s/blog/${lower}/g" "${root}/Http/routes.php"
+sed -i "s/Blog/${name}/g" "${root}/Http/breadcrumbs.php"
+sed -i "s/blog/${lower}/g" "${root}/Http/breadcrumbs.php"
 
 sed -i "s/Blog/${name}/g" "${root}/resources/assets/js/admin/config.js"
 sed -i "s/blog/${lower}/g" "${root}/resources/assets/js/admin/config.js"
@@ -29,4 +29,3 @@ sed -i "s/blog/${lower}/g" "${root}/resources/assets/js/admin/translations.js"
 
 mv "${root}/BlogServiceProvider.php" "${root}/${name}ServiceProvider.php"
 mv "${root}/config/blog.php" "${root}/config/${lower}.php"
-

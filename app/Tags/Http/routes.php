@@ -21,6 +21,15 @@ Route::group([
         });
     });
 
-    Route::resource('tags', 'TagsController', ['only' => ['show']]);
+    if(env('APP_MULTIPLE_LOCALES'))
+    {
+        foreach(config('system.locales') as $locale)
+        {
+            Route::resource("$locale/tags", 'TagsController', ['only' => ['show']]);
+        }
+    }
+    else {
+        Route::resource('tags', 'TagsController', ['only' => ['show']]);
+    }
 
 });

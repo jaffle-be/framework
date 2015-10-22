@@ -23,26 +23,20 @@ class UploadNewImage extends Job implements SelfHandling
      */
     protected $image;
 
-    /**
-     * @var array
-     */
-    protected $sizes;
 
     /**
      * @param StoresMedia  $owner
      * @param UploadedFile $image
-     * @param array        $sizes
      */
-    public function __construct(StoresMedia $owner, UploadedFile $image, array $sizes)
+    public function __construct(StoresMedia $owner, UploadedFile $image)
     {
         $this->owner = $owner;
         $this->image = $image;
-        $this->sizes = $sizes;
     }
 
     public function handle(Filesystem $files, AccountManager $manager)
     {
-        $temp_dir = storage_path('media') . '/' . $this->owner->getMediaFolder();
+        $temp_dir = storage_path('media') . '/' . $this->owner->getMediaFolder('images');
 
         $name = $this->uniqueName();
 
@@ -60,7 +54,6 @@ class UploadNewImage extends Job implements SelfHandling
             'account' => $manager->account(),
             'owner' => $this->owner,
             'path'  => $final_path,
-            'sizes' => $this->sizes
         ]);
 
         $files->delete($final_path);

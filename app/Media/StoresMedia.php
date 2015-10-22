@@ -4,7 +4,11 @@ interface StoresMedia {
 
     public function images();
 
-    public function getMediaFolder();
+    public function videos();
+
+    public function infographics();
+
+    public function getMediaFolder($type = null, $size = null);
 
     public function mediaStoresMultiple();
 

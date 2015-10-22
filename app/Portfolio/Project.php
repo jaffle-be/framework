@@ -4,46 +4,39 @@ use App\Media\StoresMedia;
 use App\Media\StoringMedia;
 use App\Search\Model\Searchable;
 use App\Search\Model\SearchableTrait;
+use App\System\Presenter\PresentableEntity;
+use App\System\Presenter\PresentableTrait;
+use App\System\Scopes\FrontScoping;
 use App\System\Scopes\ModelAccountResource;
+use App\System\Seo\SeoEntity;
+use App\System\Seo\SeoTrait;
 use App\System\Translatable\Translatable;
 use App\Tags\StoresTags;
 use App\Tags\Taggable;
-use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
-class Project extends Model implements StoresMedia, Searchable, StoresTags
+class Project extends Model implements StoresMedia, Searchable, StoresTags, PresentableEntity, SeoEntity
 {
     use Translatable;
+    use PresentableTrait;
     use Taggable;
     use StoringMedia;
+    use SeoTrait;
     use ModelAccountResource;
     use SearchableTrait;
+    use FrontScoping;
 
     protected $table = "portfolio_projects";
 
     protected $media = '{account}/portfolio';
 
-    protected $fillable = ['account_id', 'client_id', 'website', 'date', 'published', 'title', 'description'];
+    protected $fillable = ['account_id', 'client_id', 'website', 'date', 'published', 'title', 'content'];
 
     protected $dates = ['date'];
 
-    protected $translatedAttributes = ['published', 'title', 'description'];
+    protected $translatedAttributes = ['published', 'title', 'content'];
 
-    public static function bootProjectScopeFront()
-    {
-        /** @var Request $request */
-        $request = app('request');
-
-        if(app()->runningInConsole())
-        {
-            return;
-        }
-
-        if(!starts_with($request->getRequestUri(), ['/admin', '/api']))
-        {
-            static::addGlobalScope(new ProjectScopeFront());
-        }
-    }
+    protected $presenter = 'App\Portfolio\Presenter\ProjectFrontPresenter';
 
     public function newCollection(array $models = [])
     {

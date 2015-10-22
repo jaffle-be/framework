@@ -3,7 +3,6 @@
 namespace App\Search;
 
 use App\System\ServiceProvider;
-use Elasticsearch\Client;
 use Elasticsearch\ClientBuilder;
 
 class SearchServiceProvider extends ServiceProvider

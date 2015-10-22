@@ -2,10 +2,10 @@
 
 use App;
 use App\Account\AccountManager;
-use App\System\Http\Controller;
+use App\System\Http\FrontController;
 use App\Tags\Tag;
 
-class TagsController extends Controller
+class TagsController extends FrontController
 {
 
     public function show(Tag $tag, AccountManager $accountManager)

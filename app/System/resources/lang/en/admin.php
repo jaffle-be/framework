@@ -1,5 +1,11 @@
 <?php
 
 return [
-    'locales' => 'active languages'
+    'locales' => 'active languages',
+
+    'seo'     => [
+        'title'       => 'title',
+        'description' => 'description',
+        'keywords'    => 'keywords',
+    ]
 ];

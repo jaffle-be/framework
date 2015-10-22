@@ -1,5 +1,7 @@
 <?php
 
+use App\Module\Module;
+use App\Module\ModuleRoute;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
@@ -22,6 +24,40 @@ class CreatePortfolioProjects extends Migration
             $table->string('website');
             $table->timestamps();
         });
+
+        //install the module itself.
+        $module = Module::create([
+            'namespace' => 'portfolio',
+            'nl'     => [
+                'name' => 'Portfolio',
+            ],
+            'en'     => [
+                'name' => 'Portfolio',
+            ],
+            'fr'     => [
+                'name' => 'Portfolio',
+            ],
+            'de'     => [
+                'name' => 'Portfolio',
+            ]
+        ]);
+
+        $module->routes()->save(new ModuleRoute([
+            'name' => 'store.portfolio.index',
+            'nl' => [
+                'title' => 'portfolio overview'
+            ],
+            'en' => [
+                'title' => 'portfolio overview'
+            ],
+            'fr' => [
+                'title' => 'portfolio overview'
+            ],
+            'de' => [
+                'title' => 'portfolio overview'
+            ],
+
+        ]));
     }
 
     /**
@@ -35,5 +71,7 @@ class CreatePortfolioProjects extends Migration
             $table->dropForeign('project_to_account');
             $table->dropForeign('project_to_client');
         });
+
+        Module::where('namespace', 'portfolio')->delete();
     }
 }

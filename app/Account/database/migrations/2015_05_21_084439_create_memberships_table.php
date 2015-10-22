@@ -19,7 +19,7 @@ class CreateMembershipsTable extends Migration
             $table->foreign('account_id', 'membership_to_account')->references('id')->on('accounts')->onDelete('cascade');
             $table->integer('user_id', false, true);
             $table->foreign('user_id', 'membership_to_user')->references('id')->on('users')->onDelete('cascade');
-            $table->integer('role_id', false, true);
+            $table->integer('role_id', false, true)->nullable();
             $table->foreign('role_id', 'membership_to_role')->references('id')->on('account_membership_roles')->onDelete('cascade');
             $table->boolean('is_owner');
             $table->timestamps();

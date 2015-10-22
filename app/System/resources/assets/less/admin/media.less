@@ -1,4 +1,6 @@
-.media-image-uploader {
+.media-image-uploader, .video-widget{
+
+  margin-top: 20px;
 
   .loader {
     margin: 25px 0;
@@ -6,34 +8,40 @@
   }
 
   .item {
-    padding: 15px;
+    max-width: 512px;
+    margin: 0 auto;
 
-    .media-image{
-      position:relative;
+    .media-image {
+
+      img{
+        display: inline-block
+      }
+      text-align: center;
+      position: relative;
     }
 
-    .tools{
+    .tools {
 
       height: 40px;
-      background-color:rgba(0, 0, 0, 0.5);
+      background-color: rgba(0, 0, 0, 0.5);
       padding: 2px;
 
       position: absolute;
-      bottom: 0; left: 0;width: 100%;
+      bottom: 0;
+      left: 0;
+      width: 100%;
 
-      .tools-inner{
-
-        position:relative;
-
+      .tools-inner {
+        position: relative;
       }
 
-      span{
+      span {
         display: inline-block;
         width: 30%;
         text-align: center;
       }
 
-      .fa{
+      .fa {
         line-height: 32px;
         cursor: pointer;
         font-size: 200%;
@@ -48,9 +56,103 @@
     .form-control {
       text-align: center;
     }
+  }
 
+  .files li{
+    &:not(:last-child){
+      border-bottom: 1px solid @border-color;
+      margin-bottom: 10px;
+    }
+  }
+}
+
+body > .nav.files .item{
+  background-color: #FFF;
+}
+
+.video-widget {
+
+  margin-top: 0;
+  h3{
+    margin-top: 0;
+  }
+
+  .tab-pane {
+    margin-top: 20px;
+  }
+
+  ul.nav-tabs {
+
+    li a{
+      font-size: large;
+      padding: 0;
+
+      .fa{
+        font-size: x-large;
+      }
+    }
+
+    li tab-heading{
+      line-height: 40px !important;
+      vertical-align: middle !important;
+    }
+
+    li.vimeo.active, li.vimeo:focus, li.vimeo:hover, li.vimeo:active{
+      background-color: #00a2cd;
+
+      a{
+        background-color: transparent;
+        border-color: #00a2cd;
+        color: white;
+
+        &:hover, &:active, &:focus {
+          background-color: #00a2cd;
+          color: white;
+        }
+      }
+    }
+
+    li.youtube.active, li.youtube:focus, li.youtube:hover, li.youtube:active{
+      background-color: #ff0000;
+
+      a{
+        background-color: transparent;
+        border-color: #ff0000;
+        color: white;
+
+        &:hover, &:active, &:focus {
+          background-color: #ff0000;
+          color: white;
+        }
+      }
+    }
 
   }
 
-}
+  .videos {
 
+    ul {
+      padding: 0;
+      list-style: none;
+      position:relative;
+    }
+
+  }
+
+  .preview {
+    margin: 10px 0;
+
+    h3 {
+      margin-top: 10px;
+    }
+
+    hr {
+      margin: 5px;
+    }
+
+    img {
+      margin: 0 10px 10px 0;
+    }
+  }
+
+}

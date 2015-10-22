@@ -22,5 +22,15 @@ Route::group([
     });
 
 
-    Route::resource('search', 'SearchController', ['only' => ['index']]);
+    if(env('APP_MULTIPLE_LOCALES'))
+    {
+        foreach(config('system.locales') as $locale)
+        {
+            Route::resource("$locale/search", 'SearchController', ['only' => ['index']]);
+        }
+    }
+    else{
+        Route::resource('search', 'SearchController', ['only' => ['index']]);
+    }
+
 });

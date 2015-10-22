@@ -33,7 +33,7 @@ class MenuRepository implements MenuRepositoryInterface{
 
     public function getMenus()
     {
-        return $this->menu->with($this->relations())->get();
+        return $this->menu->with($this->relations())->orderBy('id')->get();
     }
 
     public function createMenu(array $payload)
@@ -71,7 +71,11 @@ class MenuRepository implements MenuRepositoryInterface{
 
     public function createItem(array $payload)
     {
-        $item = $this->item->create($payload);
+        $item = $this->item->newInstance($payload);
+
+        $item->sort = $this->item->where('menu_id', $payload['menu_id'])->whereNull('parent_id')->count();
+
+        $item->save();
 
         if($item)
         {
@@ -108,7 +112,7 @@ class MenuRepository implements MenuRepositoryInterface{
      */
     protected function relations()
     {
-        return ['items', 'items.children', 'items.translations', 'items.children.translations'];
+        return ['items', 'items.children', 'items.translations', 'items.children.translations', 'items.page', /*'items.routable'*/];
     }
 
     protected function itemRelations()
