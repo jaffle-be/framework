@@ -44,7 +44,7 @@
                 <span>Hmm, either your or we did something wrong</span>
 
                 <p>In any case, this will be investigated. And, if it would be one of us.. Trust our punishments followed by solutions will prevent this from happening again ;-)</p>
-                <a class="btn-u btn-bordered" href="/">Back Home</a>
+                <a class="btn-u btn-bordered" href="{{ store_route('store.home') }}">Back Home</a>
             </div>
         </div>
     </div>

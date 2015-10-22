@@ -45,7 +45,7 @@
 
                 <p>If you believe you did, <br>or you don't know what happened,
                     <br>feel free to contact the guys who made this.</p>
-                <a class="btn-u btn-bordered" href="/">Back Home</a>
+                <a class="btn-u btn-bordered" href="{{ store_route('store.home') }}">Back Home</a>
             </div>
         </div>
     </div>
