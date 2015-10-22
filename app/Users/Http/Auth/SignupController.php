@@ -42,10 +42,10 @@ class SignupController extends FrontController
                 //user can be logged in too
                 $guard->login($user);
 
-                return redirect()->url(store_route('store.dash'));
+                return redirect()->to(store_route('store.dash'));
             }
 
-            return redirect()->url(store_route('store.home'))->with('message', 'success');
+            return redirect()->to(store_route('store.home'))->with('message', 'success');
         }
 
         return redirect()->back()->with('message', 'failed');

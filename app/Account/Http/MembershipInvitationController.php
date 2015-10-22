@@ -15,7 +15,7 @@ class MembershipInvitationController extends FrontController
 
         if(!$invitation)
         {
-            return redirect()->url(store_route('store.home'));
+            return redirect()->to(store_route('store.home'));
         }
 
         //do we have an invitation for a user with a registered account?
@@ -29,10 +29,10 @@ class MembershipInvitationController extends FrontController
                 //user can be logged in too
                 $guard->login($user);
 
-                return redirect()->url(store_route('store.dash'));
+                return redirect()->to(store_route('store.dash'));
             }
 
-            return redirect()->url(store_route('store.home'))->with('message', 'success');
+            return redirect()->to(store_route('store.home'))->with('message', 'success');
         }
 
         return $this->theme->render('auth.register', ['invitation' => $invitation]);

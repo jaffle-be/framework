@@ -43,7 +43,7 @@ class ConfirmEmailController extends FrontController
             $this->dispatchFromArray(SendConfirmationEmail::class, ['user' => $user, 'manager' => $manager]);
         }
 
-        return redirect()->url(store_route('store.auth.signin.index'))->withSuccess(Lang::get('users::front.request-handled'));
+        return redirect()->to(store_route('store.auth.signin.index'))->withSuccess(Lang::get('users::front.request-handled'));
     }
 
     /**
@@ -67,6 +67,6 @@ class ConfirmEmailController extends FrontController
             }
         }
 
-        return redirect()->url(store_route('store.home'));
+        return redirect()->to(store_route('store.home'));
     }
 }

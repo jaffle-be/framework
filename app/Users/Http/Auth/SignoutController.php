@@ -13,6 +13,6 @@ class SignoutController extends FrontController
 
         $this->dispatch($command);
 
-        return redirect()->url(store_route('store.auth.signin.index'))->withSuccess(Lang::get('users::front.logout-success'));
+        return redirect()->to(store_route('store.auth.signin.index'))->withSuccess(Lang::get('users::front.logout-success'));
     }
 }
