@@ -17,6 +17,7 @@
     "angular-ui-router": "~0.2.15",
     "angularjs-toaster": "~0.4.15",
     "animate.css": "~3.3.0",
+    "autosize": "~3.0.13",
     "bootstrap": "~3.3.4",
     "dropzone": "~4.0.1",
     "font-awesome": "~4.4.0",
