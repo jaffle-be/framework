@@ -1,5 +1,10 @@
 function MainController($scope, toaster, $pusher, PUSHER_API_KEY, $window) {
 
+    this.multipleLocales = function(locales)
+    {
+        return _.keys(locales).length > 1;
+    };
+
     var client = new Pusher(PUSHER_API_KEY, {
         auth: {
             headers: {
