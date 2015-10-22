@@ -18,6 +18,8 @@ class Kernel extends HttpKernel
         'Illuminate\View\Middleware\ShareErrorsFromSession',
         'App\Http\Middleware\VerifyCsrfToken',
 
+        'App\Http\Middleware\HttpsProtocol',
+
         //here we set the account for the current request.
         //we do not check validity of the account here,
         //since we want to be able to redirect the user to
