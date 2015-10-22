@@ -34,11 +34,11 @@
 
         <h5>{{ Lang::get('pages::admin.available-subpages') }}</h5>
 
-        <div class="alert alert-info" ng-hide="vm.page.availablePages.length">{{ Lang::get('pages::admin.no-more-pages') }}</div>
+        <div class="alert alert-info" ng-hide="vm.parentPage.availablePages.length">{{ Lang::get('pages::admin.no-more-pages') }}</div>
 
-        <div ng-show="vm.page.availablePages.length">
+        <div ng-show="vm.parentPage.availablePages.length">
             <ul class="nav">
-                <li ng-repeat="child in vm.page.availablePages">
+                <li ng-repeat="child in vm.parentPage.availablePages">
                     <input type="radio" id="child@{{ child.id }}" ng-model="vm.addingPage" ng-value="child"/>
                     <label for="child@{{ child.id }}">@{{ child.translations[locale].title }}</label>
                 </li>

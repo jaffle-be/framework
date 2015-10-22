@@ -22,7 +22,7 @@
                              </span>
                         </span>
 
-                    <a target="_blank" href="{{ route('store.home') }}" class="text-muted text-xs block">{{ $account->alias }}</a>
+                    <a target="_blank" href="{{ store_route('store.home') }}" class="text-muted text-xs block">{{ $account->alias }}</a>
 
                 </div>
                 <div class="logo-element">

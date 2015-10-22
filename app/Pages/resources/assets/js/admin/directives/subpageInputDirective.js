@@ -19,6 +19,7 @@ angular.module('pages')
                 //need this to make sortable work.
                 //apparently, the plugin breaks when used within a directive with isolated scope.
                 $scope.$watch('page', function(newValue){
+
                     if(newValue)
                     {
                         me.parentPage = newValue;
