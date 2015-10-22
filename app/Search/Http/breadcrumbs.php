@@ -6,7 +6,7 @@ if(env('APP_MULTIPLE_LOCALES'))
     {
         Breadcrumbs::register("store.$locale.search.index", function($breadcrumbs) use ($locale){
 
-            $breadcrumbs->parent('store.home');
+            $breadcrumbs->parent("store.$locale.home");
             $breadcrumbs->push('Find' , store_route("store.search.index"));
         });
     }

@@ -5,7 +5,7 @@ if(env('APP_MULTIPLE_LOCALES'))
     foreach(config('system.locales') as $locale)
     {
         Breadcrumbs::register("store.$locale.module.index", function($breadcrumbs) use ($locale){
-            $breadcrumbs->parent('store.home');
+            $breadcrumbs->parent("store.$locale.home");
             $breadcrumbs->push('News' , route("store.$locale.module.index"));
         });
     }

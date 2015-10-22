@@ -16,7 +16,7 @@ if(env('APP_MULTIPLE_LOCALES'))
             }
             elseif($uri->owner instanceof PageTranslation)
             {
-                $breadcrumbs->parent('store.home');
+                $breadcrumbs->parent("store.$locale.home");
                 $breadcrumbs->push('Page');
             }
 

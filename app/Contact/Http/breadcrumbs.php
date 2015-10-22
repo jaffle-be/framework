@@ -7,7 +7,7 @@ if(env('APP_MULTIPLE_LOCALES'))
     {
         Breadcrumbs::register("store.$locale.contact.index", function($breadcrumbs) use ($locale)
         {
-            $breadcrumbs->parent('store.home');
+            $breadcrumbs->parent("store.$locale.home");
             $breadcrumbs->push(Lang::get('contact::front.breadcrumb'), store_route("store.contact.index"));
         });
     }

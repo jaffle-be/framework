@@ -8,15 +8,26 @@ Route::group([
     'as' => 'store.',
 ], function () {
 
+    if(env('APP_MULTIPLE_LOCALES'))
+    {
+        foreach (config('system.locales') as $locale) {
+            Route::get("/$locale", [
+                'uses' => 'WelcomeController@storeHome',
+                'as'   => "$locale.home"
+            ]);
+        }
+    }
+    else{
+        Route::get('/', [
+            'uses' => 'WelcomeController@storeHome',
+            'as'   => 'home'
+        ]);
+    }
+
     Route::group(['prefix' => 'templates'], function()
     {
         Route::resource('admin/start', 'Admin\DashboardController', ['only' => ['index']]);
     });
-
-    Route::get('/', [
-        'uses' => 'WelcomeController@storeHome',
-        'as'   => 'home'
-    ]);
 
     Route::group(['prefix' => 'admin'], function () {
 
