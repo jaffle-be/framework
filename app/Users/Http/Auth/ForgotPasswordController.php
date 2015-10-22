@@ -18,6 +18,6 @@ class ForgotPasswordController extends FrontController
     {
         $this->dispatchFromArray(SendResetEmail::class, ['email' => $request->get('email'), 'manager' => $manager]);
 
-        return redirect()->route('store.auth.signin.index')->withSuccess(Lang::get('users::front.request-handled'));
+        return redirect()->url(store_route('store.auth.signin.index'))->withSuccess(Lang::get('users::front.request-handled'));
     }
 }

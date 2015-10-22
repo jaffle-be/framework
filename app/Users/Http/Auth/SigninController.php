@@ -25,7 +25,7 @@ class SigninController extends FrontController
         if ($response instanceof User) {
             return redirect('admin/start');
         } else if (is_string($response) && $response == 'unconfirmed') {
-            $route = route('store.auth.confirm-email.create', ['email' => $credentials['email']]);
+            $route = store_route('store.auth.confirm-email.create', ['email' => $credentials['email']]);
 
             $error = $lang->get('users::auth.errors.unconfirmed', ['url' => $route]);
 

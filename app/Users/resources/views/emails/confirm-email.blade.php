@@ -30,7 +30,7 @@
                             <table align="center">
                                 <tr>
                                     <td valign="top" style="padding: 7px 15px; text-align: center; background-color: #74C52C;" class="center">
-                                        <a style="color: #fff; font-size: 12px; font-weight: bold; text-decoration: none; font-family: Arial, sans-serif; text-alight: center;" href="{{ route('store.auth.confirm-email.show', [$token->value]) }}">{{ Lang::get('users::emails.confirm-email.link') }}</a>
+                                        <a style="color: #fff; font-size: 12px; font-weight: bold; text-decoration: none; font-family: Arial, sans-serif; text-alight: center;" href="{{ store_route('store.auth.confirm-email.show', [$token->value]) }}">{{ Lang::get('users::emails.confirm-email.link') }}</a>
                                     </td>
                                 </tr>
                             </table>

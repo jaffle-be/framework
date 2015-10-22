@@ -17,7 +17,7 @@ class SystemController extends FrontController
             $session->set('locale', $request->get('locale'));
         }
 
-        return redirect()->route('store.'. $request->get('locale') . '.home');
+        return redirect()->url(store_route('store.home'));
     }
 
     /**

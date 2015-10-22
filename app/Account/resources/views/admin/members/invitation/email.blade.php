@@ -30,7 +30,7 @@
                         <table align="center">
                             <tr>
                                 <td valign="top" style="padding: 7px 15px; text-align: center; background-color: #74C52C;" class="center">
-                                    <a style="color: #fff; font-size: 12px; font-weight: bold; text-decoration: none; font-family: Arial, sans-serif; text-alight: center;" href="{{ route('store.auth.invitation.show', [$invitation->token]) }}">{{ Lang::get('account::admin.users.accept') }}</a>
+                                    <a style="color: #fff; font-size: 12px; font-weight: bold; text-decoration: none; font-family: Arial, sans-serif; text-alight: center;" href="{{ store_route('store.auth.invitation.show', [$invitation->token]) }}">{{ Lang::get('account::admin.users.accept') }}</a>
                                 </td>
                             </tr>
                         </table>

@@ -32,13 +32,13 @@ class ResetPasswordController extends FrontController
             if ($user) {
                 $guard->loginUsingId($user->id);
 
-                return redirect()->route('store.dash');
+                return redirect()->url(store_route('store.dash'));
             }
         }
 
         //always redirect to signin if we get here.
         //the request was validated for correct input, so if the reset was no success,
         //we simply bail out for security reasons.
-        return redirect()->route('store.auth.signin.index')->withSuccess(Lang::get('users::front.request-handled'));
+        return redirect()->url(store_route('store.auth.signin.index'))->withSuccess(Lang::get('users::front.request-handled'));
     }
 }
