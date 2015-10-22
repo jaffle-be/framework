@@ -1,5 +1,7 @@
 <?php
 
+use App\Module\Module;
+use App\Module\ModuleRoute;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
@@ -75,8 +77,6 @@ class CreateContactInformationTable extends Migration
         Schema::drop('contact_address', function (Blueprint $table) {
             $table->dropForeign('contact_address_to_country');
         });
-
-        Module::where('namespace', 'contact')->delete();
     }
 
 }
