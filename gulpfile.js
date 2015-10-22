@@ -98,7 +98,7 @@ gulp.task('scripts', function () {
             .pipe(gulp.dest('public/js/admin'));
     }
 
-    gulp.src('app/system/resources/assets/js/admin/app.js')
+    gulp.src('app/System/resources/assets/js/admin/app.js')
         .pipe(plumber())
         .pipe(gulp.dest('public/js/admin'))
         .pipe(rename(function (path) {
