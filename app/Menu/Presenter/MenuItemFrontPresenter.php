@@ -39,7 +39,7 @@ class MenuItemFrontPresenter extends BasePresenter
     {
         $modules = app('App\Account\AccountManager')->account()->modules;
 
-        return $modules->contains($this->entity->route->module->id);
+        return $this->entity->route && $modules->contains($this->entity->route->module->id);
     }
 
     /**
