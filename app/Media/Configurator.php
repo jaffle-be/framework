@@ -74,13 +74,13 @@ class Configurator
         $alias = $this->alias($owner);
 
         //get the dimensions defined in the theme that's currently being used.
-
+        //strtolower was added, on mac it worked due to case insensitivity in paths.
         if(!$current = $this->theme->current())
         {
-            $name = $this->config->get('theme.default');
+            $name = strtolower($this->config->get('theme.default'));
         }
         else{
-            $name = $current->name;
+            $name = strtolower($current->name);
         }
 
         $config = $this->config->get($name . '.media.images.' . $alias);
