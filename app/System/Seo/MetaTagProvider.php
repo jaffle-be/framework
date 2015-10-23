@@ -214,7 +214,7 @@ abstract class MetaTagProvider
      */
     protected function customRenderMethodName($key)
     {
-        $method = 'render' . ucfirst($key);
+        $method = 'render' . ucfirst(camel_case($key));
 
         return $method;
     }
