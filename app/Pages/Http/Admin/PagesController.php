@@ -182,6 +182,52 @@ class PagesController extends AdminController
         }
     }
 
+    public function batchPublish(Request $request, Page $page)
+    {
+        $ids = $request->get('pages', []);
+
+        if(is_array($ids) && count($ids))
+        {
+            $pages = $page->whereIn('pages.id', $ids)
+                ->get();
+
+            foreach($pages as $page)
+            {
+                $translation = $page->translate($request->get('locale'));
+
+                if($translation)
+                {
+                    $translation->published = true;
+                }
+
+                $translation->save();
+            }
+        }
+    }
+
+    public function batchUnpublish(Request $request, Page $page)
+    {
+        $ids = $request->get('pages', []);
+
+        if(is_array($ids) && count($ids))
+        {
+            $pages = $page->whereIn('pages.id', $ids)
+                ->get();
+
+            foreach($pages as $page)
+            {
+                $translation = $page->translate($request->get('locale'));
+
+                if($translation)
+                {
+                    $translation->published = false;
+                }
+
+                $translation->save();
+            }
+        }
+    }
+
     protected function relations()
     {
         return ['translations', 'translations.slug', 'children', 'children.translations'];

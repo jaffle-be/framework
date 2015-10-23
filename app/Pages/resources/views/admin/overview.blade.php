@@ -29,6 +29,13 @@
                                         </li>
                                         <li class="divider"></li>
                                         <li>
+                                            <a ng-confirm="vm.batchPublish()" href="">{{ Lang::get('pages::admin.actions.publish') }}</a>
+                                        </li>
+                                        <li>
+                                            <a ng-confirm="vm.batchUnpublish()" href="">{{ Lang::get('pages::admin.actions.unpublish') }}</a>
+                                        </li>
+                                        <li class="divider"></li>
+                                        <li>
                                             <a ng-really="vm.batchDelete()" href="">{{ Lang::get('pages::admin.actions.remove') }}</a>
                                         </li>
                                     </ul>

@@ -66,7 +66,7 @@ angular.module('pages')
                     parent: parent.id,
                     page: page.id
                 }).then(success);
-            }
+            };
 
             this.unlink = function(parent, page, success)
             {
@@ -74,7 +74,7 @@ angular.module('pages')
                     parent: parent.id,
                     page: page.id
                 }).then(success);
-            }
+            };
 
             this.sortSubpages = function(page)
             {
@@ -83,7 +83,23 @@ angular.module('pages')
                     page: page.id,
                     order: order
                 });
-            }
+            };
+
+            this.batchPublish = function(pages, locale, success)
+            {
+                $http.post('/api/admin/pages/batch-publish', {
+                    pages: pages,
+                    locale: locale
+                }).then(success);
+            };
+
+            this.batchUnpublish = function(pages, locale, success)
+            {
+                $http.post('/api/admin/pages/batch-unpublish', {
+                    pages: pages,
+                    locale: locale
+                }).then(success);
+            };
         }
 
         return new Service();
