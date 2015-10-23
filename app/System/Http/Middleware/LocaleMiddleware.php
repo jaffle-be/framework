@@ -32,6 +32,12 @@ class LocaleMiddleware
                 //if valid locale
                 $locale = $request->segment(1);
 
+                if(empty($locale) || !in_array($locale, config('system.locales')))
+                {
+                    //use the current default locale
+                    $locale = app()->getLocale();
+                }
+
                 app()->setLocale($locale);
             }
         } elseif ($this->session->has('locale')) {
