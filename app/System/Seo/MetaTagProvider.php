@@ -1,9 +1,8 @@
 <?php namespace App\System\Seo;
 
-use App\System\Seo\Providers\Facebook;
-
 abstract class MetaTagProvider
 {
+
     protected $prefix;
 
     protected $config;
@@ -27,15 +26,16 @@ abstract class MetaTagProvider
     {
         $this->setupDefaults();
 
-        if($seo)
-        {
+        if ($seo) {
             $this->handle($seo);
+            $this->addTypeDefaults($seo);
+            $this->addLocale($seo);
+        } else {
+            $this->addLocale();
         }
 
-        $this->addTypeDefaults($seo);
-
         $properties = $this->eachProperties($this->properties);
-        $images     = $this->eachProperties($this->images, 'image');
+        $images = $this->eachProperties($this->images, 'image');
 
         return PHP_EOL . $properties . PHP_EOL . $images;
     }
@@ -134,13 +134,13 @@ abstract class MetaTagProvider
                 $key = $this->getPropertyKey($prefix, $property);
 
                 // if empty jump to next
-                if (empty($value)) continue;
-
-                if($this->hasCustomRenderMethod($key))
-                {
-                    $html[] = $this->customRenderMethod($key, $value);
+                if (empty($value)) {
+                    continue;
                 }
-                else{
+
+                if ($this->hasCustomRenderMethod($key)) {
+                    $html[] = $this->customRenderMethod($key, $value);
+                } else {
                     $html[] = $this->tag($key, $value);
                 }
 
@@ -152,8 +152,7 @@ abstract class MetaTagProvider
 
     protected function tag($key, $value)
     {
-        if(!property_exists($this, 'prefix'))
-        {
+        if (!property_exists($this, 'prefix')) {
             throw new \Exception('Need to define the prefix property for generating meta tags');
         }
 
@@ -229,25 +228,41 @@ abstract class MetaTagProvider
 
     protected function addTypeDefaults($seo)
     {
-        if(isset($this->properties['type']))
-        {
+        if (isset($this->properties['type'])) {
             $type = $this->properties['type'];
 
             //add all the extras for the specific type, if they haven't been defined yet.
 
-            if(isset($this->defaults[$type]))
-            {
-                foreach($this->defaults[$type] as $key => $default)
-                {
+            if (isset($this->defaults[$type])) {
+                foreach ($this->defaults[$type] as $key => $default) {
                     $property = $type . ':' . $key;
 
-                    if(!isset($this->properties[$property]))
-                    {
+                    if (!isset($this->properties[$property])) {
                         $this->properties[$property] = $default;
                     }
                 }
             }
         }
+    }
+
+    protected function addLocale(SeoEntity $seo = null)
+    {
+        $cases = [
+            'nl' => 'BE_nl',
+            'fr' => 'BE_fr',
+            'en' => 'EN_en',
+            'de' => 'DE_de',
+        ];
+
+        $this->addProperty('locale', $cases[app()->getLocale()]);
+
+        //if multiple locale install and multiple selected
+        //provide the translated routes
+        //if we have an seo entity set. you need to get it from there.
+        //this basically doesn't work for facebook.
+        //facebook wants the same url for the same page in different locales
+        //duh :(
+
     }
 
 }
