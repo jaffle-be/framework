@@ -15,6 +15,8 @@ class Google extends MetaTagProvider
     {
         $type = $seo->getSeoTypeGoogle();
         $this->addProperty('type', $type);
+        $this->addProperty('title', $seo->getSeoTitle());
+        $this->addProperty('description', $seo->getSeoDescription());
 
         if ($type == 'article') {
             if($seo->publish_at)
@@ -24,13 +26,27 @@ class Google extends MetaTagProvider
 
             $this->addProperty('dateModified', $seo->updated_at->format(DATE_ATOM));
             $this->addProperty('publisher', 'digiredo.be');
-            $this->addProperty('author', $seo->getSeoAuthor());
+            if($seo->getSeoAuthor())
+            {
+                $this->addProperty('author', $seo->getSeoAuthor());
+            }
         }
 
         if($image = $seo->getSeoImage())
         {
             $this->addProperty('image', asset($image->path));
         }
+    }
+
+    /**
+     * @param $type
+     * @param $key
+     *
+     * @return string
+     */
+    protected function nameForTypeSpecificProperty($type, $key)
+    {
+        return $key;
     }
 
 }
