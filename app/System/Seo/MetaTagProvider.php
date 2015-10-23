@@ -1,5 +1,8 @@
 <?php namespace App\System\Seo;
 
+use Illuminate\Http\Request;
+use Illuminate\Routing\Route;
+
 abstract class MetaTagProvider
 {
 
@@ -24,8 +27,12 @@ abstract class MetaTagProvider
 
     public function generate(SeoEntity $seo = null)
     {
-        $this->setupDefaults();
 
+        /** @var Request $request */
+        $request = app('request');
+
+        $this->setupDefaults();
+        $this->addProperty('url', $request->getUri());
         if ($seo) {
             $this->addLocale($seo);
             $this->handle($seo);
