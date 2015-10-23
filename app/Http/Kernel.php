@@ -19,6 +19,7 @@ class Kernel extends HttpKernel
         'App\Http\Middleware\VerifyCsrfToken',
 
         'App\Http\Middleware\HttpsProtocol',
+        'Fideloper\Proxy\TrustProxies',
 
         //here we set the account for the current request.
         //we do not check validity of the account here,
