@@ -64,6 +64,36 @@ angular.module('blog')
 
         this.batchDelete = function()
         {
+            var posts = this.selectedPosts();
+
+            BlogService.batchDelete(posts, function()
+            {
+                me.loadPosts();
+            });
+        };
+
+        this.batchPublish = function()
+        {
+            var posts = this.selectedPosts();
+
+            BlogService.batchPublish(posts, me.options.locale, function()
+            {
+
+            });
+        };
+
+        this.batchUnpublish = function()
+        {
+            var posts = this.selectedPosts();
+
+            BlogService.batchUnpublish(posts, me.options.locale, function()
+            {
+
+            });
+        };
+
+        this.selectedPosts = function()
+        {
             var posts = [];
 
             _.each(this.posts, function(post){
@@ -73,9 +103,6 @@ angular.module('blog')
                 }
             });
 
-            BlogService.batchDelete(posts, function()
-            {
-                me.loadPosts();
-            });
+            return posts;
         }
     });

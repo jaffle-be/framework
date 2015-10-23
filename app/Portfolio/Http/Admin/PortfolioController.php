@@ -104,4 +104,50 @@ class PortfolioController extends AdminController
         }
     }
 
+    public function batchPublish(Request $request, Project $project)
+    {
+        $ids = $request->get('projects', []);
+
+        if(is_array($ids) && count($ids))
+        {
+            $projects = $project->whereIn('portfolio_projects.id', $ids)
+                ->get();
+
+            foreach($projects as $project)
+            {
+                $translation = $project->translate($request->get('locale'));
+
+                if($translation)
+                {
+                    $translation->published = true;
+                }
+
+                $translation->save();
+            }
+        }
+    }
+
+    public function batchUnpublish(Request $request, Project $project)
+    {
+        $ids = $request->get('projects', []);
+
+        if(is_array($ids) && count($ids))
+        {
+            $projects = $project->whereIn('portfolio_projects.id', $ids)
+                ->get();
+
+            foreach($projects as $project)
+            {
+                $translation = $project->translate($request->get('locale'));
+
+                if($translation)
+                {
+                    $translation->published = false;
+                }
+
+                $translation->save();
+            }
+        }
+    }
+
 }

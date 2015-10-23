@@ -64,6 +64,36 @@ angular.module('pages')
 
         this.batchDelete = function()
         {
+            var pages = this.selectedPages();
+
+            PageService.batchDelete(pages, function()
+            {
+                me.loadPages();
+            });
+        };
+
+        this.batchPublish = function()
+        {
+            var pages = this.selectedPages();
+
+            PageService.batchPublish(pages, me.options.locale, function()
+            {
+
+            });
+        };
+
+        this.batchUnpublish = function()
+        {
+            var pages = this.selectedPages();
+
+            PageService.batchUnpublish(pages, me.options.locale, function()
+            {
+
+            });
+        };
+
+        this.selectedPages = function()
+        {
             var pages = [];
 
             _.each(this.pages, function(page){
@@ -73,9 +103,6 @@ angular.module('pages')
                 }
             });
 
-            PageService.batchDelete(pages, function()
-            {
-                me.loadPages();
-            });
+            return pages;
         }
     });
