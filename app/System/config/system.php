@@ -95,20 +95,23 @@ return [
         //these hold values per provider, that should have defaults per website
         //but should not be included in every request, mostly depending on the 'type'
         //that's been defined, we'll include a subset of attributes specific to that type only.
-        'defaults' => [
-            'twitter' => [
+        'defaults'        => [
+            'twitter'  => [
 
             ],
             'facebook' => [
                 'article' => [
                     //link to facebook profile or facebook id
-                    'author' => null,
+                    'author'    => null,
                     //link to facebook profile or facebook id
                     'publisher' => null,
                 ]
             ],
-            'google'=> [
-
+            'google'   => [
+                'article' => [
+                    'author'    => 'https://www.facebook.com/thomas.warlop',
+                    'publisher' => 'https://www.facebook.com/thomas.warlop',
+                ]
             ]
         ],
 

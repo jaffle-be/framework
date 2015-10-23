@@ -242,7 +242,7 @@ abstract class MetaTagProvider
 
             if (isset($this->defaults[$type])) {
                 foreach ($this->defaults[$type] as $key => $default) {
-                    $property = $type . ':' . $key;
+                    $property = $this->nameForTypeSpecificProperty($type, $key);
 
                     if (!isset($this->properties[$property])) {
                         $this->properties[$property] = $default;
@@ -270,6 +270,19 @@ abstract class MetaTagProvider
         //facebook wants the same url for the same page in different locales
         //duh :(
 
+    }
+
+    /**
+     * @param $type
+     * @param $key
+     *
+     * @return string
+     */
+    protected function nameForTypeSpecificProperty($type, $key)
+    {
+        $property = $type . ':' . $key;
+
+        return $property;
     }
 
 }

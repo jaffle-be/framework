@@ -108,7 +108,10 @@ return [
                 ]
             ],
             'google'=> [
-
+                'article' => [
+                    'author' => 'https://www.facebook.com/thomas.warlop',
+                    'publisher' => 'https://www.facebook.com/thomas.warlop',
+                ]
             ]
         ],
 
