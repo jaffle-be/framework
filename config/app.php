@@ -164,6 +164,7 @@ return [
 
 
         //regular providers
+        'Fideloper\Proxy\TrustedProxyServiceProvider',
         'DaveJamesMiller\Breadcrumbs\ServiceProvider',
         'Cviebrock\EloquentSluggable\SluggableServiceProvider',
         'App\Menu\MenuServiceProvider',
@@ -188,6 +189,7 @@ return [
         'App\Tags\TagsServiceProvider',
         'App\Marketing\MarketingServiceProvider',
         'App\Portfolio\PortfolioServiceProvider',
+
 
 
         //keep at bottom for generic routes to work
