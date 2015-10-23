@@ -57,6 +57,37 @@ angular.module('portfolio')
 
         this.delete = function()
         {
+            var projects = this.selectedProjects();
+
+            PortfolioService.batchDelete(projects, function()
+            {
+                me.loadProjects();
+            });
+
+        };
+
+        this.batchPublish = function()
+        {
+            var projects = this.selectedProjects();
+
+            PortfolioService.batchPublish(projects, me.options.locale, function()
+            {
+
+            });
+        };
+
+        this.batchUnpublish = function()
+        {
+            var projects = this.selectedProjects();
+
+            PortfolioService.batchUnpublish(projects, me.options.locale, function()
+            {
+
+            });
+        };
+
+        this.selectedProjects = function()
+        {
             var projects = [],
                 me = this;
 
@@ -68,10 +99,6 @@ angular.module('portfolio')
                 }
             });
 
-            PortfolioService.batchDelete(projects, function()
-            {
-                me.loadProjects();
-            });
-
+            return projects;
         }
     });

@@ -21,6 +21,8 @@ Route::group([
         Route::post('pages/link-subpage', 'PagesController@linkSubpage');
         Route::post('pages/unlink-subpage', 'PagesController@unlinkSubpage');
         Route::post('pages/sort-subpages', 'PagesController@sortSubpages');
+        Route::post('pages/batch-publish', 'PagesController@batchPublish');
+        Route::post('pages/batch-unpublish', 'PagesController@batchUnpublish');
     });
 });
 

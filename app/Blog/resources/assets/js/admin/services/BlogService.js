@@ -59,6 +59,22 @@ angular.module('blog')
                     posts: posts
                 }).then(success);
             };
+
+            this.batchPublish = function(posts, locale, success)
+            {
+                $http.post('/api/admin/blog/batch-publish', {
+                    posts: posts,
+                    locale: locale
+                }).then(success);
+            };
+
+            this.batchUnpublish = function(posts, locale, success)
+            {
+                $http.post('/api/admin/blog/batch-unpublish', {
+                    posts: posts,
+                    locale: locale
+                }).then(success);
+            };
         }
 
         return new Service();

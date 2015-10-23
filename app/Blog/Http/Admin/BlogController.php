@@ -4,6 +4,7 @@ use App\Account\AccountManager;
 use App\Blog\Jobs\UpdatePost;
 use App\Blog\Post;
 use App\System\Http\AdminController;
+use Carbon\Carbon;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Http\Request;
 
@@ -96,6 +97,52 @@ class BlogController extends AdminController
             foreach($posts as $post)
             {
                 $post->delete();
+            }
+        }
+    }
+
+    public function batchPublish(Request $request, Post $post)
+    {
+        $ids = $request->get('posts', []);
+
+        if(is_array($ids) && count($ids))
+        {
+            $posts = $post->whereIn('posts.id', $ids)
+                ->get();
+
+            foreach($posts as $post)
+            {
+                $translation = $post->translate($request->get('locale'));
+
+                if($translation)
+                {
+                    $translation->publish_at = new Carbon();
+                }
+
+                $translation->save();
+            }
+        }
+    }
+
+    public function batchUnpublish(Request $request, Post $post)
+    {
+        $ids = $request->get('posts', []);
+
+        if(is_array($ids) && count($ids))
+        {
+            $posts = $post->whereIn('posts.id', $ids)
+                ->get();
+
+            foreach($posts as $post)
+            {
+                $translation = $post->translate($request->get('locale'));
+
+                if($translation)
+                {
+                    $translation->publish_at = null;
+                }
+
+                $translation->save();
             }
         }
     }

@@ -22,6 +22,8 @@ Route::group([
         Route::group(['prefix' => 'api/admin'], function () {
             Route::resource('blog', 'BlogController');
             Route::post('blog/batch-delete', 'BlogController@batchDestroy');
+            Route::post('blog/batch-publish', 'BlogController@batchPublish');
+            Route::post('blog/batch-unpublish', 'BlogController@batchUnpublish');
         });
     });
 
