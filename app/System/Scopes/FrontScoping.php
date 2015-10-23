@@ -7,18 +7,10 @@ trait FrontScoping
 
     public static function bootFrontScoping()
     {
-        /** @var Request $request */
-        $request = app('request');
-
-        if(app()->runningInConsole())
+        if(on_front())
         {
-            return;
-        }
+            $class = self::getFrontScopeName();
 
-        $class = self::getFrontScopeName();
-
-        if(!starts_with($request->getRequestUri(), ['/admin', '/api']))
-        {
             static::addGlobalScope(new $class());
         }
     }
