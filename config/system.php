@@ -92,10 +92,10 @@ return [
             App\System\Seo\Providers\Facebook::class,
         ],
 
-        'generic' => [
+        'generic'         => [
             'title'       => 'Digiredo', // set false to total remove
             'description' => 'A multipurpose platform', // set false to total remove
-            'keywords' => 'a multipurpose larangular platform'
+            'keywords'    => 'a multipurpose larangular platform'
         ],
 
         'twitter'         => [
@@ -105,26 +105,27 @@ return [
         ],
 
         'facebook'        => [
+            'app_id'      => '425396170980794',
             'type'        => 'website',
             'title'       => 'Digiredo', // set false to total remove
             'description' => 'A multipurpose platform', // set false to total remove
             'url'         => false,
-            'site_name'   => 'digiredo.be',
+            'site_name'   => 'Digiredo',
             'images'      => [],
         ],
 
         'google'          => [
             'type'        => 'website',
-            'site_name'   => 'digiredo.be',
+            'site_name'   => 'Digiredo',
             'title'       => 'Digiredo', // set false to total remove
             'description' => 'A multipurpose platform', // set false to total remove
             'url'         => false,
             'images'      => [],
         ],
 
-        'owners' => [
-            'pages' => App\Pages\Page::class,
-            'blog' => App\Blog\Post::class,
+        'owners'          => [
+            'pages'     => App\Pages\Page::class,
+            'blog'      => App\Blog\Post::class,
             'portfolio' => App\Portfolio\Project::class,
         ]
 
