@@ -15,7 +15,7 @@ function system_options()
 
     $options['systemLocales'] = system_locales()->toArray();
 
-    $options['locales'] = system_locales()->filter(function($item){
+    $options['locales'] = system_locales()->filter(function ($item) {
         return $item->activated == true;
     })->toArray();
 
@@ -65,20 +65,18 @@ function system_modules()
     return $modules;
 }
 
-function store_route($name, array $arguments = [], $locale = null)
+function store_route($name, array $arguments = [], $force = null)
 {
-    if(env('APP_MULTIPLE_LOCALES'))
-    {
+    if (env('APP_MULTIPLE_LOCALES')) {
         $locale = app()->getLocale();
 
         $name = str_replace('store.', "store.$locale.", $name);
     }
 
-    if($locale)
-    {
+    if ($force) {
         //replace the current locale with the requested locale
         //added the dots, to make sure we don't replace anything else
-        $name = str_replace('.' . app()->getLocale() . '.', '.' . $locale . '.', $name);
+        $name = str_replace('.' . app()->getLocale() . '.', '.' . $force . '.', $name);
     }
 
     return route($name, $arguments);
@@ -93,8 +91,7 @@ function pusher_system_channel()
 
 function on_front()
 {
-    if(app()->runningInConsole())
-    {
+    if (app()->runningInConsole()) {
         return false;
     }
 
