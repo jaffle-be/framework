@@ -27,9 +27,9 @@ abstract class MetaTagProvider
         $this->setupDefaults();
 
         if ($seo) {
+            $this->addLocale($seo);
             $this->handle($seo);
             $this->addTypeDefaults($seo);
-            $this->addLocale($seo);
         } else {
             $this->addLocale();
         }
