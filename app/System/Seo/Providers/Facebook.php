@@ -31,22 +31,21 @@ class Facebook extends MetaTagProvider
         $this->addProperty('title', $seo->getSeoTitle());
         $this->addProperty('description', $seo->getSeoDescription());
 
-//        if($type == 'article')
-//        {
-//            if($seo->publish_at)
-//            {
-//                $this->addProperty('article:published_time', $seo->publish_at->format(DATE_ATOM));
-//            }
-//
-//            $this->addProperty('article:modified_time', $seo->updated_at->format(DATE_ATOM));
-//            $this->addProperty('article:author', 'digiredo.be');
-//        }
+        if($type == 'article')
+        {
+            if($seo->publish_at)
+            {
+                $this->addProperty('article:published_time', $seo->publish_at->format(DATE_ATOM));
+            }
 
-//        if($image = $seo->getSeoImage())
-//        {
-//            $this->addProperty('image', asset($image->path));
-//        }
+            $this->addProperty('article:modified_time', $seo->updated_at->format(DATE_ATOM));
+            $this->addProperty('article:author', 'digiredo.be');
+        }
 
+        if($image = $seo->getSeoImage())
+        {
+            $this->addProperty('image', asset($image->path));
+        }
 
     }
 
