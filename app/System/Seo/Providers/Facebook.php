@@ -14,7 +14,14 @@ class Facebook extends MetaTagProvider
             throw new \Exception('Need to define the prefix property for generating meta tags');
         }
 
-        return '<meta property="' . $this->prefix . strip_tags($key) . '" content="' . strip_tags($value) . '">';
+        if(str_contains($key, ':'))
+        {
+            return '<meta property="' . strip_tags($key) . '" content="' . strip_tags($value) . '">';
+        }
+        else{
+            return '<meta property="' . $this->prefix . strip_tags($key) . '" content="' . strip_tags($value) . '">';
+        }
+
     }
 
     public function renderAppId($key, $value)
