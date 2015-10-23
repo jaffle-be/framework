@@ -30,6 +30,13 @@
                                         </li>
                                         <li class="divider"></li>
                                         <li>
+                                            <a ng-confirm="vm.batchPublish()" href="">{{ Lang::get('portfolio::admin.actions.publish') }}</a>
+                                        </li>
+                                        <li>
+                                            <a ng-confirm="vm.batchUnpublish()" href="">{{ Lang::get('portfolio::admin.actions.unpublish') }}</a>
+                                        </li>
+                                        <li class="divider"></li>
+                                        <li>
                                             <a ng-really="vm.delete()" href="">{{ Lang::get('portfolio::admin.actions.remove') }}</a>
                                         </li>
                                     </ul>
