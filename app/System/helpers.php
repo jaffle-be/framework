@@ -65,13 +65,20 @@ function system_modules()
     return $modules;
 }
 
-function store_route($name, array $arguments = [])
+function store_route($name, array $arguments = [], $locale = null)
 {
     if(env('APP_MULTIPLE_LOCALES'))
     {
         $locale = app()->getLocale();
 
         $name = str_replace('store.', "store.$locale.", $name);
+    }
+
+    if($locale)
+    {
+        //replace the current locale with the requested locale
+        //added the dots, to make sure we don't replace anything else
+        $name = str_replace('.' . app()->getLocale() . '.', '.' . $locale . '.', $name);
     }
 
     return route($name, $arguments);
