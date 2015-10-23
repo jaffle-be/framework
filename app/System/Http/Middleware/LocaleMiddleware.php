@@ -21,8 +21,20 @@ class LocaleMiddleware
      */
     public function handle($request, Closure $next)
     {
-        if($this->session->has('locale'))
-        {
+        //on the front, locale is determined by either:
+        // - multi locale -> url prefix
+        // - single locale -> from config
+
+        if (on_front()) {
+            $request = app('request');
+
+            if (env('APP_MULTIPLE_LOCALES')) {
+                //if valid locale
+                $locale = $request->segment(1);
+
+                app()->setLocale($locale);
+            }
+        } elseif ($this->session->has('locale')) {
             app()->setLocale($this->session->get('locale'));
         }
 
