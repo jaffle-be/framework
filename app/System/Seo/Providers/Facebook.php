@@ -5,12 +5,12 @@ use App\System\Seo\SeoEntity;
 
 class Facebook extends MetaTagProvider
 {
+
     protected $prefix = 'og:';
 
     protected function tag($key, $value)
     {
-        if(!property_exists($this, 'prefix'))
-        {
+        if (!property_exists($this, 'prefix')) {
             throw new \Exception('Need to define the prefix property for generating meta tags');
         }
 
@@ -30,18 +30,15 @@ class Facebook extends MetaTagProvider
         $this->addProperty('title', $seo->getSeoTitle());
         $this->addProperty('description', $seo->getSeoDescription());
 
-        if($type == 'article')
-        {
-            if($seo->publish_at)
-            {
+        if ($type == 'article') {
+            if ($seo->publish_at) {
                 $this->addProperty('article:published_time', $seo->publish_at->format(DATE_ATOM));
             }
 
             $this->addProperty('article:modified_time', $seo->updated_at->format(DATE_ATOM));
         }
 
-        if($image = $seo->getSeoImage())
-        {
+        if ($image = $seo->getSeoImage()) {
             $this->addProperty('image', asset($image->path));
         }
     }
