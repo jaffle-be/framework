@@ -120,8 +120,8 @@ return [
 
         'twitter'         => [
             'card'    => 'summary_large_image',
-            'site'    => '@digiredo',
-            'creator' => '@digiredo',
+            'site'    => '@twarlop',
+            'creator' => '@twarlop',
         ],
 
         'facebook'        => [
