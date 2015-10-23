@@ -11,11 +11,15 @@ class SeoManager
 
     protected $providers;
 
+    protected $defaults;
+
     public function __construct(Repository $config)
     {
         $this->config = $config;
 
         $this->providers = $config->get('system.seo.providers');
+
+        $this->defaults = $config->get('system.seo.defaults');
     }
 
     public function setEntity(SeoEntity $entity)
@@ -61,9 +65,13 @@ class SeoManager
 
         $shortname = array_pop($pieces);
 
-        $config = $this->config->get('system.seo.' . strtolower($shortname));
+        $shortname = strtolower($shortname);
 
-        $provider = new $provider($config);
+        $config = $this->config->get('system.seo.' . $shortname);
+
+        $defaults = $this->config->get('system.seo.defaults.' . $shortname, []);
+
+        $provider = new $provider($config, $defaults);
 
         return $provider;
     }

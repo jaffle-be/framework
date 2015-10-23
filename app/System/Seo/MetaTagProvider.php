@@ -1,18 +1,24 @@
 <?php namespace App\System\Seo;
 
+use App\System\Seo\Providers\Facebook;
+
 abstract class MetaTagProvider
 {
     protected $prefix;
 
     protected $config;
 
+    protected $defaults;
+
     protected $images = [];
 
     protected $properties = [];
 
-    public function __construct($config)
+    public function __construct(array $config, array $defaults = [])
     {
         $this->config = $config;
+
+        $this->defaults = $defaults;
     }
 
     abstract protected function handle(SeoEntity $seo);
@@ -25,6 +31,8 @@ abstract class MetaTagProvider
         {
             $this->handle($seo);
         }
+
+        $this->addTypeDefaults($seo);
 
         $properties = $this->eachProperties($this->properties);
         $images     = $this->eachProperties($this->images, 'image');
@@ -217,6 +225,29 @@ abstract class MetaTagProvider
         $method = 'render' . ucfirst(camel_case($key));
 
         return $method;
+    }
+
+    protected function addTypeDefaults($seo)
+    {
+        if(isset($this->properties['type']))
+        {
+            $type = $this->properties['type'];
+
+            //add all the extras for the specific type, if they haven't been defined yet.
+
+            if(isset($this->defaults[$type]))
+            {
+                foreach($this->defaults[$type] as $key => $default)
+                {
+                    $property = $type . ':' . $key;
+
+                    if(!isset($this->properties[$property]))
+                    {
+                        $this->properties[$property] = $default;
+                    }
+                }
+            }
+        }
     }
 
 }

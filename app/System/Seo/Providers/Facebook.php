@@ -25,7 +25,6 @@ class Facebook extends MetaTagProvider
     protected function handle(SeoEntity $seo)
     {
         //add the facebook app id to enable insights.
-        $this->addProperty('app_id', $this->config['app_id']);
         $type = $seo->getSeoTypeFacebook();
         $this->addProperty('type', $type);
         $this->addProperty('title', $seo->getSeoTitle());
@@ -39,14 +38,12 @@ class Facebook extends MetaTagProvider
             }
 
             $this->addProperty('article:modified_time', $seo->updated_at->format(DATE_ATOM));
-            $this->addProperty('article:author', 'digiredo.be');
         }
 
         if($image = $seo->getSeoImage())
         {
             $this->addProperty('image', asset($image->path));
         }
-
     }
 
 }

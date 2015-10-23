@@ -92,6 +92,26 @@ return [
             App\System\Seo\Providers\Facebook::class,
         ],
 
+        //these hold values per provider, that should have defaults per website
+        //but should not be included in every request, mostly depending on the 'type'
+        //that's been defined, we'll include a subset of attributes specific to that type only.
+        'defaults' => [
+            'twitter' => [
+
+            ],
+            'facebook' => [
+                'article' => [
+                    //link to facebook profile or facebook id
+                    'author' => 'https://www.facebook.com/thomas.warlop',
+                    //link to facebook profile or facebook id
+                    'publisher' => 'https://www.facebook.com/thomas.warlop',
+                ]
+            ],
+            'google'=> [
+
+            ]
+        ],
+
         'generic'         => [
             'title'       => 'Digiredo', // set false to total remove
             'description' => 'A multipurpose platform', // set false to total remove
