@@ -1,5 +1,6 @@
 <?php
 use App\Module\Module;
+use Illuminate\Http\Request;
 
 /**
  * Used to help set the configuration through json on the front side.
@@ -81,4 +82,17 @@ function pusher_system_channel()
     $accounts = app('App\Account\AccountManager');
 
     return 'private-' . $accounts->account()->alias;
+}
+
+function on_front()
+{
+    if(app()->runningInConsole())
+    {
+        return false;
+    }
+
+    /** @var Request $request */
+    $request = app('request');
+
+    return !starts_with($request->getRequestUri(), ['/admin', '/api']);
 }
