@@ -27,7 +27,8 @@
     "thujohn/twitter": "^2.0",
     "alaouy/Youtube": "*",
     "vinkla/vimeo": "^3.0",
-    "vinkla/pusher": "^2.1"
+    "vinkla/pusher": "^2.1",
+    "fideloper/proxy": "~3.0"
   },
   "require-dev": {
     "phpunit/phpunit": "~4.0",
