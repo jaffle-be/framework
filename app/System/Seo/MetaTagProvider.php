@@ -248,10 +248,10 @@ abstract class MetaTagProvider
     protected function addLocale(SeoEntity $seo = null)
     {
         $cases = [
-            'nl' => 'BE_nl',
-            'fr' => 'BE_fr',
-            'en' => 'EN_en',
-            'de' => 'DE_de',
+            'nl' => 'nl_BE',
+            'fr' => 'fr_BE',
+            'en' => 'en_GB',
+            'de' => 'de_DE',
         ];
 
         $this->addProperty('locale', $cases[app()->getLocale()]);
