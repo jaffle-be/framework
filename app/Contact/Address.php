@@ -22,19 +22,36 @@ class Address extends Model{
         return $this->morphTo();
     }
 
-    public function format()
+    public function format($microtags = true)
     {
-        $street = $this->microtag('streetAddress', $this->attributes['street']);
+        if($microtags)
+        {
+            $street = $this->microtag('streetAddress', $this->attributes['street']);
 
-        $box = $this->microtag('postOfficeBoxNumber', $this->attributes['box']);
+            $box = $this->microtag('postOfficeBoxNumber', $this->attributes['box']);
 
-        $postal = $this->microtag('postalCode', $this->attributes['postcode']);
+            $postal = $this->microtag('postalCode', $this->attributes['postcode']);
 
-        $city = $this->microtag('addressLocality', $this->attributes['city']);
+            $city = $this->microtag('addressLocality', $this->attributes['city']);
 
-        $country = $this->microtag('addressCountry', $this->country->iso_code_2, true);
+            $country = $this->microtag('addressCountry', $this->country->iso_code_2, true);
 
-        return sprintf('%s %s, %s %s %s', $street, $box, $postal, $city, $country);
+            return sprintf('%s %s, %s %s %s', $street, $box, $postal, $city, $country);
+        }
+        else{
+            $street = $this->attributes['street'];
+
+            $box = $this->attributes['box'];
+
+            $postal = $this->attributes['postcode'];
+
+            $city = $this->attributes['city'];
+
+            $country = $this->country->iso_code_2;
+
+            return sprintf('%s %s, %s %s %s', $street, $box, $country, $postal, $city);
+        }
+
     }
 
     public function country()
