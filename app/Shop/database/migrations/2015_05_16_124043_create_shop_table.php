@@ -17,10 +17,10 @@ class CreateShopTable extends Migration
     {
         $module = Module::create([
             'namespace' => 'shop',
-            'nl' => ['name' => 'shop'],
-            'en' => ['name' => 'shop'],
-            'fr' => ['name' => 'shop'],
-            'de' => ['name' => 'shop'],
+            'nl' => ['name' => 'Shop'],
+            'en' => ['name' => 'Shop'],
+            'fr' => ['name' => 'Shop'],
+            'de' => ['name' => 'Shop'],
         ]);
 
 
