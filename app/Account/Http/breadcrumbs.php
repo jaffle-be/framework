@@ -11,13 +11,14 @@ if(env('APP_MULTIPLE_LOCALES'))
 
         });
 
-        Breadcrumbs::register("store.$locale.team.show", function($breadcrumbs) use ($locale){
+        Breadcrumbs::register("store.$locale.team.show", function($breadcrumbs, $member) use ($locale){
             $breadcrumbs->parent("store.$locale.team.index");
-            $breadcrumbs->push('Member', store_route("store.team.show"));
+            $breadcrumbs->push('Member', store_route("store.team.show", [$member]));
         });
 
         Breadcrumbs::register("store.$locale.api.admin.account.members.invitation.store", function($breadcrumbs) use ($locale){
 
+            //what is this route used for? it has a really shitty name to begin with.
             $breadcrumbs->parent("store.$locale.home");
             $breadcrumbs->push(Lang::get('account::admin.users.invitation'));
 
@@ -30,9 +31,9 @@ else{
         $breadcrumbs->push('About', store_route('store.team.index'));
     });
 
-    Breadcrumbs::register('store.team.show', function($breadcrumbs){
+    Breadcrumbs::register('store.team.show', function($breadcrumbs, $member){
         $breadcrumbs->parent('store.team.index');
-        $breadcrumbs->push('Member', store_route('store.team.show'));
+        $breadcrumbs->push('Member', store_route('store.team.show', [$member]));
     });
 
     Breadcrumbs::register('store.api.admin.account.members.invitation.store', function($breadcrumbs){
