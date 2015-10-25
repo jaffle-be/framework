@@ -12,7 +12,7 @@ if(env('APP_MULTIPLE_LOCALES'))
             if($uri->owner instanceof PostTranslation)
             {
                 $breadcrumbs->parent("store.$locale.blog.index");
-                $breadcrumbs->push('Post');
+                $breadcrumbs->push('Post', store_route('store.uri.show', [$uri]));
             }
             elseif($uri->owner instanceof PageTranslation)
             {
@@ -29,7 +29,7 @@ else{
         if($uri->owner instanceof PostTranslation)
         {
             $breadcrumbs->parent('store.blog.index');
-            $breadcrumbs->push('Post');
+            $breadcrumbs->push('Post', store_route('store.uri.show', [$uri]));
         }
         elseif($uri->owner instanceof PageTranslation)
         {
