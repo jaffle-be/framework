@@ -1,3 +1,13 @@
+<div class="alert alert-info">
+	Title and description will also override the title and the description when:
+
+    <ul>
+        <li>tweeting about the article</li>
+        <li>sharing on google+</li>
+        <li>sharing on facebook</li>
+    </ul>
+</div>
+
 <div class="form-group">
 
     <label for="">{{ Lang::get('system::admin.seo.title') }}</label>
