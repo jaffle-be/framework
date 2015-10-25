@@ -29,10 +29,10 @@ if(env('APP_MULTIPLE_LOCALES'))
             $breadcrumbs->push(Lang::get('shop::front.show'), store_route('store.shop.show'));
         });
 
-        Breadcrumbs::register("store.$locale.shop.product", function($breadcrumbs) use ($locale)
+        Breadcrumbs::register("store.$locale.shop.product", function($breadcrumbs, $product) use ($locale)
         {
             $breadcrumbs->parent("store.$locale.shop.show");
-            $breadcrumbs->push(Lang::get('shop::front.product'), store_route('store.shop.product'));
+            $breadcrumbs->push(Lang::get('shop::front.product'), store_route('store.shop.product', [$product]));
         });
 
         Breadcrumbs::register("store.$locale.shop.register", function($breadcrumbs) use ($locale)
@@ -69,10 +69,10 @@ else{
         $breadcrumbs->push(Lang::get('shop::front.show'), store_route('store.shop.show'));
     });
 
-    Breadcrumbs::register('store.shop.product', function($breadcrumbs)
+    Breadcrumbs::register('store.shop.product', function($breadcrumbs, $product)
     {
         $breadcrumbs->parent('store.shop.show');
-        $breadcrumbs->push(Lang::get('shop::front.product'), store_route('store.shop.product'));
+        $breadcrumbs->push(Lang::get('shop::front.product'), store_route('store.shop.product', [$product]));
     });
 
     Breadcrumbs::register('store.shop.register', function($breadcrumbs)
