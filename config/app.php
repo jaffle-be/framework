@@ -146,6 +146,8 @@ return [
         'App\Providers\EventServiceProvider',
         'App\Providers\RouteServiceProvider',
 
+        'Pingpong\Modules\ModulesServiceProvider',
+
         /*
          * keep these at the top.
          * some providers depend on the existence of our account or user
@@ -154,21 +156,14 @@ return [
          * if not, caches setup before the system provider gets booted,
          * will use the standard driver instead of the system one
          */
-        'App\System\SystemServiceProvider',
-        'App\Users\UserServiceProvider',
-        'App\Module\ModuleServiceProvider',
-        'App\Account\AccountServiceProvider',
 
         //load all providers that use settings which might be used by other components here
-        'App\Theme\ThemeServiceProvider',
 
 
         //regular providers
         'Fideloper\Proxy\TrustedProxyServiceProvider',
         'DaveJamesMiller\Breadcrumbs\ServiceProvider',
         'Cviebrock\EloquentSluggable\SluggableServiceProvider',
-        'App\Menu\MenuServiceProvider',
-        'App\Search\SearchServiceProvider',
 
         Barryvdh\Debugbar\ServiceProvider::class,
         Mews\Captcha\CaptchaServiceProvider::class,
@@ -179,21 +174,9 @@ return [
         'GrahamCampbell\Markdown\MarkdownServiceProvider',
         'Intouch\LaravelNewrelic\NewrelicServiceProvider',
         'Intervention\Image\ImageServiceProvider',
-        'App\Layout\LayoutServiceProvider',
-        'App\Dashboard\DashboardServiceProvider',
-        'App\Media\MediaServiceProvider',
-        'App\Shop\ShopServiceProvider',
-        'App\Contact\ContactServiceProvider',
-        'App\Pages\PagesServiceProvider',
-        'App\Blog\BlogServiceProvider',
-        'App\Tags\TagsServiceProvider',
-        'App\Marketing\MarketingServiceProvider',
-        'App\Portfolio\PortfolioServiceProvider',
-
-
 
         //keep at bottom for generic routes to work
-        'App\System\Uri\UriServiceProvider',
+//        'App\System\Uri\UriServiceProvider',
     ],
 
     /*
@@ -244,8 +227,8 @@ return [
 
 
         //Application aliases
-        'Theme' => 'App\Theme\Facade\Theme',
-        'Menu' => 'App\Menu\Facade\Menu',
+        'Theme' => 'Modules\Theme\Facade\Theme',
+        'Menu' => 'Modules\Menu\Facade\Menu',
         'Gravatar' => 'Thomaswelton\LaravelGravatar\Facades\Gravatar',
         'Breadcrumbs' => 'DaveJamesMiller\Breadcrumbs\Facade',
         'Newrelic' => 'Intouch\LaravelNewrelic\Facades\Newrelic',

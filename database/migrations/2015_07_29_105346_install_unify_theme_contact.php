@@ -1,6 +1,6 @@
 <?php
 
-use App\Theme\ThemeSettingMigration;
+use Modules\Theme\ThemeSettingMigration;
 
 class InstallUnifyThemeContact extends ThemeSettingMigration
 {
