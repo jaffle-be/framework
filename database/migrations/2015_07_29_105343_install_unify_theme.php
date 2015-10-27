@@ -1,6 +1,6 @@
 <?php
 
-use App\Theme\ThemeInstallationMigration;
+use Modules\Theme\ThemeInstallationMigration;
 
 class InstallUnifyTheme extends ThemeInstallationMigration
 {
