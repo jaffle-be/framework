@@ -9,19 +9,23 @@ use Modules\Module\Module;
  *
  * @return string
  */
-function system_options()
-{
-    $options['locale'] = app()->getLocale();
 
-    $options['systemLocales'] = system_locales()->toArray();
+if (!function_exists('system_options')) {
 
-    $options['locales'] = system_locales()->filter(function ($item) {
-        return $item->activated == true;
-    })->toArray();
+    function system_options()
+    {
+        $options['locale'] = app()->getLocale();
 
-    $options['systemModules'] = system_modules()->toArray();
+        $options['systemLocales'] = system_locales()->toArray();
 
-    return json_encode($options);
+        $options['locales'] = system_locales()->filter(function ($item) {
+            return $item->activated == true;
+        })->toArray();
+
+        $options['systemModules'] = system_modules()->toArray();
+
+        return json_encode($options);
+    }
 }
 
 /**
@@ -33,18 +37,21 @@ function system_options()
  *
  * @return \Illuminate\Database\Eloquent\Collection|static[]
  */
-function system_locales()
-{
-    $accountLocales = app('Modules\Account\AccountManager')->account()->locales;
 
-    $systemLocales = Modules\System\Locale::with('translations')->get();
+if (!function_exists('system_locales')) {
+    function system_locales()
+    {
+        $accountLocales = app('Modules\Account\AccountManager')->account()->locales;
 
-    $systemLocales->each(function ($locale) use ($accountLocales) {
-        $locale->activated = $accountLocales->contains($locale->id);
-        $locale->active = app()->getLocale();
-    });
+        $systemLocales = Modules\System\Locale::with('translations')->get();
 
-    return $systemLocales->keyBy('slug');
+        $systemLocales->each(function ($locale) use ($accountLocales) {
+            $locale->activated = $accountLocales->contains($locale->id);
+            $locale->active = app()->getLocale();
+        });
+
+        return $systemLocales->keyBy('slug');
+    }
 }
 
 /**
@@ -52,67 +59,77 @@ function system_locales()
  *
  * @return \Illuminate\Database\Eloquent\Collection|static[]
  */
-function system_modules()
-{
-    $accountModules = app('Modules\Account\AccountManager')->account()->modules;
-
-    $modules = Module::with('translations')->get();
-
-    $modules->each(function ($module) use ($accountModules) {
-        $module->activated = $accountModules->contains($module->id);
-    });
-
-    return $modules;
-}
-
-function store_route($name, array $arguments = [], $force = null)
-{
-    if (env('APP_MULTIPLE_LOCALES')) {
-        $locale = app()->getLocale();
-
-        $name = str_replace('store.', "store.$locale.", $name);
-    }
-
-    if ($force) {
-        //replace the current locale with the requested locale
-        //added the dots, to make sure we don't replace anything else
-        $name = str_replace('.' . app()->getLocale() . '.', '.' . $force . '.', $name);
-    }
-
-    return route($name, $arguments);
-}
-
-function pusher_system_channel()
-{
-    $accounts = app('Modules\Account\AccountManager');
-
-    return 'private-' . $accounts->account()->alias;
-}
-
-function on_front()
-{
-    if (app()->runningInConsole()) {
-        return false;
-    }
-
-    /** @var Request $request */
-    $request = app('request');
-
-    return !starts_with($request->getRequestUri(), ['/admin', '/api']);
-}
-
-function translation_input(Request $request, array $except = [])
-{
-    $input = $request->except($except);
-
-    if(isset($input['translations']))
+if (!function_exists('system_modules')) {
+    function system_modules()
     {
-        foreach ($input['translations'] as $locale => $translation) {
-            $input[$locale] = $translation;
+        $accountModules = app('Modules\Account\AccountManager')->account()->modules;
+
+        $modules = Module::with('translations')->get();
+
+        $modules->each(function ($module) use ($accountModules) {
+            $module->activated = $accountModules->contains($module->id);
+        });
+
+        return $modules;
+    }
+}
+
+if (!function_exists('store_route')) {
+    function store_route($name, array $arguments = [], $force = null)
+    {
+        if (env('APP_MULTIPLE_LOCALES')) {
+            $locale = app()->getLocale();
+
+            $name = str_replace('store.', "store.$locale.", $name);
         }
 
-        unset($input['translations']);
-    }
+        if ($force) {
+            //replace the current locale with the requested locale
+            //added the dots, to make sure we don't replace anything else
+            $name = str_replace('.' . app()->getLocale() . '.', '.' . $force . '.', $name);
+        }
 
-    return $input;
+        return route($name, $arguments);
+    }
+}
+
+if (!function_exists('pusher_system_channel')) {
+    function pusher_system_channel()
+    {
+        $accounts = app('Modules\Account\AccountManager');
+
+        return 'private-' . $accounts->account()->alias;
+    }
+}
+
+if (!function_exists('on_front')) {
+    function on_front()
+    {
+        if(app()->runningInConsole() && !app()->runningUnitTests())
+        {
+            return false;
+        }
+
+        /** @var Request $request */
+        $request = app('request');
+
+        return !starts_with($request->getRequestUri(), ['/admin', '/api']);
+    }
+}
+
+if (!function_exists('translation_input')) {
+    function translation_input(Request $request, array $except = [])
+    {
+        $input = $request->except($except);
+
+        if (isset($input['translations'])) {
+            foreach ($input['translations'] as $locale => $translation) {
+                $input[$locale] = $translation;
+            }
+
+            unset($input['translations']);
+        }
+
+        return $input;
+    }
 }

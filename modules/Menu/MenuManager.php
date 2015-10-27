@@ -11,7 +11,7 @@ class MenuManager
     /**
      * @var bool
      */
-    protected static $hasBeenLoaded = false;
+    protected $hasBeenLoaded = false;
 
     /**
      * @var array
@@ -75,7 +75,7 @@ class MenuManager
     public function get($menu)
     {
         //by the time the first menu is rendered, we should know all supported menu's for the current theme.
-        if (!static::$hasBeenLoaded) {
+        if (!$this->hasBeenLoaded) {
             $this->load();
         }
 
@@ -106,7 +106,7 @@ class MenuManager
         }
 
         //set loaded status
-        static::$hasBeenLoaded = true;
+        $this->hasBeenLoaded = true;
     }
 
     protected function menu($menu)

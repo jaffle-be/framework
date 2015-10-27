@@ -37,8 +37,6 @@ class PortfolioTableSeeder extends Seeder
         foreach([1] as $accountid)
         {
 
-            $this->preImageCaching();
-
             $account = Account::find($accountid);
             $clients = Client::all();
 
