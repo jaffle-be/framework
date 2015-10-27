@@ -20,7 +20,6 @@
     "intervention/image": "~2.2",
     "fzaninotto/faker": "~1.4",
     "intervention/imagecache": "~2.2",
-    "teepluss/theme": "^2.0",
     "mews/captcha": "^2.0",
     "thomaswelton/laravel-gravatar": "~1.0",
     "davejamesmiller/laravel-breadcrumbs": "~3.0",
@@ -52,9 +51,9 @@
     }
   },
   "autoload-dev": {
-    "classmap": [
-      "tests/TestCase.php"
-    ]
+    "psr-4": {
+      "Test\\": "tests/"
+    }
   },
   "scripts": {
     "post-install-cmd": [

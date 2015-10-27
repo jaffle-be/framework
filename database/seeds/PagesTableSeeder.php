@@ -1,10 +1,10 @@
 <?php
 
 use Modules\Account\Account;
-use Modules\Blog\Post;
+use Modules\Pages\Page;
 use Modules\System\Seeder;
 
-class BlogTableSeeder extends Seeder
+class PagesTableSeeder extends Seeder
 {
 
     protected $image_names = [
@@ -23,7 +23,7 @@ class BlogTableSeeder extends Seeder
     {
         $this->images = $images;
 
-        $this->model = new Post();
+        $this->model = new Page();
 
         $this->prefix = __DIR__ . '/../images/';
 
@@ -36,43 +36,58 @@ class BlogTableSeeder extends Seeder
         {
             $account = Account::find($accountid);
 
-            $tags = Modules\Tags\Tag::all();
-            $tags = $tags->lists('id')->toArray();
-            $tags = array_unique($tags);
             //flip array since array_rand returns the keys from an array
-            $tags = array_flip($tags);
 
-            for ($i = 0; $i < 15; $i++) {
+            for ($i = 0; $i < 3; $i++) {
 
-                $post = new Post($this->texts($accountid));
+                $page = new Page($this->texts($accountid));
 
-                $post->user_id = 1;
-                $post->account_id = $account->id;
-                $post->save();
+                $page->user_id = 1;
+                $page->account_id = $account->id;
+                $page->save();
 
                 $counter = 0;
-
-                if ($counter < 5) {
-                    $count = 2;
-                } else {
-                    $count = 1;
-                }
+                $count = 2;
 
                 while ($counter < $count) {
-                    $this->newImage($post, $account);
+                    $this->newImage($page, $account);
                     $counter++;
                 }
 
-                $useTags = array_rand($tags, rand(1, 3));
-                $useTags = (array)$useTags;
-                $post->tags()->sync($useTags);
+                $this->subPages($page);
 
-                echo 'post number ' . $i . PHP_EOL;
+                echo 'page number ' . $i . PHP_EOL;
             }
         }
     }
 
-    protected function texts($run)
+    protected function subPages($page)
+    {
+        for ($i = 0; $i < 3; $i++) {
+
+            //let's just make a clone of the page and give it another title
+            $subpage = clone($page);
+
+            $subpage->fill([
+                'nl' => ['title' => $this->nl->sentence()],
+                'en' => ['title' => $this->en->sentence()],
+                'fr' => ['title' => $this->fr->sentence()],
+                'de' => ['title' => $this->de->sentence()],
+            ]);
+
+            $data = $subpage->toArray();
+            unset($data['id']);
+
+            $subpage = new Page($data);
+            $subpage->user_id = $page->user_id;
+            $subpage->parent_id = $page->id;
+
+            $subpage->save();
+        }
+
+    }
+
+    protected function texts()
     {
         return [
             'nl'      => [
@@ -80,28 +95,28 @@ class BlogTableSeeder extends Seeder
                 'content'    => $this->nl->realText(500),
                 'created_at' => $this->nl->dateTimeBetween('-3 months', 'now'),
                 'updated_at' => $this->nl->dateTimeBetween('-2 months', 'now'),
-                'publish_at' => rand(0,1)  ? $this->nl->dateTimeBetween('-1 months', '+3 months') : null,
+                'published' => rand(0,1),
             ],
             'fr'      => [
                 'title'      => $this->fr->sentence(),
                 'content'    => $this->fr->realText(500),
                 'created_at' => $this->nl->dateTimeBetween('-3 months', 'now'),
                 'updated_at' => $this->nl->dateTimeBetween('-2 months', 'now'),
-                'publish_at' => rand(0,1)  ? $this->nl->dateTimeBetween('-1 months', '+3 months') : null,
+                'published' => rand(0,1),
             ],
             'en'      => [
                 'title'      => $this->en->sentence(),
                 'content'    => $this->en->realText(500),
                 'created_at' => $this->nl->dateTimeBetween('-3 months', 'now'),
                 'updated_at' => $this->nl->dateTimeBetween('-2 months', 'now'),
-                'publish_at' => rand(0,1)  ? $this->nl->dateTimeBetween('-1 months', '+3 months') : null,
+                'published' => rand(0,1),
             ],
             'de'      => [
                 'title'      => $this->de->sentence(),
                 'content'    => $this->de->realText(500),
                 'created_at' => $this->nl->dateTimeBetween('-3 months', 'now'),
                 'updated_at' => $this->nl->dateTimeBetween('-2 months', 'now'),
-                'publish_at' => rand(0,1)  ? $this->nl->dateTimeBetween('-1 months', '+3 months') : null,
+                'published' => rand(0,1),
             ]
         ];
     }

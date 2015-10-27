@@ -35,7 +35,7 @@ class PostRepository implements PostRepositoryInterface
             ->with($this->relations())
             ->limit($limit)
             ->latest()
-            ->get(['posts.*']);
+            ->get();
     }
 
     public function relations()

@@ -1,6 +1,6 @@
 <?php
 
-if(!defined('theme_asset'))
+if(!function_exists('theme_asset'))
 {
     function theme_asset($asset)
     {
