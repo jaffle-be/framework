@@ -86,30 +86,30 @@ return [
         ],
 
         'providers'       => [
-            App\System\Seo\Providers\Generic::class,
-            App\System\Seo\Providers\Google::class,
-            App\System\Seo\Providers\Twitter::class,
-            App\System\Seo\Providers\Facebook::class,
+            Modules\System\Seo\Providers\Generic::class,
+            Modules\System\Seo\Providers\Google::class,
+            Modules\System\Seo\Providers\Twitter::class,
+            Modules\System\Seo\Providers\Facebook::class,
         ],
 
         //these hold values per provider, that should have defaults per website
         //but should not be included in every request, mostly depending on the 'type'
         //that's been defined, we'll include a subset of attributes specific to that type only.
-        'defaults' => [
-            'twitter' => [
+        'defaults'        => [
+            'twitter'  => [
 
             ],
             'facebook' => [
                 'article' => [
                     //link to facebook profile or facebook id
-                    'author' => 'https://www.facebook.com/thomas.warlop',
+                    'author'    => null,
                     //link to facebook profile or facebook id
-                    'publisher' => 'https://www.facebook.com/thomas.warlop',
+                    'publisher' => null,
                 ]
             ],
-            'google'=> [
+            'google'   => [
                 'article' => [
-                    'author' => 'https://www.facebook.com/thomas.warlop',
+                    'author'    => 'https://www.facebook.com/thomas.warlop',
                     'publisher' => 'https://www.facebook.com/thomas.warlop',
                 ]
             ]
@@ -133,13 +133,13 @@ return [
             'title'       => 'Digiredo', // set false to total remove
             'description' => 'A multipurpose platform', // set false to total remove
             'url'         => false,
-            'site_name'   => 'Digiredo',
+            'site_name'   => 'digiredo.be',
             'images'      => [],
         ],
 
         'google'          => [
             'type'        => 'website',
-            'site_name'   => 'Digiredo',
+            'site_name'   => 'digiredo.be',
             'title'       => 'Digiredo', // set false to total remove
             'description' => 'A multipurpose platform', // set false to total remove
             'url'         => false,
@@ -147,9 +147,9 @@ return [
         ],
 
         'owners'          => [
-            'pages'     => App\Pages\Page::class,
-            'blog'      => App\Blog\Post::class,
-            'portfolio' => App\Portfolio\Project::class,
+            'pages'     => Modules\Pages\Page::class,
+            'blog'      => Modules\Blog\Post::class,
+            'portfolio' => Modules\Portfolio\Project::class,
         ]
 
     ],

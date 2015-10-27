@@ -16,17 +16,16 @@ class Kernel extends HttpKernel
         'Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse',
         'Illuminate\Session\Middleware\StartSession',
         'Illuminate\View\Middleware\ShareErrorsFromSession',
-        'App\Http\Middleware\VerifyCsrfToken',
-
-        'App\Http\Middleware\HttpsProtocol',
         'Fideloper\Proxy\TrustProxies',
 
         //here we set the account for the current request.
         //we do not check validity of the account here,
         //since we want to be able to redirect the user to
         //a special section to reactivate their account.
-        'App\Account\Http\Middleware\AccountMiddleware',
-        'App\System\Http\Middleware\LocaleMiddleware',
+        'Modules\System\Http\Middleware\VerifyCsrfToken',
+        'Modules\System\Http\Middleware\HttpsProtocol',
+        'Modules\Account\Http\Middleware\AccountMiddleware',
+        'Modules\System\Http\Middleware\LocaleMiddleware',
     ];
 
     /**

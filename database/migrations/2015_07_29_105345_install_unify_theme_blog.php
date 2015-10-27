@@ -1,6 +1,6 @@
 <?php
 
-use App\Theme\ThemeSettingMigration;
+use Modules\Theme\ThemeSettingMigration;
 
 class InstallUnifyThemeBlog extends ThemeSettingMigration
 {
@@ -166,6 +166,7 @@ class InstallUnifyThemeBlog extends ThemeSettingMigration
             ['value' => 'full-width/large-overview'],
             ['value' => 'full-width/large-overview-simple'],
             ['value' => 'full-width/medium-overview'],
+            ['value' => 'full-width/medium-overview-simple'],
 
             ['value' => 'sidebar-left/large-overview'],
             ['value' => 'sidebar-left/large-overview-simple'],
