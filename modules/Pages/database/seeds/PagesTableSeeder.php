@@ -40,7 +40,7 @@ class PagesTableSeeder extends Seeder
 
             for ($i = 0; $i < 3; $i++) {
 
-                $page = new Page($this->texts($accountid));
+                $page = new Page($this->texts());
 
                 $page->user_id = 1;
                 $page->account_id = $account->id;
@@ -54,33 +54,22 @@ class PagesTableSeeder extends Seeder
                     $counter++;
                 }
 
-                $this->subPages($page);
+                $this->subPages($page, $accountid);
 
                 echo 'page number ' . $i . PHP_EOL;
             }
         }
     }
 
-    protected function subPages($page)
+    protected function subPages($page, $accountid)
     {
         for ($i = 0; $i < 3; $i++) {
 
             //let's just make a clone of the page and give it another title
-            $subpage = clone($page);
-
-            $subpage->fill([
-                'nl' => ['title' => $this->nl->sentence()],
-                'en' => ['title' => $this->en->sentence()],
-                'fr' => ['title' => $this->fr->sentence()],
-                'de' => ['title' => $this->de->sentence()],
-            ]);
-
-            $data = $subpage->toArray();
-            unset($data['id']);
-
-            $subpage = new Page($data);
+            $subpage = new Page($this->texts());
             $subpage->user_id = $page->user_id;
             $subpage->parent_id = $page->id;
+            $subpage->account_id = $accountid;
 
             $subpage->save();
         }
