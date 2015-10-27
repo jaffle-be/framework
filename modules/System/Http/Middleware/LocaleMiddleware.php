@@ -1,6 +1,10 @@
 <?php namespace Modules\System\Http\Middleware;
 
 use Closure;
+use Illuminate\Cookie\CookieJar;
+use Illuminate\Http\Request;
+use Illuminate\Routing\Route;
+use Illuminate\Routing\Router;
 use Illuminate\Session\Store;
 
 class LocaleMiddleware
@@ -39,6 +43,14 @@ class LocaleMiddleware
                 }
 
                 app()->setLocale($locale);
+
+                /** @var CookieJar $cookies */
+
+                if(!$request->hasCookie('locale') && $request->getRequestUri() != '/')
+                {
+                    $cookies = app('cookie');
+                    cookie()->queue(cookie()->forever('locale', $locale));
+                }
             }
         } elseif ($this->session->has('locale')) {
             app()->setLocale($this->session->get('locale'));

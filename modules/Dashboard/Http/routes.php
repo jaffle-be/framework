@@ -8,6 +8,16 @@ Route::group([
     'as' => 'store.',
 ], function () {
 
+    /**
+     * this is a special case:
+     *
+     * when installing as a multi locale application
+     * we want our root page to be a locale selector page.
+     *
+     * if not, it should be the home page itself. therefor, we have one extra route
+     * when installing as a multi locale app.
+     */
+
     if(env('APP_MULTIPLE_LOCALES'))
     {
         foreach (config('system.locales') as $locale) {
@@ -16,6 +26,8 @@ Route::group([
                 'as'   => "$locale.home"
             ]);
         }
+
+        Route::get('/', ['uses' => 'WelcomeController@landing', 'as' => 'landing']);
     }
     else{
         Route::get('/', [
