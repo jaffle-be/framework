@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "091bdf76fb0ae070ce9d85f6bd9e2a67",
-    "content-hash": "45dc6635d909e7255fb0936211728abb",
+    "hash": "3254c6167f39e06b895f3263cc0736f7",
+    "content-hash": "299995da6d2f4cfcffe880fba65b51a2",
     "packages": [
         {
             "name": "alaouy/youtube",
@@ -229,12 +229,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/cviebrock/eloquent-sluggable.git",
-                "reference": "1192fc168df55452a5546e918c1d1c0657df99eb"
+                "reference": "666928685989e04cf1ab28d049984f457e80cd76"
             },
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/cviebrock/eloquent-sluggable/zipball/666928685989e04cf1ab28d049984f457e80cd76",
-                "reference": "1192fc168df55452a5546e918c1d1c0657df99eb",
+                "reference": "666928685989e04cf1ab28d049984f457e80cd76",
                 "shasum": ""
             },
             "require": {
@@ -271,7 +271,7 @@
                 "laravel",
                 "slug"
             ],
-            "time": "2015-10-14 16:15:32"
+            "time": "2015-10-26 16:58:25"
         },
         {
             "name": "danielstjules/stringy",
@@ -3695,61 +3695,6 @@
             "time": "2015-09-22 14:41:01"
         },
         {
-            "name": "teepluss/theme",
-            "version": "2.0.5",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/teepluss/laravel-theme.git",
-                "reference": "894cea9ffcd237d0f6553ccd84aac82b07fb92a4"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/teepluss/laravel-theme/zipball/894cea9ffcd237d0f6553ccd84aac82b07fb92a4",
-                "reference": "894cea9ffcd237d0f6553ccd84aac82b07fb92a4",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.4.0",
-                "twig/twig": "1.x"
-            },
-            "require-dev": {
-                "illuminate/support": ">=5.0.1"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Teepluss\\Theme\\": "src/"
-                },
-                "classmap": [
-                    "src/Exceptions.php"
-                ],
-                "files": [
-                    "src/helpers.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Teepluss",
-                    "email": "admin@laravel.in.th"
-                }
-            ],
-            "description": "Theme will help you organize your themes inside Laravel projects easily and maintain its related assets, layouts and partials for the theme in single directory.",
-            "homepage": "https://github.com/teepluss/laravel-theme",
-            "keywords": [
-                "asset",
-                "laravel",
-                "layout",
-                "theme",
-                "twig",
-                "widget"
-            ],
-            "time": "2015-06-10 09:14:20"
-        },
-        {
             "name": "themattharris/tmhoauth",
             "version": "0.8.4",
             "source": {
@@ -3944,67 +3889,6 @@
                 "twitter"
             ],
             "time": "2015-03-23 12:29:01"
-        },
-        {
-            "name": "twig/twig",
-            "version": "v1.22.3",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/twigphp/Twig.git",
-                "reference": "ebfc36b7e77b0c1175afe30459cf943010245540"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/ebfc36b7e77b0c1175afe30459cf943010245540",
-                "reference": "ebfc36b7e77b0c1175afe30459cf943010245540",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.2.7"
-            },
-            "require-dev": {
-                "symfony/debug": "~2.7",
-                "symfony/phpunit-bridge": "~2.7"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.22-dev"
-                }
-            },
-            "autoload": {
-                "psr-0": {
-                    "Twig_": "lib/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-3-Clause"
-            ],
-            "authors": [
-                {
-                    "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com",
-                    "homepage": "http://fabien.potencier.org",
-                    "role": "Lead Developer"
-                },
-                {
-                    "name": "Armin Ronacher",
-                    "email": "armin.ronacher@active-4.com",
-                    "role": "Project Founder"
-                },
-                {
-                    "name": "Twig Team",
-                    "homepage": "http://twig.sensiolabs.org/contributors",
-                    "role": "Contributors"
-                }
-            ],
-            "description": "Twig, the flexible, fast, and secure template language for PHP",
-            "homepage": "http://twig.sensiolabs.org",
-            "keywords": [
-                "templating"
-            ],
-            "time": "2015-10-13 07:07:02"
         },
         {
             "name": "vimeo/vimeo-api",

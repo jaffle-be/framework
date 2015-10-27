@@ -3,6 +3,7 @@ namespace Modules\System;
 
 use Exception;
 use Faker\Factory as Faker;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Seeder as BaseSeeder;
 use Illuminate\Foundation\Bus\DispatchesCommands;
 use Modules\Media\Commands\StoreNewImage;
@@ -41,6 +42,7 @@ abstract class Seeder extends BaseSeeder
             $this->de = Faker::create('de_DE');
             $this->faker = $this->en;
         }
+//        Model::unguard();
         \DB::disableQueryLog();
     }
 

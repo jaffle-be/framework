@@ -36,8 +36,6 @@ class BlogTableSeeder extends Seeder
         {
             $account = Account::find($accountid);
 
-            $this->preImageCaching();
-
             $tags = Modules\Tags\Tag::all();
             $tags = $tags->lists('id')->toArray();
             $tags = array_unique($tags);
