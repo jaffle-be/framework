@@ -71,7 +71,7 @@ class StoreNewImage extends Job implements SelfHandling
      * @param null        $rename
      * @param array       $sizes
      */
-    public function __construct(Account $account, StoresMedia $owner, $path, $rename = null)
+    public function __construct(Account $account = null, StoresMedia $owner, $path, $rename = null)
     {
         $this->account = $account;
         $this->owner = $owner;
@@ -160,7 +160,7 @@ class StoreNewImage extends Job implements SelfHandling
     protected function getPayload()
     {
         return [
-            'account_id' => $this->account->id,
+            'account_id' => $this->account ? $this->account->id : null,
             'path'       => $this->path,
             'filename'   => $this->rename,
             'extension'  => $this->extension,

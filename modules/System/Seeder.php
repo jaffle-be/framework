@@ -95,7 +95,7 @@ abstract class Seeder extends BaseSeeder
         }
     }
 
-    protected function newImage($owner, $account)
+    protected function newImage($owner, $account = null)
     {
         $this->validateSeederModel();
         $image = rand(0, count($this->image_names) - 1);

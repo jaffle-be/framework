@@ -40,7 +40,7 @@ class AuthenticateAdminArea
                 return response('Unauthorized.', 401);
             } else {
                 //if we're in a store application, we need to redirect to the store.admin.signin
-                return redirect()->guest('auth/signin');
+                return redirect()->guest(store_route('store.auth.signin.index'));
             }
         }
 

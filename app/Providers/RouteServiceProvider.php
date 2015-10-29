@@ -47,8 +47,12 @@ class RouteServiceProvider extends ServiceProvider
         $router->model('tags', 'Modules\Tags\Tag');
         $router->model('uri', 'Modules\System\Uri\Uri');
         $router->model('suburi', 'Modules\System\Uri\Uri');
-        $router->model('subesturi', 'Modules\System\Uri\Uri');
-        $this->pathsToPublish('');
+        $router->model('product', 'Modules\Shop\Product\ProductTranslation');
+        $router->model('products', 'Modules\Shop\Product\Product');
+        $router->model('category', 'Modules\Shop\Product\CategoryTranslation');
+        $router->model('brand', 'Modules\Shop\Product\BrandTranslation');
+
+//        $this->pathsToPublish('');
     }
 
     /**

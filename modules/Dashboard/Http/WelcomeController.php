@@ -26,7 +26,7 @@ class WelcomeController extends FrontController
     {
         if($request->hasCookie('locale'))
         {
-            return redirect()->to(store_route('store.home', [], $request->cookie('locale')));
+            return redirect()->to(store_route('store.home', [], [], $request->cookie('locale')));
         }
 
         if($manager->account()->locales->count() == 1)

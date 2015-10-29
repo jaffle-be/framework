@@ -45,10 +45,23 @@
                     <span class="nav-label">@{{ 'BLOG' | translate }}</span></a>
             </li>
 
-            {{--<li ui-sref-active="active">--}}
-                {{--<a ui-sref="admin.products"><i class="fa fa-newspaper-o"></i>--}}
-                    {{--<span class="nav-label">@{{ 'SHOP' | translate }}</span></a>--}}
-            {{--</li>--}}
+            <li ng-class="{active: $state.includes('admin.shop')}">
+                <a href=""><i class="class fa fa-gear"></i> <span class="nav-label">@{{ 'SHOP' | translate }}</span></a>
+                <ul class="nav nav-second-level" ng-class="{in: $state.includes('admin.shop')}">
+                    <li ui-sref-active="active">
+                        <a ui-sref="admin.shop.categories"><i class="fa fa-shopping-cart"></i>
+                            <span class="nav-label">@{{ 'CATEGORIES' | translate }}</span></a>
+                    </li>
+                    <li ui-sref-active="active">
+                        <a ui-sref="admin.shop.brands"><i class="fa fa-shopping-cart"></i>
+                            <span class="nav-label">@{{ 'BRANDS' | translate }}</span></a>
+                    </li>
+                    <li ui-sref-active="active">
+                        <a ui-sref="admin.shop.products"><i class="fa fa-shopping-cart"></i>
+                            <span class="nav-label">@{{ 'PRODUCTS' | translate }}</span></a>
+                    </li>
+                </ul>
+            </li>
 
             {{--<li ng-class="{active: $state.includes('admin.marketing')}">--}}
                 {{--<a ui-sref="admin.marketing.overview"><i class="fa fa-money"></i>--}}
@@ -64,7 +77,7 @@
                 <a href=""><i class="class fa fa-gear"></i> <span class="nav-label">@{{ 'ACCOUNT' | translate }}</span></a>
                 <ul class="nav nav-second-level" ng-class="{in: $state.includes('admin.account')}">
                     <li ui-sref-active="active">
-                        <a ui-sref="admin.account.contact"><i class="class fa fa-map-marker"></i>
+                        <a ui-sref="admin.account.contact"><i class="fa fa-map-marker"></i>
                             <span class="nav-label">@{{ 'CONTACT' | translate }}</span></a>
                     </li>
                     <li ui-sref-active="active">

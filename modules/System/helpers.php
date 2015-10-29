@@ -75,7 +75,7 @@ if (!function_exists('system_modules')) {
 }
 
 if (!function_exists('store_route')) {
-    function store_route($name, array $arguments = [], $force = null)
+    function store_route($name, array $arguments = [], $parameters = [], $force = null)
     {
         if (env('APP_MULTIPLE_LOCALES')) {
             $locale = app()->getLocale();
@@ -89,7 +89,7 @@ if (!function_exists('store_route')) {
             $name = str_replace('.' . app()->getLocale() . '.', '.' . $force . '.', $name);
         }
 
-        return route($name, $arguments);
+        return route($name, array_merge($arguments, $parameters));
     }
 }
 

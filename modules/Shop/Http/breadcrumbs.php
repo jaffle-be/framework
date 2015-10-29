@@ -1,5 +1,7 @@
 <?php
 
+use Modules\Shop\Product\ProductTranslation;
+
 if(env('APP_MULTIPLE_LOCALES'))
 {
     foreach(config('system.locales') as $locale)
@@ -23,15 +25,21 @@ if(env('APP_MULTIPLE_LOCALES'))
             $breadcrumbs->push(Lang::get('shop::front.login'), store_route('store.shop.login'));
         });
 
-        Breadcrumbs::register("store.$locale.shop.show", function($breadcrumbs) use ($locale)
+        Breadcrumbs::register("store.$locale.shop.category", function($breadcrumbs, $category, $brand = null) use ($locale)
         {
+            if($category instanceof ProductTranslation)
+            {
+                $category = $category->product->categories->first()->translate();
+            }
+
             $breadcrumbs->parent("store.$locale.shop.index");
-            $breadcrumbs->push(Lang::get('shop::front.show'), store_route('store.shop.show'));
+            $breadcrumbs->push(Lang::get('shop::front.show'), store_route('store.shop.category', [$category, $brand]));
         });
 
         Breadcrumbs::register("store.$locale.shop.product", function($breadcrumbs, $product) use ($locale)
         {
-            $breadcrumbs->parent("store.$locale.shop.show");
+            //this still needs to change to the category page itself.
+            $breadcrumbs->parent("store.$locale.shop.category", $product);
             $breadcrumbs->push(Lang::get('shop::front.product'), store_route('store.shop.product', [$product]));
         });
 

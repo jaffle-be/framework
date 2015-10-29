@@ -1,12 +1,163 @@
 <?php namespace Modules\Shop\Http\Admin;
 
+use Illuminate\Contracts\Auth\Guard;
+use Illuminate\Http\Request;
+use Modules\Account\AccountManager;
+use Modules\Shop\Jobs\UpdateProduct;
+use Modules\Shop\Product\Product;
 use Modules\System\Http\AdminController;
 
 class ProductController extends AdminController{
 
-    public function index()
+    public function index(Request $request)
     {
-        return view('shop::admin.product.index');
+        $query = Product::with(['translations', 'images', 'images.sizes' => function ($query) {
+            $query->dimension(150);
+        }, 'images.translations']);
+
+        $value = $request->get('query');
+        $locale = $request->get('locale');
+
+        if (!empty($value)) {
+            $query->whereHas('translations', function ($q) use ($value, $locale) {
+                $q->where('locale', $locale);
+                $q->where(function ($q) use ($value) {
+                    $q->where('name', 'like', '%' . $value . '%')
+                        ->orWhere('content', 'like', '%' . $value . '%');
+                });
+            });
+        }
+
+        return $query->paginate();
+    }
+
+    public function store(Request $request, Product $product, Guard $guard, AccountManager $accounts)
+    {
+        $input = translation_input($request);
+
+        $product = $product->newInstance($input);
+
+        $product->account_id = $accounts->account()->id;
+
+        $product->user()->associate($guard->user());
+
+        if ($product->save()) {
+            return $product;
+        }
+
+        return json_encode(array(
+            'status' => 'noke'
+        ));
+    }
+
+    public function show(Product $product)
+    {
+        $product->load($this->relations());
+
+        return $product;
+    }
+
+    public function update(Product $product, Request $request)
+    {
+        $product->load($this->relations());
+
+        $payload = [
+            'product'  => $product,
+            'input' => translation_input($request, ['name', 'title', 'content', 'published'])
+        ];
+
+        if (!$this->dispatchFromArray(UpdateProduct::class, $payload)) {
+            return response('500', 'something bad happened');
+        }
+
+        return $product;
+    }
+
+    public function destroy(Product $product)
+    {
+        if($product->delete())
+        {
+            $product->id = false;
+        }
+
+        return $product;
+    }
+
+    public function batchDestroy(Request $request, Product $product)
+    {
+        $ids = $request->get('products', []);
+
+        if(is_array($ids) && count($ids))
+        {
+            $products = $product->whereIn('products.id', $ids)
+                ->get();
+
+            foreach($products as $product)
+            {
+                $product->delete();
+            }
+        }
+    }
+
+    public function batchPublish(Request $request, Product $product)
+    {
+        $ids = $request->get('products', []);
+
+        if(is_array($ids) && count($ids))
+        {
+            $products = $product->whereIn('products.id', $ids)
+                ->get();
+
+            foreach($products as $product)
+            {
+                $translation = $product->translate($request->get('locale'));
+
+                if($translation)
+                {
+                    $translation->published = true;
+                }
+
+                $translation->save();
+            }
+        }
+    }
+
+    public function batchUnpublish(Request $request, Product $product)
+    {
+        $ids = $request->get('products', []);
+
+        if(is_array($ids) && count($ids))
+        {
+            $products = $product->whereIn('products.id', $ids)
+                ->get();
+
+            foreach($products as $product)
+            {
+                $translation = $product->translate($request->get('locale'));
+
+                if($translation)
+                {
+                    $translation->published = false;
+                }
+
+                $translation->save();
+            }
+        }
+    }
+
+    public function overview()
+    {
+        return view('shop::admin.product.overview');
+    }
+
+    public function detail()
+    {
+        return view('shop::admin.product.detail');
+    }
+
+    protected function relations()
+    {
+        return ['translations', 'translations'];
     }
 
 }

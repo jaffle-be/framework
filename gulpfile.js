@@ -33,7 +33,7 @@ gulp.task('watch', ['watch-scripts', 'watch-less']);
 
 gulp.task('watch-less', function()
 {
-    watch(['app/System/resources/assets/less/admin/**.less'], function()
+    watch(['modules/System/resources/assets/less/admin/**.less'], function()
     {
         gulp.start('less');
     });
@@ -41,7 +41,7 @@ gulp.task('watch-less', function()
 
 gulp.task('less', function()
 {
-    gulp.src(['app/System/resources/assets/less/admin/main.less'])
+    gulp.src(['modules/System/resources/assets/less/admin/main.less'])
         .pipe(plumber())
         .pipe(less())
         .pipe(gulp.dest('public/css/admin'))
@@ -54,7 +54,7 @@ gulp.task('less', function()
 
 gulp.task('watch-scripts', function()
 {
-    watch(['app/*/resources/assets/js/admin/*/*.js', 'app/*/resources/assets/js/admin/models.js', 'app/*/resources/assets/js/admin/config.js', 'app/*/resources/assets/js/admin/translations.js'], function(){
+    watch(['modules/*/resources/assets/js/admin/*/*.js', 'modules/*/resources/assets/js/admin/models.js', 'modules/*/resources/assets/js/admin/config.js', 'modules/*/resources/assets/js/admin/translations.js'], function(){
         gulp.start('scripts');
     });
 });
@@ -74,7 +74,7 @@ gulp.task('scripts', function () {
     {
         var file = fileComponents[i];
 
-        gulp.src('app/*/resources/assets/js/admin/' + file + '.js')
+        gulp.src('modules/*/resources/assets/js/admin/' + file + '.js')
             .pipe(concat(file + '.js'))
             .pipe(gulp.dest('public/js/admin'))
             .pipe(rename(function (file) {
@@ -89,7 +89,7 @@ gulp.task('scripts', function () {
     {
         var folder = folderComponents[i];
 
-        gulp.src('app/*/resources/assets/js/admin/' + folder + '/*.js')
+        gulp.src('modules/*/resources/assets/js/admin/' + folder + '/*.js')
             .pipe(concat(folder + '.js'))
             .pipe(gulp.dest('public/js/admin'))
             .pipe(rename(function (file) {
@@ -98,7 +98,7 @@ gulp.task('scripts', function () {
             .pipe(gulp.dest('public/js/admin'));
     }
 
-    gulp.src('app/System/resources/assets/js/admin/app.js')
+    gulp.src('modules/System/resources/assets/js/admin/app.js')
         .pipe(plumber())
         .pipe(gulp.dest('public/js/admin'))
         .pipe(rename(function (path) {
@@ -115,7 +115,7 @@ gulp.task('scripts', function () {
         'bower_components/dropzone/dist/min/dropzone.min.js',
         'bower_components/lodash/lodash.min.js',
         'bower_components/autosize/dist/autosize.min.js',
-        'app/system/resources/assets/js/admin/core.js',
+        'modules/system/resources/assets/js/admin/core.js',
     ])
         .pipe(maps.init())
         .pipe(concat('core.js'))

@@ -28,6 +28,7 @@
         'theme-active',                 //the active theme should use this scope to load
         'pages',
         'module',
+        'shop'
     ])
 })();
 // Other libraries are loaded dynamically in the config.js file using the library ocLazyLoad
