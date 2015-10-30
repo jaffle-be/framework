@@ -10,11 +10,19 @@ Route::group([
         'namespace' => 'Admin',
     ], function () {
         Route::group(['prefix' => 'templates/admin'], function () {
+            Route::get('categories/overview', 'GammaController@templateCategories');
+            Route::get('brands/overview', 'GammaController@templateBrands');
             Route::get('products/overview', 'ProductController@overview');
             Route::get('products/detail', 'ProductController@detail');
         });
 
         Route::group(['prefix' => 'api/admin'], function () {
+
+            Route::get('categories', 'GammaController@categories');
+            Route::get('brands', 'GammaController@brands');
+            Route::post('categories', 'GammaController@category');
+            Route::post('brands', 'GammaController@brand');
+
             Route::resource('products', 'ProductController');
             Route::post('products/batch-delete', 'ProductController@batchDestroy');
             Route::post('products/batch-publish', 'ProductController@batchPublish');

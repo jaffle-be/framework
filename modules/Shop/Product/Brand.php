@@ -18,4 +18,24 @@ class Brand extends Model{
         return $this->hasMany('Modules\Shop\Product\Product');
     }
 
+    public function selection()
+    {
+        //this is meant to be used in an account context.
+        return $this->hasOne('Modules\Shop\Gamma\BrandSelection');
+    }
+
+    public function toArray()
+    {
+        $data = parent::toArray();
+
+        if(isset($data['selection']))
+        {
+            $data['activated'] = (bool) $data['selection'];
+
+            unset($data['selection']);
+        }
+
+        return $data;
+    }
+
 }

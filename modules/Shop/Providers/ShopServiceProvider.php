@@ -14,7 +14,7 @@ class ShopServiceProvider extends ServiceProvider
      */
     public function register()
     {
-
+        $this->app->bind('Modules\Shop\Gamma\GammaRepositoryInterface', 'Modules\Shop\Gamma\GammaRepository');
     }
 
     protected function listeners()

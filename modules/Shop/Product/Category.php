@@ -14,4 +14,9 @@ class Category extends Model
 
     protected $translatedAttributes = ['name'];
 
+    public function selection()
+    {
+        return $this->hasOne('Modules\Shop\Gamma\CategorySelection');
+    }
+
 }

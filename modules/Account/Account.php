@@ -46,6 +46,16 @@ class Account extends Model
         return $this->ownership->member;
     }
 
+    public function brandSelection()
+    {
+        return $this->hasMany('Modules\Shop\Gamma\BrandSelection');
+    }
+
+    public function categorySelection()
+    {
+        return $this->hasMany('Modules\Shop\Gamma\CategorySelection');
+    }
+
     public function ownership()
     {
         $relation = $this->hasOne('Modules\Account\Membership');
