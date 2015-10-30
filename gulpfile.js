@@ -54,7 +54,7 @@ gulp.task('less', function()
 
 gulp.task('watch-scripts', function()
 {
-    watch(['modules/*/resources/assets/js/admin/*/*.js', 'modules/*/resources/assets/js/admin/models.js', 'modules/*/resources/assets/js/admin/config.js', 'modules/*/resources/assets/js/admin/translations.js'], function(){
+    watch(['modules/*/resources/assets/js/admin/**/**/*.js', 'modules/*/resources/assets/js/admin/models.js', 'modules/*/resources/assets/js/admin/config.js', 'modules/*/resources/assets/js/admin/translations.js'], function(){
         gulp.start('scripts');
     });
 });
@@ -89,7 +89,7 @@ gulp.task('scripts', function () {
     {
         var folder = folderComponents[i];
 
-        gulp.src('modules/*/resources/assets/js/admin/' + folder + '/*.js')
+        gulp.src('modules/*/resources/assets/js/admin/' + folder + '/**/*.js')
             .pipe(concat(folder + '.js'))
             .pipe(gulp.dest('public/js/admin'))
             .pipe(rename(function (file) {
