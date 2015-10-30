@@ -37,7 +37,7 @@ class AuthenticateAdminArea
     {
         if ($this->auth->guest()) {
             if ($request->ajax()) {
-                return response('Unauthorized.', 401);
+                return response(store_route('store.auth.signin.index'), 401);
             } else {
                 //if we're in a store application, we need to redirect to the store.admin.signin
                 return redirect()->guest(store_route('store.auth.signin.index'));
