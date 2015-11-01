@@ -3,6 +3,7 @@
 use App\Jobs\Job;
 use Illuminate\Contracts\Bus\SelfHandling;
 use Modules\Account\Account;
+use Modules\Shop\Gamma\CategorySelection;
 use Modules\Shop\Gamma\ProductSelection;
 use Modules\Shop\Product\Category;
 
@@ -21,20 +22,15 @@ class DeactivateCategory extends Job implements SelfHandling
 
     public function __construct(Category $category, Account $account)
     {
-
         $this->category = $category;
         $this->account = $account;
     }
 
-    public function handle(ProductSelection $products)
+    public function handle()
     {
-        $this->category->selection->delete();
-
-        $selections = $products->where('category_id', $this->category->id)->get();
-
-        foreach($selections as $selection)
+        if($this->category->selection)
         {
-            $selection->delete();
+            $this->category->selection->delete();
         }
     }
 }

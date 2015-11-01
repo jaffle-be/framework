@@ -1,42 +1,55 @@
 <?php namespace Modules\Shop\Gamma;
 
+use Illuminate\Database\Eloquent\Collection;
 use Modules\Shop\Product\Brand;
+use Modules\Shop\Product\CatalogRepositoryInterface;
 use Modules\Shop\Product\Category;
-use Modules\Shop\Product\Product;
 
 class GammaRepository implements GammaRepositoryInterface
 {
-    protected $product;
+    protected $brands;
+    protected $categories;
+    protected $catalog;
 
-    protected $category;
-
-    protected $brand;
-
-    public function __construct(Product $product, Category $category, Brand $brand)
+    public function __construct(BrandSelection $brands, CategorySelection $categories, CatalogRepositoryInterface $catalog)
     {
-        $this->product = $product;
-        $this->category = $category;
-        $this->brand = $brand;
+        $this->brands = $brands;
+        $this->categories = $categories;
+        $this->catalog = $catalog;
     }
 
     public function categoriesForBrand(Brand $brand)
     {
-        $ids = $this->product->join('product_categories_pivot', 'products.id', '=', 'product_categories_pivot.product_id')
-            ->where('brand_id', $brand->id)
-            ->distinct(['category_id'])
-            ->lists('category_id');
+        $categories = $brand->categories;
 
-        return $this->category->whereIn('id', $ids)->get();
+        $ids = $categories->lists('id')->toArray();
+
+        if(empty($ids))
+        {
+            return new Collection();
+        }
+
+        //keep only categories selected by the account
+        $ids = $this->categories->whereIn('category_id', $ids)->lists('category_id')->toArray();
+
+        return $this->catalog->findCategories($ids);
     }
 
     public function brandsForCategory(Category $category)
     {
-        $ids = $this->product->join('product_categories_pivot', 'products.id', '=', 'product_categories_pivot.product_id')
-            ->distinct(['brand_id'])
-            ->where('category_id', $category->id)
-            ->lists('brand_id');
+        $brands = $category->brands;
 
-        return $this->brand->whereIn('id', $ids)->get();
+        $ids = $brands->lists('id')->toArray();
+
+        if(empty($ids))
+        {
+            return new Collection();
+        }
+
+        //keep only brands selected by the account
+        $ids = $this->brands->whereIn('brand_id', $ids)->lists('brand_id')->toArray();
+
+        return $this->catalog->findBrands($ids);
     }
 
 }

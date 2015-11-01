@@ -6,6 +6,10 @@ angular.module('shop', [])
                 url: "/shop",
                 template: '<ui-view/>'
             })
+            .state('admin.shop.notifications', {
+                url: "/notifications",
+                templateUrl: "templates/admin/notifications"
+            })
             .state('admin.shop.categories', {
                 url: "/categories",
                 templateUrl: "templates/admin/categories/overview"

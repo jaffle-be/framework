@@ -35,9 +35,6 @@ class ActivateBrand extends Job implements SelfHandling
 
         //create the selections
         $this->brand->selection()->save($instance);
-
-        //create the notifications
-        $this->dispatch(new NotifyBrandActivation($this->account, $this->brand));
     }
 
 }

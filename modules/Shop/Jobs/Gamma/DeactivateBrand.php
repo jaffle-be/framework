@@ -21,23 +21,15 @@ class DeactivateBrand extends Job implements SelfHandling
 
     public function __construct(Brand $brand, Account $account)
     {
-
         $this->brand = $brand;
         $this->account = $account;
     }
 
-    public function handle(BrandSelection $brands)
+    public function handle()
     {
         if($this->brand->selection)
         {
             $this->brand->selection->delete();
-
-            $selections = $brands->where('brand_id', $this->brand->id)->get();
-
-            foreach($selections as $selection)
-            {
-                $selection->delete();
-            }
         }
     }
 }

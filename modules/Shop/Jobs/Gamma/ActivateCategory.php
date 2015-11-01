@@ -34,8 +34,5 @@ class ActivateCategory extends Job implements SelfHandling
 
         //create selection
         $this->category->selection()->save($instance);
-
-        //create the notifications
-        $this->dispatch(new NotifyCategoryActivation($this->account, $this->category));
     }
 }

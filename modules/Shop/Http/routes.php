@@ -10,6 +10,7 @@ Route::group([
         'namespace' => 'Admin',
     ], function () {
         Route::group(['prefix' => 'templates/admin'], function () {
+            Route::get('notifications', 'NotificationController@template');
             Route::get('categories/overview', 'GammaController@templateCategories');
             Route::get('brands/overview', 'GammaController@templateBrands');
             Route::get('products/overview', 'ProductController@overview');
@@ -18,10 +19,18 @@ Route::group([
 
         Route::group(['prefix' => 'api/admin'], function () {
 
+            Route::get('notifications', 'NotificationController@overview');
+            Route::post('notifications/accept', 'NotificationController@accept');
+            Route::post('notifications/review', 'NotificationController@review');
+            Route::post('notifications/deny', 'NotificationController@deny');
+
             Route::get('categories', 'GammaController@categories');
-            Route::get('brands', 'GammaController@brands');
             Route::post('categories', 'GammaController@category');
+
+            Route::get('brands', 'GammaController@brands');
             Route::post('brands', 'GammaController@brand');
+
+            Route::post('gamma/detail', 'GammaController@detail');
 
             Route::resource('products', 'ProductController');
             Route::post('products/batch-delete', 'ProductController@batchDestroy');

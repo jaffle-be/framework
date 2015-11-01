@@ -4,6 +4,7 @@ use Illuminate\Database\Eloquent\Model;
 use InvalidArgumentException;
 use Modules\Media\StoresMedia;
 use Modules\Media\StoringMedia;
+use Modules\System\Eventing\EventedRelations;
 use Modules\System\Presenter\PresentableEntity;
 use Modules\System\Presenter\PresentableTrait;
 use Modules\System\Scopes\FrontScoping;
@@ -15,7 +16,7 @@ use Modules\Tags\Taggable;
 
 class Product extends Model implements StoresMedia, PresentableEntity, SeoEntity
 {
-    use Translatable, StoringMedia, PresentableTrait, FrontScoping, SeoTrait, Taggable;
+    use Translatable, StoringMedia, PresentableTrait, FrontScoping, SeoTrait, Taggable, EventedRelations;
 
     protected $table = 'products';
 
@@ -27,7 +28,7 @@ class Product extends Model implements StoresMedia, PresentableEntity, SeoEntity
 
     public function getMediaFolder($type = null, $size = null)
     {
-        if(!in_array($type, ['files', 'images', 'videos', 'infographics']))
+        if(!empty($type) && !in_array($type, ['files', 'images', 'videos', 'infographics']))
         {
             throw new InvalidArgumentException('need proper media type to return media folder');
         }
@@ -47,7 +48,7 @@ class Product extends Model implements StoresMedia, PresentableEntity, SeoEntity
 
     public function categories()
     {
-        return $this->belongsToMany('Modules\Shop\Product\Category', 'product_categories_pivot');
+        return $this->eventedBelongsToMany('Modules\Shop\Product\Category', 'product_categories_pivot', null, null, 'product_categories');
     }
 
     public function price()

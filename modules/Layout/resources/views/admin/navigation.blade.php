@@ -49,6 +49,10 @@
                 <a href=""><i class="class fa fa-gear"></i> <span class="nav-label">@{{ 'SHOP' | translate }}</span></a>
                 <ul class="nav nav-second-level" ng-class="{in: $state.includes('admin.shop')}">
                     <li ui-sref-active="active">
+                        <a ui-sref="admin.shop.notifications"><i class="fa fa-bell-o"></i>
+                            <span class="nav-label">@{{ 'NOTIFICATIONS' | translate }}</span></a>
+                    </li>
+                    <li ui-sref-active="active">
                         <a ui-sref="admin.shop.categories"><i class="fa fa-shopping-cart"></i>
                             <span class="nav-label">@{{ 'CATEGORIES' | translate }}</span></a>
                     </li>

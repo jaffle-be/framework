@@ -28,6 +28,10 @@ angular.module('shop')
                     category: category,
                     status: status
                 });
+            },
+            detail: function(data, success, error)
+            {
+                $http.post('/api/admin/gamma/detail', data).then(success, error);
             }
         };
 

@@ -7,6 +7,9 @@ class BrandSelection extends Model
 {
     use ModelAccountResource;
 
+    const ACTIVATE = 'activate';
+    const DEACTIVATE = 'deactivate';
+
     protected $table = 'product_gamma_selected_brands';
 
     protected $fillable = ['account_id'];

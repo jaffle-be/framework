@@ -11,6 +11,21 @@ angular.module('shop')
             GammaService.brand(brand.id, brand.activated)
         };
 
+        this.saveDetail = function(brand, category)
+        {
+            GammaService.detail({
+                brand: brand.id,
+                category: category.id,
+                status: category.selected
+            }, function()
+            {
+                category.inReview = !category.inReview;
+            }, function()
+            {
+                category.selected = !category.selected;
+            });
+        };
+
         this.load = function()
         {
             GammaService.brands({
