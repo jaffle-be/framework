@@ -70,6 +70,7 @@ class SystemServiceProvider extends ServiceProvider
         $this->automateUriCleanup();
         $this->automateUriCreation();
         $this->automateContentFormatting();
+        $this->pushableListeners();
     }
 
     protected function validators()
@@ -143,6 +144,15 @@ class SystemServiceProvider extends ServiceProvider
     protected function automateContentFormatting()
     {
         $this->app['events']->listen('eloquent.saving: *', 'Modules\System\Presenter\ShortCodeFormatter');
+    }
+
+    protected function pushableListeners()
+    {
+        $this->app['events']->listen('eloquent.deleted: *', 'Modules\System\Pushable\Manager@deleted');
+        $this->app['events']->listen('eloquent.created: *', 'Modules\System\Pushable\Manager@created');
+        $this->app['events']->listen('eloquent.updated: *', 'Modules\System\Pushable\Manager@updated');
+        $this->app['events']->listen('eloquent.attached: *', 'Modules\System\Pushable\Manager@attached');
+        $this->app['events']->listen('eloquent.detached: *', 'Modules\System\Pushable\Manager@detached');
     }
 
 }
