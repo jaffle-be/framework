@@ -38,8 +38,13 @@ class SystemServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton('seo', function($app)
-        {
+        $this->app->singleton('Pusher', function ($app) {
+            $config = $this->app['config']->get("broadcasting.connections.pusher");
+
+            return new \Pusher($config['key'], $config['secret'], $config['app_id'], array_get($config, 'options', []));
+        });
+
+        $this->app->singleton('seo', function ($app) {
             return new SeoManager($app['config']);
         });
 
@@ -49,13 +54,11 @@ class SystemServiceProvider extends ServiceProvider
             $app['newrelic']->setAppName(env('APP_NAME'));
         });
 
-        $this->app->booted(function($app)
-        {
+        $this->app->booted(function ($app) {
             $app['markdown.environment']->addExtension(new AttributesExtension());
         });
 
-        $this->app->booted(function($app)
-        {
+        $this->app->booted(function ($app) {
             $app->register('Modules\System\Uri\UriServiceProvider');
         });
     }
@@ -112,7 +115,7 @@ class SystemServiceProvider extends ServiceProvider
 
     protected function extendCache()
     {
-        $this->app->extend('cache', function(){
+        $this->app->extend('cache', function () {
             return new CacheManager(app());
         });
     }
@@ -148,11 +151,11 @@ class SystemServiceProvider extends ServiceProvider
 
     protected function pushableListeners()
     {
-        $this->app['events']->listen('eloquent.deleted: *', 'Modules\System\Pushable\Manager@deleted');
-        $this->app['events']->listen('eloquent.created: *', 'Modules\System\Pushable\Manager@created');
-        $this->app['events']->listen('eloquent.updated: *', 'Modules\System\Pushable\Manager@updated');
-        $this->app['events']->listen('eloquent.attached: *', 'Modules\System\Pushable\Manager@attached');
-        $this->app['events']->listen('eloquent.detached: *', 'Modules\System\Pushable\Manager@detached');
+        $this->app['events']->listen('eloquent.deleted: *', 'Modules\System\Pushable\PushableManager@deleted');
+        $this->app['events']->listen('eloquent.created: *', 'Modules\System\Pushable\PushableManager@created');
+        $this->app['events']->listen('eloquent.updated: *', 'Modules\System\Pushable\PushableManager@updated');
+        $this->app['events']->listen('eloquent.attached: *', 'Modules\System\Pushable\PushableManager@attached');
+        $this->app['events']->listen('eloquent.detached: *', 'Modules\System\Pushable\PushableManager@detached');
     }
 
 }
