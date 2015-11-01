@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Modules\Account\AccountManager;
 use Modules\Account\AccountRepositoryInterface;
 use Modules\System\Http\AdminController;
+use Pusher;
 
 class SystemController extends AdminController
 {
@@ -17,7 +18,7 @@ class SystemController extends AdminController
         return system_options();
     }
 
-    public function pusher(Request $request, Guard $guard, AccountManager $manager)
+    public function pusher(Request $request, Guard $guard, AccountManager $manager, Pusher $pusher)
     {
         $user = $guard->user();
         $account = $manager->account();
@@ -29,11 +30,11 @@ class SystemController extends AdminController
 
         //check if the alias equals the current one.
         if ($account->alias == $alias && $account->members->contains($user->id)) {
-            return app('pusher')->socket_auth($request->get('channel_name'), $request->get('socket_id'));
+            return $pusher->socket_auth($request->get('channel_name'), $request->get('socket_id'));
         }
     }
 
-    public function locale(Request $request, AccountManager $accounts, AccountRepositoryInterface $repository)
+    public function locale(Request $request, AccountManager $accounts, AccountRepositoryInterface $repository, Pusher $pusher)
     {
         $account = $accounts->account();
 
@@ -47,7 +48,7 @@ class SystemController extends AdminController
         $repository->updated();
 
         //broadcast event
-        app('pusher')->trigger(pusher_system_channel(), 'system.hard-reload', []);
+        $pusher->trigger(pusher_account_channel(), 'system.hard-reload', []);
     }
 
 }
