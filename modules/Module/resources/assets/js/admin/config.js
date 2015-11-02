@@ -1,4 +1,7 @@
-angular.module('module', [])
+(function () {
+    'use strict';
+
+    angular.module('module', [])
     //.config(function ($stateProvider) {
     //
     //    $stateProvider
@@ -16,3 +19,5 @@ angular.module('module', [])
     //            templateUrl: "templates/admin/module/detail"
     //        });
     //});
+
+})();

@@ -1,19 +1,24 @@
-angular.module('tags')
-    .factory('Tag', function ($resource) {
+(function () {
+    'use strict';
 
-        var placeholders = {
-            id: '@id',
-        };
+    angular.module('tags')
+        .factory('Tag', function ($resource) {
 
-        return $resource('api/admin/tag/:id', placeholders, {
-            query: {isArray: false},
-            list: {
-                url: 'api/admin/tag/list',
-                method: 'GET',
-                isArray: true
-            },
-            update: {
-                method: 'PUT'
-            },
+            var placeholders = {
+                id: '@id',
+            };
+
+            return $resource('api/admin/tag/:id', placeholders, {
+                query: {isArray: false},
+                list: {
+                    url: 'api/admin/tag/list',
+                    method: 'GET',
+                    isArray: true
+                },
+                update: {
+                    method: 'PUT'
+                },
+            });
         });
-    });
+
+})();

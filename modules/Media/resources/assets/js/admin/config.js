@@ -1,1 +1,4 @@
-angular.module('media', []);
+(function () {
+    'use strict';
+    angular.module('media', []);
+})();

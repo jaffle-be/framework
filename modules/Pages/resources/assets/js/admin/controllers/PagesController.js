@@ -1,108 +1,102 @@
-angular.module('pages')
-    .controller('PagesController', function ($scope, Page, PageService, $sce) {
+(function () {
+    'use strict';
 
-        $scope.renderHtml = function(html_code)
-        {
-            return $sce.trustAsHtml(html_code);
-        };
+    angular.module('pages')
+        .controller('PagesController', function ($scope, Page, PageService, $sce) {
 
-        //start with true so we don't see the layout flash
-        this.loading = true;
-        this.rpp = 15;
-        this.total = 0;
-        this.pages = [];
+            $scope.renderHtml = function (html_code) {
+                return $sce.trustAsHtml(html_code);
+            };
 
-        var me = this;
+            //start with true so we don't see the layout flash
+            this.loading = true;
+            this.rpp = 15;
+            this.total = 0;
+            this.pages = [];
 
-        this.newPage = function()
-        {
-            var page = new Page();
-            PageService.save(page);
-        };
+            var me = this;
 
-        this.changeTab = function (locale) {
-            this.query = '';
-            this.options.locales[this.options.locale].active = false;
-            //set the new one and cache active one
-            this.options.locales[locale].active = true;
-            this.options.locale = locale;
-        };
+            this.newPage = function () {
+                var page = new Page();
+                PageService.save(page);
+            };
 
-        this.activeTab = function (locale) {
-            return this.locale == locale;
-        };
+            this.changeTab = function (locale) {
+                this.query = '';
+                this.options.locales[this.options.locale].active = false;
+                //set the new one and cache active one
+                this.options.locales[locale].active = true;
+                this.options.locale = locale;
+            };
 
-        this.list = function (table) {
-            me.table = table;
-            me.loadPages()
-        };
+            this.activeTab = function (locale) {
+                return this.locale == locale;
+            };
 
-        this.getPage = function(start)
-        {
-            return Math.ceil(start / me.rpp) + 1;
-        };
+            this.list = function (table) {
+                me.table = table;
+                me.loadPages()
+            };
 
-        this.loadPages = function()
-        {
-            me.loading = true;
-            Page.query({
-                page: me.getPage(me.table.pagination.start),
-                query: me.table.search.predicateObject ? me.table.search.predicateObject.query : '',
-                locale: me.options.locale,
-            }, function (response) {
-                me.total = response.total;
-                me.pages = response.data;
-                me.table.pagination.numberOfPages = response.last_page;
-                me.loading = false;
-            });
-        };
+            this.getPage = function (start) {
+                return Math.ceil(start / me.rpp) + 1;
+            };
 
-        this.check = function ($event) {
-            $event.stopPropagation();
-            return false;
-        }
+            this.loadPages = function () {
+                me.loading = true;
+                Page.query({
+                    page: me.getPage(me.table.pagination.start),
+                    query: me.table.search.predicateObject ? me.table.search.predicateObject.query : '',
+                    locale: me.options.locale,
+                }, function (response) {
+                    me.total = response.total;
+                    me.pages = response.data;
+                    me.table.pagination.numberOfPages = response.last_page;
+                    me.loading = false;
+                });
+            };
 
-        this.batchDelete = function()
-        {
-            var pages = this.selectedPages();
+            this.check = function ($event) {
+                $event.stopPropagation();
+                return false;
+            }
 
-            PageService.batchDelete(pages, function()
-            {
-                me.loadPages();
-            });
-        };
+            this.batchDelete = function () {
+                var pages = this.selectedPages();
 
-        this.batchPublish = function()
-        {
-            var pages = this.selectedPages();
+                PageService.batchDelete(pages, function () {
+                    me.loadPages();
+                });
+            };
 
-            PageService.batchPublish(pages, me.options.locale, function()
-            {
+            this.batchPublish = function () {
+                var pages = this.selectedPages();
 
-            });
-        };
+                PageService.batchPublish(pages, me.options.locale, function () {
 
-        this.batchUnpublish = function()
-        {
-            var pages = this.selectedPages();
+                });
+            };
 
-            PageService.batchUnpublish(pages, me.options.locale, function()
-            {
+            this.batchUnpublish = function () {
+                var pages = this.selectedPages();
 
-            });
-        };
+                PageService.batchUnpublish(pages, me.options.locale, function () {
 
-        this.selectedPages = function()
-        {
-            var pages = [];
+                });
+            };
 
-            _.each(this.pages, function(page){
-                if(page.isSelected)
-                {
-                    pages.push(page.id);
-                }
-            });
+            this.selectedPages = function () {
+                var pages = [];
 
-            return pages;
-        }
-    });
+                _.each(this.pages, function (page) {
+                    if (page.isSelected)
+                    {
+                        pages.push(page.id);
+                    }
+                });
+
+                return pages;
+            }
+        });
+
+})();

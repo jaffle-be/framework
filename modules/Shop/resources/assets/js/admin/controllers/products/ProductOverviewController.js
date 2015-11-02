@@ -1,104 +1,96 @@
-angular.module('shop')
-    .controller('ProductController', function (Product, ProductService, $state, $scope, $sce) {
+(function () {
+    'use strict';
 
-        $scope.renderHtml = function(html_code)
-        {
-            return $sce.trustAsHtml(html_code);
-        };
+    angular.module('shop')
+        .controller('ProductController', function (Product, ProductService, $state, $scope, $sce) {
 
-        //start with true so we don't see the layout flash
-        this.loading = true;
-        this.rpp = 15;
-        this.total = 0;
-        this.products = [];
+            $scope.renderHtml = function (html_code) {
+                return $sce.trustAsHtml(html_code);
+            };
 
-        var me = this;
+            //start with true so we don't see the layout flash
+            this.loading = true;
+            this.rpp = 15;
+            this.total = 0;
+            this.products = [];
 
-        this.getPage = function(start)
-        {
-            return page = Math.ceil(start / this.rpp) + 1;
-        };
-
-        this.list = function(table) {
-
-            me.table = table;
-            me.loading = true;
-            //cannot use this here
-            var page = me.getPage(table.pagination.start);
-
-            me.loadProducts(page);
-        };
-
-        this.loadProducts = function(page)
-        {
             var me = this;
 
-            Product.query({
-                page: page,
-                query: me.table.search.predicateObject ? me.table.search.predicateObject.query : '',
-                locale: me.options.locale,
-            }, function (response) {
+            this.getPage = function (start) {
+                return Math.ceil(start / this.rpp) + 1;
+            };
 
-                me.total = response.total;
-                me.products = response.data;
-                me.table.pagination.numberOfPages = response.last_page;
-                me.loading = false;
-            });
-        };
+            this.list = function (table) {
 
-        this.newProduct = function()
-        {
-            var product = new Product();
-            ProductService.save(product, function(newProduct)
-            {
-                $state.go('admin.product.detail', {id: newProduct.id});
-            });
-        };
+                me.table = table;
+                me.loading = true;
+                //cannot use this here
+                var page = me.getPage(table.pagination.start);
 
-        this.delete = function()
-        {
-            var products = this.selectedProducts();
+                me.loadProducts(page);
+            };
 
-            ProductService.batchDelete(products, function()
-            {
-                me.loadProducts();
-            });
+            this.loadProducts = function (page) {
+                var me = this;
 
-        };
+                Product.query({
+                    page: page,
+                    query: me.table.search.predicateObject ? me.table.search.predicateObject.query : '',
+                    locale: me.options.locale,
+                }, function (response) {
 
-        this.batchPublish = function()
-        {
-            var products = this.selectedProducts();
+                    me.total = response.total;
+                    me.products = response.data;
+                    me.table.pagination.numberOfPages = response.last_page;
+                    me.loading = false;
+                });
+            };
 
-            ProductService.batchPublish(products, me.options.locale, function()
-            {
+            this.newProduct = function () {
+                var product = new Product();
+                ProductService.save(product, function (newProduct) {
+                    $state.go('admin.product.detail', {id: newProduct.id});
+                });
+            };
 
-            });
-        };
+            this.delete = function () {
+                var products = this.selectedProducts();
 
-        this.batchUnpublish = function()
-        {
-            var products = this.selectedProducts();
+                ProductService.batchDelete(products, function () {
+                    me.loadProducts();
+                });
 
-            ProductService.batchUnpublish(products, me.options.locale, function()
-            {
+            };
 
-            });
-        };
+            this.batchPublish = function () {
+                var products = this.selectedProducts();
 
-        this.selectedProducts = function()
-        {
-            var products = [],
-                me = this;
+                ProductService.batchPublish(products, me.options.locale, function () {
 
-            _.each(this.products, function(product)
-            {
-                if(product.isSelected)
-                {
-                    products.push(product.id);
-                }
-            });
+                });
+            };
 
-            return products;
-        }
-    });
+            this.batchUnpublish = function () {
+                var products = this.selectedProducts();
+
+                ProductService.batchUnpublish(products, me.options.locale, function () {
+
+                });
+            };
+
+            this.selectedProducts = function () {
+                var products = [],
+                    me = this;
+
+                _.each(this.products, function (product) {
+                    if (product.isSelected)
+                    {
+                        products.push(product.id);
+                    }
+                });
+
+                return products;
+            }
+        });
+
+})();

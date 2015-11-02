@@ -1,34 +1,37 @@
-angular.module('theme')
-    .controller('ThemeController', function(ThemeService, Theme, $window)
-    {
-        this.themes = [];
-        this.theme = false;
+(function () {
+    'use strict';
 
-        var me = this;
+    angular.module('theme')
+        .controller('ThemeController', function (ThemeService, Theme, $window) {
+            this.themes = [];
+            this.theme = false;
 
-        ThemeService.list(function(themes){
-            me.themes = themes;
-            for(var i=0; i< themes.length; i++)
-            {
-                if(themes[i].active)
+            var me = this;
+
+            ThemeService.list(function (themes) {
+                me.themes = themes;
+                for (var i = 0; i < themes.length; i++)
                 {
-                    me.theme = themes[i];
+                    if (themes[i].active)
+                    {
+                        me.theme = themes[i];
+                    }
                 }
+            });
+
+            this.activate = function () {
+                ThemeService.activate(this.theme, function (response) {
+                    if (response.data.status == 'oke')
+                    {
+                        $window.location.reload();
+                    }
+                    else
+                    {
+                        me.failed = true;
+                    }
+
+                });
             }
         });
 
-        this.activate = function()
-        {
-            ThemeService.activate(this.theme, function(response)
-            {
-                if(response.data.status == 'oke')
-                {
-                    $window.location.reload();
-                }
-                else{
-                    me.failed = true;
-                }
-
-            });
-        }
-    });
+})();

@@ -1,36 +1,41 @@
-angular.module('menu')
+(function () {
+    'use strict';
 
-    .factory('MenuItem', function ($resource) {
-        return new $resource('api/admin/menu/:menu_id/menu-item/:id', {
-            menu_id: '@menu_id',
-            id: '@id',
-        }, {
-            update: {
-                method: 'PUT'
-            },
-        });
-    })
+    angular.module('menu')
 
-    .factory('Menu', function ($resource, $http, MenuItem) {
-        return new $resource('api/admin/menu/:id', {
-            id: '@id'
-        }, {
-            list: {
-                method: 'GET',
-                isArray: true,
-                transformResponse: function (response) {
-                    var menus = angular.fromJson(response);
+        .factory('MenuItem', function ($resource) {
+            return new $resource('api/admin/menu/:menu_id/menu-item/:id', {
+                menu_id: '@menu_id',
+                id: '@id',
+            }, {
+                update: {
+                    method: 'PUT'
+                },
+            });
+        })
 
-                    _.each(menus, function (menu, key) {
+        .factory('Menu', function ($resource, $http, MenuItem) {
+            return new $resource('api/admin/menu/:id', {
+                id: '@id'
+            }, {
+                list: {
+                    method: 'GET',
+                    isArray: true,
+                    transformResponse: function (response) {
+                        var menus = angular.fromJson(response);
 
-                        menus[key].items = _.each(menu.items, function (item, key) {
-                            menu.items[key] = new MenuItem(item);
+                        _.each(menus, function (menu, key) {
+
+                            menus[key].items = _.each(menu.items, function (item, key) {
+                                menu.items[key] = new MenuItem(item);
+                            });
+
                         });
 
-                    });
-
-                    return menus;
+                        return menus;
+                    }
                 }
-            }
+            });
         });
-    });
+
+})();

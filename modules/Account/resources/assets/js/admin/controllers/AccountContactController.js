@@ -1,46 +1,51 @@
-angular.module('account')
-    .controller('AccountContactController', function ($scope, $state, AccountContactInformation, $timeout, InputTranslationHandler) {
-        var me = this;
+(function () {
+    'use strict';
 
-        this.timer = false;
+    angular.module('account')
+        .controller('AccountContactController', function ($scope, $state, AccountContactInformation, $timeout, InputTranslationHandler) {
+            var me = this;
 
-        this.load = function () {
-            AccountContactInformation.load(function (response) {
-                me.info = response;
-            });
-        };
+            this.timer = false;
 
-        this.save = function () {
+            this.load = function () {
+                AccountContactInformation.load(function (response) {
+                    me.info = response;
+                });
+            };
 
-            if(this.timer)
-            {
-                $timeout.cancel(this.timer);
-            }
+            this.save = function () {
 
-            this.timer = $timeout(function () {
-
-                if (!me.info.id)
+                if (this.timer)
                 {
-                    me.info.$save(function () {
-                        $scope.errors = [];
-                    }, function(response){
-                        $scope.errors = response.data;
-                    });
-                }
-                else
-                {
-                    //don't update UI with returned object
-                    var info  = angular.copy(me.info);
-
-                    info.$update(function () {
-                        $scope.errors = [];
-                    }, function(response){
-                        $scope.errors = response.data;
-                    });
+                    $timeout.cancel(this.timer);
                 }
 
-            }, 400)
-        };
+                this.timer = $timeout(function () {
 
-        this.load();
-    });
+                    if (!me.info.id)
+                    {
+                        me.info.$save(function () {
+                            $scope.errors = [];
+                        }, function (response) {
+                            $scope.errors = response.data;
+                        });
+                    }
+                    else
+                    {
+                        //don't update UI with returned object
+                        var info = angular.copy(me.info);
+
+                        info.$update(function () {
+                            $scope.errors = [];
+                        }, function (response) {
+                            $scope.errors = response.data;
+                        });
+                    }
+
+                }, 400)
+            };
+
+            this.load();
+        });
+
+})();

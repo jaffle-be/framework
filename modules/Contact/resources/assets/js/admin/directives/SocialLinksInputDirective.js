@@ -1,45 +1,49 @@
-angular.module('contact')
-    .directive('socialLinksInput', function (SocialLinks, $timeout) {
-        return {
-            restrict: 'A',
-            templateUrl: 'templates/admin/contact/social-links/widget',
-            scope: {
-                ownerType: '=',
-                ownerId: '='
-            },
-            controller: function ($scope) {
+(function () {
+    'use strict';
 
-                var timeout;
+    angular.module('contact')
+        .directive('socialLinksInput', function (SocialLinks, $timeout) {
+            return {
+                restrict: 'A',
+                templateUrl: 'templates/admin/contact/social-links/widget',
+                scope: {
+                    ownerType: '=',
+                    ownerId: '='
+                },
+                controller: function ($scope) {
 
-                function load() {
-                    SocialLinks.find({
-                        ownerType: $scope.ownerType,
-                        ownerId: $scope.ownerId,
-                    }).$promise.then(function (links) {
-                            $scope.links = links
-                        });
-                }
+                    var timeout;
 
-                this.save = function()
-                {
-                    if(timeout)
-                    {
-                        $timeout.cancel(timeout);
+                    function load() {
+                        SocialLinks.find({
+                            ownerType: $scope.ownerType,
+                            ownerId: $scope.ownerId,
+                        }).$promise.then(function (links) {
+                                $scope.links = links
+                            });
                     }
 
-                    var destination = angular.copy($scope.links);
+                    this.save = function () {
+                        if (timeout)
+                        {
+                            $timeout.cancel(timeout);
+                        }
 
-                    timeout = $timeout(function(){
-                        destination.$update({
-                            ownerType: $scope.ownerType,
-                            ownerId: $scope.ownerId
-                        });
-                    }, 400);
+                        var destination = angular.copy($scope.links);
 
-                };
+                        timeout = $timeout(function () {
+                            destination.$update({
+                                ownerType: $scope.ownerType,
+                                ownerId: $scope.ownerId
+                            });
+                        }, 400);
 
-                load();
-            },
-            controllerAs: 'vm',
-        };
-    });
+                    };
+
+                    load();
+                },
+                controllerAs: 'vm',
+            };
+        });
+
+})();

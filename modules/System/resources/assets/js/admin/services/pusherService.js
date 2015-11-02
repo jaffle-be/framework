@@ -1,5 +1,4 @@
-(function()
-{
+(function () {
     angular.module('system')
         .factory('Pusher', function ($pusher, PUSHER_API_KEY) {
 

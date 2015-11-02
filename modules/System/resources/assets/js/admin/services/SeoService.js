@@ -1,32 +1,38 @@
-angular.module('system')
-    .factory('SeoService', function (Seo, $timeout) {
+(function () {
+    'use strict';
 
-        function Service() {
+    angular.module('system')
+        .factory('SeoService', function (Seo, $timeout) {
 
-            this.searching = false;
-            this.timeouts = [];
+            function Service() {
 
-            var me = this;
+                this.searching = false;
+                this.timeouts = [];
 
-            this.list = function(type, id, locale, success){
-                Seo.list(type, id, locale, success);
-            };
+                var me = this;
 
-            this.update = function (type, id, locale, seo) {
+                this.list = function (type, id, locale, success) {
+                    Seo.list(type, id, locale, success);
+                };
 
-                var key = id + 'locale' + locale;
+                this.update = function (type, id, locale, seo) {
 
-                if (this.timeouts[key]) {
-                    $timeout.cancel(this.timeouts[key]);
-                }
+                    var key = id + 'locale' + locale;
 
-                this.timeouts[key] = $timeout(function () {
-                    return Seo.update(type, id, locale, seo);
-                }, 400);
-            };
+                    if (this.timeouts[key])
+                    {
+                        $timeout.cancel(this.timeouts[key]);
+                    }
 
-        }
+                    this.timeouts[key] = $timeout(function () {
+                        return Seo.update(type, id, locale, seo);
+                    }, 400);
+                };
 
-        return new Service();
+            }
 
-    });
+            return new Service();
+
+        });
+
+})();

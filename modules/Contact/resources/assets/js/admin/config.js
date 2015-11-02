@@ -1,1 +1,6 @@
-angular.module('contact', []);
+(function () {
+    'use strict';
+
+    angular.module('contact', []);
+
+})();

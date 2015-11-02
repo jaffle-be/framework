@@ -1,30 +1,37 @@
+(function () {
+    'use strict';
 
-/**
- * customValid - Directive for custom validation example
- */
-function customValid(){
-    return {
-        require: 'ngModel',
-        link: function(scope, ele, attrs, c) {
-            scope.$watch(attrs.ngModel, function() {
 
-                // You can call a $http method here
-                // Or create custom validation
+    /**
+     * customValid - Directive for custom validation example
+     */
+    function customValid() {
+        return {
+            require: 'ngModel',
+            link: function (scope, ele, attrs, c) {
+                scope.$watch(attrs.ngModel, function () {
 
-                var validText = "Inspinia";
+                    // You can call a $http method here
+                    // Or create custom validation
 
-                if(scope.extras == validText) {
-                    c.$setValidity('cvalid', true);
-                } else {
-                    c.$setValidity('cvalid', false);
-                }
+                    var validText = "Inspinia";
 
-            });
+                    if (scope.extras == validText)
+                    {
+                        c.$setValidity('cvalid', true);
+                    } else
+                    {
+                        c.$setValidity('cvalid', false);
+                    }
+
+                });
+            }
         }
     }
-}
 
 
-angular
-    .module('system')
-    .directive('customValid', customValid);
+    angular
+        .module('system')
+        .directive('customValid', customValid);
+
+})();

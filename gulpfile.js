@@ -155,7 +155,6 @@ function jsCoreWatcher() {
     });
 }
 
-
 function lessCompiler() {
     gulp.src(['modules/System/resources/assets/less/admin/main.less'])
         .pipe(plumber())

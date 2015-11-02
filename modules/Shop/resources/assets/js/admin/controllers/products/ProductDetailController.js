@@ -1,38 +1,41 @@
-angular.module('shop')
-    .controller('ProductDetailController', function ($scope, Product, ProductService, $state) {
+(function () {
+    'use strict';
 
-        this.products = ProductService;
+    angular.module('shop')
+        .controller('ProductDetailController', function ($scope, Product, ProductService, $state) {
 
-        var me = this,
-            id = $state.params.id;
+            this.products = ProductService;
+
+            var me = this,
+                id = $state.params.id;
 
 
-        this.load = function(id){
+            this.load = function (id) {
 
-            if(id)
-            {
-                this.products.find(id, function(product){
-                    me.product = product;
+                if (id)
+                {
+                    this.products.find(id, function (product) {
+                        me.product = product;
+                    });
+                }
+                else
+                {
+                    me.product = new Product();
+                }
+            };
+
+            this.save = function () {
+                ProductService.save(me.product);
+            };
+
+            this.delete = function () {
+                ProductService.delete(me.product, function () {
+                    $state.go('admin.product.overview');
                 });
-            }
-            else{
-                me.product = new Product();
-            }
-        };
+            };
 
-        this.save = function()
-        {
-            ProductService.save(me.product);
-        };
+            this.load(id);
 
-        this.delete = function()
-        {
-            ProductService.delete(me.product, function()
-            {
-                $state.go('admin.product.overview');
-            });
-        };
+        });
 
-        this.load(id);
-
-    });
+})();
