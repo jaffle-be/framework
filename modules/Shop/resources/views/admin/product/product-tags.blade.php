@@ -31,13 +31,9 @@
 
             </tab>
 
-
-
-
         </tabset>
 
     </div>
-
-
-
 </div>
+
+@include('system::admin.seo')

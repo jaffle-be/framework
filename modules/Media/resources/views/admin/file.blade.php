@@ -1,44 +1,48 @@
-<div>
-    <form action="" class="dropzone" dropzone="dropzone" ng-show="!locked || limit == 1">
-        <input name="_token" type="hidden" value="{{ csrf_token() }}"/>
-    </form>
-</div>
-
-<div class="media-image-uploader">
-
-    <div class="loader" ng-show="!loaded">
-
-        <div class="sk-spinner sk-spinner-double-bounce">
-            <div class="sk-double-bounce1"></div>
-            <div class="sk-double-bounce2"></div>
-        </div>
-
+<script type="text/ng-template" id="templates/admin/media/file/widget">
+    <div>
+        <form action="" class="dropzone" dropzone="dropzone" ng-show="!locked || limit == 1">
+            <input name="_token" type="hidden" value="{{ csrf_token() }}"/>
+        </form>
     </div>
 
-    <ul class="nav files" ng-show="loaded" as-sortable="ctrl.sortables" ng-model="ctrl.files[locale]">
-        <li ng-repeat="file in ctrl.files[locale]" as-sortable-item class="item">
+    <div class="media-image-uploader">
 
-            <div class="form-group">
-                <label>{{ Lang::get('media::admin.filename') }}</label>
+        <div class="loader" ng-show="!loaded">
 
-                <span ng-bind="file.filename"></span>
+            <div class="sk-spinner sk-spinner-double-bounce">
+                <div class="sk-double-bounce1"></div>
+                <div class="sk-double-bounce2"></div>
             </div>
 
-            <div class="form-group">
+        </div>
 
-                <div class="input-group" ng-hide="!locale">
-                    <div class="input-group-addon" as-sortable-item-handle><i class="fa fa-arrows"></i></div>
-                    <input autocomplete="off" ng-change="ctrl.updateFile(file)" class="form-control" type="text" ng-model="file.title" placeholder="{{ Lang::get('media::admin.title') }}"/>
-                    <div class="input-group-btn">
-                        <button class="btn btn-danger" ng-really="ctrl.deleteFile(file)"><i class="fa fa-trash"></i></button>
-                    </div>
+        <ul class="nav files" ng-show="loaded" as-sortable="ctrl.sortables" ng-model="ctrl.files[locale]">
+            <li ng-repeat="file in ctrl.files[locale]" as-sortable-item class="item">
+
+                <div class="form-group">
+                    <label>{{ Lang::get('media::admin.filename') }}</label>
+
+                    <span ng-bind="file.filename"></span>
                 </div>
 
-            </div>
+                <div class="form-group">
 
-        </li>
-    </ul>
+                    <div class="input-group" ng-hide="!locale">
+                        <div class="input-group-addon" as-sortable-item-handle><i class="fa fa-arrows"></i></div>
+                        <input autocomplete="off" ng-change="ctrl.updateFile(file)" class="form-control" type="text" ng-model="file.title" placeholder="{{ Lang::get('media::admin.title') }}"/>
 
-    <div class="clearfix"></div>
+                        <div class="input-group-btn">
+                            <button class="btn btn-danger" ng-really="ctrl.deleteFile(file)"><i class="fa fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
 
-</div>
+                </div>
+
+            </li>
+        </ul>
+
+        <div class="clearfix"></div>
+
+    </div>
+</script>

@@ -36,3 +36,5 @@
     </div>
 
 </div>
+
+@include('system::admin.seo')

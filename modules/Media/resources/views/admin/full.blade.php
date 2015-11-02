@@ -49,3 +49,8 @@
     </div>
 
 </div>
+
+@include('media::admin.image')
+@include('media::admin.video')
+@include('media::admin.infographic')
+@include('media::admin.file')
