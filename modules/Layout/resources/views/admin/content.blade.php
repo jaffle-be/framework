@@ -22,3 +22,7 @@
 
 </div>
 <!-- End wrapper-->
+
+@include('layout::admin.navigation')
+@include('layout::admin.topnavbar')
+@include('layout::admin.footer')

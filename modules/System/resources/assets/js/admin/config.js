@@ -69,11 +69,7 @@ angular
                         //]);
                     }
                 }
-            })
-            .state('admin.products', {
-                url: "/products",
-                templateUrl: "templates/admin/products"
-            })
+            });
     })
     .run(function ($rootScope, $state) {
         $rootScope.$state = $state;
