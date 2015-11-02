@@ -8,6 +8,7 @@ use Modules\Shop\Gamma\GammaSelection;
 use Modules\Shop\Gamma\ProductSelection;
 use Modules\Shop\Jobs\Gamma\ActivateProduct;
 use Modules\Shop\Product\CatalogRepositoryInterface;
+use Pusher;
 
 class AcceptGammaNotification extends Job implements SelfHandling
 {
@@ -21,7 +22,7 @@ class AcceptGammaNotification extends Job implements SelfHandling
         $this->notification = $notification;
     }
 
-    public function handle(CatalogRepositoryInterface $catalog, GammaSelection $gamma, ProductSelection $productGamma)
+    public function handle(CatalogRepositoryInterface $catalog, GammaSelection $gamma, ProductSelection $productGamma, Pusher $pusher)
     {
         $type = $this->notification->type;
 
@@ -35,6 +36,8 @@ class AcceptGammaNotification extends Job implements SelfHandling
             default:
                 throw new \InvalidArgumentException('Unknown type trying to handle gamma notification');
         }
+
+        $pusher->trigger(pusher_account_channel(), 'gamma.gamma_notification.confirmed', $this->notification->toArray());
 
         $this->notification->delete();
     }
@@ -100,9 +103,13 @@ class AcceptGammaNotification extends Job implements SelfHandling
 
     protected function deleteGamma(GammaSelection $gamma)
     {
-        $gamma->where('category_id', $this->notification->category->id)
+        $selections = $gamma->where('category_id', $this->notification->category->id)
             ->where('brand_id', $this->notification->brand->id)
-            ->delete();
+            ->get();
+
+        foreach ($selections as $selection) {
+            $selection->delete();
+        }
     }
 
 }

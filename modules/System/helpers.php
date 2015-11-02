@@ -93,19 +93,20 @@ if (!function_exists('store_route')) {
     }
 }
 
-if (!function_exists('pusher_system_channel')) {
-    function pusher_system_channel()
-    {
-        return 'private-system';
-    }
-}
-
 if (!function_exists('pusher_account_channel')) {
     function pusher_account_channel()
     {
         $accounts = app('Modules\Account\AccountManager');
 
-        return 'private-' . $accounts->account()->alias;
+        return 'private-' . ($accounts->account() ? $accounts->account()->alias : 'digiredo');
+    }
+}
+
+if (!function_exists('pusher_system_channel')) {
+    function pusher_system_channel()
+    {
+//        return 'private-system';
+        return pusher_account_channel();
     }
 }
 

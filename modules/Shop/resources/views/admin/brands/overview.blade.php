@@ -18,8 +18,18 @@
             <ul class="row nav">
                 <li class="col-md-4" ng-repeat="category in brand.categories">
                     <input type="checkbox" id="category@{{ category.id }}brand@{{ brand.id }}" class="filled-in" ng-model="category.selected" ng-change="vm.saveDetail(brand, category)" ng-disabled="!brand.activated || !category.activated">
-                    <label for="category@{{ category.id }}brand@{{ brand.id }}">@{{ category.translations[vm.options.locale].name }}</label>
+                    <label for="category@{{ category.id }}brand@{{ brand.id }}">@{{ category.translations[vm.options.locale].name }}
+
+                    </label>
                     &nbsp;<i class="fa fa-shield" ng-show="category.inReview"></i>
+
+                    <div class="switch pull-right">
+                        <label>
+                            <input id="category@{{ category.id }}brand@{{ brand.id }}activated" type="checkbox" ng-model="category.activated" ng-change="vm.subSave(category)">
+                            <span class="lever"></span>
+                            &nbsp;
+                        </label>
+                    </div>
                 </li>
             </ul>
         </div>

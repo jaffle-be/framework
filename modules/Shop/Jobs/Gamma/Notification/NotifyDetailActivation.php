@@ -7,6 +7,7 @@ use Modules\Shop\Gamma\BrandSelection;
 use Modules\Shop\Gamma\GammaNotification;
 use Modules\Shop\Product\Brand;
 use Modules\Shop\Product\Category;
+use Pusher;
 
 class NotifyDetailActivation extends Job implements SelfHandling
 {
@@ -26,9 +27,9 @@ class NotifyDetailActivation extends Job implements SelfHandling
         $this->account = $account;
     }
 
-    public function handle(GammaNotification $notification)
+    public function handle(GammaNotification $notification, Pusher $pusher)
     {
-        $canceled = $this->cancelExisting($notification, $this->brand, $this->category);
+        $canceled = $this->cancelExisting($notification, $this->brand, $this->category, $pusher);
 
         if ($canceled === 0) {
             $instance = $notification->newInstance([

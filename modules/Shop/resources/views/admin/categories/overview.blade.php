@@ -22,6 +22,14 @@
                     <input type="checkbox" id="brand@{{ brand.id }}category@{{ category.id }}" class="filled-in" ng-model="brand.selected" ng-change="vm.saveDetail(category, brand)" ng-disabled="!category.activated || !brand.activated">
                     <label for="brand@{{ brand.id }}category@{{ category.id }}">@{{ brand.translations[vm.options.locale].name }}</label>
                     &nbsp;<i ng-show="brand.inReview" class="fa fa-shield"></i>
+
+                    <div class="switch pull-right">
+                        <label>
+                            <input id="brand@{{ brand.id }}category@{{ category.id }}activated" type="checkbox" ng-model="brand.activated" ng-change="vm.subSave(brand)">
+                            <span class="lever"></span>
+                            &nbsp;
+                        </label>
+                    </div>
                 </li>
             </ul>
         </div>

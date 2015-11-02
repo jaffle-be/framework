@@ -3,6 +3,7 @@
   "devDependencies": {
     "glob": "^5.0.14",
     "gulp": "^3.8.11",
+    "gulp-bytediff": "^1.0.0",
     "gulp-cached": "^1.1.0",
     "gulp-concat": "^2.5.2",
     "gulp-copy": "0.0.2",

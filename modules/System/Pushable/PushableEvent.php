@@ -6,8 +6,6 @@ use Illuminate\Queue\SerializesModels;
 
 class PushableEvent extends Event implements ShouldBroadcast
 {
-    use SerializesModels;
-
     public $data;
 
     protected $event;
@@ -28,7 +26,6 @@ class PushableEvent extends Event implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-
         return [
             $this->data->getPushableChannel()
         ];

@@ -7,6 +7,7 @@ use Modules\Shop\Gamma\BrandSelection;
 use Modules\Shop\Gamma\GammaNotification;
 use Modules\Shop\Product\Brand;
 use Modules\Shop\Product\Category;
+use Pusher;
 
 class NotifyDetailDeactivation extends Job implements SelfHandling
 {
@@ -26,7 +27,7 @@ class NotifyDetailDeactivation extends Job implements SelfHandling
         $this->account = $account;
     }
 
-    public function handle(GammaNotification $notification)
+    public function handle(GammaNotification $notification, Pusher $pusher)
     {
         //did we already have a brand activation notification for this brand?
         //then we simply cancel that it by deleting it.
@@ -35,6 +36,7 @@ class NotifyDetailDeactivation extends Job implements SelfHandling
         $existing = $this->findExistingCombination($notification, $this->brand, $this->category);
 
         if ($existing) {
+            $pusher->trigger(pusher_account_channel(), 'gamma.gamma_notification.denied', $existing->toArray());
             $existing->delete();
         } else {
             $instance = $notification->newInstance([

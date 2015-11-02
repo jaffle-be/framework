@@ -12,13 +12,69 @@ var gulp = require('gulp'),
     cached = require('gulp-cached'),
     maps = require('gulp-sourcemaps'),
     fs = require('fs'),
-    glob = require('glob');
+    glob = require('glob'),
+    annotate = require('gulp-ng-annotate'),
+    bytediff = require('gulp-bytediff');
+
+var modules = 'modules/*/resources/assets/';
+
+var pkg = {
+    admin: {
+        js: {
+            "files": [
+                'modules/System/resources/assets/js/admin/app.js',
+                modules + 'js/admin/config.js',
+                modules + 'js/admin/services/**/*.js',
+                modules + 'js/admin/translations.js',
+                modules + 'js/admin/directives/**/*.js',
+                modules + 'js/admin/models.js',
+                modules + 'js/admin/controllers/**/*.js'
+            ],
+            publish: "public/js/admin"
+        },
+        core: {
+            files: [
+                'bower_components/metisMenu/dist/metisMenu.js',
+                'bower_components/slimScroll/jquery.slimscroll.js',
+                'bower_components/PACE/pace.js',
+                'bower_components/moment/min/moment-with-locales.min.js',
+                'bower_components/dropzone/dist/min/dropzone.min.js',
+                'bower_components/lodash/lodash.min.js',
+                'bower_components/autosize/dist/autosize.min.js',
+                'modules/system/resources/assets/js/admin/core.js',
+            ],
+            publish: "public/js/admin"
+        }
+    },
+};
 
 
-//default task to run
+//2 most basic commands
 gulp.task('default', ['compile']);
-
 gulp.task('watch', ['watch']);
+
+//global commands
+gulp.task('compile', ['plugins', 'js', 'less']);
+gulp.task('watch', ['watch-js', 'watch-less']);
+gulp.task('js', ['js-core', 'js-admin']);
+gulp.task('less', ['less-admin']);
+gulp.task('plugins', allPlugins);
+
+
+//subcommands
+gulp.task('js-admin', jsAdminCompiler);
+gulp.task('js-core', jsCoreCompiler);
+
+gulp.task('less-admin', lessCompiler)
+
+gulp.task('watch-js', function () {
+    jsAdminWatcher();
+    jsCoreWatcher();
+});
+
+gulp.task('watch-less', function () {
+    lessAdminWatcher();
+});
 
 /**
  *
@@ -27,108 +83,72 @@ gulp.task('watch', ['watch']);
  *
  */
 
-gulp.task('compile', ['plugins', 'scripts', 'less']);
 
-gulp.task('watch', ['watch-scripts', 'watch-less']);
+function jsAdminCompiler() {
+    return gulp.src(pkg.admin.js.files)
+        .pipe(plumber())
+        .pipe(maps.init())
+        .pipe(concat('all.min.js'))
+        // Annotate before uglify so the code get's min'd properly.
+        .pipe(annotate({
+            // true helps add where @ngInject is not used. It infers.
+            // Doesn't work with resolve, so we must be explicit there
+            add: true
+        }))
+        .pipe(bytediff.start())
+        .pipe(uglify({mangle: true}))
+        .pipe(bytediff.stop())
+        .pipe(maps.write(pkg.admin.js.publish))
+        .pipe(gulp.dest(pkg.admin.js.publish));
+}
 
-gulp.task('watch-less', function()
-{
-    watch(['modules/System/resources/assets/less/admin/**.less'], function()
-    {
+
+
+function jsCoreCompiler() {
+    return gulp.src(pkg.admin.core.files)
+        .pipe(plumber())
+        .pipe(maps.init())
+        .pipe(concat('core.min.js'))
+        .pipe(bytediff.start())
+        .pipe(uglify({mangle: true}))
+        .pipe(bytediff.stop())
+        .pipe(maps.write(pkg.admin.core.publish))
+        .pipe(gulp.dest(pkg.admin.core.publish));
+}
+
+
+function lessAdminWatcher() {
+    watch(['modules/System/resources/assets/less/admin/**/*.less'], function () {
         gulp.start('less');
     });
-});
+}
 
-gulp.task('less', function()
-{
+
+function jsAdminWatcher() {
+    watch(pkg.admin.js.files, function () {
+        gulp.start('js-admin');
+    });
+}
+function jsCoreWatcher() {
+    watch(pkg.admin.core.files, function () {
+        gulp.start('js-core');
+    });
+}
+
+
+function lessCompiler() {
     gulp.src(['modules/System/resources/assets/less/admin/main.less'])
         .pipe(plumber())
         .pipe(less())
         .pipe(gulp.dest('public/css/admin'))
         .pipe(minify())
-        .pipe(rename(function(path){
+        .pipe(rename(function (path) {
             path.extname = '.min.css';
         }))
         .pipe(gulp.dest('public/css/admin'))
-});
+}
 
-gulp.task('watch-scripts', function()
-{
-    watch(['modules/*/resources/assets/js/admin/**/**/*.js', 'modules/*/resources/assets/js/admin/models.js', 'modules/*/resources/assets/js/admin/config.js', 'modules/*/resources/assets/js/admin/translations.js'], function(){
-        gulp.start('scripts');
-    });
-});
-
-gulp.task('scripts', function () {
-    /**
-     * there are 4 types of components.
-     * - module components that exist out of 1 file with a name of 'component'.js
-     * - module components that can have multiple files, which are all found in a subdirectory called 'component'
-     * - app.js component
-     * - core.js component
-     */
-
-    var fileComponents = ['translations', 'config', 'models'];
-
-    for (var i in fileComponents)
-    {
-        var file = fileComponents[i];
-
-        gulp.src('modules/*/resources/assets/js/admin/' + file + '.js')
-            .pipe(concat(file + '.js'))
-            .pipe(gulp.dest('public/js/admin'))
-            .pipe(rename(function (file) {
-                file.extname = '.min.js';
-            }))
-            .pipe(gulp.dest('public/js/admin'));
-    }
-
-    var folderComponents = ['controllers', 'services', 'directives'];
-
-    for (var i in folderComponents)
-    {
-        var folder = folderComponents[i];
-
-        gulp.src('modules/*/resources/assets/js/admin/' + folder + '/**/*.js')
-            .pipe(concat(folder + '.js'))
-            .pipe(gulp.dest('public/js/admin'))
-            .pipe(rename(function (file) {
-                file.extname = '.min.js';
-            }))
-            .pipe(gulp.dest('public/js/admin'));
-    }
-
-    gulp.src('modules/System/resources/assets/js/admin/app.js')
-        .pipe(plumber())
-        .pipe(gulp.dest('public/js/admin'))
-        .pipe(rename(function (path) {
-            path.extname = '.min.js';
-        }))
-        .pipe(gulp.dest('public/js/admin'));
-
-
-    gulp.src([
-        'bower_components/metisMenu/dist/metisMenu.js',
-        'bower_components/slimScroll/jquery.slimscroll.js',
-        'bower_components/PACE/pace.js',
-        'bower_components/moment/min/moment-with-locales.min.js',
-        'bower_components/dropzone/dist/min/dropzone.min.js',
-        'bower_components/lodash/lodash.min.js',
-        'bower_components/autosize/dist/autosize.min.js',
-        'modules/system/resources/assets/js/admin/core.js',
-    ])
-        .pipe(maps.init())
-        .pipe(concat('core.js'))
-        .pipe(uglify())
-        .pipe(rename(function(path){
-            path.extname = '.min.js';
-        }))
-        .pipe(maps.write())
-        .pipe(gulp.dest('public/js/admin'))
-
-});
-
-gulp.task('plugins', function () {
+function allPlugins() {
     gulp.src('bower_components/font-awesome/fonts/**')
         .pipe(copy('./public/fonts', {
             prefix: 3
@@ -219,4 +239,4 @@ gulp.task('plugins', function () {
         .pipe(copy('./public/js/admin/pusher-angular/', {
             prefix: 3
         }));
-});
+}

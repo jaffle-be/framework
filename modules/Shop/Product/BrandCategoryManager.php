@@ -12,6 +12,8 @@ class BrandCategoryManager
      */
     protected $database;
 
+    protected $events;
+
     /**
      * @var Product
      */
@@ -22,7 +24,9 @@ class BrandCategoryManager
      */
     protected $brand;
 
-    public function __construct(DatabaseManager $database, Dispatcher $events, Product $product, Brand $brand)
+    protected $category;
+
+    public function __construct(DatabaseManager $database, Dispatcher $events, Product $product, Brand $brand, Category $category)
     {
         //this needs to run on the very basic level, therefor we need the database connection.
         //can't rely on the models, as those will be having scopes.
@@ -33,6 +37,7 @@ class BrandCategoryManager
         $this->events = $events;
         $this->product = $product;
         $this->brand = $brand;
+        $this->category = $category;
     }
 
     public function attach()
@@ -51,7 +56,9 @@ class BrandCategoryManager
 
                     $this->brandCombinations()->insert($payload);
 
-                    $this->events->fire('eloquent.attached: brand_category', [$payload]);
+                    //need to return a full object response, so we can use it in the interface.
+                    //keep in mind that you still need to pass it as an array though.
+                    $this->events->fire('eloquent.attached: brand_categories', [$this->response($payload)]);
                 }
             }
         }
@@ -73,7 +80,9 @@ class BrandCategoryManager
                     'category_id' => $detached['category_id'],
                     'brand_id'    => $product['brand_id']
                 ];
-                $this->events->fire('eloquent.detached: brand_category', [$payload]);
+
+                //when detaching, we can simply return an array, as the data no longer matters.
+                $this->events->fire('eloquent.detached: brand_categories', [$payload]);
             }
         }
     }
@@ -143,6 +152,22 @@ class BrandCategoryManager
             ->count();
 
         return $count > 0;
+    }
+
+    /**
+     * @param $payload
+     *
+     * @return array
+     */
+    protected function response($payload)
+    {
+        $brand = $this->brand->with('translations')->find($payload['brand_id']);
+        $category = $this->category->with('translations')->find($payload['category_id']);
+
+        return [
+            'category' => $category->toArray(),
+            'brand' => $brand->toArray()
+        ];
     }
 
 }

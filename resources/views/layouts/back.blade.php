@@ -50,13 +50,7 @@
 
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBcPQMkol7H0kSnSSqYkJpRicrKfxWHC4o&libraries=places&v=3.exp"></script>
 
-<script src=" {{ asset('/js/admin/app.min.js') }}"></script>
-<script src=" {{ asset('/js/admin/config.min.js') }}"></script>
-<script src=" {{ asset('/js/admin/services.min.js') }}"></script>
-<script src=" {{ asset('/js/admin/translations.min.js') }}"></script>
-<script src=" {{ asset('/js/admin/directives.min.js') }}"></script>
-<script src=" {{ asset('/js/admin/models.min.js') }}"></script>
-<script src=" {{ asset('/js/admin/controllers.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('/js/admin/all.min.js') }}"></script>
 
 @if($theme && is_file(public_path('themes/'. $theme->name .'/assets/js/admin/' . lcfirst($theme->name) . '.min.js')))
 

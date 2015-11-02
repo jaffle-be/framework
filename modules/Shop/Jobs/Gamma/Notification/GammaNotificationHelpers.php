@@ -1,15 +1,30 @@
 <?php namespace Modules\Shop\Jobs\Gamma\Notification;
 
 use Modules\Shop\Gamma\GammaNotification;
+use Modules\Shop\Product\Brand;
+use Modules\Shop\Product\Category;
+use Pusher;
 
 trait GammaNotificationHelpers
 {
 
-    protected function cancelExisting($notification, $brand, $category)
+    protected function cancelExisting(GammaNotification $notification, Brand $brand, Category $category, Pusher $pusher)
     {
-        return $notification->where('brand_id', $brand->id)
+        $notifications = $notification->where('brand_id', $brand->id)
             ->where('category_id', $category->id)
-            ->delete();
+            ->get();
+
+        $counter = 0;
+
+        foreach($notifications as $notification)
+        {
+            $pusher->trigger(pusher_account_channel(), 'gamma.gamma_notification.denied', $notification->toArray());
+
+            $notification->delete();
+            $counter++;
+        }
+
+        return $counter;
     }
 
     /**
