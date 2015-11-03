@@ -1,13 +1,14 @@
 <?php namespace Modules\Shop\Product;
 
 use Cviebrock\EloquentSluggable\SluggableInterface;
+use Modules\System\Presenter\PresentableCache;
 use Modules\System\Presenter\PresentableEntity;
 use Modules\System\Presenter\PresentableTrait;
 use Modules\System\Scopes\FrontScoping;
 use Modules\System\Sluggable\Sluggable;
 use Modules\System\Translatable\TranslationModel;
 
-class ProductTranslation extends TranslationModel implements PresentableEntity, SluggableInterface
+class ProductTranslation extends TranslationModel implements PresentableEntity, SluggableInterface, PresentableCache
 {
     use Sluggable, PresentableTrait, FrontScoping;
 

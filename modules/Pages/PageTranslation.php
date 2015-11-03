@@ -3,6 +3,7 @@
 use Cviebrock\EloquentSluggable\SluggableInterface;
 use Modules\Search\Model\Searchable;
 use Modules\Search\Model\SearchableTrait;
+use Modules\System\Presenter\PresentableCache;
 use Modules\System\Presenter\PresentableEntity;
 use Modules\System\Presenter\PresentableTrait;
 use Modules\System\Scopes\FrontScoping;
@@ -10,7 +11,7 @@ use Modules\System\Sluggable\OwnsSlug;
 use Modules\System\Sluggable\SiteSluggable;
 use Modules\System\Translatable\TranslationModel;
 
-class PageTranslation extends TranslationModel implements Searchable, SluggableInterface, OwnsSlug, PresentableEntity
+class PageTranslation extends TranslationModel implements Searchable, SluggableInterface, OwnsSlug, PresentableEntity, PresentableCache
 {
     use SearchableTrait, SiteSluggable, PresentableTrait, FrontScoping;
 
