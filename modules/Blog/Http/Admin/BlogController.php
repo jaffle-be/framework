@@ -6,10 +6,13 @@ use Illuminate\Http\Request;
 use Modules\Account\AccountManager;
 use Modules\Blog\Jobs\UpdatePost;
 use Modules\Blog\Post;
+use Modules\Media\MediaWidgetPreperations;
 use Modules\System\Http\AdminController;
 
 class BlogController extends AdminController
 {
+
+    use MediaWidgetPreperations;
 
     public function index(Request $request)
     {
@@ -55,6 +58,8 @@ class BlogController extends AdminController
     public function show(Post $post)
     {
         $post->load($this->relations());
+
+        $this->prepareMedia($post, ['images', 'infographics', 'videos', 'files']);
 
         return $post;
     }
