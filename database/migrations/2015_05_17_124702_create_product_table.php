@@ -32,6 +32,8 @@ class CreateProductTable extends Migration
             $table->string('slug');
             $table->string('title');
             $table->text('content');
+            $table->text('cached_content');
+            $table->text('cached_extract');
             $table->timestamps();
         });
 
