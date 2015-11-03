@@ -1,57 +1,63 @@
-angular.module('system').directive('ngReally', ['$modal', '$translate',
-    function ($modal, $translate) {
+(function () {
+    'use strict';
 
-        var ModalInstanceCtrl = function ($scope, $modalInstance) {
-            $scope.ok = function () {
-                $modalInstance.close();
+    angular.module('system').directive('ngReally', ['$uibModal', '$translate',
+        function ($uibModal, $translate) {
+
+            var ModalInstanceCtrl = function ($scope, $uibModalInstance) {
+                $scope.ok = function () {
+                    $uibModalInstance.close();
+                };
+
+                $scope.cancel = function () {
+                    $uibModalInstance.dismiss('cancel');
+                };
             };
 
-            $scope.cancel = function () {
-                $modalInstance.dismiss('cancel');
-            };
-        };
+            return {
+                restrict: 'A',
+                scope: {
+                    ngReally: "&",
+                },
+                link: function (scope, element, attrs) {
+                    element.bind('click', function () {
 
-        return {
-            restrict: 'A',
-            scope: {
-                ngReally: "&",
-            },
-            link: function (scope, element, attrs) {
-                element.bind('click', function () {
+                        $translate('CONFIRM').then(function (translation) {
 
-                    $translate('CONFIRM').then(function (translation) {
-
-                        if(!scope.ngReallyMessage)
-                        {
-                            if(translation)
+                            if (!scope.ngReallyMessage)
                             {
-                                scope.ngReallyMessage = translation;
+                                if (translation)
+                                {
+                                    scope.ngReallyMessage = translation;
+                                }
+                                else
+                                {
+                                    scope.ngReallyMessage = 'Are you sure?';
+                                }
                             }
-                            else {
-                                scope.ngReallyMessage = 'Are you sure?';
-                            }
-                        }
 
-                        var modalHtml = '<div class="modal-body">' + scope.ngReallyMessage  + '</div>';
-                        modalHtml += '<div class="modal-footer"><button class="btn btn-danger" ng-click="ok()">{{ "REMOVE" | translate }}</button><button class="btn btn-default" ng-click="cancel()">{{ "CANCEL" | translate }}</button></div>';
+                            var modalHtml = '<div class="modal-body">' + scope.ngReallyMessage + '</div>';
+                            modalHtml += '<div class="modal-footer"><button class="btn btn-danger" ng-click="ok()">{{ "REMOVE" | translate }}</button><button class="btn btn-default" ng-click="cancel()">{{ "CANCEL" | translate }}</button></div>';
 
-                        var modalInstance = $modal.open({
-                            template: modalHtml,
-                            controller: ModalInstanceCtrl,
-                            animation: false,
-                            animate: false
-                        });
+                            var modalInstance = $uibModal.open({
+                                template: modalHtml,
+                                controller: ModalInstanceCtrl,
+                                animation: false,
+                                animate: false
+                            });
 
-                        modalInstance.result.then(function () {
-                            scope.ngReally();
-                        }, function () {
-                            //Modal dismissed
+                            modalInstance.result.then(function () {
+                                scope.ngReally();
+                            }, function () {
+                                //Modal dismissed
+                            });
+
                         });
 
                     });
 
-                });
-
+                }
             }
-        }
-    }]);
+        }]);
+
+})();

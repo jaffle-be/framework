@@ -5,6 +5,7 @@ use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Modules\Account\AccountManager;
+use Modules\Media\MediaWidgetPreperations;
 use Modules\Pages\Jobs\UpdatePage;
 use Modules\Pages\Page;
 use Modules\Pages\PageRepositoryInterface;
@@ -12,6 +13,7 @@ use Modules\System\Http\AdminController;
 
 class PagesController extends AdminController
 {
+    use MediaWidgetPreperations;
 
     public function overview()
     {
@@ -80,6 +82,8 @@ class PagesController extends AdminController
         $availablePages = $pages->with(['translations'])->orphans()->but($but)->get();
 
         $page->availablePages = $availablePages;
+
+        $this->prepareMedia($page, ['images', 'videos', 'infographics', 'files']);
 
         return $page;
     }

@@ -1,85 +1,90 @@
-angular.module('media')
-    .factory('FileService', function (File, $timeout, $state, $http) {
+(function()
+{
+   'use strict';
 
-        function Service() {
+    angular.module('media')
+        .factory('FileService', function (File, $timeout, $state, $http) {
 
-            var id = $state.params.postId;
-            this.timeouts = [];
+            function Service() {
 
-            //file uploader
-            this.uploader = function (type, id, locale, handlers, ownerIdCallback) {
+                var id = $state.params.postId;
+                this.timeouts = [];
 
-                if(typeof handlers === 'function')
-                {
-                    //handlers is only a success callback
-                    handlers = {
-                        success: handlers
-                    };
-                }
+                //file uploader
+                this.uploader = function (type, id, locale, handlers, ownerIdCallback) {
 
-                return {
-                    options: {
-                        url: 'api/admin/media/file',
-                        params: {
-                            ownerType: type,
-                            ownerId: id,
-                            locale: locale
+                    if(typeof handlers === 'function')
+                    {
+                        //handlers is only a success callback
+                        handlers = {
+                            success: handlers
+                        };
+                    }
+
+                    return {
+                        options: {
+                            url: 'api/admin/media/file',
+                            params: {
+                                ownerType: type,
+                                ownerId: id,
+                                locale: locale
+                            },
+                            clickable: true,
+                            maxFileSize: 10,
+                            init: function () {
+                                this.on('maxfilesexceeded', function (file) {
+                                    this.removeFile(file);
+                                });
+                            }
                         },
-                        clickable: true,
-                        maxFileSize: 10,
-                        init: function () {
-                            this.on('maxfilesexceeded', function (file) {
-                                this.removeFile(file);
-                            });
-                        }
-                    },
-                    handlers: handlers,
+                        handlers: handlers,
+                    };
                 };
-            };
 
-            this.list = function (type, id, success) {
-                return File.list({
-                    ownerId: id,
-                    ownerType: type
-                }, success);
-            };
-
-            this.update = function (type, id, file) {
-
-                if (this.timeouts[file.id])
-                {
-                    $timeout.cancel(this.timeouts[file.id]);
-                }
-
-                var temp = angular.copy(file);
-
-                this.timeouts[file.id] = $timeout(function () {
-                    return temp.$update({
+                this.list = function (type, id, success) {
+                    return File.list({
                         ownerId: id,
                         ownerType: type
+                    }, success);
+                };
+
+                this.update = function (type, id, file) {
+
+                    if (this.timeouts[file.id])
+                    {
+                        $timeout.cancel(this.timeouts[file.id]);
+                    }
+
+                    var temp = angular.copy(file);
+
+                    this.timeouts[file.id] = $timeout(function () {
+                        return temp.$update({
+                            ownerId: id,
+                            ownerType: type
+                        });
+                    }, 400);
+                };
+
+                this.delete = function (type, id, file, success) {
+                    return file.$delete({
+                        ownerId: id,
+                        ownerType: type
+                    }, success);
+                };
+
+                this.sort = function(type, id, files)
+                {
+                    var order = _.pluck(files, 'id');
+                    $http.post('api/admin/media/file/sort', {
+                        ownerId: id,
+                        ownerType: type,
+                        order: order
                     });
-                }, 400);
-            };
+                };
 
-            this.delete = function (type, id, file, success) {
-                return file.$delete({
-                    ownerId: id,
-                    ownerType: type
-                }, success);
-            };
+            }
 
-            this.sort = function(type, id, files)
-            {
-                var order = _.pluck(files, 'id');
-                $http.post('api/admin/media/file/sort', {
-                    ownerId: id,
-                    ownerType: type,
-                    order: order
-                });
-            };
+            return new Service();
 
-        }
-
-        return new Service();
-
-    });
+        });
+})();

@@ -2,13 +2,13 @@
 
     <div class="ibox-tabs">
 
-        <tabset justified="true">
+        <uib-tabset justified="true">
 
-            <tab>
+            <uib-tab>
 
-                <tab-heading>
+                <uib-tab-heading>
                     <i class="fa fa-tag"></i>
-                </tab-heading>
+                </uib-tab-heading>
 
                 <div class="ibox-content">
 
@@ -16,12 +16,12 @@
 
                 </div>
 
-            </tab>
+            </uib-tab>
 
-            <tab>
-                <tab-heading>
+            <uib-tab>
+                <uib-tab-heading>
                     <i class="fa fa-search"></i>
-                </tab-heading>
+                </uib-tab-heading>
 
                 <div class="ibox-content">
 
@@ -29,10 +29,12 @@
 
                 </div>
 
-            </tab>
+            </uib-tab>
 
-        </tabset>
+        </uib-tabset>
 
     </div>
 
 </div>
+
+@include('system::admin.seo')

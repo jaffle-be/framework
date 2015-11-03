@@ -1,4 +1,9 @@
-angular.module('menu', [])
-    .config(function () {
+(function () {
+    'use strict';
 
-    });
+    angular.module('menu', [])
+        .config(function () {
+
+        });
+
+})();

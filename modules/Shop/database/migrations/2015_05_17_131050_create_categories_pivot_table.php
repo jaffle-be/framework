@@ -15,9 +15,9 @@ class CreateCategoriesPivotTable extends Migration
     {
         Schema::create('product_categories_pivot', function (Blueprint $table) {
             $table->integer('product_id', false, true);
-            $table->foreign('product_id', 'categories_pivot_to_product')->references('id')->on('products')->onDelete('cascade');
+            $table->foreign('product_id', 'categories_product_pivot_to_product')->references('id')->on('products')->onDelete('cascade');
             $table->integer('category_id', false, true);
-            $table->foreign('category_id', 'categories_pivot_to_category')->references('id')->on('product_categories')->onDelete('cascade');
+            $table->foreign('category_id', 'categories_product_pivot_to_category')->references('id')->on('product_categories')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -30,8 +30,8 @@ class CreateCategoriesPivotTable extends Migration
     public function down()
     {
         Schema::drop('product_categories_pivot', function (Blueprint $table) {
-            $table->dropForeign('categories_pivot_to_product');
-            $table->dropForeign('categories_pivot_to_category');
+            $table->dropForeign('categories_product_pivot_to_product');
+            $table->dropForeign('categories_product_pivot_to_category');
         });
     }
 

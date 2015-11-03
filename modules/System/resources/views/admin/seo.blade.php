@@ -1,33 +1,38 @@
-<div class="alert alert-info">
-	Title and description will also override the title and the description when:
+<script type="text/ng-template" id="templates/admin/seo/widget">
 
-    <ul>
-        <li>tweeting about the article</li>
-        <li>sharing on google+</li>
-        <li>sharing on facebook</li>
-    </ul>
-</div>
+    <div class="alert alert-info">
+        Title and description will also override the title and the description when:
 
-<div class="form-group">
+        <ul>
+            <li>tweeting about the article</li>
+            <li>sharing on google+</li>
+            <li>sharing on facebook</li>
+        </ul>
+    </div>
 
-    <label for="">{{ Lang::get('system::admin.seo.title') }}</label>
+    <div class="form-group">
 
-    <input type="text" class="form-control" ng-model="seo[locale].title" ng-change="ctrl.updateSeo()">
+        <label for="">{{ Lang::get('system::admin.seo.title') }}</label>
 
-</div>
+        <input type="text" class="form-control" ng-model="seo[locale].title" ng-change="ctrl.updateSeo()">
 
-<div class="form-group">
+    </div>
 
-    <label for="">{{ Lang::get('system::admin.seo.description') }}</label>
+    <div class="form-group">
 
-    <textarea rows="2" class="form-control" ng-model="seo[locale].description" ng-change="ctrl.updateSeo()"></textarea>
+        <label for="">{{ Lang::get('system::admin.seo.description') }}</label>
 
-</div>
+        <textarea rows="2" class="form-control" ng-model="seo[locale].description" ng-change="ctrl.updateSeo()"></textarea>
 
-<div class="form-group">
+    </div>
 
-    <label for="">{{ Lang::get('system::admin.seo.keywords') }}</label>
+    <div class="form-group">
 
-    <input type="text" class="form-control" ng-model="seo[locale].keywords" ng-change="ctrl.updateSeo()">
+        <label for="">{{ Lang::get('system::admin.seo.keywords') }}</label>
 
-</div>
+        <input type="text" class="form-control" ng-model="seo[locale].keywords" ng-change="ctrl.updateSeo()">
+
+    </div>
+
+</script>
+

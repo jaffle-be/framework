@@ -1,55 +1,60 @@
-angular.module('menu')
-    .factory('MenuService', function ($timeout, $http, Menu, MenuItem, toaster) {
+(function () {
+    'use strict';
 
-        return {
+    angular.module('menu')
+        .factory('MenuService', function ($timeout, $http, Menu, MenuItem, toaster) {
 
-            list: function (success) {
-                return Menu.list({}, success);
-            },
-            create: function (name, success) {
-                var menu = new Menu();
-                menu.name = name;
+            return {
 
-                menu.$save({}, success);
-            },
-            remove: function (menu, success) {
-                menu.$delete({}, success);
-            },
-            saveItem: function (item, delayed, success) {
+                list: function (success) {
+                    return Menu.list({}, success);
+                },
+                create: function (name, success) {
+                    var menu = new Menu();
+                    menu.name = name;
 
-                var destination = angular.copy(item);
+                    menu.$save({}, success);
+                },
+                remove: function (menu, success) {
+                    menu.$delete({}, success);
+                },
+                saveItem: function (item, delayed, success) {
 
-                if (!delayed)
-                {
-                    return destination.$update({}, success);
-                }
+                    var destination = angular.copy(item);
 
-                if (this.timeout)
-                {
-                    $timeout.cancel(this.timeout);
-                }
-
-                this.timeout = $timeout(function () {
-                    destination.$update({}, success);
-                }, 400);
-            },
-            createItem: function (item, success) {
-                return item.$save({}).then(success, function(response){
-                    if(response.status == 422)
+                    if (!delayed)
                     {
-                        _.each(response.data, function(item){
-                            toaster.pop('error', item[0]);
-                        });
+                        return destination.$update({}, success);
                     }
-                });
-            },
-            deleteItem: function (item, success) {
-                return item.$delete({}, success);
-            },
-            sort: function (menu, success) {
-                var order = _.pluck(menu.items, 'id');
-                $http.post('api/admin/menu/' + menu.id + '/sort', {order: order}).then(success);
-            }
-        }
 
-    });
+                    if (this.timeout)
+                    {
+                        $timeout.cancel(this.timeout);
+                    }
+
+                    this.timeout = $timeout(function () {
+                        destination.$update({}, success);
+                    }, 400);
+                },
+                createItem: function (item, success) {
+                    return item.$save({}).then(success, function (response) {
+                        if (response.status == 422)
+                        {
+                            _.each(response.data, function (item) {
+                                toaster.pop('error', item[0]);
+                            });
+                        }
+                    });
+                },
+                deleteItem: function (item, success) {
+                    return item.$delete({}, success);
+                },
+                sort: function (menu, success) {
+                    var order = _.pluck(menu.items, 'id');
+                    $http.post('api/admin/menu/' + menu.id + '/sort', {order: order}).then(success);
+                }
+            }
+
+        });
+
+})();

@@ -12,13 +12,91 @@ var gulp = require('gulp'),
     cached = require('gulp-cached'),
     maps = require('gulp-sourcemaps'),
     fs = require('fs'),
-    glob = require('glob');
+    glob = require('glob'),
+    annotate = require('gulp-ng-annotate'),
+    bytediff = require('gulp-bytediff');
+
+var modules = 'modules/*/resources/assets/';
+
+var pkg = {
+    admin: {
+        js: {
+            "files": [
+                'modules/System/resources/assets/js/admin/app.js',
+                modules + 'js/admin/config.js',
+                modules + 'js/admin/services/**/*.js',
+                modules + 'js/admin/translations.js',
+                modules + 'js/admin/directives/**/*.js',
+                modules + 'js/admin/models.js',
+                modules + 'js/admin/controllers/**/*.js'
+            ],
+            publish: "public/js/admin"
+        },
+        core: {
+            watch: [
+                'modules/system/resources/assets/js/admin/core.js',
+            ],
+            files: [
+                'bower_components/jquery/dist/jquery.min.js',
+                'bower_components/bootstrap/dist/js/bootstrap.min.js',
+                'bower_components/pusher/dist/pusher.min.js',
+                'bower_components/metisMenu/dist/metisMenu.js',
+                'bower_components/slimScroll/jquery.slimscroll.js',
+                'bower_components/PACE/pace.js',
+                'bower_components/moment/min/moment-with-locales.min.js',
+                'bower_components/dropzone/dist/min/dropzone.min.js',
+                'bower_components/lodash/lodash.min.js',
+                'bower_components/autosize/dist/autosize.min.js',
+                'modules/system/resources/assets/js/admin/core.js',
+
+                //angular plugins
+
+                'bower_components/angular/angular.min.js',
+                'bower_components/pusher-angular/lib/pusher-angular.min.js',
+                'bower_components/angular-smart-table/dist/smart-table.min.js',
+                'bower_components/ocLazyLoad/dist/ocLazyLoad.min.js',
+                'bower_components/angular-translate/angular-translate.min.js',
+                'bower_components/angular-ui-router/release/angular-ui-router.min.js',
+                'bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js',
+                'bower_components/ngstorage/ngStorage.min.js',
+                'bower_components/ng-sortable/dist/ng-sortable.min.js',
+                'bower_components/ng-idle/angular-idle.min.js',
+                'bower_components/angular-resource/angular-resource.min.js',
+                'bower_components/angular-cookies/angular-cookies.min.js',
+                'bower_components/angularjs-toaster/toaster.min.js'
+            ],
+            publish: "public/js/admin"
+        }
+    },
+};
 
 
-//default task to run
+//2 most basic commands
 gulp.task('default', ['compile']);
-
 gulp.task('watch', ['watch']);
+
+//global commands
+gulp.task('compile', ['plugins', 'js', 'less']);
+gulp.task('watch', ['watch-js', 'watch-less']);
+gulp.task('js', ['js-core', 'js-admin']);
+gulp.task('less', ['less-admin']);
+gulp.task('plugins', allPlugins);
+
+
+//subcommands
+gulp.task('js-admin', jsAdminCompiler);
+gulp.task('js-core', jsCoreCompiler);
+
+gulp.task('less-admin', lessCompiler);
+
+gulp.task('watch-js', function () {
+    jsAdminWatcher();
+    jsCoreWatcher();
+});
+
+gulp.task('watch-less', function () {
+    lessAdminWatcher();
+});
 
 /**
  *
@@ -27,108 +105,69 @@ gulp.task('watch', ['watch']);
  *
  */
 
-gulp.task('compile', ['plugins', 'scripts', 'less']);
+function jsAdminCompiler() {
+    return gulp.src(pkg.admin.js.files)
+        .pipe(plumber())
+        .pipe(maps.init())
+        .pipe(concat('all.min.js'))
+        // Annotate before uglify so the code get's min'd properly.
+        .pipe(annotate({
+            // true helps add where @ngInject is not used. It infers.
+            // Doesn't work with resolve, so we must be explicit there
+            add: true
+        }))
+        .pipe(bytediff.start())
+        .pipe(uglify({mangle: true}))
+        .pipe(bytediff.stop())
+        .pipe(maps.write(pkg.admin.js.publish))
+        .pipe(gulp.dest(pkg.admin.js.publish));
+}
 
-gulp.task('watch', ['watch-scripts', 'watch-less']);
 
-gulp.task('watch-less', function()
-{
-    watch(['app/System/resources/assets/less/admin/**.less'], function()
-    {
+function jsCoreCompiler() {
+    return gulp.src(pkg.admin.core.files)
+        .pipe(plumber())
+        .pipe(maps.init())
+        .pipe(concat('core.min.js'))
+        .pipe(bytediff.start())
+        .pipe(uglify({mangle: true}))
+        .pipe(bytediff.stop())
+        .pipe(maps.write(pkg.admin.core.publish))
+        .pipe(gulp.dest(pkg.admin.core.publish));
+}
+
+
+function lessAdminWatcher() {
+    watch(['modules/System/resources/assets/less/admin/**/*.less'], function () {
         gulp.start('less');
     });
-});
+}
 
-gulp.task('less', function()
-{
-    gulp.src(['app/System/resources/assets/less/admin/main.less'])
+
+function jsAdminWatcher() {
+    watch(pkg.admin.js.files, function () {
+        gulp.start('js-admin');
+    });
+}
+function jsCoreWatcher() {
+    watch(pkg.admin.core.watch, function () {
+        gulp.start('js-core');
+    });
+}
+
+function lessCompiler() {
+    gulp.src(['modules/System/resources/assets/less/admin/main.less'])
         .pipe(plumber())
         .pipe(less())
         .pipe(gulp.dest('public/css/admin'))
         .pipe(minify())
-        .pipe(rename(function(path){
+        .pipe(rename(function (path) {
             path.extname = '.min.css';
         }))
         .pipe(gulp.dest('public/css/admin'))
-});
+}
 
-gulp.task('watch-scripts', function()
-{
-    watch(['app/*/resources/assets/js/admin/*/*.js', 'app/*/resources/assets/js/admin/models.js', 'app/*/resources/assets/js/admin/config.js', 'app/*/resources/assets/js/admin/translations.js'], function(){
-        gulp.start('scripts');
-    });
-});
-
-gulp.task('scripts', function () {
-    /**
-     * there are 4 types of components.
-     * - module components that exist out of 1 file with a name of 'component'.js
-     * - module components that can have multiple files, which are all found in a subdirectory called 'component'
-     * - app.js component
-     * - core.js component
-     */
-
-    var fileComponents = ['translations', 'config', 'models'];
-
-    for (var i in fileComponents)
-    {
-        var file = fileComponents[i];
-
-        gulp.src('app/*/resources/assets/js/admin/' + file + '.js')
-            .pipe(concat(file + '.js'))
-            .pipe(gulp.dest('public/js/admin'))
-            .pipe(rename(function (file) {
-                file.extname = '.min.js';
-            }))
-            .pipe(gulp.dest('public/js/admin'));
-    }
-
-    var folderComponents = ['controllers', 'services', 'directives'];
-
-    for (var i in folderComponents)
-    {
-        var folder = folderComponents[i];
-
-        gulp.src('app/*/resources/assets/js/admin/' + folder + '/*.js')
-            .pipe(concat(folder + '.js'))
-            .pipe(gulp.dest('public/js/admin'))
-            .pipe(rename(function (file) {
-                file.extname = '.min.js';
-            }))
-            .pipe(gulp.dest('public/js/admin'));
-    }
-
-    gulp.src('app/System/resources/assets/js/admin/app.js')
-        .pipe(plumber())
-        .pipe(gulp.dest('public/js/admin'))
-        .pipe(rename(function (path) {
-            path.extname = '.min.js';
-        }))
-        .pipe(gulp.dest('public/js/admin'));
-
-
-    gulp.src([
-        'bower_components/metisMenu/dist/metisMenu.js',
-        'bower_components/slimScroll/jquery.slimscroll.js',
-        'bower_components/PACE/pace.js',
-        'bower_components/moment/min/moment-with-locales.min.js',
-        'bower_components/dropzone/dist/min/dropzone.min.js',
-        'bower_components/lodash/lodash.min.js',
-        'bower_components/autosize/dist/autosize.min.js',
-        'app/system/resources/assets/js/admin/core.js',
-    ])
-        .pipe(maps.init())
-        .pipe(concat('core.js'))
-        .pipe(uglify())
-        .pipe(rename(function(path){
-            path.extname = '.min.js';
-        }))
-        .pipe(maps.write())
-        .pipe(gulp.dest('public/js/admin'))
-
-});
-
-gulp.task('plugins', function () {
+function allPlugins() {
     gulp.src('bower_components/font-awesome/fonts/**')
         .pipe(copy('./public/fonts', {
             prefix: 3
@@ -138,85 +177,4 @@ gulp.task('plugins', function () {
         .pipe(copy('./public/fonts', {
             prefix: 4
         }));
-
-    gulp.src('bower_components/angular/angular.min.js')
-        .pipe(copy('./public/js/admin/angular/', {
-            prefix: 2
-        }));
-
-    gulp.src('bower_components/jquery/dist/jquery.min.js')
-        .pipe(copy('./public/js/admin/jquery/', {
-            prefix: 3
-        }));
-
-    gulp.src('bower_components/bootstrap/dist/js/bootstrap.min.js')
-        .pipe(copy('./public/js/admin/bootstrap/', {
-            prefix: 4
-        }));
-
-    gulp.src('bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js')
-        .pipe(copy('./public/js/admin/bootstrap/', {
-            prefix: 2
-        }));
-
-    //angular admin plugins
-    gulp.src('bower_components/angular-smart-table/dist/smart-table.min.js')
-        .pipe(copy('./public/js/admin/angular-smart-table/', {
-            prefix: 3
-        }));
-
-    gulp.src('bower_components/angular-translate/angular-translate.min.js')
-        .pipe(copy('./public/js/admin/angular-translate/', {
-            prefix: 2
-        }));
-
-    gulp.src('bower_components/ocLazyLoad/dist/ocLazyLoad.min.js')
-        .pipe(copy('./public/js/admin/ocLazyLoad', {
-            prefix: 3
-        }));
-
-    gulp.src('bower_components/angular-ui-router/release/angular-ui-router.min.js')
-        .pipe(copy('./public/js/admin/angular-ui-router/', {
-            prefix: 3
-        }));
-
-    gulp.src('bower_components/ng-idle/angular-idle.min.js')
-        .pipe(copy('./public/js/admin/angular-idle/', {
-            prefix: 2
-        }));
-
-    gulp.src('bower_components/angular-resource/angular-resource.min.js')
-        .pipe(copy('./public/js/admin/angular-resource/', {
-            prefix: 3
-        }));
-
-    gulp.src('bower_components/ngstorage/ngStorage.min.js')
-        .pipe(copy('./public/js/admin/ngStorage/', {
-            prefix: 2
-        }));
-
-    gulp.src('bower_components/ng-sortable/dist/ng-sortable.min.js')
-        .pipe(copy('./public/js/admin/ng-sortable/', {
-            prefix: 3
-        }));
-
-    gulp.src('bower_components/angular-cookies/angular-cookies.min.js')
-        .pipe(copy('./public/js/admin/angular-cookies/', {
-            prefix: 2
-        }));
-
-    gulp.src('bower_components/angularjs-toaster/toaster.min.js')
-        .pipe(copy('./public/js/admin/angularjs-toaster/', {
-            prefix: 2
-        }));
-
-    gulp.src('bower_components/pusher/dist/pusher.min.js')
-        .pipe(copy('./public/js/admin/pusher/', {
-            prefix: 3
-        }));
-
-    gulp.src('bower_components/pusher-angular/lib/pusher-angular.min.js')
-        .pipe(copy('./public/js/admin/pusher-angular/', {
-            prefix: 3
-        }));
-});
+}

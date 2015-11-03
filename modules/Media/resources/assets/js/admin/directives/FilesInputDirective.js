@@ -1,87 +1,106 @@
-angular.module('media')
-    .directive('fileInput', function () {
+(function () {
+    'use strict';
 
-        return {
-            restrict: 'E',
-            templateUrl: 'templates/admin/media/file/widget',
-            scope: {
-                locale: '=',
-                ownerId: '=',
-                ownerType: '=',
-            },
-            controller: function ($scope, FileResource, FileService, toaster) {
-                var me = this;
-                //init base variables and dropzone
-                $scope.loaded = false;
-                $scope.ctrl = this;
+    angular.module('media')
+        .directive('fileInput', function () {
 
-                this.sortables = {
-                    orderChanged: function()
-                    {
-                        FileService.sort($scope.ownerType, $scope.ownerId, me.files[$scope.locale]);
-                    }
-                };
+            return {
+                restrict: 'E',
+                templateUrl: 'templates/admin/media/file/widget',
+                scope: {
+                    locale: '=',
+                    ownerId: '=',
+                    ownerType: '=',
+                    files: '=',
+                },
+                controllerAs: 'vm',
+                controller: function ($scope, FileResource, FileService, toaster) {
+                    var me = this;
+                    //init base variables and dropzone
+                    $scope.loaded = true;
+                    $scope.ctrl = this;
+                    $scope.dropzone = initDropzone();
 
-                this.dropzone = function () {
+                    this.updateFile = updateFile;
+                    this.deleteFile = deleteFile;
+                    this.init = init;
 
-                    $scope.dropzone = FileService.uploader($scope.ownerType, $scope.ownerId, $scope.locale, {
-                        success: function (file, object, xhr) {
-                            object = new FileResource(object);
-                            if(!me.files[$scope.locale])
-                            {
-                                me.files[$scope.locale] = [];
-                            }
-                            me.files[$scope.locale].push(object);
-                            this.removeFile(file);
-                            $scope.$apply();
-                        },
-                        error: function(file, message, response)
+                    this.sortables = {
+                        orderChanged: function () {
+                            FileService.sort($scope.ownerType, $scope.ownerId, $scope.files[$scope.locale]);
+                        }
+                    };
+
+                    $scope.$watch('files', function (newValue) {
+
+                        if (newValue)
                         {
-                            //added to avoid large popup when we try uploading a file which is too large
-                            if(response.status == 413)
-                            {
-                                toaster.error(response.statusText);
-                            }
-                            else{
-                                toaster.error(message);
-                            }
-
-                            this.removeFile(file);
-                            $scope.$apply();
-                        },
-                        processing: function () {
-                            this.options.params.ownerId = $scope.ownerId;
-                            this.options.params.locale = $scope.locale;
+                            $scope.dupes = newValue;
                         }
                     });
-                };
 
-                this.dropzone();
+                    function initDropzone() {
 
-
-                this.updateFile = function (file) {
-                    FileService.update($scope.ownerType, $scope.ownerId, file);
-                };
-
-                this.deleteFile = function (file) {
-                    FileService.delete($scope.ownerType, $scope.ownerId, file, function () {
-                        _.remove(me.files[$scope.locale], function (value, index, array) {
-                            return value.id == file.id;
+                        return FileService.uploader($scope.ownerType, $scope.ownerId, $scope.locale, {
+                            success: dropzoneSuccess,
+                            error: dropzoneError,
+                            processing: dropzoneProcessing
                         });
-                    });
-                };
+                    };
 
-                this.init = function () {
-                    FileService.list($scope.ownerType, $scope.ownerId, function (response) {
-                        me.files = response.data;
-                        $scope.loaded = true;
-                    });
-                };
+                    function dropzoneSuccess(file, object, xhr) {
+                        object = new FileResource(object);
+                        if (!$scope.files[$scope.locale])
+                        {
+                            $scope.files[$scope.locale] = [];
+                        }
+                        $scope.files[$scope.locale].push(object);
+                        this.removeFile(file);
+                        $scope.$apply();
+                    };
 
-                this.init();
+                    function dropzoneError(file, message, response) {
+                        //added to avoid large popup when we try uploading a file which is too large
+                        if (response.status == 413)
+                        {
+                            toaster.error(response.statusText);
+                        }
+                        else
+                        {
+                            toaster.error(message);
+                        }
+
+                        this.removeFile(file);
+                        $scope.$apply();
+                    };
+
+                    function dropzoneProcessing() {
+                        this.options.params.ownerId = $scope.ownerId;
+                        this.options.params.locale = $scope.locale;
+                    };
+
+                    function init() {
+                        FileService.list($scope.ownerType, $scope.ownerId, function (response) {
+                            $scope.files = response.data;
+                            $scope.loaded = true;
+                        });
+                    };
+
+                    function updateFile(file) {
+                        FileService.update($scope.ownerType, $scope.ownerId, file);
+                    };
+
+                    function deleteFile(file) {
+                        FileService.delete($scope.ownerType, $scope.ownerId, file, function () {
+                            _.remove($scope.files[$scope.locale], function (value, index, array) {
+                                return value.id == file.id;
+                            });
+                        });
+                    };
+                }
+
             }
 
-        }
 
-
-    });
+        });
+})();

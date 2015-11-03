@@ -1,8 +1,8 @@
-<tab>
+<uib-tab>
 
-    <tab-heading>
+    <uib-tab-heading>
         <i class="fa fa-map-signs"></i>
-    </tab-heading>
+    </uib-tab-heading>
 
     <div class="ibox-content">
 
@@ -10,7 +10,7 @@
 
     </div>
 
-</tab>
+</uib-tab>
 
 
 <script type="text/ng-template" id="/templates/admin/pages/widget">

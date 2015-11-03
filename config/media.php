@@ -14,6 +14,7 @@ return [
         'user'         => Modules\Users\User::class,
         'account-logo' => Modules\Account\AccountLogo::class,
         'client'       => Modules\Account\Client::class,
+        'product'       => Modules\Shop\Product\Product::class,
     ],
 
     'admin'  => [

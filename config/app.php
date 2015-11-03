@@ -169,7 +169,6 @@ return [
         Mews\Captcha\CaptchaServiceProvider::class,
         Thomaswelton\LaravelGravatar\LaravelGravatarServiceProvider::class,
         Vinkla\Vimeo\VimeoServiceProvider::class,
-        Vinkla\Pusher\PusherServiceProvider::class,
         'Alaouy\Youtube\YoutubeServiceProvider',
         'GrahamCampbell\Markdown\MarkdownServiceProvider',
         'Intouch\LaravelNewrelic\NewrelicServiceProvider',

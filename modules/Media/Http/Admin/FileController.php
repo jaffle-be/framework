@@ -5,12 +5,15 @@ use Illuminate\Http\Request;
 use Modules\Media\Commands\UploadNewFile;
 use Modules\Media\Files\File;
 use Modules\Media\MediaRepositoryInterface;
+use Modules\Media\MediaWidgetPreperations;
 use Modules\System\Http\AdminController;
 use Modules\System\Locale;
 use Modules\Theme\ThemeManager;
 
 class FileController extends AdminController
 {
+    use MediaWidgetPreperations;
+
     protected $media;
 
     public function __construct(ThemeManager $theme, MediaRepositoryInterface $media)
@@ -35,17 +38,7 @@ class FileController extends AdminController
     {
         $owner = $this->owner($request);
 
-        $files = $owner->files;
-
-        return $files->byLocale();
-    }
-
-    protected function owner(Request $request)
-    {
-        $id = $request->get('ownerId');
-        $type = $request->get('ownerType');
-
-        return $this->media->findOwner($type, $id);
+        return $owner->files;
     }
 
     public function store(Request $request, Locale $locale)

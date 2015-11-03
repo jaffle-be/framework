@@ -15,9 +15,17 @@ class CreateCategoriesTable extends Migration
     {
         Schema::create('product_categories', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
             $table->timestamps();
-            $table->softDeletes();
+        });
+
+        Schema::create('product_category_translations', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('category_id', false, true);
+            $table->foreign('category_id', 'translation_to_category')->references('id')->on('product_categories')->onDelete('cascade');
+            $table->string('locale', 5);
+            $table->string('name');
+            $table->string('slug');
+            $table->timestamps();
         });
     }
 
@@ -28,6 +36,10 @@ class CreateCategoriesTable extends Migration
      */
     public function down()
     {
+        Schema::drop('product_category_translations', function(Blueprint $table){
+            $table->dropForeign('translation_to_category');
+        });
+
         Schema::drop('product_categories');
     }
 

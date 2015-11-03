@@ -7,11 +7,11 @@
 
                 <div class="ibox-tabs">
 
-                    <tabset>
+                    <uib-tabset>
 
-                        <tab ng-repeat="menu in vm.menus" heading="@{{ menu.name }}" select="vm.selectMenu(menu)"></tab>
+                        <uib-tab ng-repeat="menu in vm.menus" heading="@{{ menu.name }}" select="vm.selectMenu(menu)"></uib-tab>
 
-                    </tabset>
+                    </uib-tabset>
 
                     <div class="ibox-content ibox-with-footer">
 
@@ -56,21 +56,21 @@
 
                 <div class="ibox-tabs">
 
-                    <tabset>
+                    <uib-tabset>
 
-                        <tab heading="{{ Lang::get('menu::admin.manual-item') }}" active="vm.tabs['manual']" select="vm.selectTab('manual')">
+                        <uib-tab heading="{{ Lang::get('menu::admin.manual-item') }}" active="vm.tabs['manual']" select="vm.selectTab('manual')">
                             @include('menu::admin.manual-item')
-                        </tab>
+                        </uib-tab>
 
-                        <tab heading="{{ Lang::get('menu::admin.page-item') }}" active="vm.tabs['page']" select="vm.selectTab('page')">
+                        <uib-tab heading="{{ Lang::get('menu::admin.page-item') }}" active="vm.tabs['page']" select="vm.selectTab('page')">
                             @include('menu::admin.page-item')
-                        </tab>
+                        </uib-tab>
 
-                        <tab heading="{{ Lang::get('menu::admin.linkable-route') }}" active="vm.tabs['route']" select="vm.selectTab('route')">
+                        <uib-tab heading="{{ Lang::get('menu::admin.linkable-route') }}" active="vm.tabs['route']" select="vm.selectTab('route')">
                             @include('menu::admin.route-item')
-                        </tab>
+                        </uib-tab>
 
-                    </tabset>
+                    </uib-tabset>
 
 
                     </div>

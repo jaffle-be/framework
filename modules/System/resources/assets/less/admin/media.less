@@ -82,6 +82,7 @@ body > .nav.files .item{
   }
 
   ul.nav-tabs {
+    border-bottom: 1px @border-color !important
 
     li a{
       font-size: large;
@@ -92,7 +93,12 @@ body > .nav.files .item{
       }
     }
 
-    li tab-heading{
+    li{
+      border-width: 1px;
+    }
+
+    li a{
+      border: 1px solid transparent !important;
       line-height: 40px !important;
       vertical-align: middle !important;
     }
@@ -102,10 +108,11 @@ body > .nav.files .item{
 
       a{
         background-color: transparent;
-        border-color: #00a2cd;
+        border: 1px solid transparent !important;
         color: white;
 
         &:hover, &:active, &:focus {
+          border: 1px solid transparent !important;
           background-color: #00a2cd;
           color: white;
         }
@@ -116,12 +123,13 @@ body > .nav.files .item{
       background-color: #ff0000;
 
       a{
-        background-color: transparent;
+        background-color: #ff0000;
         border-color: #ff0000;
         color: white;
 
         &:hover, &:active, &:focus {
           background-color: #ff0000;
+          border-color: #ff0000;
           color: white;
         }
       }

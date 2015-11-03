@@ -17,8 +17,7 @@
         'ngResource',
         'ngStorage',
         'ngCookies',
-        //carefull, ui.sortable will change to as.sortable in the future (probably because of the same name as the other library)
-        'ui.sortable',
+        'as.sortable',
         'account',
         'contact',
         'system',
@@ -28,6 +27,6 @@
         'theme-active',                 //the active theme should use this scope to load
         'pages',
         'module',
+        'shop'
     ])
 })();
-// Other libraries are loaded dynamically in the config.js file using the library ocLazyLoad

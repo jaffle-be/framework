@@ -1,89 +1,92 @@
-angular.module('menu')
-    .directive('menuRouteItem', function (MenuService, MenuItem) {
+(function () {
+    'use strict';
 
-        return {
-            restrict: 'A',
-            templateUrl: '/templates/admin/menu/route-item',
-            scope: {
-                menu: '=',
-                item: '=menuRouteItem',
-                locales: '=',
-                locale: '=',
-            },
-            controller: function ($scope) {
-                this.selectedRoute = '';
-                //active menu
-                $scope.vm = this;
-                var me = this;
+    angular.module('menu')
+        .directive('menuRouteItem', function (MenuService, MenuItem) {
 
-                this.routeName = function(route)
-                {
-                    if(route.translations[$scope.locale] && route.translations[$scope.locale].title)
-                    {
-                        return route.translations[$scope.locale].title
-                    }
+            return {
+                restrict: 'A',
+                templateUrl: '/templates/admin/menu/route-item',
+                scope: {
+                    menu: '=',
+                    item: '=menuRouteItem',
+                    locales: '=',
+                    locale: '=',
+                },
+                controller: function ($scope) {
+                    this.selectedRoute = '';
+                    //active menu
+                    $scope.vm = this;
+                    var me = this;
 
-                    var name;
-
-                    _.each(route.translations, function(item){
-                        if(item.title)
+                    this.routeName = function (route) {
+                        if (route.translations[$scope.locale] && route.translations[$scope.locale].title)
                         {
-                            name = item.title;
+                            return route.translations[$scope.locale].title
                         }
-                    });
 
-                    return name;
-                };
+                        var name;
 
-                this.saveItem = function (delayed) {
-                    //only save existing
-                    if (!$scope.item.id)
-                    {
-                        return;
-                    }
-
-                    if (typeof delayed === 'undefined')
-                    {
-                        delayed = true;
-                    }
-
-                    MenuService.saveItem($scope.item, delayed);
-
-                };
-
-                this.createItem = function () {
-                    if (this.selectedRoute)
-                    {
-                        var created = new MenuItem({
-                            menu_id: $scope.menu.id,
-                            module_route_id: me.selectedRoute
-                        });
-
-                        MenuService.createItem(created, function (item) {
-                            $scope.menu.items.push(item);
-                            _.remove($scope.menu.availableRoutes, function(route)
+                        _.each(route.translations, function (item) {
+                            if (item.title)
                             {
-                                return route.id == me.selectedRoute;
-                            });
-                            me.selectedRoute = false;
+                                name = item.title;
+                            }
                         });
-                    }
-                };
 
-                this.deleteItem = function () {
-                    MenuService.deleteItem($scope.item, function (response) {
-                        if (!response.id)
+                        return name;
+                    };
+
+                    this.saveItem = function (delayed) {
+                        //only save existing
+                        if (!$scope.item.id)
                         {
-                            _.remove($scope.menu.items, function (item) {
-                                return item.id == $scope.item.id;
+                            return;
+                        }
+
+                        if (typeof delayed === 'undefined')
+                        {
+                            delayed = true;
+                        }
+
+                        MenuService.saveItem($scope.item, delayed);
+
+                    };
+
+                    this.createItem = function () {
+                        if (this.selectedRoute)
+                        {
+                            var created = new MenuItem({
+                                menu_id: $scope.menu.id,
+                                module_route_id: me.selectedRoute
                             });
 
-                            $scope.item = false;
+                            MenuService.createItem(created, function (item) {
+                                $scope.menu.items.push(item);
+                                _.remove($scope.menu.availableRoutes, function (route) {
+                                    return route.id == me.selectedRoute;
+                                });
+                                me.selectedRoute = false;
+                            });
                         }
-                    });
-                };
+                    };
 
+                    this.deleteItem = function () {
+                        MenuService.deleteItem($scope.item, function (response) {
+                            if (!response.id)
+                            {
+                                _.remove($scope.menu.items, function (item) {
+                                    return item.id == $scope.item.id;
+                                });
+
+                                $scope.item = false;
+                            }
+                        });
+                    };
+
+                }
             }
-        }
 
-    });
+        });
+
+})();

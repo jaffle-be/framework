@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Eloquent\Model;
 use Modules\Media\Image\ImageModelTrait;
-use Modules\System\Scopes\ModelAccountResource;
+use Modules\System\Scopes\ModelAccountOrSystemResource;
 use Modules\System\Scopes\ModelAutoSort;
 use Modules\System\Translatable\Translatable;
 
@@ -10,7 +10,7 @@ class Image extends Model
 {
 
     use Translatable;
-    use ModelAccountResource;
+    use ModelAccountOrSystemResource;
     use ModelAutoSort;
     use ImageModelTrait;
 

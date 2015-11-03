@@ -1,57 +1,58 @@
-angular.module('users')
-    .factory('SkillService', function(Skill, $timeout)
-    {
-        function Service() {
+(function () {
+    'use strict';
 
-            this.searching = false;
-            this.timeouts = [];
+    angular.module('users')
+        .factory('SkillService', function (Skill, $timeout) {
+            function Service() {
 
-            var me = this;
+                this.searching = false;
+                this.timeouts = [];
 
-            this.update = function (skill) {
+                var me = this;
 
-                var temp = angular.copy(skill);
+                this.update = function (skill) {
 
-                if (this.timeouts[skill.id]) {
-                    $timeout.cancel(this.timeouts[skill.id]);
-                }
+                    var temp = angular.copy(skill);
 
-                this.timeouts[skill.id] = $timeout(function () {
-                    return temp.$update({
+                    if (this.timeouts[skill.id])
+                    {
+                        $timeout.cancel(this.timeouts[skill.id]);
+                    }
+
+                    this.timeouts[skill.id] = $timeout(function () {
+                        return temp.$update({});
+                    }, 400);
+                };
+
+                this.create = function (locale, name, success) {
+                    var skill = new Skill({
+                        locale: locale,
+                        name: name
                     });
-                }, 400);
-            };
 
-            this.create = function (locale, name, success) {
-                skill = new Skill({
-                    locale: locale,
-                    name: name
-                });
+                    skill.$save({}, success);
+                };
 
-                skill.$save({
-                }, success);
-            };
+                this.link = function (skill, success) {
+                    skill = new Skill(skill);
+                    skill.$update({}, success);
+                };
 
-            this.link = function (skill, success) {
-                skill = new Skill(skill);
-                skill.$update({
-                }, success);
-            };
+                this.delete = function (skill, success, error) {
+                    return skill.$delete({}).then(success, error);
+                };
 
-            this.delete = function (skill, success, error) {
-                return skill.$delete({
-                }).then(success, error);
-            };
+                this.search = function (locale, value) {
 
-            this.search = function (locale, value) {
+                    return Skill.query({
+                        value: value,
+                        locale: locale
+                    }).$promise;
+                };
 
-                return Skill.query({
-                    value: value,
-                    locale: locale
-                }).$promise;
-            };
+            }
 
-        }
+            return new Service();
+        });
 
-        return new Service();
-    });
+})();

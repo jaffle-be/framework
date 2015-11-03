@@ -1,35 +1,26 @@
-function MainController($scope, toaster, $pusher, PUSHER_API_KEY, $window) {
+(function () {
+    'use strict';
 
-    this.multipleLocales = function(locales)
-    {
-        return _.keys(locales).length > 1;
-    };
+    function MainController($scope, toaster, Pusher, $window) {
 
-    var client = new Pusher(PUSHER_API_KEY, {
-        auth: {
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        }
-    });
+        this.multipleLocales = function (locales) {
+            return _.keys(locales).length > 1;
+        };
 
-    //we'd need a channel for each account
-    var alias = $('meta[name="account-alias"]').attr('content');
-    var pusher = $pusher(client);
+        Pusher.channel.bind('system.hard-reload', function () {
+            $window.location.reload();
 
-    var channel = pusher.subscribe('private-' + alias);
+        });
 
-    channel.bind('system.hard-reload', function () {
-        $window.location.reload();
-    });
+        this.toaster = {
+            'time-out': 3000,
+            'close-button': true,
+            'progress-bar': true
+        };
+    }
 
-    this.toaster = {
-        'time-out': 3000,
-        'close-button': true,
-        'progress-bar': true
-    };
-}
+    angular
+        .module('system')
+        .controller('MainController', MainController);
 
-angular
-    .module('system')
-    .controller('MainController', MainController);
+})();

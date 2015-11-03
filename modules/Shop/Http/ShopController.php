@@ -1,34 +1,77 @@
 <?php namespace Modules\Shop\Http;
 
 use Illuminate\Http\Request;
+use Modules\Shop\Product\Brand;
+use Modules\Shop\Product\BrandTranslation;
+use Modules\Shop\Product\Category;
+use Modules\Shop\Product\CategoryTranslation;
 use Modules\Shop\Product\Product;
+use Modules\Shop\Product\ProductTranslation;
 use Modules\System\Http\FrontController;
 
 class ShopController extends FrontController
 {
 
+    /**
+     * Shop home
+     *
+     * @return \Illuminate\Contracts\View\View
+     */
     public function index()
     {
-        return $this->theme->render('shop.store');
+        $products = Product::with(['translations', 'images', 'images.translations'])->get();
+
+        $latest = $this->section($products, 4);
+
+        $top = $this->section($products, 3);
+
+        $bestsellers = $this->section($products, 3);
+
+        $sales = $this->section($products, 3);
+
+        $featured = $products;
+
+        return $this->theme->render('shop.store', [
+            'latest' => $latest,
+            'featured' => $featured,
+            'sales' => $sales,
+            'bestsellers' => $bestsellers,
+            'top' => $top
+        ]);
     }
 
-    public function show($categorySlug, Request $request)
+    public function category(CategoryTranslation $category, BrandTranslation $brand = null, Request $request)
     {
-        $view = $request->get('view', 'list');
+        $category = $category->category;
+        $brand = $brand->brand;
 
-        if (!in_array($view, ['list', 'grid'])) {
-            $view = 'list';
-        }
+        $defaults = [
+            'count' => 20,
+            'view' => 'list',
+        ];
+
+        $filters = array_merge($defaults, $request->all());
 
         $products = \Modules\Shop\Product\Product::all();
 
-        return $this->theme->render('shop.category-' . $view, ['products' => $products]);
+        return $this->theme->render('shop.category-' . $filters['view'], ['products' => $products, 'category' => $category, 'filters' => $filters]);
     }
 
-    public function product($productSlug, Product $product)
+    public function product(ProductTranslation $product)
     {
-        $product = $product->first();
+        $product = $product->product;
+
+        $product->load(['translations', 'images', 'images.translations']);
 
         return $this->theme->render('shop.product', ['product' => $product]);
+    }
+
+    protected function section($products, $int)
+    {
+        $result = $products->take($int);
+
+        $products = $products->slice($int);
+
+        return $result;
     }
 }

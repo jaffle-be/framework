@@ -1,1 +1,1 @@
-@include('media::admin.full', ['type' => 'pages'])
+@include('media::admin.full', ['type' => 'pages', 'model' => 'page'])

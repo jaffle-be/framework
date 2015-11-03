@@ -10,16 +10,34 @@ Route::group([
         'namespace' => 'Admin',
     ], function () {
         Route::group(['prefix' => 'templates/admin'], function () {
-            Route::resource('products', 'ProductController', ['only' => 'index']);
+            Route::get('notifications', 'NotificationController@template');
+            Route::get('categories/overview', 'GammaController@templateCategories');
+            Route::get('brands/overview', 'GammaController@templateBrands');
+            Route::get('products/overview', 'ProductController@overview');
+            Route::get('products/detail', 'ProductController@detail');
         });
 
-        Route::group(['prefix' => 'admin'], function () {
-            Route::resource('products', 'ProductController', ['only' => 'index']);
+        Route::group(['prefix' => 'api/admin'], function () {
+
+            Route::get('notifications', 'NotificationController@overview');
+            Route::post('notifications/accept', 'NotificationController@accept');
+            Route::post('notifications/review', 'NotificationController@review');
+            Route::post('notifications/deny', 'NotificationController@deny');
+
+            Route::get('categories', 'GammaController@categories');
+            Route::post('categories', 'GammaController@category');
+
+            Route::get('brands', 'GammaController@brands');
+            Route::post('brands', 'GammaController@brand');
+
+            Route::post('gamma/detail', 'GammaController@detail');
+
+            Route::resource('products', 'ProductController');
+            Route::post('products/batch-delete', 'ProductController@batchDestroy');
+            Route::post('products/batch-publish', 'ProductController@batchPublish');
+            Route::post('products/batch-unpublish', 'ProductController@batchUnpublish');
         });
     });
-
-
-
 
 
     if(env('APP_MULTIPLE_LOCALES'))
@@ -34,11 +52,18 @@ Route::group([
             //checkout pages
             Route::resource("$locale/shop/checkout", 'CheckoutController', ['only' => ['index', 'post']]);
 
+            //these routes can be improved by the uri system.
+            //route for products per brand -> this route should be optional.. a customer will mostly look using category
+
+            //route for product per category
+            Route::get("$locale/shop/category/{category}/{brand?}", ['uses' => 'ShopController@category', 'as' => "$locale.shop.category"]);
             //the shop product page
             Route::get("$locale/shop/product/{product}", ['uses' => 'ShopController@product', 'as' => "$locale.shop.product"]);
 
+            //route for products
+
             //the shop homepage and the shop category page - KEEP AT BOTTOM
-            Route::resource("$locale/shop", 'ShopController', ['only' => ['index', 'show']]);
+            Route::resource("$locale/shop", 'ShopController', ['only' => ['index']]);
         }
     }
     else{

@@ -1,50 +1,53 @@
-angular.module('users')
-    .factory('Profile', function($resource, Skill){
+(function () {
+    'use strict';
 
-        return $resource('api/admin/profile', {}, {
-            find: {
-                method: 'GET',
-                transformResponse: function(response)
-                {
-                    var data = angular.fromJson(response);
+    angular.module('users')
+        .factory('Profile', function ($resource, Skill) {
 
-                    if(data.translations.length == 0)
-                    {
-                        data.translations = {};
+            return $resource('api/admin/profile', {}, {
+                find: {
+                    method: 'GET',
+                    transformResponse: function (response) {
+                        var data = angular.fromJson(response);
+
+                        if (data.translations.length == 0)
+                        {
+                            data.translations = {};
+                        }
+
+                        var skills = [];
+
+                        _.each(data.skills, function (item) {
+                            skills.push(new Skill(item));
+                        });
+
+                        data.skills = skills;
+
+                        return data;
                     }
-
-                    var skills = [];
-
-                    _.each(data.skills, function(item)
-                    {
-                        skills.push(new Skill(item));
-                    });
-
-                    data.skills = skills;
-
-                    return data;
+                },
+                save: {
+                    method: 'POST'
                 }
-            },
-            save: {
-                method: 'POST'
-            }
+            });
+
+        })
+        .factory('Skill', function ($resource) {
+
+            return $resource('api/admin/profile/skill/:id', {
+                id: '@id'
+            }, {
+                query: {isArray: false},
+                list: {
+                    url: 'api/admin/profile/skill/list',
+                    method: 'GET',
+                    isArray: true
+                },
+                update: {
+                    method: 'PUT'
+                },
+            })
+
         });
 
-    })
-.factory('Skill', function($resource){
-
-        return $resource('api/admin/profile/skill/:id', {
-            id: '@id'
-        }, {
-            query: {isArray: false},
-            list: {
-                url: 'api/admin/profile/skill/list',
-                method: 'GET',
-                isArray: true
-            },
-            update: {
-                method: 'PUT'
-            },
-        })
-
-    });
+})();

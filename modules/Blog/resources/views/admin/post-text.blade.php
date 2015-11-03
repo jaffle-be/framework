@@ -38,7 +38,7 @@
 
                         <div class="input-group datepicker">
 
-                            <input datepicker-popup="dd/MM/yyyy" show-weeks="false" is-open="status.datepickerStatus" type="text" class="form-control" ng-model="vm.post.translations[vm.options.locale].publish_at" ng-click="vm.openDatepicker($event)" ng-change="vm.save()"/>
+                            <input uib-datepicker-popup="dd/MM/yyyy" show-weeks="false" is-open="status.datepickerStatus" type="text" class="form-control" ng-model="vm.post.translations[vm.options.locale].publish_at" ng-click="vm.openDatepicker($event)" ng-change="vm.save()"/>
 
                             <div class="input-group-btn">
                                 <span type="button" class="btn btn-default" ng-click="vm.openDatepicker($event)">

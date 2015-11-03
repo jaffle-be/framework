@@ -1,87 +1,88 @@
-angular.module('menu')
-    .controller('MenuController', function (MenuService, MenuItem) {
-        this.menus = [];
-        //active menu
-        this.menu = {};
-        this.tabs = {
-            manual: true,
-            page: false,
-            route: false,
-        };
+(function () {
+    'use strict';
 
-        var me = this;
+    angular.module('menu')
+        .controller('MenuController', function (MenuService, MenuItem) {
+            this.menus = [];
+            //active menu
+            this.menu = {};
+            this.tabs = {
+                manual: true,
+                page: false,
+                route: false,
+            };
 
-        //the item we are editing
-        this.item;
+            var me = this;
 
-        this.initialised = false;
+            //the item we are editing
+            this.item;
 
-        //init a new manual item
-        this.newItem = function () {
-            this.item = new MenuItem({
-                menu_id: me.menu.id
-            });
-            this.selectTab('manual');
-        };
+            this.initialised = false;
 
-        this.startEditing = function(item)
-        {
-            this.selectTab('manual');
-            this.item = item
-        };
+            //init a new manual item
+            this.newItem = function () {
+                this.item = new MenuItem({
+                    menu_id: me.menu.id
+                });
+                this.selectTab('manual');
+            };
 
-        this.selectMenu = function(menu)
-        {
-            this.menu = menu;
-        };
+            this.startEditing = function (item) {
+                this.selectTab('manual');
+                this.item = item
+            };
 
-        this.selectTab = function(tab)
-        {
-            _.each(this.tabs, function(active, type){
-                me.tabs[type] = false;
-            });
+            this.selectMenu = function (menu) {
+                this.menu = menu;
+            };
 
-            this.tabs[tab] = true;
-        };
+            this.selectTab = function (tab) {
+                _.each(this.tabs, function (active, type) {
+                    me.tabs[type] = false;
+                });
 
-        this.sortables = {
-            orderChanged: function(event) {
-                me.saveSort()
-            }
-        };
+                this.tabs[tab] = true;
+            };
 
-        this.createMenu = function () {
-            MenuService.create(this.newName, function (menu) {
-                me.newName = '';
-                me.menus.push(menu);
-            });
-        };
-
-        this.deleteMenu = function () {
-            MenuService.remove(this.menu, function (response) {
-                if (!response.id)
-                {
-                    _.remove(me.menus, function (item) {
-                        return item.id == me.menu.id;
-                    });
+            this.sortables = {
+                orderChanged: function (event) {
+                    me.saveSort()
                 }
-            });
-        };
+            };
 
-        this.saveSort = function()
-        {
-            MenuService.sort(this.menu);
-        };
+            this.createMenu = function () {
+                MenuService.create(this.newName, function (menu) {
+                    me.newName = '';
+                    me.menus.push(menu);
+                });
+            };
 
-        //load inital menus
-        MenuService.list(function (response) {
-            me.menus = response;
-            me.menu = me.menus[0];
-            //the form is visible, so we need a empty object from the start.
-            me.item = new MenuItem({
-                menu_id: me.menu.id
+            this.deleteMenu = function () {
+                MenuService.remove(this.menu, function (response) {
+                    if (!response.id)
+                    {
+                        _.remove(me.menus, function (item) {
+                            return item.id == me.menu.id;
+                        });
+                    }
+                });
+            };
+
+            this.saveSort = function () {
+                MenuService.sort(this.menu);
+            };
+
+            //load inital menus
+            MenuService.list(function (response) {
+                me.menus = response;
+                me.menu = me.menus[0];
+                //the form is visible, so we need a empty object from the start.
+                me.item = new MenuItem({
+                    menu_id: me.menu.id
+                });
+                me.initialised = true;
             });
-            me.initialised = true;
+
         });
 
-    });
+})();

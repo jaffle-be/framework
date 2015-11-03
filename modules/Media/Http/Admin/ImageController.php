@@ -6,12 +6,15 @@ use Modules\Media\Commands\UpdateImage;
 use Modules\Media\Commands\UploadNewImage;
 use Modules\Media\Image;
 use Modules\Media\MediaRepositoryInterface;
+use Modules\Media\MediaWidgetPreperations;
 use Modules\Media\StoresMedia;
 use Modules\System\Http\AdminController;
 use Modules\Theme\ThemeManager;
 
 class ImageController extends AdminController
 {
+
+    use MediaWidgetPreperations;
 
     /**
      * @var MediaRepositoryInterface
@@ -38,29 +41,9 @@ class ImageController extends AdminController
     {
         $owner = $this->owner($request);
 
-        $images = $owner->images;
+        $this->prepareImages($owner);
 
-        if($images)
-        {
-            $images->load($this->relations());
-
-            if(!$owner->mediaStoresMultiple())
-            {
-                $images = new Collection([$images]);
-            }
-        }
-
-        return $images;
-    }
-
-    protected function relations()
-    {
-        return [
-            'translations',
-            'sizes' => function ($query){
-                $query->dimension(512);
-            }
-        ];
+        return $owner->images;
     }
 
     public function store(Request $request)
@@ -74,14 +57,14 @@ class ImageController extends AdminController
             'image' => $file,
         ]);
 
-        $image->load($this->relations());
+        $image->load($this->mediaImageRelations());
 
         return $image;
     }
 
     public function update(Image $image, Request $request)
     {
-        $image->load($this->relations());
+        $image->load($this->mediaImageRelations());
 
         $owner = $this->owner($request);
 
@@ -119,16 +102,6 @@ class ImageController extends AdminController
             $image->sort = $position;
             $image->save();
         }
-    }
-
-    /**
-     * @param Request $request
-     *
-     * @return StoresMedia
-     */
-    protected function owner(Request $request)
-    {
-        return $this->media->findOwner($request->get('ownerType'), $request->get('ownerId'));
     }
 
 }

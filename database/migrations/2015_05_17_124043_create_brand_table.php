@@ -15,7 +15,17 @@ class CreateBrandTable extends Migration
     {
         Schema::create('product_brands', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
+            $table->timestamps();
+        });
+
+        Schema::create('product_brand_translations', function(Blueprint $table){
+            $table->increments('id');
+            $table->integer('brand_id', false, true);
+            $table->foreign('brand_id', 'translation_to_brand')->references('id')->on('product_brands')->onDelete('cascade');
+            $table->string('locale', 5);
+            $table->string('name', 50);
+            $table->string('slug', 50);
+            $table->text('description');
             $table->timestamps();
         });
     }
@@ -27,6 +37,10 @@ class CreateBrandTable extends Migration
      */
     public function down()
     {
+        Schema::drop('product_brand_translations', function(Blueprint $table){
+            $table->dropForeign('translation_to_brand');
+        });
+
         Schema::drop('product_brands');
     }
 }

@@ -46,7 +46,17 @@
                                 <div class="input-group col-xs-12">
                                     <div class="input-group-addon" style="width:39px;">
                                         <span class="fa fa-search" ng-show="!vm.loading"></span>
-                                        <span class="fa fa-refresh" ng-show="vm.loading"></span>
+                                        <div class="sk-spinner sk-spinner-cube-grid" ng-show="vm.loading">
+                                            <div class="sk-cube"></div>
+                                            <div class="sk-cube"></div>
+                                            <div class="sk-cube"></div>
+                                            <div class="sk-cube"></div>
+                                            <div class="sk-cube"></div>
+                                            <div class="sk-cube"></div>
+                                            <div class="sk-cube"></div>
+                                            <div class="sk-cube"></div>
+                                            <div class="sk-cube"></div>
+                                        </div>
                                     </div>
                                     <input st-search="query" type="search" ng-change="vm.test()" name="search" ng-model="vm.query" class="form-control"/>
                                 </div>

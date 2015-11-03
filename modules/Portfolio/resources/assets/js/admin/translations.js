@@ -1,12 +1,17 @@
-angular
-    .module('portfolio')
-    .config(function($translateProvider) {
+(function () {
+    'use strict';
 
-        $translateProvider
-            .translations('en', {
+    angular
+        .module('portfolio')
+        .config(function ($translateProvider) {
 
-                // Define all menu elements
-                PORTFOLIO: 'Portfolio',
-            });
+            $translateProvider
+                .translations('en', {
 
-    });
+                    // Define all menu elements
+                    PORTFOLIO: 'Portfolio',
+                });
+
+        });
+
+})();

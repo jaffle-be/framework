@@ -1,9 +1,12 @@
-angular.module('module')
-    .controller('ModuleController', function(Module)
-    {
-        this.save = function(module)
-        {
-            Module.toggle(module);
-        };
+(function () {
+    'use strict';
 
-    });
+    angular.module('module')
+        .controller('ModuleController', function (Module) {
+            this.save = function (module) {
+                Module.toggle(module);
+            };
+
+        });
+
+})();

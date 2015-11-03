@@ -1,13 +1,18 @@
-angular
-    .module('theme')
-    .config(function($translateProvider) {
+(function () {
+    'use strict';
 
-        $translateProvider
-            .translations('en', {
+    angular
+        .module('theme')
+        .config(function ($translateProvider) {
 
-                // Define all menu elements
-                THEME: 'Theme',
-                SETTINGS: 'Settings',
-            });
+            $translateProvider
+                .translations('en', {
 
-    });
+                    // Define all menu elements
+                    THEME: 'Theme',
+                    SETTINGS: 'Settings',
+                });
+
+        });
+
+})();

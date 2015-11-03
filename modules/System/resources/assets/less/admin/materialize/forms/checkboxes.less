@@ -178,8 +178,10 @@ form p:last-child {
     background-color: @input-bg-disabled;
   }
   &:disabled:checked + label:before {
-    background-color: transparent;
-
+    background-color: @input-bg-disabled;
+    border-color: darken(@input-bg-disabled, 5%);
+    border-top: 2px solid transparent;
+    border-left: 2px solid transparent;
   }
   &:disabled:checked + label:after {
     background-color: @input-bg-disabled;

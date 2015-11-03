@@ -4,12 +4,15 @@ use Illuminate\Http\Request;
 use Modules\Media\Commands\UploadNewInfographic;
 use Modules\Media\Infographics\Infographic;
 use Modules\Media\MediaRepositoryInterface;
+use Modules\Media\MediaWidgetPreperations;
 use Modules\System\Http\AdminController;
 use Modules\System\Locale;
 use Modules\Theme\ThemeManager;
 
 class InfographicController extends AdminController
 {
+    use MediaWidgetPreperations;
+
     protected $media;
 
     public function __construct(ThemeManager $theme, MediaRepositoryInterface $media)
@@ -28,19 +31,9 @@ class InfographicController extends AdminController
     {
         $owner = $this->owner($request);
 
-        $infographics = $owner->infographics;
+        $this->prepareInfographics($owner);
 
-        $infographics->load('sizes');
-
-        return $infographics->byLocale();
-    }
-
-    protected function owner(Request $request)
-    {
-        $id = $request->get('ownerId');
-        $type = $request->get('ownerType');
-
-        return $this->media->findOwner($type, $id);
+        return $owner->infographics;
     }
 
     public function store(Request $request, Locale $locale)
@@ -97,6 +90,7 @@ class InfographicController extends AdminController
             $infographic->save();
         }
     }
+
 
 
 }

@@ -1,1 +1,6 @@
-angular.module('tags', []);
+(function () {
+    'use strict';
+
+    angular.module('tags', []);
+
+})();

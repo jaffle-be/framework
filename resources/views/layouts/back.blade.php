@@ -23,40 +23,11 @@
 
 <div ui-view></div>
 
-<!-- jQuery and Bootstrap -->
-<script src=" {{ asset('/js/admin/jquery/jquery.min.js') }}"></script>
-{{--why is this file used? its mostly for position i think? not to sure though --}}
-{{--<script src=" {{ asset('/js/admin/plugins/jquery-ui/jquery-ui.js') }}"></script>--}}
-<script src=" {{ asset('/js/admin/bootstrap/bootstrap.min.js') }}"></script>
-<script src=" {{ asset('/js/admin/pusher/pusher.min.js') }}"></script>
-
-{{--<!-- Custom and plugin javascript -->--}}
 <script src=" {{ asset('/js/admin/core.min.js') }}"></script>
-
-{{--<!-- Main Angular scripts-->--}}
-<script src=" {{ asset('/js/admin/angular/angular.min.js') }}"></script>
-<script src=" {{ asset('/js/admin/pusher-angular/pusher-angular.min.js') }}"></script>
-<script src=" {{ asset('/js/admin/angular-smart-table/smart-table.min.js') }}"></script>
-<script src=" {{ asset('/js/admin/ocLazyLoad/ocLazyLoad.min.js') }}"></script>
-<script src=" {{ asset('/js/admin/angular-translate/angular-translate.min.js') }}"></script>
-<script src=" {{ asset('/js/admin/angular-ui-router/angular-ui-router.min.js') }}"></script>
-<script src=" {{ asset('/js/admin/bootstrap/ui-bootstrap-tpls.min.js') }}"></script>
-<script src=" {{ asset('/js/admin/ngStorage/ngStorage.min.js') }}"></script>
-<script src=" {{ asset('/js/admin/ng-sortable/ng-sortable.min.js') }}"></script>
-<script src=" {{ asset('/js/admin/angular-idle/angular-idle.min.js') }}"></script>
-<script src=" {{ asset('/js/admin/angular-resource/angular-resource.min.js') }}"></script>
-<script src=" {{ asset('/js/admin/angular-cookies/angular-cookies.min.js') }}"></script>
-<script src=" {{ asset('/js/admin/angularjs-toaster/toaster.min.js') }}"></script>
 
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBcPQMkol7H0kSnSSqYkJpRicrKfxWHC4o&libraries=places&v=3.exp"></script>
 
-<script src=" {{ asset('/js/admin/app.min.js') }}"></script>
-<script src=" {{ asset('/js/admin/config.min.js') }}"></script>
-<script src=" {{ asset('/js/admin/services.min.js') }}"></script>
-<script src=" {{ asset('/js/admin/translations.min.js') }}"></script>
-<script src=" {{ asset('/js/admin/directives.min.js') }}"></script>
-<script src=" {{ asset('/js/admin/models.min.js') }}"></script>
-<script src=" {{ asset('/js/admin/controllers.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('/js/admin/all.min.js') }}"></script>
 
 @if($theme && is_file(public_path('themes/'. $theme->name .'/assets/js/admin/' . lcfirst($theme->name) . '.min.js')))
 

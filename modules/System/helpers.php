@@ -75,7 +75,7 @@ if (!function_exists('system_modules')) {
 }
 
 if (!function_exists('store_route')) {
-    function store_route($name, array $arguments = [], $force = null)
+    function store_route($name, array $arguments = [], $parameters = [], $force = null)
     {
         if (env('APP_MULTIPLE_LOCALES')) {
             $locale = app()->getLocale();
@@ -89,16 +89,24 @@ if (!function_exists('store_route')) {
             $name = str_replace('.' . app()->getLocale() . '.', '.' . $force . '.', $name);
         }
 
-        return route($name, $arguments);
+        return route($name, array_merge($arguments, $parameters));
+    }
+}
+
+if (!function_exists('pusher_account_channel')) {
+    function pusher_account_channel()
+    {
+        $accounts = app('Modules\Account\AccountManager');
+
+        return 'private-' . ($accounts->account() ? $accounts->account()->alias : 'digiredo');
     }
 }
 
 if (!function_exists('pusher_system_channel')) {
     function pusher_system_channel()
     {
-        $accounts = app('Modules\Account\AccountManager');
-
-        return 'private-' . $accounts->account()->alias;
+//        return 'private-system';
+        return pusher_account_channel();
     }
 }
 
