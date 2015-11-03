@@ -16,8 +16,8 @@
 
         </div>
 
-        <ul class="nav files" ng-show="loaded" as-sortable="ctrl.sortables" ng-model="ctrl.files[locale]">
-            <li ng-repeat="file in ctrl.files[locale]" as-sortable-item class="item">
+        <ul class="nav files" ng-show="loaded" as-sortable="vm.sortables" ng-model="dupes[locale]">
+            <li ng-repeat="file in dupes[locale]" as-sortable-item class="item">
 
                 <div class="form-group">
                     <label>{{ Lang::get('media::admin.filename') }}</label>
@@ -29,10 +29,10 @@
 
                     <div class="input-group" ng-hide="!locale">
                         <div class="input-group-addon" as-sortable-item-handle><i class="fa fa-arrows"></i></div>
-                        <input autocomplete="off" ng-change="ctrl.updateFile(file)" class="form-control" type="text" ng-model="file.title" placeholder="{{ Lang::get('media::admin.title') }}"/>
+                        <input autocomplete="off" ng-change="vm.updateFile(file)" class="form-control" type="text" ng-model="file.title" placeholder="{{ Lang::get('media::admin.title') }}"/>
 
                         <div class="input-group-btn">
-                            <button class="btn btn-danger" ng-really="ctrl.deleteFile(file)"><i class="fa fa-trash"></i>
+                            <button class="btn btn-danger" ng-really="vm.deleteFile(file)"><i class="fa fa-trash"></i>
                             </button>
                         </div>
                     </div>

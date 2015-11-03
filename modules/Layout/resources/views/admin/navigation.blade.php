@@ -4,7 +4,7 @@
             <ul side-navigation class="nav" id="side-menu">
                 <li class="nav-header">
 
-                    <div class="profile-element" dropdown>
+                    <div class="profile-element">
 
                         <a ui-sref="admin.profile">
 

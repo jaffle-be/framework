@@ -8,10 +8,10 @@
                 <i class="fa fa-refresh" ng-show="searching"></i><i class="fa fa-search" ng-hide="searching"></i></div>
 
             <input type="text" class="form-control" placeholder="{{ Lang::get('tags::admin.tag') }}"
-                   typeahead="tag.translations[locale].name for tag in ctrl.searchTag($viewValue, locale)"
-                   typeahead-loading="searching"
-                   typeahead-on-select="ctrl.addTag($item, $model, $label)"
-                   typeahead-wait-ms="400"
+                   uib-typeahead="tag.translations[locale].name for tag in ctrl.searchTag($viewValue, locale)"
+                   uib-typeahead-loading="searching"
+                   uib-typeahead-on-select="ctrl.addTag($item, $model, $label)"
+                   uib-typeahead-wait-ms="400"
                    ng-model="input">
 
             <div class="input-group-btn">

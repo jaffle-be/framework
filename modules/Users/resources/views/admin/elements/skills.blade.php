@@ -9,9 +9,9 @@
                 <i class="fa fa-refresh" ng-show="searching"></i><i class="fa fa-search" ng-hide="searching"></i></div>
 
             <input type="text" class="form-control" placeholder="{{ Lang::get('users::admin.skill.skill') }}"
-                   typeahead="skill.translations[vm.options.locale].name for skill in vm.searchSkill($viewValue, vm.options.locale)"
-                   typeahead-loading="searching"
-                   typeahead-on-select="vm.addSkill($item, $model, $label)"
+                   uib-typeahead="skill.translations[vm.options.locale].name for skill in vm.searchSkill($viewValue, vm.options.locale)"
+                   uib-typeahead-loading="searching"
+                   uib-typeahead-on-select="vm.addSkill($item, $model, $label)"
                    ng-model="vm.input">
 
             <div class="input-group-btn">

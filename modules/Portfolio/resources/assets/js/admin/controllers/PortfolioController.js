@@ -17,7 +17,7 @@
             var me = this;
 
             this.getPage = function (start) {
-                return page = Math.ceil(start / this.rpp) + 1;
+                return Math.ceil(start / this.rpp) + 1;
             };
 
             this.list = function (table) {

@@ -18,22 +18,22 @@
 
         <div class="item" ng-show="loaded" ng-repeat="graphic in graphics[locale] track by $index">
 
-            <form ng-submit="ctrl.updateInfographic(graphic)" novalidate name="graphicForm">
+            <form ng-submit="vm.updateInfographic(graphic)" novalidate name="graphicForm">
 
                 <div class="media-image">
-                    <img class="img-responsive" ng-src="@{{ graphic.sizes[0].path  }}"/>
+                    <img class="img-responsive" ng-src="@{{ graphic.path  }}"/>
 
                     <div class="tools">
                         <div class="tools-inner">
-                            <span><i ng-show="($index != graphics[locale].length - 1)" ng-click="ctrl.moveDown(graphic, $index)" class="fa fa-arrow-down"></i></span>
-                            <span><i ng-show="($index != 0)" ng-click="ctrl.moveUp(graphic, $index)" class="fa fa-arrow-up"></i></span>
-                            <span><i class="fa fa-trash" ng-really="ctrl.deleteInfographic(graphic)"></i></span>
+                            <span><i ng-show="($index != graphics[locale].length - 1)" ng-click="vm.moveDown(graphic, $index)" class="fa fa-arrow-down"></i></span>
+                            <span><i ng-show="($index != 0)" ng-click="vm.moveUp(graphic, $index)" class="fa fa-arrow-up"></i></span>
+                            <span><i class="fa fa-trash" ng-really="vm.deleteInfographic(graphic)"></i></span>
                         </div>
                     </div>
                 </div>
 
                 <div class="form-group" ng-hide="!locale">
-                    <input autocomplete="off" ng-change="ctrl.updateInfographic(graphic)" class="form-control" type="text" ng-model="graphic.title" placeholder="{{ Lang::get('media::admin.image-title') }}"/>
+                    <input autocomplete="off" ng-change="vm.updateInfographic(graphic)" class="form-control" type="text" ng-model="graphic.title" placeholder="{{ Lang::get('media::admin.image-title') }}"/>
                 </div>
             </form>
 

@@ -5,6 +5,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Modules\Media\Commands\AddNewVideo;
 use Modules\Media\MediaRepositoryInterface;
+use Modules\Media\MediaWidgetPreperations;
 use Modules\Media\Video\Video;
 use Modules\Media\Video\VideoGenericFormatter;
 use Modules\System\Http\AdminController;
@@ -13,6 +14,7 @@ use Modules\Theme\ThemeManager;
 class VideoController extends AdminController
 {
     use VideoGenericFormatter;
+    use MediaWidgetPreperations;
 
     protected $media;
 
@@ -32,17 +34,7 @@ class VideoController extends AdminController
     {
         $owner = $this->owner($request);
 
-        $videos = $owner->videos;
-
-        return $videos->byLocale();
-    }
-
-    protected function owner(Request $request)
-    {
-        $id = $request->get('ownerId');
-        $type = $request->get('ownerType');
-
-        return $this->media->findOwner($type, $id);
+        return $owner->videos;
     }
 
     public function store(Request $request)

@@ -11,76 +11,92 @@
                     locale: '=',
                     ownerId: '=',
                     ownerType: '=',
+                    files: '=',
                 },
+                controllerAs: 'vm',
                 controller: function ($scope, FileResource, FileService, toaster) {
                     var me = this;
                     //init base variables and dropzone
-                    $scope.loaded = false;
+                    $scope.loaded = true;
                     $scope.ctrl = this;
+                    $scope.dropzone = initDropzone();
+
+                    this.updateFile = updateFile;
+                    this.deleteFile = deleteFile;
+                    this.init = init;
 
                     this.sortables = {
                         orderChanged: function () {
-                            FileService.sort($scope.ownerType, $scope.ownerId, me.files[$scope.locale]);
+                            FileService.sort($scope.ownerType, $scope.ownerId, $scope.files[$scope.locale]);
                         }
                     };
 
-                    this.dropzone = function () {
+                    $scope.$watch('files', function (newValue) {
 
-                        $scope.dropzone = FileService.uploader($scope.ownerType, $scope.ownerId, $scope.locale, {
-                            success: function (file, object, xhr) {
-                                object = new FileResource(object);
-                                if (!me.files[$scope.locale])
-                                {
-                                    me.files[$scope.locale] = [];
-                                }
-                                me.files[$scope.locale].push(object);
-                                this.removeFile(file);
-                                $scope.$apply();
-                            },
-                            error: function (file, message, response) {
-                                //added to avoid large popup when we try uploading a file which is too large
-                                if (response.status == 413)
-                                {
-                                    toaster.error(response.statusText);
-                                }
-                                else
-                                {
-                                    toaster.error(message);
-                                }
+                        if (newValue)
+                        {
+                            $scope.dupes = newValue;
+                        }
+                    });
 
-                                this.removeFile(file);
-                                $scope.$apply();
-                            },
-                            processing: function () {
-                                this.options.params.ownerId = $scope.ownerId;
-                                this.options.params.locale = $scope.locale;
-                            }
+                    function initDropzone() {
+
+                        return FileService.uploader($scope.ownerType, $scope.ownerId, $scope.locale, {
+                            success: dropzoneSuccess,
+                            error: dropzoneError,
+                            processing: dropzoneProcessing
                         });
                     };
 
-                    this.dropzone();
-
-
-                    this.updateFile = function (file) {
-                        FileService.update($scope.ownerType, $scope.ownerId, file);
+                    function dropzoneSuccess(file, object, xhr) {
+                        object = new FileResource(object);
+                        if (!$scope.files[$scope.locale])
+                        {
+                            $scope.files[$scope.locale] = [];
+                        }
+                        $scope.files[$scope.locale].push(object);
+                        this.removeFile(file);
+                        $scope.$apply();
                     };
 
-                    this.deleteFile = function (file) {
-                        FileService.delete($scope.ownerType, $scope.ownerId, file, function () {
-                            _.remove(me.files[$scope.locale], function (value, index, array) {
-                                return value.id == file.id;
-                            });
-                        });
+                    function dropzoneError(file, message, response) {
+                        //added to avoid large popup when we try uploading a file which is too large
+                        if (response.status == 413)
+                        {
+                            toaster.error(response.statusText);
+                        }
+                        else
+                        {
+                            toaster.error(message);
+                        }
+
+                        this.removeFile(file);
+                        $scope.$apply();
                     };
 
-                    this.init = function () {
+                    function dropzoneProcessing() {
+                        this.options.params.ownerId = $scope.ownerId;
+                        this.options.params.locale = $scope.locale;
+                    };
+
+                    function init() {
                         FileService.list($scope.ownerType, $scope.ownerId, function (response) {
-                            me.files = response.data;
+                            $scope.files = response.data;
                             $scope.loaded = true;
                         });
                     };
 
-                    this.init();
+                    function updateFile(file) {
+                        FileService.update($scope.ownerType, $scope.ownerId, file);
+                    };
+
+                    function deleteFile(file) {
+                        FileService.delete($scope.ownerType, $scope.ownerId, file, function () {
+                            _.remove($scope.files[$scope.locale], function (value, index, array) {
+                                return value.id == file.id;
+                            });
+                        });
+                    };
                 }
 
             }

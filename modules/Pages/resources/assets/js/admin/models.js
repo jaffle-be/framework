@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('pages')
-        .factory('Page', function ($resource) {
+        .factory('Page', function ($resource, MediaService) {
             return $resource('api/admin/pages/:id', {id: '@id'}, {
                 query: {
                     isArray: false
@@ -24,7 +24,7 @@
                             }
                         });
 
-                        return response;
+                        return MediaService.transformResponse(response);
                     }
                 },
                 update: {

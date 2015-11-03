@@ -12,9 +12,29 @@ class LocalisedResourceCollection extends Collection
 
         $locales = app('Modules\System\Locale')->all();
 
-        foreach($collection as $locale_id => $locale_items)
+        foreach($locales as $locale)
         {
-            $response->put($locales->find($locale_id)->slug, $locale_items);
+            $response->put($locale->slug, $collection->get($locale->id, new Collection()));
+        }
+
+        return $response;
+    }
+
+    public function toArray()
+    {
+        $byLocales = $this->byLocale();
+
+        $response = [];
+
+        foreach($byLocales as $locale => $items)
+        {
+            $response[$locale] = [];
+
+            foreach($items as $item)
+            {
+                $response[$locale][] = $item->toArray();
+            }
+
         }
 
         return $response;

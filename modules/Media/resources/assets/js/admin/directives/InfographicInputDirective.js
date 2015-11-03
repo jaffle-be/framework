@@ -11,12 +11,13 @@
                     locale: '=',
                     ownerId: '=',
                     ownerType: '=',
+                    graphics:'=infographics',
                 },
+                controllerAs: 'vm',
                 controller: function ($scope, InfographicResource, InfographicService, toaster) {
                     var me = this;
                     //init base variables and dropzone
-                    $scope.loaded = false;
-                    $scope.ctrl = this;
+                    $scope.loaded = true;
 
                     this.dropzone = function () {
 
@@ -94,8 +95,6 @@
                             $scope.loaded = true;
                         });
                     };
-
-                    this.init();
                 }
 
             }
