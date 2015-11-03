@@ -63,13 +63,6 @@ class PostTranslation extends TranslationModel implements Searchable, SluggableI
             $data['publish_at'] = $this->publish_at->format('Y-m-d');
         }
 
-        $request = app('request');
-
-        if(starts_with($request->getRequestUri(), '/api'))
-        {
-            $data['extract'] = $this->present()->extract;
-        }
-
         return $data;
     }
 

@@ -16,6 +16,8 @@ class ProductTranslation extends TranslationModel implements PresentableEntity, 
 
     protected $fillable = ['name', 'title', 'content', 'published'];
 
+    protected $presenter = 'Modules\Shop\Presenter\ProductFrontPresenter';
+
     protected $sluggable = [
         'build_from' => 'name',
     ];

@@ -32,18 +32,4 @@ class ProjectTranslation extends TranslationModel implements Searchable, Sluggab
         return $this->belongsTo('Modules\Portfolio\Project');
     }
 
-    public function toArray()
-    {
-        $data = parent::toArray();
-
-        $request = app('request');
-
-        if(starts_with($request->getRequestUri(), '/api'))
-        {
-            $data['extract'] = $this->present()->extract;
-        }
-
-        return $data;
-    }
-
 }

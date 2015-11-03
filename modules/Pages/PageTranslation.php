@@ -52,18 +52,4 @@ class PageTranslation extends TranslationModel implements Searchable, SluggableI
         ],
     ];
 
-    public function toArray()
-    {
-        $data = parent::toArray();
-
-        $request = app('request');
-
-        if(starts_with($request->getRequestUri(), '/api'))
-        {
-            $data['extract'] = $this->present()->extract;
-        }
-
-        return $data;
-    }
-
 }
