@@ -10,8 +10,8 @@
 
             <input type="text" class="form-control" placeholder="{{ Lang::get('users::admin.skill.skill') }}"
                    uib-typeahead="skill.translations[vm.options.locale].name for skill in vm.searchSkill($viewValue, vm.options.locale)"
-                   uib-typeahead-loading="searching"
-                   uib-typeahead-on-select="vm.addSkill($item, $model, $label)"
+                   typeahead-loading="searching"
+                   typeahead-on-select="vm.addSkill($item, $model, $label)"
                    ng-model="vm.input">
 
             <div class="input-group-btn">

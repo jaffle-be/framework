@@ -24,9 +24,9 @@
 
                 <input type="text" class="form-control" placeholder="{{ Lang::get('blog::admin.post.video_url') }}"
                        uib-typeahead="vm.youtube.title(video) for video in vm.search()" ng-model="vm.youtube.input.url"
-                       uib-typeahead-loading="vm.youtube.loading"
-                       uib-typeahead-wait-ms="400"
-                       uib-typeahead-on-select="vm.youtube.select($item)"
+                       typeahead-loading="vm.youtube.loading"
+                       typeahead-wait-ms="400"
+                       typeahead-on-select="vm.youtube.select($item)"
                         >
             </div>
 
