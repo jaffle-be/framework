@@ -35,7 +35,8 @@
     "pusher/pusher-php-server": "~2.0",
     "fideloper/proxy": "~3.0",
     "pingpong/modules": "dev-master",
-    "laravelrus/localized-carbon": "dev-master"
+    "laravelrus/localized-carbon": "dev-master",
+    "spatie/laravel-newsletter": "^2.0"
   },
   "require-dev": {
     "phpunit/phpunit": "~4.0",
