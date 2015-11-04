@@ -14,7 +14,8 @@ var gulp = require('gulp'),
     fs = require('fs'),
     glob = require('glob'),
     annotate = require('gulp-ng-annotate'),
-    bytediff = require('gulp-bytediff');
+    bytediff = require('gulp-bytediff'),
+    notify = require('gulp-notify');
 
 var modules = 'modules/*/resources/assets/';
 
@@ -120,7 +121,8 @@ function jsAdminCompiler() {
         .pipe(uglify({mangle: true}))
         .pipe(bytediff.stop())
         .pipe(maps.write(pkg.admin.js.publish))
-        .pipe(gulp.dest(pkg.admin.js.publish));
+        .pipe(gulp.dest(pkg.admin.js.publish))
+        .pipe(notify('admin built'));
 }
 
 
@@ -133,7 +135,8 @@ function jsCoreCompiler() {
         .pipe(uglify({mangle: true}))
         .pipe(bytediff.stop())
         .pipe(maps.write(pkg.admin.core.publish))
-        .pipe(gulp.dest(pkg.admin.core.publish));
+        .pipe(gulp.dest(pkg.admin.core.publish))
+        .pipe(notify('core built'));
 }
 
 
