@@ -173,6 +173,7 @@ return [
         'GrahamCampbell\Markdown\MarkdownServiceProvider',
         'Intouch\LaravelNewrelic\NewrelicServiceProvider',
         'Intervention\Image\ImageServiceProvider',
+        Laravelrus\LocalizedCarbon\LocalizedCarbonServiceProvider::class,
 
         //keep at bottom for generic routes to work
 //        'App\System\Uri\UriServiceProvider',

@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "589bbaa14a20ec94c243b759bca3ebda",
-    "content-hash": "1f013c2de2d37dd28a8dd5bdcc977c5b",
+    "hash": "460b925eb8fd9ad5f60fbca116c699ff",
+    "content-hash": "668c511f22f91524250f105ff04f4a17",
     "packages": [
         {
             "name": "alaouy/youtube",
@@ -1980,6 +1980,50 @@
                 }
             ],
             "time": "2015-09-03 17:16:48"
+        },
+        {
+            "name": "laravelrus/localized-carbon",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/LaravelRUS/localized-carbon.git",
+                "reference": "fc0905b060713c4c1ecba60edf5a479931bb2def"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/LaravelRUS/localized-carbon/zipball/fc0905b060713c4c1ecba60edf5a479931bb2def",
+                "reference": "fc0905b060713c4c1ecba60edf5a479931bb2def",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": ">=4.1.0",
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Laravelrus\\LocalizedCarbon\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Aleksandr Egorov",
+                    "email": "amego2006@gmail.com"
+                }
+            ],
+            "description": "A localizable version of Carbon",
+            "keywords": [
+                "carbon",
+                "date",
+                "datetime",
+                "laravel",
+                "time"
+            ],
+            "time": "2015-10-27 23:45:13"
         },
         {
             "name": "league/commonmark",
@@ -5133,7 +5177,8 @@
     "minimum-stability": "stable",
     "stability-flags": {
         "cviebrock/eloquent-sluggable": 20,
-        "pingpong/modules": 20
+        "pingpong/modules": 20,
+        "laravelrus/localized-carbon": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
