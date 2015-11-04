@@ -13,6 +13,11 @@ trait ContentPresenterTrait
      */
     public function content()
     {
+        if($this->usePresentableCache())
+        {
+            return $this->cached_content;
+        }
+
         $content = $this->contentToPresent();
 
         //compile our custom shortcodes into valid markdown
@@ -38,17 +43,13 @@ trait ContentPresenterTrait
      */
     public function extract($chars = null)
     {
-        $content = $this->contentToPresent();
-
-        if (method_exists($this, 'stripShortCodes')) {
-            $content = $this->stripShortcodes($content);
+        if($this->usePresentableCache())
+        {
+            $content = $this->cached_extract;
         }
-
-        $content = $this->removeCodeSamples($content);
-
-        $content = Markdown::convertToHtml($content);
-
-        $content = strip_tags($content);
+        else{
+            $content = $this->freshlyBuiltExtract();
+        }
 
         return $this->snippet($content, 60, $chars);
     }
@@ -113,6 +114,34 @@ trait ContentPresenterTrait
     protected function contentToPresent()
     {
         return $this->entity->content;
+    }
+
+    /**
+     * @return bool
+     */
+    protected function usePresentableCache()
+    {
+        return $this instanceof PresentableCache && on_front();
+    }
+
+    /**
+     * @return mixed|string
+     */
+    protected function freshlyBuiltExtract()
+    {
+        $content = $this->contentToPresent();
+
+        if (method_exists($this, 'stripShortCodes')) {
+            $content = $this->stripShortcodes($content);
+        }
+
+        $content = $this->removeCodeSamples($content);
+
+        $content = Markdown::convertToHtml($content);
+
+        $content = strip_tags($content);
+
+        return $content;
     }
 
 }
