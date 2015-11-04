@@ -169,10 +169,12 @@ return [
         Mews\Captcha\CaptchaServiceProvider::class,
         Thomaswelton\LaravelGravatar\LaravelGravatarServiceProvider::class,
         Vinkla\Vimeo\VimeoServiceProvider::class,
+        Thujohn\Twitter\TwitterServiceProvider::class,
         'Alaouy\Youtube\YoutubeServiceProvider',
         'GrahamCampbell\Markdown\MarkdownServiceProvider',
         'Intouch\LaravelNewrelic\NewrelicServiceProvider',
         'Intervention\Image\ImageServiceProvider',
+        Laravelrus\LocalizedCarbon\LocalizedCarbonServiceProvider::class,
 
         //keep at bottom for generic routes to work
 //        'App\System\Uri\UriServiceProvider',

@@ -1,9 +1,7 @@
 <?php namespace Modules\Shop\Http;
 
 use Illuminate\Http\Request;
-use Modules\Shop\Product\Brand;
 use Modules\Shop\Product\BrandTranslation;
-use Modules\Shop\Product\Category;
 use Modules\Shop\Product\CategoryTranslation;
 use Modules\Shop\Product\Product;
 use Modules\Shop\Product\ProductTranslation;
@@ -31,12 +29,15 @@ class ShopController extends FrontController
 
         $featured = $products;
 
+        $tweets = latest_tweets_about(4);
+
         return $this->theme->render('shop.store', [
-            'latest' => $latest,
-            'featured' => $featured,
-            'sales' => $sales,
+            'latest'      => $latest,
+            'featured'    => $featured,
+            'sales'       => $sales,
             'bestsellers' => $bestsellers,
-            'top' => $top
+            'top'         => $top,
+            'tweets'      => $tweets
         ]);
     }
 
@@ -47,7 +48,7 @@ class ShopController extends FrontController
 
         $defaults = [
             'count' => 20,
-            'view' => 'list',
+            'view'  => 'list',
         ];
 
         $filters = array_merge($defaults, $request->all());
