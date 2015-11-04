@@ -175,7 +175,6 @@ return [
         'Intouch\LaravelNewrelic\NewrelicServiceProvider',
         'Intervention\Image\ImageServiceProvider',
         Laravelrus\LocalizedCarbon\LocalizedCarbonServiceProvider::class,
-        Spatie\Newsletter\NewsletterServiceProvider::class,
 
         //keep at bottom for generic routes to work
 //        'App\System\Uri\UriServiceProvider',
