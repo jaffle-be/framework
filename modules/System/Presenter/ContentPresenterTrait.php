@@ -4,6 +4,7 @@ use Markdown;
 
 trait ContentPresenterTrait
 {
+
     /**
      * Returns the entire post, fully loaded with shortcodes
      * Ready to be displayed onto your website.
@@ -12,14 +13,18 @@ trait ContentPresenterTrait
      */
     public function content()
     {
+        if($this->usePresentableCache())
+        {
+            return $this->cached_content;
+        }
+
         $content = $this->contentToPresent();
 
         //compile our custom shortcodes into valid markdown
         //take note, in our system provider,
         //we add the attributes extension to the
         //markdown environment.
-        if(method_exists($this, 'compileShortCodes'))
-        {
+        if (method_exists($this, 'compileShortCodes')) {
             $content = $this->compileShortcodes($content);
         }
 
@@ -38,18 +43,13 @@ trait ContentPresenterTrait
      */
     public function extract($chars = null)
     {
-        $content = $this->contentToPresent();
-
-        if(method_exists($this, 'stripShortCodes'))
+        if($this->usePresentableCache())
         {
-            $content = $this->stripShortcodes($content);
+            $content = $this->cached_extract;
         }
-
-        $content = $this->removeCodeSamples($content);
-
-        $content = Markdown::convertToHtml($content);
-
-        $content = strip_tags($content);
+        else{
+            $content = $this->freshlyBuiltExtract();
+        }
 
         return $this->snippet($content, 60, $chars);
     }
@@ -61,8 +61,8 @@ trait ContentPresenterTrait
         return $content;
     }
 
-
-    protected function snippet($str, $wordCount = 60, $chars = null) {
+    protected function snippet($str, $wordCount = 60, $chars = null)
+    {
 
         $string = implode(
             '',
@@ -70,16 +70,15 @@ trait ContentPresenterTrait
                 preg_split(
                     '/([\s,\.;\?\!]+)/',
                     $str,
-                    $wordCount*2+1,
+                    $wordCount * 2 + 1,
                     PREG_SPLIT_DELIM_CAPTURE
                 ),
                 0,
-                $wordCount*2-1
+                $wordCount * 2 - 1
             )
         );
 
-        if(!empty($chars))
-        {
+        if (!empty($chars)) {
             //oke, if the difference between chars and strlen is to high. we'd
             //be doing way to many while loops.
             //therefor, we will make sure that we first trim by hand to a reasonable strlen
@@ -90,24 +89,23 @@ trait ContentPresenterTrait
 
             $string = substr($string, 0, $chars + 13);
 
-            while(strlen($string) > $chars){
+            while (strlen($string) > $chars) {
                 $string = preg_split(
                     '/([\s,\.;\?\!]+)/',
                     $string,
-                    $wordCount*2+1,
+                    $wordCount * 2 + 1,
                     PREG_SPLIT_DELIM_CAPTURE
                 );
 
-                do{
+                do {
                     $piece = array_pop($string);
-                }
-                while(empty($piece));
+                } while (empty($piece));
 
                 $string = implode('', $string);
             }
         }
 
-        return $string  . '&nbsp;...';
+        return $string . '&nbsp;...';
     }
 
     /**
@@ -115,15 +113,35 @@ trait ContentPresenterTrait
      */
     protected function contentToPresent()
     {
-        if (property_exists($this, 'contentPresenterField')) {
-            $content = $this->{$this->contentPresenterField};
+        return $this->entity->content;
+    }
 
-            return $content;
-        } else {
-            $content = $this->entity->content;
+    /**
+     * @return bool
+     */
+    protected function usePresentableCache()
+    {
+        return $this instanceof PresentableCache && on_front();
+    }
 
-            return $content;
+    /**
+     * @return mixed|string
+     */
+    protected function freshlyBuiltExtract()
+    {
+        $content = $this->contentToPresent();
+
+        if (method_exists($this, 'stripShortCodes')) {
+            $content = $this->stripShortcodes($content);
         }
+
+        $content = $this->removeCodeSamples($content);
+
+        $content = Markdown::convertToHtml($content);
+
+        $content = strip_tags($content);
+
+        return $content;
     }
 
 }

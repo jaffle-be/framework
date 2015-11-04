@@ -1,53 +1,57 @@
 (function () {
     'use strict';
 
-    angular.module('system').directive('ngConfirm', ['$uibModal', '$translate',
-        function ($uibModal, $translate) {
+    angular.module('system').directive('ngConfirm', confirmation);
 
-            var ModalInstanceCtrl = function ($scope, $uibModalInstance) {
-                $scope.ok = function () {
-                    $uibModalInstance.close();
-                };
+    confirmation.$inject = ['$uibModal', '$translate'];
+    function confirmation($uibModal, $translate) {
 
-                $scope.cancel = function () {
-                    $uibModalInstance.dismiss('cancel');
-                };
+        ModalInstanceCtrl.$inject = ['$scope', '$uibModalInstance'];
+
+        function ModalInstanceCtrl($scope, $uibModalInstance) {
+            $scope.ok = function () {
+                $uibModalInstance.close();
             };
 
-            return {
-                restrict: 'A',
-                scope: {
-                    ngConfirm: "&"
-                },
-                link: function (scope, element, attrs) {
-                    element.bind('click', function () {
+            $scope.cancel = function () {
+                $uibModalInstance.dismiss('cancel');
+            };
+        };
 
-                        $translate('CONFIRM').then(function (translation) {
+        return {
+            restrict: 'A',
+            scope: {
+                ngConfirm: "&"
+            },
+            link: function (scope, element, attrs) {
+                element.bind('click', function () {
 
-                            scope.ngReallyMessage = 'Are you sure?';
+                    $translate('CONFIRM').then(function (translation) {
 
-                            var modalHtml = '<div class="modal-body">' + scope.ngReallyMessage + '</div>';
-                            modalHtml += '<div class="modal-footer"><button class="btn btn-warning" ng-click="ok()">{{ "DO" | translate }}</button><button class="btn btn-default" ng-click="cancel()">{{ "CANCEL" | translate }}</button></div>';
+                        scope.ngReallyMessage = 'Are you sure?';
 
-                            var modalInstance = $uibModal.open({
-                                template: modalHtml,
-                                controller: ModalInstanceCtrl,
-                                animation: false,
-                                animate: false
-                            });
+                        var modalHtml = '<div class="modal-body">' + scope.ngReallyMessage + '</div>';
+                        modalHtml += '<div class="modal-footer"><button class="btn btn-warning" ng-click="ok()">{{ "DO" | translate }}</button><button class="btn btn-default" ng-click="cancel()">{{ "CANCEL" | translate }}</button></div>';
 
-                            modalInstance.result.then(function () {
-                                scope.ngConfirm();
-                            }, function () {
-                                //Modal dismissed
-                            });
+                        var modalInstance = $uibModal.open({
+                            template: modalHtml,
+                            controller: ModalInstanceCtrl,
+                            animation: false,
+                            animate: false
+                        });
 
+                        modalInstance.result.then(function () {
+                            scope.ngConfirm();
+                        }, function () {
+                            //Modal dismissed
                         });
 
                     });
 
-                }
+                });
+
             }
-        }]);
+        }
+    };
 
 })();

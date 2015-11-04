@@ -21,6 +21,8 @@ class CreatePortfolioProjectTranslations extends Migration
             $table->string('title');
             $table->string('slug')->nullable();
             $table->text('content');
+            $table->text('cached_content');
+            $table->text('cached_extract');
             $table->timestamps();
         });
     }

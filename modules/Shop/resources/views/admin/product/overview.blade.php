@@ -83,7 +83,7 @@
                         <div class="">
                             <img class="pull-left img-responsive img-rounded" ng-src="@{{ product.images[0].sizes[0].path }}"/>
                             <h4 ng-bind-html="renderHtml(product.translations[vm.options.locale].title)"></h4>
-                            <span ng-bind-html="renderHtml(product.translations[vm.options.locale].extract)"></span>
+                            <span ng-bind-html="renderHtml(product.translations[vm.options.locale].cached_extract)"></span>
                         </div>
                     </td>
                     <td>@{{ product.tags.length }}</td>

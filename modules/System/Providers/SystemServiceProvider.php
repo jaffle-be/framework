@@ -74,6 +74,7 @@ class SystemServiceProvider extends ServiceProvider
         $this->automateUriCreation();
         $this->automateContentFormatting();
         $this->pushableListeners();
+        $this->presentableCacheListeners();
     }
 
     protected function validators()
@@ -156,6 +157,11 @@ class SystemServiceProvider extends ServiceProvider
         $this->app['events']->listen('eloquent.updated: *', 'Modules\System\Pushable\PushableManager@updated');
         $this->app['events']->listen('eloquent.attached: *', 'Modules\System\Pushable\PushableManager@attached');
         $this->app['events']->listen('eloquent.detached: *', 'Modules\System\Pushable\PushableManager@detached');
+    }
+
+    protected function presentableCacheListeners()
+    {
+        $this->app['events']->listen('eloquent.saving: *', 'Modules\System\Presenter\PresentableCacher');
     }
 
 }

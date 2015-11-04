@@ -32,6 +32,8 @@ class CreatePostsTable extends Migration
             $table->string('locale');
             $table->string('title');
             $table->text('content');
+            $table->text('cached_content');
+            $table->text('cached_extract');
             $table->date('publish_at')->nullable()->index();
             $table->timestamps();
         });

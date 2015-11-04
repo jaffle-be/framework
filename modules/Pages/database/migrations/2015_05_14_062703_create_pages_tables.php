@@ -34,6 +34,8 @@ class CreatePagesTables extends Migration
             $table->string('locale');
             $table->string('title');
             $table->text('content');
+            $table->text('cached_content');
+            $table->text('cached_extract');
             $table->boolean('published');
             $table->timestamps();
         });
