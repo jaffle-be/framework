@@ -113,8 +113,7 @@ if (!function_exists('pusher_system_channel')) {
 if (!function_exists('on_front')) {
     function on_front()
     {
-        if(app()->runningInConsole() && !app()->runningUnitTests())
-        {
+        if (app()->runningInConsole() && !app()->runningUnitTests()) {
             return false;
         }
 
@@ -140,6 +139,32 @@ if (!function_exists('translation_input')) {
 
         return $input;
     }
+}
+
+if (!function_exists('latest_tweets')) {
+    function latest_tweets($count = 3)
+    {
+        $cache = app('cache');
+
+        $tweets = $cache->sear('tweets', function () {
+            return json_decode(app('ttwitter')->getUserTimeline(['screen_name' => 'twarlop', 'count' => 20, 'format' => 'json']));
+        });
+
+        return array_slice($tweets, 0, $count);
+    }
+
+    function latest_tweets_about($count = 3)
+    {
+        $cache = app('cache');
+
+        $tweets = $cache->sear('tweets', function () {
+            return json_decode(app('ttwitter')->getMentionsTimeline(['count' => 20, 'format' => 'json']));
+        });
+
+        return array_slice($tweets, 0, $count);
+    }
+}
+
 if (!function_exists('ago')) {
     function ago($timestamp)
     {

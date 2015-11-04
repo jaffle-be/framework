@@ -39,7 +39,9 @@ class WelcomeController extends FrontController
 
     public function storeHome()
     {
-        return $this->theme->render('home.index');
+        $tweets = latest_tweets_about(3);
+
+        return $this->theme->render('home.index', ['tweets' => $tweets]);
     }
 
     public function storeDash(Store $session, Request $request)
