@@ -15,9 +15,7 @@ class AccountServiceProvider extends ServiceProvider
     {
         parent::boot();
 
-        if (!$this->app->runningInConsole()) {
-            $this->app['Modules\Account\AccountManager']->boot($this->app['request']);
-        }
+        $this->app['Modules\Account\AccountManager']->boot();
     }
 
     /**

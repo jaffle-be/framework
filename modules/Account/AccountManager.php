@@ -24,13 +24,11 @@ class AccountManager
         $this->application = $application;
     }
 
-    public function boot(Request $request)
+    public function boot()
     {
         //this alias should be set using your apache or nginx config.
         //we set the default to our own application.
-        $subdomain = env('APP_ALIAS');
-
-        $this->account = $this->repo->findByAlias($subdomain);
+        $this->account = $this->repo->findByAlias(env('APP_ALIAS'));
 
         return $this->account;
     }
