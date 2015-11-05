@@ -14,7 +14,6 @@ class TagsServiceProvider extends ServiceProvider{
 
     public function observers()
     {
-        Tag::observe('Modules\Tags\TagObserver');
     }
 
     public function register()
