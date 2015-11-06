@@ -97,6 +97,7 @@ return [
             'migration' => 'database/migrations',
             'seeder' => 'database/seeders',
             'images' => 'database/images',
+            'factories' => 'database/factories',
             'en' => 'resources/lang/en',
             'nl' => 'resources/lang/nl',
             'de' => 'resources/lang/de',
