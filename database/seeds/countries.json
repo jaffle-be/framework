@@ -186,12 +186,7 @@
       "name": "Belgium",
       "iso_code_2": "BE",
       "iso_code_3": "BEL",
-      "address_format": "{firstname} {lastname}
-    {company}
-    {address_1}
-    {address_2}
-    {postcode} {city}
-    {country}",
+      "address_format": "{firstname} {lastname} {company} {address_1} {address_2} {postcode} {city} {country}",
     "postcode_required": 0,
     "status": 1
     },
@@ -659,12 +654,7 @@
       "name": "France, Metropolitan",
       "iso_code_2": "FR",
       "iso_code_3": "FRA",
-      "address_format": "{firstname} {lastname}
-    {company}
-    {address_1}
-    {address_2}
-    {postcode} {city}
-    {country}",
+      "address_format": "",
     "postcode_required": 1,
     "status": 1
     },
@@ -727,12 +717,7 @@
       "name": "Germany",
       "iso_code_2": "DE",
       "iso_code_3": "DEU",
-      "address_format": "{company}
-    {firstname} {lastname}
-    {address_1}
-    {address_2}
-    {postcode} {city}
-    {country}",
+      "address_format": "",
     "postcode_required": 1,
     "status": 1
     },
@@ -1704,13 +1689,7 @@
       "name": "Slovak Republic",
       "iso_code_2": "SK",
       "iso_code_3": "SVK",
-      "address_format": "{firstname} {lastname}
-    {company}
-    {address_1}
-    {address_2}
-    {city} {postcode}
-    {zone}
-    {country}",
+      "address_format": "",
     "postcode_required": 0,
     "status": 1
     },
@@ -1836,12 +1815,7 @@
       "name": "Sweden",
       "iso_code_2": "SE",
       "iso_code_3": "SWE",
-      "address_format": "{company}
-    {firstname} {lastname}
-    {address_1}
-    {address_2}
-    {postcode} {city}
-    {country}",
+      "address_format": "",
     "postcode_required": 1,
     "status": 1
     },
@@ -2021,12 +1995,7 @@
       "name": "United States",
       "iso_code_2": "US",
       "iso_code_3": "USA",
-      "address_format": "{firstname} {lastname}
-    {company}
-    {address_1}
-    {address_2}
-    {city}, {zone} {postcode}
-    {country}",
+      "address_format": "",
     "postcode_required": 0,
     "status": 1
     },
