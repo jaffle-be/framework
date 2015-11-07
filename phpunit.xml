@@ -20,5 +20,6 @@
         <env name="SESSION_DRIVER" value="array"/>
         <env name="QUEUE_DRIVER" value="sync"/>
         <env name="APP_ALIAS" value="digiredo"/>
+        <env name="RUNNING_TESTS" value="true"/>
     </php>
 </phpunit>

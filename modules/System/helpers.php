@@ -113,7 +113,11 @@ if (!function_exists('pusher_system_channel')) {
 if (!function_exists('on_front')) {
     function on_front()
     {
-        if (app()->runningInConsole() && !app()->runningUnitTests()) {
+        //this use to be implemented with app()->runningUnitTests()
+        //but our testing env is called testing.
+        //so we use the env variable RUNNING_TESTS
+        //which is defined in our phpunit.xml file
+        if (app()->runningInConsole() && !env('RUNNING_TESTS', false)) {
             return false;
         }
 
