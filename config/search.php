@@ -10,7 +10,7 @@ return [
      * The name of the index
      * Your app name might be a sane default value.
      */
-    'index'    => getenv('ES_INDEX') ? getenv('ES_INDEX') : 'app',
+    'index'    => env('ES_INDEX', 'app'),
 
     /**
      * All the hosts that are in the cluster.
