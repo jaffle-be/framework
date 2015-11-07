@@ -5,7 +5,6 @@ use Illuminate\Contracts\Bus\SelfHandling;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Modules\Account\Account;
 use Modules\Shop\Gamma\CategorySelection;
-use Modules\Shop\Jobs\Gamma\Notification\NotifyCategoryActivation;
 use Modules\Shop\Product\Category;
 
 class ActivateCategory extends Job implements SelfHandling

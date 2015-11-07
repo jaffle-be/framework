@@ -10,7 +10,6 @@ use Modules\System\Presenter\PresentableTrait;
 use Modules\System\Scopes\FrontScoping;
 use Modules\System\Seo\SeoEntity;
 use Modules\System\Seo\SeoTrait;
-use Modules\System\Sluggable\Sluggable;
 use Modules\System\Translatable\Translatable;
 use Modules\Tags\Taggable;
 

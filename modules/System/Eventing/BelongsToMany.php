@@ -1,6 +1,5 @@
 <?php namespace Modules\System\Eventing;
 
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 class BelongsToMany extends \Illuminate\Database\Eloquent\Relations\BelongsToMany

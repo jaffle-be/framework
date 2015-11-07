@@ -6,7 +6,6 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
 use Modules\Account\Account;
 use Modules\Shop\Gamma\BrandSelection;
 use Modules\Shop\Gamma\GammaManager;
-use Modules\Shop\Jobs\Gamma\Notification\NotifyBrandActivation;
 use Modules\Shop\Product\Brand;
 
 class ActivateBrand extends Job implements SelfHandling

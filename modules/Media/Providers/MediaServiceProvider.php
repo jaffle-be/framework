@@ -1,7 +1,7 @@
 <?php namespace Modules\Media\Providers;
 
-use Modules\Media\Image;
 use Modules\Media\Files\File;
+use Modules\Media\Image;
 use Modules\Media\Infographics\Infographic;
 use Pingpong\Modules\ServiceProvider;
 

@@ -3,7 +3,6 @@
 use App\Jobs\Job;
 use Illuminate\Contracts\Bus\SelfHandling;
 use Modules\Account\Account;
-use Modules\Shop\Gamma\BrandSelection;
 use Modules\Shop\Product\Brand;
 
 class DeactivateBrand extends Job implements SelfHandling

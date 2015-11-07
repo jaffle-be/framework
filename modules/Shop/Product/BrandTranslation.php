@@ -3,7 +3,6 @@
 use Cviebrock\EloquentSluggable\SluggableInterface;
 use Modules\System\Presenter\PresentableEntity;
 use Modules\System\Presenter\PresentableTrait;
-use Modules\System\Scopes\FrontScoping;
 use Modules\System\Sluggable\Sluggable;
 use Modules\System\Translatable\TranslationModel;
 

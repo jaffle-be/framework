@@ -4,7 +4,6 @@ namespace Modules\Account;
 
 use Illuminate\Config\Repository;
 use Illuminate\Foundation\Application;
-use Illuminate\Http\Request;
 
 class AccountManager
 {

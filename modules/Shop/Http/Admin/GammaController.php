@@ -9,8 +9,6 @@ use Modules\Shop\Jobs\Gamma\ActivateBrand;
 use Modules\Shop\Jobs\Gamma\ActivateCategory;
 use Modules\Shop\Jobs\Gamma\DeactivateBrand;
 use Modules\Shop\Jobs\Gamma\DeactivateCategory;
-use Modules\Shop\Jobs\Gamma\Notification\NotifyBrandDeactivation;
-use Modules\Shop\Jobs\Gamma\Notification\NotifyCategoryDeactivation;
 use Modules\Shop\Jobs\Gamma\Notification\NotifyDetailActivation;
 use Modules\Shop\Jobs\Gamma\Notification\NotifyDetailDeactivation;
 use Modules\Shop\Product\Brand;
