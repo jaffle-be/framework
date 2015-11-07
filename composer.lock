@@ -1,11 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "ba7f0fa4717ba2948e46e480fcd9f826",
-    "content-hash": "af9eb1e15f8e0403130d20dd48b4d2a6",
+    "hash": "a2c25fa9c55dbbfcb98742372a9f983a",
     "packages": [
         {
             "name": "alaouy/youtube",
@@ -919,16 +918,16 @@
         },
         {
             "name": "elasticsearch/elasticsearch",
-            "version": "v2.0.2",
+            "version": "v2.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/elastic/elasticsearch-php.git",
-                "reference": "87858db144649634fb6a11a033642b1b4db888d3"
+                "reference": "9ce5bd7606f6c185d434de4f80863f998f74e179"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/elastic/elasticsearch-php/zipball/87858db144649634fb6a11a033642b1b4db888d3",
-                "reference": "87858db144649634fb6a11a033642b1b4db888d3",
+                "url": "https://api.github.com/repos/elastic/elasticsearch-php/zipball/9ce5bd7606f6c185d434de4f80863f998f74e179",
+                "reference": "9ce5bd7606f6c185d434de4f80863f998f74e179",
                 "shasum": ""
             },
             "require": {
@@ -969,7 +968,7 @@
                 "elasticsearch",
                 "search"
             ],
-            "time": "2015-09-23 18:47:51"
+            "time": "2015-11-05 15:29:21"
         },
         {
             "name": "erusev/parsedown",
@@ -1218,23 +1217,23 @@
         },
         {
             "name": "graham-campbell/markdown",
-            "version": "v5.1.0",
+            "version": "v5.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/GrahamCampbell/Laravel-Markdown.git",
-                "reference": "990e9ef977376331ba1ed50fe36adfbe7e34677f"
+                "reference": "7498cd47107ab6f617937e68195f3453b0ef0537"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/GrahamCampbell/Laravel-Markdown/zipball/990e9ef977376331ba1ed50fe36adfbe7e34677f",
-                "reference": "990e9ef977376331ba1ed50fe36adfbe7e34677f",
+                "url": "https://api.github.com/repos/GrahamCampbell/Laravel-Markdown/zipball/7498cd47107ab6f617937e68195f3453b0ef0537",
+                "reference": "7498cd47107ab6f617937e68195f3453b0ef0537",
                 "shasum": ""
             },
             "require": {
                 "illuminate/contracts": "5.0.*|5.1.*",
                 "illuminate/support": "5.0.*|5.1.*",
                 "illuminate/view": "5.0.*|5.1.*",
-                "league/commonmark": "0.11.*",
+                "league/commonmark": "0.12.*",
                 "php": ">=5.5.9"
             },
             "require-dev": {
@@ -1245,7 +1244,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "5.1-dev"
+                    "dev-master": "5.2-dev"
                 }
             },
             "autoload": {
@@ -1275,7 +1274,7 @@
                 "laravel",
                 "markdown"
             ],
-            "time": "2015-10-06 16:53:34"
+            "time": "2015-11-05 15:09:56"
         },
         {
             "name": "guzzlehttp/guzzle",
@@ -2064,16 +2063,16 @@
         },
         {
             "name": "league/commonmark",
-            "version": "0.11.3",
+            "version": "0.12.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/commonmark.git",
-                "reference": "d22d6a6a4b049faccc2f8e491cce6076eeb165c7"
+                "reference": "3eb64850ee688623db494398a5284a7a4cdf7b47"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/commonmark/zipball/d22d6a6a4b049faccc2f8e491cce6076eeb165c7",
-                "reference": "d22d6a6a4b049faccc2f8e491cce6076eeb165c7",
+                "url": "https://api.github.com/repos/thephpleague/commonmark/zipball/3eb64850ee688623db494398a5284a7a4cdf7b47",
+                "reference": "3eb64850ee688623db494398a5284a7a4cdf7b47",
                 "shasum": ""
             },
             "require": {
@@ -2089,8 +2088,8 @@
                 "jgm/smartpunct": "0.22",
                 "michelf/php-markdown": "~1.4",
                 "mikehaertl/php-shellcommand": "~1.1.0",
-                "phpunit/phpunit": "~4.3",
-                "phpunit/phpunit-mock-objects": "2.3.0",
+                "phpunit/phpunit": "~4.3|~5.0",
+                "scrutinizer/ocular": "^1.1",
                 "symfony/finder": "~2.3"
             },
             "bin": [
@@ -2099,7 +2098,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "0.12-dev"
+                    "dev-master": "0.13-dev"
                 }
             },
             "autoload": {
@@ -2126,7 +2125,7 @@
                 "markdown",
                 "parser"
             ],
-            "time": "2015-09-25 12:40:32"
+            "time": "2015-11-04 14:24:41"
         },
         {
             "name": "league/flysystem",
@@ -2448,16 +2447,16 @@
         },
         {
             "name": "nesbot/carbon",
-            "version": "1.20.0",
+            "version": "1.21.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/briannesbitt/Carbon.git",
-                "reference": "bfd3eaba109c9a2405c92174c8e17f20c2b9caf3"
+                "reference": "7b08ec6f75791e130012f206e3f7b0e76e18e3d7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/bfd3eaba109c9a2405c92174c8e17f20c2b9caf3",
-                "reference": "bfd3eaba109c9a2405c92174c8e17f20c2b9caf3",
+                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/7b08ec6f75791e130012f206e3f7b0e76e18e3d7",
+                "reference": "7b08ec6f75791e130012f206e3f7b0e76e18e3d7",
                 "shasum": ""
             },
             "require": {
@@ -2465,12 +2464,12 @@
                 "symfony/translation": "~2.6|~3.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "~4.0"
+                "phpunit/phpunit": "~4.0|~5.0"
             },
             "type": "library",
             "autoload": {
-                "psr-0": {
-                    "Carbon": "src"
+                "psr-4": {
+                    "Carbon\\": "src/Carbon/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -2491,7 +2490,7 @@
                 "datetime",
                 "time"
             ],
-            "time": "2015-06-25 04:19:39"
+            "time": "2015-11-04 20:07:17"
         },
         {
             "name": "nikic/php-parser",
@@ -2638,12 +2637,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/jaffle-be/modules.git",
-                "reference": "444a95589804d79fc2ac808feac5621b67941560"
+                "reference": "e348c91846ddb576c675a38df696677f8c26d6b9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jaffle-be/modules/zipball/444a95589804d79fc2ac808feac5621b67941560",
-                "reference": "444a95589804d79fc2ac808feac5621b67941560",
+                "url": "https://api.github.com/repos/jaffle-be/modules/zipball/e348c91846ddb576c675a38df696677f8c26d6b9",
+                "reference": "e348c91846ddb576c675a38df696677f8c26d6b9",
                 "shasum": ""
             },
             "require": {
@@ -2683,7 +2682,7 @@
             "support": {
                 "source": "https://github.com/jaffle-be/modules/tree/master"
             },
-            "time": "2015-10-27 06:58:10"
+            "time": "2015-11-05 09:43:36"
         },
         {
             "name": "pingpong/support",
@@ -4095,20 +4094,20 @@
         },
         {
             "name": "webuni/commonmark-attributes-extension",
-            "version": "0.3.0",
+            "version": "0.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/webuni/commonmark-attributes-extension.git",
-                "reference": "94aa18b444e0ffba256010e98abc7a9aa99ad22f"
+                "reference": "78e98c499e636c0a38999439205c98fff44838eb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/webuni/commonmark-attributes-extension/zipball/94aa18b444e0ffba256010e98abc7a9aa99ad22f",
-                "reference": "94aa18b444e0ffba256010e98abc7a9aa99ad22f",
+                "url": "https://api.github.com/repos/webuni/commonmark-attributes-extension/zipball/78e98c499e636c0a38999439205c98fff44838eb",
+                "reference": "78e98c499e636c0a38999439205c98fff44838eb",
                 "shasum": ""
             },
             "require": {
-                "league/commonmark": "^0.11",
+                "league/commonmark": "^0.11|^0.12",
                 "php": ">=5.4"
             },
             "require-dev": {
@@ -4146,7 +4145,7 @@
                 "commonmark",
                 "markdown"
             ],
-            "time": "2015-09-26 10:26:05"
+            "time": "2015-11-05 14:51:49"
         }
     ],
     "packages-dev": [
@@ -4203,6 +4202,116 @@
                 "instantiate"
             ],
             "time": "2015-06-14 21:17:01"
+        },
+        {
+            "name": "hamcrest/hamcrest-php",
+            "version": "v1.2.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/hamcrest/hamcrest-php.git",
+                "reference": "b37020aa976fa52d3de9aa904aa2522dc518f79c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/hamcrest/hamcrest-php/zipball/b37020aa976fa52d3de9aa904aa2522dc518f79c",
+                "reference": "b37020aa976fa52d3de9aa904aa2522dc518f79c",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.2"
+            },
+            "replace": {
+                "cordoval/hamcrest-php": "*",
+                "davedevelopment/hamcrest-php": "*",
+                "kodova/hamcrest-php": "*"
+            },
+            "require-dev": {
+                "phpunit/php-file-iterator": "1.3.3",
+                "satooshi/php-coveralls": "dev-master"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "hamcrest"
+                ],
+                "files": [
+                    "hamcrest/Hamcrest.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD"
+            ],
+            "description": "This is the PHP port of Hamcrest Matchers",
+            "keywords": [
+                "test"
+            ],
+            "time": "2015-05-11 14:41:42"
+        },
+        {
+            "name": "mockery/mockery",
+            "version": "0.9.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/padraic/mockery.git",
+                "reference": "70bba85e4aabc9449626651f48b9018ede04f86b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/padraic/mockery/zipball/70bba85e4aabc9449626651f48b9018ede04f86b",
+                "reference": "70bba85e4aabc9449626651f48b9018ede04f86b",
+                "shasum": ""
+            },
+            "require": {
+                "hamcrest/hamcrest-php": "~1.1",
+                "lib-pcre": ">=7.0",
+                "php": ">=5.3.2"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "0.9.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Mockery": "library/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Pádraic Brady",
+                    "email": "padraic.brady@gmail.com",
+                    "homepage": "http://blog.astrumfutura.com"
+                },
+                {
+                    "name": "Dave Marshall",
+                    "email": "dave.marshall@atstsolutions.co.uk",
+                    "homepage": "http://davedevelopment.co.uk"
+                }
+            ],
+            "description": "Mockery is a simple yet flexible PHP mock object framework for use in unit testing with PHPUnit, PHPSpec or any other testing framework. Its core goal is to offer a test double framework with a succinct API capable of clearly defining all possible object operations and interactions using a human readable Domain Specific Language (DSL). Designed as a drop in alternative to PHPUnit's phpunit-mock-objects library, Mockery is easy to integrate with PHPUnit and can operate alongside phpunit-mock-objects without the World ending.",
+            "homepage": "http://github.com/padraic/mockery",
+            "keywords": [
+                "BDD",
+                "TDD",
+                "library",
+                "mock",
+                "mock objects",
+                "mockery",
+                "stub",
+                "test",
+                "test double",
+                "testing"
+            ],
+            "time": "2015-04-02 19:54:00"
         },
         {
             "name": "phpdocumentor/reflection-docblock",
