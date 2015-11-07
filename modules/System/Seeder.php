@@ -1,16 +1,18 @@
 <?php
 namespace Modules\System;
 
-use Exception;
 use Faker\Factory as Faker;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Seeder as BaseSeeder;
+use Illuminate\Filesystem\Filesystem;
 use Illuminate\Foundation\Bus\DispatchesCommands;
-use Modules\Media\Commands\StoreNewImage;
+use Modules\Media\Configurator;
+use Modules\Media\Image;
 use Modules\Media\ImageDimensionHelpers;
+use Modules\Media\MediaRepository;
 
 abstract class Seeder extends BaseSeeder
 {
+
     use DispatchesCommands;
     use ImageDimensionHelpers;
 
@@ -30,6 +32,13 @@ abstract class Seeder extends BaseSeeder
     protected $de;
 
     /**
+     * @var Configurator
+     */
+    protected $mediaConfig;
+
+    protected $files;
+
+    /**
      * Build a new Seed.
      */
     public function __construct()
@@ -44,67 +53,70 @@ abstract class Seeder extends BaseSeeder
         }
 //        Model::unguard();
         \DB::disableQueryLog();
+
+        $this->mediaConfig = app(Configurator::class);
+        $this->files = app(Filesystem::class);
+        $this->repository = app(MediaRepository::class);
     }
 
-    /**
-     * @param $images
-     * @param $sizes
-     *
-     * @return mixed
-     */
-    protected function preImageCaching()
+    protected function addImages($model)
     {
-        //run images cachings.
-        foreach ($this->image_names as $image) {
+        $options = ['one_image' => ['PORTFOLIO_O14A0464.jpg'], 'two_images' => ['PORTFOLIO_O14A0464.jpg', 'PORTFOLIO_IMG_0331.jpg'], 'three_images' => ['PORTFOLIO_IMG_0324.jpg', 'PORTFOLIO_IMG_0331.jpg', 'PORTFOLIO_O14A0464.jpg']];
 
-            $path = $this->prefix . $image;
+        $images = array_rand($options, 1);
 
-            $media = app('Modules\Media\Configurator');
+        $source = database_path('images/' . $images);
 
-            foreach ($media->getImageSizes($this->model) as $size) {
+        $destination = $this->mediaConfig->getPublicPath($model, 'images');
 
-                list($width, $height) = $this->dimensions($size);
+        $this->files->copyDirectory($source, $destination);
 
-                $constraint = $this->constraint($width, $height);
+        $files = scandir($destination);
 
-                $this->images->cache(function ($image) use ($path, $width, $height, $constraint) {
-                    $image->make($path)->resize($width, $height, $constraint);
-                });
+        $files = array_filter($files, function ($file) {
+            return !in_array($file, ['.', '..', '.DS_Store']);
+        });
+
+        foreach ($files as $file) {
+            if ($this->files->isDirectory($destination . $file)) {
+                $sizes[] = $file;
             }
         }
-    }
 
-    protected function validateSeederModel()
-    {
-        if(!isset($this->image_names))
-        {
-            throw new Exception('need to set image_names when calling this function');
-
-        }
-
-        if(!isset($this->model))
-        {
-            throw new Exception('need to set the model when calling this function');
-
-        }
-
-        if(!isset($this->prefix))
-        {
-            throw new Exception('need to set prefix when calling this function');
-
+        foreach ($options[$images] as $name) {
+            $original = $this->addMain($model, $destination, $name);
+            $this->addSizes($model, $sizes, $original, $destination, $name);
         }
     }
 
-    protected function newImage($owner, $account = null)
+    protected function addMain($model, $destination, $name)
     {
-        $this->validateSeederModel();
-        $image = rand(0, count($this->image_names) - 1);
+        $path = $destination . $name;
+        $info = getimagesize($path);
 
-        $this->dispatchFromArray(StoreNewImage::class, [
-            'account' => $account,
-            'owner'   => $owner,
-            'path'    => $this->prefix . $this->image_names[$image],
+        return $this->repository->createImage($model, [
+            'filename'  => $name,
+            'width'     => $info[0],
+            'height'    => $info[1],
+            'extension' => pathinfo($path, PATHINFO_EXTENSION),
+            'path'      => $this->mediaConfig->getAbstractPath($model, 'images') . $name,
         ]);
+    }
+
+    protected function addSizes($model, array $sizes, $original, $destination, $name)
+    {
+        foreach ($sizes as $size) {
+            $path = $destination . $size . '/' . $name;
+            $info = getimagesize($path);
+
+            $this->repository->createThumbnailImage([
+                'filename'  => $name,
+                'width'     => $info[0],
+                'height'    => $info[1],
+                'extension' => pathinfo($path, PATHINFO_EXTENSION),
+                'path'      => $this->mediaConfig->getAbstractPath($model, 'images', $size) . $name,
+            ], $original);
+        }
     }
 
 }
