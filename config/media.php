@@ -5,7 +5,7 @@ return [
     /**
      * path should be relative to the public path, no need for a trailing slash
      */
-    'path'   => 'media',
+    'path'   => env('APP_ENV') == 'testing' ? 'media_testing' : 'media',
 
     'owners' => [
         'pages'        => Modules\Pages\Page::class,
