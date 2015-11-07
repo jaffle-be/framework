@@ -25,8 +25,6 @@ class PageTranslation extends TranslationModel implements Searchable, SluggableI
         'build_from' => 'title',
     ];
 
-    protected $touches = ['page'];
-
     protected $casts = [
         'published' => 'boolean'
     ];

@@ -27,8 +27,6 @@ class PostTranslation extends TranslationModel implements Searchable, SluggableI
 
     protected $dates = ['publish_at'];
 
-    protected $touches = ['post'];
-
     public function getAccount()
     {
         return $this->post->account;
