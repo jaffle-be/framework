@@ -28,7 +28,7 @@ class BlogTableSeeder extends Seeder
 
             for ($i = 0; $i < 50; $i++) {
 
-                $post = new $this->model->newInstance($this->texts($accountid));
+                $post = $this->model->newInstance($this->texts($accountid));
 
                 $post->user_id = 1;
                 $post->account_id = $account->id;
