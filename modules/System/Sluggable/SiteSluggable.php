@@ -88,6 +88,13 @@ trait SiteSluggable
 
         //both this part and the part for the locales should be cleaned up once we upgrade our system
         //to only use the locale class and not the locale string values.
+
+        //do not change it into :
+        //
+        //# $account = app('Modules\Account\AccountManager')->account();
+        //
+        //that would be wrong when we're doing some sort of console command
+        //without an actual account reference within accountmanager
         $account = $this->getAccount();
 
         $this->load('slug');
