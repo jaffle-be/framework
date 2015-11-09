@@ -1,0 +1,70 @@
+<?php namespace Modules\Marketing\Newsletter;
+
+use Illuminate\Database\Eloquent\Model;
+use Modules\System\Scopes\ModelAccountResource;
+use Modules\System\Scopes\ModelAutoSort;
+use Modules\System\Translatable\Translatable;
+
+class CampaignWidget extends Model
+{
+    use Translatable;
+    use ModelAutoSort;
+
+    protected $table = 'newsletter_campaign_widgets';
+
+    //a campaign widget is a block that will be shown in the newsletter.
+    //it's basically a reference to which view we need to include.
+    //however, not all widgets have the same properties.
+    //this class will allow you to fetch all needed properties.
+
+    //you should be able to assign all applicable text fields.
+    //let's just store them into a 'many columns' table
+    //we could "improve" this further by abstracting this 'duplication'
+    //however, it would only make things overcomplicated.
+
+    //another requirement is that we should be able to link any
+    //resource to be shown in that specific block.
+
+    //the link to which widget we'll be showing will for now be simply the path where it is stored for the current theme.
+    //this will break with a new account. but we need several things to be refactored when we're actually going to sell this.
+    protected $fillable = ['campaign_id', 'path', 'manual', 'image_id', 'title', 'text', 'title_left', 'text_left', 'image_left_id', 'title_right', 'text_right', 'image_right_id', 'resource_type', 'resource_id', 'other_resource_type', 'other_resource_id'];
+
+    protected $translatedAttributes = ['title', 'text', 'title_left', 'text_left', 'title_right', 'text_right'];
+
+    protected $casts = [
+        'manual'=> 'boolean'
+    ];
+
+    public function image()
+    {
+        return $this->belongsTo('Modules\Media\Image');
+    }
+
+    public function leftImage()
+    {
+        return $this->belongsTo('Modules\Media\Image');
+    }
+
+    public function rightImage()
+    {
+        return $this->belongsTo('Modules\Media\Image');
+    }
+
+    //for now, we will not implement these relations in the 'other' classes
+    //so try to fix all your problems by using this relation starting from campaign widget.
+    //i do not see any requirement to be able to show that a product was included in a widget
+    public function resource()
+    {
+        return $this->morphTo();
+    }
+
+    public function otherResource()
+    {
+        return $this->morphTo();
+    }
+
+    public function newCollection(array $models = [])
+    {
+        return new CampaignWidgetCollection($models);
+    }
+}
