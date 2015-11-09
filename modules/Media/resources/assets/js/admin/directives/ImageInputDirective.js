@@ -14,24 +14,12 @@
                     waitFor: '=?',
                     titles: '=?',
                     limit: '=?',
-                    editsMany: '=?',
-                    handlers: '=?',
                 },
                 controllerAs: 'vm',
                 controller: function ($scope, Image, ImageService, toaster) {
                     var me = this;
                     //init base variables and dropzone
                     $scope.loaded = true;
-
-                    if ($scope.handlers === undefined)
-                    {
-                        $scope.handlers = {}
-                    }
-
-                    if ($scope.editsMany === undefined)
-                    {
-                        $scope.editsMany = false;
-                    }
 
                     if ($scope.limit)
                     {
@@ -56,12 +44,6 @@
                                 var img = new Image(image);
                                 img.translations = {};
                                 $scope.images.push(img);
-
-                                if (typeof $scope.handlers.uploadedImage === 'function')
-                                {
-                                    $scope.handlers.uploadedImage(img);
-                                }
-
                                 this.removeFile(file);
                                 $scope.$apply();
                             },
@@ -82,6 +64,10 @@
                                 this.options.params.ownerId = $scope.ownerId;
                             },
                             addedfile: function (file) {
+                                if(!$scope.images)
+                                {
+                                    $scope.images = [];
+                                }
 
                                 if ($scope.images.length >= $scope.limit)
                                 {
@@ -105,11 +91,6 @@
                             _.remove($scope.images, function (value, index, array) {
                                 return value.id == img.id;
                             });
-
-                            if (typeof $scope.handlers.deletedImage === 'function')
-                            {
-                                $scope.handlers.deletedImage(img);
-                            }
                         });
                     };
 
