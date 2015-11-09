@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('portfolio')
-        .factory('Portfolio', function ($resource) {
+        .factory('Portfolio', function ($resource, MediaService) {
 
             return $resource('api/admin/portfolio/:id', {id: '@id'}, {
 
@@ -24,7 +24,7 @@
                             response.date = moment(response.date, 'YYYY-MM-DD').format('DD/MM/YYYY');
                         }
 
-                        return response;
+                        return MediaService.transformResponse(response);
                     }
                 },
                 update: {

@@ -2,12 +2,14 @@
 
 use Illuminate\Http\Request;
 use Modules\Account\AccountManager;
+use Modules\Media\MediaWidgetPreperations;
 use Modules\Portfolio\Jobs\UpdateProject;
 use Modules\Portfolio\Project;
 use Modules\System\Http\AdminController;
 
 class PortfolioController extends AdminController
 {
+    use MediaWidgetPreperations;
 
     public function overview()
     {
@@ -50,6 +52,8 @@ class PortfolioController extends AdminController
     public function show(Project $project)
     {
         $project->load(['translations']);
+
+        $this->prepareMedia($project);
 
         return $project;
     }
