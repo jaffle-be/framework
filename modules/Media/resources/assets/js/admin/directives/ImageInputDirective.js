@@ -139,34 +139,6 @@
                             $scope.loaded = true;
                         });
                     };
-
-                    ////only load when we're working on an existing document
-                    //if ($scope.waitFor !== undefined)
-                    //{
-                    //    $scope.$watch('waitFor', function (newValue, oldValue) {
-                    //        //only trigger if value changed from something false to something true.
-                    //        if (newValue)
-                    //        {
-                    //            me.init();
-                    //        }
-                    //    });
-                    //}
-                    //else if ($scope.ownerId)
-                    //{
-                    //    this.init();
-                    //}
-                    //
-                    //if ($scope.editsMany)
-                    //{
-                    //    $scope.$watch('ownerId', function (newValue, oldValue) {
-                    //
-                    //        if (newValue)
-                    //        {
-                    //            me.loaded = false;
-                    //            me.init();
-                    //        }
-                    //    });
-                    //}
                 }
 
             }
