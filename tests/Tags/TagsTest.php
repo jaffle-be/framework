@@ -1,6 +1,6 @@
 <?php namespace Test\Tags;
 
-use Modules\Tags\TagTranslation;
+use Modules\Tags\Tag;
 use Test\Routes\RouteTests;
 use Test\TestCase;
 
@@ -11,6 +11,6 @@ class TagsTest extends TestCase
 
     public function testShow()
     {
-        $this->tryRoute('store.tags.show', [TagTranslation::first()]);
+        $this->tryRoute('store.tags.show', [Tag::first()]);
     }
 }
