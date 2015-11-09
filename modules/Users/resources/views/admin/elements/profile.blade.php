@@ -69,9 +69,11 @@
 
     <div class="col-md-6">
 
-        <image-input locale="vm.options.locale" owner-type="'user'" owner-id="{{ Auth::user()->id }}" wait-for="vm.loaded" no-text="'true'"></image-input>
+        <image-input locale="vm.options.locale" owner-type="'user'" owner-id="{{ Auth::user()->id }}" images="vm.profile.images"></image-input>
 
     </div>
 
 
 </div>
+
+@include('media::admin.image')

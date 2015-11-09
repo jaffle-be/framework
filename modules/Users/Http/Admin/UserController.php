@@ -2,11 +2,13 @@
 
 use Illuminate\Auth\Guard;
 use Illuminate\Http\Request;
+use Modules\Media\MediaWidgetPreperations;
 use Modules\System\Http\AdminController;
 use Modules\Users\Jobs\CheckGravatarImage;
 
 class UserController extends AdminController
 {
+    use MediaWidgetPreperations;
 
     /**
      * the actual page
@@ -26,6 +28,8 @@ class UserController extends AdminController
         }
 
         $user->load(['translations', 'skills', 'skills.translations']);
+
+        $this->prepareImages($user);
 
         return $user;
     }
