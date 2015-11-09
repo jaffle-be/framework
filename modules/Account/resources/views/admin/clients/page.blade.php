@@ -24,7 +24,7 @@
 
                             <div class="row">
                             <span class="col-xs-10">
-                                <img ng-show="client.images" ng-src="@{{ client.images.thumbnail('x90') }}" alt=""> @{{ client.name }}
+                                <img ng-show="client.images && client.images[0]" ng-src="@{{ client.images[0].thumbnail('x90') }}" alt=""> @{{ client.name }}
                             </span>
                             <span class="col-xs-2 text-right"><button class="btn btn-info" ng-click="vm.startEditing(client)">
                                     <i class="fa fa-pencil"></i></button>
@@ -71,7 +71,7 @@
 
                     </div>
 
-                    <image-input ng-hide="!vm.client.id" locale="vm.options.locale" owner-type="'client'" owner-id="vm.client.id" limit="'1'" wait-for="vm.client.id" edits-many="'true'" handlers="vm.imageHandlers"></image-input>
+                    <image-input ng-hide="!vm.client.id" locale="vm.options.locale" owner-type="'client'" owner-id="vm.client.id" limit="'1'" images="vm.client.images" handlers="vm.imageHandlers"></image-input>
 
                 </div>
 
@@ -82,3 +82,5 @@
     </div>
 
 </div>
+
+@include('media::admin.image')

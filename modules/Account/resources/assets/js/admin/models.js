@@ -68,7 +68,7 @@
                         _.each(clients, function (client) {
                             if (client.images)
                             {
-                                client.images = new Image(client.images);
+                                client.images = [new Image(client.images)];
                             }
                         });
 

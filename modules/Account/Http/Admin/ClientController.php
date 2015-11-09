@@ -3,10 +3,13 @@
 use Illuminate\Http\Request;
 use Modules\Account\AccountManager;
 use Modules\Account\Client;
+use Modules\Media\MediaWidgetPreperations;
 use Modules\System\Http\AdminController;
 
 class ClientController extends AdminController
 {
+
+    use MediaWidgetPreperations;
 
     public function page()
     {
@@ -15,7 +18,14 @@ class ClientController extends AdminController
 
     public function index(Client $client)
     {
-        return $client->with(['translations', 'images', 'images.translations'])->get();
+        $clients = $client->with(['translations'])->get();
+
+        foreach($clients as $client)
+        {
+            $this->prepareImages($client);
+        }
+
+        return $clients;
     }
 
     public function store(Client $client, Request $request, AccountManager $manager)
