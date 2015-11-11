@@ -7,7 +7,7 @@
     <div class="ibox" ng-repeat="brand in vm.brands">
 
         <div class="ibox-title">
-            <h5>
+            <h5 ng-hide="vm.hasAnythingSelected(brand)">
                 <div class="switch">
                     <label>
                         <input id="brand@{{ brand.id }}" type="checkbox" ng-model="brand.activated" ng-change="vm.save(brand)">
@@ -15,6 +15,10 @@
                         <span class="name">@{{ brand.translations[vm.options.locale].name }}</span>
                     </label>
                 </div>
+            </h5>
+
+            <h5 ng-show="vm.hasAnythingSelected(brand)">
+                <span class="name">@{{ brand.translations[vm.options.locale].name }}</span>
             </h5>
         </div>
 
@@ -29,7 +33,7 @@
                     </label>
                     &nbsp;<i class="fa fa-shield" ng-show="category.inReview"></i>
 
-                    <div class="switch pull-right">
+                    <div class="switch pull-right" ng-show="!category.activated">
                         <label>
                             <input id="category@{{ category.id }}brand@{{ brand.id }}activated" type="checkbox" ng-model="category.activated" ng-change="vm.subSave(category)">
                             <span class="lever"></span>

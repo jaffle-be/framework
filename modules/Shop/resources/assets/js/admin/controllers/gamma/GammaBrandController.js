@@ -17,6 +17,7 @@
             this.save = save;
             this.subSave = subSave;
             this.saveDetail = saveDetail;
+            this.hasAnythingSelected = hasAnythingSelected;
 
             Pusher.channel.bind('brand_categories.attached', attachBrandCategory);
             Pusher.channel.bind('brand_categories.detached', detachBrandCategory);
@@ -210,6 +211,13 @@
                     me.brands = response.data;
                     me.totalItems = response.total;
                 });
+            }
+
+            function hasAnythingSelected(brand)
+            {
+                return _.where(brand.categories, {
+                    selected: true
+                }).length > 0;
             }
 
         });
