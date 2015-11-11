@@ -42,23 +42,15 @@ class AcceptGammaNotification extends Job implements SelfHandling
         $this->notification->delete();
     }
 
-    protected function activate(CatalogRepositoryInterface $catalog, GammaSelection $gamma, ProductSelection $productGamma)
+    protected function activate(CatalogRepositoryInterface $catalog, GammaSelection $gamma)
     {
         $notification = $this->notification;
 
         $this->insertGamma($gamma);
 
-        $me = $this;
-
-        $catalog->chunkWithinBrandCategory($notification->brand, $notification->category, function ($products) use ($notification, $productGamma) {
-            $ids = $products->lists('id')->toArray();
-
-            $existing = $productGamma->whereIn('product_id', $ids)->distinct()->lists('product_id');
-
+        $catalog->chunkWithinBrandCategory($notification->brand, $notification->category, function ($products) use ($notification) {
             foreach ($products as $product) {
-                if ($existing->search($product->id) === false) {
-                    $this->dispatch(new ActivateProduct($product, $notification->category, $notification->account));
-                }
+                $this->dispatch(new ActivateProduct($product, $notification->category, $notification->account));
             }
         });
     }
