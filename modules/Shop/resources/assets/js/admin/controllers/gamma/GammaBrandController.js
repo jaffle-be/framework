@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('shop')
-        .controller('GammaBrandController', function ($scope, GammaService, Pusher) {
+        .controller('GammaBrandController', function ($scope, GammaService, Pusher, toaster) {
 
             this.gamma = GammaService;
             this.page = 1;
@@ -199,7 +199,9 @@
                     category: category.id,
                     status: category.selected
                 }, function () {
-                }, function () {
+                }, function (response) {
+                    var headers = response.headers();
+                    toaster.error(headers.statustext);
                     category.selected = !category.selected;
                 });
             };
