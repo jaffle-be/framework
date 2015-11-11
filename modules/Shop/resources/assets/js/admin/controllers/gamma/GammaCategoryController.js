@@ -6,6 +6,7 @@
 
             this.gamma = GammaService;
             this.page = 1;
+            this.totalItems = 0;
 
             var me = this;
 
@@ -200,8 +201,9 @@
             function load() {
                 GammaService.categories({
                     page: me.page
-                }, function (categories) {
-                    me.categories = categories;
+                }, function (response) {
+                    me.categories = response.data;
+                    me.totalItems = response.total;
                 });
             }
 

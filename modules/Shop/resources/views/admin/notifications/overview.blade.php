@@ -12,6 +12,10 @@
                 {{ Lang::get('shop::admin.notifications-what-to-do') }}
             </div>
 
+            <div class="text-center">
+                <uib-pagination total-items="vm.totalItems" items-per-page="15" ng-model="vm.page" ng-change="vm.load()" max-size="10" class="pagination-sm" boundary-links="true"></uib-pagination>
+            </div>
+
             <table class="table table-hover table-striped table-responsive vertical">
                 <thead>
                 <tr>
@@ -81,6 +85,10 @@
                 </tr>
                 </tbody>
             </table>
+
+            <div class="text-center">
+                <uib-pagination total-items="vm.totalItems" items-per-page="15" ng-model="vm.page" ng-change="vm.load()" max-size="10" class="pagination-sm" boundary-links="true"></uib-pagination>
+            </div>
         </div>
 
     </div>

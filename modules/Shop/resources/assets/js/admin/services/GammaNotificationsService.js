@@ -6,9 +6,9 @@
         .factory('GammaNotificationsService', function ($timeout, $http) {
 
             return {
-                load: function (page, success) {
+                load: function (params, success) {
                     $http.get('/api/admin/notifications', {
-                        page: page
+                        params: params
                     }).then(function (response) {
                         success(response.data);
                     });

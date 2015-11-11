@@ -6,6 +6,7 @@
 
             this.gamma = GammaService;
             this.page = 1;
+            this.totalItems = 0;
 
             var me = this;
 
@@ -205,8 +206,9 @@
             function load() {
                 GammaService.brands({
                     page: me.page
-                }, function (brands) {
-                    me.brands = brands;
+                }, function (response) {
+                    me.brands = response.data;
+                    me.totalItems = response.total;
                 });
             }
 

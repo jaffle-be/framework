@@ -1,5 +1,9 @@
 <div class="wrapper wrapper-content" ng-controller="GammaBrandController as vm" ng-init="vm.options = {{ system_options() }}">
 
+    <div class="text-center">
+        <uib-pagination total-items="vm.totalItems" ng-model="vm.page" ng-change="vm.load()" max-size="10" class="pagination-sm" boundary-links="true" items-per-page="5"></uib-pagination>
+    </div>
+
     <div class="ibox" ng-repeat="brand in vm.brands">
 
         <div class="ibox-title">
@@ -15,6 +19,8 @@
         </div>
 
         <div class="ibox-content">
+
+
             <ul class="row nav">
                 <li class="col-md-4" ng-repeat="category in brand.categories">
                     <input type="checkbox" id="category@{{ category.id }}brand@{{ brand.id }}" class="filled-in" ng-model="category.selected" ng-change="vm.saveDetail(brand, category)" ng-disabled="!brand.activated || !category.activated">
@@ -34,6 +40,10 @@
             </ul>
         </div>
 
+    </div>
+
+    <div class="text-center">
+        <uib-pagination total-items="vm.totalItems" ng-model="vm.page" ng-change="vm.load()" max-size="10" class="pagination-sm" boundary-links="true" items-per-page="5"></uib-pagination>
     </div>
 
 </div>

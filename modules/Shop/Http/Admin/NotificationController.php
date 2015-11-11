@@ -17,7 +17,7 @@ class NotificationController extends AdminController
 
     public function overview(GammaNotification $notifications)
     {
-        return $notifications->with(['brand', 'brand.translations', 'category', 'category.translations'])->orderBy('created_at', 'asc')->get();
+        return $notifications->with(['brand', 'brand.translations', 'category', 'category.translations'])->orderBy('created_at', 'asc')->paginate();
     }
 
     public function accept(GammaNotification $notifications, Request $request)
