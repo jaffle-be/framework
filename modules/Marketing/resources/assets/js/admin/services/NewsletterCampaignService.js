@@ -143,8 +143,10 @@
             }
 
             function send(campaign, locale) {
-                $http.post('/api/admin/marketing/newsletter/campaign/' + campaign.id + '/send', {
+                return $http.post('/api/admin/marketing/newsletter/campaign/' + campaign.id + '/send', {
                     locale: locale
+                }).then(function(response){
+                    return response.data;
                 });
             }
 

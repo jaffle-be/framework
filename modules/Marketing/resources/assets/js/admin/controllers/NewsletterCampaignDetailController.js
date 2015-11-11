@@ -244,7 +244,9 @@
             function sendCampaign()
             {
                 me.campaign.translations[me.options.locale].mailchimp.is_ready = false;
-                NewsletterCampaignService.send(me.campaign, me.options.locale);
+                NewsletterCampaignService.send(me.campaign, me.options.locale).then(function(response){
+                    me.campaign.translations[me.options.locale].summary = response.data
+                });
             }
 
             function isLinked()

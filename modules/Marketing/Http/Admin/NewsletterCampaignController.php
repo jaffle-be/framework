@@ -204,6 +204,10 @@ class NewsletterCampaignController extends AdminController
         $result = $mailChimp->call('campaigns/send', [
             'cid' => $campaign->translate($request->get('locale'))->mail_chimp_campaign_id
         ]);
+
+        $translation = $campaign->translate($request->get('locale'));
+
+        return $this->getReportSummary($mailChimp, $translation);
     }
 
     /**

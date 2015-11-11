@@ -6,7 +6,16 @@
 
     <div class="ibox-content">
 
-        <div class="row">
+        <div ng-show="vm.campaign.translations[vm.options.locale].mailchimp.is_ready">
+
+            <div class="alert alert-info">{{ Lang::get('marketing::admin.newsletter.still-need-to-send') }}</div>
+
+        </div>
+
+
+
+        <div class="row" ng-show="!vm.campaign.translations[vm.options.locale].mailchimp.is_ready">
+
 
             <div class="col-xs-6" ng-repeat="stat in vm.campaign.translations[vm.options.locale].summary">
 
@@ -39,6 +48,7 @@
                     </div>
 
                 </div>
+
 
             </div>
 
