@@ -2,6 +2,7 @@
 
 use App\Jobs\Job;
 use Illuminate\Contracts\Bus\SelfHandling;
+use Illuminate\Contracts\Queue\ShouldQueue;
 use Modules\Shop\Gamma\GammaNotification;
 use Modules\Shop\Gamma\GammaSelection;
 use Modules\Shop\Gamma\ProductSelection;
@@ -9,7 +10,7 @@ use Modules\Shop\Jobs\Gamma\ActivateProduct;
 use Modules\Shop\Product\CatalogRepositoryInterface;
 use Pusher;
 
-class ReviewGammaNotification extends Job implements SelfHandling
+class ReviewGammaNotification extends Job implements SelfHandling, ShouldQueue
 {
 
     protected $notification;
