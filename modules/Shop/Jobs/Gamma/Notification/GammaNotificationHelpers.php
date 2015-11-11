@@ -12,6 +12,7 @@ trait GammaNotificationHelpers
     {
         $notifications = $notification->where('brand_id', $brand->id)
             ->where('category_id', $category->id)
+            ->notBeingProcessed()
             ->get();
 
         $counter = 0;
@@ -37,6 +38,7 @@ trait GammaNotificationHelpers
     protected function findExistingCombination(GammaNotification $notification, $brand, $category)
     {
         $existing = $notification
+            ->notBeingProcessed()
             ->whereHas('brandSelection', function ($query) use ($brand) {
                 $query->where('brand_id', $brand->id);
             })
