@@ -26,7 +26,14 @@ class NotificationController extends AdminController
 
         foreach($requested as $notification)
         {
+            //we start the processing
+            $notification->processing = true;
+            $notification->save();
+
+            //the job itself gets queued
             $this->dispatch(new AcceptGammaNotification($notification));
+
+            //processing jobs shouldn't be shown in the UI.
         }
 
         return $this->refreshedPageData($notifications, $request);
@@ -38,7 +45,14 @@ class NotificationController extends AdminController
 
         foreach($requested as $notification)
         {
+            //we start the processing
+            $notification->processing = true;
+            $notification->save();
+
+            //the job itself gets queued
             $this->dispatch(new ReviewGammaNotification($notification));
+
+            //processing jobs shouldn't be shown in the UI.
         }
 
         return $this->refreshedPageData($notifications, $request);
@@ -62,13 +76,13 @@ class NotificationController extends AdminController
     {
         $relations = ['brand', 'brand.translations', 'category', 'category.translations'];
 
-        $result = $notifications->with($relations)->orderBy('created_at', 'asc')->paginate();
+        $result = $notifications->notBeingProcessed()->with($relations)->orderBy('created_at', 'asc')->paginate();
 
         if($result->count() < 0 && $request->get('page') > 1)
         {
             $request->put('page', 1);
 
-            return $notifications->with($relations)->orderBy('created_at', 'asc')->paginate();
+            return $notifications->notBeingProcessed()->with($relations)->orderBy('created_at', 'asc')->paginate();
         }
 
         return $result;

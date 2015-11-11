@@ -39,7 +39,7 @@ class GammaNotification extends Model implements Pushable
         return $this->belongsTo('Modules\Shop\Gamma\CategorySelection');
     }
 
-    public function notBeingProcessedScope($query)
+    public function scopeNotBeingProcessed($query)
     {
         $query->where('processing', 0);
     }

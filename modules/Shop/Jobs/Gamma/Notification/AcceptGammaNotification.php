@@ -2,6 +2,7 @@
 
 use App\Jobs\Job;
 use Illuminate\Contracts\Bus\SelfHandling;
+use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Modules\Shop\Gamma\GammaNotification;
 use Modules\Shop\Gamma\GammaSelection;
@@ -10,9 +11,8 @@ use Modules\Shop\Jobs\Gamma\ActivateProduct;
 use Modules\Shop\Product\CatalogRepositoryInterface;
 use Pusher;
 
-class AcceptGammaNotification extends Job implements SelfHandling
+class AcceptGammaNotification extends Job implements SelfHandling, ShouldQueue
 {
-
     use DispatchesJobs;
 
     protected $notification;
@@ -28,7 +28,7 @@ class AcceptGammaNotification extends Job implements SelfHandling
 
         switch ($type) {
             case 'activate':
-                $this->activate($catalog, $gamma, $productGamma);
+                $this->activate($catalog, $gamma);
                 break;
             case 'deactivate':
                 $this->deactivate($gamma, $productGamma);
