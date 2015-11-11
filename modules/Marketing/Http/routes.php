@@ -30,6 +30,9 @@ Route::group([
             Route::get('marketing/newsletter/search', 'NewsletterCampaignController@search');
 
             Route::resource('marketing/newsletter/campaign', 'NewsletterCampaignController');
+            Route::post('marketing/newsletter/campaign/{campaign}/prepare', 'NewsletterCampaignController@prepare');
+            Route::post('marketing/newsletter/campaign/{campaign}/send', 'NewsletterCampaignController@send');
+
             Route::resource('marketing/newsletter/campaign/{campaign}/campaign-widget', 'NewsletterWidgetController');
             Route::resource('marketing', 'MarketingController', ['only' => ['index', 'show', 'store', 'update']]);
         });

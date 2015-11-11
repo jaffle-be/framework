@@ -73,10 +73,6 @@
                         <span class="nav-label">@{{ 'MARKETING' | translate }}</span></a>
                     <ul class="nav nav-second-level" ng-class="{in: $state.includes('admin.marketing')}">
                         <li ui-sref-active="active">
-                            <a ui-sref="admin.marketing.subscriptions"><i class="fa fa-map-marker"></i>
-                                <span class="nav-label">@{{ 'SUBSCRIPTIONS' | translate }}</span></a>
-                        </li>
-                        <li ui-sref-active="active">
                             <a ui-sref="admin.marketing.campaigns"><i class="fa fa-users"></i>
                                 <span class="nav-label">@{{ 'CAMPAIGNS' | translate }}</span></a>
                         </li>

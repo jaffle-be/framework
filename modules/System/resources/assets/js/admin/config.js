@@ -1,4 +1,4 @@
-(function () {
+(function (Pace) {
     'use strict';
 
     angular.module('system', [])
@@ -18,6 +18,8 @@
     angular
         .module('system')
         .config(function ($stateProvider, $urlRouterProvider, $ocLazyLoadProvider, IdleProvider, KeepaliveProvider, $httpProvider, $locationProvider) {
+
+            Pace.options.ajax.trackMethods.push('POST');
 
             moment.locale('en');
 
@@ -79,4 +81,4 @@
         .constant('PUSHER_API_KEY', '620bda78edffff62686a');
 
 
-})();
+})(window.Pace);

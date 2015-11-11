@@ -56,13 +56,9 @@
                 });
             };
 
-            this.check = function ($event) {
-                $event.stopPropagation();
-                return false;
-            }
-
             this.batchDelete = function () {
-                var campaigns = this.selectedCampaigns();
+
+                var campaigns = me.selectedCampaigns();
 
                 NewsletterCampaignService.batchDelete(campaigns, function () {
                     me.loadCampaigns();
@@ -72,7 +68,8 @@
             this.selectedCampaigns = function () {
                 var campaigns = [];
 
-                _.each(this.campaigns, function (campaign) {
+                _.each(me.campaigns, function (campaign) {
+
                     if (campaign.isSelected)
                     {
                         campaigns.push(campaign.id);

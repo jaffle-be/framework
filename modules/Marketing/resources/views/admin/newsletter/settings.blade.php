@@ -6,7 +6,7 @@
                 <h5>{{ Lang::get('marketing::admin.campaign.details') }}</h5>
             </div>
             <div class="col-xs-4 text-right">
-                <span id="send" class="btn-sm btn btn-success" ng-confirm="vm.prepareToSend()"><i class="fa fa-send"></i></span>
+                <span id="send" ng-show="vm.campaign.translations[vm.options.locale]" class="btn-sm btn btn-success" ng-confirm="vm.prepareToSend()"><i class="fa fa-send"></i></span>
                 <span id="reset" class="btn-sm btn btn-danger" ng-really="vm.delete()"><i class="fa fa-trash"></i></span>
             </div>
         </div>

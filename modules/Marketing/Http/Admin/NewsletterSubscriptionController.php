@@ -26,9 +26,4 @@ class NewsletterSubscriptionController extends FrontController
         }
     }
 
-    public function subscriptions()
-    {
-        return view('marketing::admin.newsletter.subscriptions');
-    }
-
 }

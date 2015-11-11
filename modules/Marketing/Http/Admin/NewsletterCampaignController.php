@@ -40,6 +40,25 @@ class NewsletterCampaignController extends AdminController
         return $query->paginate();
     }
 
+    public function subscriptions(MailChimp $mailChimp, Request $request)
+    {
+        try {
+            $result = $mailChimp->call('lists/members', [
+                'id'   => env('MAILCHIMP_DEFAULT_LIST_ID'),
+                'opts' => [
+                    'start' => $request->get('page', 1) - 1,
+                    //default limit is 25
+                    'limit' => 25
+                ]
+            ]);
+
+            return $result;
+        }
+        catch (\Exception $e) {
+            dd($e->getMessage());
+        }
+    }
+
     public function store(Request $request, Campaign $newsletter, Guard $guard, AccountManager $accounts)
     {
         $input = translation_input($request);
@@ -176,6 +195,17 @@ class NewsletterCampaignController extends AdminController
         return $this->detailedResponse($campaign, $builder, $mailchimp);
     }
 
+    public function send(Request $request, Campaign $campaign, MailChimp $mailChimp)
+    {
+        $this->validate($request, [
+            'locale' => 'required',
+        ]);
+
+        $result = $mailChimp->call('campaigns/send', [
+            'cid' => $campaign->translate($request->get('locale'))->mail_chimp_campaign_id
+        ]);
+    }
+
     /**
      * @param MailChimp $mailChimp
      * @param           $translation
@@ -215,6 +245,23 @@ class NewsletterCampaignController extends AdminController
         }
 
         return $newsletter->toArray();
+    }
+
+    /**
+     * @param MailChimp $mailChimp
+     * @param           $translation
+     *
+     * @return array
+     */
+    protected function getReportSummary(MailChimp $mailChimp, $translation)
+    {
+        $result = $mailChimp->call('reports/summary', [
+            'cid' => $translation->mail_chimp_campaign_id
+        ]);
+
+        $reportFormatter = new ReportFormatter();
+
+        return $reportFormatter->format($result);
     }
 
 }

@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('marketing')
-        .controller('NewsletterCampaignDetailController', function ($scope, $state, NewsletterCampaign, NewsletterCampaignService, $sce) {
+        .controller('NewsletterCampaignDetailController', function ($scope, $state, NewsletterCampaign, NewsletterCampaignService, $sce, toaster) {
 
             this.campaigns = NewsletterCampaignService;
             this.itemsPerRow = 1;
@@ -35,6 +35,8 @@
             this.linkElement = linkElement;
             this.renderHtml = renderHtml;
             this.prepareToSend = prepareToSend;
+            this.sendCampaign = sendCampaign;
+            this.isLinked = isLinked;
 
             this.load(id);
 
@@ -43,6 +45,7 @@
                 {
                     me.campaign = me.campaigns.find(id, function (campaign) {
                         me.campaign = campaign;
+                        console.log(campaign);
                     });
                 }
                 else
@@ -222,11 +225,31 @@
 
             function prepareToSend()
             {
-                //campaign needs to be locked when we're going to send
-                //locking is done based on the campaign id within mailchimp.
-                //if we simply set it to true, our interface will be locked
-                //even if the id isn't there yet.
-                me.campaign.translations[me.options.locale].mail_chimp_campaign_id = true;
+                var using = me.campaign;
+                me.campaign = false;
+
+                function success(campaign){
+                    me.campaign = campaign;
+                }
+
+                function error(response){
+                    me.campaign = using;
+                    me.campaign.translations[me.options.locale].mail_chimp_campaign_id = false;
+                    toaster.error(response.headers().reason);
+                }
+
+                NewsletterCampaignService.prepareToSend(using, me.options.locale).then(success, error);
+            }
+
+            function sendCampaign()
+            {
+                me.campaign.translations[me.options.locale].mailchimp.is_ready = false;
+                NewsletterCampaignService.send(me.campaign, me.options.locale);
+            }
+
+            function isLinked()
+            {
+                return me.campaign && me.campaign.translations[me.options.locale].mailchimp;
             }
         });
 

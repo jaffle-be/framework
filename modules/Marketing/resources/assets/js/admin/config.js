@@ -10,10 +10,6 @@
                     url: "/marketing",
                     template: '<ui-view/>'
                 })
-                .state('admin.marketing.subscriptions', {
-                    url: "/subscriptions",
-                    templateUrl: "templates/admin/marketing/newsletter/subscriptions"
-                })
                 .state('admin.marketing.campaigns', {
                     url: "/campaigns",
                     templateUrl: "templates/admin/marketing/newsletter/overview"

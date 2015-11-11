@@ -17,8 +17,16 @@
                             response.translations = {};
                         }
 
-                        response.images = _.map(response.images, function(image){
+                        response.images = _.map(response.images, function (image) {
                             return new Image(image);
+                        });
+
+                        response.widgets = _.map(response.widgets, function (widget) {
+                            if (widget.translations.length == 0)
+                            {
+                                widget.translations = {};
+                            }
+                            return widget;
                         });
 
                         return response;
