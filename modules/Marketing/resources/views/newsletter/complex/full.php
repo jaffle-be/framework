@@ -17,14 +17,14 @@
                                             <table border="0" cellpadding="0" cellspacing="0" width="100%">
                                                 <tr>
                                                     <td valign="top" class="imageContent">
-                                                        <img src="<?= $img ?>" width="520" class="flexibleImage" style="max-width:520px;">
+                                                        <img src="<?= asset($widget->present()->image) ?>" width="520" class="flexibleImage" style="max-width:520px;">
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td valign="top" class="textContent">
-                                                        <h3><?= $title ?></h3>
+                                                        <h3><?= $widget->present()->title($locale) ?></h3>
                                                         <br>
-                                                        <?= $text ?>
+                                                        <?= $widget->present()->text($locale) ?>
                                                     </td>
                                                 </tr>
                                             </table>

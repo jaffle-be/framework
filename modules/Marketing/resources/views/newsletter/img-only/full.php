@@ -19,7 +19,7 @@
                                 <table border="0" cellpadding="0" cellspacing="0" width="100%">
                                     <tr>
                                         <td valign="top" class="imageContent">
-                                            <img src="<?= $img ?>" width="560" class="flexibleImage" style="max-width:560px;">
+                                            <img src="<?= asset($widget->present()->image) ?>" width="560" class="flexibleImage" style="max-width:560px;">
                                         </td>
                                     </tr>
                                 </table>

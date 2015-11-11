@@ -17,9 +17,9 @@
                                             <table align="Left" border="0" cellpadding="0" cellspacing="0" width="240" class="flexibleContainer">
                                                 <tr>
                                                     <td valign="top" class="textContent">
-                                                        <h3><?= $left['title'] ?></h3>
+                                                        <h3><?= $widget->present()->title_left($locale) ?></h3>
                                                         <br>
-                                                        <?= $left['text'] ?>
+                                                        <?= $widget->present()->text_left($locale) ?>
                                                     </td>
                                                 </tr>
                                             </table>
@@ -30,9 +30,9 @@
                                             <table align="Right" border="0" cellpadding="0" cellspacing="0" width="240" class="flexibleContainer">
                                                 <tr>
                                                     <td valign="top" class="textContentLast">
-                                                        <h3><?= $right['title'] ?></h3>
+                                                        <h3><?= $widget->present()->title_right($locale) ?></h3>
                                                         <br>
-                                                        <?= $right['text'] ?>
+                                                        <?= $widget->present()->text_right($locale) ?>
                                                     </td>
                                                 </tr>
                                             </table>

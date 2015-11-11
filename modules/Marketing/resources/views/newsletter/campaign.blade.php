@@ -51,7 +51,7 @@
     </style>
     <![endif]-->
 
-    @include('Unify::newsletter.styles')
+    @include('marketing::newsletter.styles')
 </head>
 <body>
 <center>
@@ -66,43 +66,18 @@
                 -->
                 <table border="0" cellpadding="0" cellspacing="0" width="600" id="emailBody">
 
-                    <?
 
-                    $data = [
-                        'img' => 'http://placekitten.com/g/1120/800',
-                        'title' => 'Title',
-                        'text' => 'A kitten or kitty is a juvenile domesticated cat. A feline litter usually consists of two to five kittens. To survive, kittens need the care of their mother for the first several weeks of their life. Kittens are highly social animals and spend most of their waking hours playing and interacting with available companions.',
-                    ];
+                    @foreach($campaign->widgets as $widget)
 
-                    $data = array_merge($data, ['left' => $data], ['right' => $data]);
+                        @include('marketing::newsletter.' . $widget->path)
 
-                    ?>
-
-
-                    @include('Unify::newsletter.text-only.full', $data)
-                    @include('Unify::newsletter.text-only.2col', $data)
-                    @include('Unify::newsletter.text-only.full-bg', $data)
-                    @include('Unify::newsletter.text-only.2col-bg', $data)
-
-                    @include('Unify::newsletter.img-only.full', $data)
-                    @include('Unify::newsletter.img-only.2col', $data)
-
-                    @include('Unify::newsletter.regular.full', $data)
-                    @include('Unify::newsletter.regular.2col', $data)
-                    @include('Unify::newsletter.regular.img-left', $data)
-                    @include('Unify::newsletter.regular.img-right', $data)
-
-                    @include('Unify::newsletter.complex.full', $data)
-                    @include('Unify::newsletter.complex.2col', $data)
-                    @include('Unify::newsletter.complex.img-left', $data)
-                    @include('Unify::newsletter.complex.img-right', $data)
-
+                    @endforeach
 
                     <? //leave these for now, as we do not have any data for them ?>
-<!--                    --><?// @include('Unify::newsletter._toimplement.date-left', $data) ?>
-<!--                    --><?// @include('Unify::newsletter._toimplement.date-right', $data) ?>
-<!--                    --><?// @include('Unify::newsletter._toimplement.callout', $data) ?>
-<!--                    --><?// @include('Unify::newsletter._toimplement.callout-complex', $data) ?>
+<!--                    --><?// @include('marketing::newsletter._toimplement.date-left', $data) ?>
+<!--                    --><?// @include('marketing::newsletter._toimplement.date-right', $data) ?>
+<!--                    --><?// @include('marketing::newsletter._toimplement.callout', $data) ?>
+<!--                    --><?// @include('marketing::newsletter._toimplement.callout-complex', $data) ?>
 
                 </table>
                 <!-- // EMAIL CONTAINER -->

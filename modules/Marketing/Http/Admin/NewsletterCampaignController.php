@@ -1,5 +1,6 @@
 <?php namespace Modules\Marketing\Http\Admin;
 
+use Drewm\MailChimp;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
@@ -7,8 +8,10 @@ use Modules\Account\AccountManager;
 use Modules\Blog\BlogSearch;
 use Modules\Blog\Post;
 use Modules\Marketing\Jobs\Newsletter\UpdateCampaign;
+use Modules\Marketing\Jobs\StartNewsletterCampaign;
 use Modules\Marketing\Newsletter\Campaign;
 use Modules\Marketing\Newsletter\CampaignBuilder;
+use Modules\Marketing\Newsletter\ReportFormatter;
 use Modules\Portfolio\PortfolioSearch;
 use Modules\Portfolio\Project;
 use Modules\Search\SearchServiceInterface;
@@ -16,6 +19,7 @@ use Modules\System\Http\AdminController;
 
 class NewsletterCampaignController extends AdminController
 {
+
     use BlogSearch;
     use PortfolioSearch;
 
@@ -55,13 +59,9 @@ class NewsletterCampaignController extends AdminController
         ));
     }
 
-    public function show(Campaign $newsletter, CampaignBuilder $builder)
+    public function show(Campaign $newsletter, CampaignBuilder $builder, MailChimp $mailChimp)
     {
-        $newsletter->load($this->relations());
-
-        $newsletter->availableWidgets = $builder->getAvailableWidgets();
-
-        return $newsletter->toArray();
+        return $this->detailedResponse($newsletter, $builder, $mailChimp);
     }
 
     public function update(Campaign $newsletter, Request $request)
@@ -69,8 +69,8 @@ class NewsletterCampaignController extends AdminController
         $newsletter->load($this->relations());
 
         $payload = [
-            'newsletter'  => $newsletter,
-            'input' => translation_input($request, ['title', 'content', 'publish_at'])
+            'newsletter' => $newsletter,
+            'input'      => translation_input($request, ['title', 'content', 'publish_at'])
         ];
 
         if (!$this->dispatchFromArray(UpdateCampaign::class, $payload)) {
@@ -82,8 +82,7 @@ class NewsletterCampaignController extends AdminController
 
     public function destroy(Campaign $newsletter)
     {
-        if($newsletter->delete())
-        {
+        if ($newsletter->delete()) {
             $newsletter->id = false;
         }
 
@@ -92,15 +91,13 @@ class NewsletterCampaignController extends AdminController
 
     public function batchDestroy(Request $request, Campaign $newsletter)
     {
-        $ids = $request->get('newsletters', []);
+        $ids = $request->get('campaigns', []);
 
-        if(is_array($ids) && count($ids))
-        {
-            $newsletters = $newsletter->whereIn('newsletters.id', $ids)
+        if (is_array($ids) && count($ids)) {
+            $newsletters = $newsletter->whereIn('newsletter_campaigns.id', $ids)
                 ->get();
 
-            foreach($newsletters as $newsletter)
-            {
+            foreach ($newsletters as $newsletter) {
                 $newsletter->delete();
             }
         }
@@ -109,7 +106,7 @@ class NewsletterCampaignController extends AdminController
     public function search(Request $request, AccountManager $manager, SearchServiceInterface $search)
     {
         $this->validate($request, [
-            'query' => 'required',
+            'query'  => 'required',
             'locale' => 'required',
         ]);
 
@@ -129,26 +126,23 @@ class NewsletterCampaignController extends AdminController
 
         $result = new Collection();
 
-        foreach($posts as $post)
-        {
+        foreach ($posts as $post) {
             $result->push([
                 'label' => 'post: ' . $post->translate($request->get('locale'))->title,
-                'type' => Post::class,
+                'type'  => Post::class,
                 'value' => $post->id
             ]);
         }
 
-        foreach($projects as $project)
-        {
+        foreach ($projects as $project) {
             $result->push([
                 'label' => 'project: ' . $project->translate($request->get('locale'))->title,
-                'type' => Project::class,
+                'type'  => Project::class,
                 'value' => $project->id
             ]);
         }
 
         return $result;
-
     }
 
     public function overview()
@@ -165,11 +159,62 @@ class NewsletterCampaignController extends AdminController
     {
         return [
             'images', 'images.sizes', 'translations',
-            'widgets', 'widgets.image', 'widgets.leftImage', 'widgets.rightImage',
+            'widgets', 'widgets.image', 'widgets.imageLeft', 'widgets.imageRight',
             'widgets.resource', 'widgets.otherResource',
             'widgets.translations'
         ];
     }
 
+    public function prepare(Request $request, Campaign $campaign, CampaignBuilder $builder, MailChimp $mailchimp)
+    {
+        $this->validate($request, [
+            'locale' => 'required',
+        ]);
+
+        $this->dispatch(new StartNewsletterCampaign($campaign, $request->get('locale')));
+
+        return $this->detailedResponse($campaign, $builder, $mailchimp);
+    }
+
+    /**
+     * @param MailChimp $mailChimp
+     * @param           $translation
+     */
+    protected function loadMailchimpDataForCampaign(MailChimp $mailChimp, $translation)
+    {
+        $translation->mailchimp = $mailChimp->call('campaigns/ready', [
+            'cid' => $translation->mail_chimp_campaign_id
+        ]);
+
+        $translation->preview = $mailChimp->call('campaigns/content', [
+            'cid' => $translation->mail_chimp_campaign_id
+        ]);
+
+        $translation->summary = $this->getReportSummary($mailChimp, $translation);
+    }
+
+    /**
+     * @param Campaign        $newsletter
+     * @param CampaignBuilder $builder
+     * @param MailChimp       $mailChimp
+     *
+     * @return array
+     */
+    protected function detailedResponse(Campaign $newsletter, CampaignBuilder $builder, MailChimp $mailChimp)
+    {
+        $newsletter->load($this->relations());
+
+        $newsletter->availableWidgets = $builder->getAvailableWidgets();
+
+        //we need to check each locale if it's been linked to a campaign.
+        //if so, we'll need to hook that campaign data onto the response.
+        foreach ($newsletter->translations as $translation) {
+            if ($translation->mail_chimp_campaign_id) {
+                $this->loadMailchimpDataForCampaign($mailChimp, $translation);
+            }
+        }
+
+        return $newsletter->toArray();
+    }
 
 }

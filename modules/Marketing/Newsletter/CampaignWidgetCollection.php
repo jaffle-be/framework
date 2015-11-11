@@ -7,6 +7,36 @@ use Modules\Portfolio\Project;
 class CampaignWidgetCollection extends Collection
 {
 
+    public function setData()
+    {
+        list($posts, $projects) = $this->getMaps();
+
+        $this->map(function($widget) use ($posts, $projects){
+
+            if ($widget->resource_type) {
+                if ($widget->resource_type == Post::class) {
+                    $widget->resource = $posts->find($widget->resource_id);
+                }
+
+                if ($widget->resource_type == Project::class) {
+                    $widget->resource = $projects->find($widget->resource_id);
+                }
+            }
+
+            if ($widget->other_resource_type) {
+                if ($widget->other_resource_type == Post::class) {
+                    $widget->otherResource = $posts->find($widget->other_resource_id);
+                }
+
+                if ($widget->other_resource_type == Project::class) {
+                    $widget->otherResource = $projects->find($widget->other_resource_id);
+                }
+            }
+
+            return $widget;
+        });
+    }
+
     /**
      * the problem here is, that our polymorphic relations
      * aren't being loaded onto our data array.
@@ -43,7 +73,6 @@ class CampaignWidgetCollection extends Collection
             }
 
             return $widget;
-
         }, $data);
     }
 
@@ -80,8 +109,8 @@ class CampaignWidgetCollection extends Collection
             }
         });
 
-        $posts = Post::whereIn('id', $posts->all())->with(['translations', 'images', 'images.sizes'])->get();
-        $projects = Project::whereIn('id', $projects->all())->with(['translations', 'images', 'images.sizes'])->get();
+        $posts = Post::whereIn('posts.id', $posts->all())->with(['translations', 'images', 'images.sizes'])->get();
+        $projects = Project::whereIn('portfolio_projects.id', $projects->all())->with(['translations', 'images', 'images.sizes'])->get();
 
         return array($posts, $projects);
     }

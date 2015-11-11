@@ -1,49 +1,67 @@
 <?php namespace Modules\Marketing\Jobs;
 
 use App\Jobs\Job;
-use Carbon\Carbon;
 use Drewm\MailChimp;
+use Exception;
 use Illuminate\Contracts\Bus\SelfHandling;
+use Modules\Marketing\Newsletter\Campaign;
 use Modules\Marketing\Newsletter\CampaignBuilder;
 use Modules\Marketing\Newsletter\CampaignConfig;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class StartNewsletterCampaign extends Job implements SelfHandling
 {
-    protected $list;
+    protected $campaign;
 
-    protected $title;
+    protected $locale;
 
-    protected $subject;
 
-    public function __construct($listid, $title, $subject)
+    public function __construct(Campaign $campaign, $locale)
     {
-        $this->list = $listid;
-        $this->title = 'new campaign title';
-        $this->subject = 'test_campaign_app_' . Carbon::now()->getTimestamp();
+        $this->campaign = $campaign;
+        $this->locale = $locale;
     }
 
     public function handle(MailChimp $mailChimp, CampaignConfig $config, CampaignBuilder $builder)
     {
+        $campaign = $this->campaign->translate($this->locale);
+
+        try{
+            $content = $builder->build($this->campaign, $this->locale);
+        }
+        catch(Exception $e)
+        {
+            throw new HttpException(400, 'There was a problem, check for any unfinished widgets', null, ['reason' => 'There was a problem, check for any unfinished widgets']);
+        }
+
         try {
             $result = $mailChimp->call('campaigns/create', [
                 'type'    => 'regular',
                 'options' => [
-                    'list_id'    => $this->list,
-                    'subject'    => $this->subject,
+                    'list_id'    => env('MAILCHIMP_DEFAULT_LIST_ID'),
+                    'subject'    => $campaign->subject,
                     'from_email' => $config->fromEmail(),
                     'from_name'  => $config->fromName(),
                     'to_name'    => $config->toName(),
-                    'title'      => $this->title,
+                    'title'      => $campaign->title,
 
                 ],
                 'content' => [
-                    'html' => $builder->build(),
+                    'html' => $content,
                 ]
             ]);
+
+            if($result && isset($result['id']))
+            {
+                $campaign->mail_chimp_campaign_id = $result['id'];
+                return $campaign->save() ? $campaign : false;
+            }
         }
-        catch (\Exception $e) {
-            dd($e->getMessage());
+        catch (Exception $e) {
+            throw new HttpException(400, 'Cannot contact mailservice, try again later', null, ['reason' => 'Cannot contact mailservice, try again later']);
         }
+
+
     }
 
 }

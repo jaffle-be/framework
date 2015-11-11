@@ -1,14 +1,19 @@
 <?php namespace Modules\Marketing\Newsletter;
 
 use Illuminate\Database\Eloquent\Model;
+use Modules\System\Presenter\PresentableEntity;
+use Modules\System\Presenter\PresentableTrait;
 use Modules\System\Scopes\ModelAccountResource;
 use Modules\System\Scopes\ModelAutoSort;
 use Modules\System\Translatable\Translatable;
 
-class CampaignWidget extends Model
+class CampaignWidget extends Model implements PresentableEntity
 {
     use Translatable;
     use ModelAutoSort;
+    use PresentableTrait;
+
+    protected $presenter = 'Modules\Marketing\Newsletter\WidgetPresenter';
 
     protected $table = 'newsletter_campaign_widgets';
 
@@ -40,12 +45,12 @@ class CampaignWidget extends Model
         return $this->belongsTo('Modules\Media\Image');
     }
 
-    public function leftImage()
+    public function imageLeft()
     {
         return $this->belongsTo('Modules\Media\Image');
     }
 
-    public function rightImage()
+    public function imageRight()
     {
         return $this->belongsTo('Modules\Media\Image');
     }
