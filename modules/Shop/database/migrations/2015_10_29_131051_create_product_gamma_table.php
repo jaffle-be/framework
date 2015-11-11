@@ -25,6 +25,7 @@ class CreateProductGammaTable extends Migration
             $table->foreign('category_id', 'gamma_to_category')->references('id')->on('product_categories')->onDelete('cascade');
             $table->unique(['account_id', 'product_id', 'brand_id', 'category_id']);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
