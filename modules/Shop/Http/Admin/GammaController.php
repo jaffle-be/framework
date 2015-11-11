@@ -1,6 +1,7 @@
 <?php namespace Modules\Shop\Http\Admin;
 
 use Illuminate\Http\Request;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
 use Modules\Account\AccountManager;
 use Modules\Shop\Gamma\GammaNotification;
@@ -25,7 +26,7 @@ class GammaController extends AdminController
 
     public function categories(GammaSelection $gamma, GammaNotification $notification)
     {
-        $categories = Category::with(['translations', 'selection', 'brands', 'brands.translations', 'brands.selection'])->get();
+        $categories = Category::with(['translations', 'selection', 'brands', 'brands.translations', 'brands.selection'])->paginate(5);
 
         $ids = $categories->lists('id')->toArray();
 
@@ -38,7 +39,9 @@ class GammaController extends AdminController
 
         $reviews = $this->reviews($notification, 'category_id', $ids);
 
-        return $categories->map(function($category) use ($selections, $reviews)
+        //use foreach instead of map, so we can reuse the original paginator.
+
+        foreach($categories as $key => $category)
         {
             $category->activated = $category->selection ? true : false;
             $category->selection = null;
@@ -59,8 +62,10 @@ class GammaController extends AdminController
                 return $brand;
             });
 
-            return $category;
-        });
+            $categories[$key] = $category;
+        }
+
+        return $categories;
     }
 
     public function category(Request $request, AccountManager $manager, Category $categories)
@@ -82,7 +87,7 @@ class GammaController extends AdminController
 
     public function brands(GammaSelection $gamma, GammaNotification $notification)
     {
-        $brands = Brand::with(['translations', 'selection', 'categories', 'categories.translations', 'categories.selection'])->get();
+        $brands = Brand::with(['translations', 'selection', 'categories', 'categories.translations', 'categories.selection'])->paginate(5);
 
         $ids = $brands->lists('id')->toArray();
 
@@ -95,7 +100,9 @@ class GammaController extends AdminController
 
         $reviews = $this->reviews($notification, 'brand_id', $ids);
 
-        return $brands->map(function($brand) use ($selections, $reviews)
+        //use foreach instead of map, so we can reuse the original paginator.
+
+        foreach($brands as $key => $brand)
         {
             $brand->activated = $brand->selection ? true : false;
             $brand->selection = null;
@@ -116,8 +123,10 @@ class GammaController extends AdminController
                 return $category;
             });
 
-            return $brand;
-        });
+            $brands[$key] = $brand;
+        }
+
+        return $brands;
     }
 
     public function brand(Request $request, AccountManager $manager, Brand $brands)

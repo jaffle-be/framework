@@ -5,9 +5,9 @@
         .factory('GammaService', function ($timeout, $http) {
 
             return {
-                brands: function (page, success) {
+                brands: function (params, success) {
                     return $http.get('/api/admin/brands', {
-                        page: page
+                        params: params
                     }).then(function (response) {
                         success(response.data);
                     });
@@ -19,9 +19,9 @@
                     });
                 },
 
-                categories: function (page, success) {
+                categories: function (params, success) {
                     return $http.get('/api/admin/categories', {
-                        page: page
+                        params: params
                     }).then(function (response) {
                         success(response.data);
                     });

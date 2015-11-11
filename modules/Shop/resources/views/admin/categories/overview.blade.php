@@ -1,5 +1,8 @@
 <div class="wrapper wrapper-content" ng-controller="GammaCategoryController as vm" ng-init="vm.options = {{ system_options() }}">
 
+    <div class="text-center">
+        <uib-pagination total-items="vm.totalItems" ng-model="vm.page" ng-change="vm.load()" max-size="10" class="pagination-sm" boundary-links="true" items-per-page="5"></uib-pagination>
+    </div>
 
     <div class="ibox" ng-repeat="category in vm.categories">
 
@@ -34,6 +37,10 @@
             </ul>
         </div>
 
+    </div>
+
+    <div class="text-center">
+        <uib-pagination total-items="vm.totalItems" ng-model="vm.page" ng-change="vm.load()" max-size="10" class="pagination-sm" boundary-links="true" items-per-page="5"></uib-pagination>
     </div>
 
 </div>
