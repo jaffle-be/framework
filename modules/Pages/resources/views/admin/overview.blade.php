@@ -75,7 +75,7 @@
                 </tr>
                 <tr ng-repeat="page in vm.pages" ui-sref="admin.pages.page({id: page.id})" class="pages-page-overview">
                     <td width="10%" ng-click="$event.stopPropagation()">
-                        <input type="checkbox" class="filled-in" id="row@{{ $index + 1 }}" ng-checked="page.isSelected"/>
+                        <input type="checkbox" class="filled-in" id="row@{{ $index + 1 }}" ng-model="page.isSelected"/>
                         <label for="row@{{ $index + 1 }}">@{{ $index + 1 }}</label>
                     </td>
                     <td width="0%">&nbsp;</td>
