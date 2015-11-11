@@ -6,6 +6,22 @@
             <h5>{{ Lang::get('marketing::admin.subscription.index') }}</h5>
         </div>
 
+        <div class="ibox-tabs">
+
+            <uib-tabset justified="true">
+
+                <uib-tab heading="subscribed" select="vm.setFilter('subscribed')">
+
+                </uib-tab>
+
+                <uib-tab heading="unsubscribed" select="vm.setFilter('unsubscribed')">
+
+                </uib-tab>
+
+            </uib-tabset>
+
+            </div>
+
         <div class="ibox-content">
 
             <table class="table table-hover table-striped table-responsive vertical" ng-show="vm.subscriptions">
@@ -17,6 +33,16 @@
                     <td>
                         @{{ subscription.email }}
                     </td>
+                    <td>
+                        @{{ subscription.merges.FNAME }}
+                    </td>
+                    <td>
+                        @{{ subscription.merges.LNAME }}
+                    </td>
+                    <td>
+                        @{{ subscription.status }}
+                    </td>
+
                 </tr>
                 <tr ng-show="vm.table.pagination.numberOfPages">
                     <td class="text-center" st-pagination st-items-by-page="vm.rpp" colspan="5" st-change="vm.list"></td>

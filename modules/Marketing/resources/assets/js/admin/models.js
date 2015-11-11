@@ -42,7 +42,9 @@
         .factory('NewsletterSubscription', function ($http) {
             return {
                 get: function (data, success) {
-                    return $http.get('api/admin/marketing/newsletter/subscriptions', data).then(function (response) {
+                    return $http.get('api/admin/marketing/newsletter/subscriptions', {
+                        params: data
+                    }).then(function (response) {
                         success(response.data)
                     });
                 }

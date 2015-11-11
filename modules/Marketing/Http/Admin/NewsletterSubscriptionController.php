@@ -15,8 +15,9 @@ class NewsletterSubscriptionController extends FrontController
                 'opts' => [
                     'start' => $request->get('page', 1) - 1,
                     //default limit is 25
-                    'limit' => 25
-                ]
+                    'limit' => 25,
+                ],
+                'status' => $request->get('filter', 'subscribed')
             ]);
 
             return $result;
