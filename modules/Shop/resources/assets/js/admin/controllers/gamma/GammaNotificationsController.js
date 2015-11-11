@@ -5,6 +5,7 @@
         .controller('GammaNotificationsController', function ($scope, toaster, GammaNotificationsService) {
 
             this.page = 1;
+            this.totalItems = 0;
             this.notifications = [];
 
             var me = this;
@@ -81,9 +82,10 @@
 
             this.load = function () {
                 GammaNotificationsService.load({
-                    page: this.page
+                    page: me.page
                 }, function (response) {
-                    me.notifications = response;
+                    me.notifications = response.data;
+                    me.totalItems = response.total;
                 });
             };
 
