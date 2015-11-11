@@ -37,7 +37,7 @@ class Product extends Model implements StoresMedia, PresentableEntity, SeoEntity
             sprintf('products/%d/%d/', $this->attributes['brand_id'], $this->attributes['id']);
         }
 
-        return sprintf('products/%d/%d/%s', $this->attributes['brand_id'], $this->attributes['id'], $size);
+        return sprintf('products/%d/%d/%s/', $this->attributes['brand_id'], $this->attributes['id'], $size);
     }
 
     public function brand()
