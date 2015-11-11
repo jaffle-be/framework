@@ -7,6 +7,13 @@ use Pusher;
 
 trait GammaNotificationHelpers
 {
+    protected function beingProcessed(GammaNotification $notification, Brand $brand, Category $category)
+    {
+        return $notification->where('brand_id', $brand->id)
+            ->where('category_id', $category->id)
+            ->where('processing', 1)
+            ->count() > 0;
+    }
 
     protected function cancelExisting(GammaNotification $notification, Brand $brand, Category $category, Pusher $pusher)
     {
