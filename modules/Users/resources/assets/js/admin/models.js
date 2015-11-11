@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('users')
-        .factory('Profile', function ($resource, Skill) {
+        .factory('Profile', function ($resource, Skill, MediaService) {
 
             return $resource('api/admin/profile', {}, {
                 find: {
@@ -23,7 +23,7 @@
 
                         data.skills = skills;
 
-                        return data;
+                        return MediaService.transformResponse(data);
                     }
                 },
                 save: {

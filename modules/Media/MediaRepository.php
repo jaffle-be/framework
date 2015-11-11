@@ -82,7 +82,7 @@ class MediaRepository implements MediaRepositoryInterface
      *
      * @return mixed
      */
-    public function createThumbnailImage(array $payload, Image $original = null)
+    public function createThumbnailImage(array $payload, Image $original)
     {
         //create image
         $image = $this->images->newInstance($payload);
@@ -127,7 +127,7 @@ class MediaRepository implements MediaRepositoryInterface
      *
      * @return Infographic|bool
      */
-    public function createThumbnailInfographic(array $payload, Infographic $original = null)
+    public function createThumbnailInfographic(array $payload, Infographic $original)
     {
         //create image
         $graphic = $this->infographics->newInstance($payload);

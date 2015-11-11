@@ -26,7 +26,7 @@ return [
 	|
 	*/
 
-	'default' => 'mysql',
+	'default' => env('APP_ENV') == 'testing' ? 'testing' : 'mysql',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -55,7 +55,7 @@ return [
 		'mysql' => [
 			'driver'    => 'mysql',
 			'host'      => env('DB_HOST', 'localhost'),
-			'database'  => env('DB_DATABASE', 'forge'),
+			'database'  => env('DB_DATABASE') . '-' . env('APP_ENV'),
 			'username'  => env('DB_USERNAME', 'forge'),
 			'password'  => env('DB_PASSWORD', ''),
 			'charset'   => 'utf8',
@@ -63,6 +63,18 @@ return [
 			'prefix'    => '',
 			'strict'    => false,
 		],
+
+        'testing' => [
+            'driver'    => 'mysql',
+            'host'      => 'localhost',
+            'database'  => env('DB_DATABASE') . '-testing',
+            'username'  => 'root',
+            'password'  => 'secret',
+            'charset'   => 'utf8',
+            'collation' => 'utf8_unicode_ci',
+            'prefix'    => '',
+            'strict'    => false,
+        ],
 
 		'pgsql' => [
 			'driver'   => 'pgsql',
@@ -115,10 +127,10 @@ return [
 		'cluster' => false,
 
 		'default' => [
-			'host'     => env('REDIS_HOST'),
+			'host'     => env('APP_ENV') == 'testing' ? 'localhost' : env('REDIS_HOST'),
 			'port'     => 6379,
 			'database' => 0,
-			'password' => env('REDIS_PASS'),
+			'password' => env('APP_ENV') == 'testing' ? null :env('REDIS_PASS'),
 		],
 
 	],

@@ -2,7 +2,6 @@
 
 use App\Events\Event;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
-use Illuminate\Queue\SerializesModels;
 
 class PushableEvent extends Event implements ShouldBroadcast
 {

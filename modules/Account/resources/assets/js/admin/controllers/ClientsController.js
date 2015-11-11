@@ -9,22 +9,6 @@
             this.client = false;
             this.saving = false;
 
-            //these methods get triggered when something happens in de input media widget
-            this.imageHandlers = {
-                uploadedImage: function (image) {
-                    me.client.images = image
-                },
-                deletedImage: function (image) {
-                    me.client.images = null;
-                    _.each(me.clients, function (client) {
-                        if (client.id == me.client.id)
-                        {
-                            client.images = null;
-                        }
-                    });
-                }
-            };
-
             function load() {
                 Client.list({}).$promise.then(function (clients) {
                     me.clients = clients;

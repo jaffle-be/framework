@@ -1,13 +1,11 @@
 <?php namespace Modules\Media\Http\Admin;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Collection;
 use Modules\Media\Commands\UpdateImage;
 use Modules\Media\Commands\UploadNewImage;
 use Modules\Media\Image;
 use Modules\Media\MediaRepositoryInterface;
 use Modules\Media\MediaWidgetPreperations;
-use Modules\Media\StoresMedia;
 use Modules\System\Http\AdminController;
 use Modules\Theme\ThemeManager;
 

@@ -3,8 +3,6 @@
 use App\Jobs\Job;
 use Illuminate\Contracts\Bus\SelfHandling;
 use Modules\Account\Account;
-use Modules\Shop\Gamma\CategorySelection;
-use Modules\Shop\Gamma\ProductSelection;
 use Modules\Shop\Product\Category;
 
 class DeactivateCategory extends Job implements SelfHandling

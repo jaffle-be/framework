@@ -10,31 +10,15 @@ use Modules\Users\User;
 class PortfolioTableSeeder extends Seeder
 {
 
-    protected $image_names = [
-        'PORTFOLIO_O14A0456.jpg',
-        'PORTFOLIO_O14A0464.jpg',
-        'PORTFOLIO_O14A0465.jpg',
-        'PORTFOLIO_IMG_0331.jpg',
-        'PORTFOLIO_IMG_0324.jpg',
-    ];
-
-    protected $prefix;
-
-    protected $images;
-
-    public function __construct(\Intervention\Image\ImageManager $images)
+    public function __construct()
     {
-        $this->images = $images;
-
         $this->model = new Project();
-
-        $this->prefix = __DIR__ . '/../images/';
 
         parent::__construct();
     }
     public function run()
     {
-        foreach([1] as $accountid)
+        foreach([1,2] as $accountid)
         {
 
             $account = Account::find($accountid);
@@ -45,7 +29,7 @@ class PortfolioTableSeeder extends Seeder
             //flip so we can use array_rand
             $tags = array_flip(Tag::lists('id')->toArray());
 
-            for ($i = 0; $i < 10; $i++) {
+            for ($i = 0; $i < 25; $i++) {
 
                 $project = Modules\Portfolio\Project::create([
                     'account_id' => $account->id,
@@ -81,20 +65,7 @@ class PortfolioTableSeeder extends Seeder
                     ]
                 ]);
 
-                $counter = 0;
-
-                if ($counter < 5) {
-                    $count = 2;
-                } else {
-                    $count = 1;
-                }
-
-                while ($counter < $count) {
-                    $this->newImage($project, $account);
-                    $counter++;
-                }
-
-                echo 'project number ' . $i . PHP_EOL;
+                $this->addImages($project);
 
 
                 //foreach project we randomly add 1 to 3 collaborators

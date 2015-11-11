@@ -1,10 +1,5 @@
 <?php namespace Modules\Shop\Product;
 
-use Modules\Shop\Product\Brand;
-use Modules\Shop\Product\CatalogRepositoryInterface;
-use Modules\Shop\Product\Category;
-use Modules\Shop\Product\Product;
-
 class CatalogRepository implements CatalogRepositoryInterface
 {
     protected $product;

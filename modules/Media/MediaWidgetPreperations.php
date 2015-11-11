@@ -14,12 +14,15 @@ trait MediaWidgetPreperations
         return $this->media->findOwner($type, $id);
     }
 
-    protected function prepareMedia($owner, $media)
+    protected function prepareMedia($owner, array $media = ['images', 'infographics', 'videos', 'files'])
     {
-        $this->prepareImages($owner);
-        $this->prepareInfographics($owner);
-        $this->prepareVideos($owner);
-        $this->prepareFiles($owner);
+        $valid = ['images', 'infographics', 'videos', 'files'];
+        $media = array_intersect($valid, $media);
+
+        foreach($media as $type)
+        {
+            call_user_func_array([$this, 'prepare' . ucfirst($type)], [$owner]);
+        }
     }
 
     /**

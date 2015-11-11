@@ -7,56 +7,32 @@ use Modules\System\Seeder;
 class PagesTableSeeder extends Seeder
 {
 
-    protected $image_names = [
-        'BLOG_IMG_9908.jpg',
-        'BLOG_IMG_9985.jpg',
-        'BLOG_O14A0247.jpg',
-        'BLOG_O14A0256.jpg',
-        'BLOG_O14A0436.jpg',
-    ];
-
-    protected $prefix;
-
-    protected $images;
-
-    public function __construct(\Intervention\Image\ImageManager $images)
+    public function __construct()
     {
-        $this->images = $images;
-
         $this->model = new Page();
-
-        $this->prefix = __DIR__ . '/../images/';
 
         parent::__construct();
     }
 
     public function run()
     {
-        foreach([1] as $accountid)
+        foreach([1,2] as $accountid)
         {
             $account = Account::find($accountid);
 
             //flip array since array_rand returns the keys from an array
 
-            for ($i = 0; $i < 3; $i++) {
+            for ($i = 0; $i < 15; $i++) {
 
-                $page = new Page($this->texts());
+                $page = $this->model->newInstance($this->texts());
 
                 $page->user_id = 1;
                 $page->account_id = $account->id;
                 $page->save();
 
-                $counter = 0;
-                $count = 2;
-
-                while ($counter < $count) {
-                    $this->newImage($page, $account);
-                    $counter++;
-                }
+                $this->addImages($page);
 
                 $this->subPages($page, $accountid);
-
-                echo 'page number ' . $i . PHP_EOL;
             }
         }
     }
@@ -66,12 +42,14 @@ class PagesTableSeeder extends Seeder
         for ($i = 0; $i < 3; $i++) {
 
             //let's just make a clone of the page and give it another title
-            $subpage = new Page($this->texts());
+            $subpage = $this->model->newInstance($this->texts());
             $subpage->user_id = $page->user_id;
             $subpage->parent_id = $page->id;
             $subpage->account_id = $accountid;
 
             $subpage->save();
+
+            $this->addImages($subpage);
         }
 
     }

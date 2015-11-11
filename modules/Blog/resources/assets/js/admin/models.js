@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('blog')
-        .factory('Blog', function ($resource) {
+        .factory('Blog', function ($resource, Image) {
             return $resource('api/admin/blog/:id', {id: '@id'}, {
                 query: {
                     isArray: false
@@ -22,6 +22,10 @@
                             {
                                 translation.publish_at = moment(translation.publish_at, 'YYYY-MM-DD').format('DD/MM/YYYY')
                             }
+                        });
+
+                        response.images = _.map(response.images, function(image){
+                            return new Image(image);
                         });
 
                         return response;

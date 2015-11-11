@@ -2,9 +2,6 @@
 
 use Closure;
 use Illuminate\Cookie\CookieJar;
-use Illuminate\Http\Request;
-use Illuminate\Routing\Route;
-use Illuminate\Routing\Router;
 use Illuminate\Session\Store;
 
 class LocaleMiddleware

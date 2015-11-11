@@ -1,14 +1,14 @@
 web:
-    build: ../../../docker/containers/ubuntu/
+    image: twarlop/web
     ports:
         - "80:80" # web
         - "2222:22" # ssh
         - "35729:35729" # live reload
         - "9876:9876" # karma server
     volumes:
-        - ~/.composer:/home/homestead/.composer # composer caching
-        - ~/.gitconfig:/home/homestead/.gitconfig # Git configuration ( access alias && config )
-        - ~/.ssh:/home/homestead/.ssh # Ssh keys for easy deployment inside the container
+        - ~/.composer:~/.composer # composer caching
+        - ~/.gitconfig:~/.gitconfig # Git configuration ( access alias && config )
+        - ~/.ssh:~/.ssh # Ssh keys for easy deployment inside the container
         - ~/Sites/laravel/framework:/app # all apps
         - ~/docker/nginx/sites-available:/etc/nginx/sites-available # nginx sites ( in case you recreate the container )
         - ~/docker/nginx/sites-enabled:/etc/nginx/sites-enabled # nginx sites ( in case you recreate the container )
@@ -18,7 +18,7 @@ web:
         - redis
 
 mysql:
-    image: tutum/mysql
+    image: twarlop/mysql
     ports:
         - "3306:3306"
     environment:
@@ -28,13 +28,13 @@ mysql:
         - db_vol # database files
 
 elasticsearch:
-    build: ../../../docker/containers/elasticsearch/
+    image: twarlop/elasticsearch
     ports:
         - "9200:9200"
         - "9300:9300"
 
 redis:
-    image: tutum/redis
+    image: twarlop/redis
     ports:
         - "6379:6379"
     environment:
@@ -43,11 +43,11 @@ redis:
         - redis_vol
 
 redis_vol:
-    image: ubuntu:14.04
+    image: twarlop/redis_vol
     volumes:
         - ~/databases/redis:/databases/redis
 
 db_vol:
-    image: ubuntu:14.04
+    image: twarlop/db_vol
     volumes:
         - ~/databases/mysql:/databases/mysql

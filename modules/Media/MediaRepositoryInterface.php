@@ -28,7 +28,7 @@ interface MediaRepositoryInterface {
      *
      * @return Image|bool
      */
-    public function createThumbnailImage(array $payload , Image $original = null);
+    public function createThumbnailImage(array $payload , Image $original);
 
     /**
      * @param StoresMedia $owner
@@ -52,7 +52,7 @@ interface MediaRepositoryInterface {
      *
      * @return Infographic|bool
      */
-    public function createThumbnailInfographic(array $payload , Infographic $original = null);
+    public function createThumbnailInfographic(array $payload , Infographic $original);
 
 
     /**

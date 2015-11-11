@@ -1,6 +1,5 @@
 <?php
 
-use Modules\Account\Account;
 use Modules\Shop\Product\ActivePrice;
 use Modules\Shop\Product\ActivePromotion;
 use Modules\Shop\Product\Brand;
@@ -13,33 +12,23 @@ use Modules\System\Seeder;
 class ShopTableSeeder extends Seeder
 {
 
-    protected $image_names = [
-        'BLOG_IMG_9908.jpg',
-        'BLOG_IMG_9985.jpg',
-        'BLOG_O14A0247.jpg',
-        'BLOG_O14A0256.jpg',
-        'BLOG_O14A0436.jpg',
-    ];
-
-    protected $prefix;
-
-    protected $images;
-
-    public function __construct(\Intervention\Image\ImageManager $images)
+    public function __construct()
     {
-        $this->images = $images;
-
         $this->model = new Product();
-
-        $this->prefix = __DIR__ . '/../images/';
 
         parent::__construct();
     }
 
     public function run()
     {
-        $this->call('BrandTableSeeder');
-        $this->call('CategoryTableSeeder');
+        if(Brand::count() == 0)
+        {
+            $this->call('BrandTableSeeder');
+        }
+        if(Category::count() == 0)
+        {
+            $this->call('CategoryTableSeeder');
+        }
 
         $this->productBases();
     }
@@ -49,57 +38,58 @@ class ShopTableSeeder extends Seeder
         $brands = Brand::all();
         $categories = Category::all();
 
-        foreach([1, 2] as $account)
-        {
-            for ($i = 0; $i < 10; $i++) {
-                $name = $this->faker->userName;
+        for ($i = 0; $i < 100; $i++) {
+            $name = $this->faker->userName;
 
-                $ean = $this->faker->ean13;
+            $ean = $this->faker->ean13;
 
-                $product = new Product([
-                    'ean' => $ean,
-                    'upc' => substr($ean, 0, 12),
-                    'nl'  => [
-                        'name'    => $name,
-                        'title'   => $name,
-                        'content' => $this->nl->realText(1000),
-                    ],
-                    'en'  => [
-                        'name'    => $name,
-                        'title'   => $name,
-                        'content' => $this->nl->realText(1000),
-                    ],
-                    'fr'  => [
-                        'name'    => $name,
-                        'title'   => $name,
-                        'content' => $this->nl->realText(1000),
-                    ],
-                    'de'  => [
-                        'name'    => $name,
-                        'title'   => $name,
-                        'content' => $this->nl->realText(1000),
-                    ],
-                ]);
+            $product = new Product([
+                'ean' => $ean,
+                'upc' => substr($ean, 0, 12),
+                'nl'  => [
+                    'name'    => $name,
+                    'title'   => $name,
+                    'content' => $this->nl->realText(1000),
+                ],
+                'en'  => [
+                    'name'    => $name,
+                    'title'   => $name,
+                    'content' => $this->nl->realText(1000),
+                ],
+                'fr'  => [
+                    'name'    => $name,
+                    'title'   => $name,
+                    'content' => $this->nl->realText(1000),
+                ],
+                'de'  => [
+                    'name'    => $name,
+                    'title'   => $name,
+                    'content' => $this->nl->realText(1000),
+                ],
+            ]);
 
-                $product->brand()->associate($brands->random(1));
-                $product->save();
+            $product->brand()->associate($brands->random(1));
+            $product->save();
 
-                $this->newImage($product);
+            $this->addImages($product);
 
-                if (rand(0, 1)) {
-                    $this->newImage($product);
-                }
-
-                if (rand(0, 1)) {
-                    $product->categories()->sync([$categories->random(1)->id]);
-                } else {
-                    $product->categories()->sync($categories->random(2)->lists('id')->toArray());
-                }
-
-                $this->prices($product, $account);
-                $this->promotions($product, $account);
+            if (rand(0, 1)) {
+                $product->categories()->sync([$categories->random(1)->id]);
+            } else {
+                $product->categories()->sync($categories->random(2)->lists('id')->toArray());
             }
+        }
 
+        foreach([1, 2] as $accountid)
+        {
+
+            Product::chunk(250, function($products) use ($accountid){
+                foreach($products as $product)
+                {
+                    $this->prices($product, $accountid);
+                    $this->promotions($product, $accountid);
+                }
+            });
         }
     }
 

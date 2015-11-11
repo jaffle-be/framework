@@ -5,8 +5,8 @@ use Modules\Account\Account;
 use Modules\Account\AccountContactInformation;
 use Modules\Account\Role;
 use Modules\Contact\Address;
-use Modules\System\Seeder;
 use Modules\System\Locale;
+use Modules\System\Seeder;
 
 class AccountTableSeeder extends Seeder
 {

@@ -1,6 +1,5 @@
 <?php namespace Modules\Tags\Providers;
 
-use Modules\Tags\Tag;
 use Pingpong\Modules\ServiceProvider;
 
 class TagsServiceProvider extends ServiceProvider{
@@ -14,7 +13,6 @@ class TagsServiceProvider extends ServiceProvider{
 
     public function observers()
     {
-        Tag::observe('Modules\Tags\TagObserver');
     }
 
     public function register()
