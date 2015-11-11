@@ -16,17 +16,17 @@
                 accept: function (notifications, success, error) {
                     $http.post('/api/admin/notifications/accept', {
                         notifications: notifications,
-                    }).then(success, error);
+                    }).then(function(response){ return response.data; }).then(success, error);
                 },
                 review: function (notifications, success, error) {
                     $http.post('/api/admin/notifications/review', {
                         notifications: notifications,
-                    }).then(success, error);
+                    }).then(function(response){ return response.data; }).then(success, error);
                 },
                 deny: function (notifications, success, error) {
                     $http.post('/api/admin/notifications/deny', {
                         notifications: notifications,
-                    }).then(success, error);
+                    }).then(function(response){ return response.data; }).then(success, error);
                 },
             };
 

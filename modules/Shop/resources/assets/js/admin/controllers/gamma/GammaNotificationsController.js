@@ -14,31 +14,32 @@
                 console.log(response);
             };
 
+            this.updateTable = function(response)
+            {
+                me.page = response.page;
+                me.notifications = response.data;
+                me.totalItems = response.total;
+            };
+
             this.accept = function (notification) {
-                var success = function () {
-                    _.remove(me.notifications, function (item) {
-                        return item.id == notification.id;
-                    });
+                var success = function (response) {
+                    me.updateTable(response);
                 };
 
                 GammaNotificationsService.accept([notification.id], success, error);
             };
 
             this.review = function (notification) {
-                var success = function () {
-                    _.remove(me.notifications, function (item) {
-                        return item.id == notification.id;
-                    });
+                var success = function (response) {
+                    me.updateTable(response);
                 };
 
                 GammaNotificationsService.review([notification.id], success, error);
             };
 
             this.deny = function (notification) {
-                var success = function () {
-                    _.remove(me.notifications, function (item) {
-                        return item.id == notification.id;
-                    });
+                var success = function (response) {
+                    me.updateTable(response);
                 };
 
                 GammaNotificationsService.deny([notification.id], success, error);
@@ -47,10 +48,8 @@
             this.batchAccept = function () {
                 var ids = this.selectedNotifications();
 
-                var success = function () {
-                    _.remove(me.notifications, function (item) {
-                        return _.findIndex(ids) !== -1;
-                    });
+                var success = function (response) {
+                    me.updateTable(response);
                 };
 
                 GammaNotificationsService.accept(ids, success, error);
@@ -59,10 +58,8 @@
             this.batchReview = function () {
                 var ids = this.selectedNotifications();
 
-                var success = function () {
-                    _.remove(me.notifications, function (item) {
-                        return _.findIndex(ids) !== -1;
-                    });
+                var success = function (response) {
+                    me.updateTable(response);
                 };
 
                 GammaNotificationsService.review(ids, success, error);
@@ -71,10 +68,8 @@
             this.batchDeny = function () {
                 var ids = this.selectedNotifications();
 
-                var success = function () {
-                    _.remove(me.notifications, function (item) {
-                        return _.findIndex(ids) !== -1;
-                    });
+                var success = function (response) {
+                    me.updateTable(response);
                 };
 
                 GammaNotificationsService.deny(ids, success, error);

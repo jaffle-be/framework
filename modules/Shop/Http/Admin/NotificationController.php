@@ -15,41 +15,76 @@ class NotificationController extends AdminController
         return view('shop::admin.notifications.overview');
     }
 
-    public function overview(GammaNotification $notifications)
+    public function overview(GammaNotification $notifications, Request $request)
     {
-        return $notifications->with(['brand', 'brand.translations', 'category', 'category.translations'])->orderBy('created_at', 'asc')->paginate();
+        return $this->refreshedPageData($notifications, $request);
     }
 
     public function accept(GammaNotification $notifications, Request $request)
     {
-        $notifications = $notifications->whereIn('id', $request->get('notifications'))->get();
+        $requested = $this->requestedNotifications($notifications, $request);
 
-        foreach($notifications as $notification)
+        foreach($requested as $notification)
         {
             $this->dispatch(new AcceptGammaNotification($notification));
         }
+
+        return $this->refreshedPageData($notifications, $request);
     }
 
     public function review(GammaNotification $notifications, Request $request)
     {
-        $notifications = $notifications->whereIn('id', $request->get('notifications'))->get();
+        $requested = $this->requestedNotifications($notifications, $request);
 
-        foreach($notifications as $notification)
+        foreach($requested as $notification)
         {
             $this->dispatch(new ReviewGammaNotification($notification));
         }
+
+        return $this->refreshedPageData($notifications, $request);
     }
 
     public function deny(GammaNotification $notifications, Request $request, Pusher $pusher)
     {
-        $notifications = $notifications->whereIn('id', $request->get('notifications'))->get();
+        $requested = $this->requestedNotifications($notifications, $request);
 
-        foreach($notifications as $notification)
+        foreach($requested as $notification)
         {
             $pusher->trigger(pusher_account_channel(), 'gamma.gamma_notification.denied', $notification->toArray());
 
             $notification->delete();
         }
+
+        return $this->refreshedPageData($notifications, $request);
+    }
+
+    protected function refreshedPageData($notifications, Request $request)
+    {
+        $relations = ['brand', 'brand.translations', 'category', 'category.translations'];
+
+        $result = $notifications->with($relations)->orderBy('created_at', 'asc')->paginate();
+
+        if($result->count() < 0 && $request->get('page') > 1)
+        {
+            $request->put('page', 1);
+
+            return $notifications->with($relations)->orderBy('created_at', 'asc')->paginate();
+        }
+
+        return $result;
+    }
+
+    /**
+     * @param GammaNotification $notifications
+     * @param Request           $request
+     *
+     * @return GammaNotification
+     */
+    protected function requestedNotifications(GammaNotification $notifications, Request $request)
+    {
+        $notifications = $notifications->whereIn('id', $request->get('notifications'))->get();
+
+        return $notifications;
     }
 
 }
