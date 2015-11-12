@@ -168,6 +168,7 @@ class GammaController extends AdminController
     protected function reviews(GammaNotification $notification, $field, $ids)
     {
         $reviews = $notification->whereIn($field, $ids)
+            ->whereNull('product_id')
             ->get()
             ->groupBy($field);
 
