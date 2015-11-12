@@ -59,6 +59,28 @@ abstract class Seeder extends BaseSeeder
         $this->repository = app(MediaRepository::class);
     }
 
+    /**
+     * Seed the given connection from the given path.
+     *
+     * @param  string $class
+     *
+     * @return void
+     */
+    public function call($class)
+    {
+        $args = func_get_args();
+
+        if (isset($args[1])) {
+            $this->resolve($class)->run($args[1]);
+        } else {
+            $this->resolve($class)->run();
+        }
+
+        if (isset($this->command)) {
+            $this->command->getOutput()->writeln("<info>Seeded:</info> $class");
+        }
+    }
+
     protected function addImages($model)
     {
         $options = ['one_image' => ['PORTFOLIO_O14A0464.jpg'], 'two_images' => ['PORTFOLIO_O14A0464.jpg', 'PORTFOLIO_IMG_0331.jpg'], 'three_images' => ['PORTFOLIO_IMG_0324.jpg', 'PORTFOLIO_IMG_0331.jpg', 'PORTFOLIO_O14A0464.jpg']];

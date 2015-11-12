@@ -19,7 +19,7 @@ class ShopTableSeeder extends Seeder
         parent::__construct();
     }
 
-    public function run()
+    public function run($count = 15)
     {
         if(Brand::count() == 0)
         {
@@ -30,15 +30,15 @@ class ShopTableSeeder extends Seeder
             $this->call('CategoryTableSeeder');
         }
 
-        $this->productBases();
+        $this->productBases($count);
     }
 
-    protected function productBases()
+    protected function productBases($amount)
     {
         $brands = Brand::all();
         $categories = Category::all();
 
-        for ($i = 0; $i < 100; $i++) {
+        for ($i = 0; $i < $amount; $i++) {
             $name = $this->faker->userName;
 
             $ean = $this->faker->ean13;

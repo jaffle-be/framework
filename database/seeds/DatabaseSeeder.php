@@ -1,11 +1,19 @@
 <?php
 
-use Illuminate\Database\Seeder;
 use Modules\Account\Account;
 use Modules\Module\Module;
+use Modules\System\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
+
+    protected $amounts = [
+        //this is the amount of resources that will be created in this run.
+        'shopTable'      => 10,
+        'blogTable'      => 10,
+        'portfolioTable' => 10,
+        'pagesTable'     => 10
+    ];
 
     /**
      * Run the database seeds.
@@ -21,19 +29,23 @@ class DatabaseSeeder extends Seeder
         }
     }
 
-    protected function seed($table)
+    protected function seed($prefix)
     {
-        $table = ucfirst($table) . 'Seeder';
+        $table = ucfirst($prefix) . 'Seeder';
 
         if (class_exists($table)) {
-            $this->call($table);
+
+            if (isset($this->amounts[$prefix])) {
+                $this->call($table, $this->amounts[$prefix]);
+            } else {
+                $this->call($table);
+            }
         }
 
-        $accounts  = Account::all();
+        $accounts = Account::all();
         $modules = Module::all();
 
-        foreach($accounts as $account)
-        {
+        foreach ($accounts as $account) {
             $account->modules()->sync($modules->lists('id')->toArray());
         }
     }
