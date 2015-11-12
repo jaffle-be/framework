@@ -25,6 +25,8 @@ class CreateProductGammaNotificationsTable extends Migration
             $table->foreign('brand_id', 'gamma_notification_to_brand')->references('id')->on('product_brands')->onDelete('cascade');
             $table->integer('category_id', false, true)->nullable();
             $table->foreign('category_id', 'gamma_notification_to_category')->references('id')->on('product_categories')->onDelete('cascade');
+            $table->integer('product_id', false, true)->nullable();
+            $table->foreign('product_id', 'gamma_notification_to_product')->references('id')->on('products')->onDelete('cascade');
             $table->boolean('processing');
             $table->string('type', 15);
             $table->timestamps();
@@ -44,6 +46,7 @@ class CreateProductGammaNotificationsTable extends Migration
             $table->dropForeign('gamma_notification_to_category_selection');
             $table->dropForeign('gamma_notification_to_brand');
             $table->dropForeign('gamma_notification_to_category');
+            $table->dropForeign('gamma_notification_to_product');
         });
     }
 
