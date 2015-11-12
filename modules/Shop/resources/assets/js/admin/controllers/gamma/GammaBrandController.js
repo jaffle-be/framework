@@ -186,11 +186,21 @@
             }
 
             function save(brand) {
-                GammaService.brand(brand.id, brand.activated)
+                GammaService.brand(brand.id, brand.activated).then(function(){
+
+                }, function(response){
+                    showError(response);
+                    brand.activated = !brand.activated;
+                });
             }
 
             function subSave(category) {
-                GammaService.category(category.id, category.activated);
+                GammaService.category(category.id, category.activated).then(function(){
+
+                }, function(response){
+                    showError(response);
+                    category.activated = !category.activated;
+                });
             }
 
             function saveDetail(brand, category) {
@@ -200,8 +210,7 @@
                     status: category.selected
                 }, function () {
                 }, function (response) {
-                    var headers = response.headers();
-                    toaster.error(headers.statustext);
+                    showError(response);
                     category.selected = !category.selected;
                 });
             };
@@ -220,6 +229,11 @@
                 return _.where(brand.categories, {
                     selected: true
                 }).length > 0;
+            }
+
+            function showError(response) {
+                var headers = response.headers();
+                toaster.error(headers.statustext);
             }
 
         });

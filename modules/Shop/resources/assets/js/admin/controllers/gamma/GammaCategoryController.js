@@ -181,11 +181,18 @@
             }
 
             function save(category) {
-                GammaService.category(category.id, category.activated)
+                GammaService.category(category.id, category.activated).then(function () {
+                }, function (response) {
+                    showError(response);
+                    category.activated = !category.activated;
+                });
             }
 
             function subSave(brand) {
-                GammaService.brand(brand.id, brand.activated);
+                GammaService.brand(brand.id, brand.activated).then(function(){}, function(response){
+                    showError(response);
+                    brand.activated = !brand.activated;
+                });
             }
 
             function saveDetail(category, brand) {
@@ -195,8 +202,7 @@
                     status: brand.selected
                 }, function () {
                 }, function (response) {
-                    var headers = response.headers();
-                    toaster.error(headers.statustext);
+                    showError(response);
                     brand.selected = !brand.selected;
                 });
             };
@@ -210,13 +216,16 @@
                 });
             }
 
-            function hasAnythingSelected(category)
-            {
+            function hasAnythingSelected(category) {
                 return _.where(category.brands, {
                         selected: true
                     }).length > 0;
             }
 
+            function showError(response) {
+                var headers = response.headers();
+                toaster.error(headers.statustext);
+            }
 
         });
 
