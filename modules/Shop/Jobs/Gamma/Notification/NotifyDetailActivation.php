@@ -36,7 +36,7 @@ class NotifyDetailActivation extends Job implements SelfHandling
             abort(400, $message, ['statustext' => $message]);
         };
 
-        $canceled = $this->cancelExistingGamma($notification, $this->brand, $this->category, $pusher);
+        $canceled = $this->cancelInverseNotifications($notification, $this->brand, $this->category, $pusher);
 
         if ($canceled === 0) {
             $instance = $notification->newInstance([

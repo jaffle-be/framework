@@ -15,10 +15,11 @@ trait GammaNotificationHelpers
             ->count() > 0;
     }
 
-    protected function cancelExistingGamma(GammaNotification $notification, Brand $brand, Category $category, Pusher $pusher)
+    protected function cancelInverseNotifications(GammaNotification $notification, Brand $brand, Category $category, Pusher $pusher)
     {
         $notifications = $notification->where('brand_id', $brand->id)
             ->where('category_id', $category->id)
+            ->whereNull('product_id')
             ->notBeingProcessed()
             ->get();
 

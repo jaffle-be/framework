@@ -6,6 +6,7 @@ use Modules\System\Scopes\ModelAccountResource;
 
 class ProductSelection extends Model
 {
+
     use ModelAccountResource;
     use SoftDeletes;
 
@@ -14,6 +15,14 @@ class ProductSelection extends Model
     protected $fillable = ['account_id', 'product_id', 'brand_id', 'category_id'];
 
     protected $dates = ['deleted_at'];
+
+    protected $casts = [
+        'id'          => 'integer',
+        'account_id'  => 'integer',
+        'product_id'  => 'integer',
+        'brand_id'    => 'integer',
+        'category_id' => 'integer',
+    ];
 
     public function product()
     {
@@ -28,6 +37,19 @@ class ProductSelection extends Model
     public function category()
     {
         return $this->belongsTo('Modules\Shop\Product\Category');
+    }
+
+    /**
+     * @param $brand_id
+     * @param $category_id
+     *
+     * @return int
+     */
+    public function countActiveProducts($brand_id, $category_id)
+    {
+        return $this->where('brand_id', $brand_id)
+            ->where('category_id', $category_id)
+            ->count();
     }
 
 }

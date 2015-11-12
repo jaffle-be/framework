@@ -8,11 +8,14 @@ use Modules\Shop\Gamma\GammaNotification;
 use Modules\Shop\Gamma\GammaSelection;
 use Modules\Shop\Gamma\ProductSelection;
 use Modules\Shop\Jobs\Gamma\ActivateProduct;
+use Modules\Shop\Jobs\Gamma\CleanupDetail;
+use Modules\Shop\Jobs\Gamma\DeactivateProduct;
 use Modules\Shop\Product\CatalogRepositoryInterface;
 use Pusher;
 
 class AcceptGammaNotification extends Job implements SelfHandling, ShouldQueue
 {
+
     use DispatchesJobs;
 
     protected $notification;
@@ -29,32 +32,25 @@ class AcceptGammaNotification extends Job implements SelfHandling, ShouldQueue
         switch ($type) {
             case 'activate':
 
-                if($this->notification->product)
-                {
+                if ($this->notification->product) {
                     $this->dispatch(new ActivateProduct($this->notification->product, $this->notification->category, $this->notification->account));
-                }
-                else{
+                } else {
                     $this->activate($catalog, $gamma);
                 }
 
                 break;
             case 'deactivate':
-
-                if($this->notification->product)
-                {
-                    $selection = $productGamma->where('product_id', $this->notification->product_id)
-                        ->where('category_id', $this->notification->category_id)
-                        ->where('brand_id', $this->notification->brand_id)
-                        ->first();
-
-                    if($selection)
-                    {
-                        $selection->delete();
-                    }
-                }
-                else{
+                if ($this->notification->product) {
+                    $this->dispatch(new DeactivateProduct($this->notification->product, $this->notification->category, $this->notification->account));
+                } else {
                     $this->deactivate($gamma, $productGamma);
                 }
+
+                //when we deactivated something, we can check if everything is deactivated, if so.. we should also deactivate the selection
+                //so our product selections table is as small as possible.
+                if ($productGamma->countActiveProducts($this->notification->brand_id, $this->notification->category_id) == 0) {
+                    $this->dispatch(new CleanupDetail($this->notification->brand, $this->notification->category, $this->notification->account));
+                };
 
                 break;
             default:
@@ -84,7 +80,7 @@ class AcceptGammaNotification extends Job implements SelfHandling, ShouldQueue
         $brand = $this->notification->brand->id;
         $category = $this->notification->category->id;
 
-        while ($this->countActiveProducts($productGamma, $brand, $category) > 0) {
+        while ($productGamma->countActiveProducts($brand, $category) > 0) {
 
             $selections = $productGamma->where('brand_id', $brand)
                 ->where('category_id', $category)
@@ -94,8 +90,6 @@ class AcceptGammaNotification extends Job implements SelfHandling, ShouldQueue
                 $selection->delete();
             }
         }
-
-        $this->deleteGamma($gamma);
     }
 
     protected function insertGamma(GammaSelection $gamma)
@@ -108,24 +102,6 @@ class AcceptGammaNotification extends Job implements SelfHandling, ShouldQueue
         ]);
 
         $selected->save();
-    }
-
-    protected function countActiveProducts(ProductSelection $productGamma, $brand, $category)
-    {
-        return $productGamma->where('brand_id', $brand)
-            ->where('category_id', $category)
-            ->count();
-    }
-
-    protected function deleteGamma(GammaSelection $gamma)
-    {
-        $selections = $gamma->where('category_id', $this->notification->category->id)
-            ->where('brand_id', $this->notification->brand->id)
-            ->get();
-
-        foreach ($selections as $selection) {
-            $selection->delete();
-        }
     }
 
 }

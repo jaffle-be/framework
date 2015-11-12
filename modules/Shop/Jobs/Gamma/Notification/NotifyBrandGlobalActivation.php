@@ -35,7 +35,7 @@ class NotifyBrandActivation extends Job implements SelfHandling
         $categories = $gamma->categoriesForBrand($this->brand);
 
         foreach ($categories as $category) {
-            $canceled = $this->cancelExistingGamma($notification, $this->brand, $category, $pusher);
+            $canceled = $this->cancelInverseNotifications($notification, $this->brand, $category, $pusher);
 
             if ($canceled === 0) {
                 $instance = $notification->newInstance([

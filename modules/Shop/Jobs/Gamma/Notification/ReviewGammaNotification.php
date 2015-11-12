@@ -30,11 +30,13 @@ class ReviewGammaNotification extends Job implements SelfHandling, ShouldQueue
 
                 $this->notifyWithinScope($catalog, $productGamma, 'activate');
 
+                $this->cancelNotifications($notifications, 'deactivate');
+
                 break;
             case 'deactivate':
-                $this->deleteExistingGammaSelection($gamma, $notification);
-
                 $this->notifyWithinScope($catalog, $productGamma, 'deactivate');
+
+                $this->cancelNotifications($notifications, 'activate');
 
                 break;
         }
@@ -70,51 +72,28 @@ class ReviewGammaNotification extends Job implements SelfHandling, ShouldQueue
 
         $callback = function ($products) use ($notification, $selections, $status) {
 
-            //when notifying, we do not want to generate a warning for something that's already in that status.
-            $records = $selections->newQuery()->withTrashed()
+            $records = $selections->newQuery()
                 ->whereIn('product_id', $products->lists('id')->toArray())
-                ->lists('product_id')->get()->keyBy('product_id');
+                ->withTrashed()
+                ->get()->keyBy('product_id');
 
             foreach ($products as $product) {
 
-                if($status == 'activate')
-                {
-                    $record = $records->get($product->id);
+                $notificationPayload = [
+                    'product_id'  => $product->id,
+                    'category_id' => $notification->category->id,
+                    'brand_id'    => $notification->brand->id,
+                    'account_id'  => $notification->account->id,
+                    'type'        => $status,
+                ];
 
-                    //currently inactive
-                    //no record ,
-                    //or a trashed record
-                    if(!$record || $record->deleted_at)
-                    {
-                        $notificationPayload = [
-                            'product_id'  => $product->id,
-                            'category_id' => $notification->category->id,
-                            'brand_id'    => $notification->brand->id,
-                            'account_id'  => $notification->account->id,
-                            'type'        => $status,
-                        ];
+                $record = $records->get($product->id);
 
-                        $productNotification = $notification->newInstance($notificationPayload);
-                        $productNotification->save();
-                    }
-                }
-                else{
-
-                    //active means
-                    //a record which is not trashed.
-                    if($record && !$record->deleted_at)
-                    {
-                        $notificationPayload = [
-                            'product_id'  => $product->id,
-                            'category_id' => $notification->category->id,
-                            'brand_id'    => $notification->brand->id,
-                            'account_id'  => $notification->account->id,
-                            'type'        => $status,
-                        ];
-
-                        $productNotification = $notification->newInstance($notificationPayload);
-                        $productNotification->save();
-                    }
+                //when notifying, we do not want to generate a warning for something that's already in that status.
+                if ($status == 'activate' && (!$record || $record->deleted_at)) {
+                    $notification->create($notificationPayload);
+                } elseif ($status == 'deactivate' && ($record && !$record->deleted_at)) {
+                    $notification->create($notificationPayload);
                 }
             }
         };
@@ -135,4 +114,18 @@ class ReviewGammaNotification extends Job implements SelfHandling, ShouldQueue
         }
     }
 
+    protected function cancelNotifications(GammaNotification $notifications, $status)
+    {
+        $existing = $notifications->whereNotNull('product_id')
+            ->notBeingProcessed()
+            ->where('category_id', $this->notification->category->id)
+            ->where('brand_id', $this->notification->brand->id)
+            ->where('type', $status)
+            ->get();
+
+        foreach($existing as $notification)
+        {
+            $notification->delete();
+        }
+    }
 }
