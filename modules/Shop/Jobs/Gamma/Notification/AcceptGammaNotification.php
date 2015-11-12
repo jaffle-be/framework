@@ -28,10 +28,34 @@ class AcceptGammaNotification extends Job implements SelfHandling, ShouldQueue
 
         switch ($type) {
             case 'activate':
-                $this->activate($catalog, $gamma);
+
+                if($this->notification->product)
+                {
+                    $this->dispatch(new ActivateProduct($this->notification->product, $this->notification->category, $this->notification->account));
+                }
+                else{
+                    $this->activate($catalog, $gamma);
+                }
+
                 break;
             case 'deactivate':
-                $this->deactivate($gamma, $productGamma);
+
+                if($this->notification->product)
+                {
+                    $selection = $productGamma->where('product_id', $this->notification->product_id)
+                        ->where('category_id', $this->notification->category_id)
+                        ->where('brand_id', $this->notification->brand_id)
+                        ->first();
+
+                    if($selection)
+                    {
+                        $selection->delete();
+                    }
+                }
+                else{
+                    $this->deactivate($gamma, $productGamma);
+                }
+
                 break;
             default:
                 throw new \InvalidArgumentException('Unknown type trying to handle gamma notification');

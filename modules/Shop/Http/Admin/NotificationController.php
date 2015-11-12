@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Modules\Shop\Gamma\GammaNotification;
+use Modules\Shop\Gamma\GammaSelection;
 use Modules\Shop\Jobs\Gamma\Notification\AcceptGammaNotification;
 use Modules\Shop\Jobs\Gamma\Notification\ReviewGammaNotification;
 use Modules\System\Http\AdminController;
@@ -58,12 +59,29 @@ class NotificationController extends AdminController
         return $this->refreshedPageData($notifications, $request);
     }
 
-    public function deny(GammaNotification $notifications, Request $request, Pusher $pusher)
+    public function deny(GammaNotification $notifications, Request $request, Pusher $pusher, GammaSelection $gamma)
     {
         $requested = $this->requestedNotifications($notifications, $request);
 
         foreach($requested as $notification)
         {
+            if($notification->product && $notification->type == 'deactivate')
+            {
+                //when denying a deactivating of a product, we need to make sure the combination is still selected
+                $exists = $gamma->where('category_id', $notification->category->id)
+                    ->where('brand_id', $notification->brand->id)
+                    ->first();
+
+                if(!$exists)
+                {
+                    $gamma->create([
+                        'account_id' => $notification->account_id,
+                        'brand_id' => $notification->brand_id,
+                        'category_id' => $notification->category_id,
+                    ]);
+                }
+            }
+
             $pusher->trigger(pusher_account_channel(), 'gamma.gamma_notification.denied', $notification->toArray());
 
             $notification->delete();
@@ -74,7 +92,7 @@ class NotificationController extends AdminController
 
     protected function refreshedPageData($notifications, Request $request)
     {
-        $relations = ['brand', 'brand.translations', 'category', 'category.translations'];
+        $relations = ['brand', 'brand.translations', 'category', 'category.translations', 'product', 'product.translations'];
 
         $result = $notifications->notBeingProcessed()->with($relations)->orderBy('created_at', 'asc')->paginate();
 

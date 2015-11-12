@@ -15,7 +15,7 @@ trait GammaNotificationHelpers
             ->count() > 0;
     }
 
-    protected function cancelExisting(GammaNotification $notification, Brand $brand, Category $category, Pusher $pusher)
+    protected function cancelExistingGamma(GammaNotification $notification, Brand $brand, Category $category, Pusher $pusher)
     {
         $notifications = $notification->where('brand_id', $brand->id)
             ->where('category_id', $category->id)
