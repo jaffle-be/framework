@@ -6,7 +6,6 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Modules\Shop\Gamma\GammaNotification;
 use Modules\Shop\Gamma\GammaSelection;
 use Modules\Shop\Gamma\ProductSelection;
-use Modules\Shop\Jobs\Gamma\ActivateProduct;
 use Modules\Shop\Product\CatalogRepositoryInterface;
 use Pusher;
 
@@ -27,43 +26,21 @@ class ReviewGammaNotification extends Job implements SelfHandling, ShouldQueue
 
         switch ($this->notification->type) {
             case 'activate':
-                //insert this as a gamma selection
                 $this->insertNewGammaSelection($gamma, $notification);
-                //we should generate a notification for all products within this scope.
 
-                $catalog->chunkWithinBrandCategory($notification->brand, $notification->category, function ($products) use ($notifications, $notification, $productGamma) {
-
-                    foreach ($products as $product) {
-
-                        $notificationPayload = [
-                            'product_id'  => $product->id,
-                            'category_id' => $notification->category->id,
-                            'brand_id'    => $notification->brand->id,
-                            'account_id'  => $notification->account->id,
-                            'type'        => 'activate',
-                        ];
-
-                        $notification->newInstance($notificationPayload);
-                        $notification->save();
-
-                        $this->dispatch(new ActivateProduct($product, $notification->category, $notification->account));
-                    }
-                });
+                $this->notifyWithinScope($catalog, $productGamma, 'activate');
 
                 break;
             case 'deactivate':
-                //insert this as a gamma selection
-                $selections = $gamma->where(['category_id' => $notification->category->id, 'brand_id' => $notification->brand->id])->get();
+                $this->deleteExistingGammaSelection($gamma, $notification);
 
-                foreach ($selections as $selection) {
-                    $selection->delete();
-                }
+                $this->notifyWithinScope($catalog, $productGamma, 'deactivate');
 
-                //we should generate a notification for all products within this scope.
                 break;
         }
 
         $pusher->trigger(pusher_account_channel(), 'gamma.gamma_notification.confirmed', $this->notification->toArray());
+
         $this->notification->delete();
     }
 
@@ -81,6 +58,81 @@ class ReviewGammaNotification extends Job implements SelfHandling, ShouldQueue
 
         $selection = $gamma->newInstance($instancePayload);
         $selection->save();
+    }
+
+    /**
+     * @param CatalogRepositoryInterface $catalog
+     * @param                            $status
+     */
+    protected function notifyWithinScope(CatalogRepositoryInterface $catalog, ProductSelection $selections, $status)
+    {
+        $notification = $this->notification;
+
+        $callback = function ($products) use ($notification, $selections, $status) {
+
+            //when notifying, we do not want to generate a warning for something that's already in that status.
+            $records = $selections->newQuery()->withTrashed()
+                ->whereIn('product_id', $products->lists('id')->toArray())
+                ->lists('product_id')->get()->keyBy('product_id');
+
+            foreach ($products as $product) {
+
+                if($status == 'activate')
+                {
+                    $record = $records->get($product->id);
+
+                    //currently inactive
+                    //no record ,
+                    //or a trashed record
+                    if(!$record || $record->deleted_at)
+                    {
+                        $notificationPayload = [
+                            'product_id'  => $product->id,
+                            'category_id' => $notification->category->id,
+                            'brand_id'    => $notification->brand->id,
+                            'account_id'  => $notification->account->id,
+                            'type'        => $status,
+                        ];
+
+                        $productNotification = $notification->newInstance($notificationPayload);
+                        $productNotification->save();
+                    }
+                }
+                else{
+
+                    //active means
+                    //a record which is not trashed.
+                    if($record && !$record->deleted_at)
+                    {
+                        $notificationPayload = [
+                            'product_id'  => $product->id,
+                            'category_id' => $notification->category->id,
+                            'brand_id'    => $notification->brand->id,
+                            'account_id'  => $notification->account->id,
+                            'type'        => $status,
+                        ];
+
+                        $productNotification = $notification->newInstance($notificationPayload);
+                        $productNotification->save();
+                    }
+                }
+            }
+        };
+
+        $catalog->chunkWithinBrandCategory($notification->brand, $notification->category, $callback);
+    }
+
+    /**
+     * @param GammaSelection $gamma
+     * @param                $notification
+     */
+    protected function deleteExistingGammaSelection(GammaSelection $gamma, $notification)
+    {
+        $selections = $gamma->where(['category_id' => $notification->category->id, 'brand_id' => $notification->brand->id])->get();
+
+        foreach ($selections as $selection) {
+            $selection->delete();
+        }
     }
 
 }
