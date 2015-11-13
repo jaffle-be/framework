@@ -12,7 +12,7 @@ class DatabaseSeeder extends Seeder
         'shopTable'      => 10,
         'blogTable'      => 10,
         'portfolioTable' => 10,
-        'pagesTable'     => 10
+        'pagesTable'     => 3
     ];
 
     /**
