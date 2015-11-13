@@ -6,8 +6,9 @@ use Modules\Shop\Gamma\GammaSelection;
 use Modules\Shop\Gamma\ProductSelection;
 use Modules\Shop\Jobs\Gamma\CleanupDetail;
 use Modules\Shop\Jobs\Gamma\DeactivateProduct;
-use Modules\Shop\Jobs\Gamma\Notification\AcceptGammaNotification;
-use Modules\Shop\Jobs\Gamma\Notification\ReviewGammaNotification;
+use Modules\Shop\Jobs\Gamma\Notification\Handlers\AcceptGammaNotification;
+use Modules\Shop\Jobs\Gamma\Notification\Handlers\DenyGammaNotification;
+use Modules\Shop\Jobs\Gamma\Notification\Handlers\ReviewGammaNotification;
 use Modules\System\Http\AdminController;
 use Pusher;
 
@@ -62,44 +63,16 @@ class NotificationController extends AdminController
         return $this->refreshedPageData($notifications, $request);
     }
 
-    public function deny(GammaNotification $notifications, Request $request, Pusher $pusher, GammaSelection $gamma, ProductSelection $selections)
+    public function deny(GammaNotification $notifications, Request $request)
     {
         $requested = $this->requestedNotifications($notifications, $request);
 
         foreach($requested as $notification)
         {
-            if($notification->product && $notification->type == 'deactivate')
-            {
-                //when denying a deactivating of a product, we need to make sure the combination is still selected
-                $exists = $gamma->where('category_id', $notification->category->id)
-                    ->where('brand_id', $notification->brand->id)
-                    ->first();
+            $notification->processing = true;
+            $notification->save();
 
-                if(!$exists)
-                {
-                    $gamma->create([
-                        'account_id' => $notification->account_id,
-                        'brand_id' => $notification->brand_id,
-                        'category_id' => $notification->category_id,
-                    ]);
-                }
-            }
-
-            if($notification->product && $notification->type == 'activate')
-            {
-                //when denying an activation, we should make sure the record is there
-                //so we trigger a deactivate instead.
-                $this->dispatch(new DeactivateProduct($notification->product, $notification->category, $notification->account));
-
-                if($selections->countActiveProducts($notification->brand_id, $notification->category_id) == 0)
-                {
-                    $this->dispatch(new CleanupDetail($notification->brand, $notification->category, $notification->account));
-                }
-            }
-
-            $pusher->trigger(pusher_account_channel(), 'gamma.gamma_notification.denied', $notification->toArray());
-
-            $notification->delete();
+            $this->dispatch(new DenyGammaNotification($notification));
         }
 
         return $this->refreshedPageData($notifications, $request);

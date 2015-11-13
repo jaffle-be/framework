@@ -1,4 +1,4 @@
-<?php namespace Modules\Shop\Jobs\Gamma\Notification;
+<?php namespace Modules\Shop\Jobs\Gamma\Notification\Handlers;
 
 use App\Jobs\Job;
 use Illuminate\Contracts\Bus\SelfHandling;
