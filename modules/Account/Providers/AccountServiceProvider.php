@@ -15,7 +15,10 @@ class AccountServiceProvider extends ServiceProvider
     {
         parent::boot();
 
-        $this->app['Modules\Account\AccountManager']->boot();
+        if(config('system.installed'))
+        {
+            $this->app['Modules\Account\AccountManager']->boot();
+        }
     }
 
     /**
