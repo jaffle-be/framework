@@ -34,9 +34,9 @@ class ProductSelection extends Model
         return $this->belongsTo('Modules\Shop\Product\Brand');
     }
 
-    public function category()
+    public function categories()
     {
-        return $this->belongsTo('Modules\Shop\Product\Category');
+        return $this->hasMany('Modules\Shop\Gamma\ProductCategorySelection', 'selection_id');
     }
 
     /**
@@ -47,8 +47,11 @@ class ProductSelection extends Model
      */
     public function countActiveProducts($brand_id, $category_id)
     {
-        return $this->where('brand_id', $brand_id)
+        return $this->join('product_gamma_categories', 'product_gamma.id', '=', 'product_gamma_categories.selection_id')
+            ->where('brand_id', $brand_id)
             ->where('category_id', $category_id)
+            //need to set this ourselves, (using whereHas didnt seem to resolve this.)
+            ->whereNull('product_gamma_categories.deleted_at')
             ->count();
     }
 

@@ -4,12 +4,13 @@ use App\Jobs\Job;
 use Illuminate\Contracts\Bus\SelfHandling;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Modules\Account\Account;
+use Modules\Shop\Gamma\GammaNotification;
 use Modules\Shop\Gamma\GammaSelection;
 use Modules\Shop\Gamma\ProductSelection;
 use Modules\Shop\Product\Brand;
 use Modules\Shop\Product\Category;
 
-class CleanupDetail extends Job implements SelfHandling, ShouldQueue
+class CleanupDetail extends Job implements SelfHandling
 {
 
     /**
@@ -35,21 +36,41 @@ class CleanupDetail extends Job implements SelfHandling, ShouldQueue
     }
 
 
-    public function handle(GammaSelection $gamma, ProductSelection $products)
+    public function handle(GammaSelection $gamma, ProductSelection $products, GammaNotification $notifications)
     {
-        $params = [
-            'category_id' => $this->category->id,
+        if($notifications->where([
             'brand_id' => $this->brand->id,
-        ];
+            'category_id' => $this->category->id,
+        ])->count())
+        {
+            return;
+        }
 
-        $selections = $products->withTrashed()->where($params)->get();
+        $selections = $products
+            ->join('product_gamma_categories', 'product_gamma_categories.selection_id', '=', 'product_gamma.id')
+            ->withTrashed()
+            ->where('brand_id', $this->brand->id)
+            ->where('category_id', $this->category->id)
+            ->get(['product_gamma.*']);
 
         foreach($selections as $selection)
         {
+            $selections->load(['categories' => function($query){
+                $query->withTrashed();
+            }]);
+
+            foreach($selection->categories as $category)
+            {
+                $category->forceDelete();
+            }
+
             $selection->forceDelete();
         }
 
-        $selections = $gamma->where($params)->get();
+        $selections = $gamma->where([
+            'brand_id' => $this->brand->id,
+            'category_id' => $this->category->id
+        ])->get();
 
         foreach($selections as $selection)
         {

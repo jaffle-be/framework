@@ -13,6 +13,7 @@ use Pusher;
 
 class DenyGammaNotification extends Job implements ShouldQueue, SelfHandling
 {
+
     use DispatchesJobs;
 
     protected $notification;
@@ -24,38 +25,83 @@ class DenyGammaNotification extends Job implements ShouldQueue, SelfHandling
 
     public function handle(Pusher $pusher, GammaSelection $gamma, ProductSelection $selections)
     {
-        if($this->notification->product && $this->notification->type == 'deactivate')
-        {
-            //when denying a deactivating of a product, we need to make sure the combination is still selected
-            $exists = $gamma->where('category_id', $this->notification->category->id)
-                ->where('brand_id', $this->notification->brand->id)
-                ->first();
-
-            if(!$exists)
-            {
-                $gamma->create([
-                    'account_id' => $this->notification->account_id,
-                    'brand_id' => $this->notification->brand_id,
-                    'category_id' => $this->notification->category_id,
-                ]);
-            }
+        if ($this->isProductDeactivation()) {
+            $this->denyDeactivation($gamma);
         }
 
-        if($this->notification->product && $this->notification->type == 'activate')
-        {
+        if ($this->isProductActivation()) {
             //when denying an activation, we should make sure the record is there
             //so we trigger a deactivate instead.
-            $this->dispatch(new DeactivateProduct($this->notification->product, $this->notification->category, $this->notification->account));
-
-            if($selections->countActiveProducts($this->notification->brand_id, $this->notification->category_id) == 0)
-            {
-                $this->dispatch(new CleanupDetail($this->notification->brand, $this->notification->category, $this->notification->account));
-            }
+            $this->deactivateProduct();
         }
 
+        $this->finish($pusher);
+
+        $this->cleanup($selections);
+    }
+
+    /**
+     * @return bool
+     */
+    protected function isProductActivation()
+    {
+        return $this->notification->product && $this->notification->type == 'activate';
+    }
+
+    /**
+     * @param GammaSelection $gamma
+     */
+    protected function denyDeactivation(GammaSelection $gamma)
+    {
+        //when denying a deactivating of a product, we need to make sure the combination is still selected
+        $exists = $gamma->where('category_id', $this->notification->category->id)
+            ->where('brand_id', $this->notification->brand->id)
+            ->first();
+
+        if (!$exists) {
+            $gamma->create([
+                'account_id'  => $this->notification->account_id,
+                'brand_id'    => $this->notification->brand_id,
+                'category_id' => $this->notification->category_id,
+            ]);
+        }
+    }
+
+    /**
+     * @return bool
+     */
+    protected function isProductDeactivation()
+    {
+        return $this->notification->product && $this->notification->type == 'deactivate';
+    }
+
+    protected function deactivateProduct()
+    {
+        $this->dispatch(new DeactivateProduct($this->notification->product, $this->notification->category, $this->notification->account));
+    }
+
+    /**
+     * @param Pusher $pusher
+     *
+     * @throws \Exception
+     */
+    protected function finish(Pusher $pusher)
+    {
         $pusher->trigger(pusher_account_channel(), 'gamma.gamma_notification.denied', $this->notification->toArray());
 
         $this->notification->delete();
+    }
+
+    /**
+     * @param ProductSelection $selections
+     */
+    protected function cleanup(ProductSelection $selections)
+    {
+        if ($this->isProductActivation()) {
+            if ($selections->countActiveProducts($this->notification->brand_id, $this->notification->category_id) == 0) {
+                $this->dispatch(new CleanupDetail($this->notification->brand, $this->notification->category, $this->notification->account));
+            }
+        }
     }
 
 }

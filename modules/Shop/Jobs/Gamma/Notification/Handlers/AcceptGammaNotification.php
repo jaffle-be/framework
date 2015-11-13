@@ -27,42 +27,28 @@ class AcceptGammaNotification extends Job implements SelfHandling, ShouldQueue
 
     public function handle(CatalogRepositoryInterface $catalog, GammaSelection $gamma, ProductSelection $productGamma, Pusher $pusher)
     {
-        $type = $this->notification->type;
-
-        switch ($type) {
-            case 'activate':
-
-                if ($this->notification->product) {
-                    $this->dispatch(new ActivateProduct($this->notification->product, $this->notification->category, $this->notification->account));
-                } else {
-                    $this->activate($catalog, $gamma);
-                }
-
-                break;
-            case 'deactivate':
-                if ($this->notification->product) {
-                    $this->dispatch(new DeactivateProduct($this->notification->product, $this->notification->category, $this->notification->account));
-                } else {
-                    $this->deactivate($gamma, $productGamma);
-                }
-
-                //when we deactivated something, we can check if everything is deactivated, if so.. we should also deactivate the selection
-                //so our product selections table is as small as possible.
-                if ($productGamma->countActiveProducts($this->notification->brand_id, $this->notification->category_id) == 0) {
-                    $this->dispatch(new CleanupDetail($this->notification->brand, $this->notification->category, $this->notification->account));
-                };
-
-                break;
-            default:
-                throw new \InvalidArgumentException('Unknown type trying to handle gamma notification');
+        if($this->activating())
+        {
+            if ($this->isProductSpecific()) {
+                $this->activateProduct();
+            } else {
+                $this->activateBatch($catalog, $gamma);
+            }
+        }
+        else{
+            if ($this->isProductSpecific()) {
+                $this->deactivateProduct();
+            } else {
+                $this->deactivateBatch($productGamma);
+            }
         }
 
-        $pusher->trigger(pusher_account_channel(), 'gamma.gamma_notification.confirmed', $this->notification->toArray());
+        $this->finish($pusher);
 
-        $this->notification->delete();
+        $this->cleanup($productGamma);
     }
 
-    protected function activate(CatalogRepositoryInterface $catalog, GammaSelection $gamma)
+    protected function activateBatch(CatalogRepositoryInterface $catalog, GammaSelection $gamma)
     {
         $notification = $this->notification;
 
@@ -75,19 +61,40 @@ class AcceptGammaNotification extends Job implements SelfHandling, ShouldQueue
         });
     }
 
-    protected function deactivate(GammaSelection $gamma, ProductSelection $productGamma)
+    protected function deactivateBatch(ProductSelection $productGamma)
     {
-        $brand = $this->notification->brand->id;
-        $category = $this->notification->category->id;
+        $category_id = $this->notification->category->id;
+        $brand_id = $this->notification->brand->id;
 
-        while ($productGamma->countActiveProducts($brand, $category) > 0) {
+        while ($productGamma->countActiveProducts($brand_id, $category_id) > 0) {
 
-            $selections = $productGamma->where('brand_id', $brand)
-                ->where('category_id', $category)
+            $selections = $productGamma
+                ->whereHas('categories', function($query) use ($category_id){
+                    $query->where('category_id', $category_id);
+                })
+                ->where('brand_id', $brand_id)
                 ->take(200)->get();
 
+            $selections->load(['categories' => function($query) use ($category_id){
+                $query->withTrashed();
+            }]);
+
             foreach ($selections as $selection) {
-                $selection->delete();
+
+                $category = $selection->categories->first(function($key, $item) use ($category_id){
+                    return $item->category_id == $category_id;
+                })->first();
+
+                $category->delete();
+
+                $active = $selection->categories->filter(function($item){
+                    return $item->trashed();
+                });
+
+                if($active->count() == 0)
+                {
+                    $selection->delete();
+                }
             }
         }
     }
@@ -102,6 +109,57 @@ class AcceptGammaNotification extends Job implements SelfHandling, ShouldQueue
         ]);
 
         $selected->save();
+    }
+
+    /**
+     * @return mixed
+     */
+    protected function isProductSpecific()
+    {
+        return $this->notification->product;
+    }
+
+    /**
+     * @return mixed
+     */
+    protected function activateProduct()
+    {
+        return $this->dispatch(new ActivateProduct($this->notification->product, $this->notification->category, $this->notification->account));
+    }
+
+    /**
+     * @return mixed
+     */
+    protected function deactivateProduct()
+    {
+        return $this->dispatch(new DeactivateProduct($this->notification->product, $this->notification->category, $this->notification->account));
+    }
+
+    /**
+     * @param ProductSelection $productGamma
+     */
+    protected function cleanup(ProductSelection $productGamma)
+    {
+        if ($productGamma->countActiveProducts($this->notification->brand_id, $this->notification->category_id) == 0) {
+            $this->dispatch(new CleanupDetail($this->notification->brand, $this->notification->category, $this->notification->account));
+        };
+    }
+
+    protected function activating()
+    {
+        return $type = $this->notification->type == 'activate';
+    }
+
+    /**
+     * @param Pusher $pusher
+     *
+     * @throws \Exception
+     */
+    protected function finish(Pusher $pusher)
+    {
+        $pusher->trigger(pusher_account_channel(), 'gamma.gamma_notification.confirmed', $this->notification->toArray());
+
+        $this->notification->delete();
     }
 
 }
