@@ -10,6 +10,7 @@ use Modules\Shop\Product\Product;
 
 class DeactivateProduct extends Job implements SelfHandling
 {
+
     protected $product;
 
     protected $categorie;
@@ -28,31 +29,28 @@ class DeactivateProduct extends Job implements SelfHandling
         //when no record exists, insert and delete (or do it manually)
         //when a record exists trash it.
         $payload = [
-            'account_id'  => $this->account->id,
-            'product_id'  => $this->product->id,
-            'brand_id'    => $this->product->brand_id,
+            'account_id' => $this->account->id,
+            'product_id' => $this->product->id,
+            'brand_id'   => $this->product->brand_id,
         ];
 
-        $record = $selection->newQuery()->where($payload)->first();
+        $record = $this->getExisting($selection);
 
-        if(!$record)
-        {
+        if (!$record) {
             $record = $selection->create($payload);
 
             $category = $this->attachCategory($record);
-        }
-        else{
+        } else {
             $category_id = $this->category->id;
 
-            $record->load(['categories' => function($query) use ($category_id){
+            $record->load(['categories' => function ($query) use ($category_id) {
                 $query->where('category_id', $category_id);
                 $query->withTrashed();
             }]);
 
             $category = $record->categories->first();
 
-            if(!$category)
-            {
+            if (!$category) {
                 $category = $this->attachCategory($record);
             }
         }
@@ -61,8 +59,7 @@ class DeactivateProduct extends Job implements SelfHandling
         $category->delete();
 
         //only delete the base record when no more active categories are left.
-        if($record->categories()->count() == 0)
-        {
+        if ($record->categories()->count() == 0) {
             $record->delete();
         }
     }
@@ -79,5 +76,23 @@ class DeactivateProduct extends Job implements SelfHandling
         $record->categories()->save($category);
 
         return $category;
+    }
+
+    /**
+     * do the query manually, so we won't depend on account manager.
+     * if this ever get's called in a global system context,
+     * it will now still work.
+     *
+     * @param ProductSelection $selection
+     *
+     * @return \Illuminate\Database\Eloquent\Model|null|static
+     */
+    protected function getExisting(ProductSelection $selection)
+    {
+        return $selection->newQueryWithoutScopes()
+            ->where('account_id', $this->account->id)
+            ->where('product_id', $this->product->id)
+            ->where('brand_id', $this->product->brand_id)
+            ->first();
     }
 }

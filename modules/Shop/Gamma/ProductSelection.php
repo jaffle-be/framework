@@ -45,14 +45,27 @@ class ProductSelection extends Model
      *
      * @return int
      */
-    public function countActiveProducts($brand_id, $category_id)
+    public function countActiveProducts($brand_id, $category_id, $account_id)
     {
-        return $this->join('product_gamma_categories', 'product_gamma.id', '=', 'product_gamma_categories.selection_id')
+        return $this->newQueryWithoutScopes()
+            ->join('product_gamma_categories', 'product_gamma.id', '=', 'product_gamma_categories.selection_id')
             ->where('brand_id', $brand_id)
             ->where('category_id', $category_id)
+            ->where('account_id', $account_id)
             //need to set this ourselves, (using whereHas didnt seem to resolve this.)
             ->whereNull('product_gamma_categories.deleted_at')
             ->count();
+    }
+
+    public function chunkActiveProducts($brand_id, $category_id, $account_id)
+    {
+        return $this->newQueryWithoutScopes()
+            ->join('product_gamma_categories', 'product_gamma.id', '=', 'product_gamma_categories.selection_id')
+            ->where('brand_id', $brand_id)
+            ->where('category_id', $category_id)
+            ->where('account_id', $account_id)
+            ->whereNull('product_gamma_categories.deleted_at')
+            ->take(200)->get(['product_gamma.*']);
     }
 
 }

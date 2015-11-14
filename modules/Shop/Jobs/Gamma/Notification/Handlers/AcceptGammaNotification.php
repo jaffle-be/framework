@@ -45,7 +45,7 @@ class AcceptGammaNotification extends Job implements SelfHandling, ShouldQueue
 
         $this->finish($pusher);
 
-        $this->cleanup($productGamma);
+        $this->cleanup();
     }
 
     protected function activateBatch(CatalogRepositoryInterface $catalog, GammaSelection $gamma)
@@ -65,15 +65,12 @@ class AcceptGammaNotification extends Job implements SelfHandling, ShouldQueue
     {
         $category_id = $this->notification->category->id;
         $brand_id = $this->notification->brand->id;
+        $account_id = $this->notification->account->id;
 
-        while ($productGamma->countActiveProducts($brand_id, $category_id) > 0) {
+        //chunk alike thinking here
+        while ($productGamma->countActiveProducts($brand_id, $category_id, $account_id) > 0) {
 
-            $selections = $productGamma
-                ->whereHas('categories', function($query) use ($category_id){
-                    $query->where('category_id', $category_id);
-                })
-                ->where('brand_id', $brand_id)
-                ->take(200)->get();
+            $selections = $productGamma->chunkActiveProducts($brand_id, $category_id, $account_id);
 
             $selections->load(['categories' => function($query) use ($category_id){
                 $query->withTrashed();
@@ -135,19 +132,14 @@ class AcceptGammaNotification extends Job implements SelfHandling, ShouldQueue
         return $this->dispatch(new DeactivateProduct($this->notification->product, $this->notification->category, $this->notification->account));
     }
 
-    /**
-     * @param ProductSelection $productGamma
-     */
-    protected function cleanup(ProductSelection $productGamma)
+    protected function cleanup()
     {
-        if ($productGamma->countActiveProducts($this->notification->brand_id, $this->notification->category_id) == 0) {
-            $this->dispatch(new CleanupDetail($this->notification->brand, $this->notification->category, $this->notification->account));
-        };
+        $this->dispatch(new CleanupDetail($this->notification->brand, $this->notification->category, $this->notification->account));
     }
 
     protected function activating()
     {
-        return $type = $this->notification->type == 'activate';
+        return $this->notification->type == 'activate';
     }
 
     /**

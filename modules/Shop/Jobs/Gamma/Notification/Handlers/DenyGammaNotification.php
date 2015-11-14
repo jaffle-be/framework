@@ -6,7 +6,6 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Modules\Shop\Gamma\GammaNotification;
 use Modules\Shop\Gamma\GammaSelection;
-use Modules\Shop\Gamma\ProductSelection;
 use Modules\Shop\Jobs\Gamma\CleanupDetail;
 use Modules\Shop\Jobs\Gamma\DeactivateProduct;
 use Pusher;
@@ -23,7 +22,7 @@ class DenyGammaNotification extends Job implements ShouldQueue, SelfHandling
         $this->notification = $notification;
     }
 
-    public function handle(Pusher $pusher, GammaSelection $gamma, ProductSelection $selections)
+    public function handle(Pusher $pusher, GammaSelection $gamma)
     {
         if ($this->isProductDeactivation()) {
             $this->denyDeactivation($gamma);
@@ -37,7 +36,7 @@ class DenyGammaNotification extends Job implements ShouldQueue, SelfHandling
 
         $this->finish($pusher);
 
-        $this->cleanup($selections);
+        $this->cleanup();
     }
 
     /**
@@ -92,16 +91,9 @@ class DenyGammaNotification extends Job implements ShouldQueue, SelfHandling
         $this->notification->delete();
     }
 
-    /**
-     * @param ProductSelection $selections
-     */
-    protected function cleanup(ProductSelection $selections)
+    protected function cleanup()
     {
-        if ($this->isProductActivation()) {
-            if ($selections->countActiveProducts($this->notification->brand_id, $this->notification->category_id) == 0) {
-                $this->dispatch(new CleanupDetail($this->notification->brand, $this->notification->category, $this->notification->account));
-            }
-        }
+        $this->dispatch(new CleanupDetail($this->notification->brand, $this->notification->category, $this->notification->account));
     }
 
 }
