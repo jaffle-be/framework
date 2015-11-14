@@ -1,8 +1,8 @@
 <?php namespace Test\Routes;
 
-use Test\TestCase;
+use Test\AdminTestCase;
 
-class AdminRoutesTest extends TestCase
+class AdminRoutesTest extends AdminTestCase
 {
 
     public function testIndex()

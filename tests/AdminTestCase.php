@@ -2,7 +2,7 @@
 
 use Illuminate\Foundation\Console\Kernel;
 
-class TestCase extends \Illuminate\Foundation\Testing\TestCase
+class AdminTestCase extends \Illuminate\Foundation\Testing\TestCase
 {
     /**
      * The base URL to use while testing the application.
@@ -19,6 +19,8 @@ class TestCase extends \Illuminate\Foundation\Testing\TestCase
     public function createApplication()
     {
         $app = require __DIR__ . '/../bootstrap/app.php';
+
+        putenv('RUNNING_TESTS_FRONT=false');
 
         $app->make(Kernel::class)->bootstrap();
 

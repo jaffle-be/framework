@@ -62,6 +62,11 @@ class ShopController extends FrontController
     {
         $product = $product->product;
 
+        if(!$product)
+        {
+            abort(404);
+        }
+
         $product->load(['translations', 'images', 'images.translations']);
 
         return $this->theme->render('shop.product', ['product' => $product]);

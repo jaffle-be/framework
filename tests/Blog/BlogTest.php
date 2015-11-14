@@ -1,13 +1,11 @@
 <?php namespace Test\Blog;
 
 use Modules\Account\Account;
-use Modules\Blog\Post;
-use Modules\Blog\PostTranslation;
 use Modules\Users\User;
+use Test\FrontTestCase;
 use Test\Routes\RouteTests;
-use Test\TestCase;
 
-class BlogTest extends TestCase
+class BlogTest extends FrontTestCase
 {
     use RouteTests;
 

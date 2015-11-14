@@ -1,8 +1,8 @@
 <?php namespace Test\Routes;
 
-use Test\TestCase;
+use Test\FrontTestCase;
 
-class FrontRoutesTest extends TestCase
+class FrontRoutesFrontTest extends FrontTestCase
 {
 
     use RouteTests;

@@ -1,10 +1,11 @@
 <?php namespace Test\Tags;
 
 use Modules\Tags\Tag;
+use Test\FrontTestCase;
 use Test\Routes\RouteTests;
 use Test\TestCase;
 
-class TagsTest extends TestCase
+class TagsTest extends FrontTestCase
 {
 
     use RouteTests;

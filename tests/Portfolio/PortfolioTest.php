@@ -1,10 +1,10 @@
 <?php namespace Test\Portfolio;
 
 use Modules\Portfolio\ProjectTranslation;
+use Test\FrontTestCase;
 use Test\Routes\RouteTests;
-use Test\TestCase;
 
-class PortfolioTest extends TestCase
+class PortfolioTest extends FrontTestCase
 {
 
     use RouteTests;
