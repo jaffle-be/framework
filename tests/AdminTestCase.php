@@ -1,5 +1,6 @@
 <?php namespace Test;
 
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Console\Kernel;
 
 class AdminTestCase extends \Illuminate\Foundation\Testing\TestCase
@@ -30,6 +31,11 @@ class AdminTestCase extends \Illuminate\Foundation\Testing\TestCase
     protected function account()
     {
         return app('Modules\Account\AccountManager')->account();
+    }
+
+    protected function database(Model $model)
+    {
+        return $model->getConnection()->table($model->getTable());
     }
 
 }
