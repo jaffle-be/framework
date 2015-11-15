@@ -69,6 +69,9 @@ class AcceptGammaNotificationTest extends AdminTestCase
     {
         list($category_id, $account_id, $brand_id, $notification) = $this->startDataDeactivation();
 
+        $search = app('Modules\Search\SearchServiceInterface');
+        $search->build('product_gamma');
+
         $job = new AcceptGammaNotification($notification);
         $this->handleJob($job);
 
@@ -108,7 +111,7 @@ class AcceptGammaNotificationTest extends AdminTestCase
     protected function startDataActivation()
     {
         $product = Product::first();
-        $account = Account::create();
+        $account = factory(Account::class)->create();
         $category_id = $product->categories->first()->id;
         $account_id = $account->id;
         $brand_id = $product->brand_id;
@@ -129,7 +132,7 @@ class AcceptGammaNotificationTest extends AdminTestCase
     protected function startDataDeactivation()
     {
         $product = Product::first();
-        $account = Account::create();
+        $account = factory(Account::class)->create();
         $category_id = $product->categories->first()->id;
         $account_id = $account->id;
         $brand_id = $product->brand_id;

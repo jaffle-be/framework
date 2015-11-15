@@ -106,7 +106,7 @@ class DenyGammaNotificationTest extends AdminTestCase
         $product2->brand_id = $brand->id;
         $product2->save();
 
-        $account = Account::create();
+        $account = factory(Account::class)->create();
         $category = Category::create();
 
         $product1->categories()->attach($category);

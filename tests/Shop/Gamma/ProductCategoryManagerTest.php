@@ -35,6 +35,8 @@ class ProductCategoryManagerFrontTest extends AdminTestCase
         $selection1 = $this->selectDetail($account1, $brand, $category, $product1);
         $selection2 = $this->selectDetail($account3, $brand, $category, $product1);
 
+        $this->updateIndex();
+
         //now we'll manually attach the category to the other product and trigger the attach method
         $pivot1 = \DB::table('product_categories_pivot');
         $pivot1->insert([
@@ -90,16 +92,17 @@ class ProductCategoryManagerFrontTest extends AdminTestCase
         $selection1 = $this->selectDetail($account1, $brand, $category, $product1);
         $selection2 = $this->selectDetail($account3, $brand, $category, $product1);
 
+        $this->updateIndex();
+
         \DB::table('product_categories_pivot')->where([
-            'product_id' => $product1->id,
+            'product_id'  => $product1->id,
             'category_id' => $category->id
         ])->delete();
-
 
         $manager = app('Modules\Shop\Gamma\ProductCategoryManager');
         $manager->detach([
             'category_id' => $category->id,
-            'product_id' => $product1->id
+            'product_id'  => $product1->id
         ]);
 
         //account 1, 3 should be cleaned, but there basically shouldn't even be one record left.
@@ -153,9 +156,9 @@ class ProductCategoryManagerFrontTest extends AdminTestCase
      */
     protected function getTestAccounts()
     {
-        $account1 = Account::create([]);
-        $account2 = Account::create([]);
-        $account3 = Account::create([]);
+        $account1 = factory(Account::class)->create();
+        $account2 = factory(Account::class)->create();
+        $account3 = factory(Account::class)->create();
 
         return array($account1, $account2, $account3);
     }
@@ -188,6 +191,12 @@ class ProductCategoryManagerFrontTest extends AdminTestCase
         ]);
 
         return $selection1;
+    }
+
+    protected function updateIndex()
+    {
+        $search = app('Modules\Search\SearchServiceInterface');
+        $search->build('product_gamma');
     }
 
 }
