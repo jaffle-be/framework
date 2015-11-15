@@ -73,7 +73,7 @@ class ProductCategoryManager
                     $categorySelection->forceDelete();
                 }
 
-                if ($instance->categories()->withTrashed()->count() == 0) {
+                if ($this->otherCategories($instance)) {
                     $instance->forceDelete();
                 }
             }
@@ -106,6 +106,23 @@ class ProductCategoryManager
             'brand_id'    => $product->brand_id,
             'type'        => $status
         ]);
+    }
+
+    /**
+     * make sure to not use relation, since that always adds our globalscopes
+     *
+     * @param ProductSelection $instance
+     *
+     * @return bool
+     */
+    protected function otherCategories(ProductSelection $instance)
+    {
+        $query = $instance->newQueryWithoutScopes();
+
+        $query->join('product_gamma_categories', 'product_gamma_categories.selection_id', '=', 'product_gamma.id')
+            ->where('product_gamma.id', $instance->id);
+
+        return $query->count() == 0;
     }
 
 }
