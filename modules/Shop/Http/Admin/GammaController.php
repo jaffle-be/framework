@@ -25,7 +25,15 @@ class GammaController extends AdminController
 
     public function categories(GammaSelection $gamma, GammaNotification $notification)
     {
-        $categories = Category::with(['translations', 'selection', 'brands', 'brands.translations', 'brands.selection'])->paginate(5);
+        $categories = Category::has('products')->with([
+            'translations',
+            'selection',
+            'brands' => function($query){
+                $query->has('products');
+            },
+            'brands.translations',
+            'brands.selection'
+        ])->paginate(5);
 
         $ids = $categories->lists('id')->toArray();
 
@@ -84,7 +92,15 @@ class GammaController extends AdminController
 
     public function brands(GammaSelection $gamma, GammaNotification $notification)
     {
-        $brands = Brand::with(['translations', 'selection', 'categories', 'categories.translations', 'categories.selection'])->paginate(5);
+        $brands = Brand::has('products')->with([
+            'translations',
+            'selection',
+            'categories' => function($query){
+                $query->has('products');
+            },
+            'categories.translations',
+            'categories.selection'
+        ])->paginate(5);
 
         $ids = $brands->lists('id')->toArray();
 
