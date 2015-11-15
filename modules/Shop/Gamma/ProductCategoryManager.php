@@ -63,17 +63,21 @@ class ProductCategoryManager
                         'account_id' => $record->account_id,
                     ])->first();
 
-            $categorySelection = $instance->categories()
-                ->withTrashed()
-                ->where('category_id', $category_id)
-                ->first();
 
-            if ($categorySelection) {
-                $categorySelection->forceDelete();
-            }
+            if($instance)
+            {
+                $categorySelection = $instance->categories()
+                    ->withTrashed()
+                    ->where('category_id', $category_id)
+                    ->first();
 
-            if ($instance->categories()->withTrashed()->count() == 0) {
-                $instance->forceDelete();
+                if ($categorySelection) {
+                    $categorySelection->forceDelete();
+                }
+
+                if ($instance->categories()->withTrashed()->count() == 0) {
+                    $instance->forceDelete();
+                }
             }
         }
     }

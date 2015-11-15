@@ -75,12 +75,7 @@ class ProductController extends AdminController{
 
     public function destroy(Product $product)
     {
-        if($product->delete())
-        {
-            $product->id = false;
-        }
-
-        return $product;
+        return $this->deleteProduct($product);
     }
 
     public function batchDestroy(Request $request, Product $product)
@@ -94,7 +89,7 @@ class ProductController extends AdminController{
 
             foreach($products as $product)
             {
-                $product->delete();
+                $this->deleteProduct($product);
             }
         }
     }
@@ -158,6 +153,25 @@ class ProductController extends AdminController{
     protected function relations()
     {
         return ['translations', 'translations'];
+    }
+
+    /**
+     * @param Product $product
+     *
+     * @return Product
+     * @throws \Exception
+     */
+    protected function deleteProduct(Product $product)
+    {
+        //need to make sure everything is deleted in gamma.
+        //this will happen if we detach categories before deleting.
+        $product->categories()->sync([]);
+
+        if ($product->delete()) {
+            $product->id = false;
+        }
+
+        return $product;
     }
 
 }
