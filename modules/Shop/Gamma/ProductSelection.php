@@ -1,17 +1,17 @@
 <?php namespace Modules\Shop\Gamma;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Modules\Search\Model\Searchable;
 use Modules\Search\Model\SearchableTrait;
+use Modules\System\MySoftDeletes;
 use Modules\System\Scopes\ModelAccountResource;
 
 class ProductSelection extends Model implements Searchable
 {
 
+    use MySoftDeletes;
     use SearchableTrait;
     use ModelAccountResource;
-    use SoftDeletes;
 
     protected $table = 'product_gamma';
 

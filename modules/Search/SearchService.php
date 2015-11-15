@@ -250,11 +250,14 @@ class SearchService implements SearchServiceInterface
 
     public function delete(Searchable $type)
     {
-        $params = $this->data($type);
+        if(method_exists($type, 'forceDelete') && $type->beingFullyDeleted())
+        {
+            $params = $this->data($type);
 
-        $params = array_except($params, ['body']);
+            $params = array_except($params, ['body']);
 
-        $this->client->delete($params);
+            $this->client->delete($params);
+        }
     }
 
     public function update(Searchable $type)
@@ -273,8 +276,13 @@ class SearchService implements SearchServiceInterface
             'id'   => $type->getSearchableId(),
             'body' => [
                 'doc' => $type->getSearchableDocument()
-            ]
+            ],
         ]);
+
+        if($type->useSearchableRouting())
+        {
+            $params['routing'] = $type->getSearchableRouting();
+        }
 
         $this->client->update($params);
     }
