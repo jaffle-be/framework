@@ -40,6 +40,18 @@ interface Searchable
     public function getSearchableIndex();
 
     /**
+     * @return bool
+     */
+    public function useSearchableRouting();
+
+    /**
+     * Get the routing for searching.
+     *
+     * @return string
+     */
+    public function getSearchableRouting();
+
+    /**
      * Returns a Queryable object for the type.
      *
      * @return Queryable

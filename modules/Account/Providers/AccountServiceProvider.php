@@ -36,6 +36,7 @@ class AccountServiceProvider extends ServiceProvider
     protected function listeners()
     {
         $this->cacheBusting();
+        $this->indexers();
     }
 
     protected function observers()
@@ -61,6 +62,12 @@ class AccountServiceProvider extends ServiceProvider
                 app('cache')->forget('account-logo');
             }
         });
+    }
+
+    protected function indexers()
+    {
+        $this->app['events']->subscribe('Modules\\Account\\IndexManager');
+
     }
 
 }

@@ -2,6 +2,8 @@
 
 use Modules\Blog\Post;
 use Modules\Portfolio\Project;
+use Modules\Shop\Gamma\ProductCategorySelection;
+use Modules\Shop\Gamma\ProductSelection;
 use Modules\Users\User;
 
 return [
@@ -49,7 +51,18 @@ return [
             'with' => [
 
             ]
-        ]
+        ],
+
+        'product_gamma' => [
+            'routing' => 'account_id',
+            'class' => ProductSelection::class,
+            'with' => [
+                'categories' => [
+                    'class' => ProductCategorySelection::class,
+                    'key' => 'selection_id',
+                ]
+            ],
+        ],
 
     ],
 

@@ -25,6 +25,11 @@ trait SearchableTrait
     protected static $searchableIndex;
 
     /**
+     * @var
+     */
+    protected static $searchableRouting = false;
+
+    /**
      * @param SearchServiceInterface $client
      */
     public function setSearchableService(SearchServiceInterface $client)
@@ -54,6 +59,19 @@ trait SearchableTrait
     public function getSearchableIndex()
     {
         return static::$searchableIndex;
+    }
+
+    public function useSearchableRouting()
+    {
+        return config('search.types.' . $this->getSearchableType() . '.routing', false);
+    }
+
+    /**
+     * @return string
+     */
+    public function getSearchableRouting()
+    {
+        return $this->getAttribute($this->useSearchableRouting());
     }
 
     /**
