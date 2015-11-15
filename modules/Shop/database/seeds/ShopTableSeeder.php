@@ -21,12 +21,10 @@ class ShopTableSeeder extends Seeder
 
     public function run($count = 15)
     {
-        if(Brand::count() == 0)
-        {
+        if (Brand::count() == 0) {
             $this->call('BrandTableSeeder');
         }
-        if(Category::count() == 0)
-        {
+        if (Category::count() == 0) {
             $this->call('CategoryTableSeeder');
         }
 
@@ -80,12 +78,10 @@ class ShopTableSeeder extends Seeder
             }
         }
 
-        foreach([1, 2] as $accountid)
-        {
+        foreach ([1, 2] as $accountid) {
 
-            Product::chunk(250, function($products) use ($accountid){
-                foreach($products as $product)
-                {
+            Product::chunk(250, function ($products) use ($accountid) {
+                foreach ($products as $product) {
                     $this->prices($product, $accountid);
                     $this->promotions($product, $accountid);
                 }

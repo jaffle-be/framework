@@ -7,7 +7,8 @@ use Modules\Shop\Jobs\UpdateProduct;
 use Modules\Shop\Product\Product;
 use Modules\System\Http\AdminController;
 
-class ProductController extends AdminController{
+class ProductController extends AdminController
+{
 
     public function index(Request $request)
     {
@@ -62,8 +63,8 @@ class ProductController extends AdminController{
         $product->load($this->relations());
 
         $payload = [
-            'product'  => $product,
-            'input' => translation_input($request, ['name', 'title', 'content', 'published'])
+            'product' => $product,
+            'input'   => translation_input($request, ['name', 'title', 'content', 'published'])
         ];
 
         if (!$this->dispatchFromArray(UpdateProduct::class, $payload)) {
@@ -82,13 +83,11 @@ class ProductController extends AdminController{
     {
         $ids = $request->get('products', []);
 
-        if(is_array($ids) && count($ids))
-        {
+        if (is_array($ids) && count($ids)) {
             $products = $product->whereIn('products.id', $ids)
                 ->get();
 
-            foreach($products as $product)
-            {
+            foreach ($products as $product) {
                 $this->deleteProduct($product);
             }
         }
@@ -98,17 +97,14 @@ class ProductController extends AdminController{
     {
         $ids = $request->get('products', []);
 
-        if(is_array($ids) && count($ids))
-        {
+        if (is_array($ids) && count($ids)) {
             $products = $product->whereIn('products.id', $ids)
                 ->get();
 
-            foreach($products as $product)
-            {
+            foreach ($products as $product) {
                 $translation = $product->translate($request->get('locale'));
 
-                if($translation)
-                {
+                if ($translation) {
                     $translation->published = true;
                 }
 
@@ -121,17 +117,14 @@ class ProductController extends AdminController{
     {
         $ids = $request->get('products', []);
 
-        if(is_array($ids) && count($ids))
-        {
+        if (is_array($ids) && count($ids)) {
             $products = $product->whereIn('products.id', $ids)
                 ->get();
 
-            foreach($products as $product)
-            {
+            foreach ($products as $product) {
                 $translation = $product->translate($request->get('locale'));
 
-                if($translation)
-                {
+                if ($translation) {
                     $translation->published = false;
                 }
 

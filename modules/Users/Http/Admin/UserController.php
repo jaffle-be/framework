@@ -8,6 +8,7 @@ use Modules\Users\Jobs\CheckGravatarImage;
 
 class UserController extends AdminController
 {
+
     use MediaWidgetPreperations;
 
     /**
@@ -22,8 +23,7 @@ class UserController extends AdminController
     {
         $user = $guard->user();
 
-        if($user->images->count() ==0)
-        {
+        if ($user->images->count() == 0) {
             $this->dispatch(new CheckGravatarImage($user));
         }
 

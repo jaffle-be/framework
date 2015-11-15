@@ -9,20 +9,19 @@ trait VideoGenericFormatter
     {
         $me = $this;
 
-        if($response->status == 200)
-        {
+        if ($response->status == 200) {
             return array_map(function ($video) use ($me) {
 
                 return $me->vimeoVideoResponse($video);
             }, $response->body->data);
         }
+
         return new JsonResponse($response->body, $response->status);
     }
 
     protected function vimeoVideoResponse($video)
     {
-        if(!is_object($video))
-        {
+        if (!is_object($video)) {
             $video = json_decode(json_encode($video));
         }
 
@@ -54,6 +53,7 @@ trait VideoGenericFormatter
     protected function youtubeVideoResponse($video)
     {
         list($width, $height) = $this->parseYoutubeVideoDimensions($video);
+
         return [
             'provider'           => 'youtube',
             //if the video comes from video by id, the id won't be an object like in the search function
@@ -69,8 +69,7 @@ trait VideoGenericFormatter
 
     protected function parseYoutubeVideoDimensions($video)
     {
-        if(isset($video->player))
-        {
+        if (isset($video->player)) {
             preg_match('/width="(\d+)"/', $video->player->embedHtml, $widths);
             preg_match('/height="(\d+)"/', $video->player->embedHtml, $heights);
 

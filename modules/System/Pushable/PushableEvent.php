@@ -5,6 +5,7 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
 class PushableEvent extends Event implements ShouldBroadcast
 {
+
     public $data;
 
     protected $event;

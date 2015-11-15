@@ -13,7 +13,6 @@
         </div>
 
 
-
         <div class="row" ng-show="!vm.campaign.translations[vm.options.locale].mailchimp.is_ready">
 
 

@@ -58,14 +58,12 @@ class ProductCategoryManager
 
             $instance = $this->selections->newQueryWithoutScopes()
                 ->where([
-                        'product_id' => $product->id,
-                        'brand_id' => $product->brand_id,
-                        'account_id' => $record->account_id,
-                    ])->first();
+                    'product_id' => $product->id,
+                    'brand_id'   => $product->brand_id,
+                    'account_id' => $record->account_id,
+                ])->first();
 
-
-            if($instance)
-            {
+            if ($instance) {
                 $categorySelection = $instance->categories()
                     ->withTrashed()
                     ->where('category_id', $category_id)

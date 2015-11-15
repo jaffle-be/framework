@@ -13,8 +13,7 @@ trait ContentPresenterTrait
      */
     public function content()
     {
-        if($this->usePresentableCache())
-        {
+        if ($this->usePresentableCache()) {
             return $this->cached_content;
         }
 
@@ -32,6 +31,22 @@ trait ContentPresenterTrait
     }
 
     /**
+     * @return bool
+     */
+    protected function usePresentableCache()
+    {
+        return $this instanceof PresentableCache && on_front();
+    }
+
+    /**
+     * @return mixed
+     */
+    protected function contentToPresent()
+    {
+        return $this->entity->content;
+    }
+
+    /**
      * The extract should not contain any style or media
      * It should simply be a text snippet.
      *
@@ -43,15 +58,33 @@ trait ContentPresenterTrait
      */
     public function extract($chars = null)
     {
-        if($this->usePresentableCache())
-        {
+        if ($this->usePresentableCache()) {
             $content = $this->cached_extract;
-        }
-        else{
+        } else {
             $content = $this->freshlyBuiltExtract();
         }
 
         return $this->snippet($content, 60, $chars);
+    }
+
+    /**
+     * @return mixed|string
+     */
+    protected function freshlyBuiltExtract()
+    {
+        $content = $this->contentToPresent();
+
+        if (method_exists($this, 'stripShortCodes')) {
+            $content = $this->stripShortcodes($content);
+        }
+
+        $content = $this->removeCodeSamples($content);
+
+        $content = Markdown::convertToHtml($content);
+
+        $content = strip_tags($content);
+
+        return $content;
     }
 
     protected function removeCodeSamples($content)
@@ -106,42 +139,6 @@ trait ContentPresenterTrait
         }
 
         return $string . '&nbsp;...';
-    }
-
-    /**
-     * @return mixed
-     */
-    protected function contentToPresent()
-    {
-        return $this->entity->content;
-    }
-
-    /**
-     * @return bool
-     */
-    protected function usePresentableCache()
-    {
-        return $this instanceof PresentableCache && on_front();
-    }
-
-    /**
-     * @return mixed|string
-     */
-    protected function freshlyBuiltExtract()
-    {
-        $content = $this->contentToPresent();
-
-        if (method_exists($this, 'stripShortCodes')) {
-            $content = $this->stripShortcodes($content);
-        }
-
-        $content = $this->removeCodeSamples($content);
-
-        $content = Markdown::convertToHtml($content);
-
-        $content = strip_tags($content);
-
-        return $content;
     }
 
 }

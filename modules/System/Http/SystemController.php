@@ -12,8 +12,7 @@ class SystemController extends FrontController
     {
         $account = $accounts->account();
 
-        if($request->has('locale') && $this->is_account_locale($account, $request->get('locale')))
-        {
+        if ($request->has('locale') && $this->is_account_locale($account, $request->get('locale'))) {
             $session->set('locale', $request->get('locale'));
 
             return redirect()->to('/' . $request->get('locale'));
@@ -29,7 +28,7 @@ class SystemController extends FrontController
      */
     protected function is_account_locale(Account $account, $locale)
     {
-        return $account->locales->filter(function($item) use ($locale){
+        return $account->locales->filter(function ($item) use ($locale) {
             return $item->slug == $locale;
         })->first();
     }

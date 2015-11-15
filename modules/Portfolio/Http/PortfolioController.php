@@ -4,7 +4,6 @@ use Modules\Portfolio\Project;
 use Modules\Portfolio\ProjectTranslation;
 use Modules\System\Http\FrontController;
 use Modules\Tags\Tag;
-use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class PortfolioController extends FrontController
 {
@@ -32,8 +31,7 @@ class PortfolioController extends FrontController
 
         $project = $portfolio->project;
 
-        if(!$project)
-        {
+        if (!$project) {
             abort(404);
         }
 

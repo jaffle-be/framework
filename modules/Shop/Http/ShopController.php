@@ -62,8 +62,7 @@ class ShopController extends FrontController
     {
         $product = $product->product;
 
-        if(!$product)
-        {
+        if (!$product) {
             abort(404);
         }
 

@@ -156,8 +156,7 @@ class ThrottleManager implements Throttler
      */
     protected function throttleIp($increment, $ip = null)
     {
-        if(empty($ip))
-        {
+        if (empty($ip)) {
             $ip = $this->ip;
         }
 

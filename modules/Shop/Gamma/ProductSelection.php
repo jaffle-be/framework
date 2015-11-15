@@ -28,10 +28,10 @@ class ProductSelection extends Model implements Searchable
     ];
 
     protected static $searchableMapping = [
-        'id'          => ['type' => 'integer'],
-        'account_id'  => ['type' => 'integer'],
-        'product_id'  => ['type' => 'integer'],
-        'brand_id'    => ['type' => 'integer'],
+        'id'         => ['type' => 'integer'],
+        'account_id' => ['type' => 'integer'],
+        'product_id' => ['type' => 'integer'],
+        'brand_id'   => ['type' => 'integer'],
     ];
 
     public function product()

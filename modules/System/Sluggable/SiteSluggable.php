@@ -6,6 +6,7 @@ use Modules\System\Uri\Uri;
 
 trait SiteSluggable
 {
+
     use Sluggable;
 
     protected function needsSlugging()
@@ -33,13 +34,11 @@ trait SiteSluggable
         /** @var Request $request */
         $request = app('request');
 
-        if(app()->runningInConsole())
-        {
+        if (app()->runningInConsole()) {
             return;
         }
 
-        if(!starts_with($request->getRequestUri(), ['/admin', '/api']))
-        {
+        if (!starts_with($request->getRequestUri(), ['/admin', '/api'])) {
             static::addGlobalScope(new SiteSluggableScope());
         }
     }
@@ -72,13 +71,10 @@ trait SiteSluggable
         //all we need to check is.. does it exist? if not, create a new one.
         //if so, update it.
 
-
         //old way of handling locales with simple string values
-        if(isset($this->attributes['locale']))
-        {
+        if (isset($this->attributes['locale'])) {
             $locale = Locale::whereSlug($this->attributes['locale'])->first();
-        }
-        else{
+        } else {
             $locale = $this->locale;
         }
 
@@ -131,6 +127,7 @@ trait SiteSluggable
      * Get all existing slugs that are similar to the given slug.
      *
      * @param string $slug
+     *
      * @return array
      */
     protected function getExistingSlugs($slug)
@@ -139,16 +136,14 @@ trait SiteSluggable
 
         $config = $this->getSluggableConfig();
 
-        $query = $uri->where(function($query) use ($slug, $config)
-        {
+        $query = $uri->where(function ($query) use ($slug, $config) {
             $query->where('uri', $slug)
                 ->orWhere('uri', 'like', $slug . $config['separator'] . '%');
         });
 
         $this->load('slug');
 
-        if($this->slug)
-        {
+        if ($this->slug) {
             $query->where('id', '<>', $this->slug->id);
         }
 

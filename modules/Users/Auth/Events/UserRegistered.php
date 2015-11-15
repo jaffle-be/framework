@@ -4,7 +4,8 @@ use App\Events\Event;
 use Modules\Account\MembershipInvitation;
 use Modules\Users\User;
 
-class UserRegistered extends Event{
+class UserRegistered extends Event
+{
 
     public $user;
 

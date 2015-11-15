@@ -17,21 +17,18 @@ trait SeoTrait
     {
         static $locale;
 
-        if(!$locale)
-        {
+        if (!$locale) {
             $locale = app()->getLocale();
 
             $locale = Locale::whereSlug($locale)->first();
         }
 
-        if($this->seo)
-        {
+        if ($this->seo) {
             $localised = $this->seo->first(function ($key, $item) use ($locale) {
                 return $item->locale_id == $locale->id;
             });
 
-            if($localised)
-            {
+            if ($localised) {
                 return $localised->$field;
             }
         }
@@ -41,8 +38,7 @@ trait SeoTrait
 
     public function getSeoTitle()
     {
-        if($seo = $this->getSeoCustomisation('title'))
-        {
+        if ($seo = $this->getSeoCustomisation('title')) {
             return $seo;
         }
 
@@ -55,8 +51,7 @@ trait SeoTrait
 
     public function getSeoDescription()
     {
-        if($seo = $this->getSeoCustomisation('description'))
-        {
+        if ($seo = $this->getSeoCustomisation('description')) {
             return $seo;
         }
 
@@ -84,8 +79,7 @@ trait SeoTrait
 
     public function getSeoKeywords()
     {
-        if($seo = $this->getSeoCustomisation('keywords'))
-        {
+        if ($seo = $this->getSeoCustomisation('keywords')) {
             return $seo;
         }
 
@@ -135,8 +129,7 @@ trait SeoTrait
 
     public function getSeoAuthor()
     {
-        if($this->user instanceof User)
-        {
+        if ($this->user instanceof User) {
             return $this->user->fullName;
         }
     }

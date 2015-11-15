@@ -5,7 +5,8 @@ namespace Modules\Theme;
 use Illuminate\Contracts\Mail\Mailer as MailContract;
 use Illuminate\Mail\Mailer;
 
-class ThemeMailer implements MailContract{
+class ThemeMailer implements MailContract
+{
 
     /**
      * @var Theme
@@ -18,7 +19,7 @@ class ThemeMailer implements MailContract{
     protected $mailer;
 
     /**
-     * @param Theme $theme
+     * @param Theme  $theme
      * @param Mailer $mailer
      */
     public function __construct(Theme $theme, Mailer $mailer)
@@ -31,8 +32,9 @@ class ThemeMailer implements MailContract{
     /**
      * Send a new message when only a raw text part.
      *
-     * @param  string $text
+     * @param  string          $text
      * @param  \Closure|string $callback
+     *
      * @return int
      */
     public function raw($text, $callback)
@@ -43,15 +45,16 @@ class ThemeMailer implements MailContract{
     /**
      * Send a new message using a view.
      *
-     * @param  string|array $view
-     * @param  array $data
+     * @param  string|array    $view
+     * @param  array           $data
      * @param  \Closure|string $callback
+     *
      * @return void
      */
     public function send($view, array $data, $callback)
     {
         $data = array_merge($data, [
-            'theme' => $this->theme,
+            'theme'          => $this->theme,
             'theme_template' => $this->resolveThemeTemplate()
         ]);
 

@@ -5,6 +5,7 @@ use Pingpong\Modules\ServiceProvider;
 
 class BlogServiceProvider extends ServiceProvider
 {
+
     protected $namespace = 'blog';
 
     public function register()
@@ -14,7 +15,6 @@ class BlogServiceProvider extends ServiceProvider
 
     protected function listeners()
     {
-
     }
 
     protected function observers()

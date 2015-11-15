@@ -4,12 +4,13 @@ namespace Modules\Contact;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Address extends Model{
+class Address extends Model
+{
 
     protected $table = "contact_address";
 
     protected $casts = [
-        'latitude' => 'double',
+        'latitude'  => 'double',
         'longitude' => 'double',
     ];
 
@@ -24,8 +25,7 @@ class Address extends Model{
 
     public function format($microtags = true)
     {
-        if($microtags)
-        {
+        if ($microtags) {
             $street = $this->microtag('streetAddress', $this->attributes['street']);
 
             $box = $this->microtag('postOfficeBoxNumber', $this->attributes['box']);
@@ -37,8 +37,7 @@ class Address extends Model{
             $country = $this->microtag('addressCountry', $this->country->iso_code_2, true);
 
             return sprintf('%s %s, %s %s %s', $street, $box, $postal, $city, $country);
-        }
-        else{
+        } else {
             $street = $this->attributes['street'];
 
             $box = $this->attributes['box'];
@@ -51,22 +50,20 @@ class Address extends Model{
 
             return sprintf('%s %s, %s %s %s', $street, $box, $country, $postal, $city);
         }
+    }
 
+    protected function microtag($type, $value, $hidden = false)
+    {
+        if ($hidden) {
+            $hidden = 'style="display:none;"';
+        }
+
+        return sprintf('<span itemprop="%s" %s>%s</span>', $type, $hidden, $value);
     }
 
     public function country()
     {
         return $this->belongsTo('Modules\System\Country\Country', 'country_id');
-    }
-
-    protected function microtag($type, $value, $hidden = false)
-    {
-        if($hidden)
-        {
-            $hidden = 'style="display:none;"';
-        }
-
-        return sprintf('<span itemprop="%s" %s>%s</span>', $type, $hidden, $value);
     }
 
 }

@@ -2,7 +2,7 @@
 
 Route::group([
     'namespace' => 'Modules\Shop\Http',
-    'as' => 'store.',
+    'as'        => 'store.',
 ], function () {
 
     //admin routes
@@ -45,9 +45,7 @@ Route::group([
         });
     });
 
-
-    if(env('APP_MULTIPLE_LOCALES'))
-    {
+    if (env('APP_MULTIPLE_LOCALES')) {
         foreach (config('system.locales') as $locale) {
             //front routes
 
@@ -71,8 +69,7 @@ Route::group([
             //the shop homepage and the shop category page - KEEP AT BOTTOM
             Route::resource("$locale/shop", 'ShopController', ['only' => ['index']]);
         }
-    }
-    else{
+    } else {
         //front routes
 
         //login pages

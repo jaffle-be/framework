@@ -7,6 +7,7 @@ use Modules\Module\ModuleRoute;
 
 class CreatePortfolioProjects extends Migration
 {
+
     /**
      * Run the migrations.
      *
@@ -28,32 +29,32 @@ class CreatePortfolioProjects extends Migration
         //install the module itself.
         $module = Module::create([
             'namespace' => 'portfolio',
-            'nl'     => [
+            'nl'        => [
                 'name' => 'Portfolio',
             ],
-            'en'     => [
+            'en'        => [
                 'name' => 'Portfolio',
             ],
-            'fr'     => [
+            'fr'        => [
                 'name' => 'Portfolio',
             ],
-            'de'     => [
+            'de'        => [
                 'name' => 'Portfolio',
             ]
         ]);
 
         $module->routes()->save(new ModuleRoute([
             'name' => 'store.portfolio.index',
-            'nl' => [
+            'nl'   => [
                 'title' => 'portfolio overview'
             ],
-            'en' => [
+            'en'   => [
                 'title' => 'portfolio overview'
             ],
-            'fr' => [
+            'fr'   => [
                 'title' => 'portfolio overview'
             ],
-            'de' => [
+            'de'   => [
                 'title' => 'portfolio overview'
             ],
 
@@ -67,7 +68,7 @@ class CreatePortfolioProjects extends Migration
      */
     public function down()
     {
-        Schema::drop('portfolio_projects', function(Blueprint $table){
+        Schema::drop('portfolio_projects', function (Blueprint $table) {
             $table->dropForeign('project_to_account');
             $table->dropForeign('project_to_client');
         });

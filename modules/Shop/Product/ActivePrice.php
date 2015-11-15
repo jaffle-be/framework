@@ -3,7 +3,8 @@
 use Illuminate\Database\Eloquent\Model;
 use Modules\System\Scopes\ModelAccountResource;
 
-class ActivePrice extends Model{
+class ActivePrice extends Model
+{
 
     use ModelAccountResource;
 

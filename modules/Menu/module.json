@@ -1,15 +1,15 @@
 {
-    "name": "Menu",
-    "alias": "menu",
-    "description": "",
-    "keywords": [],
-    "active": 1,
-    "order": 5,
-    "providers": [
-        "Modules\\Menu\\Providers\\MenuServiceProvider"
-    ],
-    "aliases":{},
-    "files": [
-        "helpers.php"
-    ]
+  "name": "Menu",
+  "alias": "menu",
+  "description": "",
+  "keywords": [],
+  "active": 1,
+  "order": 5,
+  "providers": [
+    "Modules\\Menu\\Providers\\MenuServiceProvider"
+  ],
+  "aliases": {},
+  "files": [
+    "helpers.php"
+  ]
 }

@@ -145,7 +145,7 @@
             function send(campaign, locale) {
                 return $http.post('/api/admin/marketing/newsletter/campaign/' + campaign.id + '/send', {
                     locale: locale
-                }).then(function(response){
+                }).then(function (response) {
                     return response.data;
                 });
             }

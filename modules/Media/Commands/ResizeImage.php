@@ -65,18 +65,16 @@ class ResizeImage extends Job implements SelfHandling
             //use html public path to store in database
             $path = $this->getPath($files, true);
 
-            try{
+            try {
                 $media->createThumbnailImage($this->getPayload($width, $height, $path), $this->image);
             }
-            catch(Exception $e)
-            {
+            catch (Exception $e) {
                 $files->delete(public_path($path));
 
                 unset($image);
 
                 return false;
             }
-
 
             unset($image);
         }

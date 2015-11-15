@@ -35,32 +35,32 @@ class CreateContactInformationTable extends Migration
         //install the module itself.
         $module = Module::create([
             'namespace' => 'contact',
-            'nl'     => [
+            'nl'        => [
                 'name' => 'Contact',
             ],
-            'en'     => [
+            'en'        => [
                 'name' => 'Contact',
             ],
-            'fr'     => [
+            'fr'        => [
                 'name' => 'Contact',
             ],
-            'de'     => [
+            'de'        => [
                 'name' => 'Contact',
             ]
         ]);
 
         $module->routes()->save(new ModuleRoute([
             'name' => 'store.contact.index',
-            'nl' => [
+            'nl'   => [
                 'title' => 'contact'
             ],
-            'en' => [
+            'en'   => [
                 'title' => 'contact'
             ],
-            'fr' => [
+            'fr'   => [
                 'title' => 'contact'
             ],
-            'de' => [
+            'de'   => [
                 'title' => 'contact'
             ],
 

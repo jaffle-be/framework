@@ -4,6 +4,7 @@ use Illuminate\Support\Arr;
 
 class CacheManager extends \Illuminate\Cache\CacheManager
 {
+
     protected $account;
 
     /**
@@ -15,11 +16,9 @@ class CacheManager extends \Illuminate\Cache\CacheManager
      */
     protected function getPrefix(array $config)
     {
-        if($this->app->runningInConsole())
-        {
+        if ($this->app->runningInConsole()) {
             $identifier = 'console';
-        }
-        else{
+        } else {
             $identifier = env('APP_ALIAS');
         }
 

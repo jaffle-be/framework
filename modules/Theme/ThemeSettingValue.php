@@ -5,6 +5,7 @@ use Modules\System\Scopes\ModelAccountResource;
 
 class ThemeSettingValue extends Model
 {
+
     use ModelAccountResource;
     use \Modules\System\Translatable\Translatable;
 

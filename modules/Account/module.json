@@ -1,15 +1,15 @@
 {
-    "name": "Account",
-    "alias": "account",
-    "description": "",
-    "keywords": [],
-    "active": 1,
-    "order": 3,
-    "providers": [
-        "Modules\\Account\\Providers\\AccountServiceProvider"
-    ],
-    "aliases":{},
-    "files": [
-        "helpers.php"
-    ]
+  "name": "Account",
+  "alias": "account",
+  "description": "",
+  "keywords": [],
+  "active": 1,
+  "order": 3,
+  "providers": [
+    "Modules\\Account\\Providers\\AccountServiceProvider"
+  ],
+  "aliases": {},
+  "files": [
+    "helpers.php"
+  ]
 }

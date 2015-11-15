@@ -62,8 +62,7 @@
 
             };
 
-            this.batchDelete = function()
-            {
+            this.batchDelete = function () {
                 var products = this.selectedProducts();
 
                 ProductService.batchDelete(products, function () {

@@ -113,8 +113,7 @@ class MediaRepository implements MediaRepositoryInterface
 
         $locale_id = $payload['locale_id'];
 
-        $graphic->sort = $owner->infographics->filter(function($item) use ($locale_id)
-        {
+        $graphic->sort = $owner->infographics->filter(function ($item) use ($locale_id) {
             return $item->locale_id == $locale_id;
         })->count();
 
@@ -159,8 +158,7 @@ class MediaRepository implements MediaRepositoryInterface
 
         $locale_id = $payload['locale_id'];
 
-        $file->sort = $owner->files->filter(function($item) use ($locale_id)
-        {
+        $file->sort = $owner->files->filter(function ($item) use ($locale_id) {
             return $item->locale_id == $locale_id;
         })->count();
 

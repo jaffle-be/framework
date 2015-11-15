@@ -2,7 +2,8 @@
 
 use Modules\System\Http\FrontController;
 
-class AuthController extends FrontController{
+class AuthController extends FrontController
+{
 
     public function register()
     {

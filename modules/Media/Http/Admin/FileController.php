@@ -12,6 +12,7 @@ use Modules\Theme\ThemeManager;
 
 class FileController extends AdminController
 {
+
     use MediaWidgetPreperations;
 
     protected $media;
@@ -48,13 +49,12 @@ class FileController extends AdminController
         $file = $request->file('file');
 
         $file = $this->dispatchFromArray(UploadNewFile::class, [
-            'owner' => $owner,
-            'file' => $file,
+            'owner'  => $owner,
+            'file'   => $file,
             'locale' => $locale->whereSlug($request->get('locale'))->firstOrFail(),
         ]);
 
-        if(!$file)
-        {
+        if (!$file) {
             return new JsonResponse('Something went wrong, check for duplicate filename', 400);
         }
 
@@ -98,6 +98,5 @@ class FileController extends AdminController
             $file->save();
         }
     }
-
 
 }

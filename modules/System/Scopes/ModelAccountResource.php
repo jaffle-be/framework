@@ -2,14 +2,15 @@
 
 trait ModelAccountResource
 {
-    public function account()
-    {
-        return $this->belongsTo('Modules\Account\Account');
-    }
 
     public static function bootModelAccountResource()
     {
         static::addGlobalScope(app()->make('Modules\System\Scopes\ModelAccountResourceScope'));
+    }
+
+    public function account()
+    {
+        return $this->belongsTo('Modules\Account\Account');
     }
 
 }

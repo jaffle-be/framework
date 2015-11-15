@@ -28,25 +28,25 @@ return [
      */
     'types'    => [
 
-        'tags'      => [
+        'tags'     => [
             'class' => 'Modules\Tags\Tag',
             'with'  => [
             ]
         ],
 
-        'posts' => [
+        'posts'    => [
             'class' => Post::class,
-            'with' => [
+            'with'  => [
                 'user' => [
                     'class' => User::class,
-                    'key' => 'user_id'
+                    'key'   => 'user_id'
                 ],
             ]
         ],
 
         'projects' => [
             'class' => Project::class,
-            'with' => [
+            'with'  => [
 
             ]
         ]

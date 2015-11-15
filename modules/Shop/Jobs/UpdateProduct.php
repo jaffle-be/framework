@@ -4,7 +4,8 @@ use App\Jobs\Job;
 use Illuminate\Contracts\Bus\SelfHandling;
 use Modules\Shop\Product\Product;
 
-class UpdateProduct extends Job implements SelfHandling{
+class UpdateProduct extends Job implements SelfHandling
+{
 
     /**
      * @var Product

@@ -9,6 +9,7 @@ use Modules\Shop\Product\Category;
 
 class ActivateCategory extends Job implements SelfHandling
 {
+
     use DispatchesJobs;
 
     /**

@@ -1,6 +1,7 @@
 <?php namespace Modules\Media;
 
-interface StoresMedia {
+interface StoresMedia
+{
 
     public function images();
 

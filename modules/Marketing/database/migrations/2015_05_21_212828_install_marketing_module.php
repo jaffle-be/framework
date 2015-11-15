@@ -16,16 +16,16 @@ class InstallMarketingModule extends Migration
         //install the module itself.
         $module = Module::create([
             'namespace' => 'marketing',
-            'nl'     => [
+            'nl'        => [
                 'name' => 'Marketing',
             ],
-            'en'     => [
+            'en'        => [
                 'name' => 'Marketing',
             ],
-            'fr'     => [
+            'fr'        => [
                 'name' => 'Marketing',
             ],
-            'de'     => [
+            'de'        => [
                 'name' => 'Marketing',
             ]
         ]);

@@ -1,12 +1,12 @@
 <?php namespace Modules\Marketing\Http;
 
-use Carbon\Carbon;
 use Drewm\MailChimp;
 use Illuminate\Http\Request;
 use Modules\System\Http\FrontController;
 
 class NewsletterSubscriptionController extends FrontController
 {
+
     public function store(Request $request, MailChimp $mailChimp)
     {
         $this->validate($request, ['email' => 'required|email']);

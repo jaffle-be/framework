@@ -46,8 +46,7 @@ class Signin extends Job implements SelfHandling
                 //do not throttle when the user is still unconfirmed, so we can display a message
                 if (!$user || $user->confirmed == 1) {
                     $throttler->throttle($email);
-                }
-                else{
+                } else {
                     return 'unconfirmed';
                 }
             }

@@ -1,6 +1,6 @@
 <?php return [
 
-    'confirm-email' => [
+    'confirm-email'  => [
         'subject' => 'Welcome to our application.',
         'intro'   => 'Thanks for signing up!',
         'link'    => 'confirm email',

@@ -1,6 +1,5 @@
 <?php namespace Modules\System\Eventing;
 
-
 trait EventedRelations
 {
 
@@ -23,7 +22,7 @@ trait EventedRelations
         // name of the calling function. We will use that function name as the
         // title of this relation since that is a great convention to apply.
         if (is_null($relation) || empty($relation)) {
-            throw new \InvalidArgumentException('You should name evented relations in '. get_called_class());
+            throw new \InvalidArgumentException('You should name evented relations in ' . get_called_class());
         }
 
         // First, we'll need to determine the foreign key and "other key" for the

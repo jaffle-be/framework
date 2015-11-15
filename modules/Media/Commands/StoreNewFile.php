@@ -98,11 +98,10 @@ class StoreNewFile extends Job implements SelfHandling
         $this->newName();
         $this->handleFile($files, $config);
 
-        try{
+        try {
             return $repo->createFile($this->owner, $this->getPayload());
         }
-        catch(Exception $exception)
-        {
+        catch (Exception $exception) {
             //probably duplicate file error, always remove created file on error.
             $files->delete(public_path($this->path));
 

@@ -20,7 +20,7 @@
 
             </uib-tabset>
 
-            </div>
+        </div>
 
         <div class="ibox-content">
 

@@ -37,7 +37,7 @@ class SendConfirmationEmail extends Job implements SelfHandling, ShouldBeQueued
     {
         $this->setup();
 
-        try{
+        try {
             $token = $tokens->createNewToken(Token::TYPE_CONFIRMATION, $this->user->email);
 
             if ($token) {
@@ -66,12 +66,10 @@ class SendConfirmationEmail extends Job implements SelfHandling, ShouldBeQueued
             }
         }
 
-        catch(\Exception $e)
-        {
+        catch (\Exception $e) {
             $this->release();
 
             throw $e;
         }
-
     }
 }

@@ -11,7 +11,7 @@
                     locale: '=',
                     ownerId: '=',
                     ownerType: '=',
-                    graphics:'=infographics',
+                    graphics: '=infographics',
                 },
                 controllerAs: 'vm',
                 controller: function ($scope, InfographicResource, InfographicService, toaster) {

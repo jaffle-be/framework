@@ -5,7 +5,7 @@
  */
 Route::group([
     'namespace' => 'Modules\Theme\Http',
-    'as' => 'store.',
+    'as'        => 'store.',
 ], function () {
 
     Route::group([

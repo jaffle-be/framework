@@ -65,11 +65,10 @@ class ResizeInfographic extends Job implements SelfHandling
             //use htmlable public path to store in database
             $path = $this->getPath($files, true);
 
-            try{
+            try {
                 $media->createThumbnailInfographic($this->getPayload($width, $height, $path), $this->graphic);
             }
-            catch(Exception $e)
-            {
+            catch (Exception $e) {
                 $files->delete(public_path($path));
 
                 unset($graphic);

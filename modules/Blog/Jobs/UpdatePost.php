@@ -4,7 +4,8 @@ use App\Jobs\Job;
 use Illuminate\Contracts\Bus\SelfHandling;
 use Modules\Blog\Post;
 
-class UpdatePost extends Job implements SelfHandling{
+class UpdatePost extends Job implements SelfHandling
+{
 
     /**
      * @var Post

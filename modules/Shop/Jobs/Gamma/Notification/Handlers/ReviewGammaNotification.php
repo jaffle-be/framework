@@ -123,8 +123,7 @@ class ReviewGammaNotification extends Job implements SelfHandling, ShouldQueue
             ->where('type', $status)
             ->get();
 
-        foreach($existing as $notification)
-        {
+        foreach ($existing as $notification) {
             $notification->delete();
         }
     }

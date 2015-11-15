@@ -7,12 +7,14 @@ use Illuminate\Contracts\Bus\SelfHandling;
 use Modules\Contact\Address;
 use Modules\System\Country\CountryRepository;
 
-class UpdateAddress extends Job implements SelfHandling{
+class UpdateAddress extends Job implements SelfHandling
+{
 
     /**
      * @var Address
      */
     protected $address;
+
     /**
      * @var array
      */
@@ -35,12 +37,10 @@ class UpdateAddress extends Job implements SelfHandling{
 
         $newCountry = $countries->findByIsoCode2($newCountry['iso_code_2']);
 
-        if($newCountry)
-        {
+        if ($newCountry) {
             $this->address->fill(array_except($this->input, ['country']));
 
-            if($newCountry->id != $this->input['country']['id'])
-            {
+            if ($newCountry->id != $this->input['country']['id']) {
                 $this->address->country()->associate($newCountry);
             }
 

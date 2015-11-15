@@ -1,7 +1,6 @@
 <?php namespace Modules\Search\Command;
 
 use Illuminate\Console\Command;
-use Modules\Account\Account;
 use Modules\Account\IndexManager;
 use Modules\Search\SearchServiceInterface;
 use Symfony\Component\Console\Input\InputArgument;

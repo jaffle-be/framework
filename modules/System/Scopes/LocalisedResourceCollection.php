@@ -4,6 +4,24 @@ use Illuminate\Database\Eloquent\Collection;
 
 class LocalisedResourceCollection extends Collection
 {
+
+    public function toArray()
+    {
+        $byLocales = $this->byLocale();
+
+        $response = [];
+
+        foreach ($byLocales as $locale => $items) {
+            $response[$locale] = [];
+
+            foreach ($items as $item) {
+                $response[$locale][] = $item->toArray();
+            }
+        }
+
+        return $response;
+    }
+
     public function byLocale()
     {
         $collection = $this->groupBy('locale_id');
@@ -12,29 +30,8 @@ class LocalisedResourceCollection extends Collection
 
         $locales = app('Modules\System\Locale')->all();
 
-        foreach($locales as $locale)
-        {
+        foreach ($locales as $locale) {
             $response->put($locale->slug, $collection->get($locale->id, new Collection()));
-        }
-
-        return $response;
-    }
-
-    public function toArray()
-    {
-        $byLocales = $this->byLocale();
-
-        $response = [];
-
-        foreach($byLocales as $locale => $items)
-        {
-            $response[$locale] = [];
-
-            foreach($items as $item)
-            {
-                $response[$locale][] = $item->toArray();
-            }
-
         }
 
         return $response;

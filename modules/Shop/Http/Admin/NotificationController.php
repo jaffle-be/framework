@@ -2,15 +2,10 @@
 
 use Illuminate\Http\Request;
 use Modules\Shop\Gamma\GammaNotification;
-use Modules\Shop\Gamma\GammaSelection;
-use Modules\Shop\Gamma\ProductSelection;
-use Modules\Shop\Jobs\Gamma\CleanupDetail;
-use Modules\Shop\Jobs\Gamma\DeactivateProduct;
 use Modules\Shop\Jobs\Gamma\Notification\Handlers\AcceptGammaNotification;
 use Modules\Shop\Jobs\Gamma\Notification\Handlers\DenyGammaNotification;
 use Modules\Shop\Jobs\Gamma\Notification\Handlers\ReviewGammaNotification;
 use Modules\System\Http\AdminController;
-use Pusher;
 
 class NotificationController extends AdminController
 {
@@ -29,15 +24,13 @@ class NotificationController extends AdminController
     {
         $requested = $this->requestedNotifications($notifications, $request);
 
-        foreach($requested as $notification)
-        {
+        foreach ($requested as $notification) {
             //we start the processing
             $notification->processing = true;
             $notification->save();
 
             //the job itself gets queued
             $this->dispatch(new AcceptGammaNotification($notification));
-
             //processing jobs shouldn't be shown in the UI.
         }
 
@@ -48,15 +41,13 @@ class NotificationController extends AdminController
     {
         $requested = $this->requestedNotifications($notifications, $request);
 
-        foreach($requested as $notification)
-        {
+        foreach ($requested as $notification) {
             //we start the processing
             $notification->processing = true;
             $notification->save();
 
             //the job itself gets queued
             $this->dispatch(new ReviewGammaNotification($notification));
-
             //processing jobs shouldn't be shown in the UI.
         }
 
@@ -67,8 +58,7 @@ class NotificationController extends AdminController
     {
         $requested = $this->requestedNotifications($notifications, $request);
 
-        foreach($requested as $notification)
-        {
+        foreach ($requested as $notification) {
             $notification->processing = true;
             $notification->save();
 
@@ -84,8 +74,7 @@ class NotificationController extends AdminController
 
         $result = $notifications->notBeingProcessed()->with($relations)->orderBy('created_at', 'asc')->paginate();
 
-        if($result->count() < 0 && $request->get('page') > 1)
-        {
+        if ($result->count() < 0 && $request->get('page') > 1) {
             $request->put('page', 1);
 
             return $notifications->notBeingProcessed()->with($relations)->orderBy('created_at', 'asc')->paginate();

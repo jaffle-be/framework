@@ -14,8 +14,7 @@
                 console.log(response);
             };
 
-            this.updateTable = function(response)
-            {
+            this.updateTable = function (response) {
                 me.page = response.page;
                 me.notifications = response.data;
                 me.totalItems = response.total;

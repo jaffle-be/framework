@@ -13,9 +13,9 @@ class TemplateController extends AdminController
         $user = $guard->user();
 
         return view('layout::admin.' . $template, [
-            'user' => $user,
+            'user'    => $user,
             'account' => $manager->account(),
-            'theme' => $this->theme->current(),
+            'theme'   => $this->theme->current(),
         ]);
     }
 }

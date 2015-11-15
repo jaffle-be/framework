@@ -2,7 +2,8 @@
 
 use Modules\System\Translatable\TranslationModel;
 
-class ImageTranslation extends TranslationModel{
+class ImageTranslation extends TranslationModel
+{
 
     protected $table = 'media_image_translations';
 

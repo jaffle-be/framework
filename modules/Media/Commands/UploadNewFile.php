@@ -51,7 +51,6 @@ class UploadNewFile extends Job implements SelfHandling
 
         $temp_file = $temp_dir . $name;
 
-
         $name_with_extension = $name . $this->extension($temp_file);
 
         $final_path = $temp_dir . $name_with_extension;
@@ -60,9 +59,9 @@ class UploadNewFile extends Job implements SelfHandling
 
         $image = $this->dispatchFromArray(StoreNewFile::class, [
             'account' => $manager->account(),
-            'owner' => $this->owner,
-            'path'  => $final_path,
-            'locale' => $this->locale
+            'owner'   => $this->owner,
+            'path'    => $final_path,
+            'locale'  => $this->locale
         ]);
 
         $files->delete($final_path);

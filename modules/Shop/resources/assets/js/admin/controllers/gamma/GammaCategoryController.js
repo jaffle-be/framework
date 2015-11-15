@@ -189,7 +189,8 @@
             }
 
             function subSave(brand) {
-                GammaService.brand(brand.id, brand.activated).then(function(){}, function(response){
+                GammaService.brand(brand.id, brand.activated).then(function () {
+                }, function (response) {
                     showError(response);
                     brand.activated = !brand.activated;
                 });

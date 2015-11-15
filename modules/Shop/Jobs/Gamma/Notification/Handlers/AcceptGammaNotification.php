@@ -27,15 +27,13 @@ class AcceptGammaNotification extends Job implements SelfHandling, ShouldQueue
 
     public function handle(CatalogRepositoryInterface $catalog, GammaSelection $gamma, ProductSelection $productGamma, Pusher $pusher)
     {
-        if($this->activating())
-        {
+        if ($this->activating()) {
             if ($this->isProductSpecific()) {
                 $this->activateProduct();
             } else {
                 $this->activateBatch($catalog, $gamma);
             }
-        }
-        else{
+        } else {
             if ($this->isProductSpecific()) {
                 $this->deactivateProduct();
             } else {
@@ -72,24 +70,23 @@ class AcceptGammaNotification extends Job implements SelfHandling, ShouldQueue
 
             $selections = $productGamma->chunkActiveProducts($brand_id, $category_id, $account_id);
 
-            $selections->load(['categories' => function($query) use ($category_id){
+            $selections->load(['categories' => function ($query) use ($category_id) {
                 $query->withTrashed();
             }]);
 
             foreach ($selections as $selection) {
 
-                $category = $selection->categories->first(function($key, $item) use ($category_id){
+                $category = $selection->categories->first(function ($key, $item) use ($category_id) {
                     return $item->category_id == $category_id;
                 })->first();
 
                 $category->delete();
 
-                $active = $selection->categories->filter(function($item){
+                $active = $selection->categories->filter(function ($item) {
                     return $item->trashed();
                 });
 
-                if($active->count() == 0)
-                {
+                if ($active->count() == 0) {
                     $selection->delete();
                 }
             }

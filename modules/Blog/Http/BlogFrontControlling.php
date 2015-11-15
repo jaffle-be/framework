@@ -5,6 +5,7 @@ use Modules\Blog\PostTranslation;
 
 trait BlogFrontControlling
 {
+
     /**
      * @param PostTranslation         $post
      * @param PostRepositoryInterface $posts

@@ -1,15 +1,15 @@
 {
-    "name": "Search",
-    "alias": "search",
-    "description": "",
-    "keywords": [],
-    "active": 1,
-    "order": 10,
-    "providers": [
-        "Modules\\Search\\Providers\\SearchServiceProvider"
-    ],
-    "aliases":{},
-    "files": [
-        "helpers.php"
-    ]
+  "name": "Search",
+  "alias": "search",
+  "description": "",
+  "keywords": [],
+  "active": 1,
+  "order": 10,
+  "providers": [
+    "Modules\\Search\\Providers\\SearchServiceProvider"
+  ],
+  "aliases": {},
+  "files": [
+    "helpers.php"
+  ]
 }

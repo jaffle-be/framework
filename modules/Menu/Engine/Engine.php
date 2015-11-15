@@ -2,7 +2,8 @@
 
 use Illuminate\Contracts\View\Factory;
 
-class Engine {
+class Engine
+{
 
     protected $view;
 

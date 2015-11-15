@@ -30,7 +30,7 @@ class CachedMenuRepository implements MenuRepositoryInterface
 
     public function getMenus()
     {
-        return $this->cache->sear('menus', function (){
+        return $this->cache->sear('menus', function () {
             return $this->menu->getMenus();
         });
     }

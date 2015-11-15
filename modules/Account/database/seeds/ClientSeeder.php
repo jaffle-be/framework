@@ -8,10 +8,9 @@ class ClientSeeder extends Seeder
 
     public function run()
     {
-        $accounts = [1,2];
+        $accounts = [1, 2];
 
-        foreach($accounts as $account)
-        {
+        foreach ($accounts as $account) {
             $teller = 0;
 
             while ($teller < 15) {
@@ -36,10 +35,7 @@ class ClientSeeder extends Seeder
 
                 $teller++;
             }
-
         }
-
-
     }
 
 }

@@ -7,11 +7,11 @@ class ContactServiceProvider extends ServiceProvider
 
     protected $namespace = 'contact';
 
-    protected function observers()
+    public function register()
     {
     }
 
-    public function register()
+    protected function observers()
     {
     }
 

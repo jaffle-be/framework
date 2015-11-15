@@ -73,46 +73,45 @@
                     </uib-tabset>
 
 
-                    </div>
                 </div>
-
-
-
             </div>
+
 
         </div>
 
     </div>
 
-    {{--<div class="row" ng-show="vm.item.children.length">--}}
+</div>
 
-    {{--<div class="col-md-6">--}}
-    {{--<div class="ibox">--}}
+{{--<div class="row" ng-show="vm.item.children.length">--}}
 
-    {{--<div class="ibox-title">--}}
-    {{--<h5>children</h5>--}}
-    {{--</div>--}}
+{{--<div class="col-md-6">--}}
+{{--<div class="ibox">--}}
 
-    {{--<div class="ibox-content">--}}
+{{--<div class="ibox-title">--}}
+{{--<h5>children</h5>--}}
+{{--</div>--}}
 
-    {{--</div>--}}
+{{--<div class="ibox-content">--}}
 
-    {{--</div>--}}
-    {{--</div>--}}
-    {{--<div class="col-md-6">--}}
-    {{--<div class="ibox">--}}
+{{--</div>--}}
 
-    {{--<div class="ibox-title">--}}
-    {{--<h5>child details</h5>--}}
-    {{--</div>--}}
+{{--</div>--}}
+{{--</div>--}}
+{{--<div class="col-md-6">--}}
+{{--<div class="ibox">--}}
 
-    {{--<div class="ibox-content">--}}
+{{--<div class="ibox-title">--}}
+{{--<h5>child details</h5>--}}
+{{--</div>--}}
 
-    {{--</div>--}}
+{{--<div class="ibox-content">--}}
 
-    {{--</div>--}}
-    {{--</div>--}}
+{{--</div>--}}
 
-    {{--</div>--}}
+{{--</div>--}}
+{{--</div>--}}
+
+{{--</div>--}}
 
 </div>

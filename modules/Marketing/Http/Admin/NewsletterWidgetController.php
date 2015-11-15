@@ -15,8 +15,8 @@ class NewsletterWidgetController extends AdminController
 
         $widget = new CampaignWidget([
             'campaign_id' => $campaign->id,
-            'path' => $request->get('name'),
-            'manual' => false,
+            'path'        => $request->get('name'),
+            'manual'      => false,
         ]);
 
         return $widget->save() ? $widget : abort(500);
@@ -24,8 +24,7 @@ class NewsletterWidgetController extends AdminController
 
     public function update(Campaign $campaign, CampaignWidget $widget, Request $request)
     {
-        if($campaign->widgets->contains($widget->id))
-        {
+        if ($campaign->widgets->contains($widget->id)) {
             $widget->fill(translation_input($request));
 
             $widget->save();
@@ -52,10 +51,8 @@ class NewsletterWidgetController extends AdminController
 
     public function destroy(Campaign $campaign, CampaignWidget $widget, Request $request)
     {
-        if($campaign->widgets->contains($widget->id))
-        {
-            if($widget->delete())
-            {
+        if ($campaign->widgets->contains($widget->id)) {
+            if ($widget->delete()) {
                 $widget->id = false;
             }
         }

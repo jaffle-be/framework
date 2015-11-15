@@ -1,15 +1,15 @@
 {
-    "name": "Contact",
-    "alias": "contact",
-    "description": "",
-    "keywords": [],
-    "active": 1,
-    "order": 10,
-    "providers": [
-        "Modules\\Contact\\Providers\\ContactServiceProvider"
-    ],
-    "aliases":{},
-    "files": [
-        "helpers.php"
-    ]
+  "name": "Contact",
+  "alias": "contact",
+  "description": "",
+  "keywords": [],
+  "active": 1,
+  "order": 10,
+  "providers": [
+    "Modules\\Contact\\Providers\\ContactServiceProvider"
+  ],
+  "aliases": {},
+  "files": [
+    "helpers.php"
+  ]
 }

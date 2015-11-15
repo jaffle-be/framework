@@ -14,8 +14,7 @@ class CollaborationController extends AdminController
 
         $members = $account->members;
 
-        foreach($members as $member)
-        {
+        foreach ($members as $member) {
             $member->selected = $portfolio->collaborators->contains($member->id);
         }
 
@@ -28,12 +27,9 @@ class CollaborationController extends AdminController
     {
         $status = $request->get('status');
 
-        if($status)
-        {
+        if ($status) {
             $portfolio->collaborators()->attach($request->get('member'));
-        }
-        else
-        {
+        } else {
             $portfolio->collaborators()->detach($request->get('member'));
         }
     }

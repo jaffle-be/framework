@@ -47,6 +47,7 @@
                                 <div class="input-group col-xs-12">
                                     <div class="input-group-addon" style="width:39px;">
                                         <span class="fa fa-search" ng-show="!vm.loading"></span>
+
                                         <div class="sk-spinner sk-spinner-cube-grid" ng-show="vm.loading">
                                             <div class="sk-cube"></div>
                                             <div class="sk-cube"></div>

@@ -2,6 +2,7 @@
 
 interface CatalogRepositoryInterface
 {
+
     public function findCategories(array $ids);
 
     public function findBrands(array $ids);

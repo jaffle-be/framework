@@ -8,12 +8,10 @@ class CleanupPrepping
 
     public function handle($model)
     {
-        if(method_exists($model, 'translations'))
-        {
+        if (method_exists($model, 'translations')) {
             $related = $model->translations()->getRelated();
 
-            if($related instanceof TranslationModel && $related instanceof OwnsSlug)
-            {
+            if ($related instanceof TranslationModel && $related instanceof OwnsSlug) {
                 $model->load(['translations', 'translations.slug']);
             }
         }

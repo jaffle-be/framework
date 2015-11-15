@@ -2,7 +2,8 @@
 
 use Modules\System\Http\FrontController;
 
-class CheckoutController extends FrontController{
+class CheckoutController extends FrontController
+{
 
     public function index()
     {

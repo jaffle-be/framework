@@ -28,31 +28,24 @@ class ActivateProduct extends Job implements SelfHandling
     {
         $base = $this->baseSelectionExists($products);
 
-        if(!$base)
-        {
+        if (!$base) {
             $this->handleFullNewRecord($products);
-        }
-        else{
+        } else {
 
             $selection = $this->existingCategorySelection($base);
 
-            if($selection)
-            {
-                if($selection->trashed())
-                {
+            if ($selection) {
+                if ($selection->trashed()) {
                     $selection->restore();
                 }
-            }
-            else{
+            } else {
                 $this->attachCategory($base);
             }
 
-            if($base->trashed())
-            {
+            if ($base->trashed()) {
                 $base->restore();
             }
         }
-
         //now continue with updating the prices.
     }
 

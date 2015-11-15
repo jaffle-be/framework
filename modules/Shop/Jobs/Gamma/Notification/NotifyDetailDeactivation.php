@@ -29,8 +29,7 @@ class NotifyDetailDeactivation extends Job implements SelfHandling
 
     public function handle(GammaNotification $notification, Pusher $pusher)
     {
-        if($this->beingProcessed($notification, $this->brand, $this->category))
-        {
+        if ($this->beingProcessed($notification, $this->brand, $this->category)) {
             $message = 'this gamma detail is still being processed';
 
             abort(400, $message, ['statustext' => $message]);

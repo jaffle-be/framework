@@ -4,7 +4,8 @@ namespace Modules\System\Country;
 
 use Illuminate\Foundation\Application;
 
-class CountryRepository {
+class CountryRepository
+{
 
     protected $country;
 
@@ -23,7 +24,7 @@ class CountryRepository {
         return $this->country
             ->join($trans, $country . '.id', '=', $trans . '.country_id')
             ->where($trans . '.locale', $this->application->getLocale())
-            ->orderBy($trans. '.name', 'asc')
+            ->orderBy($trans . '.name', 'asc')
             ->lists('name', 'iso_code_2');
     }
 

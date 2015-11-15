@@ -51,8 +51,7 @@ class Configurator
 
     public function getAbstractPath(StoresMedia $owner, $type, $size = null)
     {
-        if(!$this->isSupportedMediaType($type))
-        {
+        if (!$this->isSupportedMediaType($type)) {
             throw new InvalidArgumentException('Need to pass a proper media type');
         }
 
@@ -74,11 +73,9 @@ class Configurator
 
         //get the dimensions defined in the theme that's currently being used.
         //strtolower was added, on mac it worked due to case insensitivity in paths.
-        if(!$current = $this->theme->current())
-        {
+        if (!$current = $this->theme->current()) {
             $name = strtolower($this->config->get('theme.default'));
-        }
-        else{
+        } else {
             $name = strtolower($current->name);
         }
 
@@ -90,8 +87,7 @@ class Configurator
         //now get the keys to find all sizes
         $sizes = array_keys($sizes);
 
-        if($requested == 'all' || $requested === null)
-        {
+        if ($requested == 'all' || $requested === null) {
             return $sizes;
         }
 
@@ -113,8 +109,7 @@ class Configurator
     {
         $index = array_search(get_class($owner), $this->owners);
 
-        if($index === false)
-        {
+        if ($index === false) {
             throw new InvalidArgumentException('Unknown owner type, you may have forgotten to add it to the config file');
         }
 
@@ -123,12 +118,12 @@ class Configurator
 
     /**
      * Return the full classname for the media owner type for the given alias
+     *
      * @param $alias
      */
     public function classname($alias)
     {
-        if(!isset($this->owners[$alias]))
-        {
+        if (!isset($this->owners[$alias])) {
             throw new InvalidArgumentException('Unknown alias given, you may have forgotten to add it to the config file');
         }
 

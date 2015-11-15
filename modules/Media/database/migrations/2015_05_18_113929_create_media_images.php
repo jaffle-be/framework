@@ -33,7 +33,7 @@ class CreateMediaImages extends Migration
             $table->unique(['owner_type', 'owner_id', 'filename']);
         });
 
-        Schema::create('media_image_translations', function(Blueprint $table){
+        Schema::create('media_image_translations', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('image_id', false, true);
             $table->foreign('image_id', 'image_translation_to_image')->references('id')->on('media_images')->onDelete('cascade');

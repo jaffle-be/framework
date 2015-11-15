@@ -11,7 +11,7 @@
             this.subscriptions = [];
             this.filter = 'subscribed';
             this.table = {
-                pagination : {}
+                pagination: {}
             };
 
             var me = this;
@@ -21,7 +21,7 @@
                 me.loadSubscriptions()
             };
 
-            this.setFilter = function(filter){
+            this.setFilter = function (filter) {
                 me.table.pagination.start = 0;
                 me.filter = filter;
                 me.loadSubscriptions();

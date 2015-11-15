@@ -148,13 +148,11 @@ trait Translatable
             //for that document. (i know, not perfect, but it's easier for now to do it like that then to make sure each and every user action
             //holds all the elasticsearch relations before the save. which will never be the case)
 
-            if($this->saveTranslations())
-            {
+            if ($this->saveTranslations()) {
                 return parent::save($options);
             }
 
             return false;
-
         } elseif (parent::save($options)) {
             // We save the translations only if the instance is saved in the database.
             return $this->saveTranslations();

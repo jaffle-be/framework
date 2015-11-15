@@ -41,32 +41,32 @@ class CreatePostsTable extends Migration
         //install the module itself.
         $module = Module::create([
             'namespace' => 'blog',
-            'nl'     => [
+            'nl'        => [
                 'name' => 'Blog',
             ],
-            'en'     => [
+            'en'        => [
                 'name' => 'Blog',
             ],
-            'fr'     => [
+            'fr'        => [
                 'name' => 'Blog',
             ],
-            'de'     => [
+            'de'        => [
                 'name' => 'Blog',
             ]
         ]);
 
         $module->routes()->save(new ModuleRoute([
             'name' => 'store.blog.index',
-            'nl' => [
+            'nl'   => [
                 'title' => 'blog overview'
             ],
-            'en' => [
+            'en'   => [
                 'title' => 'blog overview'
             ],
-            'fr' => [
+            'fr'   => [
                 'title' => 'blog overview'
             ],
-            'de' => [
+            'de'   => [
                 'title' => 'blog overview'
             ],
 

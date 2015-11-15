@@ -36,8 +36,7 @@ class WidgetPresenter extends BasePresenter
     {
         if ($this->entity->manual) {
             return $this->entity->translate($locale)->title;
-        }
-        else{
+        } else {
             return $this->entity->resource->translate($locale)->title;
         }
     }
@@ -46,8 +45,7 @@ class WidgetPresenter extends BasePresenter
     {
         if ($this->entity->manual) {
             return $this->entity->translate($locale)->title_left;
-        }
-        else{
+        } else {
             return $this->entity->resource->translate($locale)->title;
         }
     }
@@ -56,8 +54,7 @@ class WidgetPresenter extends BasePresenter
     {
         if ($this->entity->manual) {
             return $this->entity->translate($locale)->title_right;
-        }
-        else{
+        } else {
             return $this->entity->otherResource->translate($locale)->title;
         }
     }
@@ -66,8 +63,7 @@ class WidgetPresenter extends BasePresenter
     {
         if ($this->entity->manual) {
             return $this->entity->translate($locale)->text;
-        }
-        else{
+        } else {
             return $this->entity->resource->translate($locale)->text;
         }
     }
@@ -76,8 +72,7 @@ class WidgetPresenter extends BasePresenter
     {
         if ($this->entity->manual) {
             return $this->entity->translate($locale)->text_left;
-        }
-        else{
+        } else {
             return $this->entity->resource->translate($locale)->text;
         }
     }
@@ -86,8 +81,7 @@ class WidgetPresenter extends BasePresenter
     {
         if ($this->entity->manual) {
             return $this->entity->translate($locale)->text_right;
-        }
-        else{
+        } else {
             return $this->entity->otherResource->translate($locale)->text;
         }
     }

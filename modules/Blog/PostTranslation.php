@@ -13,6 +13,7 @@ use Modules\System\Translatable\TranslationModel;
 
 class PostTranslation extends TranslationModel implements Searchable, SluggableInterface, OwnsSlug, PresentableEntity, PresentableCache
 {
+
     use SearchableTrait, SiteSluggable, PresentableTrait, FrontScoping;
 
     protected $table = 'post_translations';
@@ -56,8 +57,7 @@ class PostTranslation extends TranslationModel implements Searchable, SluggableI
     {
         $data = parent::toArray();
 
-        if(isset($data['publish_at']) && $data['publish_at'])
-        {
+        if (isset($data['publish_at']) && $data['publish_at']) {
             $data['publish_at'] = $this->publish_at->format('Y-m-d');
         }
 

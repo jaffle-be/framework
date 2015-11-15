@@ -2,6 +2,7 @@
 
 trait ImageModelTrait
 {
+
     public function original()
     {
         return $this->belongsTo(get_class($this), 'original_id');
@@ -19,26 +20,23 @@ trait ImageModelTrait
             $this->load(['sizes']);
         }
 
-        $thumbnail = $this->sizes->filter(function($item) use ($width, $height){
-            if(!empty($width) && !empty($height))
-            {
+        $thumbnail = $this->sizes->filter(function ($item) use ($width, $height) {
+            if (!empty($width) && !empty($height)) {
                 return $item->width == $width && $item->height == $height;
             }
 
-            if(!empty($width))
-            {
+            if (!empty($width)) {
                 return $item->width == $width;
             }
 
-            if(!empty($height))
-            {
+            if (!empty($height)) {
                 return $item->height == $height;
             }
+
             return false;
         })->first();
 
-        if($thumbnail)
-        {
+        if ($thumbnail) {
             return $thumbnail->path;
         }
 

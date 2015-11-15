@@ -5,11 +5,8 @@ namespace Modules\Search;
 use Elasticsearch\Client;
 use Exception;
 use Illuminate\Container\Container;
-use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Illuminate\Events\Dispatcher;
 use Modules\Search\Model\Searchable;
-use Modules\Shop\Gamma\ProductSelection;
 
 class SearchService implements SearchServiceInterface
 {
@@ -187,24 +184,20 @@ class SearchService implements SearchServiceInterface
         //we should probably keep it like this too
         //read up about routing in elasticsearch.
         //you could probably easily add the routing feature instead.
-        $type->newQueryWithoutScopes()->chunk(250, function ($documents) use ($me, $relations, $type){
+        $type->newQueryWithoutScopes()->chunk(250, function ($documents) use ($me, $relations, $type) {
 
             //make sure we disable global scopes on relations too
-            foreach($relations as $relation)
-            {
+            foreach ($relations as $relation) {
                 //does the related element use soft deletes?
                 $related = $type->$relation()->getRelated();
 
-                if(method_exists($related, 'bootSoftDeletes'))
-                {
+                if (method_exists($related, 'bootSoftDeletes')) {
                     $documents->load([
-                        $relation => function($query)
-                        {
+                        $relation => function ($query) {
                             $query->withTrashed();
                         }
                     ]);
-                }
-                else{
+                } else {
                     $documents->load($relation);
                 }
             }
@@ -250,8 +243,7 @@ class SearchService implements SearchServiceInterface
 
     public function delete(Searchable $type)
     {
-        if(method_exists($type, 'forceDelete') && $type->beingFullyDeleted())
-        {
+        if (method_exists($type, 'forceDelete') && $type->beingFullyDeleted()) {
             $params = $this->data($type);
 
             $params = array_except($params, ['body']);
@@ -279,8 +271,7 @@ class SearchService implements SearchServiceInterface
             ],
         ]);
 
-        if($type->useSearchableRouting())
-        {
+        if ($type->useSearchableRouting()) {
             $params['routing'] = $type->getSearchableRouting();
         }
 
@@ -307,18 +298,14 @@ class SearchService implements SearchServiceInterface
 
         $result = $this->client->search($params);
 
-        if($highlighter)
-        {
+        if ($highlighter) {
             //if we have a highlighter, we simply loop through the results and overwrite the original field.
             //this is dangerous though, a dev should not be using Elasticsearch results to manipulate data.
             //data should always be manipulated through your relational database.
-            foreach($result['hits']['hits'] as &$hit)
-            {
-                if(isset($hit['highlight']))
-                {
+            foreach ($result['hits']['hits'] as &$hit) {
+                if (isset($hit['highlight'])) {
                     $hit["_source"] = $highlighter($hit['_source'], $hit['highlight']);
                 }
-
             }
         }
 
@@ -480,8 +467,7 @@ class SearchService implements SearchServiceInterface
             'body'  => $type->getSearchableDocument(),
         ];
 
-        if($routing = $type->useSearchableRouting())
-        {
+        if ($routing = $type->useSearchableRouting()) {
             $params['routing'] = $type->getSearchableRouting();
         }
 

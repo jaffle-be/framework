@@ -29,6 +29,5 @@ class ShopServiceProvider extends ServiceProvider
 
     protected function observers()
     {
-
     }
 }

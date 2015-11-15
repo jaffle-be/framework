@@ -4,7 +4,8 @@ use App\Jobs\Job;
 use Illuminate\Contracts\Bus\SelfHandling;
 use Modules\Portfolio\Project;
 
-class UpdateProject extends Job implements SelfHandling{
+class UpdateProject extends Job implements SelfHandling
+{
 
     /**
      * @var Project

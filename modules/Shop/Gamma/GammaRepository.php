@@ -7,8 +7,11 @@ use Modules\Shop\Product\Category;
 
 class GammaRepository implements GammaRepositoryInterface
 {
+
     protected $brands;
+
     protected $categories;
+
     protected $catalog;
 
     public function __construct(BrandSelection $brands, CategorySelection $categories, CatalogRepositoryInterface $catalog)
@@ -24,8 +27,7 @@ class GammaRepository implements GammaRepositoryInterface
 
         $ids = $categories->lists('id')->toArray();
 
-        if(empty($ids))
-        {
+        if (empty($ids)) {
             return new Collection();
         }
 
@@ -41,8 +43,7 @@ class GammaRepository implements GammaRepositoryInterface
 
         $ids = $brands->lists('id')->toArray();
 
-        if(empty($ids))
-        {
+        if (empty($ids)) {
             return new Collection();
         }
 

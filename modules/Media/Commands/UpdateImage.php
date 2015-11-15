@@ -9,7 +9,8 @@ use Modules\Media\Image;
  *
  * @package Modules\Media\Commands
  */
-class UpdateImage extends Job implements SelfHandling{
+class UpdateImage extends Job implements SelfHandling
+{
 
     /**
      * @var Image

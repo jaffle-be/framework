@@ -30,14 +30,12 @@ class DeactivateCategory extends Job implements SelfHandling
         $processingOrExisting = $notifications->where('category_id', $this->category->id)
             ->count();
 
-        if($processingOrExisting)
-        {
+        if ($processingOrExisting) {
             $message = "can't deactivate, something is still being processed";
             abort(400, $message, ['statustext' => $message]);
         }
 
-        if($this->category->selection)
-        {
+        if ($this->category->selection) {
             $this->category->selection->delete();
         }
     }

@@ -6,36 +6,33 @@ use Pingpong\Modules\ServiceProvider;
 
 class MarketingServiceProvider extends ServiceProvider
 {
+
     protected $namespace = 'marketing';
 
     public function register()
     {
 
-        $this->app->singleton(MailChimp::class, function()
-        {
+        $this->app->singleton(MailChimp::class, function () {
             return new MailChimp(env('MAILCHIMP_APIKEY'));
         });
     }
 
     protected function listeners()
     {
-
     }
 
     protected function observers()
     {
-        $this->app->booted(function(){
+        $this->app->booted(function () {
 
-            CampaignWidget::saving(function($item){
+            CampaignWidget::saving(function ($item) {
 
-                if($item->sort === null)
-                {
+                if ($item->sort === null) {
                     $item->sort = CampaignWidget::where('campaign_id', $item->campaign_id)->count();
                 }
-
             });
 
-            CampaignWidget::deleted(function($item){
+            CampaignWidget::deleted(function ($item) {
                 CampaignWidget::where('campaign_id', $item->campaign_id)
                     ->where('sort', '>', $item->sort)
                     ->update([

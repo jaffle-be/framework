@@ -13,19 +13,16 @@ class MembershipInvitationController extends FrontController
     {
         $invitation = $repository->findInvitationByToken($invitation);
 
-        if(!$invitation)
-        {
+        if (!$invitation) {
             return redirect()->to(store_route('store.home'));
         }
 
         //do we have an invitation for a user with a registered account?
         //if so, we simply accept it instead of asking for credentials.
-        if($user = User::where('email', $invitation->email)->limit(1)->first())
-        {
+        if ($user = User::where('email', $invitation->email)->limit(1)->first()) {
             $user = $this->dispatchFromArray(Signup::class, ['email' => false, 'password' => false, 'user' => $user, 'invitation' => $invitation]);
 
-            if($user->confirmed)
-            {
+            if ($user->confirmed) {
                 //user can be logged in too
                 $guard->login($user);
 

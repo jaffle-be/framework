@@ -30,15 +30,13 @@ class DeactivateBrand extends Job implements SelfHandling
         $processingOrExisting = $notifications->where('brand_id', $this->brand->id)
             ->count();
 
-        if($processingOrExisting)
-        {
+        if ($processingOrExisting) {
             $message = "can't deactivate, something is still being processed";
 
             abort(400, $message, ['statustext' => $message]);
         }
 
-        if($this->brand->selection)
-        {
+        if ($this->brand->selection) {
             $this->brand->selection->delete();
         }
     }

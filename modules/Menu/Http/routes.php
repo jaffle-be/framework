@@ -20,5 +20,4 @@ Route::group([
             Route::resource('menu/{menu}/menu-item', 'MenuItemController', ['only' => ['store', 'update', 'destroy']]);
         });
     });
-
 });

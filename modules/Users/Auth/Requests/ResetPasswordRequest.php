@@ -2,7 +2,8 @@
 
 use App\Http\Requests\Request;
 
-class ResetPasswordRequest extends Request{
+class ResetPasswordRequest extends Request
+{
 
     public function authorize()
     {
@@ -12,8 +13,8 @@ class ResetPasswordRequest extends Request{
     public function rules()
     {
         return [
-            'email' => 'required',
-            'password'  => 'required|min:8|confirmed',
+            'email'    => 'required',
+            'password' => 'required|min:8|confirmed',
         ];
     }
 

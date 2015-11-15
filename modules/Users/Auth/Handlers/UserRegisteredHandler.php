@@ -29,7 +29,7 @@ class UserRegisteredHandler
 
             return $this->dispatchFromArray(AcceptMembership::class, [
                 'invitation' => $event->invitation,
-                'member' => $event->user,
+                'member'     => $event->user,
             ]);
         }
 

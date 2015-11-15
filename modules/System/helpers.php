@@ -121,8 +121,7 @@ if (!function_exists('on_front')) {
             return false;
         }
 
-        if(env('RUNNING_TESTS'))
-        {
+        if (env('RUNNING_TESTS')) {
             return env('RUNNING_TESTS_FRONT', true);
         }
 

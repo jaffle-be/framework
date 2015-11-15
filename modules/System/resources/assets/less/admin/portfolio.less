@@ -1,15 +1,14 @@
 .project-collaborators {
 
-  li:not(:last-child)
-  {
+  li:not(:last-child) {
     border-bottom: 1px solid @border-color;
   }
 
-  li .img-wrapper{
+  li .img-wrapper {
     .pull-left;
     width: 20%;
 
-    img{
+    img {
       .pull-right;
       .img-responsive;
       max-width: 75px;
@@ -21,13 +20,11 @@
     .pull-right;
     width: 80%;
 
-
-    @media(max-width: @screen-xs-max)
-    {
+    @media (max-width: @screen-xs-max) {
       padding: 0 5px;
     }
 
-    input[type="checkbox"].filled-in{
+    input[type="checkbox"].filled-in {
       & + label:before {
         margin-top: 30px;
       }
@@ -36,7 +33,7 @@
       }
     }
 
-    label span{
+    label span {
       padding-top: 10px;
       display: inline-block;
       width: 100%;

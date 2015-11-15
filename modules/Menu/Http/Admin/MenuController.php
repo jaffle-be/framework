@@ -46,8 +46,7 @@ class MenuController extends AdminController
                     $usedPages->push($item->page);
                 }
 
-                if($item->route)
-                {
+                if ($item->route) {
                     $usedRoutes->push($item->route);
                 }
             }

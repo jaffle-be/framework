@@ -14,15 +14,12 @@ class Cleanup
         //our db takes care of foreign key deletion.
         //so there is no 'eloquent.deleted' for our translation
         //if we deleted the parent.
-        if($object instanceof OwnsSlug)
-        {
+        if ($object instanceof OwnsSlug) {
             $object->slug->delete();
         }
 
-        if($this->translationOwnsSlug($object))
-        {
-            foreach($object->translations as $translation)
-            {
+        if ($this->translationOwnsSlug($object)) {
+            foreach ($object->translations as $translation) {
                 $translation->slug->delete();
             }
         }
@@ -30,26 +27,22 @@ class Cleanup
 
     protected function translationOwnsSlug($object)
     {
-        if(!method_exists($object, 'translations'))
-        {
+        if (!method_exists($object, 'translations')) {
             return false;
         }
 
-        if(!$object->translations() instanceof Relation)
-        {
+        if (!$object->translations() instanceof Relation) {
             return false;
         }
 
-        if(!$instance = $object->translations()->getRelated())
-        {
+        if (!$instance = $object->translations()->getRelated()) {
             return false;
         }
 
-        if(!$instance instanceof TranslationModel)
-        {
+        if (!$instance instanceof TranslationModel) {
             return false;
         }
-        if(!$instance instanceof OwnsSlug){
+        if (!$instance instanceof OwnsSlug) {
             return false;
         }
 

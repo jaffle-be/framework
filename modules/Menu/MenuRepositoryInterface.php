@@ -1,6 +1,7 @@
 <?php namespace Modules\Menu;
 
-interface MenuRepositoryInterface {
+interface MenuRepositoryInterface
+{
 
     public function getMenus();
 

@@ -5,13 +5,12 @@
  */
 Route::group([
     'namespace' => 'Modules\Blog\Http',
-    'as' => 'store.'
+    'as'        => 'store.'
 ], function () {
 
     Route::group([
         'namespace' => 'Admin',
-    ], function()
-    {
+    ], function () {
         Route::group(['prefix' => 'templates/admin'], function () {
             //template files, load at top so we do not end up in the show method
             Route::get('blog/overview', 'BlogController@overview');
@@ -28,15 +27,11 @@ Route::group([
     });
 
     //FRONT ROUTES
-    if(env('APP_MULTIPLE_LOCALES'))
-    {
-        foreach(config('system.locales') as $locale)
-        {
+    if (env('APP_MULTIPLE_LOCALES')) {
+        foreach (config('system.locales') as $locale) {
             Route::get("$locale/blog", ['uses' => 'BlogController@index', 'as' => "$locale.blog.index"]);
         }
-    }
-    else{
+    } else {
         Route::get('blog', ['uses' => 'BlogController@index', 'as' => 'blog.index']);
     }
-
 });

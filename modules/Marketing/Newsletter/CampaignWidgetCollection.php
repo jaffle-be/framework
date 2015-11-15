@@ -11,7 +11,7 @@ class CampaignWidgetCollection extends Collection
     {
         list($posts, $projects) = $this->getMaps();
 
-        $this->map(function($widget) use ($posts, $projects){
+        $this->map(function ($widget) use ($posts, $projects) {
 
             if ($widget->resource_type) {
                 if ($widget->resource_type == Post::class) {

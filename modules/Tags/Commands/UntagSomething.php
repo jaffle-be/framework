@@ -3,7 +3,8 @@
 use App\Jobs\Job;
 use Illuminate\Contracts\Bus\SelfHandling;
 
-class UntagSomething extends Job implements SelfHandling{
+class UntagSomething extends Job implements SelfHandling
+{
 
     protected $owner;
 

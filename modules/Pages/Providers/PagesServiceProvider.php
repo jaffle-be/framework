@@ -4,6 +4,7 @@ use Pingpong\Modules\ServiceProvider;
 
 class PagesServiceProvider extends ServiceProvider
 {
+
     protected $namespace = 'pages';
 
     public function register()
@@ -13,11 +14,9 @@ class PagesServiceProvider extends ServiceProvider
 
     protected function listeners()
     {
-
     }
 
     protected function observers()
     {
-
     }
 }

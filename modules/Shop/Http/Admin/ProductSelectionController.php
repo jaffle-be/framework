@@ -1,6 +1,5 @@
 <?php namespace Modules\Shop\Http\Admin;
 
-use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Http\Request;
 use Modules\Account\AccountManager;
 use Modules\Search\SearchServiceInterface;
@@ -9,7 +8,8 @@ use Modules\Shop\Jobs\UpdateProduct;
 use Modules\Shop\Product\Product;
 use Modules\System\Http\AdminController;
 
-class ProductSelectionController extends AdminController{
+class ProductSelectionController extends AdminController
+{
 
     public function index(Request $request, ProductSelection $selections, SearchServiceInterface $search, Product $products, AccountManager $account)
     {
@@ -20,12 +20,12 @@ class ProductSelectionController extends AdminController{
         //allright
 
         $query = [
-            'index' => config('search.index'),
-            'type'  => $selections->getSearchableType(),
-            'body'  => [
+            'index'   => config('search.index'),
+            'type'    => $selections->getSearchableType(),
+            'body'    => [
                 'query' => [
                     'filtered' => [
-                        'query'  => [
+                        'query' => [
                             'match_all' => new \StdClass()
                         ],
                     ]
@@ -34,7 +34,7 @@ class ProductSelectionController extends AdminController{
             'routing' => $account->id
         ];
 
-        $relations = ['product', 'product.translations', 'product.images', 'product.images.sizes' => function($query){
+        $relations = ['product', 'product.translations', 'product.images', 'product.images.sizes' => function ($query) {
             $query->dimension(150);
         }];
 
@@ -55,8 +55,8 @@ class ProductSelectionController extends AdminController{
         $product->load($this->relations());
 
         $payload = [
-            'product'  => $product,
-            'input' => translation_input($request, ['name', 'title', 'content', 'published'])
+            'product' => $product,
+            'input'   => translation_input($request, ['name', 'title', 'content', 'published'])
         ];
 
         if (!$this->dispatchFromArray(UpdateProduct::class, $payload)) {
@@ -70,17 +70,14 @@ class ProductSelectionController extends AdminController{
     {
         $ids = $request->get('products', []);
 
-        if(is_array($ids) && count($ids))
-        {
+        if (is_array($ids) && count($ids)) {
             $products = $product->whereIn('products.id', $ids)
                 ->get();
 
-            foreach($products as $product)
-            {
+            foreach ($products as $product) {
                 $translation = $product->translate($request->get('locale'));
 
-                if($translation)
-                {
+                if ($translation) {
                     $translation->published = true;
                 }
 
@@ -93,17 +90,14 @@ class ProductSelectionController extends AdminController{
     {
         $ids = $request->get('products', []);
 
-        if(is_array($ids) && count($ids))
-        {
+        if (is_array($ids) && count($ids)) {
             $products = $product->whereIn('products.id', $ids)
                 ->get();
 
-            foreach($products as $product)
-            {
+            foreach ($products as $product) {
                 $translation = $product->translate($request->get('locale'));
 
-                if($translation)
-                {
+                if ($translation) {
                     $translation->published = false;
                 }
 

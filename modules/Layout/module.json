@@ -1,15 +1,15 @@
 {
-    "name": "Layout",
-    "alias": "layout",
-    "description": "",
-    "keywords": [],
-    "active": 1,
-    "order": 5,
-    "providers": [
-        "Modules\\Layout\\Providers\\LayoutServiceProvider"
-    ],
-    "aliases":{},
-    "files": [
-        "helpers.php"
-    ]
+  "name": "Layout",
+  "alias": "layout",
+  "description": "",
+  "keywords": [],
+  "active": 1,
+  "order": 5,
+  "providers": [
+    "Modules\\Layout\\Providers\\LayoutServiceProvider"
+  ],
+  "aliases": {},
+  "files": [
+    "helpers.php"
+  ]
 }

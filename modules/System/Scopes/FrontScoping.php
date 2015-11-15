@@ -5,8 +5,7 @@ trait FrontScoping
 
     public static function bootFrontScoping()
     {
-        if(on_front())
-        {
+        if (on_front()) {
             $class = self::getFrontScopeName();
 
             static::addGlobalScope(new $class());

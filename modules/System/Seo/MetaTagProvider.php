@@ -22,8 +22,6 @@ abstract class MetaTagProvider
         $this->defaults = $defaults;
     }
 
-    abstract protected function handle(SeoEntity $seo);
-
     public function generate(SeoEntity $seo = null)
     {
 
@@ -76,46 +74,58 @@ abstract class MetaTagProvider
         return $this;
     }
 
-    /**
-     * Remove property.
-     *
-     * @param string $key
-     *
-     * @return $this
-     */
-    public function removeProperty($key)
+    protected function addLocale(SeoEntity $seo = null)
     {
-        array_forget($this->properties, $key);
+        $cases = [
+            'nl' => 'nl_BE',
+            'fr' => 'fr_BE',
+            'en' => 'en_GB',
+            'de' => 'de_DE',
+        ];
 
-        return $this;
+        $this->addProperty('locale', $cases[app()->getLocale()]);
+
+        //if multiple locale install and multiple selected
+        //provide the translated routes
+        //if we have an seo entity set. you need to get it from there.
+        //this basically doesn't work for facebook.
+        //facebook wants the same url for the same page in different locales
+        //duh :(
+
+    }
+
+    abstract protected function handle(SeoEntity $seo);
+
+    protected function addTypeDefaults($seo)
+    {
+        if (isset($this->properties['type'])) {
+            $type = $this->properties['type'];
+
+            //add all the extras for the specific type, if they haven't been defined yet.
+
+            if (isset($this->defaults[$type])) {
+                foreach ($this->defaults[$type] as $key => $default) {
+                    $property = $this->nameForTypeSpecificProperty($type, $key);
+
+                    if (!isset($this->properties[$property])) {
+                        $this->properties[$property] = $default;
+                    }
+                }
+            }
+        }
     }
 
     /**
-     * Add image to properties.
+     * @param $type
+     * @param $key
      *
-     * @param string $url
-     *
-     * @return $this
+     * @return string
      */
-    public function addImage($url)
+    protected function nameForTypeSpecificProperty($type, $key)
     {
-        $this->images[] = $url;
+        $property = $type . ':' . $key;
 
-        return $this;
-    }
-
-    /**
-     * Add images to properties.
-     *
-     * @param array $urls
-     *
-     * @return $this
-     */
-    public function addImages(array $urls)
-    {
-        array_push($this->images, $urls);
-
-        return $this;
+        return $property;
     }
 
     /**
@@ -154,15 +164,6 @@ abstract class MetaTagProvider
         endforeach;
 
         return implode(PHP_EOL, $html);
-    }
-
-    protected function tag($key, $value)
-    {
-        if (!property_exists($this, 'prefix')) {
-            throw new \Exception('Need to define the prefix property for generating meta tags');
-        }
-
-        return '<meta name="' . $this->prefix . strip_tags($key) . '" content="' . strip_tags($value) . '">';
     }
 
     /**
@@ -213,13 +214,6 @@ abstract class MetaTagProvider
         return method_exists($this, $method);
     }
 
-    protected function customRenderMethod($key, $value)
-    {
-        $method = $this->customRenderMethodName($key);
-
-        return call_user_func([$this, $method], $key, $value);
-    }
-
     /**
      * @param $key
      *
@@ -232,56 +226,62 @@ abstract class MetaTagProvider
         return $method;
     }
 
-    protected function addTypeDefaults($seo)
+    protected function customRenderMethod($key, $value)
     {
-        if (isset($this->properties['type'])) {
-            $type = $this->properties['type'];
+        $method = $this->customRenderMethodName($key);
 
-            //add all the extras for the specific type, if they haven't been defined yet.
-
-            if (isset($this->defaults[$type])) {
-                foreach ($this->defaults[$type] as $key => $default) {
-                    $property = $this->nameForTypeSpecificProperty($type, $key);
-
-                    if (!isset($this->properties[$property])) {
-                        $this->properties[$property] = $default;
-                    }
-                }
-            }
-        }
+        return call_user_func([$this, $method], $key, $value);
     }
 
-    protected function addLocale(SeoEntity $seo = null)
+    protected function tag($key, $value)
     {
-        $cases = [
-            'nl' => 'nl_BE',
-            'fr' => 'fr_BE',
-            'en' => 'en_GB',
-            'de' => 'de_DE',
-        ];
+        if (!property_exists($this, 'prefix')) {
+            throw new \Exception('Need to define the prefix property for generating meta tags');
+        }
 
-        $this->addProperty('locale', $cases[app()->getLocale()]);
-
-        //if multiple locale install and multiple selected
-        //provide the translated routes
-        //if we have an seo entity set. you need to get it from there.
-        //this basically doesn't work for facebook.
-        //facebook wants the same url for the same page in different locales
-        //duh :(
-
+        return '<meta name="' . $this->prefix . strip_tags($key) . '" content="' . strip_tags($value) . '">';
     }
 
     /**
-     * @param $type
-     * @param $key
+     * Remove property.
      *
-     * @return string
+     * @param string $key
+     *
+     * @return $this
      */
-    protected function nameForTypeSpecificProperty($type, $key)
+    public function removeProperty($key)
     {
-        $property = $type . ':' . $key;
+        array_forget($this->properties, $key);
 
-        return $property;
+        return $this;
+    }
+
+    /**
+     * Add image to properties.
+     *
+     * @param string $url
+     *
+     * @return $this
+     */
+    public function addImage($url)
+    {
+        $this->images[] = $url;
+
+        return $this;
+    }
+
+    /**
+     * Add images to properties.
+     *
+     * @param array $urls
+     *
+     * @return $this
+     */
+    public function addImages(array $urls)
+    {
+        array_push($this->images, $urls);
+
+        return $this;
     }
 
 }

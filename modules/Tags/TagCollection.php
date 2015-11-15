@@ -17,8 +17,7 @@ class TagCollection extends Collection
     {
         //when the user passed an empty format, so he could change the glue
         //we still need to use the default format
-        if(empty($format))
-        {
+        if (empty($format)) {
             $format = '<a href=":url">:name</a>';
         }
 

@@ -7,6 +7,7 @@ use Pusher;
 
 trait GammaNotificationHelpers
 {
+
     protected function beingProcessed(GammaNotification $notification, Brand $brand, Category $category)
     {
         return $notification->where('brand_id', $brand->id)
@@ -25,8 +26,7 @@ trait GammaNotificationHelpers
 
         $counter = 0;
 
-        foreach($notifications as $notification)
-        {
+        foreach ($notifications as $notification) {
             $pusher->trigger(pusher_account_channel(), 'gamma.gamma_notification.denied', $notification->toArray());
 
             $notification->delete();

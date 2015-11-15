@@ -80,24 +80,20 @@ class SkillController extends AdminController
 
         $skill->save();
 
-
         //attach the skill to the user if needed
         $user = $guard->user();
 
-        if(!$user->skills->contains($skill->id))
-        {
+        if (!$user->skills->contains($skill->id)) {
             $user->skills()->attach($skill);
         }
 
         //update the pivot data when necessary
         $userSkill = $user->skills()->find($skill->id);
 
-        if($userSkill)
-        {
+        if ($userSkill) {
             $userSkill->pivot->level = array_get($request->get('pivot'), 'level');
 
             $userSkill->pivot->save();
-
         }
 
         $userSkill->load('translations');
@@ -111,8 +107,7 @@ class SkillController extends AdminController
 
         $user->skills()->detach($skill);
 
-        if($skill->users()->count() == 0)
-        {
+        if ($skill->users()->count() == 0) {
             $skill->delete();
         }
     }

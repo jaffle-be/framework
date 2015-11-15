@@ -7,7 +7,8 @@ use Illuminate\Filesystem\Filesystem;
  *
  * @package Media
  */
-class FileObserver {
+class FileObserver
+{
 
     /**
      * @var Filesystem

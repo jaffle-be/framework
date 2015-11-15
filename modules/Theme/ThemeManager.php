@@ -36,15 +36,13 @@ class ThemeManager
 
     public function boot()
     {
-        if(!config('system.installed'))
-        {
+        if (!config('system.installed')) {
             return;
         }
 
         $selected = $this->repository->current();
 
-        if($selected)
-        {
+        if ($selected) {
             $this->current = $selected;
 
             $this->setupNamespace();
@@ -55,8 +53,7 @@ class ThemeManager
     {
         $theme = $this->current();
 
-        if(!$theme)
-        {
+        if (!$theme) {
             throw new Exception('Need a theme set to be able to send emails');
         }
 
@@ -80,13 +77,11 @@ class ThemeManager
 
     public function setting($key)
     {
-        if(!$theme = $this->current())
-        {
+        if (!$theme = $this->current()) {
             return;
         }
 
-        if(!$setting = $theme->settings->get($key))
-        {
+        if (!$setting = $theme->settings->get($key)) {
             throw new Exception(sprintf('Unknown setting requested: %s', $key));
         }
 

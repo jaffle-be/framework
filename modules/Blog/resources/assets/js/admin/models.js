@@ -24,7 +24,7 @@
                             }
                         });
 
-                        response.images = _.map(response.images, function(image){
+                        response.images = _.map(response.images, function (image) {
                             return new Image(image);
                         });
 

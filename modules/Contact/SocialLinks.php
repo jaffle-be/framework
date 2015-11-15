@@ -5,6 +5,7 @@ use Modules\System\Scopes\ModelAccountResource;
 
 class SocialLinks extends Model
 {
+
     use ModelAccountResource;
 
     protected $table = 'contact_social_links';
@@ -32,7 +33,7 @@ class SocialLinks extends Model
 
         $data = array_except($data, ['id']);
 
-        $data = array_filter($data, function($item){
+        $data = array_filter($data, function ($item) {
             return !empty($item);
         });
 

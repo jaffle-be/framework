@@ -7,8 +7,7 @@ class Creator
 
     public function handle($object)
     {
-        if($object instanceof OwnsSlug)
-        {
+        if ($object instanceof OwnsSlug) {
             $object->sluggify();
             $object->save();
         }

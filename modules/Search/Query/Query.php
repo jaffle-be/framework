@@ -10,6 +10,7 @@ use Modules\Search\SearchServiceInterface;
 
 class Query implements Queryable
 {
+
     use SearchResponder;
 
     /**

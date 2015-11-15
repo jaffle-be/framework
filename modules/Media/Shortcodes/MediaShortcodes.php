@@ -18,32 +18,6 @@ trait MediaShortcodes
         return $content;
     }
 
-    protected function stripMediaShortcodes($content)
-    {
-        $content = preg_replace('/#image(:left|:right)?#/', '', $content);
-
-        $content = preg_replace('/#video#/', '', $content);
-
-        $content = preg_replace('/#infographic#/', '', $content);
-
-        $content = preg_replace('/#file#/', '', $content);
-
-        return $content;
-    }
-
-    protected function formatMediaShortcodes($content)
-    {
-        $content = preg_replace('/(.*)(#image(:left|:right)?#)(.*)/', "$1\n$2\n$4", $content);
-
-        $content = preg_replace('/(.*)#video#(.*)/', "$1\n#video#\n$2", $content);
-
-        $content = preg_replace('/(.*)#infographic#(.*)/', "$1\n#infographic#\n$2", $content);
-
-        $content = preg_replace('/(.*)#file#(.*)/', "$1\n#file#\n$2", $content);
-
-        return $content;
-    }
-
     protected function compileImageShortcode($content)
     {
         $images = $this->getWantedImages($content);
@@ -146,6 +120,19 @@ trait MediaShortcodes
     }
 
     /**
+     * @param Image $img
+     * @param bool  $big
+     *
+     * @return string
+     */
+    protected function imageLink(Image $img, $big)
+    {
+        $path = $big ? $img->path : $img->thumbnail(460);
+
+        return asset($path);
+    }
+
+    /**
      * This one simply pulls an images left or right.
      * If it's not being pulled, make sure the path that's being used,
      * is a path that references an image which is smaller then the viewport.
@@ -167,31 +154,16 @@ trait MediaShortcodes
         return sprintf('{.clearfix}' . PHP_EOL . '![%s](%s){.img-responsive%s}', $title, $link, $float);
     }
 
-    /**
-     * @param Image $img
-     * @param bool  $big
-     *
-     * @return string
-     */
-    protected function imageLink(Image $img, $big)
-    {
-        $path = $big ? $img->path : $img->thumbnail(460);
-
-        return asset($path);
-    }
-
     protected function compileVideoShortcode($content)
     {
         $count = $this->getWantedVideos($content);
 
         $counter = 0;
 
-        while($counter < $count)
-        {
+        while ($counter < $count) {
             $replacement = '';
 
-            if($video = $this->videos->get($counter))
-            {
+            if ($video = $this->videos->get($counter)) {
                 $replacement = '<figure class="responsive-video">' . $video->embed . '</figure>';
             }
 
@@ -216,12 +188,10 @@ trait MediaShortcodes
 
         $counter = 0;
 
-        while($counter < $count)
-        {
+        while ($counter < $count) {
             $replacement = '';
 
-            if($infographic = $this->infographics->get($counter))
-            {
+            if ($infographic = $this->infographics->get($counter)) {
                 $replacement = $this->handleFullWidth($infographic->title, asset($infographic->path));
             }
 
@@ -254,13 +224,11 @@ trait MediaShortcodes
 
         $counter = 0;
 
-        while($counter < $count)
-        {
+        while ($counter < $count) {
             $replacement = '';
 
-            if($file = $this->files->get($counter))
-            {
-                $replacement = sprintf('[%s](%s)', $file->title ? : $file->filename, asset($file->path));
+            if ($file = $this->files->get($counter)) {
+                $replacement = sprintf('[%s](%s)', $file->title ?: $file->filename, asset($file->path));
             }
 
             $content = preg_replace('/#file#/', $replacement, $content, 1);
@@ -284,6 +252,32 @@ trait MediaShortcodes
         preg_match_all('/#file#/', $content, $matches);
 
         return count($matches[0]);
+    }
+
+    protected function stripMediaShortcodes($content)
+    {
+        $content = preg_replace('/#image(:left|:right)?#/', '', $content);
+
+        $content = preg_replace('/#video#/', '', $content);
+
+        $content = preg_replace('/#infographic#/', '', $content);
+
+        $content = preg_replace('/#file#/', '', $content);
+
+        return $content;
+    }
+
+    protected function formatMediaShortcodes($content)
+    {
+        $content = preg_replace('/(.*)(#image(:left|:right)?#)(.*)/', "$1\n$2\n$4", $content);
+
+        $content = preg_replace('/(.*)#video#(.*)/', "$1\n#video#\n$2", $content);
+
+        $content = preg_replace('/(.*)#infographic#(.*)/', "$1\n#infographic#\n$2", $content);
+
+        $content = preg_replace('/(.*)#file#(.*)/', "$1\n#file#\n$2", $content);
+
+        return $content;
     }
 
 }

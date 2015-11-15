@@ -5,6 +5,7 @@ use Modules\Contact\HasSocialLinks;
 
 class Account extends Model
 {
+
     use HasSocialLinks;
 
     protected $table = "accounts";

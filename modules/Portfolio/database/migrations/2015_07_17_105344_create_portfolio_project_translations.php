@@ -5,6 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 
 class CreatePortfolioProjectTranslations extends Migration
 {
+
     /**
      * Run the migrations.
      *

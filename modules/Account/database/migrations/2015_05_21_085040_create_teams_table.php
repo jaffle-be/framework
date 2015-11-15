@@ -8,6 +8,7 @@ use Modules\Module\ModuleRoute;
 
 class CreateTeamsTable extends Migration
 {
+
     /**
      * Run the migrations.
      *
@@ -15,16 +16,14 @@ class CreateTeamsTable extends Migration
      */
     public function up()
     {
-        Schema::create('account_teams', function(Blueprint $table)
-        {
+        Schema::create('account_teams', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('account_id', false, true);
             $table->foreign('account_id', 'teams_to_accounts')->references('id')->on('accounts')->onDelete('cascade');
             $table->timestamps();
         });
 
-        Schema::create('account_teams_translations', function(Blueprint $table)
-        {
+        Schema::create('account_teams_translations', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('team_id', false, true);
             $table->foreign('team_id', 'translations_to_teams')->references('id')->on('account_teams')->onDelete('cascade');
@@ -34,7 +33,7 @@ class CreateTeamsTable extends Migration
             $table->timestamps();
         });
 
-        Schema::create('account_team_memberships', function(Blueprint $table){
+        Schema::create('account_team_memberships', function (Blueprint $table) {
             $table->integer('team_id', false, true);
             $table->foreign('team_id', 'team_membership_to_team')->references('id')->on('account_teams')->onDelete('cascade');
             $table->integer('membership_id', false, true);
@@ -45,32 +44,32 @@ class CreateTeamsTable extends Migration
         //install the module itself.
         $module = Module::create([
             'namespace' => 'team',
-            'nl'     => [
+            'nl'        => [
                 'name' => 'Team',
             ],
-            'en'     => [
+            'en'        => [
                 'name' => 'Team',
             ],
-            'fr'     => [
+            'fr'        => [
                 'name' => 'Team',
             ],
-            'de'     => [
+            'de'        => [
                 'name' => 'Team',
             ]
         ]);
 
         $module->routes()->save(new ModuleRoute([
             'name' => 'store.team.index',
-            'nl' => [
+            'nl'   => [
                 'title' => 'team'
             ],
-            'en' => [
+            'en'   => [
                 'title' => 'team'
             ],
-            'fr' => [
+            'fr'   => [
                 'title' => 'team'
             ],
-            'de' => [
+            'de'   => [
                 'title' => 'team'
             ],
 
@@ -84,12 +83,12 @@ class CreateTeamsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('account_team_memberships', function(Blueprint $table){
+        Schema::drop('account_team_memberships', function (Blueprint $table) {
             $table->dropForeign('team_membership_to_team');
             $table->dropForeign('team_membership_to_membership');
         });
 
-        Schema::drop('account_teams_translations', function(Blueprint $table){
+        Schema::drop('account_teams_translations', function (Blueprint $table) {
             $table->dropForeign('translations_to_teams');
         });
 

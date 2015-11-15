@@ -256,8 +256,7 @@ trait SearchableTrait
 
         $collection = $class->newCollection();
 
-        foreach($relation_data as $data)
-        {
+        foreach ($relation_data as $data) {
             $collection->push($this->getSimpleRelationData($build, $data));
         }
 
@@ -289,16 +288,13 @@ trait SearchableTrait
 
     protected function searchableShiftTranslations(array $data)
     {
-        foreach($data as $key => &$value)
-        {
-            if(is_array($value))
-            {
+        foreach ($data as $key => &$value) {
+            if (is_array($value)) {
                 $value = $this->searchableShiftTranslations($value);
             }
         }
 
-        if(isset($data['translations']))
-        {
+        if (isset($data['translations'])) {
             $data = array_merge($data, $data['translations']);
             unset($data['translations']);
         }

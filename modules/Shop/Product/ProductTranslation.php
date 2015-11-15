@@ -10,6 +10,7 @@ use Modules\System\Translatable\TranslationModel;
 
 class ProductTranslation extends TranslationModel implements PresentableEntity, SluggableInterface, PresentableCache
 {
+
     use Sluggable, PresentableTrait, FrontScoping;
 
     protected $table = 'product_translations';

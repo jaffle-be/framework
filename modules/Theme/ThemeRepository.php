@@ -22,11 +22,6 @@ class ThemeRepository implements ThemeRepositoryInterface
         $this->account = $account;
     }
 
-    public function supported()
-    {
-        return $this->supported = $this->theme->orderBy('name')->get();
-    }
-
     public function current()
     {
         $selected = $this->selection();
@@ -39,6 +34,18 @@ class ThemeRepository implements ThemeRepositoryInterface
         if ($selected) {
             $selected->load($this->relations());
         }
+
+        return $selected;
+    }
+
+    /**
+     * @return mixed
+     */
+    protected function selection()
+    {
+        $selected = $this->selector
+            ->where('active', true)
+            ->first();
 
         return $selected;
     }
@@ -62,6 +69,11 @@ class ThemeRepository implements ThemeRepositoryInterface
         }
 
         return $this->activate($default->id);
+    }
+
+    public function supported()
+    {
+        return $this->supported = $this->theme->orderBy('name')->get();
     }
 
     /**
@@ -92,64 +104,6 @@ class ThemeRepository implements ThemeRepositoryInterface
         }
 
         return false;
-    }
-
-
-    public function updateBoolean($setting, $checked)
-    {
-        $setting->value()->delete();
-
-        if ($checked) {
-            $setting->value()->create([
-                'value'        => true,
-                'account_id'   => $this->account->account()->id,
-                'selection_id' => $this->selection()->id,
-            ]);
-        }
-    }
-
-    public function updateSelect($setting, $selected, ThemeSettingOption $option)
-    {
-        $option = $option->find($selected);
-
-        $setting->value()->delete();
-
-        $setting->value()->create([
-            'option_id'  => $option->id,
-            'account_id' => $this->account->account()->id,
-            'selection_id' => $this->selection()->id,
-        ]);
-    }
-
-    public function updateString($setting, $input)
-    {
-        $value = $setting->value;
-
-        if (!$value) {
-
-            $input = array_merge(['account_id' => $this->account->account()->id, 'selection_id' => $this->selection()->id], $input);
-
-            return $setting->value()->create($input);
-        }
-
-        $value->fill($input);
-
-        $value->save();
-    }
-
-    public function updateNumeric($setting, $value)
-    {
-        //if no original
-        if (!$setting->value) {
-
-            $input = array_merge(['value' => $value], ['account_id' => $this->account->account()->id, 'selection_id' => $this->selection()->id]);
-
-            return $setting->value()->create($input);
-        }
-
-        $value->value = $value;
-
-        $value->save();
     }
 
     /**
@@ -186,36 +140,13 @@ class ThemeRepository implements ThemeRepositoryInterface
 
             if ($default) {
 
-                if($setting->type->name == 'select')
-                {
+                if ($setting->type->name == 'select') {
                     $this->setupSelectDefault($selection, $default, $account, $setting);
-                }
-                elseif(in_array($setting->type->name, ['string', 'text']))
-                {
+                } elseif (in_array($setting->type->name, ['string', 'text'])) {
                     $this->setupJsonDefault($selection, $default, $account, $setting);
                 }
             }
         }
-    }
-
-    /**
-     * @return array
-     */
-    protected function relations()
-    {
-        return ['theme', 'theme.settings', 'theme.settings.value', 'theme.settings.value.translations', 'theme.settings.value.option', 'theme.settings.type', 'theme.settings.options', 'theme.settings.defaults'];
-    }
-
-    /**
-     * @return mixed
-     */
-    protected function selection()
-    {
-        $selected = $this->selector
-            ->where('active', true)
-            ->first();
-
-        return $selected;
     }
 
     /**
@@ -224,7 +155,7 @@ class ThemeRepository implements ThemeRepositoryInterface
      * @param                $account
      * @param                $setting
      */
-    protected function setupSelectDefault($selection, ThemeSettingDefault $default, $account,ThemeSetting $setting)
+    protected function setupSelectDefault($selection, ThemeSettingDefault $default, $account, ThemeSetting $setting)
     {
         $default = $default->toArray();
 
@@ -242,11 +173,76 @@ class ThemeRepository implements ThemeRepositoryInterface
         $type = $setting->type->name;
 
         $setting->value()->create([
-            'account_id' => $account,
+            'account_id'   => $account,
             'selection_id' => $selection,
-            'nl' => [ $type => $json->nl],
-            'en' => [ $type => $json->en],
+            'nl'           => [$type => $json->nl],
+            'en'           => [$type => $json->en],
         ]);
+    }
+
+    /**
+     * @return array
+     */
+    protected function relations()
+    {
+        return ['theme', 'theme.settings', 'theme.settings.value', 'theme.settings.value.translations', 'theme.settings.value.option', 'theme.settings.type', 'theme.settings.options', 'theme.settings.defaults'];
+    }
+
+    public function updateBoolean($setting, $checked)
+    {
+        $setting->value()->delete();
+
+        if ($checked) {
+            $setting->value()->create([
+                'value'        => true,
+                'account_id'   => $this->account->account()->id,
+                'selection_id' => $this->selection()->id,
+            ]);
+        }
+    }
+
+    public function updateSelect($setting, $selected, ThemeSettingOption $option)
+    {
+        $option = $option->find($selected);
+
+        $setting->value()->delete();
+
+        $setting->value()->create([
+            'option_id'    => $option->id,
+            'account_id'   => $this->account->account()->id,
+            'selection_id' => $this->selection()->id,
+        ]);
+    }
+
+    public function updateString($setting, $input)
+    {
+        $value = $setting->value;
+
+        if (!$value) {
+
+            $input = array_merge(['account_id' => $this->account->account()->id, 'selection_id' => $this->selection()->id], $input);
+
+            return $setting->value()->create($input);
+        }
+
+        $value->fill($input);
+
+        $value->save();
+    }
+
+    public function updateNumeric($setting, $value)
+    {
+        //if no original
+        if (!$setting->value) {
+
+            $input = array_merge(['value' => $value], ['account_id' => $this->account->account()->id, 'selection_id' => $this->selection()->id]);
+
+            return $setting->value()->create($input);
+        }
+
+        $value->value = $value;
+
+        $value->save();
     }
 
 }

@@ -15,6 +15,30 @@ class IndexManager
         $this->account = $account;
     }
 
+    public function remove(Account $account)
+    {
+        $client = $this->search->getClient();
+
+        $client->indices()->updateAliases([
+            'body' => [
+                'actions' => [
+                    [
+                        'remove' => [
+                            'alias' => $account->alias,
+                        ]
+                    ]
+                ]
+            ]
+        ]);
+    }
+
+    public function allAliases()
+    {
+        foreach ($this->account->all() as $account) {
+            $this->add($account);
+        }
+    }
+
     public function add(Account $account)
     {
         $client = $this->search->getClient();
@@ -39,30 +63,6 @@ class IndexManager
                 ]
             ]
         ]);
-    }
-
-    public function remove(Account $account)
-    {
-        $client = $this->search->getClient();
-
-        $client->indices()->updateAliases([
-            'body' => [
-                'actions' => [
-                    [
-                        'remove' => [
-                            'alias' => $account->alias,
-                        ]
-                    ]
-                ]
-            ]
-        ]);
-    }
-
-    public function allAliases()
-    {
-        foreach ($this->account->all() as $account) {
-            $this->add($account);
-        }
     }
 
     public function subscribe($events)

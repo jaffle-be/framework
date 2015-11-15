@@ -6,6 +6,7 @@ use Modules\Shop\Product\Product;
 
 class UpdateProduct extends Job implements SelfHandling
 {
+
     protected $product;
 
     public function __construct(Product $product)
@@ -15,7 +16,6 @@ class UpdateProduct extends Job implements SelfHandling
 
     public function handle()
     {
-
     }
 
 }

@@ -1,7 +1,6 @@
 <?php namespace Modules\Shop\Http\Admin;
 
 use Illuminate\Http\Request;
-use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
 use Modules\Account\AccountManager;
 use Modules\Shop\Gamma\GammaNotification;
@@ -30,8 +29,7 @@ class GammaController extends AdminController
 
         $ids = $categories->lists('id')->toArray();
 
-        if(!count($ids))
-        {
+        if (!count($ids)) {
             return new Collection();
         }
 
@@ -41,15 +39,14 @@ class GammaController extends AdminController
 
         //use foreach instead of map, so we can reuse the original paginator.
 
-        foreach($categories as $key => $category)
-        {
+        foreach ($categories as $key => $category) {
             $category->activated = $category->selection ? true : false;
             $category->selection = null;
 
             $bSelections = $selections->get($category->id);
             $bReviews = $reviews->get($category->id);
 
-            $category->brands = $category->brands->map(function($brand) use ($bSelections, $bReviews){
+            $category->brands = $category->brands->map(function ($brand) use ($bSelections, $bReviews) {
                 $brand->activated = $brand->selection ? true : false;
                 $brand->selection = null;
 
@@ -91,8 +88,7 @@ class GammaController extends AdminController
 
         $ids = $brands->lists('id')->toArray();
 
-        if(!count($ids))
-        {
+        if (!count($ids)) {
             return new Collection();
         }
 
@@ -102,15 +98,14 @@ class GammaController extends AdminController
 
         //use foreach instead of map, so we can reuse the original paginator.
 
-        foreach($brands as $key => $brand)
-        {
+        foreach ($brands as $key => $brand) {
             $brand->activated = $brand->selection ? true : false;
             $brand->selection = null;
 
             $cSelections = $selections->get($brand->id);
             $cReviews = $reviews->get($brand->id);
 
-            $brand->categories = $brand->categories->map(function($category) use ($cSelections, $cReviews){
+            $brand->categories = $brand->categories->map(function ($category) use ($cSelections, $cReviews) {
                 $category->activated = $category->selection ? true : false;
                 $category->selection = null;
 
@@ -147,11 +142,9 @@ class GammaController extends AdminController
         $brand = $brand->find($request->get('brand'));
         $category = $category->find($request->get('category'));
 
-        if($status)
-        {
+        if ($status) {
             $this->dispatch(new NotifyDetailActivation($brand, $category, $manager->account()));
-        }
-        else{
+        } else {
             $this->dispatch(new NotifyDetailDeactivation($brand, $category, $manager->account()));
         }
     }

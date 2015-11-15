@@ -11,10 +11,10 @@ use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class StartNewsletterCampaign extends Job implements SelfHandling
 {
+
     protected $campaign;
 
     protected $locale;
-
 
     public function __construct(Campaign $campaign, $locale)
     {
@@ -26,11 +26,10 @@ class StartNewsletterCampaign extends Job implements SelfHandling
     {
         $campaign = $this->campaign->translate($this->locale);
 
-        try{
+        try {
             $content = $builder->build($this->campaign, $this->locale);
         }
-        catch(Exception $e)
-        {
+        catch (Exception $e) {
             throw new HttpException(400, 'There was a problem, check for any unfinished widgets', null, ['reason' => 'There was a problem, check for any unfinished widgets']);
         }
 
@@ -51,17 +50,15 @@ class StartNewsletterCampaign extends Job implements SelfHandling
                 ]
             ]);
 
-            if($result && isset($result['id']))
-            {
+            if ($result && isset($result['id'])) {
                 $campaign->mail_chimp_campaign_id = $result['id'];
+
                 return $campaign->save() ? $campaign : false;
             }
         }
         catch (Exception $e) {
             throw new HttpException(400, 'Cannot contact mailservice, try again later', null, ['reason' => 'Cannot contact mailservice, try again later']);
         }
-
-
     }
 
 }

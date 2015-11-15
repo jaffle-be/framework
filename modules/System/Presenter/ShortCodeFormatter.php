@@ -5,6 +5,7 @@ use Modules\System\Translatable\TranslationModel;
 
 class ShortCodeFormatter
 {
+
     use ShortCodeCompiler;
     use MediaShortcodes;
 
@@ -18,10 +19,8 @@ class ShortCodeFormatter
      */
     public function handle($model)
     {
-        if($model instanceof TranslationModel && $model instanceof PresentableEntity)
-        {
-            if($model->isDirty('content'))
-            {
+        if ($model instanceof TranslationModel && $model instanceof PresentableEntity) {
+            if ($model->isDirty('content')) {
                 $model->content = $this->formatShortcodes($model->content);
             }
         }

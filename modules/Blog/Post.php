@@ -81,7 +81,6 @@ class Post extends Model implements StoresMedia, Searchable, StoresTags, Present
 
     public function scopeRelated(Builder $builder)
     {
-
     }
 
 }

@@ -5,7 +5,7 @@
  */
 Route::group([
     'namespace' => 'Modules\Dashboard\Http',
-    'as' => 'store.',
+    'as'        => 'store.',
 ], function () {
 
     /**
@@ -18,8 +18,7 @@ Route::group([
      * when installing as a multi locale app.
      */
 
-    if(env('APP_MULTIPLE_LOCALES'))
-    {
+    if (env('APP_MULTIPLE_LOCALES')) {
         foreach (config('system.locales') as $locale) {
             Route::get("/$locale", [
                 'uses' => 'WelcomeController@storeHome',
@@ -28,16 +27,14 @@ Route::group([
         }
 
         Route::get('/', ['uses' => 'WelcomeController@landing', 'as' => 'landing']);
-    }
-    else{
+    } else {
         Route::get('/', [
             'uses' => 'WelcomeController@storeHome',
             'as'   => 'home'
         ]);
     }
 
-    Route::group(['prefix' => 'templates'], function()
-    {
+    Route::group(['prefix' => 'templates'], function () {
         Route::resource('admin/start', 'Admin\DashboardController', ['only' => ['index']]);
     });
 
@@ -46,22 +43,21 @@ Route::group([
         Route::get('/', ['uses' => 'WelcomeController@storeDash', 'middleware' => 'auth.admin']);
 
         Route::get('{subs}', [
-            'uses' => 'WelcomeController@storeDash',
+            'uses'       => 'WelcomeController@storeDash',
             'middleware' => 'auth.admin'
         ])->where(['subs' => '.*']);
     });
 
     Route::group(['prefix' => 'templates'], function () {
         Route::get('admin', [
-            'uses' => 'WelcomeController@storeDash',
-            'as'   => 'dash',
+            'uses'       => 'WelcomeController@storeDash',
+            'as'         => 'dash',
             'middleware' => 'auth.admin'
         ]);
 
         //this route should probably no longer be used?
         Route::get('admin/system', ['uses' => 'WelcomeController@system', 'middleware' => 'auth.admin']);
     });
-
 });
 
 //Route::get('test', 'WelcomeController@test');

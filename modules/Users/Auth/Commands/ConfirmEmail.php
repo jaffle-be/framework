@@ -6,7 +6,8 @@ use Illuminate\Contracts\Bus\SelfHandling;
 use Modules\Users\Auth\Tokens\Token;
 use Modules\Users\Contracts\UserRepositoryInterface;
 
-class ConfirmEmail extends Job implements SelfHandling{
+class ConfirmEmail extends Job implements SelfHandling
+{
 
     protected $token;
 
@@ -19,10 +20,8 @@ class ConfirmEmail extends Job implements SelfHandling{
     {
         $user = $users->findUserByConfirmationToken($this->token->id);
 
-        if($user)
-        {
-            if(!$user->confirmed)
-            {
+        if ($user) {
+            if (!$user->confirmed) {
                 $user->confirmed = 1;
             }
 

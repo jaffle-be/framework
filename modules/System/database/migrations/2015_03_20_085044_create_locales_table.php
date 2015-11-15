@@ -19,7 +19,7 @@ class CreateLocalesTable extends Migration
             $table->string('slug', 5);
         });
 
-        Schema::create('locales_translations', function(Blueprint $table){
+        Schema::create('locales_translations', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('locale_id', false, true);
             $table->foreign('locale_id', 'translation_to_locale')->references('id')->on('locales')->onDelete('cascade');
@@ -27,39 +27,37 @@ class CreateLocalesTable extends Migration
             $table->string('name');
         });
 
-
         Locale::create([
             'slug' => 'nl',
-            'nl' => ['name' => 'nederlands'],
-            'fr' => ['name' => 'néerlandais'],
-            'de' => ['name' => 'holländisch'],
-            'en' => ['name' => 'dutch'],
+            'nl'   => ['name' => 'nederlands'],
+            'fr'   => ['name' => 'néerlandais'],
+            'de'   => ['name' => 'holländisch'],
+            'en'   => ['name' => 'dutch'],
         ]);
 
         Locale::create([
             'slug' => 'fr',
-            'nl' => ['name' => 'frans'],
-            'fr' => ['name' => 'français'],
-            'de' => ['name' => 'französisch'],
-            'en' => ['name' => 'french'],
+            'nl'   => ['name' => 'frans'],
+            'fr'   => ['name' => 'français'],
+            'de'   => ['name' => 'französisch'],
+            'en'   => ['name' => 'french'],
         ]);
 
         Locale::create([
             'slug' => 'en',
-            'nl' => ['name' => 'engels'],
-            'fr' => ['name' => 'anglais'],
-            'de' => ['name' => 'englisch'],
-            'en' => ['name' => 'english'],
+            'nl'   => ['name' => 'engels'],
+            'fr'   => ['name' => 'anglais'],
+            'de'   => ['name' => 'englisch'],
+            'en'   => ['name' => 'english'],
         ]);
 
         Locale::create([
             'slug' => 'de',
-            'nl' => ['name' => 'duits'],
-            'fr' => ['name' => 'allemand'],
-            'de' => ['name' => 'deutsch'],
-            'en' => ['name' => 'german'],
+            'nl'   => ['name' => 'duits'],
+            'fr'   => ['name' => 'allemand'],
+            'de'   => ['name' => 'deutsch'],
+            'en'   => ['name' => 'german'],
         ]);
-
     }
 
     /**
@@ -69,12 +67,11 @@ class CreateLocalesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('locales_translations', function (Blueprint $table){
+        Schema::drop('locales_translations', function (Blueprint $table) {
             $table->dropForeign('translation_to_locale');
         });
 
         Schema::drop('locales', function (Blueprint $table) {
         });
-
     }
 }

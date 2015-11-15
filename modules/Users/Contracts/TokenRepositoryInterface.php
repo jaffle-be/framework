@@ -1,6 +1,7 @@
 <?php namespace Modules\Users\Contracts;
 
-interface TokenRepositoryInterface {
+interface TokenRepositoryInterface
+{
 
     public function createNewToken($type, $value, $expires = 2);
 

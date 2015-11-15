@@ -5,18 +5,17 @@ use InvalidArgumentException;
 
 trait StoringMedia
 {
+
     use ImageDimensionHelpers;
 
     public function mediaStoresMultiple()
     {
         static $multiple;
 
-        if($multiple === null)
-        {
+        if ($multiple === null) {
             $multiple = true;
 
-            if(property_exists(get_class($this), 'mediaMultiple'))
-            {
+            if (property_exists(get_class($this), 'mediaMultiple')) {
                 $multiple = $this->mediaMultiple;
             }
         }
@@ -26,8 +25,7 @@ trait StoringMedia
 
     public function images()
     {
-        if($this->mediaStoresMultiple())
-        {
+        if ($this->mediaStoresMultiple()) {
             return $this->morphMany('Modules\Media\Image', 'owner');
         }
 
@@ -36,8 +34,7 @@ trait StoringMedia
 
     public function videos()
     {
-        if($this->mediaStoresMultiple())
-        {
+        if ($this->mediaStoresMultiple()) {
             return $this->morphMany('Modules\Media\Video\Video', 'owner');
         }
 
@@ -64,16 +61,13 @@ trait StoringMedia
     //this is a shortcut method to get the thumbnail source.
     public function thumbnail($width = null, $height = null)
     {
-        if($this->mediaStoresMultiple())
-        {
+        if ($this->mediaStoresMultiple()) {
             $image = $this->images->first();
-        }
-        else{
+        } else {
             $image = $this->images;
         }
 
-        if($image)
-        {
+        if ($image) {
             return $image->thumbnail($width, $height);
         }
     }
@@ -87,23 +81,19 @@ trait StoringMedia
         /** @var Configurator $config */
         $config = app('Modules\Media\Configurator');
 
-        if(empty($type))
-        {
+        if (empty($type)) {
             return sprintf('%s/%d/', $media, $this->attributes['id']);
         }
 
-        if(!empty($type) && !$config->isSupportedMediaType($type))
-        {
+        if (!empty($type) && !$config->isSupportedMediaType($type)) {
             throw new InvalidArgumentException('Need valid media type to return a proper folder');
         }
 
-        if(!property_exists(get_class($this), 'media'))
-        {
+        if (!property_exists(get_class($this), 'media')) {
             throw new Exception('Please define media attribute on your model');
         }
 
-        if(!$size)
-        {
+        if (!$size) {
             return sprintf('%s/%d/%s/', $media, $this->attributes['id'], $type);
         }
 

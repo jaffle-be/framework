@@ -7,6 +7,7 @@ use Pingpong\Modules\ServiceProvider;
 
 class AccountServiceProvider extends ServiceProvider
 {
+
     protected $defer = false;
 
     protected $namespace = 'account';
@@ -15,8 +16,7 @@ class AccountServiceProvider extends ServiceProvider
     {
         parent::boot();
 
-        if(config('system.installed'))
-        {
+        if (config('system.installed')) {
             $this->app['Modules\Account\AccountManager']->boot();
         }
     }
@@ -67,7 +67,6 @@ class AccountServiceProvider extends ServiceProvider
     protected function indexers()
     {
         $this->app['events']->subscribe('Modules\\Account\\IndexManager');
-
     }
 
 }

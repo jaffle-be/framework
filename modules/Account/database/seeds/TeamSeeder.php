@@ -10,8 +10,7 @@ class TeamSeeder extends Seeder
 
     public function run()
     {
-        foreach([1,2] as $account)
-        {
+        foreach ([1, 2] as $account) {
             $teller = 0;
 
             $teams = new Collection();

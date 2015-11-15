@@ -22,7 +22,7 @@ class CreateProductTable extends Migration
             $table->timestamps();
         });
 
-        Schema::create('product_translations', function(Blueprint $table){
+        Schema::create('product_translations', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('product_id', false, true);
             $table->foreign('product_id', 'translation_to_product')->references('id')->on('products')->onDelete('cascade');
@@ -36,7 +36,6 @@ class CreateProductTable extends Migration
             $table->text('cached_extract');
             $table->timestamps();
         });
-
     }
 
     /**

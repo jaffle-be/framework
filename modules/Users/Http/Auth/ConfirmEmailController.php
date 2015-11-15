@@ -61,8 +61,7 @@ class ConfirmEmailController extends FrontController
         if ($token) {
             $user = $this->dispatchFromArray(ConfirmEmail::class, ['token' => $token]);
 
-            if($user)
-            {
+            if ($user) {
                 return redirect('admin/start');
             }
         }

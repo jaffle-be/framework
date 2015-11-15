@@ -10,9 +10,9 @@ Route::group([
 
     Route::group(['namespace' => 'Admin'], function () {
         Route::group(['prefix' => 'templates/admin'], function () {
-        //template files, load at top so we do not end up in the show method
-        Route::get('portfolio/overview', 'PortfolioController@overview');
-        Route::get('portfolio/detail', 'PortfolioController@detail');
+            //template files, load at top so we do not end up in the show method
+            Route::get('portfolio/overview', 'PortfolioController@overview');
+            Route::get('portfolio/detail', 'PortfolioController@detail');
         });
 
         //actual resource
@@ -25,17 +25,13 @@ Route::group([
         });
     });
 
-    if(env('APP_MULTIPLE_LOCALES'))
-    {
-        foreach(config('system.locales') as $locale)
-        {
+    if (env('APP_MULTIPLE_LOCALES')) {
+        foreach (config('system.locales') as $locale) {
             Route::get("$locale/portfolio", ['uses' => 'PortfolioController@index', 'as' => "$locale.portfolio.index"]);
             Route::get("$locale/portfolio/{project}", ['uses' => 'PortfolioController@show', 'as' => "$locale.portfolio.show"]);
         }
-    }
-    else{
+    } else {
         Route::get('portfolio', ['uses' => 'PortfolioController@index', 'as' => 'portfolio.index']);
         Route::get('portfolio/{project}', ['uses' => 'PortfolioController@show', 'as' => 'portfolio.show']);
     }
-
 });

@@ -30,36 +30,30 @@ class SeoController extends AdminController
 
         $locale = $locale->whereSlug($request->get('locale'))->first();
 
-        if(!$locale)
-        {
+        if (!$locale) {
             return;
         }
 
-        $seo = $owner->seo->first(function($key, $item) use ($locale){
+        $seo = $owner->seo->first(function ($key, $item) use ($locale) {
             return $item->locale_id == $locale->id;
         });
 
-        if($seo)
-        {
-            if($this->hasData($request))
-            {
+        if ($seo) {
+            if ($this->hasData($request)) {
                 $seo->title = $request->get('title');
                 $seo->description = $request->get('description');
                 $seo->keywords = $request->get('keywords');
                 $seo->save();
-            }
-            else{
+            } else {
                 $seo->delete();
             }
-        }
-        else{
-            if($this->hasData($request))
-            {
+        } else {
+            if ($this->hasData($request)) {
                 $seo = new SeoProperty([
-                    'locale_id' => $locale->id,
-                    'title' => $request->get('title'),
+                    'locale_id'   => $locale->id,
+                    'title'       => $request->get('title'),
                     'description' => $request->get('description'),
-                    'keywords' => $request->get('keywords')
+                    'keywords'    => $request->get('keywords')
                 ]);
 
                 $owner->seo()->save($seo);
@@ -69,10 +63,8 @@ class SeoController extends AdminController
 
     protected function hasData(Request $request)
     {
-        foreach(['title', 'description', 'keywords'] as $key)
-        {
-            if($request->has($key) && $request->get($key))
-            {
+        foreach (['title', 'description', 'keywords'] as $key) {
+            if ($request->has($key) && $request->get($key)) {
                 return true;
             }
         }
@@ -87,8 +79,7 @@ class SeoController extends AdminController
 
         $owners = config('system.seo.owners');
 
-        if(!isset($owners[$ownerType]))
-        {
+        if (!isset($owners[$ownerType])) {
             throw new \Exception('Invalid owner type provided for seo');
         }
 

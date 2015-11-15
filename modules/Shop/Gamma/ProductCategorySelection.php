@@ -7,6 +7,7 @@ use Modules\Search\Model\SearchableTrait;
 
 class ProductCategorySelection extends Model implements Searchable
 {
+
     use SoftDeletes;
     use SearchableTrait;
 

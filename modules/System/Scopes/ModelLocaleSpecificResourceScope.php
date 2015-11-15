@@ -21,15 +21,13 @@ class ModelLocaleSpecificResourceScope implements ScopeInterface
 
         $locale = $this->locale->whereSlug($locale)->first();
 
-        if($this->locale)
-        {
+        if ($this->locale) {
             $builder->where('locale_id', $locale->getKey());
         }
     }
 
     public function remove(Builder $builder, Model $model)
     {
-
     }
 
 }

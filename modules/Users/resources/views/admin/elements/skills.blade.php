@@ -1,4 +1,3 @@
-
 <form ng-submit="vm.createSkill()" novalidate name="skillForm">
 
     <div class="form-group">
@@ -31,31 +30,31 @@
 
         <form ng-submit="vm.updateSkill(skill)" novalidate name="skillForm">
 
-                <div class="form-group col-xs-8">
+            <div class="form-group col-xs-8">
 
-                    <div class="input-group">
-                        <input autocomplete="off" ng-change="vm.updateSkill(skill)" class="form-control" type="text" ng-model="skill.translations[vm.options.locale].name"/>
+                <div class="input-group">
+                    <input autocomplete="off" ng-change="vm.updateSkill(skill)" class="form-control" type="text" ng-model="skill.translations[vm.options.locale].name"/>
 
                         <span class="input-group-btn">
                             <button ng-really="vm.deleteSkill(skill)" class="btn btn-danger"><i class="fa fa-trash"></i>
                             </button>
                         </span>
-                    </div>
-
                 </div>
 
-                <div class="form-group col-xs-4">
-                    <div class="input-group">
+            </div>
+
+            <div class="form-group col-xs-4">
+                <div class="input-group">
                         <span class="input-group-addon">
                             {{ Lang::get('users::admin.skill.level') }}
                         </span>
-                        <input type="text" name="level" id="level" class="form-control" ng-model="skill.pivot.level" ng-change="vm.updateSkill(skill)"/>
+                    <input type="text" name="level" id="level" class="form-control" ng-model="skill.pivot.level" ng-change="vm.updateSkill(skill)"/>
 
                         <span class="input-group-addon">
                             %
                         </span>
-                    </div>
                 </div>
+            </div>
 
             <div class="form-group col-xs-12">
 

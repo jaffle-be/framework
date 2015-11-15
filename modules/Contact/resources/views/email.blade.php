@@ -4,7 +4,8 @@
 
     <table width="700" border="0" cellpadding="0" cellspacing="0" align="center" class="deviceWidth">
         <tr>
-            <td width="100%" bgcolor="#ffffff" style="text-align: center; padding: 10px 5px;"><h2>{{ Lang::get('contact::front.email.intro') }}</h2></td>
+            <td width="100%" bgcolor="#ffffff" style="text-align: center; padding: 10px 5px;">
+                <h2>{{ Lang::get('contact::front.email.intro') }}</h2></td>
         </tr>
 
         <tr>

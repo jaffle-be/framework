@@ -25,7 +25,7 @@ class SocialLinksController extends AdminController
     {
         $rules = [];
 
-        foreach($links->getFillable() as $link){
+        foreach ($links->getFillable() as $link) {
             $rules[$link] = 'url';
         }
 
@@ -57,6 +57,5 @@ class SocialLinksController extends AdminController
 
         return $class->findOrFail($id);
     }
-
 
 }

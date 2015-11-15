@@ -15,6 +15,7 @@ use Modules\Media\StoringMedia;
  */
 class AccountLogo extends Model implements StoresMedia
 {
+
     use StoringMedia;
 
     protected $media = '{account}/account/logo';

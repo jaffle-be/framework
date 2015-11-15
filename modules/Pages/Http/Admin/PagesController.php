@@ -13,6 +13,7 @@ use Modules\System\Http\AdminController;
 
 class PagesController extends AdminController
 {
+
     use MediaWidgetPreperations;
 
     public function overview()
@@ -73,8 +74,7 @@ class PagesController extends AdminController
         //make sure one cannot select itself as a subpage
         $but = new Collection([$page]);
 
-        if($page->parent)
-        {
+        if ($page->parent) {
             $but->push($page->parent);
         }
 
@@ -110,13 +110,11 @@ class PagesController extends AdminController
     {
         $ids = $request->get('pages', []);
 
-        if(is_array($ids) && count($ids))
-        {
+        if (is_array($ids) && count($ids)) {
             $pages = $page->whereIn('pages.id', $ids)
                 ->get();
 
-            foreach($pages as $page)
-            {
+            foreach ($pages as $page) {
                 $page->delete();
             }
         }
@@ -125,8 +123,7 @@ class PagesController extends AdminController
     public function destroy(Page $page)
     {
         //make sure to load the relations, in order to delete morphing relations.
-        if($page->delete())
-        {
+        if ($page->delete()) {
             $page->id = false;
         }
 
@@ -139,8 +136,7 @@ class PagesController extends AdminController
 
         $page = $page->findOrFail($request->get('page'));
 
-        if(!$page->parent_id)
-        {
+        if (!$page->parent_id) {
             $count = $parent->children()->count();
 
             $page->sort = $count;
@@ -155,8 +151,7 @@ class PagesController extends AdminController
 
         $page = $page->findOrFail($request->get('page'));
 
-        if($page->parent_id == $parent->id)
-        {
+        if ($page->parent_id == $parent->id) {
             $page->parent_id = null;
             $page->save();
         }
@@ -172,12 +167,10 @@ class PagesController extends AdminController
             ->whereIn('id', $request->get('order'))
             ->get();
 
-        foreach($request->get('order') as $position => $id)
-        {
+        foreach ($request->get('order') as $position => $id) {
             $child = $children->find($id);
 
-            if(!$child)
-            {
+            if (!$child) {
                 throw new Exception('trying to sort a page not belonging to this parent');
             }
 
@@ -190,17 +183,14 @@ class PagesController extends AdminController
     {
         $ids = $request->get('pages', []);
 
-        if(is_array($ids) && count($ids))
-        {
+        if (is_array($ids) && count($ids)) {
             $pages = $page->whereIn('pages.id', $ids)
                 ->get();
 
-            foreach($pages as $page)
-            {
+            foreach ($pages as $page) {
                 $translation = $page->translate($request->get('locale'));
 
-                if($translation)
-                {
+                if ($translation) {
                     $translation->published = true;
                 }
 
@@ -213,17 +203,14 @@ class PagesController extends AdminController
     {
         $ids = $request->get('pages', []);
 
-        if(is_array($ids) && count($ids))
-        {
+        if (is_array($ids) && count($ids)) {
             $pages = $page->whereIn('pages.id', $ids)
                 ->get();
 
-            foreach($pages as $page)
-            {
+            foreach ($pages as $page) {
                 $translation = $page->translate($request->get('locale'));
 
-                if($translation)
-                {
+                if ($translation) {
                     $translation->published = false;
                 }
 
@@ -236,7 +223,5 @@ class PagesController extends AdminController
     {
         return ['translations', 'translations.slug', 'children', 'children.translations'];
     }
-
-
 
 }

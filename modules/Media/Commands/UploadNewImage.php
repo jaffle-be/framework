@@ -23,7 +23,6 @@ class UploadNewImage extends Job implements SelfHandling
      */
     protected $image;
 
-
     /**
      * @param StoresMedia  $owner
      * @param UploadedFile $image
@@ -52,8 +51,8 @@ class UploadNewImage extends Job implements SelfHandling
 
         $image = $this->dispatchFromArray(StoreNewImage::class, [
             'account' => $manager->account(),
-            'owner' => $this->owner,
-            'path'  => $final_path,
+            'owner'   => $this->owner,
+            'path'    => $final_path,
         ]);
 
         $files->delete($final_path);

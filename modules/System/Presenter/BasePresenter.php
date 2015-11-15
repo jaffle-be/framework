@@ -18,8 +18,7 @@ abstract class BasePresenter implements EntityPresenter
      */
     public function __get($name)
     {
-        if(method_exists($this, $name))
-        {
+        if (method_exists($this, $name)) {
             return $this->$name();
         }
 

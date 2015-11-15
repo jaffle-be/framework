@@ -2,13 +2,11 @@
 
 Route::group([
     'namespace' => 'Modules\Contact\Http',
-    'as' => 'store.'
+    'as'        => 'store.'
 ], function () {
 
-    Route::group(['namespace' => 'Admin'], function()
-    {
-        Route::group(['prefix' => 'api/admin'], function()
-        {
+    Route::group(['namespace' => 'Admin'], function () {
+        Route::group(['prefix' => 'api/admin'], function () {
             Route::resource('contact/address', 'ContactAddressController', ['only' => ['show', 'store', 'update']]);
             Route::resource('contact/social-links', 'SocialLinksController', ['only' => ['index', 'show', 'store', 'update']]);
         });
@@ -20,17 +18,11 @@ Route::group([
         });
     });
 
-
-    if(env('APP_MULTIPLE_LOCALES'))
-    {
-        foreach(config('system.locales') as $locale)
-        {
+    if (env('APP_MULTIPLE_LOCALES')) {
+        foreach (config('system.locales') as $locale) {
             Route::resource("$locale/contact", 'ContactController', ['only' => ['index', 'store']]);
         }
-    }
-    else{
+    } else {
         Route::resource('contact', 'ContactController', ['only' => ['index', 'store']]);
     }
-
-
 });
