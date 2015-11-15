@@ -2,17 +2,20 @@
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Modules\Search\Model\Searchable;
+use Modules\Search\Model\SearchableTrait;
 use Modules\System\Scopes\ModelAccountResource;
 
-class ProductSelection extends Model
+class ProductSelection extends Model implements Searchable
 {
 
+    use SearchableTrait;
     use ModelAccountResource;
     use SoftDeletes;
 
     protected $table = 'product_gamma';
 
-    protected $fillable = ['account_id', 'product_id', 'brand_id', 'category_id'];
+    protected $fillable = ['account_id', 'product_id', 'brand_id'];
 
     protected $dates = ['deleted_at'];
 
@@ -22,6 +25,13 @@ class ProductSelection extends Model
         'product_id'  => 'integer',
         'brand_id'    => 'integer',
         'category_id' => 'integer',
+    ];
+
+    protected static $searchableMapping = [
+        'id'          => ['type' => 'integer'],
+        'account_id'  => ['type' => 'integer'],
+        'product_id'  => ['type' => 'integer'],
+        'brand_id'    => ['type' => 'integer'],
     ];
 
     public function product()
@@ -37,6 +47,16 @@ class ProductSelection extends Model
     public function categories()
     {
         return $this->hasMany('Modules\Shop\Gamma\ProductCategorySelection', 'selection_id');
+    }
+
+    public function activePrice()
+    {
+        return $this->belongsTo('Modules\Shop\Product\ActivePrice');
+    }
+
+    public function activePromotion()
+    {
+        return $this->belongsTo('Modules\Shop\Product\ActivePromotion');
     }
 
     /**

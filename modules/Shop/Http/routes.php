@@ -15,6 +15,8 @@ Route::group([
             Route::get('brands/overview', 'GammaController@templateBrands');
             Route::get('products/overview', 'ProductController@overview');
             Route::get('products/detail', 'ProductController@detail');
+            Route::get('shop/selections/overview', 'ProductSelectionController@overview');
+            Route::get('shop/selections/detail', 'ProductSelectionController@detail');
         });
 
         Route::group(['prefix' => 'api/admin'], function () {
@@ -31,6 +33,10 @@ Route::group([
             Route::post('brands', 'GammaController@brand');
 
             Route::post('gamma/detail', 'GammaController@detail');
+
+            Route::resource('shop/selections', 'ProductSelectionController', ['only' => ['index', 'show', 'update']]);
+            Route::post('shop/selections/batch-publish', 'ProductSelectionController@batchPublish');
+            Route::post('shop/selections/batch-unpublish', 'ProductSelectionController@batchUnpublish');
 
             Route::resource('products', 'ProductController');
             Route::post('products/batch-delete', 'ProductController@batchDestroy');

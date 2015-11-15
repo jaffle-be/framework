@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('shop')
-        .controller('ProductDetailController', function ($scope, Product, ProductService, $state) {
+        .controller('SelectionDetailController', function ($scope, Product, ProductService, $state) {
 
             this.products = ProductService;
 
@@ -30,7 +30,7 @@
 
             this.delete = function () {
                 ProductService.delete(me.product, function () {
-                    $state.go('admin.shop.products');
+                    $state.go('admin.product.overview');
                 });
             };
 

@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('shop')
-        .controller('ProductController', function (Product, ProductService, $state, $scope, $sce) {
+        .controller('SelectionOverviewController', function (ProductSelection, ProductSelectionService, $state, $scope, $sce) {
 
             $scope.renderHtml = function (html_code) {
                 return $sce.trustAsHtml(html_code);
@@ -12,7 +12,7 @@
             this.loading = true;
             this.rpp = 15;
             this.total = 0;
-            this.products = [];
+            this.selections = [];
 
             var me = this;
 
@@ -33,72 +33,63 @@
             this.loadProducts = function (page) {
                 var me = this;
 
-                Product.query({
+                ProductSelection.query({
                     page: page,
                     query: me.table.search.predicateObject ? me.table.search.predicateObject.query : '',
                     locale: me.options.locale,
                 }, function (response) {
 
                     me.total = response.total;
-                    me.products = response.data;
+                    me.selections = response.data;
                     me.table.pagination.numberOfPages = response.last_page;
                     me.loading = false;
                 });
             };
 
             this.newProduct = function () {
-                var product = new Product();
-                ProductService.save(product, function (newProduct) {
+                var product = new ProductSelection();
+                ProductSelectionService.save(product, function (newProduct) {
                     $state.go('admin.product.detail', {id: newProduct.id});
                 });
             };
 
             this.delete = function () {
-                var products = this.selectedProducts();
+                var selections = this.selectedProducts();
 
-                ProductService.batchDelete(products, function () {
+                ProductService.batchDelete(selections, function () {
                     me.loadProducts();
                 });
 
-            };
-
-            this.batchDelete = function()
-            {
-                var products = this.selectedProducts();
-
-                ProductService.batchDelete(products, function () {
-                    me.loadProducts();
-                });
             };
 
             this.batchPublish = function () {
-                var products = this.selectedProducts();
+                var selections = this.selectedProducts();
 
-                ProductService.batchPublish(products, me.options.locale, function () {
+                ProductSelectionService.batchPublish(selections, me.options.locale, function () {
 
                 });
             };
 
             this.batchUnpublish = function () {
-                var products = this.selectedProducts();
+                var selections = this.selectedProducts();
 
-                ProductService.batchUnpublish(products, me.options.locale, function () {
+                ProductSelectionService.batchUnpublish(selections, me.options.locale, function () {
 
                 });
             };
 
             this.selectedProducts = function () {
-                var products = [],
+                var selections = [],
                     me = this;
 
-                _.each(this.products, function (product) {
+                _.each(this.selections, function (product) {
                     if (product.isSelected)
                     {
-                        products.push(product.id);
+                        selections.push(product.id);
                     }
                 });
 
-                return products;
+                return selections;
             }
         });
 
