@@ -18,7 +18,7 @@ class CreateBrandTable extends Migration
             $table->timestamps();
         });
 
-        Schema::create('product_brand_translations', function(Blueprint $table){
+        Schema::create('product_brand_translations', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('brand_id', false, true);
             $table->foreign('brand_id', 'translation_to_brand')->references('id')->on('product_brands')->onDelete('cascade');
@@ -37,7 +37,7 @@ class CreateBrandTable extends Migration
      */
     public function down()
     {
-        Schema::drop('product_brand_translations', function(Blueprint $table){
+        Schema::drop('product_brand_translations', function (Blueprint $table) {
             $table->dropForeign('translation_to_brand');
         });
 

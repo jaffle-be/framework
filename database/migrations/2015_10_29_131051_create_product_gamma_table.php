@@ -26,7 +26,7 @@ class CreateProductGammaTable extends Migration
             $table->softDeletes();
         });
 
-        Schema::create('product_gamma_categories', function(Blueprint $table){
+        Schema::create('product_gamma_categories', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('selection_id', false, true);
             $table->foreign('selection_id', 'category_selection_to_product_selection')->references('id')->on('product_gamma')->onDelete('cascade');
@@ -45,7 +45,7 @@ class CreateProductGammaTable extends Migration
      */
     public function down()
     {
-        Schema::drop('product_gamma_categories', function(Blueprint $table){
+        Schema::drop('product_gamma_categories', function (Blueprint $table) {
             $table->dropForeign('gamma_category_to_category');
             $table->dropForeign('category_selection_to_product_selection');
         });

@@ -50,6 +50,7 @@ class ProductCategoryManagerFrontTest extends AdminTestCase
             'product_id'  => $product2->id
         ]);
 
+        //see notifications for both accounts with detail activated
         $this->seeInDatabase('product_gamma_notifications', [
             'account_id'  => $account1->id,
             'product_id'  => $product2->id,
@@ -66,6 +67,7 @@ class ProductCategoryManagerFrontTest extends AdminTestCase
             'type'        => 'activate',
         ]);
 
+        //not for the one that had it disabled
         $this->notSeeInDatabase('product_gamma_notifications', [
             'account_id'  => $account2->id,
             'product_id'  => $product2->id,

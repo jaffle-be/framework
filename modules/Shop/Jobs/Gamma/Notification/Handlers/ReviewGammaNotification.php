@@ -72,9 +72,9 @@ class ReviewGammaNotification extends Job implements SelfHandling, ShouldQueue
 
         $callback = function ($products) use ($notification, $selections, $status) {
 
-            $records = $selections->newQuery()
+            $records = $selections->newQueryWithoutScopes()
+                ->where('account_id', $notification->account_id)
                 ->whereIn('product_id', $products->lists('id')->toArray())
-                ->withTrashed()
                 ->get()->keyBy('product_id');
 
             foreach ($products as $product) {

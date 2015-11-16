@@ -23,20 +23,14 @@ class ProductCategoryManager
 
     public function attach($payload)
     {
-        //when attaching a category, need to make sure people with this selected are notified is notified
+        //when attaching a category, need to make sure people with this selected are notified
         $category = $this->category->find($payload['category_id']);
         $product = $this->product->find($payload['product_id']);
 
-        $accounts = $this->records($product, $category);
+        $selections = $this->records($product, $category);
 
-        $accounts = array_map(function ($item) {
-            return $item->account_id;
-        }, $accounts);
-
-        $accounts = array_unique($accounts);
-
-        foreach ($accounts as $accountid) {
-            $this->notify($accountid, $product, $category->id, 'activate');
+        foreach ($selections as $selection) {
+            $this->notify($selection->account_id, $product, $category->id, 'activate');
         }
     }
 
@@ -89,7 +83,7 @@ class ProductCategoryManager
      */
     protected function records($product, $category)
     {
-        $query = $this->gamma->getConnection()->table($this->gamma->getTable());
+        $query = $this->gamma->newQueryWithoutScopes();
 
         return $query
             ->where('brand_id', $product->brand_id)
