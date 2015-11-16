@@ -112,7 +112,6 @@ class SearchService implements SearchServiceInterface
             $trigger = $type->getSearchableEventname($event);
 
             $type->setSearchableService($me);
-
             $type->setSearchableIndex($me->config->getIndex());
 
             if ($trigger) {
@@ -181,7 +180,28 @@ class SearchService implements SearchServiceInterface
 
         $me = $this;
 
-        $type->with($relations)->chunk(250, function ($documents) use ($me, $relations) {
+        //for now we'll always disable scopes
+        //we should probably keep it like this too
+        //read up about routing in elasticsearch.
+        //you could probably easily add the routing feature instead.
+        $type->newQueryWithoutScopes()->chunk(250, function ($documents) use ($me, $relations, $type) {
+
+            //make sure we disable global scopes on relations too
+            foreach ($relations as $relation) {
+                //does the related element use soft deletes?
+                $related = $type->$relation()->getRelated();
+
+                if (method_exists($related, 'bootSoftDeletes')) {
+                    $documents->load([
+                        $relation => function ($query) {
+                            $query->withTrashed();
+                        }
+                    ]);
+                } else {
+                    $documents->load($relation);
+                }
+            }
+
             foreach ($documents as $document) {
                 $me->add($document, false);
             }
@@ -216,16 +236,20 @@ class SearchService implements SearchServiceInterface
             $type->load(array_keys($this->config->getWith($type->getSearchableType())));
         }
 
-        $this->client->index($this->data($type));
+        $data = $this->data($type);
+
+        $this->client->index($data);
     }
 
     public function delete(Searchable $type)
     {
-        $params = $this->data($type);
+        if (method_exists($type, 'forceDelete') && $type->beingFullyDeleted()) {
+            $params = $this->data($type);
 
-        $params = array_except($params, ['body']);
+            $params = array_except($params, ['body']);
 
-        $this->client->delete($params);
+            $this->client->delete($params);
+        }
     }
 
     public function update(Searchable $type)
@@ -244,8 +268,12 @@ class SearchService implements SearchServiceInterface
             'id'   => $type->getSearchableId(),
             'body' => [
                 'doc' => $type->getSearchableDocument()
-            ]
+            ],
         ]);
+
+        if ($type->useSearchableRouting()) {
+            $params['routing'] = $type->getSearchableRouting();
+        }
 
         $this->client->update($params);
     }
@@ -270,18 +298,14 @@ class SearchService implements SearchServiceInterface
 
         $result = $this->client->search($params);
 
-        if($highlighter)
-        {
+        if ($highlighter) {
             //if we have a highlighter, we simply loop through the results and overwrite the original field.
             //this is dangerous though, a dev should not be using Elasticsearch results to manipulate data.
             //data should always be manipulated through your relational database.
-            foreach($result['hits']['hits'] as &$hit)
-            {
-                if(isset($hit['highlight']))
-                {
+            foreach ($result['hits']['hits'] as &$hit) {
+                if (isset($hit['highlight'])) {
                     $hit["_source"] = $highlighter($hit['_source'], $hit['highlight']);
                 }
-
             }
         }
 
@@ -436,12 +460,18 @@ class SearchService implements SearchServiceInterface
      */
     protected function data(Searchable $type)
     {
-        return [
+        $params = [
             'index' => $this->config->getIndex(),
             'type'  => $type->getSearchableType(),
             'id'    => $type->getSearchableId(),
             'body'  => $type->getSearchableDocument(),
         ];
+
+        if ($routing = $type->useSearchableRouting()) {
+            $params['routing'] = $type->getSearchableRouting();
+        }
+
+        return $params;
     }
 
     public function getClient()

@@ -6,6 +6,7 @@ use Modules\System\Translatable\Translatable;
 
 class Team extends Model
 {
+
     use ModelAccountResource;
     use Translatable;
 

@@ -15,7 +15,7 @@ class CachedAccountRepository implements AccountRepositoryInterface
 
     public function findByAlias($alias)
     {
-        return $this->cache->sear('account', function() use ($alias){
+        return $this->cache->sear('account', function () use ($alias) {
             return $this->account->findByAlias($alias);
         });
     }
@@ -35,11 +35,6 @@ class CachedAccountRepository implements AccountRepositoryInterface
         return $this->__call(__FUNCTION__, func_get_args());
     }
 
-    public function updated()
-    {
-        $this->cache->forget('account');
-    }
-
     function __call($name, $arguments)
     {
         $result = call_user_func_array([$this->account, $name], $arguments);
@@ -47,6 +42,11 @@ class CachedAccountRepository implements AccountRepositoryInterface
         $this->updated();
 
         return $result;
+    }
+
+    public function updated()
+    {
+        $this->cache->forget('account');
     }
 
 }

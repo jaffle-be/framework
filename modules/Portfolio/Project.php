@@ -17,6 +17,7 @@ use Modules\Tags\Taggable;
 
 class Project extends Model implements StoresMedia, Searchable, StoresTags, PresentableEntity, SeoEntity
 {
+
     use Translatable;
     use PresentableTrait;
     use Taggable;
@@ -57,8 +58,7 @@ class Project extends Model implements StoresMedia, Searchable, StoresTags, Pres
     {
         $data = parent::toArray();
 
-        if(isset($data['date']) && $data['date'])
-        {
+        if (isset($data['date']) && $data['date']) {
             $data['date'] = $this->date->format('Y-m-d');
         }
 

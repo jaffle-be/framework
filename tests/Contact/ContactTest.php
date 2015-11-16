@@ -1,9 +1,9 @@
 <?php namespace Test\Contact;
 
+use Test\FrontTestCase;
 use Test\Routes\RouteTests;
-use Test\TestCase;
 
-class ContactTest extends TestCase
+class ContactTest extends FrontTestCase
 {
 
     use RouteTests;

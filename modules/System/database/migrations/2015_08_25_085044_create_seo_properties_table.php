@@ -33,7 +33,7 @@ class CreateSeoPropertiesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('seo_properties', function (Blueprint $table){
+        Schema::drop('seo_properties', function (Blueprint $table) {
             $table->dropForeign('seo_property_to_locale');
         });
     }

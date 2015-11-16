@@ -21,9 +21,8 @@ class ModelAutoSortScope implements ScopeInterface
 
         $order = 'asc';
 
-        if(property_exists(get_class($model), 'autosort'))
-        {
-            $autosort = (array) $model->autosort;
+        if (property_exists(get_class($model), 'autosort')) {
+            $autosort = (array)$model->autosort;
 
             $field = $autosort[0];
 

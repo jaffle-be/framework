@@ -14,7 +14,7 @@ class PagesTableSeeder extends Seeder
         parent::__construct();
     }
 
-    public function run()
+    public function run($amount = 15)
     {
         foreach([1,2] as $accountid)
         {
@@ -22,7 +22,7 @@ class PagesTableSeeder extends Seeder
 
             //flip array since array_rand returns the keys from an array
 
-            for ($i = 0; $i < 15; $i++) {
+            for ($i = 0; $i < $amount; $i++) {
 
                 $page = $this->model->newInstance($this->texts());
 

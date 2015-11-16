@@ -61,10 +61,8 @@ class Rebatch extends Command
     {
         //if(forcing a rebatch) then delete all thumbs for the requested sizes here.
         //this will avoid alot of extra work down the road. we'd be calling this command for every image if not.
-        if($force)
-        {
-            foreach($sizes as $size)
-            {
+        if ($force) {
+            foreach ($sizes as $size) {
                 $this->call('media:remove-size', [
                     'size' => $size,
                     'type' => $this->config->alias($type),

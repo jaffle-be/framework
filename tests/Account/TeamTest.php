@@ -1,9 +1,9 @@
 <?php namespace Test\Account;
 
+use Test\FrontTestCase;
 use Test\Routes\RouteTests;
-use Test\TestCase;
 
-class TeamTest extends TestCase
+class TeamTest extends FrontTestCase
 {
 
     use RouteTests;

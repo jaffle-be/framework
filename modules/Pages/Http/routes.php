@@ -5,7 +5,7 @@
  */
 Route::group([
     'namespace' => 'Modules\Pages\Http\Admin',
-    'as' => 'store.'
+    'as'        => 'store.'
 ], function () {
 
     Route::group(['prefix' => 'templates/admin'], function () {
@@ -27,5 +27,4 @@ Route::group([
 });
 
 Route::group(['namespace' => 'Modules\Pages\Http'], function () {
-
 });

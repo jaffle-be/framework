@@ -6,7 +6,8 @@ use Modules\Account\Account;
 use Modules\Account\Membership;
 use Modules\Account\MembershipOwner;
 
-class NewMembership extends Job implements SelfHandling{
+class NewMembership extends Job implements SelfHandling
+{
 
     /**
      * @var Account

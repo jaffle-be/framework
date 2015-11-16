@@ -16,29 +16,27 @@ trait ImageDimensionHelpers
      */
     protected function dimensions($size)
     {
-        if(strpos($size, 'x') === false)
-        {
+        if (strpos($size, 'x') === false) {
             throw new Exception('Invalid image dimension provided');
         }
 
         list($width, $height) = explode('x', $size, 2);
 
-        if($this->bothAreNull($width, $height) || $this->hasNonNumeric($width, $height) )
-        {
+        if ($this->bothAreNull($width, $height) || $this->hasNonNumeric($width, $height)) {
             throw new Exception('Invalid image size provided');
         }
 
         return array($width, $height);
     }
 
-    protected function hasNonNumeric($width, $height)
-    {
-        return (!empty($width) && !is_numeric($width)) || (!empty($height) && !is_numeric($height));
-    }
-
     protected function bothAreNull($width, $height)
     {
         return empty($width) && empty($height);
+    }
+
+    protected function hasNonNumeric($width, $height)
+    {
+        return (!empty($width) && !is_numeric($width)) || (!empty($height) && !is_numeric($height));
     }
 
     protected function constraint($width, $height)
@@ -51,6 +49,5 @@ trait ImageDimensionHelpers
 
         return null;
     }
-
 
 }

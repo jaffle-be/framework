@@ -61,8 +61,7 @@ class TeamController extends AdminController
     {
         $team = $teams->find($team);
 
-        if($team)
-        {
+        if ($team) {
             $team->fill(translation_input($request, ['name']));
             $team->save();
 

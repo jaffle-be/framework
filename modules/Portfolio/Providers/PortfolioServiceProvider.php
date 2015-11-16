@@ -6,6 +6,7 @@ use Pingpong\Modules\ServiceProvider;
 
 class PortfolioServiceProvider extends ServiceProvider
 {
+
     protected $namespace = 'portfolio';
 
     public function register()
@@ -15,7 +16,6 @@ class PortfolioServiceProvider extends ServiceProvider
 
     protected function listeners()
     {
-
     }
 
     protected function observers()

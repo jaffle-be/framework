@@ -2,7 +2,8 @@
 
 use Modules\Users\Contracts\UserRepositoryInterface;
 
-class UserRepository implements UserRepositoryInterface{
+class UserRepository implements UserRepositoryInterface
+{
 
     /**
      * @var User

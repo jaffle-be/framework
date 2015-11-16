@@ -7,6 +7,7 @@ class CreateThemesTable extends Migration
 {
 
     use \Modules\System\ConfigWriter;
+
     /**
      * Run the migrations.
      *

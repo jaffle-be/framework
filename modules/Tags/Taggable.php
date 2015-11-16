@@ -1,6 +1,7 @@
 <?php namespace Modules\Tags;
 
-trait Taggable {
+trait Taggable
+{
 
     public function tags()
     {

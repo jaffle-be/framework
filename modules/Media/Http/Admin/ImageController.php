@@ -94,8 +94,7 @@ class ImageController extends AdminController
 
         $owner->load('images');
 
-        foreach($request->get('order') as $position => $id)
-        {
+        foreach ($request->get('order') as $position => $id) {
             $image = $owner->images->find($id);
             $image->sort = $position;
             $image->save();

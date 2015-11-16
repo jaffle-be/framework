@@ -38,7 +38,7 @@ class CreateTagsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('tag_translations', function(Blueprint $table){
+        Schema::drop('tag_translations', function (Blueprint $table) {
             $table->dropForeign('translations_to_tags');
         });
 

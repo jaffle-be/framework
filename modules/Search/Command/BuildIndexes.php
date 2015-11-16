@@ -1,6 +1,7 @@
 <?php namespace Modules\Search\Command;
 
 use Illuminate\Console\Command;
+use Modules\Account\IndexManager;
 use Modules\Search\SearchServiceInterface;
 use Symfony\Component\Console\Input\InputArgument;
 
@@ -31,11 +32,13 @@ class BuildIndexes extends Command
      *
      * @param SearchServiceInterface $service
      */
-    public function __construct(SearchServiceInterface $service)
+    public function __construct(SearchServiceInterface $service, IndexManager $indexManager)
     {
         parent::__construct();
 
         $this->service = $service;
+
+        $this->indexManager = $indexManager;
     }
 
     /**
@@ -45,6 +48,8 @@ class BuildIndexes extends Command
      */
     public function fire()
     {
+        $this->indexManager->allAliases();
+
         $types = $this->argument('types');
 
         if (empty($types)) {

@@ -4,6 +4,7 @@ use Illuminate\Events\Dispatcher;
 
 class PushableManager
 {
+
     protected $events;
 
     protected $supporting = ['created', 'deleted', 'updated', 'attached', 'detached'];

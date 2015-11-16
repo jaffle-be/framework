@@ -5,7 +5,8 @@ use Modules\System\Pushable\CanPush;
 use Modules\System\Pushable\Pushable;
 use Modules\System\Translatable\Translatable;
 
-class Brand extends Model implements Pushable{
+class Brand extends Model implements Pushable
+{
 
     use Translatable;
     use CanPush;
@@ -36,9 +37,8 @@ class Brand extends Model implements Pushable{
     {
         $data = parent::toArray();
 
-        if(isset($data['selection']))
-        {
-            $data['activated'] = (bool) $data['selection'];
+        if (isset($data['selection'])) {
+            $data['activated'] = (bool)$data['selection'];
 
             unset($data['selection']);
         }

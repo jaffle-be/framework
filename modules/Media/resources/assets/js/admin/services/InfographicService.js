@@ -1,5 +1,4 @@
-(function()
-{
+(function () {
     'use strict';
 
     angular.module('media')
@@ -13,7 +12,7 @@
                 //infographic uploader
                 this.uploader = function (type, id, locale, handlers) {
 
-                    if(typeof handlers === 'function')
+                    if (typeof handlers === 'function')
                     {
                         //handlers is only a success callback
                         handlers = {
@@ -72,8 +71,7 @@
                     }, success);
                 };
 
-                this.sort = function(type, id, graphics)
-                {
+                this.sort = function (type, id, graphics) {
                     var order = _.pluck(graphics, 'id');
                     $http.post('api/admin/media/infographic/sort', {
                         ownerId: id,

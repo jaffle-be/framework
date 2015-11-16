@@ -27,6 +27,6 @@ class CreateNewTag extends Job implements SelfHandling
 
         $tag = $tag->create($payload);
 
-        return $tag ? : false;
+        return $tag ?: false;
     }
 }

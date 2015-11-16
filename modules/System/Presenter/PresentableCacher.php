@@ -7,11 +7,9 @@ class PresentableCacher
 
     public function handle($model)
     {
-        if($model instanceof PresentableEntity && $model instanceof PresentableCache)
-        {
+        if ($model instanceof PresentableEntity && $model instanceof PresentableCache) {
             /** @var Model $model */
-            if($model->isDirty('content'))
-            {
+            if ($model->isDirty('content')) {
                 $content = $model->present()->content;
 
                 $model->cached_content = $content;

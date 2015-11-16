@@ -6,12 +6,12 @@ use Modules\System\Translatable\TranslationCollection;
 
 class SeoProperty extends Model
 {
+
     use ModelLocaleSpecificResource;
 
     protected $table = 'seo_properties';
 
     protected $fillable = ['owner_type', 'owner_id', 'locale_id', 'title', 'description', 'keywords'];
-
 
     public function owner()
     {

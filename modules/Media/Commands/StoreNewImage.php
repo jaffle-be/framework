@@ -93,11 +93,10 @@ class StoreNewImage extends Job implements SelfHandling
         $this->newName();
         $this->handleFile($files, $config);
 
-        try{
+        try {
             $image = $repo->createImage($this->owner, $this->getPayload());
         }
-        catch(Exception $e)
-        {
+        catch (Exception $e) {
             $files->delete(public_path($this->path));
 
             return false;

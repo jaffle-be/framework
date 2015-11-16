@@ -1,4 +1,4 @@
-(function(){
+(function () {
 
     angular.module('media')
         .factory('youtube', function (Video, VideoService) {

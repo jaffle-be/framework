@@ -2,7 +2,8 @@
 
     <div class="ibox-title">
         <h5>{{ Lang::get('account::admin.team.create') }}</h5>
-        <button class="btn btn-info btn-xs pull-right" ng-click="vm.closeTeamEditor()"><i class="fa fa-remove"></i></button>
+        <button class="btn btn-info btn-xs pull-right" ng-click="vm.closeTeamEditor()"><i class="fa fa-remove"></i>
+        </button>
         <div class="clearfix"></div>
     </div>
 
@@ -40,7 +41,8 @@
                         <input type="text" class="form-control" ng-model="team.translations[vm.options.locale].name" ng-change="vm.updateTeam(team)">
 
                         <div class="input-group-btn">
-                            <button type="submit" class="btn btn-danger" ng-really="vm.deleteTeam(team)"><i class="fa fa-trash"></i></button>
+                            <button type="submit" class="btn btn-danger" ng-really="vm.deleteTeam(team)">
+                                <i class="fa fa-trash"></i></button>
                         </div>
 
                     </div>

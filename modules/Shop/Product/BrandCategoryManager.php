@@ -166,7 +166,7 @@ class BrandCategoryManager
 
         return [
             'category' => $category->toArray(),
-            'brand' => $brand->toArray()
+            'brand'    => $brand->toArray()
         ];
     }
 

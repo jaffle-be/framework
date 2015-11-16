@@ -2,7 +2,8 @@
 
 use Illuminate\Contracts\Auth\Guard;
 
-class PostObserver {
+class PostObserver
+{
 
     public function __construct(Guard $guard)
     {
@@ -11,8 +12,7 @@ class PostObserver {
 
     public function creating(Post $post)
     {
-        if(!$post->user_id)
-        {
+        if (!$post->user_id) {
             $post->user()->associate($this->auth->user());
         }
     }

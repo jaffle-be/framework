@@ -11,8 +11,8 @@ class NewsletterSubscriptionController extends FrontController
     {
         try {
             $result = $mailChimp->call('lists/members', [
-                'id' => env('MAILCHIMP_DEFAULT_LIST_ID'),
-                'opts' => [
+                'id'     => env('MAILCHIMP_DEFAULT_LIST_ID'),
+                'opts'   => [
                     'start' => $request->get('page', 1) - 1,
                     //default limit is 25
                     'limit' => 25,

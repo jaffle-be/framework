@@ -7,7 +7,8 @@ use Illuminate\Filesystem\Filesystem;
  *
  * @package Media
  */
-class ImageObserver {
+class ImageObserver
+{
 
     /**
      * @var Filesystem
@@ -28,12 +29,10 @@ class ImageObserver {
     public function deleting(Image $image)
     {
         //only try deleting translations and thumbnails when we are no thumbnail
-        if($image->original_id === null)
-        {
+        if ($image->original_id === null) {
             $image->translations()->delete();
 
-            foreach($image->sizes as $size)
-            {
+            foreach ($image->sizes as $size) {
                 $size->delete();
             }
         }

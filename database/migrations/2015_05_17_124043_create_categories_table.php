@@ -36,7 +36,7 @@ class CreateCategoriesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('product_category_translations', function(Blueprint $table){
+        Schema::drop('product_category_translations', function (Blueprint $table) {
             $table->dropForeign('translation_to_category');
         });
 

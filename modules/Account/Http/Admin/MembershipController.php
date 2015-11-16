@@ -35,7 +35,7 @@ class MembershipController extends AdminController
 
         $teams = $account->teams;
 
-        foreach($teams as $team){
+        foreach ($teams as $team) {
             $team->selected = false;
         }
 

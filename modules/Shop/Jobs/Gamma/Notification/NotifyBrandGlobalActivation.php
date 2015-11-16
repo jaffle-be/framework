@@ -7,6 +7,7 @@ use Modules\Shop\Gamma\BrandSelection;
 use Modules\Shop\Gamma\GammaNotification;
 use Modules\Shop\Gamma\GammaRepositoryInterface;
 use Modules\Shop\Product\Brand;
+use Pusher;
 
 class NotifyBrandActivation extends Job implements SelfHandling
 {
@@ -29,12 +30,12 @@ class NotifyBrandActivation extends Job implements SelfHandling
         $this->brand = $brand;
     }
 
-    public function handle(GammaRepositoryInterface $gamma, GammaNotification $notification)
+    public function handle(GammaRepositoryInterface $gamma, GammaNotification $notification, Pusher $pusher)
     {
         $categories = $gamma->categoriesForBrand($this->brand);
 
         foreach ($categories as $category) {
-            $canceled = $this->cancelExisting($notification, $this->brand, $category);
+            $canceled = $this->cancelInverseNotifications($notification, $this->brand, $category, $pusher);
 
             if ($canceled === 0) {
                 $instance = $notification->newInstance([

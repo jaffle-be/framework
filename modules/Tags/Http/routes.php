@@ -10,8 +10,8 @@ Route::group([
 
     Route::group(['namespace' => 'Admin'], function () {
         Route::group(['prefix' => 'templates/admin'], function () {
-        //template files, load at top so we do not end up in the show method
-        Route::get('tag/widget', 'TagController@widget');
+            //template files, load at top so we do not end up in the show method
+            Route::get('tag/widget', 'TagController@widget');
         });
 
         //actual resource
@@ -21,15 +21,11 @@ Route::group([
         });
     });
 
-    if(env('APP_MULTIPLE_LOCALES'))
-    {
-        foreach(config('system.locales') as $locale)
-        {
+    if (env('APP_MULTIPLE_LOCALES')) {
+        foreach (config('system.locales') as $locale) {
             Route::resource("$locale/tags", 'TagsController', ['only' => ['show']]);
         }
-    }
-    else {
+    } else {
         Route::resource('tags', 'TagsController', ['only' => ['show']]);
     }
-
 });

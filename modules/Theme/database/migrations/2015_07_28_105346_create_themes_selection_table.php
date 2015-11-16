@@ -5,6 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 
 class CreateThemesSelectionTable extends Migration
 {
+
     /**
      * Run the migrations.
      *
@@ -30,8 +31,7 @@ class CreateThemesSelectionTable extends Migration
      */
     public function down()
     {
-        Schema::drop('themes_selections', function (Blueprint $table)
-        {
+        Schema::drop('themes_selections', function (Blueprint $table) {
             $table->dropForeign('theme_selection_to_themes');
             $table->dropForeign('theme_selection_to_accounts');
         });

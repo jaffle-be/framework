@@ -60,7 +60,7 @@ class CreatePromotionTable extends Migration
      */
     public function down()
     {
-        Schema::drop('product_promotions_active', function(Blueprint $table){
+        Schema::drop('product_promotions_active', function (Blueprint $table) {
             $table->dropForeign('active_promotion_to_account');
             $table->dropForeign('active_promotion_to_brand');
             $table->dropForeign('active_promotion_to_category');

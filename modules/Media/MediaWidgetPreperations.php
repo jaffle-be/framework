@@ -19,8 +19,7 @@ trait MediaWidgetPreperations
         $valid = ['images', 'infographics', 'videos', 'files'];
         $media = array_intersect($valid, $media);
 
-        foreach($media as $type)
-        {
+        foreach ($media as $type) {
             call_user_func_array([$this, 'prepare' . ucfirst($type)], [$owner]);
         }
     }
@@ -77,7 +76,5 @@ trait MediaWidgetPreperations
     {
         $owner->load('files');
     }
-
-
 
 }

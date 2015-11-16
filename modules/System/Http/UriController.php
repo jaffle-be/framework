@@ -8,6 +8,7 @@ use Modules\System\Uri\Uri;
 
 class UriController extends FrontController
 {
+
     use BlogFrontControlling, PagesFrontControlling;
 
     public function handle(Uri $uri, Uri $suburi = null, Uri $subesturi = null)
@@ -17,14 +18,11 @@ class UriController extends FrontController
 
         $owner = $display->owner;
 
-        if($owner instanceof PostTranslation)
-        {
+        if ($owner instanceof PostTranslation) {
             $repo = app('Modules\Blog\PostRepositoryInterface');
 
             return $this->renderPostDetail($owner, $repo);
-        }
-        else if($owner instanceof PageTranslation)
-        {
+        } else if ($owner instanceof PageTranslation) {
             $repo = app('Modules\Pages\PageRepositoryInterface');
 
             return $this->renderPageDetail($owner, $repo);

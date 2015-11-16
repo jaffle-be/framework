@@ -2,7 +2,8 @@
 
 use Modules\Account\AccountManager;
 
-class MenuRepository implements MenuRepositoryInterface{
+class MenuRepository implements MenuRepositoryInterface
+{
 
     /**
      * @var AccountManager
@@ -31,6 +32,14 @@ class MenuRepository implements MenuRepositoryInterface{
         return $this->menu->with($this->relations())->find($id);
     }
 
+    /**
+     * @return array
+     */
+    protected function relations()
+    {
+        return ['items', 'items.children', 'items.translations', 'items.children.translations', 'items.page', /*'items.routable'*/];
+    }
+
     public function getMenus()
     {
         return $this->menu->with($this->relations())->orderBy('id')->get();
@@ -48,8 +57,7 @@ class MenuRepository implements MenuRepositoryInterface{
     public function cleanMenu(Menu $menu)
     {
         //it should never actually delete the menu itself, as it's provided by the current theme.
-        foreach($menu->items as $item)
-        {
+        foreach ($menu->items as $item) {
             $item->delete();
         }
 
@@ -59,8 +67,7 @@ class MenuRepository implements MenuRepositoryInterface{
     public function sortMenu($menu, $order)
     {
         //this should be a transaction
-        foreach($order as $position => $key)
-        {
+        foreach ($order as $position => $key) {
             $model = $menu->items->find($key);
             $model->sort = $position;
             $model->save();
@@ -77,12 +84,16 @@ class MenuRepository implements MenuRepositoryInterface{
 
         $item->save();
 
-        if($item)
-        {
+        if ($item) {
             $item->load($this->itemRelations());
 
             return $item;
         }
+    }
+
+    protected function itemRelations()
+    {
+        return ['children', 'translations', 'children.translations'];
     }
 
     public function updateItem(MenuItem $item, array $payload)
@@ -98,25 +109,11 @@ class MenuRepository implements MenuRepositoryInterface{
 
     public function deleteItem(MenuItem $item)
     {
-        if($item->delete())
-        {
+        if ($item->delete()) {
             //set 0 for angular
             $item->id = 0;
         }
 
         return $item;
-    }
-
-    /**
-     * @return array
-     */
-    protected function relations()
-    {
-        return ['items', 'items.children', 'items.translations', 'items.children.translations', 'items.page', /*'items.routable'*/];
-    }
-
-    protected function itemRelations()
-    {
-        return ['children', 'translations', 'children.translations'];
     }
 }

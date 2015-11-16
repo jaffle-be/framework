@@ -11,6 +11,7 @@ use Thomaswelton\LaravelGravatar\Gravatar;
 
 class CheckGravatarImage extends Job implements SelfHandling
 {
+
     use DispatchesJobs;
 
     /**
@@ -25,8 +26,7 @@ class CheckGravatarImage extends Job implements SelfHandling
 
     public function handle(Gravatar $gravatar, Filesystem $files, AccountManager $manager)
     {
-        if($gravatar->exists($this->user->email))
-        {
+        if ($gravatar->exists($this->user->email)) {
             $gravatar->setAvatarSize(512);
 
             $url = $gravatar->get($this->user->email);
@@ -35,8 +35,7 @@ class CheckGravatarImage extends Job implements SelfHandling
 
             $tmpDir = storage_path('media' . '/' . $this->user->getMediaFolder());
 
-            if(!$files->isDirectory($tmpDir))
-            {
+            if (!$files->isDirectory($tmpDir)) {
                 $files->makeDirectory($tmpDir, 0755, true);
             }
 
@@ -52,7 +51,6 @@ class CheckGravatarImage extends Job implements SelfHandling
 
             $files->delete($finalPath);
         }
-
     }
 
     /**

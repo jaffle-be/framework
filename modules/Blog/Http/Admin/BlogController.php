@@ -82,8 +82,7 @@ class BlogController extends AdminController
 
     public function destroy(Post $post)
     {
-        if($post->delete())
-        {
+        if ($post->delete()) {
             $post->id = false;
         }
 
@@ -94,13 +93,11 @@ class BlogController extends AdminController
     {
         $ids = $request->get('posts', []);
 
-        if(is_array($ids) && count($ids))
-        {
+        if (is_array($ids) && count($ids)) {
             $posts = $post->whereIn('posts.id', $ids)
                 ->get();
 
-            foreach($posts as $post)
-            {
+            foreach ($posts as $post) {
                 $post->delete();
             }
         }
@@ -110,17 +107,14 @@ class BlogController extends AdminController
     {
         $ids = $request->get('posts', []);
 
-        if(is_array($ids) && count($ids))
-        {
+        if (is_array($ids) && count($ids)) {
             $posts = $post->whereIn('posts.id', $ids)
                 ->get();
 
-            foreach($posts as $post)
-            {
+            foreach ($posts as $post) {
                 $translation = $post->translate($request->get('locale'));
 
-                if($translation)
-                {
+                if ($translation) {
                     $translation->publish_at = new Carbon();
                 }
 
@@ -133,17 +127,14 @@ class BlogController extends AdminController
     {
         $ids = $request->get('posts', []);
 
-        if(is_array($ids) && count($ids))
-        {
+        if (is_array($ids) && count($ids)) {
             $posts = $post->whereIn('posts.id', $ids)
                 ->get();
 
-            foreach($posts as $post)
-            {
+            foreach ($posts as $post) {
                 $translation = $post->translate($request->get('locale'));
 
-                if($translation)
-                {
+                if ($translation) {
                     $translation->publish_at = null;
                 }
 

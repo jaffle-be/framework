@@ -7,13 +7,11 @@ trait CanPush
 
     public function getPushableChannel()
     {
-        if(property_exists(get_class($this), 'pushableChannel'))
-        {
+        if (property_exists(get_class($this), 'pushableChannel')) {
             return $this->pushableChannel;
         }
 
-        if($this instanceof ModelAccountResource)
-        {
+        if ($this instanceof ModelAccountResource) {
             return pusher_account_channel();
         }
 
@@ -22,8 +20,7 @@ trait CanPush
 
     public function getPushableEventType()
     {
-        if(property_exists(get_class($this), 'pushableEventName'))
-        {
+        if (property_exists(get_class($this), 'pushableEventName')) {
             return $this->pushableEventName;
         }
 

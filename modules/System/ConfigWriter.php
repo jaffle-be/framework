@@ -7,7 +7,7 @@ trait ConfigWriter
 
     protected function replaceConfigValue($path, $key, $value)
     {
-        if(strpos($value, "'") !== FALSE ){
+        if (strpos($value, "'") !== false) {
             throw new Exception('I dont think string replacement is supported by the current regular expression');
         };
 

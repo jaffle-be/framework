@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('shop')
-        .controller('GammaBrandController', function ($scope, GammaService, Pusher) {
+        .controller('GammaBrandController', function ($scope, GammaService, Pusher, toaster) {
 
             this.gamma = GammaService;
             this.page = 1;
@@ -17,6 +17,7 @@
             this.save = save;
             this.subSave = subSave;
             this.saveDetail = saveDetail;
+            this.hasAnythingSelected = hasAnythingSelected;
 
             Pusher.channel.bind('brand_categories.attached', attachBrandCategory);
             Pusher.channel.bind('brand_categories.detached', detachBrandCategory);
@@ -185,11 +186,21 @@
             }
 
             function save(brand) {
-                GammaService.brand(brand.id, brand.activated)
+                GammaService.brand(brand.id, brand.activated).then(function () {
+
+                }, function (response) {
+                    showError(response);
+                    brand.activated = !brand.activated;
+                });
             }
 
             function subSave(category) {
-                GammaService.category(category.id, category.activated);
+                GammaService.category(category.id, category.activated).then(function () {
+
+                }, function (response) {
+                    showError(response);
+                    category.activated = !category.activated;
+                });
             }
 
             function saveDetail(brand, category) {
@@ -198,7 +209,8 @@
                     category: category.id,
                     status: category.selected
                 }, function () {
-                }, function () {
+                }, function (response) {
+                    showError(response);
                     category.selected = !category.selected;
                 });
             };
@@ -210,6 +222,17 @@
                     me.brands = response.data;
                     me.totalItems = response.total;
                 });
+            }
+
+            function hasAnythingSelected(brand) {
+                return _.where(brand.categories, {
+                        selected: true
+                    }).length > 0;
+            }
+
+            function showError(response) {
+                var headers = response.headers();
+                toaster.error(headers.statustext);
             }
 
         });

@@ -81,11 +81,11 @@ class SendContactEmail extends Job implements SelfHandling, ShouldBeQueued
 
         //can't use the key 'message', it's being overridden probably by the mailer
         $payload = [
-            'account' => $this->account,
+            'account'         => $this->account,
             'contact_message' => $this->message,
-            'subject' => $subject,
-            'email' => $this->email,
-            'name' => $this->name
+            'subject'         => $subject,
+            'email'           => $this->email,
+            'name'            => $this->name
         ];
 
         $callback = function (Message $message) use ($email, $name, $contact, $subject, $copy) {

@@ -7,7 +7,8 @@ use Illuminate\Filesystem\Filesystem;
  *
  * @package Media
  */
-class InfographicObserver {
+class InfographicObserver
+{
 
     /**
      * @var Filesystem
@@ -28,10 +29,8 @@ class InfographicObserver {
     public function deleting(Infographic $graphic)
     {
         //only try deleting thumbnails when we are no thumbnail
-        if($graphic->original_id === null)
-        {
-            foreach($graphic->sizes as $size)
-            {
+        if ($graphic->original_id === null) {
+            foreach ($graphic->sizes as $size) {
                 $size->delete();
             }
         }

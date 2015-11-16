@@ -4,10 +4,7 @@
 @import (inline) "../../../../../../bower_components/dropzone/dist/min/dropzone.min.css";
 @import (inline) "../../../../../../bower_components/ng-sortable/dist/ng-sortable.min.css";
 @import (inline) '../../../../../../bower_components/angularjs-toaster/toaster.min.css';
-
-
 @import "inspinia/style.less";
-
 
 //correct bootstrap glyphicons font path
 @icon-font-path: '/fonts/';
@@ -23,21 +20,20 @@
 @brand-danger: #ED5565;
 @fa-font-path: "/fonts";
 
-.slug{
+.slug {
   cursor: default;
   background-color: @gray-lighter;
 }
 
-
-.autosize{
+.autosize {
   min-height: 150px;
 }
 
-.autosize-lg{
+.autosize-lg {
   min-height: 250px;
 }
 
-.table.vertical tbody>tr>td{
+.table.vertical tbody > tr > td {
   vertical-align: middle;
 }
 
@@ -47,21 +43,20 @@
 @import "materialize/forms/switches";
 
 //fix overriding default btn colors
-div.datepicker{
-  .btn-default{
+div.datepicker {
+  .btn-default {
     color: #333;
     background-color: #fff;
   }
 
-  li{
+  li {
     padding: 5px;
 
-    &::after{
+    &::after {
       content: ' ';
-      clear:both;
+      clear: both;
     }
   }
-
 
   & :focus {
     //remove ugly focus, specifically for datepicker,
@@ -72,7 +67,6 @@ div.datepicker{
 
 }
 
-
 @import "tabs";
 @import "pages";
 @import "media";
@@ -82,9 +76,9 @@ div.datepicker{
 @import "profile";
 @import "marketing";
 
-table{
+table {
 
-  img{
+  img {
     margin-right: 10px;
   }
 

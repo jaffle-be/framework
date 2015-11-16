@@ -31,6 +31,10 @@ class PortfolioController extends FrontController
 
         $project = $portfolio->project;
 
+        if (!$project) {
+            abort(404);
+        }
+
         $project->load($relations);
 
         $this->seo->setEntity($project);

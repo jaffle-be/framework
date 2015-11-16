@@ -10,5 +10,4 @@ class Theme extends Facade
         return 'theme';
     }
 
-
 }

@@ -19,21 +19,18 @@ class Google extends MetaTagProvider
         $this->addProperty('description', $seo->getSeoDescription());
 
         if ($type == 'article') {
-            if($seo->publish_at)
-            {
+            if ($seo->publish_at) {
                 $this->addProperty('datePublished', $seo->publish_at->format(DATE_ATOM));
             }
 
             $this->addProperty('dateModified', $seo->updated_at->format(DATE_ATOM));
             $this->addProperty('publisher', 'digiredo.be');
-            if($seo->getSeoAuthor())
-            {
+            if ($seo->getSeoAuthor()) {
                 $this->addProperty('author', $seo->getSeoAuthor());
             }
         }
 
-        if($image = $seo->getSeoImage())
-        {
+        if ($image = $seo->getSeoImage()) {
             $this->addProperty('image', asset($image->path));
         }
     }

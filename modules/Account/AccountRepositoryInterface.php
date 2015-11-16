@@ -5,7 +5,6 @@ interface AccountRepositoryInterface
 
     public function findByDomain($domain);
 
-
     /**
      * @param array $payload
      *

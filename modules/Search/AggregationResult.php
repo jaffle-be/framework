@@ -20,7 +20,7 @@ class AggregationResult extends Collection
 
         return [
             'document_count' => $this->document_count,
-            'buckets' => $items
+            'buckets'        => $items
         ];
     }
 

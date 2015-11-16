@@ -65,7 +65,6 @@ class SystemServiceProvider extends ServiceProvider
 
     protected function observers()
     {
-
     }
 
     protected function listeners()

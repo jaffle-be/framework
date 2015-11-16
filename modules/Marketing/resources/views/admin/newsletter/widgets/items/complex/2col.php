@@ -1,8 +1,8 @@
 <div class="bg-color">
 
     <div class="row">
-        
-        <div ng-switch  on="widget.manual">
+
+        <div ng-switch on="widget.manual">
 
             <div ng-switch-when="true">
 
@@ -23,9 +23,9 @@
                     <br>
                     {{ vm.showText(widget.translations[vm.options.locale].text_right) }}
                 </div>
-                
+
             </div>
-            
+
             <div ng-switch-when="false">
 
                 <div class="col-xs-6">
@@ -45,9 +45,9 @@
                     <br>
                     <span ng-bind-html="vm.renderHtml(vm.showResourceText('two', widget))"></span>
                 </div>
-                
+
             </div>
-            
+
         </div>
 
 

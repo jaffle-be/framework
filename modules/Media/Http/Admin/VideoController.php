@@ -13,6 +13,7 @@ use Modules\Theme\ThemeManager;
 
 class VideoController extends AdminController
 {
+
     use VideoGenericFormatter;
     use MediaWidgetPreperations;
 
@@ -103,16 +104,14 @@ class VideoController extends AdminController
             'query' => 'required'
         ]);
 
-        if($request->get('mode') == 'youtube')
-        {
+        if ($request->get('mode') == 'youtube') {
             /** @var Youtube $youtube */
             $youtube = app('youtube');
 
             $response = $youtube->searchVideos($request->get('query'), 10, null, ['id', 'snippet']);
 
             return $this->youtubeResponse($response);
-        }
-        else{
+        } else {
             $vimeo = app('Vinkla\Vimeo\VimeoManager');
 
             $response = json_decode(json_encode($vimeo->request('/videos', ['query' => $request->get('query'), 'per_page' => 10])));
@@ -120,7 +119,5 @@ class VideoController extends AdminController
             return $this->vimeoReponse($response);
         }
     }
-
-
 
 }

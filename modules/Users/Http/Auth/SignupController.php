@@ -23,12 +23,10 @@ class SignupController extends FrontController
 
         $invitation = null;
 
-        if($request->has('invitation'))
-        {
+        if ($request->has('invitation')) {
             $invitation = MembershipInvitation::find($request->get('invitation'));
 
-            if(!$invitation)
-            {
+            if (!$invitation) {
                 return redirect()->back()->with('message', 'failed');
             }
         }
@@ -37,8 +35,7 @@ class SignupController extends FrontController
 
         if ($user = $this->dispatchFromArray(Signup::class, $data)) {
 
-            if($user->confirmed)
-            {
+            if ($user->confirmed) {
                 //user can be logged in too
                 $guard->login($user);
 

@@ -6,7 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 use Modules\Contact\AddressOwner;
 use Modules\Contact\OwnsAddress;
 
-class AccountContactInformation extends Model implements AddressOwner{
+class AccountContactInformation extends Model implements AddressOwner
+{
 
     use OwnsAddress;
 

@@ -1,6 +1,7 @@
 <?php namespace Modules\Users\Contracts;
 
-interface Throttler {
+interface Throttler
+{
 
     public function allows($email);
 

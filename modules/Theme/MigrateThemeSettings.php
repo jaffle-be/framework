@@ -25,8 +25,7 @@ trait MigrateThemeSettings
 
             $method = 'settingsHandle' . ucfirst($type->name);
 
-            if(method_exists($this, $method))
-            {
+            if (method_exists($this, $method)) {
                 call_user_func([$this, $method], $setting);
             }
         }
@@ -45,8 +44,7 @@ trait MigrateThemeSettings
             $setting->options()->create($option);
         }
 
-        if(isset($this->defaults[$setting->key]))
-        {
+        if (isset($this->defaults[$setting->key])) {
             $option = $setting->options()->where('value', $this->defaults[$setting->key])->first();
 
             $setting->defaults()->create(['option_id' => $option->id]);
@@ -65,13 +63,11 @@ trait MigrateThemeSettings
 
     protected function settingGetType(array $setting)
     {
-        if(!static::$types)
-        {
+        if (!static::$types) {
             static::$types = ThemeSettingType::all()->keyBy('name');
         }
 
-        if(!static::$types->has($setting['type']))
-        {
+        if (!static::$types->has($setting['type'])) {
             throw new Exception('Invalid setting type provided');
         }
 
@@ -80,8 +76,7 @@ trait MigrateThemeSettings
 
     protected function settingJsonHandle(ThemeSetting $setting)
     {
-        if(isset($this->defaults[$setting->key]))
-        {
+        if (isset($this->defaults[$setting->key])) {
             $setting->defaults()->create(['value' => json_encode($this->defaults[$setting->key])]);
         }
     }

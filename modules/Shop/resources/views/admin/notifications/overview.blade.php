@@ -55,14 +55,35 @@
                     <td width="0%">&nbsp;</td>
 
                     <td>
-                        <div ng-switch="" on="notification.type">
 
-                            <div ng-switch-when="activate">
-                                products from @{{ notification.brand.translations[vm.options.locale].name }} in @{{ notification.category.translations[vm.options.locale].name }}
+                        <div ng-if="notification.product_id">
+
+                            <div ng-switch="" on="notification.type">
+
+                                <div ng-switch-when="activate">
+                                    product @{{ notification.product.translations[vm.options.locale].name }} in @{{ notification.category.translations[vm.options.locale].name }} from @{{ notification.brand.translations[vm.options.locale].name }}
+                                </div>
+
+                                <div ng-switch-when="deactivate">
+                                    <strong>removing</strong> product @{{ notification.product.translations[vm.options.locale].name }} in @{{ notification.category.translations[vm.options.locale].name }} from @{{ notification.brand.translations[vm.options.locale].name }}
+                                </div>
+
                             </div>
 
-                            <div ng-switch-when="deactivate">
-                                <strong>removing</strong> products from @{{ notification.brand.translations[vm.options.locale].name }} in @{{ notification.category.translations[vm.options.locale].name }}
+                        </div>
+
+                        <div ng-if="!notification.product_id">
+
+                            <div ng-switch="" on="notification.type">
+
+                                <div ng-switch-when="activate">
+                                    products from @{{ notification.brand.translations[vm.options.locale].name }} in @{{ notification.category.translations[vm.options.locale].name }}
+                                </div>
+
+                                <div ng-switch-when="deactivate">
+                                    <strong>removing</strong> products from @{{ notification.brand.translations[vm.options.locale].name }} in @{{ notification.category.translations[vm.options.locale].name }}
+                                </div>
+
                             </div>
 
                         </div>
@@ -74,8 +95,10 @@
                         </button>
                     </td>
                     <td>
-                        <button class="btn btn-success" ng-click="vm.review(notification)">
-                            <i class="fa fa-search-plus"></i></button>
+                        <div ng-if="!notification.product_id">
+                            <button class="btn btn-success" ng-click="vm.review(notification)">
+                                <i class="fa fa-search-plus"></i></button>
+                        </div>
                     </td>
                     <td>
                         <button class="btn btn-danger" ng-click="vm.deny(notification)"><i class="fa fa-trash"></i>

@@ -20,6 +20,11 @@ class PostRepository implements PostRepositoryInterface
         return $this->post->with($this->relations())->limit(100)->get()->shuffle()->take(3);
     }
 
+    public function relations()
+    {
+        return ['user', 'translations', 'tags', 'tags.translations'];
+    }
+
     public function getAuthorArticles(User $author)
     {
         return $this->post->with($this->relations())
@@ -36,11 +41,6 @@ class PostRepository implements PostRepositoryInterface
             ->limit($limit)
             ->latest()
             ->get();
-    }
-
-    public function relations()
-    {
-        return ['user', 'translations', 'tags', 'tags.translations'];
     }
 
 }

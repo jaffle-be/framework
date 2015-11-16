@@ -62,6 +62,14 @@
 
             };
 
+            this.batchDelete = function () {
+                var products = this.selectedProducts();
+
+                ProductService.batchDelete(products, function () {
+                    me.loadProducts();
+                });
+            };
+
             this.batchPublish = function () {
                 var products = this.selectedProducts();
 

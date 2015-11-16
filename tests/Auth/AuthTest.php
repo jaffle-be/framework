@@ -1,9 +1,9 @@
 <?php namespace Test\Auth;
 
+use Test\FrontTestCase;
 use Test\Routes\RouteTests;
-use Test\TestCase;
 
-class AuthTest extends TestCase
+class AuthTest extends FrontTestCase
 {
 
     use RouteTests;

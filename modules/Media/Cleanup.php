@@ -22,19 +22,13 @@ class Cleanup
 
     public function handle($owner)
     {
-        if($owner instanceof StoresMedia)
-        {
+        if ($owner instanceof StoresMedia) {
 
-            if($owner->mediaStoresMultiple())
-            {
-                foreach($owner->images as $image)
-                {
+            if ($owner->mediaStoresMultiple()) {
+                foreach ($owner->images as $image) {
                     $image->delete();
                 };
-
-            }
-            elseif ($image = $owner->images)
-            {
+            } elseif ($image = $owner->images) {
                 $image->delete();
             }
 

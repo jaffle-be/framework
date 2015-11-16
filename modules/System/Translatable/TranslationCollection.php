@@ -5,6 +5,7 @@ use Modules\System\Locale;
 
 class TranslationCollection extends Collection
 {
+
     public function toArray()
     {
         $locales = Locale::all();
@@ -13,10 +14,8 @@ class TranslationCollection extends Collection
 
         $result = [];
 
-        foreach($locales as $locale)
-        {
-            if(isset($translations[$locale->id]))
-            {
+        foreach ($locales as $locale) {
+            if (isset($translations[$locale->id])) {
                 $result[$locale->slug] = $translations[$locale->id];
             }
         }

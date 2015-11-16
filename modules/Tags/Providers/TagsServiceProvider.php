@@ -2,7 +2,8 @@
 
 use Pingpong\Modules\ServiceProvider;
 
-class TagsServiceProvider extends ServiceProvider{
+class TagsServiceProvider extends ServiceProvider
+{
 
     protected $namespace = 'tags';
 
@@ -17,7 +18,6 @@ class TagsServiceProvider extends ServiceProvider{
 
     public function register()
     {
-
     }
 
 }

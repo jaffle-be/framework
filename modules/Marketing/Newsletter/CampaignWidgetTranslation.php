@@ -4,6 +4,7 @@ use Modules\System\Translatable\TranslationModel;
 
 class CampaignWidgetTranslation extends TranslationModel
 {
+
     protected $table = 'newsletter_campaign_widget_translations';
 
     protected $fillable = ['title', 'text', 'title_left', 'text_left', 'title_right', 'text_right'];

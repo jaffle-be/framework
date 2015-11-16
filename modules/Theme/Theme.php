@@ -6,6 +6,7 @@ use Modules\Media\StoringMedia;
 
 class Theme extends Model implements StoresMedia
 {
+
     use StoringMedia;
 
     protected $table = "themes";
@@ -16,11 +17,11 @@ class Theme extends Model implements StoresMedia
 
     protected $mediaMultiple = false;
 
-
     /**
      * Return an asset from a theme
      *
      * @param $asset
+     *
      * @return string
      */
     public function asset($asset)

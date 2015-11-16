@@ -4,6 +4,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class ThemeSettingOption extends Model
 {
+
     use \Modules\System\Translatable\translatable;
 
     protected $table = 'themes_setting_options';

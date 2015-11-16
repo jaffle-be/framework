@@ -6,6 +6,7 @@ use Illuminate\View\Factory;
 
 class Breadcrumbs
 {
+
     protected $manager;
 
     protected $route;
@@ -30,11 +31,9 @@ class Breadcrumbs
 
     public function render(array $params = [])
     {
-        if(empty($params))
-        {
+        if (empty($params)) {
             return $this->manager->renderIfExists();
-        }
-        else{
+        } else {
             $crumbs = $this->manager->generateIfExists();
 
             return $this->view->make($this->viewName, array_merge(['breadcrumbs' => $crumbs], $params));

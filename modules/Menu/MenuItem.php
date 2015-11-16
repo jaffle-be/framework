@@ -6,7 +6,8 @@ use Modules\System\Presenter\PresentableTrait;
 use Modules\System\Scopes\ModelAutoSort;
 use Modules\System\Translatable\Translatable;
 
-class MenuItem extends Model implements PresentableEntity{
+class MenuItem extends Model implements PresentableEntity
+{
 
     use Translatable;
     use ModelAutoSort;
@@ -51,7 +52,7 @@ class MenuItem extends Model implements PresentableEntity{
 
     public function getTargetAttribute()
     {
-        return $this->attributes['target_blank'] ? '_blank': null;
+        return $this->attributes['target_blank'] ? '_blank' : null;
     }
 
 }

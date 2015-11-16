@@ -65,6 +65,10 @@
                             <a ui-sref="admin.shop.products"><i class="fa fa-shopping-cart"></i>
                                 <span class="nav-label">@{{ 'PRODUCTS' | translate }}</span></a>
                         </li>
+                        <li ui-sref-active="active">
+                            <a ui-sref="admin.shop.selections"><i class="fa fa-shopping-cart"></i>
+                                <span class="nav-label">@{{ 'SELECTIONS' | translate }}</span></a>
+                        </li>
                     </ul>
                 </li>
 

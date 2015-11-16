@@ -8,6 +8,7 @@ use Modules\Account\MembershipOwner;
 
 class AcceptMembership extends Job implements SelfHandling
 {
+
     use DispatchesJobs;
 
     protected $invitation;
@@ -24,11 +25,11 @@ class AcceptMembership extends Job implements SelfHandling
     {
         $account = $this->invitation->account;
 
-        if($this->dispatchFromArray(NewMembership::class, [
+        if ($this->dispatchFromArray(NewMembership::class, [
             'account' => $account,
-            'member' => $this->member
-        ]))
-        {
+            'member'  => $this->member
+        ])
+        ) {
             return $this->invitation->delete();
         }
 

@@ -5,13 +5,12 @@
  */
 Route::group([
     'namespace' => 'Modules\Marketing\Http',
-    'as' => 'store.'
+    'as'        => 'store.'
 ], function () {
 
     Route::group([
         'namespace' => 'Admin',
-    ], function()
-    {
+    ], function () {
         Route::group(['prefix' => 'templates/admin'], function () {
             //template files, load at top so we do not end up in the show method
             Route::get('marketing/overview', 'MarketingController@overview');
@@ -39,16 +38,12 @@ Route::group([
     });
 
     //FRONT ROUTES
-    if(env('APP_MULTIPLE_LOCALES'))
-    {
-        foreach(config('system.locales') as $locale)
-        {
+    if (env('APP_MULTIPLE_LOCALES')) {
+        foreach (config('system.locales') as $locale) {
             Route::post("$locale/newsletter", ['uses' => 'NewsletterSubscriptionController@store', 'as' => "$locale.newsletter.store"]);
             Route::get("$locale/newsletter", ['uses' => 'NewsletterSubscriptionController@index', 'as' => "$locale.newsletter.index"]);
         }
-    }
-    else{
+    } else {
         Route::post('newsletter', ['uses' => 'NewsletterSubscriptionController@store', 'as' => 'newsletter.store']);
     }
-
 });

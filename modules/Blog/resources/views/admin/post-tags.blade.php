@@ -70,8 +70,6 @@
             </uib-tab>
 
 
-
-
         </uib-tabset>
 
     </div>

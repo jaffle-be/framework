@@ -59,9 +59,9 @@ class UploadNewInfographic extends Job implements SelfHandling
 
         $image = $this->dispatchFromArray(StoreNewInfographic::class, [
             'account' => $manager->account(),
-            'owner' => $this->owner,
-            'path'  => $final_path,
-            'locale' => $this->locale
+            'owner'   => $this->owner,
+            'path'    => $final_path,
+            'locale'  => $this->locale
         ]);
 
         $files->delete($final_path);

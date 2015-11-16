@@ -46,7 +46,7 @@ trait SearchResponder
             //only need transform into a collection when we didn't lazyload relations
         } elseif (is_array($collection)) {
             $results = $model->newCollection($collection);
-        } else{
+        } else {
             $results = $collection;
         }
 

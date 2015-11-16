@@ -7,6 +7,7 @@ use Pingpong\Modules\ServiceProvider;
 
 class AccountServiceProvider extends ServiceProvider
 {
+
     protected $defer = false;
 
     protected $namespace = 'account';
@@ -15,7 +16,9 @@ class AccountServiceProvider extends ServiceProvider
     {
         parent::boot();
 
-        $this->app['Modules\Account\AccountManager']->boot();
+        if (config('system.installed')) {
+            $this->app['Modules\Account\AccountManager']->boot();
+        }
     }
 
     /**
@@ -33,6 +36,7 @@ class AccountServiceProvider extends ServiceProvider
     protected function listeners()
     {
         $this->cacheBusting();
+        $this->indexers();
     }
 
     protected function observers()
@@ -58,6 +62,11 @@ class AccountServiceProvider extends ServiceProvider
                 app('cache')->forget('account-logo');
             }
         });
+    }
+
+    protected function indexers()
+    {
+        $this->app['events']->subscribe('Modules\\Account\\IndexManager');
     }
 
 }

@@ -5,13 +5,12 @@
  */
 Route::group([
     'namespace' => 'Modules\Module\Http',
-    'as' => 'store.'
+    'as'        => 'store.'
 ], function () {
 
     Route::group([
         'namespace' => 'Admin',
-    ], function()
-    {
+    ], function () {
         Route::group(['prefix' => 'templates/admin'], function () {
             //template files, load at top so we do not end up in the show method
         });
@@ -21,5 +20,4 @@ Route::group([
             Route::post('module/toggle', 'ModuleController@toggle');
         });
     });
-
 });

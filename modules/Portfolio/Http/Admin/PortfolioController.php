@@ -9,6 +9,7 @@ use Modules\System\Http\AdminController;
 
 class PortfolioController extends AdminController
 {
+
     use MediaWidgetPreperations;
 
     public function overview()
@@ -72,8 +73,8 @@ class PortfolioController extends AdminController
         $project->load('translations');
 
         $payload = [
-            'project'  => $project,
-            'input' => translation_input($request, ['published', 'title', 'content'])
+            'project' => $project,
+            'input'   => translation_input($request, ['published', 'title', 'content'])
         ];
 
         if (!$this->dispatchFromArray(UpdateProject::class, $payload)) {
@@ -85,8 +86,7 @@ class PortfolioController extends AdminController
 
     public function destroy(Project $project)
     {
-        if($project->delete())
-        {
+        if ($project->delete()) {
             $project->id = false;
         }
 
@@ -97,12 +97,10 @@ class PortfolioController extends AdminController
     {
         $projectids = $request->get('projects', []);
 
-        if(is_array($projectids) && count($projectids))
-        {
+        if (is_array($projectids) && count($projectids)) {
             $projects = $project->whereIn('id', $projectids)->get();
 
-            foreach($projects as $project)
-            {
+            foreach ($projects as $project) {
                 $project->delete();
             }
         }
@@ -112,17 +110,14 @@ class PortfolioController extends AdminController
     {
         $ids = $request->get('projects', []);
 
-        if(is_array($ids) && count($ids))
-        {
+        if (is_array($ids) && count($ids)) {
             $projects = $project->whereIn('portfolio_projects.id', $ids)
                 ->get();
 
-            foreach($projects as $project)
-            {
+            foreach ($projects as $project) {
                 $translation = $project->translate($request->get('locale'));
 
-                if($translation)
-                {
+                if ($translation) {
                     $translation->published = true;
                 }
 
@@ -135,17 +130,14 @@ class PortfolioController extends AdminController
     {
         $ids = $request->get('projects', []);
 
-        if(is_array($ids) && count($ids))
-        {
+        if (is_array($ids) && count($ids)) {
             $projects = $project->whereIn('portfolio_projects.id', $ids)
                 ->get();
 
-            foreach($projects as $project)
-            {
+            foreach ($projects as $project) {
                 $translation = $project->translate($request->get('locale'));
 
-                if($translation)
-                {
+                if ($translation) {
                     $translation->published = false;
                 }
 

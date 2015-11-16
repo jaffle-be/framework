@@ -7,12 +7,17 @@ use Modules\System\Scopes\ModelAccountResource;
 
 class GammaNotification extends Model implements Pushable
 {
+
     use ModelAccountResource;
     use CanPush;
 
     protected $table = 'product_gamma_notifications';
 
-    protected $fillable = ['account_id', 'brand_selection_id', 'category_selection_id', 'brand_id', 'category_id', 'type'];
+    protected $fillable = ['account_id', 'brand_selection_id', 'category_selection_id', 'brand_id', 'product_id', 'category_id', 'processing', 'type'];
+
+    protected $casts = [
+        'processing' => 'boolean',
+    ];
 
     public function brand()
     {
@@ -24,6 +29,11 @@ class GammaNotification extends Model implements Pushable
         return $this->belongsTo('Modules\Shop\Product\Category');
     }
 
+    public function product()
+    {
+        return $this->belongsTo('Modules\Shop\Product\Product');
+    }
+
     public function brandSelection()
     {
         return $this->belongsTo('Modules\Shop\Gamma\BrandSelection');
@@ -32,6 +42,11 @@ class GammaNotification extends Model implements Pushable
     public function categorySelection()
     {
         return $this->belongsTo('Modules\Shop\Gamma\CategorySelection');
+    }
+
+    public function scopeNotBeingProcessed($query)
+    {
+        $query->where('processing', 0);
     }
 
 }

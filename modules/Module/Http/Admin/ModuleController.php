@@ -15,15 +15,13 @@ class ModuleController extends AdminController
 
         $account = $manager->account();
 
-        if($request->get('activated'))
-        {
+        if ($request->get('activated')) {
             //attach module
             $account->modules()->attach($module->id);
 
             //broadcast event
             $pusher->trigger(pusher_account_channel(), 'system.hard-reload', []);
-        }
-        else{
+        } else {
             //detach module
             $account->modules()->detach($module->id);
 

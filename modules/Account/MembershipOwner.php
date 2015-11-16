@@ -1,6 +1,7 @@
 <?php namespace Modules\Account;
 
-interface MembershipOwner {
+interface MembershipOwner
+{
 
     public function getKey();
 

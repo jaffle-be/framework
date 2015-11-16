@@ -135,8 +135,7 @@ class TagController extends AdminController
 
         $owners = config('tags.owners');
 
-        if(!isset($owners[$ownerType]))
-        {
+        if (!isset($owners[$ownerType])) {
             throw new \Exception('Invalid owner type provided for tags');
         }
 

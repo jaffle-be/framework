@@ -50,12 +50,10 @@ class AccountRepository implements AccountRepositoryInterface
             ->take(1)->first();
 
         //make sure we always have a contactInformation, when we need to link address using google maps plugin
-        if($account)
-        {
+        if ($account) {
             $contact = $account->contactInformation->first();
 
-            if(!$contact)
-            {
+            if (!$contact) {
                 $contact = $account->contactInformation()->create([]);
             }
         }
@@ -65,7 +63,6 @@ class AccountRepository implements AccountRepositoryInterface
 
     public function updated()
     {
-
     }
 
 }

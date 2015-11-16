@@ -1,6 +1,5 @@
-(function()
-{
-   'use strict';
+(function () {
+    'use strict';
 
     angular.module('media')
         .factory('FileService', function (File, $timeout, $state, $http) {
@@ -13,7 +12,7 @@
                 //file uploader
                 this.uploader = function (type, id, locale, handlers, ownerIdCallback) {
 
-                    if(typeof handlers === 'function')
+                    if (typeof handlers === 'function')
                     {
                         //handlers is only a success callback
                         handlers = {
@@ -72,8 +71,7 @@
                     }, success);
                 };
 
-                this.sort = function(type, id, files)
-                {
+                this.sort = function (type, id, files) {
                     var order = _.pluck(files, 'id');
                     $http.post('api/admin/media/file/sort', {
                         ownerId: id,

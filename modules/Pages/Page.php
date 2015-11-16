@@ -53,14 +53,14 @@ class Page extends Model implements StoresMedia, SeoEntity, PresentableEntity, M
         return $this->hasMany('Modules\Pages\Page', 'parent_id');
     }
 
-    public function scopeMainPages(Builder $builder){
+    public function scopeMainPages(Builder $builder)
+    {
         $builder->whereNull('parent_id');
     }
 
     public function scopeBut(Builder $builder, Collection $pages)
     {
-        if($pages->count() > 0)
-        {
+        if ($pages->count() > 0) {
             $builder->whereNotIn($this->getKeyName(), $pages->lists($this->getKeyName())->toArray());
         }
     }
@@ -77,7 +77,7 @@ class Page extends Model implements StoresMedia, SeoEntity, PresentableEntity, M
     {
         $translations = $this->translations->toArray();
 
-        return array_map(function($item){
+        return array_map(function ($item) {
             return $item['title'];
         }, $translations);
     }

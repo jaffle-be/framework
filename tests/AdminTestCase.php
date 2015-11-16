@@ -1,8 +1,9 @@
 <?php namespace Test;
 
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Console\Kernel;
 
-class TestCase extends \Illuminate\Foundation\Testing\TestCase
+class AdminTestCase extends \Illuminate\Foundation\Testing\TestCase
 {
     /**
      * The base URL to use while testing the application.
@@ -20,6 +21,8 @@ class TestCase extends \Illuminate\Foundation\Testing\TestCase
     {
         $app = require __DIR__ . '/../bootstrap/app.php';
 
+        putenv('RUNNING_TESTS_FRONT=false');
+
         $app->make(Kernel::class)->bootstrap();
 
         return $app;
@@ -28,6 +31,11 @@ class TestCase extends \Illuminate\Foundation\Testing\TestCase
     protected function account()
     {
         return app('Modules\Account\AccountManager')->account();
+    }
+
+    protected function database(Model $model)
+    {
+        return $model->getConnection()->table($model->getTable());
     }
 
 }

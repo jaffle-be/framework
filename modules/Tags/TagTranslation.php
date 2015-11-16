@@ -4,7 +4,8 @@ use Modules\Search\Model\Searchable;
 use Modules\Search\Model\SearchableTrait;
 use Modules\System\Translatable\TranslationModel;
 
-class TagTranslation extends TranslationModel implements Searchable{
+class TagTranslation extends TranslationModel implements Searchable
+{
 
     use SearchableTrait;
 

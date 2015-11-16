@@ -51,6 +51,7 @@ class RouteServiceProvider extends ServiceProvider
         $router->model('products', 'Modules\Shop\Product\Product');
         $router->model('category', 'Modules\Shop\Product\CategoryTranslation');
         $router->model('brand', 'Modules\Shop\Product\BrandTranslation');
+        $router->model('selections', 'Modules\Shop\Gamma\ProductSelection');
 
         $router->model('campaign', 'Modules\Marketing\Newsletter\Campaign');
         $router->model('campaign-widget', 'Modules\Marketing\Newsletter\CampaignWidget');

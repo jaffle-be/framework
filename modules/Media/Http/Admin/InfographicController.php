@@ -11,6 +11,7 @@ use Modules\Theme\ThemeManager;
 
 class InfographicController extends AdminController
 {
+
     use MediaWidgetPreperations;
 
     protected $media;
@@ -43,9 +44,9 @@ class InfographicController extends AdminController
         $file = $request->file('file');
 
         $infographic = $this->dispatchFromArray(UploadNewInfographic::class, [
-            'owner' => $owner,
+            'owner'   => $owner,
             'graphic' => $file,
-            'locale' => $locale->whereSlug($request->get('locale'))->firstOrFail(),
+            'locale'  => $locale->whereSlug($request->get('locale'))->firstOrFail(),
         ]);
 
         $infographic->load('sizes');
@@ -90,7 +91,5 @@ class InfographicController extends AdminController
             $infographic->save();
         }
     }
-
-
 
 }

@@ -5,6 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 
 class CreateThemesSettingOptionsTable extends Migration
 {
+
     /**
      * Run the migrations.
      *
@@ -20,8 +21,7 @@ class CreateThemesSettingOptionsTable extends Migration
             $table->timestamps();
         });
 
-        Schema::create('themes_setting_option_translations', function(Blueprint $table)
-        {
+        Schema::create('themes_setting_option_translations', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('option_id', false, true);
             $table->foreign('option_id', 'translations_to_theme_setting_options')->references('id')->on('themes_setting_options')->onDelete('cascade');
@@ -39,14 +39,12 @@ class CreateThemesSettingOptionsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('themes_setting_option_translations', function(Blueprint $table){
+        Schema::drop('themes_setting_option_translations', function (Blueprint $table) {
             $table->dropForeign('translations_to_theme_setting_options');
         });
 
-        Schema::drop('themes_setting_options', function(Blueprint $table)
-        {
+        Schema::drop('themes_setting_options', function (Blueprint $table) {
             $table->dropForeign('theme_setting_options_to_keys');
         });
-
     }
 }

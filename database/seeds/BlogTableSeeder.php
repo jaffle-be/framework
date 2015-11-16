@@ -14,7 +14,7 @@ class BlogTableSeeder extends Seeder
         parent::__construct();
     }
 
-    public function run()
+    public function run($amount = 15)
     {
         foreach([1, 2] as $accountid)
         {
@@ -26,7 +26,7 @@ class BlogTableSeeder extends Seeder
             //flip array since array_rand returns the keys from an array
             $tags = array_flip($tags);
 
-            for ($i = 0; $i < 50; $i++) {
+            for ($i = 0; $i < $amount; $i++) {
 
                 $post = $this->model->newInstance($this->texts($accountid));
 

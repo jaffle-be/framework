@@ -2,6 +2,7 @@
 
 class CatalogRepository implements CatalogRepositoryInterface
 {
+
     protected $product;
 
     protected $brand;

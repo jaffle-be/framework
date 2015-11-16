@@ -7,6 +7,7 @@ use Modules\Media\StoresMedia;
 
 class RemoveSize extends Command
 {
+
     protected $signature = 'media:remove-size {size} {type=all}';
 
     /**
@@ -37,8 +38,7 @@ class RemoveSize extends Command
     {
         $types = $this->config->getTypes($this->argument('type'));
 
-        foreach($types as $type)
-        {
+        foreach ($types as $type) {
             $this->handleType($type);
         }
     }

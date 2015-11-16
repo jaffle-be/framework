@@ -3,6 +3,6 @@
 interface PortfolioRepositoryInterface
 {
 
-    public  function getExamples($limit = 4);
+    public function getExamples($limit = 4);
 
 }

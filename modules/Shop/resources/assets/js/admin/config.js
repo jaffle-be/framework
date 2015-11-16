@@ -28,6 +28,14 @@
                 .state('admin.shop.product', {
                     url: '/product/:id',
                     templateUrl: "templates/admin/products/detail"
+                })
+                .state('admin.shop.selections', {
+                    url: "/selections",
+                    templateUrl: "templates/admin/shop/selections/overview"
+                })
+                .state('admin.shop.selection', {
+                    url: '/selection/:id',
+                    templateUrl: "templates/admin/shop/selections/detail"
                 });
 
         });

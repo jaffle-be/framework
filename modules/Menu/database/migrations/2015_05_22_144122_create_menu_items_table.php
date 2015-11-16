@@ -48,8 +48,7 @@ class CreateMenuItemsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('menu_item_translations', function(Blueprint $table)
-        {
+        Schema::drop('menu_item_translations', function (Blueprint $table) {
             $table->dropForeign('translations_to_menu_items');
         });
 

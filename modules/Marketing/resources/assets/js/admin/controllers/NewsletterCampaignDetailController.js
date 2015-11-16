@@ -69,36 +69,33 @@
                 }
             }
 
-            function saveWidget(widget)
-            {
+            function saveWidget(widget) {
                 NewsletterCampaignService.saveWidget(widget);
             }
 
-            function deleteCampaign () {
+            function deleteCampaign() {
                 me.campaigns.delete(me.campaign, function () {
                     $state.go('admin.marketing.campaigns');
                 });
             };
 
-            function addWidget(name)
-            {
+            function addWidget(name) {
                 //find the actual widget in our available widgets.
                 var widget = _.first(_.where(me.campaign.availableWidgets, {name: name}));
 
                 NewsletterCampaignService.storeNewWidget(me.campaign, widget);
             }
 
-            function removeWidget(widget){
-                widget.$delete().then(function(){
-                    _.remove(me.campaign.widgets, function(item){
+            function removeWidget(widget) {
+                widget.$delete().then(function () {
+                    _.remove(me.campaign.widgets, function (item) {
                         return item.id == widget.id
                     });
                 });
             }
 
-            function configItemCount(widget)
-            {
-                if(!widget)
+            function configItemCount(widget) {
+                if (!widget)
                 {
                     return false;
                 }
@@ -110,41 +107,36 @@
                 return config.items;
             }
 
-            function startEditing(widget)
-            {
+            function startEditing(widget) {
                 me.editing = widget;
             }
 
-            function stopEditing()
-            {
+            function stopEditing() {
                 me.editing = false;
             }
 
-            function widgetImage(field)
-            {
-                if(me.editing)
+            function widgetImage(field) {
+                if (me.editing)
                 {
                     return me.editing[field] ? me.editing[field].path : null;
                 }
             }
 
-            function selectWidgetImage(field)
-            {
+            function selectWidgetImage(field) {
                 var id = me.editing[field];
                 var image_field = field.substr(0, field.length - 3);
 
-                var image = _.first(_.where(me.campaign.images, { id: id}));
+                var image = _.first(_.where(me.campaign.images, {id: id}));
 
-                if(image)
+                if (image)
                 {
                     me.editing[image_field] = image;
                     me.saveWidget(me.editing);
                 }
             }
 
-            function showImage(image)
-            {
-                if(image)
+            function showImage(image) {
+                if (image)
                 {
                     return image.path;
                 }
@@ -152,32 +144,29 @@
                 return 'http://placekitten.com/g/1120/800';
             }
 
-            function showTitle(title)
-            {
+            function showTitle(title) {
                 return title ? title : 'Placeholder title';
             }
 
-            function showText(text)
-            {
+            function showText(text) {
                 return text ? text : 'Some reasonably long placeholder text, so you have an idea how it all looks before you actually write anything.';
             }
 
-            function resourceToUse(type, widget){
-                if(type == 'one')
+            function resourceToUse(type, widget) {
+                if (type == 'one')
                 {
                     return widget.resource;
                 }
-                else if(type == 'two')
+                else if (type == 'two')
                 {
                     return widget.otherResource;
                 }
             }
 
-            function showResourceImage(type, widget)
-            {
+            function showResourceImage(type, widget) {
                 var resource = resourceToUse(type, widget);
 
-                if(resource && resource.images)
+                if (resource && resource.images)
                 {
                     return resource.images[0].path;
                 }
@@ -185,11 +174,10 @@
                 return 'http://placekitten.com/g/1120/800';
             }
 
-            function showResourceTitle(type, widget)
-            {
+            function showResourceTitle(type, widget) {
                 var resource = resourceToUse(type, widget);
 
-                if(resource && resource.translations)
+                if (resource && resource.translations)
                 {
                     return resource.translations[me.options.locale].title;
                 }
@@ -197,11 +185,10 @@
                 return 'Placeholder title';
             }
 
-            function showResourceText(type, widget)
-            {
+            function showResourceText(type, widget) {
                 var resource = resourceToUse(type, widget);
 
-                if(resource && resource.translations)
+                if (resource && resource.translations)
                 {
                     return resource.translations[me.options.locale].cached_extract;
                 }
@@ -209,30 +196,28 @@
                 return 'Some reasonably long placeholder text, so you have an idea how it all looks before you actually write anything.';
             }
 
-            function searchElement(value, locale)
-            {
+            function searchElement(value, locale) {
                 return NewsletterCampaignService.searchResource(value, locale);
             }
 
-            function linkElement($item, type)
-            {
-                NewsletterCampaignService.linkResourceToWidget(type, me.editing, $item, function(){});
+            function linkElement($item, type) {
+                NewsletterCampaignService.linkResourceToWidget(type, me.editing, $item, function () {
+                });
             }
 
             function renderHtml(html_code) {
                 return $sce.trustAsHtml(html_code);
             }
 
-            function prepareToSend()
-            {
+            function prepareToSend() {
                 var using = me.campaign;
                 me.campaign = false;
 
-                function success(campaign){
+                function success(campaign) {
                     me.campaign = campaign;
                 }
 
-                function error(response){
+                function error(response) {
                     me.campaign = using;
                     me.campaign.translations[me.options.locale].mail_chimp_campaign_id = false;
                     toaster.error(response.headers().reason);
@@ -241,16 +226,14 @@
                 NewsletterCampaignService.prepareToSend(using, me.options.locale).then(success, error);
             }
 
-            function sendCampaign()
-            {
+            function sendCampaign() {
                 me.campaign.translations[me.options.locale].mailchimp.is_ready = false;
-                NewsletterCampaignService.send(me.campaign, me.options.locale).then(function(response){
+                NewsletterCampaignService.send(me.campaign, me.options.locale).then(function (response) {
                     me.campaign.translations[me.options.locale].summary = response.data
                 });
             }
 
-            function isLinked()
-            {
+            function isLinked() {
                 return me.campaign && me.campaign.translations[me.options.locale].mailchimp;
             }
         });

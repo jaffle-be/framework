@@ -4,7 +4,8 @@ use App\Jobs\Job;
 use Illuminate\Contracts\Bus\SelfHandling;
 use Modules\Pages\Page;
 
-class UpdatePage extends Job implements SelfHandling{
+class UpdatePage extends Job implements SelfHandling
+{
 
     /**
      * @var Page

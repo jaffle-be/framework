@@ -3,8 +3,6 @@
     <div class="row">
 
 
-
-
         <div ng-switch on="widget.manual">
 
             <div ng-switch-when="true">

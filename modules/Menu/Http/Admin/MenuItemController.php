@@ -65,7 +65,6 @@ class MenuItemController extends AdminController
                     $input[$locale->slug]['name'] = $translation->title;
                 }
             }
-
         } else {
 
             $rules = [

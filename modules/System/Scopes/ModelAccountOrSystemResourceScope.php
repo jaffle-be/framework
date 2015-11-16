@@ -15,10 +15,8 @@ class ModelAccountOrSystemResourceScope implements ScopeInterface
 
     public function apply(Builder $builder, Model $model)
     {
-        if($this->account)
-        {
-            $builder->where(function($query)
-            {
+        if ($this->account) {
+            $builder->where(function ($query) {
                 $query->where('account_id', $this->account->getKey())
                     ->orWhereNull('account_id');
             });
@@ -27,7 +25,6 @@ class ModelAccountOrSystemResourceScope implements ScopeInterface
 
     public function remove(Builder $builder, Model $model)
     {
-
     }
 
 }

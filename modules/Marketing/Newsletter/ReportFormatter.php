@@ -67,8 +67,7 @@ class ReportFormatter
                 $meaning = 'regular';
             } elseif (in_array($name, $this->bad)) {
                 $meaning = $value > 0 ? 'bad' : 'good';
-            }
-            else{
+            } else {
                 $meaning = $value > 0 ? 'good' : 'regular';
             }
 

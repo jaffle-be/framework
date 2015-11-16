@@ -19,26 +19,24 @@ class ShopTableSeeder extends Seeder
         parent::__construct();
     }
 
-    public function run()
+    public function run($count = 15)
     {
-        if(Brand::count() == 0)
-        {
+        if (Brand::count() == 0) {
             $this->call('BrandTableSeeder');
         }
-        if(Category::count() == 0)
-        {
+        if (Category::count() == 0) {
             $this->call('CategoryTableSeeder');
         }
 
-        $this->productBases();
+        $this->productBases($count);
     }
 
-    protected function productBases()
+    protected function productBases($amount)
     {
         $brands = Brand::all();
         $categories = Category::all();
 
-        for ($i = 0; $i < 100; $i++) {
+        for ($i = 0; $i < $amount; $i++) {
             $name = $this->faker->userName;
 
             $ean = $this->faker->ean13;
@@ -80,12 +78,10 @@ class ShopTableSeeder extends Seeder
             }
         }
 
-        foreach([1, 2] as $accountid)
-        {
+        foreach ([1, 2] as $accountid) {
 
-            Product::chunk(250, function($products) use ($accountid){
-                foreach($products as $product)
-                {
+            Product::chunk(250, function ($products) use ($accountid) {
+                foreach ($products as $product) {
                     $this->prices($product, $accountid);
                     $this->promotions($product, $accountid);
                 }

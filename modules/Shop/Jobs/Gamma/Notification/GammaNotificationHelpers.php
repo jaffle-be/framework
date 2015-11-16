@@ -8,16 +8,25 @@ use Pusher;
 trait GammaNotificationHelpers
 {
 
-    protected function cancelExisting(GammaNotification $notification, Brand $brand, Category $category, Pusher $pusher)
+    protected function beingProcessed(GammaNotification $notification, Brand $brand, Category $category)
+    {
+        return $notification->where('brand_id', $brand->id)
+            ->where('category_id', $category->id)
+            ->where('processing', 1)
+            ->count() > 0;
+    }
+
+    protected function cancelInverseNotifications(GammaNotification $notification, Brand $brand, Category $category, Pusher $pusher)
     {
         $notifications = $notification->where('brand_id', $brand->id)
             ->where('category_id', $category->id)
+            ->whereNull('product_id')
+            ->notBeingProcessed()
             ->get();
 
         $counter = 0;
 
-        foreach($notifications as $notification)
-        {
+        foreach ($notifications as $notification) {
             $pusher->trigger(pusher_account_channel(), 'gamma.gamma_notification.denied', $notification->toArray());
 
             $notification->delete();
@@ -37,6 +46,7 @@ trait GammaNotificationHelpers
     protected function findExistingCombination(GammaNotification $notification, $brand, $category)
     {
         $existing = $notification
+            ->notBeingProcessed()
             ->whereHas('brandSelection', function ($query) use ($brand) {
                 $query->where('brand_id', $brand->id);
             })

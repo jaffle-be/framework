@@ -25,48 +25,6 @@ class Config
         $this->invertTypes();
     }
 
-    public function getIndex()
-    {
-        return $this->index;
-    }
-
-    public function getTypes()
-    {
-        return array_keys($this->types);
-    }
-
-    public function getType($type)
-    {
-        return $this->types[$type];
-    }
-
-    public function getWith($type)
-    {
-        $with = isset($this->types[$type]['with']) ? $this->types[$type]['with'] : [];
-
-        if($this->usesTranslations($type))
-        {
-            $instance = $this->getInstance($type);
-
-            $with = array_merge($with, ['translations' => [
-                'class' => $instance->getTranslationModelName(),
-                'key'   => $instance->translations()->getForeignKey(),
-            ]]);
-        }
-
-        return $with;
-    }
-
-    public function getClass($type)
-    {
-        return $this->types[$type]['class'];
-    }
-
-    public function getInvertedTypes()
-    {
-        return $this->inverted;
-    }
-
     /**
      * This method will save an inverted array of relations.
      * We can then use it to trigger nested document changes.
@@ -92,6 +50,22 @@ class Config
         }
     }
 
+    public function getWith($type)
+    {
+        $with = isset($this->types[$type]['with']) ? $this->types[$type]['with'] : [];
+
+        if ($this->usesTranslations($type)) {
+            $instance = $this->getInstance($type);
+
+            $with = array_merge($with, ['translations' => [
+                'class' => $instance->getTranslationModelName(),
+                'key'   => $instance->translations()->getForeignKey(),
+            ]]);
+        }
+
+        return $with;
+    }
+
     /**
      * @param $type
      *
@@ -104,6 +78,25 @@ class Config
         $stuff = class_uses($class);
 
         return in_array($trait, $stuff);
+    }
+
+    public function getClass($type)
+    {
+        return $this->types[$type]['class'];
+    }
+
+    /**
+     * @param $type
+     *
+     * @return mixed
+     */
+    protected function getInstance($type)
+    {
+        $class = $this->getClass($type);
+
+        $object = new $class;
+
+        return $object;
     }
 
     /**
@@ -128,18 +121,24 @@ class Config
         ];
     }
 
-    /**
-     * @param $type
-     *
-     * @return mixed
-     */
-    protected function getInstance($type)
+    public function getIndex()
     {
-        $class = $this->getClass($type);
+        return $this->index;
+    }
 
-        $object = new $class;
+    public function getTypes()
+    {
+        return array_keys($this->types);
+    }
 
-        return $object;
+    public function getType($type)
+    {
+        return $this->types[$type];
+    }
+
+    public function getInvertedTypes()
+    {
+        return $this->inverted;
     }
 
 }

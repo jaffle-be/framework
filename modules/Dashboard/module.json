@@ -1,15 +1,15 @@
 {
-    "name": "Dashboard",
-    "alias": "dashboard",
-    "description": "",
-    "keywords": [],
-    "active": 1,
-    "order": 10,
-    "providers": [
-        "Modules\\Dashboard\\Providers\\DashboardServiceProvider"
-    ],
-    "aliases":{},
-    "files": [
-        "helpers.php"
-    ]
+  "name": "Dashboard",
+  "alias": "dashboard",
+  "description": "",
+  "keywords": [],
+  "active": 1,
+  "order": 10,
+  "providers": [
+    "Modules\\Dashboard\\Providers\\DashboardServiceProvider"
+  ],
+  "aliases": {},
+  "files": [
+    "helpers.php"
+  ]
 }

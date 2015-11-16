@@ -7,7 +7,8 @@ use Modules\Contact\Jobs\SendContactEmail;
 use Modules\Contact\Requests\ContactRequest;
 use Modules\System\Http\FrontController;
 
-class ContactController extends FrontController{
+class ContactController extends FrontController
+{
 
     use DispatchesJobs;
 
@@ -19,7 +20,7 @@ class ContactController extends FrontController{
 
         $success = $session->get('success');
 
-        return $this->theme->render('contact.'. $this->theme->setting('contactLayout'), ['contact' => $contact, 'success' => $success]);
+        return $this->theme->render('contact.' . $this->theme->setting('contactLayout'), ['contact' => $contact, 'success' => $success]);
     }
 
     public function store(ContactRequest $request, AccountManager $account)
@@ -30,11 +31,11 @@ class ContactController extends FrontController{
         $this->dispatchFromArray(SendContactEmail::class, [
             'contact' => $account->contactInformation->find($request->get('_id')),
             'account' => $account,
-            'email' => $request->get('email'),
-            'name' => $request->get('name'),
+            'email'   => $request->get('email'),
+            'name'    => $request->get('name'),
             'message' => $request->get('message'),
             'subject' => $request->get('subject', null),
-            'copy' => $request->get('copy', null)
+            'copy'    => $request->get('copy', null)
         ]);
 
         return redirect()->back()->withSuccess(true);

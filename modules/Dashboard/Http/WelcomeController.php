@@ -12,6 +12,7 @@ use Modules\Theme\Theme;
 
 class WelcomeController extends FrontController
 {
+
     use DispatchesCommands;
 
     /**
@@ -24,13 +25,11 @@ class WelcomeController extends FrontController
      */
     public function landing(Request $request, AccountManager $manager)
     {
-        if($request->hasCookie('locale'))
-        {
+        if ($request->hasCookie('locale')) {
             return redirect()->to(store_route('store.home', [], [], $request->cookie('locale')));
         }
 
-        if($manager->account()->locales->count() == 1)
-        {
+        if ($manager->account()->locales->count() == 1) {
             return redirect()->to(store_route('store.home'));
         }
 
@@ -56,11 +55,11 @@ class WelcomeController extends FrontController
         $config = config('translatable');
 
         $config = [
-            'locale' => \App::getLocale(),
+            'locale'          => \App::getLocale(),
             'fallback_locale' => $config['fallback_locale'],
-            'locales' => $config['locales'],
-            'user' => \Auth::user(),
-            'rpp' => 40
+            'locales'         => $config['locales'],
+            'user'            => \Auth::user(),
+            'rpp'             => 40
         ];
 
         return $config;
@@ -69,9 +68,9 @@ class WelcomeController extends FrontController
     public function test(Theme $theme)
     {
         return view('account::admin.members.invitation.email', [
-            'theme' => $theme,
+            'theme'          => $theme,
             'theme_template' => config('theme.email_template'),
-            'invitation' => MembershipInvitation::first()
+            'invitation'     => MembershipInvitation::first()
         ]);
     }
 }

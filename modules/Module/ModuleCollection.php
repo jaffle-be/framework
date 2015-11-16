@@ -7,7 +7,7 @@ class ModuleCollection extends Collection
 
     public function active($module)
     {
-        return $this->first(function($key, $item) use ($module){
+        return $this->first(function ($key, $item) use ($module) {
             return $item->namespace == $module;
         }) ? true : false;
     }
@@ -16,10 +16,8 @@ class ModuleCollection extends Collection
     {
         $routes = new Collection();
 
-        foreach($this->items as $module)
-        {
-            foreach($module->routes as $route)
-            {
+        foreach ($this->items as $module) {
+            foreach ($module->routes as $route) {
                 $routes->push($route);
             }
         }

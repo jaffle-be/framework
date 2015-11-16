@@ -1,9 +1,9 @@
 <?php namespace Test\Search;
 
+use Test\FrontTestCase;
 use Test\Routes\RouteTests;
-use Test\TestCase;
 
-class SearchTest extends TestCase
+class SearchTest extends FrontTestCase
 {
 
     use RouteTests;

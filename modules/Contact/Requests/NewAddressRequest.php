@@ -8,14 +8,14 @@ class NewAddressRequest extends Request
     public function rules()
     {
         return [
-            'owner_id' => 'required',
+            'owner_id'   => 'required',
             'owner_type' => 'required',
-            'street' => 'required',
-            'city' => 'required',
-            'postcode' => 'required',
-            'latitude' => 'required',
-            'longitude' => 'required',
-            'country' => 'required',
+            'street'     => 'required',
+            'city'       => 'required',
+            'postcode'   => 'required',
+            'latitude'   => 'required',
+            'longitude'  => 'required',
+            'country'    => 'required',
         ];
     }
 

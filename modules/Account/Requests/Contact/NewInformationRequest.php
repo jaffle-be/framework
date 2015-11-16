@@ -8,8 +8,8 @@ class NewInformationRequest extends Request
     public function rules()
     {
         return [
-            'email' => 'email',
-            'vat' => 'vat',
+            'email'   => 'email',
+            'vat'     => 'vat',
             'website' => 'url',
         ];
     }

@@ -16,22 +16,19 @@ class CreateShopTable extends Migration
     {
         $module = Module::create([
             'namespace' => 'shop',
-            'nl' => ['name' => 'Shop'],
-            'en' => ['name' => 'Shop'],
-            'fr' => ['name' => 'Shop'],
-            'de' => ['name' => 'Shop'],
+            'nl'        => ['name' => 'Shop'],
+            'en'        => ['name' => 'Shop'],
+            'fr'        => ['name' => 'Shop'],
+            'de'        => ['name' => 'Shop'],
         ]);
-
 
         $module->routes()->save(new ModuleRoute([
             'name' => 'store.shop.index',
-            'nl' => ['title' => 'shopping home page'],
-            'fr' => ['title' => 'shopping home page'],
-            'en' => ['title' => 'shopping home page'],
-            'de' => ['title' => 'shopping home page'],
+            'nl'   => ['title' => 'shopping home page'],
+            'fr'   => ['title' => 'shopping home page'],
+            'en'   => ['title' => 'shopping home page'],
+            'de'   => ['title' => 'shopping home page'],
         ]));
-
-
     }
 
     /**

@@ -5,6 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 
 class CreateMembershipsTable extends Migration
 {
+
     /**
      * Run the migrations.
      *
@@ -12,8 +13,7 @@ class CreateMembershipsTable extends Migration
      */
     public function up()
     {
-        Schema::create('account_memberships', function(Blueprint $table)
-        {
+        Schema::create('account_memberships', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('account_id', false, true);
             $table->foreign('account_id', 'membership_to_account')->references('id')->on('accounts')->onDelete('cascade');

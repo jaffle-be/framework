@@ -20,8 +20,7 @@ class ClientController extends AdminController
     {
         $clients = $client->with(['translations'])->get();
 
-        foreach($clients as $client)
-        {
+        foreach ($clients as $client) {
             $this->prepareImages($client);
         }
 

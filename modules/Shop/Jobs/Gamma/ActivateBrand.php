@@ -10,6 +10,7 @@ use Modules\Shop\Product\Brand;
 
 class ActivateBrand extends Job implements SelfHandling
 {
+
     use DispatchesJobs;
 
     /**

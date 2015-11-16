@@ -100,11 +100,10 @@ class StoreNewInfographic extends Job implements SelfHandling
         $this->newName();
         $this->handleFile($files, $config);
 
-        try{
+        try {
             $image = $repo->createInfographic($this->owner, $this->getPayload());
         }
-        catch(Exception $query)
-        {
+        catch (Exception $query) {
             $files->delete(public_path($this->path));
 
             return false;

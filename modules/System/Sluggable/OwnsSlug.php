@@ -2,5 +2,6 @@
 
 interface OwnsSlug
 {
+
     public function slug();
 }

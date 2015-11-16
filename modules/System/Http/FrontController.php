@@ -3,7 +3,8 @@
 use Modules\System\Seo\SeoManager;
 use Modules\Theme\ThemeManager;
 
-abstract class FrontController extends Controller {
+abstract class FrontController extends Controller
+{
 
     public function __construct(ThemeManager $theme, SeoManager $seo)
     {

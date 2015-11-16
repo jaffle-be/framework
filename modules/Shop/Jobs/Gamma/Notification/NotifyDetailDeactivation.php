@@ -29,10 +29,15 @@ class NotifyDetailDeactivation extends Job implements SelfHandling
 
     public function handle(GammaNotification $notification, Pusher $pusher)
     {
-        //did we already have a brand activation notification for this brand?
-        //then we simply cancel that it by deleting it.
-        //if not, we're allowed to create the record.
+        if ($this->beingProcessed($notification, $this->brand, $this->category)) {
+            $message = 'this gamma detail is still being processed';
 
+            abort(400, $message, ['statustext' => $message]);
+        };
+
+        //did we already have a brand activation notification for this brand?
+        //then we simply delete it.
+        //if not, we'create one
         $existing = $this->findExistingCombination($notification, $this->brand, $this->category);
 
         if ($existing) {

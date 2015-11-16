@@ -16,7 +16,7 @@ class PortfolioTableSeeder extends Seeder
 
         parent::__construct();
     }
-    public function run()
+    public function run($creating = 15)
     {
         foreach([1,2] as $accountid)
         {
@@ -29,7 +29,7 @@ class PortfolioTableSeeder extends Seeder
             //flip so we can use array_rand
             $tags = array_flip(Tag::lists('id')->toArray());
 
-            for ($i = 0; $i < 25; $i++) {
+            for ($i = 0; $i < $creating; $i++) {
 
                 $project = Modules\Portfolio\Project::create([
                     'account_id' => $account->id,

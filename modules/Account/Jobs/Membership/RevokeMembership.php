@@ -23,13 +23,11 @@ class RevokeMembership extends Job implements SelfHandling
         $memberships = $account->memberships;
 
         //cannot revoke last membership or owner of the account
-        if($memberships->count() == 1)
-        {
+        if ($memberships->count() == 1) {
             return false;
         }
 
-        if($account->owner->id == $this->membership->member->id)
-        {
+        if ($account->owner->id == $this->membership->member->id) {
             return false;
         }
 

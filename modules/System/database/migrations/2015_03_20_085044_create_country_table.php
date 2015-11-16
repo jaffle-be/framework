@@ -19,14 +19,13 @@ class CreateCountryTable extends Migration
             $table->string('iso_code_3', 3);
         });
 
-        Schema::create('country_translations', function(Blueprint $table){
+        Schema::create('country_translations', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('country_id', false, true);
             $table->foreign('country_id', 'translation_to_country')->references('id')->on('country')->onDelete('cascade');
             $table->string('locale', 5);
             $table->string('name');
         });
-
     }
 
     /**
@@ -36,12 +35,11 @@ class CreateCountryTable extends Migration
      */
     public function down()
     {
-        Schema::drop('country_translations', function (Blueprint $table){
+        Schema::drop('country_translations', function (Blueprint $table) {
             $table->dropForeign('translation_to_country');
         });
 
         Schema::drop('country', function (Blueprint $table) {
         });
-
     }
 }

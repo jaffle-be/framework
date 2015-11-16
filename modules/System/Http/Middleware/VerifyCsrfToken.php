@@ -22,8 +22,7 @@ class VerifyCsrfToken extends BaseVerifier
         }
         catch (TokenMismatchException $exception) {
 
-            if($request->ajax())
-            {
+            if ($request->ajax()) {
                 return response('stop juggling with my token!', 403);
             }
 

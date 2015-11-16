@@ -33,18 +33,13 @@ class SeoManager
 
         if ($this->entity) {
 
-            foreach($this->providers as $provider)
-            {
+            foreach ($this->providers as $provider) {
                 $provider = $this->buildProvider($provider);
 
                 $result .= $provider->generate($this->entity);
             }
-
-        }
-
-        else{
-            foreach($this->providers as $provider)
-            {
+        } else {
+            foreach ($this->providers as $provider) {
                 $provider = $this->buildProvider($provider);
 
                 $result .= $provider->generate();

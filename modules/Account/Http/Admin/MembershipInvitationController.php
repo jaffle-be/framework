@@ -47,8 +47,7 @@ class MembershipInvitationController extends AdminController
         if ($account->membershipInvitations->contains($invitation)) {
             $invitation = $account->membershipInvitations->find($invitation);
 
-            if($invitation->delete())
-            {
+            if ($invitation->delete()) {
                 $invitation->id = false;
             }
         }

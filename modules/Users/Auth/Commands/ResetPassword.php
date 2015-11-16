@@ -53,15 +53,12 @@ class ResetPassword extends Job implements SelfHandling
     {
         $user = $users->findUserByEmail($this->email);
 
-        if($user)
-        {
-            if(!$this->validToken($user))
-            {
+        if ($user) {
+            if (!$this->validToken($user)) {
                 return 'invalid token';
             }
 
-            if($this->equalPasswords())
-            {
+            if ($this->equalPasswords()) {
                 $user->password = $hasher->make($this->password);
 
                 $user->reset_token_id = null;

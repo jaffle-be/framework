@@ -10,6 +10,7 @@ use Modules\Media\ImageDimensionHelpers;
 
 abstract class Seeder extends BaseSeeder
 {
+
     use DispatchesCommands;
     use ImageDimensionHelpers;
 
@@ -74,22 +75,16 @@ abstract class Seeder extends BaseSeeder
 
     protected function validateSeederModel()
     {
-        if(!isset($this->image_names))
-        {
+        if (!isset($this->image_names)) {
             throw new Exception('need to set image_names when calling this function');
-
         }
 
-        if(!isset($this->model))
-        {
+        if (!isset($this->model)) {
             throw new Exception('need to set the model when calling this function');
-
         }
 
-        if(!isset($this->prefix))
-        {
+        if (!isset($this->prefix)) {
             throw new Exception('need to set prefix when calling this function');
-
         }
     }
 

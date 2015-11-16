@@ -76,9 +76,9 @@ $data = array_merge($data, ['left' => $data], ['right' => $data]);
 @foreach($widgets as $widget)
     <script type="text/ng-template" id="widgets/newsletter/items/{{ $widget['name'] }}">
 
-    {{--//builders will wrap withing newsletter-widget--}}
+        {{--//builders will wrap withing newsletter-widget--}}
 
-            @include('marketing::admin.newsletter.widgets.items.' . $widget['name'], $data)
+        @include('marketing::admin.newsletter.widgets.items.' . $widget['name'], $data)
 
 
     </script>

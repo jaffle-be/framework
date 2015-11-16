@@ -64,7 +64,7 @@
                                 this.options.params.ownerId = $scope.ownerId;
                             },
                             addedfile: function (file) {
-                                if(!$scope.images)
+                                if (!$scope.images)
                                 {
                                     $scope.images = [];
                                 }

@@ -38,7 +38,7 @@ class SendResetEmail extends Job implements SelfHandling, ShouldBeQueued
     }
 
     /**
-     * @param ThemeMailer                   $mail
+     * @param ThemeMailer              $mail
      * @param TokenRepositoryInterface $tokens
      * @param Translator               $lang
      * @param UserRepositoryInterface  $users
@@ -63,8 +63,8 @@ class SendResetEmail extends Job implements SelfHandling, ShouldBeQueued
                 $log->info('just before send');
 
                 $send = $mail->send('users::emails.reset-password', [
-                    'user'  => $user,
-                    'token' => $token,
+                    'user'    => $user,
+                    'token'   => $token,
                     'account' => $this->account,
                 ], function ($message) use ($user, $subject) {
                     $message->from($this->job->email_from(), $this->job->email_from_name());
@@ -75,7 +75,6 @@ class SendResetEmail extends Job implements SelfHandling, ShouldBeQueued
                 if ($send) {
                     $this->delete();
                 }
-
             }
         }
         catch (Exception $e) {

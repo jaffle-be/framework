@@ -6,7 +6,8 @@ use Closure;
 use Illuminate\Http\Request;
 use Modules\Account\AccountManager;
 
-class AccountMiddleware {
+class AccountMiddleware
+{
 
     protected $manager;
 
@@ -19,8 +20,7 @@ class AccountMiddleware {
     {
         $account = $this->manager->boot($request);
 
-        if(!$account)
-        {
+        if (!$account) {
             return abort(403, 'Invalid account provided');
         }
 

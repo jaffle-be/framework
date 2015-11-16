@@ -5,6 +5,7 @@ use Modules\System\Scopes\ModelAccountResource;
 
 class ThemeSelection extends Model
 {
+
     use ModelAccountResource;
 
     protected $table = 'themes_selections';

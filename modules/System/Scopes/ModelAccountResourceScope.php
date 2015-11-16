@@ -15,15 +15,13 @@ class ModelAccountResourceScope implements ScopeInterface
 
     public function apply(Builder $builder, Model $model)
     {
-        if($this->account)
-        {
+        if ($this->account) {
             $builder->where('account_id', $this->account->getKey());
         }
     }
 
     public function remove(Builder $builder, Model $model)
     {
-
     }
 
 }

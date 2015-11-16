@@ -15,11 +15,12 @@ use Modules\Tags\Taggable;
 
 class Product extends Model implements StoresMedia, PresentableEntity, SeoEntity
 {
+
     use Translatable, StoringMedia, PresentableTrait, FrontScoping, SeoTrait, Taggable, EventedRelations;
 
     protected $table = 'products';
 
-    protected $fillable = ['ean', 'upc', 'name', 'title', 'content', 'published'];
+    protected $fillable = ['brand_id', 'ean', 'upc', 'name', 'title', 'content', 'published'];
 
     protected $translatedAttributes = ['name', 'title', 'content', 'published'];
 
@@ -27,13 +28,11 @@ class Product extends Model implements StoresMedia, PresentableEntity, SeoEntity
 
     public function getMediaFolder($type = null, $size = null)
     {
-        if(!empty($type) && !in_array($type, ['files', 'images', 'videos', 'infographics']))
-        {
+        if (!empty($type) && !in_array($type, ['files', 'images', 'videos', 'infographics'])) {
             throw new InvalidArgumentException('need proper media type to return media folder');
         }
 
-        if(!$size)
-        {
+        if (!$size) {
             sprintf('products/%d/%d/', $this->attributes['brand_id'], $this->attributes['id']);
         }
 

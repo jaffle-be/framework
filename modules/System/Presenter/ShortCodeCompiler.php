@@ -8,20 +8,9 @@ trait ShortCodeCompiler
         return $this->loopShortcodes('format', $content);
     }
 
-    protected function compileShortcodes($content)
-    {
-        return $this->loopShortcodes('compile', $content);
-    }
-
-    protected function stripShortcodes($content)
-    {
-        return $this->loopShortcodes('strip', $content);
-    }
-
     protected function loopShortcodes($type, $content)
     {
-        if(!property_exists($this, 'shortcodes'))
-        {
+        if (!property_exists($this, 'shortcodes')) {
             throw new \Exception('You need to add the shortcodes property to ' . get_called_class());
         }
 
@@ -34,5 +23,15 @@ trait ShortCodeCompiler
         }
 
         return $content;
+    }
+
+    protected function compileShortcodes($content)
+    {
+        return $this->loopShortcodes('compile', $content);
+    }
+
+    protected function stripShortcodes($content)
+    {
+        return $this->loopShortcodes('strip', $content);
     }
 }

@@ -10,7 +10,8 @@ use Modules\Contact\Requests\UpdateAddressRequest;
 use Modules\System\Country\CountryRepository;
 use Modules\System\Http\AdminController;
 
-class ContactAddressController extends AdminController{
+class ContactAddressController extends AdminController
+{
 
     public function widget(CountryRepository $countries)
     {
@@ -21,7 +22,7 @@ class ContactAddressController extends AdminController{
 
     public function show(Address $address)
     {
-        $address->load(['country' => function($query){
+        $address->load(['country' => function ($query) {
             $query->get(['id', 'iso_code_2']);
         }]);
 
@@ -41,11 +42,11 @@ class ContactAddressController extends AdminController{
     {
         $address->load('country');
 
-        if($this->dispatchFromArray(UpdateAddress::class, [
-            'input' => $request->except(['_token', 'owner_id', 'owner_type']),
+        if ($this->dispatchFromArray(UpdateAddress::class, [
+            'input'   => $request->except(['_token', 'owner_id', 'owner_type']),
             'address' => $address,
-        ]))
-        {
+        ])
+        ) {
             return $address;
         }
     }

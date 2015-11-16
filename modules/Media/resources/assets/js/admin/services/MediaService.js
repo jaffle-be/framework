@@ -1,12 +1,11 @@
-(function(){
-   'use strict';
+(function () {
+    'use strict';
 
     angular.module('media')
-        .factory('MediaService', function(Image, VideoResource, InfographicResource, FileResource){
+        .factory('MediaService', function (Image, VideoResource, InfographicResource, FileResource) {
 
             return {
-                transformResponse: function(response)
-                {
+                transformResponse: function (response) {
                     _.each(response.images, function (image, i) {
                         response.images[i] = new Image(image);
                     });

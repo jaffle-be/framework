@@ -13,6 +13,7 @@ use Modules\System\Translatable\TranslationModel;
 
 class PageTranslation extends TranslationModel implements Searchable, SluggableInterface, OwnsSlug, PresentableEntity, PresentableCache
 {
+
     use SearchableTrait, SiteSluggable, PresentableTrait, FrontScoping;
 
     protected $table = 'page_translations';

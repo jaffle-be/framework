@@ -14,7 +14,6 @@ class ProjectScopeFront implements ScopeInterface
 
     public function remove(Builder $query, Model $model)
     {
-
     }
 
 }

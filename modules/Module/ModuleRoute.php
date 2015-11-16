@@ -7,6 +7,7 @@ use Modules\System\Translatable\Translatable;
 
 class ModuleRoute extends Model
 {
+
     use Translatable;
 
     protected $table = "module_routes";
@@ -22,8 +23,7 @@ class ModuleRoute extends Model
 
     public function scopeBut(Builder $builder, Collection $pages)
     {
-        if($pages->count() > 0)
-        {
+        if ($pages->count() > 0) {
             $builder->whereNotIn($this->getKeyName(), $pages->lists($this->getKeyName())->toArray());
         }
     }

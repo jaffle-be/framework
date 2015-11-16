@@ -2,11 +2,10 @@
 
 use Modules\Blog\PostTranslation;
 use Modules\Pages\PageTranslation;
-use Modules\System\Uri\CleanupPrepping;
+use Test\FrontTestCase;
 use Test\Routes\RouteTests;
-use Test\TestCase;
 
-class UriTest extends TestCase
+class UriTest extends FrontTestCase
 {
 
     use RouteTests;

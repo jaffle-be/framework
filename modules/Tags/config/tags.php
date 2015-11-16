@@ -2,8 +2,8 @@
 
 return [
     'owners' => [
-        'blog' => Modules\Blog\Post::class,
+        'blog'      => Modules\Blog\Post::class,
         'portfolio' => Modules\Portfolio\Project::class,
-        'product' => Modules\Shop\Product\Product::class,
+        'product'   => Modules\Shop\Product\Product::class,
     ]
 ];

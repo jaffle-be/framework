@@ -30,7 +30,7 @@
 
             this.delete = function () {
                 ProductService.delete(me.product, function () {
-                    $state.go('admin.product.overview');
+                    $state.go('admin.shop.products');
                 });
             };
 

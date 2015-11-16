@@ -22,10 +22,12 @@ class ShopServiceProvider extends ServiceProvider
     {
         $this->app['events']->listen('eloquent.attached: product_categories', 'Modules\Shop\Product\BrandCategoryManager@attach');
         $this->app['events']->listen('eloquent.detached: product_categories', 'Modules\Shop\Product\BrandCategoryManager@detach');
+
+        $this->app['events']->listen('eloquent.attached: product_categories', 'Modules\Shop\Gamma\ProductCategoryManager@attach');
+        $this->app['events']->listen('eloquent.detached: product_categories', 'Modules\Shop\Gamma\ProductCategoryManager@detach');
     }
 
     protected function observers()
     {
-
     }
 }

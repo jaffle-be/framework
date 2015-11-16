@@ -67,6 +67,16 @@ class MenuManager
         $this->options[$menu] = $options;
     }
 
+    public function crumbs($menu)
+    {
+        $menu = $this->get($menu);
+
+        //find the active url
+
+        //return home, followed by all the parents, followed by the current page
+        return [];
+    }
+
     /**
      * @param $menu
      *
@@ -85,23 +95,12 @@ class MenuManager
         }
     }
 
-    public function crumbs($menu)
-    {
-        $menu = $this->get($menu);
-
-        //find the active url
-
-        //return home, followed by all the parents, followed by the current page
-        return [];
-    }
-
     protected function load()
     {
         //retrieve all menus from db
         $menus = $this->repository->getMenus();
 
-        foreach($menus as $menu)
-        {
+        foreach ($menus as $menu) {
             $this->loaded[$menu->name] = $menu;
         }
 

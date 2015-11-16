@@ -8,6 +8,7 @@ use Modules\System\Translatable\TranslationModel;
 
 class CategoryTranslation extends TranslationModel implements PresentableEntity, SluggableInterface
 {
+
     use Sluggable, PresentableTrait;
 
     protected $table = 'product_category_translations';

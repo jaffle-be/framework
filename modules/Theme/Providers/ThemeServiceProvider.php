@@ -17,7 +17,7 @@ class ThemeServiceProvider extends ServiceProvider
     {
         parent::boot();
 
-        $this->app->booted(function($app){
+        $this->app->booted(function ($app) {
             $this->app->make('theme')->boot();
         });
     }
@@ -50,15 +50,13 @@ class ThemeServiceProvider extends ServiceProvider
 
     protected function listeners()
     {
-
     }
 
     protected function registerRepositories()
     {
         //you need this defined, do not resolve from container,
         // as the Theme will fail and result in endless nesting.
-        $this->app->bind('Modules\Theme\ThemeRepository', function()
-        {
+        $this->app->bind('Modules\Theme\ThemeRepository', function () {
             return new ThemeRepository(new ThemeSelection(), new Theme(), app('Modules\Account\AccountManager'));
         });
 

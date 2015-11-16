@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Modules\Search;
 
 use Modules\Search\Model\Searchable;

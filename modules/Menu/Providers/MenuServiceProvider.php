@@ -21,7 +21,7 @@ class MenuServiceProvider extends ServiceProvider
 
     protected function listeners()
     {
-        $this->app->booted(function(){
+        $this->app->booted(function () {
             //we might want to provide 5 menus instead of allow each theme to define it's own menus.
             //a theme can simply decide to hook into them or not.
             //maybe you could also register a 'dynamic' menu, to load in the sidebar
@@ -39,6 +39,5 @@ class MenuServiceProvider extends ServiceProvider
 
     protected function observers()
     {
-
     }
 }

@@ -4,9 +4,7 @@ Route::group([
     'as' => 'store.'
 ], function () {
 
-
-    Route::group(['namespace' => 'Modules\Account\Http\Admin'], function()
-    {
+    Route::group(['namespace' => 'Modules\Account\Http\Admin'], function () {
         Route::group(['prefix' => 'templates/admin/account'], function () {
             //template files, load at top so we do not end up in the show method
             Route::get('contact/page', 'ContactController@page');
@@ -25,20 +23,15 @@ Route::group([
         });
     });
 
-    Route::group(['namespace' => 'Modules\Account\Http'], function()
-    {
+    Route::group(['namespace' => 'Modules\Account\Http'], function () {
         Route::resource('auth/invitation', 'MembershipInvitationController', ['only' => ['show', 'update']]);
 
-        if(env('APP_MULTIPLE_LOCALES'))
-        {
-            foreach(config('system.locales') as $locale)
-            {
+        if (env('APP_MULTIPLE_LOCALES')) {
+            foreach (config('system.locales') as $locale) {
                 Route::resource("$locale/team", 'TeamController', ['only' => ['index', 'show']]);
             }
-        }
-        else{
+        } else {
             Route::resource('team', 'TeamController', ['only' => ['index', 'show']]);
         }
     });
-
 });

@@ -3,12 +3,12 @@
 use Illuminate\Database\Eloquent\Model;
 use Modules\System\Presenter\PresentableEntity;
 use Modules\System\Presenter\PresentableTrait;
-use Modules\System\Scopes\ModelAccountResource;
 use Modules\System\Scopes\ModelAutoSort;
 use Modules\System\Translatable\Translatable;
 
 class CampaignWidget extends Model implements PresentableEntity
 {
+
     use Translatable;
     use ModelAutoSort;
     use PresentableTrait;
@@ -37,7 +37,7 @@ class CampaignWidget extends Model implements PresentableEntity
     protected $translatedAttributes = ['title', 'text', 'title_left', 'text_left', 'title_right', 'text_right'];
 
     protected $casts = [
-        'manual'=> 'boolean'
+        'manual' => 'boolean'
     ];
 
     public function image()

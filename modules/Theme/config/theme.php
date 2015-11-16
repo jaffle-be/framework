@@ -3,7 +3,7 @@
     /**
      * Default theme to use.
      */
-    'default' => 'Unify',
+    'default'        => 'Unify',
 
     /**
      * Default theme email master template name to use
@@ -17,11 +17,11 @@
     /**
      * Location of the theme folders
      */
-    'path' => base_path('themes'),
+    'path'           => base_path('themes'),
 
     /**
      * Location of the public files that will be published like assets etc.
      */
-    'public_path' => 'themes',
+    'public_path'    => 'themes',
 
 ];
