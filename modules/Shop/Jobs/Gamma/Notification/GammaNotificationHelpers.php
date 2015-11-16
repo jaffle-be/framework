@@ -1,5 +1,6 @@
 <?php namespace Modules\Shop\Jobs\Gamma\Notification;
 
+use Modules\Account\Account;
 use Modules\Shop\Gamma\GammaNotification;
 use Modules\Shop\Product\Brand;
 use Modules\Shop\Product\Category;
@@ -8,17 +9,22 @@ use Pusher;
 trait GammaNotificationHelpers
 {
 
-    protected function beingProcessed(GammaNotification $notification, Brand $brand, Category $category)
+    protected function beingProcessed(GammaNotification $notification, Account $account, Brand $brand, Category $category)
     {
-        return $notification->where('brand_id', $brand->id)
+        return $notification->newQueryWithoutScopes()
+            ->where('account_id', $account->id)
+            ->where('brand_id', $brand->id)
             ->where('category_id', $category->id)
-            ->where('processing', 1)
+            ->beingProcessed()
             ->count() > 0;
     }
 
-    protected function cancelInverseNotifications(GammaNotification $notification, Brand $brand, Category $category, Pusher $pusher)
+    protected function cancelInverseNotifications(GammaNotification $notification, Account $account, Brand $brand, Category $category, Pusher $pusher)
     {
-        $notifications = $notification->where('brand_id', $brand->id)
+        $notifications = $notification
+            ->newQueryWithoutScopes()
+            ->where('account_id', $account->id)
+            ->where('brand_id', $brand->id)
             ->where('category_id', $category->id)
             ->whereNull('product_id')
             ->notBeingProcessed()
@@ -38,21 +44,20 @@ trait GammaNotificationHelpers
 
     /**
      * @param GammaNotification $notification
-     * @param                   $brand
-     * @param                   $category
+     * @param Account           $account
+     * @param Brand             $brand
+     * @param Category          $category
      *
      * @return mixed
      */
-    protected function findExistingCombination(GammaNotification $notification, $brand, $category)
+    protected function findExistingCombination(GammaNotification $notification, Account $account, Brand $brand, Category $category)
     {
-        $existing = $notification
+        $existing = $notification->newQueryWithoutScopes()
+            ->where('account_id', $account->id)
+            ->where('brand_id', $brand->id)
+            ->where('category_id', $category->id)
             ->notBeingProcessed()
-            ->whereHas('brandSelection', function ($query) use ($brand) {
-                $query->where('brand_id', $brand->id);
-            })
-            ->whereHas('categorySelection', function ($query) use ($category) {
-                $query->where('category_id', $category->id);
-            })->first();
+            ->first();
 
         return $existing;
     }

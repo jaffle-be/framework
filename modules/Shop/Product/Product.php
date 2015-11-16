@@ -4,6 +4,8 @@ use Illuminate\Database\Eloquent\Model;
 use InvalidArgumentException;
 use Modules\Media\StoresMedia;
 use Modules\Media\StoringMedia;
+use Modules\Search\Model\Searchable;
+use Modules\Search\Model\SearchableTrait;
 use Modules\System\Eventing\EventedRelations;
 use Modules\System\Presenter\PresentableEntity;
 use Modules\System\Presenter\PresentableTrait;
@@ -13,10 +15,10 @@ use Modules\System\Seo\SeoTrait;
 use Modules\System\Translatable\Translatable;
 use Modules\Tags\Taggable;
 
-class Product extends Model implements StoresMedia, PresentableEntity, SeoEntity
+class Product extends Model implements StoresMedia, PresentableEntity, SeoEntity, Searchable
 {
 
-    use Translatable, StoringMedia, PresentableTrait, FrontScoping, SeoTrait, Taggable, EventedRelations;
+    use Translatable, StoringMedia, PresentableTrait, FrontScoping, SeoTrait, Taggable, EventedRelations, SearchableTrait;
 
     protected $table = 'products';
 
@@ -25,6 +27,18 @@ class Product extends Model implements StoresMedia, PresentableEntity, SeoEntity
     protected $translatedAttributes = ['name', 'title', 'content', 'published'];
 
     protected $presenter = 'Modules\Shop\Presenter\ProductFrontPresenter';
+
+    protected $casts = [
+        'id'         => 'integer',
+        'account_id' => 'integer',
+        'brand_id'   => 'integer',
+    ];
+
+    protected static $searchableMapping = [
+        'id'         => ['type' => 'integer'],
+        'account_id' => ['type' => 'integer'],
+        'brand_id'   => ['type' => 'integer'],
+    ];
 
     public function getMediaFolder($type = null, $size = null)
     {

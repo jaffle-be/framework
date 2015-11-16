@@ -25,11 +25,16 @@ class AcceptGammaNotificationTest extends AdminTestCase
         //and add all products that exist for that gamma combination.
         //so we can test by counting rows
 
+        $subscriptions = app('Modules\Shop\Gamma\GammaSubscriptionManager');
+
         //how many products have this combination?
+        //we should only add products from the subscribed accounts
         $amount = Product::where('brand_id', $brand_id)
             ->whereHas('categories', function($query) use ($category_id){
                 $query->where('id', $category_id);
-            })->count();
+            })
+            ->whereIn('account_id', $subscriptions->subscribedIds(Account::find($account_id)))
+            ->count();
 
 
         $job = new AcceptGammaNotification($notification);
@@ -136,7 +141,6 @@ class AcceptGammaNotificationTest extends AdminTestCase
         $category_id = $product->categories->first()->id;
         $account_id = $account->id;
         $brand_id = $product->brand_id;
-
 
         $products = Product::where('brand_id', $product->brand_id)
             ->whereHas('categories', function($q) use ($category_id){

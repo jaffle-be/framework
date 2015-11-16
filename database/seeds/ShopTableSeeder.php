@@ -1,5 +1,6 @@
 <?php
 
+use Modules\Account\Account;
 use Modules\Shop\Product\ActivePrice;
 use Modules\Shop\Product\ActivePromotion;
 use Modules\Shop\Product\Brand;
@@ -36,57 +37,30 @@ class ShopTableSeeder extends Seeder
         $brands = Brand::all();
         $categories = Category::all();
 
-        for ($i = 0; $i < $amount; $i++) {
-            $name = $this->faker->userName;
+        $accounts = Account::take(2)->get();
 
-            $ean = $this->faker->ean13;
+        foreach($accounts as $account)
+        {
+            for ($i = 0; $i < $amount; $i++) {
 
-            $product = new Product([
-                'ean' => $ean,
-                'upc' => substr($ean, 0, 12),
-                'nl'  => [
-                    'name'    => $name,
-                    'title'   => $name,
-                    'content' => $this->nl->realText(1000),
-                ],
-                'en'  => [
-                    'name'    => $name,
-                    'title'   => $name,
-                    'content' => $this->nl->realText(1000),
-                ],
-                'fr'  => [
-                    'name'    => $name,
-                    'title'   => $name,
-                    'content' => $this->nl->realText(1000),
-                ],
-                'de'  => [
-                    'name'    => $name,
-                    'title'   => $name,
-                    'content' => $this->nl->realText(1000),
-                ],
-            ]);
+                $product = factory(Product::class)->create([
+                    'brand_id' => $brands->random(1)->id,
+                    'account_id' => $account->id,
+                ]);
 
-            $product->brand()->associate($brands->random(1));
-            $product->save();
+                $this->addImages($product);
 
-            $this->addImages($product);
+                if (rand(0, 1)) {
+                    $product->categories()->sync([$categories->random(1)->id]);
+                } else {
+                    $product->categories()->sync($categories->random(2)->lists('id')->toArray());
+                }
 
-            if (rand(0, 1)) {
-                $product->categories()->sync([$categories->random(1)->id]);
-            } else {
-                $product->categories()->sync($categories->random(2)->lists('id')->toArray());
+                $this->prices($product, $account->id);
+                $this->promotions($product, $account->id);
             }
         }
 
-        foreach ([1, 2] as $accountid) {
-
-            Product::chunk(250, function ($products) use ($accountid) {
-                foreach ($products as $product) {
-                    $this->prices($product, $accountid);
-                    $this->promotions($product, $accountid);
-                }
-            });
-        }
     }
 
     protected function prices(Product $product, $account)

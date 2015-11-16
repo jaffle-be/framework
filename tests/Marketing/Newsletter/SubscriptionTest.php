@@ -1,6 +1,13 @@
 <?php namespace Marketing\Newsletter;
 
-class SubscriptionTest
+use Test\AdminTestCase;
+
+class SubscriptionTest extends AdminTestCase
 {
+
+    public function testSomething()
+    {
+
+    }
 
 }

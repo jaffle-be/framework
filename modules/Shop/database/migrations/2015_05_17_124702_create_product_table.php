@@ -15,6 +15,8 @@ class CreateProductTable extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('account_id', false, true);
+            $table->foreign('account_id', 'product_to_account')->references('id')->on('accounts')->onDelete('cascade');
             $table->integer('brand_id', false, true);
             $table->foreign('brand_id', 'product_to_brand')->references('id')->on('product_brands')->onDelete('cascade');
             $table->string('ean');
@@ -50,6 +52,7 @@ class CreateProductTable extends Migration
         });
 
         Schema::drop('products', function (Blueprint $table) {
+            $table->dropForeign('product_to_account');
             $table->dropForeign('product_to_brand');
         });
     }

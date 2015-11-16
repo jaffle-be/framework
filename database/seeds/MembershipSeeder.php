@@ -9,8 +9,7 @@ class MembershipSeeder extends Seeder
 
     public function run()
     {
-        foreach([1,2] as $account)
-        {
+        foreach ([1, 2] as $account) {
             foreach (User::all() as $user) {
                 $membership = new Membership();
                 $membership->user_id = $user->id;
@@ -21,6 +20,5 @@ class MembershipSeeder extends Seeder
             }
         }
     }
-
 
 }

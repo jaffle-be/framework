@@ -13,7 +13,7 @@ class GammaNotification extends Model implements Pushable
 
     protected $table = 'product_gamma_notifications';
 
-    protected $fillable = ['account_id', 'brand_selection_id', 'category_selection_id', 'brand_id', 'product_id', 'category_id', 'processing', 'type'];
+    protected $fillable = ['account_id', 'brand_id', 'product_id', 'category_id', 'processing', 'type'];
 
     protected $casts = [
         'processing' => 'boolean',
@@ -34,19 +34,14 @@ class GammaNotification extends Model implements Pushable
         return $this->belongsTo('Modules\Shop\Product\Product');
     }
 
-    public function brandSelection()
-    {
-        return $this->belongsTo('Modules\Shop\Gamma\BrandSelection');
-    }
-
-    public function categorySelection()
-    {
-        return $this->belongsTo('Modules\Shop\Gamma\CategorySelection');
-    }
-
     public function scopeNotBeingProcessed($query)
     {
         $query->where('processing', 0);
+    }
+
+    public function scopeBeingProcessed($query)
+    {
+        $query->where('processing', 1);
     }
 
 }

@@ -121,19 +121,18 @@ class ProductCategoryManagerFrontTest extends AdminTestCase
      */
     protected function getTestBase()
     {
-        $brand = Brand::create([]);
+        $brand = factory(Brand::class)->create();
+        $account = factory(Account::class)->create();
+        $category = factory(Category::class)->create();
 
-        $category = Category::create([]);
+        $products = factory(Product::class)->times(2)->create([
+            'brand_id' => $brand->id,
+            'account_id' => $account->id
+        ])->each(function($product) use ($category){
+            $product->categories()->attach($category);
+        });
 
-        $product1 = new Product();
-        $product1->brand_id = $brand->id;
-        $product1->save();
-
-        $product2 = new Product();
-        $product2->brand_id = $brand->id;
-        $product2->save();
-
-        return array($brand, $category, $product1, $product2);
+        return array($brand, $category, $products->get(0), $product2);
     }
 
     /**

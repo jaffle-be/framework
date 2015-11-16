@@ -3,7 +3,6 @@
 use App\Jobs\Job;
 use Illuminate\Contracts\Bus\SelfHandling;
 use Modules\Account\Account;
-use Modules\Shop\Gamma\BrandSelection;
 use Modules\Shop\Gamma\GammaNotification;
 use Modules\Shop\Product\Brand;
 
@@ -47,7 +46,7 @@ class NotifyBrandDeactivation extends Job implements SelfHandling
                     'account_id'  => $this->account->id,
                     'brand_id'    => $this->brand->id,
                     'category_id' => $category->id,
-                    'type'        => BrandSelection::DEACTIVATE,
+                    'type'        => 'deactivate',
                 ]);
 
                 $instance->save();

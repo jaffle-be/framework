@@ -3,6 +3,8 @@
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Http\Request;
 use Modules\Account\AccountManager;
+use Modules\Search\SearchServiceInterface;
+use Modules\Shop\Gamma\GammaSubscriptionManager;
 use Modules\Shop\Jobs\UpdateProduct;
 use Modules\Shop\Product\Product;
 use Modules\System\Http\AdminController;
@@ -10,11 +12,36 @@ use Modules\System\Http\AdminController;
 class ProductController extends AdminController
 {
 
-    public function index(Request $request)
+    public function index(Request $request, Product $products, SearchServiceInterface $search, GammaSubscriptionManager $subscriptions)
     {
-        $query = Product::with(['translations', 'images', 'images.sizes' => function ($query) {
+        $thumbnailRequirements = function ($query) {
             $query->dimension(150);
-        }, 'images.translations']);
+        };
+
+        //only products from the subscription accounts
+        $indexes = $this->indexesToUse($subscriptions);
+
+        $query = [
+            'index'   => $indexes,
+            'type'    => $products->getSearchableType(),
+            'body'    => [
+                'query' => [
+                    'filtered' => [
+                        'query' => [
+                            'match_all' => new \StdClass()
+                        ],
+                    ]
+                ]
+            ]
+        ];
+
+        return $search->search('products', $query, [
+            'images',
+            'images.sizes' => $thumbnailRequirements,
+            'images.translations'
+        ]);
+
+        $query = Product::with(['translations']);
 
         $value = $request->get('query');
         $locale = $request->get('locale');
@@ -165,6 +192,20 @@ class ProductController extends AdminController
         }
 
         return $product;
+    }
+
+    /**
+     * @param GammaSubscriptionManager $subscriptions
+     *
+     * @return mixed
+     */
+    protected function indexesToUse(GammaSubscriptionManager $subscriptions)
+    {
+        $accounts = $subscriptions->getSubscribedAccounts();
+
+        $aliases = $accounts->lists('alias')->toArray();
+
+        return implode(',', $aliases);
     }
 
 }

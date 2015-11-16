@@ -4,6 +4,9 @@ use Modules\Blog\Post;
 use Modules\Portfolio\Project;
 use Modules\Shop\Gamma\ProductCategorySelection;
 use Modules\Shop\Gamma\ProductSelection;
+use Modules\Shop\Product\Brand;
+use Modules\Shop\Product\Category;
+use Modules\Shop\Product\Product;
 use Modules\Users\User;
 
 return [
@@ -30,26 +33,41 @@ return [
      */
     'types'    => [
 
-        'tags'      => [
+        'tags'     => [
             'class' => 'Modules\Tags\Tag',
             'with'  => [
             ]
         ],
 
-        'posts' => [
+        'posts'    => [
             'class' => Post::class,
-            'with' => [
+            'with'  => [
                 'user' => [
                     'class' => User::class,
-                    'key' => 'user_id'
+                    'key'   => 'user_id'
                 ],
             ]
         ],
 
         'projects' => [
             'class' => Project::class,
-            'with' => [
+            'with'  => [
 
+            ]
+        ],
+
+        'products' => [
+            'routing' => 'account_id',
+            'class' => Product::class,
+            'with' => [
+                'brand' => [
+                    'class' => Brand::class,
+                    'key' => 'brand_id',
+                ],
+                'categories' => [
+                    'class' => Category::class,
+                    'key' => 'category_id',
+                ]
             ]
         ],
 

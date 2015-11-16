@@ -5,6 +5,7 @@ use Illuminate\Support\Collection;
 use Modules\Account\AccountManager;
 use Modules\Shop\Gamma\GammaNotification;
 use Modules\Shop\Gamma\GammaSelection;
+use Modules\Shop\Gamma\GammaSubscriptionManager;
 use Modules\Shop\Jobs\Gamma\ActivateBrand;
 use Modules\Shop\Jobs\Gamma\ActivateCategory;
 use Modules\Shop\Jobs\Gamma\DeactivateBrand;
@@ -23,13 +24,17 @@ class GammaController extends AdminController
         return view('shop::admin.categories.overview');
     }
 
-    public function categories(GammaSelection $gamma, GammaNotification $notification)
+    public function categories(GammaSelection $gamma, GammaNotification $notification, GammaSubscriptionManager $subscriptions)
     {
-        $categories = Category::has('products')->with([
+        $productRequirements = function ($query) use ($subscriptions) {
+            $query->whereIn('account_id', $subscriptions->subscribedIds());
+        };
+
+        $categories = Category::whereHas('products', $productRequirements)->with([
             'translations',
             'selection',
-            'brands' => function($query){
-                $query->has('products');
+            'brands' => function($query) use ($productRequirements){
+                $query->whereHas('products', $productRequirements);
             },
             'brands.translations',
             'brands.selection'
@@ -90,13 +95,18 @@ class GammaController extends AdminController
         return view('shop::admin.brands.overview');
     }
 
-    public function brands(GammaSelection $gamma, GammaNotification $notification)
+    public function brands(GammaSelection $gamma, GammaNotification $notification, GammaSubscriptionManager $subscriptions)
     {
-        $brands = Brand::has('products')->with([
+        $productRequirements = function($query) use ($subscriptions)
+        {
+            $query->whereIn('account_id', $subscriptions->subscribedIds());
+        };
+
+        $brands = Brand::whereHas('products', $productRequirements)->with([
             'translations',
             'selection',
-            'categories' => function($query){
-                $query->has('products');
+            'categories' => function($query) use ($productRequirements) {
+                $query->whereHas('products', $productRequirements);
             },
             'categories.translations',
             'categories.selection'
