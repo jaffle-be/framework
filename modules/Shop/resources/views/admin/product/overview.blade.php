@@ -124,10 +124,6 @@
                 </tfoot>
             </table>
 
-            <div>
-                <a class="btn btn-primary btn-block btn-lg" ng-click="vm.newProduct()">{{ Lang::get('shop::admin.product.create') }}</a>
-            </div>
-
         </div>
 
     </div>

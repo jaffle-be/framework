@@ -107,10 +107,6 @@
                 </tfoot>
             </table>
 
-            <div>
-                <a class="btn btn-primary btn-block btn-lg" ng-click="vm.newPage()">{{ Lang::get('pages::admin.page.create') }}</a>
-            </div>
-
         </div>
 
     </div>
