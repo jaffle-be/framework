@@ -8,6 +8,7 @@ use Modules\Shop\Gamma\GammaSubscriptionManager;
 use Modules\Shop\Jobs\UpdateProduct;
 use Modules\Shop\Product\Product;
 use Modules\System\Http\AdminController;
+use Modules\System\Locale;
 
 class ProductController extends AdminController
 {
@@ -68,13 +69,25 @@ class ProductController extends AdminController
 
     public function store(Request $request, Product $product, Guard $guard, AccountManager $accounts)
     {
+        $this->validate($request, [
+            'brand_id' => 'required|exists:product_brands,id',
+            //these rules are not sufficient. but doing numeric and size works totally wrong
+            'name' => 'required|string',
+            'ean' => 'string|size:13',
+        ]);
+
         $input = translation_input($request);
+
+        $name = $request->get('name');
+
+        foreach(Locale::all() as $locale)
+        {
+            $input[$locale->slug] = ['name' => $name];
+        }
 
         $product = $product->newInstance($input);
 
         $product->account_id = $accounts->account()->id;
-
-        $product->user()->associate($guard->user());
 
         if ($product->save()) {
             return $product;

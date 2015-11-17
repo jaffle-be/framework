@@ -26,7 +26,7 @@
                 <tr>
                     <th colspan="6">
 
-                        <div class="row">
+                        <div class="row" ng-if="!vm.creating">
 
                             <div class="col-xs-3">
                                 <div class="dropdown" data-api="dropdown">
@@ -69,19 +69,23 @@
                                             <div class="sk-cube"></div>
                                         </div>
                                     </div>
-                                        <input type="text" class="form-control"
-                                               uib-typeahead="item.label for item in vm.searchProduct($viewValue)"
-                                               typeahead-loading="searching"
-                                               typeahead-on-select="vm.goTo($item)"
-                                               typeahead-wait-ms="400"
-                                               typeahead-highlight="true"
-                                               ng-model="vm.searchInput">
+                                    <input type="text" class="form-control"
+                                           uib-typeahead="item.label for item in vm.searchProduct($viewValue)"
+                                           typeahead-loading="searching"
+                                           typeahead-on-select="vm.goTo($item)"
+                                           typeahead-wait-ms="400"
+                                           typeahead-highlight="true"
+                                           ng-model="vm.searchInput">
                                 </div>
                             </div>
                             <div class="col-xs-3">
-                                <a class="btn btn-sm btn-primary pull-right" ng-click="vm.newProduct()">{{ Lang::get('shop::admin.product.create') }}</a>
+                                <a class="btn btn-sm btn-primary pull-right" ng-click="vm.startCreating()">{{ Lang::get('shop::admin.product.create') }}</a>
                             </div>
 
+                        </div>
+
+                        <div ng-if="vm.creating">
+                            @include('shop::admin.product.creator')
                         </div>
 
                     </th>
@@ -96,11 +100,13 @@
                         <input type="checkbox" class="filled-in" id="row@{{ $index + 1 }}" ng-model="product.isSelected"/>
                         <label for="row@{{ $index + 1 }}">@{{ $index + 1 }}</label>
                     </td>
-                    <td width="150"><img class="img-responsive img-rounded" ng-src="@{{ product.images[0].sizes[0].path }}"/></td>
+                    <td width="150">
+                        <img class="img-responsive img-rounded" ng-src="@{{ product.images[0].sizes[0].path }}"/></td>
                     <td>
                         <div>
                             <h4 ng-bind-html="renderHtml(vm.getTitle(product))"></h4>
                             <h6 ng-bind-html="renderHtml(product.translations[vm.options.locale].title)"></h6>
+
                             <p ng-bind-html="renderHtml(product.translations[vm.options.locale].cached_extract)"></p>
                         </div>
                     </td>

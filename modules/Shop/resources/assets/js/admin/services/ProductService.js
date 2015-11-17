@@ -11,7 +11,7 @@
                 query: function (params, success) {
                     Product.query(params, success);
                 },
-                save: function (product, success) {
+                save: function (product) {
                     if (product.id)
                     {
                         //use a copy, so the response will not reset the form to the last saved instance while typing.
@@ -28,7 +28,7 @@
                     }
                     else
                     {
-                        product.$save({}, success);
+                        return product.$save({});
                     }
                 },
                 delete: function (product, success) {
