@@ -256,8 +256,6 @@
                 return GammaService.searchBrand({
                     query: value,
                     locale: me.options.locale
-                }).then(function(response){
-                    return response.data;
                 });
             }
 

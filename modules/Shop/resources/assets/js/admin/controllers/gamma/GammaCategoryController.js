@@ -250,8 +250,6 @@
                 return GammaService.searchCategory({
                     query: value,
                     locale: me.options.locale
-                }).then(function(response){
-                    return response.data;
                 });
             }
 
