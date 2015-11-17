@@ -15,20 +15,23 @@ Route::group([
             Route::get('brands/overview', 'GammaController@templateBrands');
             Route::get('products/overview', 'ProductController@overview');
             Route::get('products/detail', 'ProductController@detail');
-            Route::get('shop/selections/overview', 'ProductSelectionController@overview');
-            Route::get('shop/selections/detail', 'ProductSelectionController@detail');
+            Route::get('shop/gamma/selections/overview', 'ProductSelectionController@overview');
+            Route::get('shop/gamma/selections/detail', 'ProductSelectionController@detail');
         });
 
-        Route::group(['prefix' => 'api/admin'], function () {
+        Route::group(['prefix' => 'api/admin/shop'], function () {
+
+            //i should decently prefix all these routes
 
             Route::post('products/suggest', 'ProductController@suggest');
+            Route::post('gamma/selections/suggest', 'ProductController@suggest');
             Route::post('categories/suggest', 'CategoryController@suggest');
             Route::post('brands/suggest', 'BrandController@suggest');
 
-            Route::get('notifications', 'NotificationController@overview');
-            Route::post('notifications/accept', 'NotificationController@accept');
-            Route::post('notifications/review', 'NotificationController@review');
-            Route::post('notifications/deny', 'NotificationController@deny');
+            Route::get('gamma/notifications', 'NotificationController@overview');
+            Route::post('gamma/notifications/accept', 'NotificationController@accept');
+            Route::post('gamma/notifications/review', 'NotificationController@review');
+            Route::post('gamma/notifications/deny', 'NotificationController@deny');
 
             Route::get('gamma/categories', 'GammaController@categories');
             Route::post('gamma/categories', 'GammaController@category');
@@ -36,9 +39,9 @@ Route::group([
             Route::post('gamma/brands', 'GammaController@brand');
             Route::post('gamma/detail', 'GammaController@detail');
 
-            Route::resource('shop/selections', 'ProductSelectionController', ['only' => ['index', 'show', 'update']]);
-            Route::post('shop/selections/batch-publish', 'ProductSelectionController@batchPublish');
-            Route::post('shop/selections/batch-unpublish', 'ProductSelectionController@batchUnpublish');
+            Route::resource('gamma/selections', 'ProductSelectionController', ['only' => ['index', 'show', 'update']]);
+            Route::post('gamma/selections/batch-publish', 'ProductSelectionController@batchPublish');
+            Route::post('gamma/selections/batch-unpublish', 'ProductSelectionController@batchUnpublish');
 
             Route::resource('products', 'ProductController');
             Route::post('products/batch-delete', 'ProductController@batchDestroy');

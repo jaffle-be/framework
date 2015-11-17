@@ -3,7 +3,7 @@
 
     angular.module('shop')
         .factory('Product', function ($resource) {
-            return $resource('api/admin/products/:id', {id: '@id'}, {
+            return $resource('api/admin/shop/products/:id', {id: '@id'}, {
                 query: {
                     isArray: false
                 },
@@ -27,7 +27,7 @@
         })
 
         .factory('ProductSelection', function ($resource) {
-            return $resource('api/admin/shop/selections/:id', {id: '@id'}, {
+            return $resource('api/admin/shop/gamma/selections/:id', {id: '@id'}, {
                 query: {
                     isArray: false
                 },

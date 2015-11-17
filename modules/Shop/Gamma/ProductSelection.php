@@ -34,6 +34,18 @@ class ProductSelection extends Model implements Searchable
         'brand_id'   => ['type' => 'integer'],
     ];
 
+    /**
+     * we basically want to override the suggest for this one to the one of the products
+     * so it will always automatically inheret the same search options as the products,
+     * but it will only search selections
+     *
+     * @return mixed
+     */
+    public function searchableSuggestData(Searchable $inheritFrom = null)
+    {
+        return $this->product->searchableSuggestData($this);
+    }
+
     public function product()
     {
         return $this->belongsTo('Modules\Shop\Product\Product');

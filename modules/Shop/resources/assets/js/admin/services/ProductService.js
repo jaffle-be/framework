@@ -57,7 +57,7 @@
                         query:query,
                         locale: locale
                     };
-                    return $http.post('/api/admin/products/suggest', data).then(function(response){
+                    return $http.post('/api/admin/shop/products/suggest', data).then(function(response){
                         return response.data;
                     });
                 },

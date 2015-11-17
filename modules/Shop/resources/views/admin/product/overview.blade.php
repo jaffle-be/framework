@@ -10,6 +10,17 @@
 
         <div class="ibox-content">
 
+            <div class="alert alert-info">
+                //this needs to become a typehead so that we can suggest products,
+                //the template returned should (to be perfect) show the product,
+                //the image, the brand and the categories (and maybe also the tags?)
+                //when something is in the searchbox, we should show a button
+                //to allow us to do a full search
+                //when we do get a result, we can use it by selecting it
+                //it should then take us to that specific page instead of doing a search
+                //you can use the payload to determine which state to go to
+            </div>
+
             <table class="table table-hover table-striped table-responsive vertical" ng-show="vm.products">
                 <thead>
                 <tr>

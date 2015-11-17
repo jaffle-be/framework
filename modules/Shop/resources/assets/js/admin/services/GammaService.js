@@ -6,40 +6,40 @@
 
             return {
                 brands: function (params, success) {
-                    return $http.get('/api/admin/gamma/brands', {
+                    return $http.get('/api/admin/shop/gamma/brands', {
                         params: params
                     }).then(function (response) {
                         success(response.data);
                     });
                 },
                 brand: function (brand, status) {
-                    return $http.post('/api/admin/gamma/brands', {
+                    return $http.post('/api/admin/shop/gamma/brands', {
                         brand: brand,
                         status: status
                     });
                 },
 
                 categories: function (params, success) {
-                    return $http.get('/api/admin/gamma/categories', {
+                    return $http.get('/api/admin/shop/gamma/categories', {
                         params: params
                     }).then(function (response) {
                         success(response.data);
                     });
                 },
                 category: function (category, status) {
-                    return $http.post('/api/admin/gamma/categories', {
+                    return $http.post('/api/admin/shop/gamma/categories', {
                         category: category,
                         status: status
                     });
                 },
                 detail: function (data, success, error) {
-                    return $http.post('/api/admin/gamma/detail', data).then(success, error);
+                    return $http.post('/api/admin/shop/gamma/detail', data).then(success, error);
                 },
                 searchCategory: function(data){
-                    return $http.post('/api/admin/categories/suggest', data);
+                    return $http.post('/api/admin/shop/categories/suggest', data);
                 },
                 searchBrand: function(data){
-                    return $http.post('/api/admin/brands/suggest', data);
+                    return $http.post('/api/admin/shop/brands/suggest', data);
                 }
             };
 

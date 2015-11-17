@@ -60,8 +60,14 @@
                                             <div class="sk-cube"></div>
                                         </div>
                                     </div>
-                                    <input st-search="query" type="search" ng-change="vm.test()" name="search" ng-model="vm.query" class="form-control"/>
-                                </div>
+                                    <input type="text" class="form-control"
+                                           uib-typeahead="item.label for item in vm.searchSelection($viewValue)"
+                                           typeahead-loading="searching"
+                                           typeahead-on-select="vm.goTo($item)"
+                                           typeahead-wait-ms="400"
+                                           typeahead-highlight="true"
+                                           ng-model="vm.searchInput">                                </div>
+
                             </div>
                             <div class="col-xs-3">
                             </div>

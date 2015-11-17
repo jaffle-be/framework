@@ -96,6 +96,17 @@
             {
                 return ProductService.getTitle(product, me.options.locale);
             };
+
+            this.searchSelection = function(query)
+            {
+                return ProductSelectionService.searchSelection(query, me.options.locale);
+            };
+
+            this.goTo = function(item)
+            {
+                $state.go('admin.shop.selection', {id: item.value});
+            };
+
         });
 
 })();

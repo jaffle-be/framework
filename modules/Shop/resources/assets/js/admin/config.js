@@ -31,11 +31,11 @@
                 })
                 .state('admin.shop.selections', {
                     url: "/selections",
-                    templateUrl: "templates/admin/shop/selections/overview"
+                    templateUrl: "templates/admin/shop/gamma/selections/overview"
                 })
                 .state('admin.shop.selection', {
                     url: '/selection/:id',
-                    templateUrl: "templates/admin/shop/selections/detail"
+                    templateUrl: "templates/admin/shop/gamma/selections/detail"
                 });
 
         });
