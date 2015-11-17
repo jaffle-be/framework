@@ -168,6 +168,7 @@ function lessCompiler() {
             path.extname = '.min.css';
         }))
         .pipe(gulp.dest('public/css/admin'))
+        .pipe(notify('css done'))
 }
 
 function allPlugins() {
