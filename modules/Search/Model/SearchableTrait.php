@@ -322,7 +322,11 @@ trait SearchableTrait
         return $data;
     }
 
-    protected function searchableSuggestData()
+    /**
+     * keep this public, this allows for easy searching inheriting
+     * @return array
+     */
+    public function searchableSuggestData(Searchable $inheritFrom = null)
     {
         $data = [];
 
@@ -336,7 +340,7 @@ trait SearchableTrait
                     continue;
                 }
 
-                $data[$this->getSearchableSuggestName($locale)] = [
+                $data[$this->getSearchableSuggestName($locale, $inheritFrom)] = [
                     'input'   => $translation->name,
                     'output'  => $translation->name,
                     'payload' => [
@@ -355,9 +359,16 @@ trait SearchableTrait
      *
      * @return string
      */
-    protected function getSearchableSuggestName($locale)
+    protected function getSearchableSuggestName($locale, Searchable $inheritFrom = null)
     {
-        return $this->getSearchableType() . '_suggest_' . $locale->slug;
+        $suffix = '_suggest_' . $locale->slug;
+
+        if($inheritFrom)
+        {
+            return $inheritFrom->getSearchableType() . $suffix;
+        }
+
+        return $this->getSearchableType() . $suffix;
     }
 
 }
