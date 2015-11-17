@@ -73,11 +73,7 @@ class Config
      */
     protected function usesTranslations($type)
     {
-        $trait = Translatable::class;
-        $class = $this->getClass($type);
-        $stuff = class_uses($class);
-
-        return in_array($trait, $stuff);
+        return uses_trait($this->getClass($type), Translatable::class);
     }
 
     public function getClass($type)

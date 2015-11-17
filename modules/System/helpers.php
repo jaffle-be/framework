@@ -2,6 +2,20 @@
 use Illuminate\Http\Request;
 use Modules\Module\Module;
 
+if (!function_exists('uses_trait'))
+{
+    /**
+     * @param $class
+     * @param $trait
+     *
+     * @return bool
+     */
+    function uses_trait($class, $trait){
+        $stuff = class_uses($class);
+        return in_array($trait, $stuff);
+    }
+}
+
 /**
  * Used to help set the configuration through json on the front side.
  * Found in the actual views, will most likely be at the same html element
