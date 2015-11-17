@@ -35,8 +35,6 @@ return [
 
         'tags'     => [
             'class' => 'Modules\Tags\Tag',
-            'with'  => [
-            ]
         ],
 
         'posts'    => [
@@ -51,9 +49,14 @@ return [
 
         'projects' => [
             'class' => Project::class,
-            'with'  => [
+        ],
 
-            ]
+        'product_brands' => [
+            'class' => Brand::class,
+        ],
+
+        'product_categories' => [
+            'class' => Category::class,
         ],
 
         'products' => [
