@@ -18,6 +18,9 @@
             this.subSave = subSave;
             this.saveDetail = saveDetail;
             this.hasAnythingSelected = hasAnythingSelected;
+            this.selectedBrand = false;
+            this.searchBrand = searchBrand;
+            this.clearSelection = clearSelection;
 
             Pusher.channel.bind('brand_categories.attached', attachBrandCategory);
             Pusher.channel.bind('brand_categories.detached', detachBrandCategory);
@@ -215,11 +218,24 @@
                 });
             };
 
-            function load() {
-                GammaService.brands({
+            function load(item) {
+                var data = {
                     page: me.page
-                }, function (response) {
+                };
+
+                //this was passed through the autosuggest
+                if(typeof item !== 'undefined')
+                {
+                    //value is the id
+                    data.brand = item.value;
+                    //also remember the selection, so we can clear it
+                    //to reload all the results instead of the filtered one.
+                    me.selectedBrand = item.value;
+                }
+
+                GammaService.brands(data, function (response) {
                     me.brands = response.data;
+                    me.page = response.current_page;
                     me.totalItems = response.total;
                 });
             }
@@ -233,6 +249,23 @@
             function showError(response) {
                 var headers = response.headers();
                 toaster.error(headers.statustext);
+            }
+
+            function searchBrand(value)
+            {
+                return GammaService.searchBrand({
+                    query: value,
+                    locale: me.options.locale
+                }).then(function(response){
+                    return response.data;
+                });
+            }
+
+            function clearSelection()
+            {
+                me.selectedBrand = false;
+                me.searchInput = '';
+                me.load();
             }
 
         });

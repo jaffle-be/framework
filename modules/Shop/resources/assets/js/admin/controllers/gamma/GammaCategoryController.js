@@ -18,6 +18,9 @@
             this.subSave = subSave;
             this.saveDetail = saveDetail;
             this.hasAnythingSelected = hasAnythingSelected;
+            this.selectedCategory = false;
+            this.searchCategory = searchCategory;
+            this.clearSelection = clearSelection;
 
             Pusher.channel.bind('brand_categories.attached', attachBrandCategory);
             Pusher.channel.bind('brand_categories.detached', detachBrandCategory);
@@ -208,11 +211,25 @@
                 });
             };
 
-            function load() {
-                GammaService.categories({
+            function load(item) {
+
+                var data = {
                     page: me.page
-                }, function (response) {
+                };
+
+                //this was passed through the autosuggest
+                if(typeof item !== 'undefined')
+                {
+                    //value is the id
+                    data.category = item.value;
+                    //also remember the selection, so we can clear it
+                    //to reload all the results instead of the filtered one.
+                    me.selectedCategory = item.value;
+                }
+
+                GammaService.categories(data, function (response) {
                     me.categories = response.data;
+                    me.page = response.current_page;
                     me.totalItems = response.total;
                 });
             }
@@ -226,6 +243,23 @@
             function showError(response) {
                 var headers = response.headers();
                 toaster.error(headers.statustext);
+            }
+
+            function searchCategory(value)
+            {
+                return GammaService.searchCategory({
+                    query: value,
+                    locale: me.options.locale
+                }).then(function(response){
+                    return response.data;
+                });
+            }
+
+            function clearSelection()
+            {
+                me.selectedCategory = false;
+                me.searchInput = '';
+                me.load();
             }
 
         });

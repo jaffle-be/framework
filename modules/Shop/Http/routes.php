@@ -21,17 +21,18 @@ Route::group([
 
         Route::group(['prefix' => 'api/admin'], function () {
 
+            Route::post('categories', 'CategoryController@suggest');
+            Route::post('brands', 'BrandController@suggest');
+
             Route::get('notifications', 'NotificationController@overview');
             Route::post('notifications/accept', 'NotificationController@accept');
             Route::post('notifications/review', 'NotificationController@review');
             Route::post('notifications/deny', 'NotificationController@deny');
 
-            Route::get('categories', 'GammaController@categories');
-            Route::post('categories', 'GammaController@category');
-
-            Route::get('brands', 'GammaController@brands');
-            Route::post('brands', 'GammaController@brand');
-
+            Route::get('gamma/categories', 'GammaController@categories');
+            Route::post('gamma/categories', 'GammaController@category');
+            Route::get('gamma/brands', 'GammaController@brands');
+            Route::post('gamma/brands', 'GammaController@brand');
             Route::post('gamma/detail', 'GammaController@detail');
 
             Route::resource('shop/selections', 'ProductSelectionController', ['only' => ['index', 'show', 'update']]);

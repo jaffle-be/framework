@@ -24,7 +24,7 @@ class GammaController extends AdminController
         return view('shop::admin.categories.overview');
     }
 
-    public function categories(GammaSelection $gamma, GammaNotification $notification, GammaSubscriptionManager $subscriptions)
+    public function categories(GammaSelection $gamma, GammaNotification $notification, GammaSubscriptionManager $subscriptions, Request $request)
     {
         $productRequirements = function ($query) use ($subscriptions) {
             $query->whereIn('account_id', $subscriptions->subscribedIds());
@@ -38,7 +38,25 @@ class GammaController extends AdminController
             },
             'brands.translations',
             'brands.selection'
-        ])->paginate(5);
+        ]);
+
+        //if we passed in a category, we used the suggest to find a category.
+        if($category = $request->get('category'))
+        {
+            $category = Category::find($category);
+
+            if($category)
+            {
+                $categories->where('id', $category->id);
+            }
+        }
+
+        if($category){
+            $categories = $categories->paginate(5, ['*'], 'page', $page = 1);
+        }
+        else{
+            $categories = $categories->paginate(5);
+        }
 
         $ids = $categories->lists('id')->toArray();
 
@@ -95,7 +113,7 @@ class GammaController extends AdminController
         return view('shop::admin.brands.overview');
     }
 
-    public function brands(GammaSelection $gamma, GammaNotification $notification, GammaSubscriptionManager $subscriptions)
+    public function brands(GammaSelection $gamma, GammaNotification $notification, GammaSubscriptionManager $subscriptions, Request $request)
     {
         $productRequirements = function($query) use ($subscriptions)
         {
@@ -110,7 +128,25 @@ class GammaController extends AdminController
             },
             'categories.translations',
             'categories.selection'
-        ])->paginate(5);
+        ]);
+
+        //if we passed in a brand, we used the suggest to find a brand.
+        if($brand = $request->get('brand'))
+        {
+            $brand = Brand::find($brand);
+
+            if($brand)
+            {
+                $brands->where('id', $brand->id);
+            }
+        }
+
+        if($brand){
+            $brands = $brands->paginate(5, ['*'], 'page', $page = 1);
+        }
+        else{
+            $brands = $brands->paginate(5);
+        }
 
         $ids = $brands->lists('id')->toArray();
 
