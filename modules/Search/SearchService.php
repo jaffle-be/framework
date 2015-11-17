@@ -5,6 +5,7 @@ namespace Modules\Search;
 use Elasticsearch\Client;
 use Exception;
 use Illuminate\Container\Container;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Events\Dispatcher;
 use Modules\Search\Model\Searchable;
 
@@ -191,7 +192,7 @@ class SearchService implements SearchServiceInterface
                 //does the related element use soft deletes?
                 $related = $type->$relation()->getRelated();
 
-                if (method_exists($related, 'bootSoftDeletes')) {
+                if (uses_trait($related, SoftDeletes::class)) {
                     $documents->load([
                         $relation => function ($query) {
                             $query->withTrashed();
