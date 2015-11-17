@@ -136,7 +136,7 @@ class SearchService implements SearchServiceInterface
 
             $config = $this->getConfig($parent);
 
-            $this->addInvertedListener($parent, $updated, $relation, $key, array_keys($config['with']));
+            $this->addInvertedListener($parent, $updated, $relation, $key, array_keys(array_get($config, 'with', [])));
         }
     }
 
@@ -217,7 +217,7 @@ class SearchService implements SearchServiceInterface
         list($type) = $this->getSearchable($type);
 
         if ($refresh) {
-            $this->refreshType($type, $config['with']);
+            $this->refreshType($type, array_get($config, 'with', []));
         }
     }
 

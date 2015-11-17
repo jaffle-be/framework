@@ -2,6 +2,7 @@
 
 namespace Modules\Search;
 
+use Elasticsearch\Client;
 use Modules\Search\Model\Searchable;
 
 interface SearchServiceInterface
@@ -111,7 +112,7 @@ interface SearchServiceInterface
     public function boot();
 
     /**
-     * @return mixed
+     * @return Client
      */
     public function getClient();
 }

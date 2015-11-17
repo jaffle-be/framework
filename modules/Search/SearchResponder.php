@@ -59,7 +59,7 @@ trait SearchResponder
 
         $config = $this->service->getConfig($searchable);
 
-        $with = $config['with'];
+        $with = array_get($config, 'with', []);
 
         foreach ($results as $result) {
             //need to also match the related models, which are for now specified into the config file.
