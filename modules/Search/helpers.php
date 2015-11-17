@@ -18,10 +18,13 @@ if (!function_exists('suggest_completion')) {
                     "completion" => [
                         "field" => $type . '_suggest_' . $locale,
                         "fuzzy" => [
-                            "fuzziness" => strlen($query) > 5 ? (int) (strlen($query) / 2) + 1  : 1,
+                            //for every 5 chars, we allow a typo if the query is longer then 3,
+                            //if not longer, no typos allowed
+                            "fuzziness" => strlen($query) > 3 ? (int) floor(strlen($query) / 5) + 1 : 0,
                             "max_expansions" => 10,
                             "prefix_length" => 0,
-                        ]
+                        ],
+                        "size" => 10
                     ],
                 ]
             ]
