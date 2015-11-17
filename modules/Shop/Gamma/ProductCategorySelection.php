@@ -1,14 +1,14 @@
 <?php namespace Modules\Shop\Gamma;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Modules\Search\Model\Searchable;
 use Modules\Search\Model\SearchableTrait;
+use Modules\System\MySoftDeletes;
 
 class ProductCategorySelection extends Model implements Searchable
 {
 
-    use SoftDeletes;
+    use MySoftDeletes;
     use SearchableTrait;
 
     protected $table = "product_gamma_categories";
