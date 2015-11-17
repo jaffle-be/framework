@@ -49,7 +49,7 @@
             this.newProduct = function () {
                 var product = new Product();
                 ProductService.save(product, function (newProduct) {
-                    $state.go('admin.product.detail', {id: newProduct.id});
+                    $state.go('admin.shop.product', {id: newProduct.id});
                 });
             };
 
@@ -103,7 +103,17 @@
             this.getTitle = function(product)
             {
                 return ProductService.getTitle(product, me.options.locale);
-            }
+            };
+
+            this.searchProduct = function(query)
+            {
+                return ProductService.searchProduct(query, me.options.locale);
+            };
+
+            this.goTo = function(item)
+            {
+                $state.go('admin.shop.product', {id: item.value});
+            };
         });
 
 })();

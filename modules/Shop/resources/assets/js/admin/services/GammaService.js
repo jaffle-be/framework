@@ -36,10 +36,10 @@
                     return $http.post('/api/admin/gamma/detail', data).then(success, error);
                 },
                 searchCategory: function(data){
-                    return $http.post('/api/admin/categories', data);
+                    return $http.post('/api/admin/categories/suggest', data);
                 },
                 searchBrand: function(data){
-                    return $http.post('/api/admin/brands', data);
+                    return $http.post('/api/admin/brands/suggest', data);
                 }
             };
 

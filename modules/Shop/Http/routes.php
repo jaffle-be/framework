@@ -21,8 +21,9 @@ Route::group([
 
         Route::group(['prefix' => 'api/admin'], function () {
 
-            Route::post('categories', 'CategoryController@suggest');
-            Route::post('brands', 'BrandController@suggest');
+            Route::post('products/suggest', 'ProductController@suggest');
+            Route::post('categories/suggest', 'CategoryController@suggest');
+            Route::post('brands/suggest', 'BrandController@suggest');
 
             Route::get('notifications', 'NotificationController@overview');
             Route::post('notifications/accept', 'NotificationController@accept');

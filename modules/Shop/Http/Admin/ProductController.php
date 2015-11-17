@@ -12,6 +12,11 @@ use Modules\System\Http\AdminController;
 class ProductController extends AdminController
 {
 
+    public function suggest(Request $request)
+    {
+        return suggest_completion('products', $request->get('query'), $request->get('locale'));
+    }
+
     public function index(Request $request, Product $products, SearchServiceInterface $search, GammaSubscriptionManager $subscriptions)
     {
         $thumbnailRequirements = function ($query) {

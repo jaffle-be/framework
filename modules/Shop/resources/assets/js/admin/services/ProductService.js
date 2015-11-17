@@ -51,6 +51,16 @@
                         locale: locale
                     }).then(success);
                 },
+                searchProduct: function(query, locale)
+                {
+                    var data = {
+                        query:query,
+                        locale: locale
+                    };
+                    return $http.post('/api/admin/products/suggest', data).then(function(response){
+                        return response.data;
+                    });
+                },
                 getTitle: function(product, locale)
                 {
                     var brand = product.brand.translations[locale].name;
