@@ -35,18 +35,18 @@
                     product.$delete().then(success);
                 },
                 batchDelete: function (products, success) {
-                    $http.post('/api/admin/products/batch-delete', {
+                    $http.post('/api/admin/shop/products/batch-delete', {
                         products: products
                     }).then(success);
                 },
                 batchPublish: function (products, locale, success) {
-                    $http.post('/api/admin/products/batch-publish', {
+                    $http.post('/api/admin/shop/products/batch-publish', {
                         products: products,
                         locale: locale
                     }).then(success);
                 },
                 batchUnpublish: function (products, locale, success) {
-                    $http.post('/api/admin/products/batch-unpublish', {
+                    $http.post('/api/admin/shop/products/batch-unpublish', {
                         products: products,
                         locale: locale
                     }).then(success);
