@@ -79,12 +79,12 @@
                         <input type="checkbox" class="filled-in" id="row@{{ $index + 1 }}" ng-model="product.isSelected"/>
                         <label for="row@{{ $index + 1 }}">@{{ $index + 1 }}</label>
                     </td>
-                    <td width="0%">&nbsp;</td>
+                    <td width="150"><img class="img-responsive img-rounded" ng-src="@{{ product.images[0].sizes[0].path }}"/></td>
                     <td>
-                        <div class="">
-                            <img class="pull-left img-responsive img-rounded" ng-src="@{{ product.images[0].sizes[0].path }}"/>
-                            <h4 ng-bind-html="renderHtml(product.translations[vm.options.locale].title)"></h4>
-                            <span ng-bind-html="renderHtml(product.translations[vm.options.locale].cached_extract)"></span>
+                        <div>
+                            <h4 ng-bind-html="renderHtml(vm.getTitle(product))"></h4>
+                            <h6 ng-bind-html="renderHtml(product.translations[vm.options.locale].title)"></h6>
+                            <p ng-bind-html="renderHtml(product.translations[vm.options.locale].cached_extract)"></p>
                         </div>
                     </td>
                     <td>@{{ product.tags.length }}</td>

@@ -34,9 +34,19 @@ class ProductSelectionController extends AdminController
             'routing' => $account->id
         ];
 
-        $relations = ['product', 'product.translations', 'product.images', 'product.images.sizes' => function ($query) {
-            $query->dimension(150);
-        }];
+        $relations = [
+            'product',
+            'product.translations',
+            'product.images',
+            'product.images.sizes' => function ($query) {
+                $query->dimension(150);
+            },
+            //load brand from product, not from selection
+            //this will make sure the title gets displayed
+            //see ProductService in angular
+            'product.brand',
+            'product.brand.translations',
+        ];
 
         $result = $search->search($selections->getSearchableType(), $query, $relations);
 

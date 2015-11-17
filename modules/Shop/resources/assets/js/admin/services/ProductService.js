@@ -51,6 +51,19 @@
                         locale: locale
                     }).then(success);
                 },
+                getTitle: function(product, locale)
+                {
+                    var brand = product.brand.translations[locale].name;
+
+                    product = product.translations[locale].name;
+
+                    if(!brand)
+                    {
+                        return product;
+                    }
+
+                    return product + ' - ' + brand;
+                }
 
             };
 

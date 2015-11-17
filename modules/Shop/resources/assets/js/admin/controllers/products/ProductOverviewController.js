@@ -98,6 +98,11 @@
                 });
 
                 return products;
+            };
+
+            this.getTitle = function(product)
+            {
+                return ProductService.getTitle(product, me.options.locale);
             }
         });
 

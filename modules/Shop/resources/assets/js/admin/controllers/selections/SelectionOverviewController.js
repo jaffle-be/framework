@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('shop')
-        .controller('SelectionOverviewController', function (ProductSelection, ProductSelectionService, $state, $scope, $sce) {
+        .controller('SelectionOverviewController', function (ProductSelection, ProductService, ProductSelectionService, $state, $scope, $sce) {
 
             $scope.renderHtml = function (html_code) {
                 return $sce.trustAsHtml(html_code);
@@ -90,7 +90,12 @@
                 });
 
                 return selections;
-            }
+            };
+
+            this.getTitle = function(product)
+            {
+                return ProductService.getTitle(product, me.options.locale);
+            };
         });
 
 })();

@@ -36,6 +36,8 @@ class ProductController extends AdminController
         ];
 
         return $search->search('products', $query, [
+            'brand',
+            'brand.translations',
             'images',
             'images.sizes' => $thumbnailRequirements,
             'images.translations'
