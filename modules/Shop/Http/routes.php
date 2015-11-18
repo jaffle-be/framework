@@ -24,9 +24,13 @@ Route::group([
             //i should decently prefix all these routes
 
             Route::post('products/suggest', 'ProductController@suggest');
+            Route::post('products/add-category', 'ProductController@addCategory');
+            Route::post('products/remove-category', 'ProductController@removeCategory');
             Route::post('gamma/selections/suggest', 'ProductController@suggest');
             Route::post('categories/suggest', 'CategoryController@suggest');
             Route::post('brands/suggest', 'BrandController@suggest');
+
+            Route::resource('categories', 'CategoryController');
 
             Route::get('gamma/notifications', 'NotificationController@overview');
             Route::post('gamma/notifications/accept', 'NotificationController@accept');

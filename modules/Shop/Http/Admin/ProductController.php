@@ -6,6 +6,7 @@ use Modules\Account\AccountManager;
 use Modules\Search\SearchServiceInterface;
 use Modules\Shop\Gamma\GammaSubscriptionManager;
 use Modules\Shop\Jobs\UpdateProduct;
+use Modules\Shop\Product\Category;
 use Modules\Shop\Product\Product;
 use Modules\System\Http\AdminController;
 use Modules\System\Locale;
@@ -180,6 +181,48 @@ class ProductController extends AdminController
         }
     }
 
+    public function addCategory(Request $request)
+    {
+        $this->validate($request, [
+            'product_id' => 'exists:products,id',
+            'category_id' => 'exists:product_categories,id',
+        ]);
+
+        $product = Product::find($request->get('product_id'));
+        $category = Category::find($request->get('category_id'));
+
+        $product->load('categories');
+        $category->load('translations');
+
+        if(!$product->categories->contains($category->id))
+        {
+            $product->categories()->attach($category);
+        }
+
+        return $category;
+    }
+
+    public function removeCategory(Request $request)
+    {
+        $this->validate($request, [
+            'product_id' => 'exists:products,id',
+            'category_id' => 'exists:product_categories,id',
+        ]);
+
+        $product = Product::find($request->get('product_id'));
+        $category = Category::find($request->get('category_id'));
+
+        $product->load('categories');
+        $category->load('translations');
+
+        if($product->categories->contains($category->id))
+        {
+            $product->categories()->detach($category);
+        }
+
+        return $category;
+    }
+
     public function overview()
     {
         return view('shop::admin.product.overview');
@@ -192,7 +235,7 @@ class ProductController extends AdminController
 
     protected function relations()
     {
-        return ['translations', 'translations'];
+        return ['translations', 'brand', 'brand.translations', 'categories', 'categories.translations'];
     }
 
     /**

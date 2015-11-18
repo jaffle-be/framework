@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('shop')
-        .factory('Product', function ($resource) {
+        .factory('Product', function ($resource, Category) {
             return $resource('api/admin/shop/products/:id', {id: '@id'}, {
                 query: {
                     isArray: false
@@ -17,12 +17,34 @@
                             response.translations = {};
                         }
 
+                        response.categories = _.map(response.categories, function (category) {
+                            return new Category(category);
+                        });
+
                         return response;
                     }
                 },
                 update: {
                     method: 'PUT',
                 }
+            });
+        })
+
+        .factory('Category', function ($resource) {
+
+            var placeholders = {
+                id: '@id',
+            };
+
+            return $resource('api/admin/shop/categories/:id', placeholders, {
+                list: {
+                    url: 'api/admin/shop/categories/list',
+                    method: 'GET',
+                    isArray: true
+                },
+                update: {
+                    method: 'PUT'
+                },
             });
         })
 

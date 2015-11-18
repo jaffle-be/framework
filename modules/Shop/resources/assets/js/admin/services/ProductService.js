@@ -83,6 +83,19 @@
                     }
 
                     return product + ' - ' + brand;
+                },
+
+                addCategory: function(payload)
+                {
+                    return $http.post('api/admin/shop/products/add-category', payload).then(function(response){
+                        return response.data;
+                    });
+                },
+                removeCategory: function(payload)
+                {
+                    return $http.post('api/admin/shop/products/remove-category', payload).then(function(response){
+                        return response.data;
+                    });
                 }
 
             };
