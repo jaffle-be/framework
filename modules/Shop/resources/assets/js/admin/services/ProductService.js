@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('shop')
-        .factory('ProductService', function (Product, $timeout, $http) {
+        .factory('ProductService', function (Product, $timeout, $http, $q) {
 
             return {
                 find: function (id, success) {
@@ -16,15 +16,25 @@
                     {
                         //use a copy, so the response will not reset the form to the last saved instance while typing.
                         var destination = angular.copy(product);
+                        var deferred = $q.defer();
 
                         if (this.timeout)
                         {
+                            this.previousDeferred.reject('canceled for new save');
                             $timeout.cancel(this.timeout);
                         }
 
                         this.timeout = $timeout(function () {
-                            return destination.$update(success);
+                            return destination.$update().then(function(response){
+                                deferred.resolve(response);
+                            }, function(response){
+                                deferred.reject(response);
+                            });
                         }, 400);
+
+                        this.previousDeferred = deferred;
+
+                        return deferred.promise;
                     }
                     else
                     {

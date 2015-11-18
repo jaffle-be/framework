@@ -25,7 +25,9 @@
             };
 
             this.save = function () {
-                ProductService.save(me.product);
+                ProductService.save(me.product).then(function(response){
+                    me.product.translations[me.options.locale].slug = response.translations[me.options.locale].slug
+                });
             };
 
             this.delete = function () {

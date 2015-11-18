@@ -57,7 +57,7 @@
             <div class="form-group">
                 <label for="slug" class="control-label">{{ Lang::get('shop::admin.product.slug') }}</label>
 
-                <span class="form-control slug" ng-bind="vm.product.translations[vm.options.locale].slug.uri"></span>
+                <span class="form-control slug" ng-bind="vm.product.translations[vm.options.locale].slug"></span>
             </div>
 
             <div class="row">
