@@ -3,6 +3,7 @@
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Http\Request;
 use Modules\Account\AccountManager;
+use Modules\Media\MediaWidgetPreperations;
 use Modules\Search\SearchServiceInterface;
 use Modules\Shop\Gamma\GammaSubscriptionManager;
 use Modules\Shop\Jobs\UpdateProduct;
@@ -13,6 +14,7 @@ use Modules\System\Locale;
 
 class ProductController extends AdminController
 {
+    use MediaWidgetPreperations;
 
     public function suggest(Request $request)
     {
@@ -49,23 +51,6 @@ class ProductController extends AdminController
             'images.sizes' => $thumbnailRequirements,
             'images.translations'
         ]);
-
-        $query = Product::with(['translations']);
-
-        $value = $request->get('query');
-        $locale = $request->get('locale');
-
-        if (!empty($value)) {
-            $query->whereHas('translations', function ($q) use ($value, $locale) {
-                $q->where('locale', $locale);
-                $q->where(function ($q) use ($value) {
-                    $q->where('name', 'like', '%' . $value . '%')
-                        ->orWhere('content', 'like', '%' . $value . '%');
-                });
-            });
-        }
-
-        return $query->paginate();
     }
 
     public function store(Request $request, Product $product, Guard $guard, AccountManager $accounts)
@@ -102,6 +87,8 @@ class ProductController extends AdminController
     public function show(Product $product)
     {
         $product->load($this->relations());
+
+        $this->prepareMedia($product);
 
         return $product;
     }
@@ -235,7 +222,10 @@ class ProductController extends AdminController
 
     protected function relations()
     {
-        return ['translations', 'brand', 'brand.translations', 'categories', 'categories.translations'];
+        return ['translations', 'brand', 'brand.translations', 'categories', 'categories.translations',
+            'properties', 'properties.translations', 'properties.option', 'properties.option.translations',
+            'properties.property', 'properties.property.translations',
+        ];
     }
 
     /**

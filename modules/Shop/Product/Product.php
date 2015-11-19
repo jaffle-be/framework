@@ -83,4 +83,9 @@ class Product extends Model implements StoresMedia, PresentableEntity, SeoEntity
         return $this->hasMany('Modules\Shop\Product\Promotion');
     }
 
+    public function properties()
+    {
+        return $this->hasMany('Modules\Shop\Product\PropertyValue');
+    }
+
 }

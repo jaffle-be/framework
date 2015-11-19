@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Collection;
 use Modules\Account\Account;
 use Modules\Shop\Product\ActivePrice;
 use Modules\Shop\Product\ActivePromotion;
@@ -8,6 +9,8 @@ use Modules\Shop\Product\Category;
 use Modules\Shop\Product\Price;
 use Modules\Shop\Product\Product;
 use Modules\Shop\Product\Promotion;
+use Modules\Shop\Product\Property;
+use Modules\Shop\Product\PropertyValue;
 use Modules\System\Seeder;
 
 class ShopTableSeeder extends Seeder
@@ -27,6 +30,11 @@ class ShopTableSeeder extends Seeder
         }
         if (Category::count() == 0) {
             $this->call('CategoryTableSeeder');
+        }
+
+        if (Property::count() == 0)
+        {
+            $this->call('PropertyTableSeeder');
         }
 
         $this->productBases($count);
@@ -56,11 +64,12 @@ class ShopTableSeeder extends Seeder
                     $product->categories()->sync($categories->random(2)->lists('id')->toArray());
                 }
 
+                $this->properties($product);
+
                 $this->prices($product, $account->id);
                 $this->promotions($product, $account->id);
             }
         }
-
     }
 
     protected function prices(Product $product, $account)
@@ -126,6 +135,31 @@ class ShopTableSeeder extends Seeder
                 'to'           => $dates ? $this->faker->dateTimeBetween('-5 months', '-2 days') : null,
             ]));
         }
+    }
+
+    protected function properties(Product $product)
+    {
+        $properties = Property::all();
+
+        $properties = $properties->random(rand(5,10));
+
+        $values = new Collection();
+
+        foreach($properties as $property)
+        {
+            $payload = [
+                'property_id' => $property->id
+            ];
+
+            if($property->options->count())
+            {
+                $payload['option_id'] = $property->options->random(1)->id;
+            }
+
+            $values->push(factory(PropertyValue::class)->make($payload));
+        }
+
+        $product->properties()->saveMany($values);
     }
 
 }
