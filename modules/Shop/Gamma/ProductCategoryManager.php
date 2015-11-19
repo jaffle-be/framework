@@ -24,12 +24,8 @@ class ProductCategoryManager
     public function attach($payload)
     {
             //when attaching a category, need to make sure people with this selected are notified
-            \DB::listen(function ($q) {
-                app('log')->notice($q);
-            });
             $category = $this->category->find($payload['category_id']);
             $product = $this->product->find($payload['product_id']);
-            app('log')->notice('data', [$category ? true : false, $product ? true : false]);
 
             $selections = $this->records($product, $category);
 

@@ -1,9 +1,23 @@
 <?php
 
 use Modules\Shop\Product\Property;
+use Modules\Shop\Product\PropertyGroup;
 use Modules\Shop\Product\PropertyOption;
 use Modules\Shop\Product\PropertyUnit;
 use Modules\Shop\Product\PropertyValue;
+
+$factory->define(PropertyGroup::class, function (Faker\Generator $faker) {
+
+    $name = $faker->word;
+    return [
+        'nl' => [
+            'name' => $name,
+        ],
+        'en' => [
+            'name' => $name,
+        ]
+    ];
+});
 
 $factory->define(Property::class, function (Faker\Generator $faker) {
 

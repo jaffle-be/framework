@@ -37,4 +37,14 @@ class Category extends Model implements Pushable, Searchable
         return $this->belongsToMany('Modules\Shop\Product\Brand', 'product_brands_pivot', null, null, 'brand_categories');
     }
 
+    public function synonyms()
+    {
+        return $this->hasMany('Modules\Shop\Product\Category', 'original_id');
+    }
+
+    public function original()
+    {
+        return $this->belongsTo('Modules\Shop\Product\Category', 'original_id');
+    }
+
 }

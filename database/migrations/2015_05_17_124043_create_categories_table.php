@@ -15,6 +15,8 @@ class CreateCategoriesTable extends Migration
     {
         Schema::create('product_categories', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('original_id', false, true)->nullable();
+            $table->foreign('original_id', 'synonym_to_category')->references('id')->on('product_categories')->onDelete('cascade');
             $table->timestamps();
         });
 
@@ -40,7 +42,10 @@ class CreateCategoriesTable extends Migration
             $table->dropForeign('translation_to_category');
         });
 
-        Schema::drop('product_categories');
+        Schema::drop('product_categories', function(Blueprint $table)
+        {
+            $table->dropForeign('synonym_to_category');
+        });
     }
 
 }
