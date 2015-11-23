@@ -41,18 +41,20 @@ class GammaController extends AdminController
         ]);
 
         //if we passed in a category, we used the suggest to find a category.
+        //but we want to show our synonyms too.
         if($category = $request->get('category'))
         {
             $category = Category::find($category);
 
             if($category)
             {
-                $categories->where('id', $category->id);
+                $showingIds = array_merge([$category->id], $category->synonyms->lists('id')->toArray());
+                $categories->whereIn('id', $showingIds);
             }
         }
 
         if($category){
-            $categories = $categories->paginate(5, ['*'], 'page', $page = 1);
+            $categories = $categories->paginate(5, ['*'], 'page', 1);
         }
         else{
             $categories = $categories->paginate(5);
