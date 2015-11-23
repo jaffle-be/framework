@@ -21,6 +21,19 @@ class Tag extends Model implements Searchable
 
     protected $translatedAttributes = ['name'];
 
+    protected static $searchableMapping = [
+        'id'         => ['type' => 'integer'],
+        'account_id'  => ['type' => 'integer'],
+        'created_at' => [
+            'type'   => 'date',
+            'format' => 'yyyy-MM-dd HH:mm:ss'
+        ],
+        'updated_at' => [
+            'type'   => 'date',
+            'format' => 'yyyy-MM-dd HH:mm:ss'
+        ],
+    ];
+
     public function posts()
     {
         return $this->morphedByMany('Modules\Blog\Post', 'taggable');

@@ -19,6 +19,17 @@ class ProductCategorySelection extends Model implements Searchable
         'deleted_at'
     ];
 
+    protected static $searchableMapping = [
+        'created_at' => [
+            'type'   => 'date',
+            'format' => 'yyyy-MM-dd HH:mm:ss'
+        ],
+        'updated_at' => [
+            'type'   => 'date',
+            'format' => 'yyyy-MM-dd HH:mm:ss'
+        ],
+    ];
+
     public function category()
     {
         return $this->belongsTo('Modules\Shop\Product\Category');

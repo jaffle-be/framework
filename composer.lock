@@ -1,10 +1,11 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "a2c25fa9c55dbbfcb98742372a9f983a",
+    "hash": "451e2c956ea4c461cf7fa6df5a326069",
+    "content-hash": "974a9434c3b339506c13b8b0d607944e",
     "packages": [
         {
             "name": "alaouy/youtube",
@@ -232,7 +233,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cviebrock/eloquent-sluggable/zipball/666928685989e04cf1ab28d049984f457e80cd76",
+                "url": "https://api.github.com/repos/cviebrock/eloquent-sluggable/zipball/ae6bc5271ca148e35a5c3ed799a9df2bf092728b",
                 "reference": "666928685989e04cf1ab28d049984f457e80cd76",
                 "shasum": ""
             },
@@ -918,16 +919,16 @@
         },
         {
             "name": "elasticsearch/elasticsearch",
-            "version": "v2.0.3",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/elastic/elasticsearch-php.git",
-                "reference": "9ce5bd7606f6c185d434de4f80863f998f74e179"
+                "reference": "6ef4c41efe48f4d308d6891f2026731b25792811"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/elastic/elasticsearch-php/zipball/9ce5bd7606f6c185d434de4f80863f998f74e179",
-                "reference": "9ce5bd7606f6c185d434de4f80863f998f74e179",
+                "url": "https://api.github.com/repos/elastic/elasticsearch-php/zipball/6ef4c41efe48f4d308d6891f2026731b25792811",
+                "reference": "6ef4c41efe48f4d308d6891f2026731b25792811",
                 "shasum": ""
             },
             "require": {
@@ -938,8 +939,8 @@
             "require-dev": {
                 "athletic/athletic": "~0.1",
                 "cpliakas/git-wrapper": "~1.0",
-                "mockery/mockery": "dev-master@dev",
-                "phpunit/phpunit": "3.7.*",
+                "mockery/mockery": "0.9.4",
+                "phpunit/phpunit": "~4.7",
                 "symfony/yaml": "2.4.3 as 2.4.2",
                 "twig/twig": "1.*"
             },
@@ -968,7 +969,7 @@
                 "elasticsearch",
                 "search"
             ],
-            "time": "2015-11-05 15:29:21"
+            "time": "2015-11-17 00:29:03"
         },
         {
             "name": "erusev/parsedown",
@@ -5322,6 +5323,7 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
+        "elasticsearch/elasticsearch": 20,
         "cviebrock/eloquent-sluggable": 20,
         "pingpong/modules": 20,
         "laravelrus/localized-carbon": 20

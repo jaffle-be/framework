@@ -23,7 +23,7 @@
     "mews/captcha": "^2.0",
     "thomaswelton/laravel-gravatar": "~1.0",
     "davejamesmiller/laravel-breadcrumbs": "~3.0",
-    "elasticsearch/elasticsearch": "~2.0",
+    "elasticsearch/elasticsearch": "dev-master",
     "intouch/laravel-newrelic": "~2.0",
     "barryvdh/laravel-debugbar": "~2.0",
     "cviebrock/eloquent-sluggable": "dev-master",

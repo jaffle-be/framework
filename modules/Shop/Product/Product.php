@@ -38,6 +38,14 @@ class Product extends Model implements StoresMedia, PresentableEntity, SeoEntity
         'id'         => ['type' => 'integer'],
         'account_id' => ['type' => 'integer'],
         'brand_id'   => ['type' => 'integer'],
+        'created_at' => [
+            'type'   => 'date',
+            'format' => 'yyyy-MM-dd HH:mm:ss'
+        ],
+        'updated_at' => [
+            'type'   => 'date',
+            'format' => 'yyyy-MM-dd HH:mm:ss'
+        ],
     ];
 
     public function getMediaFolder($type = null, $size = null)
@@ -61,6 +69,13 @@ class Product extends Model implements StoresMedia, PresentableEntity, SeoEntity
     public function categories()
     {
         return $this->eventedBelongsToMany('Modules\Shop\Product\Category', 'product_categories_pivot', null, null, 'product_categories');
+    }
+
+    public function mainCategory()
+    {
+        return $this->categories->first(function($key, $item){
+            return !$item->original_id;
+        });
     }
 
     public function price()

@@ -29,6 +29,18 @@ class ProductTranslation extends TranslationModel implements PresentableEntity, 
         'published' => 'boolean'
     ];
 
+    protected static $searchableMapping = [
+        'id'         => ['type' => 'integer'],
+        'created_at' => [
+            'type'   => 'date',
+            'format' => 'yyyy-MM-dd HH:mm:ss'
+        ],
+        'updated_at' => [
+            'type'   => 'date',
+            'format' => 'yyyy-MM-dd HH:mm:ss'
+        ],
+    ];
+
     public function product()
     {
         return $this->belongsTo('Modules\Shop\Product\Product');

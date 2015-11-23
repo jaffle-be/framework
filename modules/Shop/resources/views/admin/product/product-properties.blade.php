@@ -6,41 +6,48 @@
 
     <div class="ibox-content">
 
-        <div ng-repeat="property in vm.product.properties">
 
-            <div class="form-group col-md-6 col-lg-4">
+        <div ng-repeat="(group_id, group) in vm.product.baseProperties">
 
-                <div ng-switch="" on="property.property.type">
+            <h3>@{{ vm.product.propertyGroups[group_id].translations[vm.options.locale].name }}</h3>
 
-                    <div ng-switch-when="boolean">
+            <div class="row">
 
-                        <input type="checkbox" class="filled-in" ng-model="property.boolean"/>
-                        <label for="published">@{{ property.property.translations[vm.options.locale].name }}</label>
+                <div ng-repeat="property in group" class="form-group col-md-6">
 
-                    </div>
+                    <div ng-switch="" on="property.type">
 
-                    <div ng-switch-when="string">
+                        <div ng-switch-when="boolean">
 
-                        <label class="control-label">@{{ property.property.translations[vm.options.locale].name }}</label>
-                        <input class="form-control" type="text" ng-model="property.translations[vm.options.locale].string">
+                            <input type="checkbox" class="filled-in" ng-model="vm.product.properties[property.id].boolean"/>
+                            <label for="published">@{{ property.translations[vm.options.locale].name }}</label>
 
-                    </div>
+                        </div>
 
-                    <div ng-switch-when="numeric">
+                        <div ng-switch-when="string">
 
-                        <label class="control-label">@{{ property.property.translations[vm.options.locale].name }}</label>
-                        <input class="form-control" type="text" ng-model="property.numeric">
+                            <label class="control-label">@{{ property.translations[vm.options.locale].name }}</label>
+                            <input class="form-control" type="text" ng-model="vm.product.properties[property.id].translations[vm.options.locale].string">
 
-                    </div>
+                        </div>
 
-                    <div ng-switch-when="float">
+                        <div ng-switch-when="numeric">
 
-                        <label class="control-label">@{{ property.property.translations[vm.options.locale].name }}</label>
-                        <input class="form-control" type="text" ng-model="property.float">
+                            <label class="control-label">@{{ property.translations[vm.options.locale].name }}</label>
+                            <input class="form-control" type="text" ng-model="vm.product.properties[property.id].numeric">
 
-                    </div>
+                        </div>
 
-                    <div ng-switch-when="options">
+                        <div ng-switch-when="float">
+
+                            <label class="control-label">@{{ property.translations[vm.options.locale].name }}</label>
+                            <input class="form-control" type="text" ng-model="property.float">
+
+                        </div>
+
+                        <div ng-switch-when="options">
+
+                        </div>
 
                     </div>
 
@@ -49,7 +56,6 @@
             </div>
 
         </div>
-
 
         <div class="clearfix"></div>
     </div>

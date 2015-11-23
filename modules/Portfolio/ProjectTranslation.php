@@ -27,6 +27,18 @@ class ProjectTranslation extends TranslationModel implements Searchable, Sluggab
 
     protected $presenter = 'Modules\Portfolio\Presenter\ProjectFrontPresenter';
 
+
+    protected static $searchableMapping = [
+        'created_at' => [
+            'type'   => 'date',
+            'format' => 'yyyy-MM-dd HH:mm:ss'
+        ],
+        'updated_at' => [
+            'type'   => 'date',
+            'format' => 'yyyy-MM-dd HH:mm:ss'
+        ],
+    ];
+
     public function project()
     {
         return $this->belongsTo('Modules\Portfolio\Project');

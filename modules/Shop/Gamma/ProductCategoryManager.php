@@ -23,15 +23,15 @@ class ProductCategoryManager
 
     public function attach($payload)
     {
-            //when attaching a category, need to make sure people with this selected are notified
-            $category = $this->category->find($payload['category_id']);
-            $product = $this->product->find($payload['product_id']);
+        //when attaching a category, need to make sure people with this selected are notified
+        $category = $this->category->find($payload['category_id']);
+        $product = $this->product->find($payload['product_id']);
 
-            $selections = $this->records($product, $category);
+        $selections = $this->records($product, $category);
 
-            foreach ($selections as $selection) {
-                $this->notify($selection->account_id, $product, $category->id, 'activate');
-            }
+        foreach ($selections as $selection) {
+            $this->notify($selection->account_id, $product, $category->id, 'activate');
+        }
     }
 
     public function detach($payload)

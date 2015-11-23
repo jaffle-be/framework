@@ -54,7 +54,7 @@ class SearchServiceProvider extends ServiceProvider
 
     protected function registerCommands()
     {
-        $this->commands(['Modules\Search\Command\BuildIndexes', 'Modules\Search\Command\FlushType', 'Modules\Search\Command\UpdateSettings', 'Modules\Search\Command\UpdateMapping']);
+        $this->commands(['Modules\Search\Command\BuildIndexes', 'Modules\Search\Command\FlushType', 'Modules\Search\Command\UpdateSettings', 'Modules\Search\Command\Rebuild']);
     }
 
 }

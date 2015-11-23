@@ -192,7 +192,9 @@ class ShopTableSeeder extends Seeder
         ];
 
         for ($i = 0; $i < 10; $i++) {
+
             $name = $names[$i];
+
             $category = factory(Category::class)->create([
                 'nl' => ['name' => $name],
                 'fr' => ['name' => $name],
@@ -206,8 +208,7 @@ class ShopTableSeeder extends Seeder
 
                 for($j = 0; $j < $count; $j++)
                 {
-                    $synonym = factory(Category::class)->create([
-                        'original_id' => $category->id,
+                    $synonym = factory(Category::class)->make([
                         'nl' => ['name' => $name . ' syn ' . ($j + 1)],
                         'fr' => ['name' => $name . ' syn ' . ($j + 1)],
                         'en' => ['name' => $name . ' syn ' . ($j + 1)],

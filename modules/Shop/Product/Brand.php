@@ -20,6 +20,18 @@ class Brand extends Model implements Pushable, Searchable
 
     protected $translatedAttributes = ['name', 'description'];
 
+    protected static $searchableMapping = [
+        'id'         => ['type' => 'integer'],
+        'created_at' => [
+            'type'   => 'date',
+            'format' => 'yyyy-MM-dd HH:mm:ss'
+        ],
+        'updated_at' => [
+            'type'   => 'date',
+            'format' => 'yyyy-MM-dd HH:mm:ss'
+        ],
+    ];
+
     public function products()
     {
         return $this->hasMany('Modules\Shop\Product\Product');

@@ -112,5 +112,5 @@ interface Searchable
      *
      * @return mixed
      */
-    public function searchableSuggestData(Searchable $inheritFrom = null);
+    public function getSearchableSuggestData(Searchable $inheritFrom = null);
 }

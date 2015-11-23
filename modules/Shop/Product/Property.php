@@ -13,6 +13,16 @@ class Property extends Model
 
     protected $translatedAttributes = ['name'];
 
+    public function category()
+    {
+        return $this->belongsTo('Modules\Shop\Product\Category', 'category_id');
+    }
+
+    public function group()
+    {
+        return $this->belongsTo('Modules\Shop\Product\PropertyGroup', 'group_id');
+    }
+
     public function options()
     {
         return $this->hasMany('Modules\Shop\Product\PropertyOption', 'property_id');
@@ -21,6 +31,14 @@ class Property extends Model
     public function unit()
     {
         return $this->belongsTo('Modules\Shop\Product\PropertyUnit', 'unit_id');
+    }
+
+    public static function categoryProperties($category)
+    {
+        return static::query()
+            ->with(['translations', 'options', 'options.translations', 'unit', 'unit.translations'])
+            ->where('category_id', $category->id)
+            ->get();
     }
 
 }

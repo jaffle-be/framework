@@ -94,15 +94,6 @@ interface SearchServiceInterface
     public function updateSettings(array $settings);
 
     /**
-     * Update the mapping for a elasticsearch type.
-     *
-     * @param $type
-     *
-     * @return mixed
-     */
-    public function updateMapping($type);
-
-    /**
      * Boot the search service.
      *
      * This method should parse the configurations and set the auto indexing.

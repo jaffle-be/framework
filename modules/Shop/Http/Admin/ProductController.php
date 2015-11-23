@@ -2,6 +2,7 @@
 
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
 use Modules\Account\AccountManager;
 use Modules\Media\MediaWidgetPreperations;
 use Modules\Search\SearchServiceInterface;
@@ -9,6 +10,8 @@ use Modules\Shop\Gamma\GammaSubscriptionManager;
 use Modules\Shop\Jobs\UpdateProduct;
 use Modules\Shop\Product\Category;
 use Modules\Shop\Product\Product;
+use Modules\Shop\Product\Property;
+use Modules\Shop\Product\PropertyGroup;
 use Modules\System\Http\AdminController;
 use Modules\System\Locale;
 
@@ -89,6 +92,8 @@ class ProductController extends AdminController
         $product->load($this->relations());
 
         $this->prepareMedia($product);
+
+        $this->prepareProperties($product);
 
         return $product;
     }
@@ -179,14 +184,40 @@ class ProductController extends AdminController
         $category = Category::find($request->get('category_id'));
 
         $product->load('categories');
-        $category->load('translations');
 
-        if(!$product->categories->contains($category->id))
+        $added = new Collection();
+
+        if(!$category->original_id)
         {
-            $product->categories()->attach($category);
+            //we can only add a main category if the count is 0
+            if($product->categories->count() == 0)
+            {
+                $category->load(['synonyms', 'synonyms.translations', 'translations']);
+                //add main category, and each synonym.
+                $this->doCategoryAttach($product, $category, $added);
+
+                foreach($category->synonyms as $synonym)
+                {
+                    $this->doCategoryAttach($product, $synonym, $added);
+                }
+
+                $baseProperties = Property::categoryProperties($category);
+            }
         }
 
-        return $category;
+        if($category->original_id)
+        {
+            $category->load(['translations']);
+
+            $this->doCategoryAttach($product, $category, $added);
+        }
+
+        return new Collection([
+            'categories' => $added,
+            'baseProperties' => isset($baseProperties) ? $baseProperties : null,
+            'propertyGroups' => isset($baseProperties) ? $this->propertyGroups($baseProperties) : null,
+            'hasMainCategory' => isset($baseProperties) ? true : false,
+        ]);
     }
 
     public function removeCategory(Request $request)
@@ -204,10 +235,25 @@ class ProductController extends AdminController
 
         if($product->categories->contains($category->id))
         {
-            $product->categories()->detach($category);
+            //is the category the main category or a synonym?
+            if(!$category->original_id)
+            {
+                //we can only have 1 main category and synonyms to that category
+                //so we can do an empty sync here
+                $product->categories()->sync([]);
+
+                return json_encode(['status' => 'flushed']);
+            }
+            else{
+                $product->categories()->detach($category);
+
+                return $category;
+            }
         }
 
-        return $category;
+        return json_encode([
+            'status' => false
+        ]);
     }
 
     public function overview()
@@ -223,8 +269,7 @@ class ProductController extends AdminController
     protected function relations()
     {
         return ['translations', 'brand', 'brand.translations', 'categories', 'categories.translations',
-            'properties', 'properties.translations', 'properties.option', 'properties.option.translations',
-            'properties.property', 'properties.property.translations',
+            'properties', 'properties', 'properties.option',
         ];
     }
 
@@ -259,6 +304,49 @@ class ProductController extends AdminController
         $aliases = $accounts->lists('alias')->toArray();
 
         return implode(',', $aliases);
+    }
+
+    /**
+     * @param $product
+     * @param $category
+     * @param $added
+     */
+    protected function doCategoryAttach($product, $category, $added)
+    {
+        if (!$product->categories->contains($category->id)) {
+            $product->categories()->attach($category);
+            $added->push($category);
+        }
+    }
+
+    protected function prepareProperties($product)
+    {
+        $category = $product->mainCategory();
+
+        if($category)
+        {
+            $properties = Property::categoryProperties($category);
+            $product->hasMainCategory = true;
+            $product->baseProperties = $properties->groupBy('group_id');
+            $product->propertyGroups = $this->propertyGroups($properties);
+            $product->setRelation('properties',$product->properties->keyBy('property_id'));
+        }
+    }
+
+    protected function propertyGroups($baseProperties)
+    {
+        $properties = $baseProperties->groupBy('group_id');
+
+        if($properties->count())
+        {
+            $groups = $properties->keys();
+
+            $groups = $groups->filter(function($id){
+                return $id != null;
+            });
+
+            return PropertyGroup::with('translations')->whereIn('id', $groups)->get();
+        }
     }
 
 }

@@ -22,6 +22,18 @@ class BrandTranslation extends TranslationModel implements SluggableInterface, P
         'build_from' => 'name',
     ];
 
+    protected static $searchableMapping = [
+        'id'         => ['type' => 'integer'],
+        'created_at' => [
+            'type'   => 'date',
+            'format' => 'yyyy-MM-dd HH:mm:ss'
+        ],
+        'updated_at' => [
+            'type'   => 'date',
+            'format' => 'yyyy-MM-dd HH:mm:ss'
+        ],
+    ];
+
     public function brand()
     {
         return $this->belongsTo('Modules\Shop\Product\Brand');

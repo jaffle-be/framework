@@ -9,7 +9,7 @@
             <uib-tabset>
 
                 <uib-tab heading="base" active="vm.mainTabs[0]"></uib-tab>
-                <uib-tab heading="properties" active="vm.mainTabs[1]"></uib-tab>
+                <uib-tab heading="properties" active="vm.mainTabs[1]" ng-show="vm.product.hasMainCategory"></uib-tab>
 
             </uib-tabset>
 

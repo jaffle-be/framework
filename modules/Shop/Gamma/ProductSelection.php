@@ -32,6 +32,14 @@ class ProductSelection extends Model implements Searchable
         'account_id' => ['type' => 'integer'],
         'product_id' => ['type' => 'integer'],
         'brand_id'   => ['type' => 'integer'],
+        'created_at' => [
+            'type'   => 'date',
+            'format' => 'yyyy-MM-dd HH:mm:ss'
+        ],
+        'updated_at' => [
+            'type'   => 'date',
+            'format' => 'yyyy-MM-dd HH:mm:ss'
+        ],
     ];
 
     /**
@@ -41,9 +49,9 @@ class ProductSelection extends Model implements Searchable
      *
      * @return mixed
      */
-    public function searchableSuggestData(Searchable $inheritFrom = null)
+    public function getSearchableSuggestData(Searchable $inheritFrom = null)
     {
-        return $this->product->searchableSuggestData($this);
+        return $this->product->getSearchableSuggestData($this);
     }
 
     public function product()

@@ -32,13 +32,14 @@
                     }, 400);
                 };
 
-                this.create = function (locale, name) {
+                this.create = function (payload) {
                     var category = new Category({
+                        original_id: payload.original_id ? payload.original_id : null,
                         translations : {}
                     });
 
-                    category.translations[locale] = {
-                        name: name
+                    category.translations[payload.locale] = {
+                        name: payload.name
                     };
 
                     return category.$save()

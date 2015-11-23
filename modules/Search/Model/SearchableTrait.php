@@ -101,7 +101,7 @@ trait SearchableTrait
      */
     public function getSearchableDocument()
     {
-        return array_merge($this->toArray(), $this->searchableSuggestData());
+        return array_merge($this->toArray(), $this->getSearchableSuggestData());
     }
 
     /**
@@ -188,7 +188,7 @@ trait SearchableTrait
             {
                 $suggests[$this->getSearchableSuggestName($locale)] = [
                     'type' => 'completion',
-                    'index_analyzer' => 'simple',
+                    'analyzer' => 'simple',
                     'search_analyzer' => 'simple',
                     'payloads' => true
                 ];
@@ -326,7 +326,7 @@ trait SearchableTrait
      * keep this public, this allows for easy searching inheriting
      * @return array
      */
-    public function searchableSuggestData(Searchable $inheritFrom = null)
+    public function getSearchableSuggestData(Searchable $inheritFrom = null)
     {
         $data = [];
 
@@ -340,14 +340,7 @@ trait SearchableTrait
                     continue;
                 }
 
-                $data[$this->getSearchableSuggestName($locale, $inheritFrom)] = [
-                    'input'   => $translation->name,
-                    'output'  => $translation->name,
-                    'payload' => [
-                        'label' => $translation->name,
-                        'value' => $this->id,
-                    ]
-                ];
+                $data[$this->getSearchableSuggestName($locale, $inheritFrom)] = $this->getSearchableSuggestPayload($translation);
             }
         }
 
@@ -369,6 +362,23 @@ trait SearchableTrait
         }
 
         return $this->getSearchableType() . $suffix;
+    }
+
+    /**
+     * @param $translation
+     *
+     * @return array
+     */
+    protected function getSearchableSuggestPayload($translation)
+    {
+        return [
+            'input'   => $translation->name,
+            'output'  => $translation->name,
+            'payload' => [
+                'label' => $translation->name,
+                'value' => $this->id,
+            ]
+        ];
     }
 
 }

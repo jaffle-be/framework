@@ -21,6 +21,18 @@ class CategoryTranslation extends TranslationModel implements PresentableEntity,
         'build_from' => 'name',
     ];
 
+    protected static $searchableMapping = [
+        'id'         => ['type' => 'integer'],
+        'created_at' => [
+            'type'   => 'date',
+            'format' => 'yyyy-MM-dd HH:mm:ss'
+        ],
+        'updated_at' => [
+            'type'   => 'date',
+            'format' => 'yyyy-MM-dd HH:mm:ss'
+        ],
+    ];
+
     public function category()
     {
         return $this->belongsTo('Modules\Shop\Product\Category');
