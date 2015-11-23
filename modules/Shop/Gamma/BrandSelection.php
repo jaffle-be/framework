@@ -11,9 +11,6 @@ class BrandSelection extends Model implements Pushable
     use ModelAccountResource;
     use CanPush;
 
-    const ACTIVATE = 'activate';
-    const DEACTIVATE = 'deactivate';
-
     protected $table = 'product_gamma_selected_brands';
 
     protected $fillable = ['account_id'];

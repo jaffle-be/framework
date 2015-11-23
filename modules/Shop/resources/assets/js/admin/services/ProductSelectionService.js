@@ -32,16 +32,26 @@
                     }
                 },
                 batchPublish: function (products, locale, success) {
-                    $http.post('/api/admin/shop/selections/batch-publish', {
+                    $http.post('/api/admin/shop/gamma/selections/batch-publish', {
                         products: products,
                         locale: locale
                     }).then(success);
                 },
                 batchUnpublish: function (products, locale, success) {
-                    $http.post('/api/admin/shop/selections/batch-unpublish', {
+                    $http.post('/api/admin/shop/gamma/selections/batch-unpublish', {
                         products: products,
                         locale: locale
                     }).then(success);
+                },
+                searchSelection: function(query, locale)
+                {
+                    var data = {
+                        query:query,
+                        locale: locale
+                    };
+                    return $http.post('/api/admin/shop/gamma/selections/suggest', data).then(function(response){
+                        return response.data;
+                    });
                 },
 
             };

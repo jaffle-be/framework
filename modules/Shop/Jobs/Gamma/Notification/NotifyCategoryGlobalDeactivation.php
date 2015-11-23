@@ -61,12 +61,8 @@ class NotifyCategoryDeactivation extends Job implements SelfHandling
     protected function findExistingCombination(GammaNotification $notification, $brand, $category)
     {
         $existing = $notification
-            ->whereHas('brandSelection', function ($query) use ($brand) {
-                $query->where('brand_id', $brand->id);
-            })
-            ->whereHas('categorySelection', function ($query) use ($category) {
-                $query->where('category_id', $category->id);
-            })->first();
+            ->where('brand_id', $brand->id)
+            ->where('category_id', $category->id)->first();
 
         return $existing;
     }

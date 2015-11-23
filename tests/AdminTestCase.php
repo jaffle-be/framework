@@ -12,6 +12,13 @@ class AdminTestCase extends \Illuminate\Foundation\Testing\TestCase
      */
     protected $baseUrl = 'http://digiredo.local';
 
+    public function setUp()
+    {
+        putenv('RUNNING_TESTS_FRONT=false');
+
+        parent::setUp();
+    }
+
     /**
      * Creates the application.
      *
@@ -20,8 +27,6 @@ class AdminTestCase extends \Illuminate\Foundation\Testing\TestCase
     public function createApplication()
     {
         $app = require __DIR__ . '/../bootstrap/app.php';
-
-        putenv('RUNNING_TESTS_FRONT=false');
 
         $app->make(Kernel::class)->bootstrap();
 

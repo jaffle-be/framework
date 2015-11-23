@@ -5,10 +5,21 @@ trait FrontScoping
 
     public static function bootFrontScoping()
     {
-        if (on_front()) {
-            $class = self::getFrontScopeName();
+        $class = self::getFrontScopeName();
 
+        if (on_front()) {
             static::addGlobalScope(new $class());
+        }
+        else{
+            //added this for tests
+            $className = get_class(new static);
+
+            if(isset(static::$globalScopes[$className]))
+            {
+                $classScopes = static::$globalScopes[$className];
+
+                static::$globalScopes[$className] = array_except($classScopes, $class);;
+            }
         }
     }
 

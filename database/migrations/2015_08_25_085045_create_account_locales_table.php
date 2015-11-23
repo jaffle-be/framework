@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateAccountLocalesTable extends Migration
 {
+
     /**
      * Run the migrations.
      *
@@ -13,8 +14,7 @@ class CreateAccountLocalesTable extends Migration
      */
     public function up()
     {
-        Schema::create('account_locales', function(Blueprint $table)
-        {
+        Schema::create('account_locales', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('account_id', false, true);
             $table->foreign('account_id', 'account_locale_to_account')->references('id')->on('accounts')->onDelete('cascade');

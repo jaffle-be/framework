@@ -1,5 +1,7 @@
 <?php namespace Modules\Shop\Product;
 
+use Modules\Account\Account;
+
 interface CatalogRepositoryInterface
 {
 
@@ -7,6 +9,6 @@ interface CatalogRepositoryInterface
 
     public function findBrands(array $ids);
 
-    public function chunkWithinBrandCategory(Brand $brand, Category $category, \Closure $callback);
+    public function chunkWithinBrandCategory(Account $account, Brand $brand, Category $category, \Closure $callback);
 
 }

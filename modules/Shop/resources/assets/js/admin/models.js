@@ -2,8 +2,8 @@
     'use strict';
 
     angular.module('shop')
-        .factory('Product', function ($resource) {
-            return $resource('api/admin/products/:id', {id: '@id'}, {
+        .factory('Product', function ($resource, Category) {
+            return $resource('api/admin/shop/products/:id', {id: '@id'}, {
                 query: {
                     isArray: false
                 },
@@ -17,6 +17,14 @@
                             response.translations = {};
                         }
 
+                        response.categories = _.map(response.categories, function (category) {
+                            return new Category(category);
+                        });
+
+                        response.baseProperties = _.map(response.baseProperties, function(item){
+                            return item
+                        });
+
                         return response;
                     }
                 },
@@ -26,8 +34,26 @@
             });
         })
 
+        .factory('Category', function ($resource) {
+
+            var placeholders = {
+                id: '@id',
+            };
+
+            return $resource('api/admin/shop/categories/:id', placeholders, {
+                list: {
+                    url: 'api/admin/shop/categories/list',
+                    method: 'GET',
+                    isArray: true
+                },
+                update: {
+                    method: 'PUT'
+                },
+            });
+        })
+
         .factory('ProductSelection', function ($resource) {
-            return $resource('api/admin/shop/selections/:id', {id: '@id'}, {
+            return $resource('api/admin/shop/gamma/selections/:id', {id: '@id'}, {
                 query: {
                     isArray: false
                 },

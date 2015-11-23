@@ -13,4 +13,16 @@ class UserTranslation extends TranslationModel implements Searchable
 
     protected $fillable = ['bio', 'quote', 'quote_author'];
 
+    protected static $searchableMapping = [
+        'id'         => ['type' => 'integer'],
+        'created_at' => [
+            'type'   => 'date',
+            'format' => 'yyyy-MM-dd HH:mm:ss'
+        ],
+        'updated_at' => [
+            'type'   => 'date',
+            'format' => 'yyyy-MM-dd HH:mm:ss'
+        ],
+    ];
+
 }

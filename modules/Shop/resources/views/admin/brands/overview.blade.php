@@ -1,9 +1,37 @@
 <div class="wrapper wrapper-content" ng-controller="GammaBrandController as vm" ng-init="vm.options = {{ system_options() }}">
 
-    <div class="text-center">
-        <uib-pagination total-items="vm.totalItems" ng-model="vm.page" ng-change="vm.load()" max-size="10" class="pagination-sm" boundary-links="true" items-per-page="5"></uib-pagination>
-    </div>
+    <div class="row search-navigation">
 
+        <div class="col-md-6 col-lg-4">
+
+            <div class="input-group">
+                <div class="input-group-addon">
+                    <i class="fa fa-search"></i>
+                </div>
+                <input type="text" class="form-control"
+                       uib-typeahead="item.label for item in vm.searchBrand($viewValue)"
+                       typeahead-loading="searching"
+                       typeahead-on-select="vm.load($item)"
+                       typeahead-wait-ms="400"
+                       typeahead-highlight="true"
+                       ng-model="vm.searchInput">
+                <div class="input-group-addon">
+                    <i ng-show="vm.selectedBrand" ng-click="vm.clearSelection()" class="fa fa-times"></i>
+                    <span ng-hide="vm.selectedBrand">&nbsp;&nbsp;</span>
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="col-md-6 col-lg-8">
+            <div class="text-center">
+                <uib-pagination total-items="vm.totalItems" ng-model="vm.page" ng-change="vm.load()" max-size="10" class="pagination-sm" boundary-links="true" items-per-page="5"></uib-pagination>
+            </div>
+        </div>
+
+
+    </div>
     <div class="ibox" ng-repeat="brand in vm.brands">
 
         <div class="ibox-title">

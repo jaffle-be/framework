@@ -60,8 +60,14 @@
                                             <div class="sk-cube"></div>
                                         </div>
                                     </div>
-                                    <input st-search="query" type="search" ng-change="vm.test()" name="search" ng-model="vm.query" class="form-control"/>
-                                </div>
+                                    <input type="text" class="form-control"
+                                           uib-typeahead="item.label for item in vm.searchSelection($viewValue)"
+                                           typeahead-loading="searching"
+                                           typeahead-on-select="vm.goTo($item)"
+                                           typeahead-wait-ms="400"
+                                           typeahead-highlight="true"
+                                           ng-model="vm.searchInput">                                </div>
+
                             </div>
                             <div class="col-xs-3">
                             </div>
@@ -80,12 +86,11 @@
                         <input type="checkbox" class="filled-in" id="row@{{ $index + 1 }}" ng-model="selection.product.isSelected"/>
                         <label for="row@{{ $index + 1 }}">@{{ $index + 1 }}</label>
                     </td>
-                    <td width="0%">&nbsp;</td>
+                    <td width="150"><img class="img-responsive img-rounded" ng-src="@{{ selection.product.images[0].sizes[0].path }}"/></td>
                     <td>
-                        <div class="">
-                            <img class="pull-left img-responsive img-rounded" ng-src="@{{ selection.product.images[0].sizes[0].path }}"/>
-                            <h4 ng-bind-html="renderHtml(selection.product.translations[vm.options.locale].title)"></h4>
-                            <span ng-bind-html="renderHtml(selection.product.translations[vm.options.locale].cached_extract)"></span>
+                        <div>
+                            <h4 ng-bind-html="renderHtml(vm.getTitle(selection.product))"></h4>
+                            <h6 ng-bind-html="renderHtml(selection.product.translations[vm.options.locale].title)"></h6>
                         </div>
                     </td>
                     <td>@{{ selection.product.tags.length }}</td>

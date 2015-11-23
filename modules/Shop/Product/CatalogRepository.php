@@ -1,5 +1,7 @@
 <?php namespace Modules\Shop\Product;
 
+use Modules\Account\Account;
+
 class CatalogRepository implements CatalogRepositoryInterface
 {
 
@@ -26,11 +28,14 @@ class CatalogRepository implements CatalogRepositoryInterface
         return $this->brand->whereIn('id', $ids)->get();
     }
 
-    public function chunkWithinBrandCategory(Brand $brand, Category $category, \Closure $callback)
+    public function chunkWithinBrandCategory(Account $account, Brand $brand, Category $category, \Closure $callback)
     {
+        $subscriptions = app('Modules\Shop\Gamma\GammaSubscriptionManager');
+
         $this->product->join('product_categories_pivot', 'products.id', '=', 'product_categories_pivot.product_id')
             ->where('category_id', $category->id)
             ->where('brand_id', $brand->id)
+            ->whereIn('account_id', $subscriptions->subscribedIds($account))
             ->chunk(100, $callback);
     }
 

@@ -2,7 +2,23 @@
 
     @include('system::admin.locale-tabs')
 
-    <div class="row">
+
+    <div class="ibox">
+        <div class="ibox-tabs">
+
+            <uib-tabset>
+
+                <uib-tab heading="base" active="vm.mainTabs[0]"></uib-tab>
+                <uib-tab heading="properties" active="vm.mainTabs[1]" ng-show="vm.product.hasMainCategory"></uib-tab>
+
+            </uib-tabset>
+
+        </div>
+    </div>
+
+
+
+    <div class="row" ng-show="vm.mainTabs[0]">
         <div class="col-xs-12 col-sm-7 col-md-8 col-lg-9">
 
             @include('shop::admin.product.product-text')
@@ -16,6 +32,12 @@
             @include('shop::admin.product.product-images')
 
         </div>
+    </div>
+
+    <div ng-show="vm.mainTabs[1]">
+
+        @include('shop::admin.product.product-properties')
+
     </div>
 
     {{--<div class="col-xs-12">

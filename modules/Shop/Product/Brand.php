@@ -1,21 +1,36 @@
 <?php namespace Modules\Shop\Product;
 
 use Illuminate\Database\Eloquent\Model;
+use Modules\Search\Model\Searchable;
+use Modules\Search\Model\SearchableTrait;
 use Modules\System\Pushable\CanPush;
 use Modules\System\Pushable\Pushable;
 use Modules\System\Translatable\Translatable;
 
-class Brand extends Model implements Pushable
+class Brand extends Model implements Pushable, Searchable
 {
 
     use Translatable;
     use CanPush;
+    use SearchableTrait;
 
     protected $table = 'product_brands';
 
     protected $fillable = ['name', 'description'];
 
     protected $translatedAttributes = ['name', 'description'];
+
+    protected static $searchableMapping = [
+        'id'         => ['type' => 'integer'],
+        'created_at' => [
+            'type'   => 'date',
+            'format' => 'yyyy-MM-dd HH:mm:ss'
+        ],
+        'updated_at' => [
+            'type'   => 'date',
+            'format' => 'yyyy-MM-dd HH:mm:ss'
+        ],
+    ];
 
     public function products()
     {

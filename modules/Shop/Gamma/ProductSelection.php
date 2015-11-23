@@ -32,7 +32,27 @@ class ProductSelection extends Model implements Searchable
         'account_id' => ['type' => 'integer'],
         'product_id' => ['type' => 'integer'],
         'brand_id'   => ['type' => 'integer'],
+        'created_at' => [
+            'type'   => 'date',
+            'format' => 'yyyy-MM-dd HH:mm:ss'
+        ],
+        'updated_at' => [
+            'type'   => 'date',
+            'format' => 'yyyy-MM-dd HH:mm:ss'
+        ],
     ];
+
+    /**
+     * we basically want to override the suggest for this one to the one of the products
+     * so it will always automatically inheret the same search options as the products,
+     * but it will only search selections
+     *
+     * @return mixed
+     */
+    public function getSearchableSuggestData(Searchable $inheritFrom = null)
+    {
+        return $this->product->getSearchableSuggestData($this);
+    }
 
     public function product()
     {

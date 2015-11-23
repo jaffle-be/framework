@@ -11,6 +11,11 @@ use Modules\System\Http\AdminController;
 class ProductSelectionController extends AdminController
 {
 
+    public function suggest(Request $request)
+    {
+        return suggest_completion('product_gamma', $request->get('query'), $request->get('locale'));
+    }
+
     public function index(Request $request, ProductSelection $selections, SearchServiceInterface $search, Product $products, AccountManager $account)
     {
         $account = $account->account();
@@ -34,9 +39,19 @@ class ProductSelectionController extends AdminController
             'routing' => $account->id
         ];
 
-        $relations = ['product', 'product.translations', 'product.images', 'product.images.sizes' => function ($query) {
-            $query->dimension(150);
-        }];
+        $relations = [
+            'product',
+            'product.translations',
+            'product.images',
+            'product.images.sizes' => function ($query) {
+                $query->dimension(150);
+            },
+            //load brand from product, not from selection
+            //this will make sure the title gets displayed
+            //see ProductService in angular
+            'product.brand',
+            'product.brand.translations',
+        ];
 
         $result = $search->search($selections->getSearchableType(), $query, $relations);
 

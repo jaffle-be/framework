@@ -98,7 +98,7 @@ class ReviewGammaNotification extends Job implements SelfHandling, ShouldQueue
             }
         };
 
-        $catalog->chunkWithinBrandCategory($notification->brand, $notification->category, $callback);
+        $catalog->chunkWithinBrandCategory($notification->account, $notification->brand, $notification->category, $callback);
     }
 
     /**

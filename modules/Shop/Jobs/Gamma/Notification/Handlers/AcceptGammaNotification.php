@@ -52,7 +52,7 @@ class AcceptGammaNotification extends Job implements SelfHandling, ShouldQueue
 
         $this->insertGamma($gamma);
 
-        $catalog->chunkWithinBrandCategory($notification->brand, $notification->category, function ($products) use ($notification) {
+        $catalog->chunkWithinBrandCategory($notification->account, $notification->brand, $notification->category, function ($products) use ($notification) {
             foreach ($products as $product) {
                 $this->dispatch(new ActivateProduct($product, $notification->category, $notification->account));
             }

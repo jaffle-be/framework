@@ -96,27 +96,22 @@ class DenyGammaNotificationTest extends AdminTestCase
 
     protected function startData($use_product, $status)
     {
-        $brand = Brand::create();
-
-        $product1 = new Product();
-        $product1->brand_id = $brand->id;
-        $product1->save();
-
-        $product2 = new Product();
-        $product2->brand_id = $brand->id;
-        $product2->save();
-
+        $brand = factory(Brand::class)->create();
         $account = factory(Account::class)->create();
-        $category = Category::create();
+        $category = factory(Category::class)->create();
 
-        $product1->categories()->attach($category);
-        $product2->categories()->attach($category);
+        $products = factory(Product::class)->times(2)->create([
+            'brand_id' => $brand->id,
+            'account_id' => $account->id
+        ])->each(function($product) use ($category){
+            $product->categories()->attach($category);
+        });
 
         $notification = new GammaNotification([
             'brand_id'    => $brand->id,
             'category_id' => $category->id,
             'account_id'  => $account->id,
-            'product_id'  => $use_product ? $product1->id : null,
+            'product_id'  => $use_product ? $products->first()->id : null,
             'status'      => $status,
         ]);
 

@@ -5,6 +5,7 @@ namespace Modules\Search;
 use Elasticsearch\Client;
 use Exception;
 use Illuminate\Container\Container;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Events\Dispatcher;
 use Modules\Search\Model\Searchable;
 
@@ -136,7 +137,7 @@ class SearchService implements SearchServiceInterface
 
             $config = $this->getConfig($parent);
 
-            $this->addInvertedListener($parent, $updated, $relation, $key, array_keys($config['with']));
+            $this->addInvertedListener($parent, $updated, $relation, $key, array_keys(array_get($config, 'with', [])));
         }
     }
 
@@ -176,8 +177,6 @@ class SearchService implements SearchServiceInterface
 
         list($type, $relations) = $this->getSearchable($type);
 
-        $this->refreshType($type, $this->config->getWith($type->getSearchableType()));
-
         $me = $this;
 
         //for now we'll always disable scopes
@@ -191,7 +190,7 @@ class SearchService implements SearchServiceInterface
                 //does the related element use soft deletes?
                 $related = $type->$relation()->getRelated();
 
-                if (method_exists($related, 'bootSoftDeletes')) {
+                if (uses_trait($related, SoftDeletes::class)) {
                     $documents->load([
                         $relation => function ($query) {
                             $query->withTrashed();
@@ -208,17 +207,11 @@ class SearchService implements SearchServiceInterface
         });
     }
 
-    public function flush($type, $refresh = true)
+    public function flush()
     {
-        $this->checkIndex();
+        $params = ['index' => $this->config->getIndex()];
 
-        $config = $this->config->getType($type);
-
-        list($type) = $this->getSearchable($type);
-
-        if ($refresh) {
-            $this->refreshType($type, $config['with']);
-        }
+        $this->client->indices()->delete($params);
     }
 
     public function add(Searchable $type, $needsLoading = true)
@@ -361,21 +354,22 @@ class SearchService implements SearchServiceInterface
 
         $indices->open($toggle);
 
+        foreach($this->config->getTypes() as $type)
+        {
+            /** @var Searchable $object */
+            $class = $this->config->getClass($type);
+            $object = new $class();
+
+            $indices->putMapping([
+                'index' => $this->config->getIndex(),
+                'type' => $type,
+                'body' => [
+                    'properties' => $object->getSearchableMapping($this->config->getWith($type))
+                ],
+            ]);
+        }
+
         $indices->refresh($toggle);
-    }
-
-    /**
-     * Update the mapping for a elasticsearch type.
-     *
-     * @param $type
-     *
-     * @return mixed
-     */
-    public function updateMapping($type)
-    {
-        $this->flush($type, true);
-
-        $this->build($type);
     }
 
     /**
@@ -406,29 +400,6 @@ class SearchService implements SearchServiceInterface
         return $type;
     }
 
-    protected function refreshType(Searchable $type, array $with)
-    {
-        $params = $this->getBaseParams($type);
-
-        if ($this->client->indices()->getMapping($params)) {
-            $params = array_merge($params, ['id' => '_mapping']);
-
-            $this->client->delete($params);
-        }
-
-        if ($mapping = $type->getSearchableMapping($with)) {
-            $params = $this->getBaseParams($type);
-
-            $mapping = array_merge($params, [
-                'body' => [
-                    'properties' => $mapping
-                ]
-            ]);
-
-            $this->client->indices()->putMapping($mapping);
-        }
-    }
-
     /**
      * @param Searchable $type
      *
@@ -450,6 +421,7 @@ class SearchService implements SearchServiceInterface
 
         if (!$indices->exists($params)) {
             $indices->create($params);
+            sleep(1);
         }
     }
 

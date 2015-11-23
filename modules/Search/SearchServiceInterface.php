@@ -2,6 +2,7 @@
 
 namespace Modules\Search;
 
+use Elasticsearch\Client;
 use Modules\Search\Model\Searchable;
 
 interface SearchServiceInterface
@@ -93,15 +94,6 @@ interface SearchServiceInterface
     public function updateSettings(array $settings);
 
     /**
-     * Update the mapping for a elasticsearch type.
-     *
-     * @param $type
-     *
-     * @return mixed
-     */
-    public function updateMapping($type);
-
-    /**
      * Boot the search service.
      *
      * This method should parse the configurations and set the auto indexing.
@@ -111,7 +103,7 @@ interface SearchServiceInterface
     public function boot();
 
     /**
-     * @return mixed
+     * @return Client
      */
     public function getClient();
 }

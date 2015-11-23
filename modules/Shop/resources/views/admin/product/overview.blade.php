@@ -10,12 +10,23 @@
 
         <div class="ibox-content">
 
+            <div class="alert alert-info">
+                //this needs to become a typehead so that we can suggest products,
+                //the template returned should (to be perfect) show the product,
+                //the image, the brand and the categories (and maybe also the tags?)
+                //when something is in the searchbox, we should show a button
+                //to allow us to do a full search
+                //when we do get a result, we can use it by selecting it
+                //it should then take us to that specific page instead of doing a search
+                //you can use the payload to determine which state to go to
+            </div>
+
             <table class="table table-hover table-striped table-responsive vertical" ng-show="vm.products">
                 <thead>
                 <tr>
                     <th colspan="6">
 
-                        <div class="row">
+                        <div class="row" ng-if="!vm.creating">
 
                             <div class="col-xs-3">
                                 <div class="dropdown" data-api="dropdown">
@@ -58,13 +69,23 @@
                                             <div class="sk-cube"></div>
                                         </div>
                                     </div>
-                                    <input st-search="query" type="search" ng-change="vm.test()" name="search" ng-model="vm.query" class="form-control"/>
+                                    <input type="text" class="form-control"
+                                           uib-typeahead="item.label for item in vm.searchProduct($viewValue)"
+                                           typeahead-loading="searching"
+                                           typeahead-on-select="vm.goTo($item)"
+                                           typeahead-wait-ms="400"
+                                           typeahead-highlight="true"
+                                           ng-model="vm.searchInput">
                                 </div>
                             </div>
                             <div class="col-xs-3">
-                                <a class="btn btn-sm btn-primary pull-right" ng-click="vm.newProduct()">{{ Lang::get('shop::admin.product.create') }}</a>
+                                <a class="btn btn-sm btn-primary pull-right" ng-click="vm.startCreating()">{{ Lang::get('shop::admin.product.create') }}</a>
                             </div>
 
+                        </div>
+
+                        <div ng-if="vm.creating">
+                            @include('shop::admin.product.creator')
                         </div>
 
                     </th>
@@ -79,12 +100,14 @@
                         <input type="checkbox" class="filled-in" id="row@{{ $index + 1 }}" ng-model="product.isSelected"/>
                         <label for="row@{{ $index + 1 }}">@{{ $index + 1 }}</label>
                     </td>
-                    <td width="0%">&nbsp;</td>
+                    <td width="150">
+                        <img class="img-responsive img-rounded" ng-src="@{{ product.images[0].sizes[0].path }}"/></td>
                     <td>
-                        <div class="">
-                            <img class="pull-left img-responsive img-rounded" ng-src="@{{ product.images[0].sizes[0].path }}"/>
-                            <h4 ng-bind-html="renderHtml(product.translations[vm.options.locale].title)"></h4>
-                            <span ng-bind-html="renderHtml(product.translations[vm.options.locale].cached_extract)"></span>
+                        <div>
+                            <h4 ng-bind-html="renderHtml(vm.getTitle(product))"></h4>
+                            <h6 ng-bind-html="renderHtml(product.translations[vm.options.locale].title)"></h6>
+
+                            <p ng-bind-html="renderHtml(product.translations[vm.options.locale].cached_extract)"></p>
                         </div>
                     </td>
                     <td>@{{ product.tags.length }}</td>
@@ -106,10 +129,6 @@
                 </tr>
                 </tfoot>
             </table>
-
-            <div>
-                <a class="btn btn-primary btn-block btn-lg" ng-click="vm.newProduct()">{{ Lang::get('shop::admin.product.create') }}</a>
-            </div>
 
         </div>
 

@@ -3,7 +3,6 @@
 use App\Jobs\Job;
 use Illuminate\Contracts\Bus\SelfHandling;
 use Modules\Account\Account;
-use Modules\Shop\Gamma\BrandSelection;
 use Modules\Shop\Gamma\GammaNotification;
 use Modules\Shop\Product\Brand;
 use Modules\Shop\Product\Category;
@@ -29,7 +28,7 @@ class NotifyDetailDeactivation extends Job implements SelfHandling
 
     public function handle(GammaNotification $notification, Pusher $pusher)
     {
-        if ($this->beingProcessed($notification, $this->brand, $this->category)) {
+        if ($this->beingProcessed($notification, $this->account, $this->brand, $this->category)) {
             $message = 'this gamma detail is still being processed';
 
             abort(400, $message, ['statustext' => $message]);
@@ -38,7 +37,7 @@ class NotifyDetailDeactivation extends Job implements SelfHandling
         //did we already have a brand activation notification for this brand?
         //then we simply delete it.
         //if not, we'create one
-        $existing = $this->findExistingCombination($notification, $this->brand, $this->category);
+        $existing = $this->findExistingCombination($notification, $this->account, $this->brand, $this->category);
 
         if ($existing) {
             $pusher->trigger(pusher_account_channel(), 'gamma.gamma_notification.denied', $existing->toArray());
@@ -48,9 +47,7 @@ class NotifyDetailDeactivation extends Job implements SelfHandling
                 'account_id'            => $this->account->id,
                 'category_id'           => $this->category->id,
                 'brand_id'              => $this->brand->id,
-                'brand_selection_id'    => $this->brand->selection->id,
-                'category_selection_id' => $this->category->selection->id,
-                'type'                  => BrandSelection::DEACTIVATE,
+                'type'                  => 'deactivate',
             ]);
 
             $instance->save();

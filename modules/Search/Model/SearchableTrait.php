@@ -5,6 +5,8 @@ use App;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Modules\Search\SearchServiceInterface;
+use Modules\System\Locale;
+use Modules\System\Translatable\Translatable;
 
 /**
  * Class SearchableTrait
@@ -99,7 +101,7 @@ trait SearchableTrait
      */
     public function getSearchableDocument()
     {
-        return $this->toArray();
+        return array_merge($this->toArray(), $this->getSearchableSuggestData());
     }
 
     /**
@@ -177,6 +179,24 @@ trait SearchableTrait
         if (property_exists(__CLASS__, 'searchableMapping')) {
             $mapping = static::$searchableMapping;
         }
+
+        if(uses_trait(static::class, Translatable::class))
+        {
+            $suggests = [];
+
+            foreach(Locale::all() as $locale)
+            {
+                $suggests[$this->getSearchableSuggestName($locale)] = [
+                    'type' => 'completion',
+                    'analyzer' => 'simple',
+                    'search_analyzer' => 'simple',
+                    'payloads' => true
+                ];
+            }
+
+            $mapping = array_merge($mapping, $suggests);
+        }
+
 
         foreach ($with as $type => $config) {
             $related = new $config['class'];
@@ -301,4 +321,64 @@ trait SearchableTrait
 
         return $data;
     }
+
+    /**
+     * keep this public, this allows for easy searching inheriting
+     * @return array
+     */
+    public function getSearchableSuggestData(Searchable $inheritFrom = null)
+    {
+        $data = [];
+
+        if (uses_trait(static::class, Translatable::class)) {
+            //foreach locale we add a different suggest
+            foreach (Locale::all() as $locale) {
+                $translation = $this->translate($locale->slug);
+
+                if(!$translation)
+                {
+                    continue;
+                }
+
+                $data[$this->getSearchableSuggestName($locale, $inheritFrom)] = $this->getSearchableSuggestPayload($translation);
+            }
+        }
+
+        return $data;
+    }
+
+    /**
+     * @param $locale
+     *
+     * @return string
+     */
+    protected function getSearchableSuggestName($locale, Searchable $inheritFrom = null)
+    {
+        $suffix = '_suggest_' . $locale->slug;
+
+        if($inheritFrom)
+        {
+            return $inheritFrom->getSearchableType() . $suffix;
+        }
+
+        return $this->getSearchableType() . $suffix;
+    }
+
+    /**
+     * @param $translation
+     *
+     * @return array
+     */
+    protected function getSearchableSuggestPayload($translation)
+    {
+        return [
+            'input'   => $translation->name,
+            'output'  => $translation->name,
+            'payload' => [
+                'label' => $translation->name,
+                'value' => $this->id,
+            ]
+        ];
+    }
+
 }

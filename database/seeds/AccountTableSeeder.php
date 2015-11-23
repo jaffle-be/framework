@@ -10,14 +10,14 @@ use Modules\System\Seeder;
 
 class AccountTableSeeder extends Seeder
 {
+
     use DispatchesCommands;
 
     public function run()
     {
         $account = $this->account('digiredo');
 
-        if(env('APP_MULTIPLE_LOCALES'))
-        {
+        if (env('APP_MULTIPLE_LOCALES')) {
             $account->locales()->attach(Locale::where('slug', 'en')->first());
         }
 
@@ -27,8 +27,7 @@ class AccountTableSeeder extends Seeder
 
         $account = $this->account('cloudcreations');
 
-        if(env('APP_MULTIPLE_LOCALES'))
-        {
+        if (env('APP_MULTIPLE_LOCALES')) {
             $account->locales()->attach(Locale::where('slug', 'en')->first());
         }
 
@@ -41,32 +40,32 @@ class AccountTableSeeder extends Seeder
     {
         Role::create([
             'account_id' => $account->id,
-            'nl' => [
+            'nl'         => [
                 'name' => 'admin',
             ],
-            'fr' => [
+            'fr'         => [
                 'name' => 'admin',
             ],
-            'en' => [
+            'en'         => [
                 'name' => 'admin',
             ],
-            'de' => [
+            'de'         => [
                 'name' => 'admin',
             ],
         ]);
 
         Role::create([
             'account_id' => $account->id,
-            'nl' => [
+            'nl'         => [
                 'name' => 'guest',
             ],
-            'fr' => [
+            'fr'         => [
                 'name' => 'guest',
             ],
-            'en' => [
+            'en'         => [
                 'name' => 'guest',
             ],
-            'de' => [
+            'de'         => [
                 'name' => 'guest',
             ],
         ]);
@@ -89,24 +88,20 @@ class AccountTableSeeder extends Seeder
      */
     protected function account($name)
     {
-        if(env('APP_ENV') == 'production')
-        {
+        if (env('APP_ENV') == 'production') {
             $account = Account::create([
-                'alias'   => $name,
-                'domain'  => "$name.be",
+                'alias'  => $name,
+                'domain' => "$name.be",
             ]);
-        }
-        else if(env('APP_ENV') == 'develop')
-        {
+        } else if (env('APP_ENV') == 'develop') {
             $account = Account::create([
-                'alias'   => '' . $name . '',
-                'domain'  => "dev.$name.be",
+                'alias'  => '' . $name . '',
+                'domain' => "dev.$name.be",
             ]);
-        }
-        else{
+        } else {
             $account = Account::create([
-                'alias'   => $name,
-                'domain'  => "$name.local",
+                'alias'  => $name,
+                'domain' => "$name.local",
             ]);
         }
 
@@ -136,14 +131,14 @@ class AccountTableSeeder extends Seeder
         $account->contactInformation()->save($info);
 
         $address = new Address([
-            'latitude' => '50.8909351',
+            'latitude'  => '50.8909351',
             'longitude' => '3.4132522',
             'firstname' => '',
-            'lastname' => '',
-            'street' => 'Stuifkouter',
-            'box' => '64',
-            'postcode' => '8790',
-            'city' => 'Waregem',
+            'lastname'  => '',
+            'street'    => 'Stuifkouter',
+            'box'       => '64',
+            'postcode'  => '8790',
+            'city'      => 'Waregem',
         ]);
 
         $address->country_id = 21;

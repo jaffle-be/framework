@@ -19,7 +19,7 @@ class FlushType extends Command
      *
      * @var string
      */
-    protected $description = 'Flush a type by it\'s elastisc search type.';
+    protected $description = 'Delete the entire index';
 
     /**
      * @var SearchServiceInterface
@@ -45,17 +45,7 @@ class FlushType extends Command
      */
     public function fire()
     {
-        $types = $this->argument('types');
-
-        if (empty($types)) {
-            $types = config('search.types');
-
-            $types = array_keys($types);
-        }
-
-        foreach ($types as $type) {
-            $this->service->flush($type);
-        }
+        $this->service->flush();
     }
 
     /**

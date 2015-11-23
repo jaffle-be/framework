@@ -42,7 +42,6 @@ class NotifyCategoryActivation extends Job implements SelfHandling
                     'account_id'            => $this->account->id,
                     'category_id'           => $this->category->id,
                     'brand_id'              => $brand->id,
-                    'category_selection_id' => $this->category->selection->id,
                     'type'                  => CategorySelection::ACTIVATE,
                 ]);
 

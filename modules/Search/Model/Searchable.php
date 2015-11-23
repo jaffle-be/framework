@@ -104,4 +104,13 @@ interface Searchable
      * @return mixed
      */
     public function getSearchableMapping(array $config);
+
+    /**
+     * Return the data for elastic suggestions
+     * if $inheritFrom is passed, it will use that to name the suggest
+     * @param Searchable|null $inheritFrom
+     *
+     * @return mixed
+     */
+    public function getSearchableSuggestData(Searchable $inheritFrom = null);
 }

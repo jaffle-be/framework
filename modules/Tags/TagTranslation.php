@@ -16,38 +16,14 @@ class TagTranslation extends TranslationModel implements Searchable
     protected $hidden = ['created_at', 'updated_at', 'tag_id'];
 
     protected static $searchableMapping = [
-//        'nl' => [
-//            'type' => 'nested',
-//            'properties' => [
-//                'name' => [
-//                    'type' => 'string'
-//                ]
-//            ]
-//        ],
-//        'en' => [
-//            'type' => 'nested',
-//            'properties' => [
-//                'name' => [
-//                    'type' => 'string'
-//                ]
-//            ]
-//        ],
-//        'fr' => [
-//            'type' => 'nested',
-//            'properties' => [
-//                'name' => [
-//                    'type' => 'string'
-//                ]
-//            ]
-//        ],
-//        'de' => [
-//            'type' => 'nested',
-//            'properties' => [
-//                'name' => [
-//                    'type' => 'string'
-//                ]
-//            ]
-//        ]
+        'id'         => ['type' => 'integer'],
+        'created_at' => [
+            'type'   => 'date',
+            'format' => 'yyyy-MM-dd HH:mm:ss'
+        ],
+        'updated_at' => [
+            'type'   => 'date',
+            'format' => 'yyyy-MM-dd HH:mm:ss'
+        ],
     ];
-
 }

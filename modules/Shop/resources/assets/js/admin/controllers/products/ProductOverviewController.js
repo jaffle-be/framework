@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('shop')
-        .controller('ProductController', function (Product, ProductService, $state, $scope, $sce) {
+        .controller('ProductController', function (Product, ProductService, GammaService, $state, $scope, $sce, toaster) {
 
             $scope.renderHtml = function (html_code) {
                 return $sce.trustAsHtml(html_code);
@@ -10,6 +10,8 @@
 
             //start with true so we don't see the layout flash
             this.loading = true;
+            this.creating = false;
+            this.creatingProduct = {};
             this.rpp = 15;
             this.total = 0;
             this.products = [];
@@ -46,10 +48,32 @@
                 });
             };
 
-            this.newProduct = function () {
-                var product = new Product();
-                ProductService.save(product, function (newProduct) {
-                    $state.go('admin.product.detail', {id: newProduct.id});
+            this.selectBrandForCreation = function (brand) {
+                me.creatingProduct.brand_id = brand.value;
+            };
+
+            this.startCreating = function () {
+                me.creating = true;
+            };
+
+            this.cancelCreating = function () {
+                me.creating = false;
+                me.creatingProduct = {};
+            };
+
+            this.createProduct = function () {
+                var product = new Product(me.creatingProduct);
+
+                ProductService.save(product).then(function (newProduct) {
+                    $state.go('admin.shop.product', {id: newProduct.id});
+                }, function (response) {
+
+                    if (response.status == 422)
+                    {
+                        _.each(response.data, function (errors) {
+                            toaster.error(errors[0]);
+                        });
+                    }
                 });
             };
 
@@ -98,7 +122,27 @@
                 });
 
                 return products;
-            }
-        });
+            };
+
+            this.getTitle = function (product) {
+                return ProductService.getTitle(product, me.options.locale);
+            };
+
+            this.searchProduct = function (query) {
+                return ProductService.searchProduct(query, me.options.locale);
+            };
+
+            this.searchBrand = function (query) {
+                return GammaService.searchBrand({
+                    query: query,
+                    locale: me.options.locale
+                });
+            };
+
+            this.goTo = function (item) {
+                $state.go('admin.shop.product', {id: item.value});
+            };
+        }
+    )
 
 })();

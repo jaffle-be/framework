@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Collection;
+use Modules\Account\Account;
 use Modules\Shop\Product\ActivePrice;
 use Modules\Shop\Product\ActivePromotion;
 use Modules\Shop\Product\Brand;
@@ -7,6 +9,11 @@ use Modules\Shop\Product\Category;
 use Modules\Shop\Product\Price;
 use Modules\Shop\Product\Product;
 use Modules\Shop\Product\Promotion;
+use Modules\Shop\Product\Property;
+use Modules\Shop\Product\PropertyGroup;
+use Modules\Shop\Product\PropertyOption;
+use Modules\Shop\Product\PropertyUnit;
+use Modules\Shop\Product\PropertyValue;
 use Modules\System\Seeder;
 
 class ShopTableSeeder extends Seeder
@@ -22,10 +29,15 @@ class ShopTableSeeder extends Seeder
     public function run($count = 15)
     {
         if (Brand::count() == 0) {
-            $this->call('BrandTableSeeder');
+            $this->brands();
         }
         if (Category::count() == 0) {
-            $this->call('CategoryTableSeeder');
+            $this->categories();
+        }
+
+        if (Property::count() == 0)
+        {
+            $this->baseProperties();
         }
 
         $this->productBases($count);
@@ -34,58 +46,38 @@ class ShopTableSeeder extends Seeder
     protected function productBases($amount)
     {
         $brands = Brand::all();
-        $categories = Category::all();
+        $categories = Category::whereNull('original_id')->get();
+        $categories->load('synonyms');
 
-        for ($i = 0; $i < $amount; $i++) {
-            $name = $this->faker->userName;
+        $accounts = Account::take(2)->get();
 
-            $ean = $this->faker->ean13;
+        foreach($accounts as $account)
+        {
+            for ($i = 0; $i < $amount; $i++) {
 
-            $product = new Product([
-                'ean' => $ean,
-                'upc' => substr($ean, 0, 12),
-                'nl'  => [
-                    'name'    => $name,
-                    'title'   => $name,
-                    'content' => $this->nl->realText(1000),
-                ],
-                'en'  => [
-                    'name'    => $name,
-                    'title'   => $name,
-                    'content' => $this->nl->realText(1000),
-                ],
-                'fr'  => [
-                    'name'    => $name,
-                    'title'   => $name,
-                    'content' => $this->nl->realText(1000),
-                ],
-                'de'  => [
-                    'name'    => $name,
-                    'title'   => $name,
-                    'content' => $this->nl->realText(1000),
-                ],
-            ]);
+                $product = factory(Product::class)->create([
+                    'brand_id' => $brands->random(1)->id,
+                    'account_id' => $account->id,
+                ]);
 
-            $product->brand()->associate($brands->random(1));
-            $product->save();
+                $this->addImages($product);
 
-            $this->addImages($product);
+                $category = $categories->random(1);
 
-            if (rand(0, 1)) {
-                $product->categories()->sync([$categories->random(1)->id]);
-            } else {
-                $product->categories()->sync($categories->random(2)->lists('id')->toArray());
-            }
-        }
+                $categoryIds = [$category->id];
 
-        foreach ([1, 2] as $accountid) {
-
-            Product::chunk(250, function ($products) use ($accountid) {
-                foreach ($products as $product) {
-                    $this->prices($product, $accountid);
-                    $this->promotions($product, $accountid);
+                if($category->synonyms)
+                {
+                    $categoryIds = array_merge($categoryIds, $category->synonyms->lists('id')->toArray());
                 }
-            });
+
+                $product->categories()->sync($categoryIds);
+
+                $this->properties($product, $category);
+
+                $this->prices($product, $account->id);
+                $this->promotions($product, $account->id);
+            }
         }
     }
 
@@ -152,6 +144,123 @@ class ShopTableSeeder extends Seeder
                 'to'           => $dates ? $this->faker->dateTimeBetween('-5 months', '-2 days') : null,
             ]));
         }
+    }
+
+    protected function properties(Product $product, Category $category)
+    {
+        $properties = Property::where('category_id', $category->id)->get();
+
+        $properties = $properties->random(rand(5,10));
+
+        $values = new Collection();
+
+        foreach($properties as $property)
+        {
+            $payload = [
+                'property_id' => $property->id
+            ];
+
+            if($property->options->count())
+            {
+                $payload['option_id'] = $property->options->random(1)->id;
+            }
+
+            $values->push(factory(PropertyValue::class)->make($payload));
+        }
+
+        $product->properties()->saveMany($values);
+    }
+
+    protected function brands()
+    {
+        $names = ['Philips', 'Samsung', 'Liebherr', 'Sony', 'Panasonic', 'Loewe', 'LG', 'Apple', 'HTC', 'AEG'];
+
+        for ($i = 0; $i < 10; $i++) {
+            factory(Brand::class)->create([
+                'nl' => ['name' => $names[$i]],
+                'fr' => ['name' => $names[$i]],
+                'en' => ['name' => $names[$i]],
+                'de' => ['name' => $names[$i]],
+            ]);
+        }
+    }
+
+    protected function categories()
+    {
+        $names = [
+            'Droogkast', 'Wasmachine', 'Koelkast', 'Diepvriezer', 'Microgolfoven', 'Gsm', 'Tv', 'Gps', 'Haardroger', 'Haartrimmer',
+        ];
+
+        for ($i = 0; $i < 10; $i++) {
+
+            $name = $names[$i];
+
+            $category = factory(Category::class)->create([
+                'nl' => ['name' => $name],
+                'fr' => ['name' => $name],
+                'en' => ['name' => $name],
+                'de' => ['name' => $name],
+            ]);
+
+            if(rand(0,1))
+            {
+                $count = rand(1,3);
+
+                for($j = 0; $j < $count; $j++)
+                {
+                    $synonym = factory(Category::class)->make([
+                        'nl' => ['name' => $name . ' syn ' . ($j + 1)],
+                        'fr' => ['name' => $name . ' syn ' . ($j + 1)],
+                        'en' => ['name' => $name . ' syn ' . ($j + 1)],
+                        'de' => ['name' => $name . ' syn ' . ($j + 1)],
+                    ]);
+
+                    $category->synonyms()->save($synonym);
+                }
+            }
+        }
+    }
+
+    protected function baseProperties()
+    {
+        factory(PropertyUnit::class)->times(35)->create();
+        $units = PropertyUnit::all();
+
+        foreach(Category::all() as $category)
+        {
+            $groups = factory(PropertyGroup::class)->times(4)->create([
+                'category_id' => $category->id,
+            ]);
+
+            factory(Property::class, 'numeric')->times(4)->create([
+                'unit_id' => $units->random(1)->id,
+                'group_id' => $groups->random(1)->id,
+                'category_id' => $category->id,
+            ]);
+            factory(Property::class, 'boolean')->times(5)->create([
+                'group_id' => $groups->random(1)->id,
+                'category_id' => $category->id,
+            ]);
+            factory(Property::class, 'float')->times(1)->create([
+                'group_id' => $groups->random(1)->id,
+                'category_id' => $category->id
+            ]);
+            factory(Property::class, 'string')->times(3)->create([
+                'group_id' => $groups->random(1)->id,
+                'category_id' => $category->id
+            ]);
+
+            factory(Property::class, 'options')->times(3)->create([
+                'group_id' => $groups->random(1)->id,
+                'category_id' => $category->id
+            ])->each(function ($property) {
+                factory(PropertyOption::class)->times(rand(4, 10))->create([
+                    'property_id' => $property->id
+                ]);
+            });
+        }
+
+
     }
 
 }

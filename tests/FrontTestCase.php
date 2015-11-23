@@ -11,6 +11,13 @@ class FrontTestCase extends \Illuminate\Foundation\Testing\TestCase
      */
     protected $baseUrl = 'http://digiredo.local';
 
+    public function setUp()
+    {
+        putenv('RUNNING_TESTS_FRONT=true');
+
+        parent::setUp();
+    }
+
     /**
      * Creates the application.
      *
@@ -18,6 +25,8 @@ class FrontTestCase extends \Illuminate\Foundation\Testing\TestCase
      */
     public function createApplication()
     {
+        putenv('RUNNING_TESTS_FRONT=true');
+
         $app = require __DIR__ . '/../bootstrap/app.php';
 
         $app->make(Kernel::class)->bootstrap();

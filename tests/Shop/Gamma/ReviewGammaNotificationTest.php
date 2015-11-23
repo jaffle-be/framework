@@ -16,21 +16,22 @@ class ReviewGammaNotificationTest extends AdminTestCase
 
     public function testReviewingBatchActivation()
     {
-        //the review should basically create a notification for each product within those parameters.
-        //but it should also already have the record? or do we wait until the review is accepted?
-        list($category_id, $account_id, $brand_id, $notification) = $this->startData();
+        list($category_id, $account_id, $brand_id, $notification, $otherProduct) = $this->startData();
 
         $job = new ReviewGammaNotification($notification);
         $this->handleJob($job);
 
-        //new account -> should not contain gamma
+        //new account -> should not contain actual gamma
         // -> should have the selection
-        // -> should have the notifications for products
+        // -> should have the notifications for products within the subscribed accounts
+
+        $subscriptions = app('Modules\Shop\Gamma\GammaSubscriptionManager');
 
         $products = Product::where('brand_id', $brand_id)
             ->whereHas('categories', function ($q) use ($category_id) {
                 $q->where('category_id', $category_id);
-            });
+            })
+            ->whereIn('account_id', $subscriptions->subscribedIds(Account::find($account_id)));
 
         foreach ($products as $product) {
             $this->seeInDatabase('product_gamma_notifications', [
@@ -46,6 +47,14 @@ class ReviewGammaNotificationTest extends AdminTestCase
                 'account_id' => $account_id,
             ]);
         }
+
+        $this->notSeeInDatabase('product_gamma_notifications', [
+            'product_id'  => $otherProduct->id,
+            'brand_id'    => $otherProduct->brand_id,
+            'category_id' => $category_id,
+            'account_id'  => $account_id,
+            'type'        => 'activate',
+        ]);
 
         $this->seeInDatabase('product_gamma_selections', [
             'account_id'  => $account_id,
@@ -64,10 +73,12 @@ class ReviewGammaNotificationTest extends AdminTestCase
         $account = factory(Account::class)->create();
         $brand = factory(Brand::class)->create();
         $product1 = factory(Product::class)->create([
-            'brand_id' => $brand->id
+            'brand_id' => $brand->id,
+            'account_id' => $account->id
         ]);
         $product2 = factory(Product::class)->create([
-            'brand_id' => $brand->id
+            'brand_id' => $brand->id,
+            'account_id' => $account->id
         ]);
         $category = factory(Category::class)->create();
 
@@ -158,23 +169,38 @@ class ReviewGammaNotificationTest extends AdminTestCase
 
     public function startData()
     {
-        $product = Product::first();
-        $account = factory(Account::class)->create();
-        $category_id = $product->categories->first()->id;
-        $account_id = $account->id;
-        $brand_id = $product->brand_id;
+        $account1 = factory(Account::class)->create();
+        $digiredo = Account::find(1);
+        $account2 = factory(Account::class)->create();
+        $category = factory(Category::class)->create();
+        $brand = factory(Brand::class)->create();
+
+        //create 3 products, but all a different account
+        factory(Product::class)->create([
+            'brand_id' => $brand->id,
+            'account_id' => $account1->id,
+        ]);
+
+        $notSee = factory(Product::class)->create([
+            'brand_id' => $brand->id,
+            'account_id' => $account2->id,
+        ]);
+        factory(Product::class)->create([
+            'brand_id' => $brand->id,
+            'account_id' => $digiredo->id,
+        ]);
 
         //create notification
         $notification = new GammaNotification([
-            'account_id'  => $account_id,
-            'brand_id'    => $brand_id,
-            'category_id' => $category_id,
+            'account_id'  => $account1->id,
+            'brand_id'    => $brand->id,
+            'category_id' => $category->id,
             'type'        => 'activate',
         ]);
 
         $notification->save();
 
-        return array($category_id, $account_id, $brand_id, $notification);
+        return array($category->id, $account1->id, $brand->id, $notification, $notSee);
     }
 
     protected function handleJob(ReviewGammaNotification $job)

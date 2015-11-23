@@ -107,10 +107,6 @@
                 </tfoot>
             </table>
 
-            <div>
-                <a class="btn btn-primary btn-block btn-lg" ng-click="vm.newPost()">{{ Lang::get('blog::admin.post.create') }}</a>
-            </div>
-
         </div>
 
     </div>

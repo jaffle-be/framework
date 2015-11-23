@@ -5,6 +5,7 @@ use Illuminate\Support\Collection;
 use Modules\Account\AccountManager;
 use Modules\Shop\Gamma\GammaNotification;
 use Modules\Shop\Gamma\GammaSelection;
+use Modules\Shop\Gamma\GammaSubscriptionManager;
 use Modules\Shop\Jobs\Gamma\ActivateBrand;
 use Modules\Shop\Jobs\Gamma\ActivateCategory;
 use Modules\Shop\Jobs\Gamma\DeactivateBrand;
@@ -23,17 +24,39 @@ class GammaController extends AdminController
         return view('shop::admin.categories.overview');
     }
 
-    public function categories(GammaSelection $gamma, GammaNotification $notification)
+    public function categories(GammaSelection $gamma, GammaNotification $notification, GammaSubscriptionManager $subscriptions, Request $request)
     {
-        $categories = Category::has('products')->with([
+        $productRequirements = function ($query) use ($subscriptions) {
+            $query->whereIn('account_id', $subscriptions->subscribedIds());
+        };
+
+        $categories = Category::whereHas('products', $productRequirements)->with([
             'translations',
             'selection',
-            'brands' => function($query){
-                $query->has('products');
+            'brands' => function($query) use ($productRequirements){
+                $query->whereHas('products', $productRequirements);
             },
             'brands.translations',
             'brands.selection'
-        ])->paginate(5);
+        ]);
+
+        //if we passed in a category, we used the suggest to find a category.
+        if($category = $request->get('category'))
+        {
+            $category = Category::find($category);
+
+            if($category)
+            {
+                $categories->where('id', $category->id);
+            }
+        }
+
+        if($category){
+            $categories = $categories->paginate(5, ['*'], 'page', $page = 1);
+        }
+        else{
+            $categories = $categories->paginate(5);
+        }
 
         $ids = $categories->lists('id')->toArray();
 
@@ -90,17 +113,40 @@ class GammaController extends AdminController
         return view('shop::admin.brands.overview');
     }
 
-    public function brands(GammaSelection $gamma, GammaNotification $notification)
+    public function brands(GammaSelection $gamma, GammaNotification $notification, GammaSubscriptionManager $subscriptions, Request $request)
     {
-        $brands = Brand::has('products')->with([
+        $productRequirements = function($query) use ($subscriptions)
+        {
+            $query->whereIn('account_id', $subscriptions->subscribedIds());
+        };
+
+        $brands = Brand::whereHas('products', $productRequirements)->with([
             'translations',
             'selection',
-            'categories' => function($query){
-                $query->has('products');
+            'categories' => function($query) use ($productRequirements) {
+                $query->whereHas('products', $productRequirements);
             },
             'categories.translations',
             'categories.selection'
-        ])->paginate(5);
+        ]);
+
+        //if we passed in a brand, we used the suggest to find a brand.
+        if($brand = $request->get('brand'))
+        {
+            $brand = Brand::find($brand);
+
+            if($brand)
+            {
+                $brands->where('id', $brand->id);
+            }
+        }
+
+        if($brand){
+            $brands = $brands->paginate(5, ['*'], 'page', $page = 1);
+        }
+        else{
+            $brands = $brands->paginate(5);
+        }
 
         $ids = $brands->lists('id')->toArray();
 
