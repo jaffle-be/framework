@@ -6,46 +6,54 @@
 
     <div class="ibox-content">
 
+        <div as-sortable="groupSortingHandlers" ng-model="vm.product.propertyGroups">
 
-        <div ng-repeat="(group_id, group) in vm.product.baseProperties">
+            <div ng-repeat="group in vm.product.propertyGroups" as-sortable-item>
 
-            <h3>@{{ vm.product.propertyGroups[group_id].translations[vm.options.locale].name }}</h3>
+                <h3>@{{ group.translations[vm.options.locale].name }}
 
-            <div class="row">
+                    <i class="fa fa-arrows" as-sortable-item-handle></i>
+                </h3>
 
-                <div ng-repeat="property in group" class="form-group col-md-6">
+                <div as-sortable="propertySortingHandlers" ng-model="vm.product.baseProperties[group.id]">
 
-                    <div ng-switch="" on="property.type">
+                    <div ng-repeat="property in vm.product.baseProperties[group.id]" class="form-group" as-sortable-item>
 
-                        <div ng-switch-when="boolean">
+                        <i class="fa fa-arrows" as-sortable-item-handle></i>
 
-                            <input type="checkbox" class="filled-in" ng-model="vm.product.properties[property.id].boolean"/>
-                            <label for="published">@{{ property.translations[vm.options.locale].name }}</label>
+                        <div ng-switch="" on="property.type">
 
-                        </div>
+                            <div ng-switch-when="boolean">
 
-                        <div ng-switch-when="string">
+                                <input type="checkbox" class="filled-in" ng-model="vm.product.properties[property.id].boolean"/>
+                                <label for="published">@{{ property.translations[vm.options.locale].name }}</label>
 
-                            <label class="control-label">@{{ property.translations[vm.options.locale].name }}</label>
-                            <input class="form-control" type="text" ng-model="vm.product.properties[property.id].translations[vm.options.locale].string">
+                            </div>
 
-                        </div>
+                            <div ng-switch-when="string">
 
-                        <div ng-switch-when="numeric">
+                                <label class="control-label">@{{ property.translations[vm.options.locale].name }}</label>
+                                <input class="form-control" type="text" ng-model="vm.product.properties[property.id].translations[vm.options.locale].string">
 
-                            <label class="control-label">@{{ property.translations[vm.options.locale].name }}</label>
-                            <input class="form-control" type="text" ng-model="vm.product.properties[property.id].numeric">
+                            </div>
 
-                        </div>
+                            <div ng-switch-when="numeric">
 
-                        <div ng-switch-when="float">
+                                <label class="control-label">@{{ property.translations[vm.options.locale].name }}</label>
+                                <input class="form-control" type="text" ng-model="vm.product.properties[property.id].numeric">
 
-                            <label class="control-label">@{{ property.translations[vm.options.locale].name }}</label>
-                            <input class="form-control" type="text" ng-model="property.float">
+                            </div>
 
-                        </div>
+                            <div ng-switch-when="float">
 
-                        <div ng-switch-when="options">
+                                <label class="control-label">@{{ property.translations[vm.options.locale].name }}</label>
+                                <input class="form-control" type="text" ng-model="property.float">
+
+                            </div>
+
+                            <div ng-switch-when="options">
+
+                            </div>
 
                         </div>
 
@@ -53,11 +61,10 @@
 
                 </div>
 
+                <div class="clearfix"></div>
+
             </div>
-
         </div>
-
-        <div class="clearfix"></div>
     </div>
 
 </div>

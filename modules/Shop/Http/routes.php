@@ -23,6 +23,10 @@ Route::group([
 
             //i should decently prefix all these routes
 
+            Route::post('properties/groups/sort', 'PropertyController@sortGroups');
+            Route::post('properties/sort', 'PropertyController@sortProperties');
+            Route::post('properties/move', 'PropertyController@moveProperty');
+
             Route::post('products/suggest', 'ProductController@suggest');
             Route::post('products/add-category', 'ProductController@addCategory');
             Route::post('products/remove-category', 'ProductController@removeCategory');

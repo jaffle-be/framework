@@ -2,6 +2,8 @@
 
 use Modules\Shop\Product\Category;
 use Modules\Shop\Product\CategoryTranslation;
+use Modules\Shop\Product\Property;
+use Modules\Shop\Product\PropertyGroup;
 use Pingpong\Modules\ServiceProvider;
 
 class ShopServiceProvider extends ServiceProvider
@@ -34,6 +36,12 @@ class ShopServiceProvider extends ServiceProvider
         $this->app['events']->listen('eloquent.detached: product_categories', 'Modules\Shop\Product\ProductPropertyManager@detach');
 
         $this->app['events']->listen('eloquent.saved: ' . CategoryTranslation::class, 'Modules\Shop\Product\CategorySuggestSyncer@handle');
+
+        $this->app['events']->listen('eloquent.creating: ' . PropertyGroup::class, 'Modules\Shop\Product\PropertyObserver@creatingGroup');
+        $this->app['events']->listen('eloquent.deleted: ' . PropertyGroup::class, 'Modules\Shop\Product\PropertyObserver@deletedGroup');
+
+        $this->app['events']->listen('eloquent.creating: ' . Property::class, 'Modules\Shop\Product\PropertyObserver@creatingProperty');
+        $this->app['events']->listen('eloquent.deleted: ' . Property::class, 'Modules\Shop\Product\PropertyObserver@deletedGroup');
     }
 
     protected function observers()

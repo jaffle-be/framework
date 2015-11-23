@@ -21,10 +21,6 @@
                             return new Category(category);
                         });
 
-                        response.baseProperties = _.map(response.baseProperties, function(item){
-                            return item
-                        });
-
                         return response;
                     }
                 },

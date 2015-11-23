@@ -1,11 +1,13 @@
 <?php namespace Modules\Shop\Product;
 
 use Illuminate\Database\Eloquent\Model;
+use Modules\System\Scopes\ModelAutoSort;
 use Modules\System\Translatable\Translatable;
 
 class Property extends Model
 {
     use Translatable;
+    use ModelAutoSort;
 
     protected $table = 'product_properties';
 
