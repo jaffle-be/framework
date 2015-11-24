@@ -43,5 +43,10 @@ return [
         'group' => 'group',
         'name'  => 'name',
         'value' => 'value',
+        'option' => 'option',
+        'textual' => 'textual value',
+        'digits'  => 'some digits',
+        'decimal' => 'decimal value',
+
     ],
 ];

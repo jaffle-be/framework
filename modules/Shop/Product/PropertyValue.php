@@ -10,7 +10,7 @@ class PropertyValue extends Model
 
     protected $table = 'product_properties_values';
 
-    protected $fillable = ['product_id', 'property_id', 'option_id', 'string', 'numeric', 'float'];
+    protected $fillable = ['product_id', 'property_id', 'option_id', 'string', 'numeric', 'float', 'boolean'];
 
     protected $translatedAttributes = ['string'];
 
@@ -21,7 +21,7 @@ class PropertyValue extends Model
         'product_id'  => 'integer',
         'property_id' => 'integer',
         'option_id'   => 'integer',
-        'boolean'     => 'boelean',
+        'boolean'     => 'boolean',
         'numeric'     => 'integer',
         'float'       => 'float',
     ];

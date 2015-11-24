@@ -57,8 +57,8 @@
 
 
                                 <div class="form-group col-md-6 col-md-offset-1">
-                                    <input type="checkbox" class="filled-in" ng-checked="vm.product.properties[property.id].boolean"/>
-                                    <label for="published">@{{ property.translations[vm.options.locale].name }}</label>
+                                    <input id="booleanProperty@{{ property.id }}" type="checkbox" class="filled-in" ng-model="vm.product.properties[property.id].boolean" ng-change="vm.updateValue(property)"/>
+                                    <label for="booleanProperty@{{ property.id }}">@{{ property.translations[vm.options.locale].name }}</label>
                                 </div>
 
                             </div>
@@ -80,7 +80,7 @@
                                 <div class="form-group col-md-6 col-md-offset-1">
                                     <div class="input-group">
                                         <div class="input-group-addon">{{ Lang::get('shop::admin.properties.value') }}</div>
-                                        <input class="form-control" type="text" ng-model="vm.product.properties[property.id].translations[vm.options.locale].string" ng-change="vm.updateValue(property)">
+                                        <input class="form-control" type="text" ng-model="vm.product.properties[property.id].translations[vm.options.locale].string" ng-change="vm.updateValue(property)" placeholder="{{ Lang::get('shop::admin.properties.textual') }}">
                                     </div>
                                 </div>
 
@@ -105,7 +105,7 @@
                                 <div class="form-group col-md-6 col-md-offset-1">
                                     <div class="input-group">
                                         <div class="input-group-addon">{{ Lang::get('shop::admin.properties.value') }}</div>
-                                        <input class="form-control" type="text" ng-model="vm.product.properties[property.id].numeric" ng-change="vm.updateValue(property)">
+                                        <input class="form-control" type="text" ng-model="vm.product.properties[property.id].numeric" ng-change="vm.updateValue(property)" placeholder="{{ Lang::get('shop::admin.properties.digits') }}">
                                     </div>
                                 </div>
 
@@ -130,7 +130,7 @@
                                 <div class="form-group col-md-6 col-md-offset-1">
                                     <div class="input-group">
                                         <div class="input-group-addon">{{ Lang::get('shop::admin.properties.value') }}</div>
-                                        <input class="form-control" type="text" ng-model="vm.product.properties[property.id].float" ng-change="vm.updateValue(property)">
+                                        <input class="form-control" type="text" ng-model="vm.product.properties[property.id].float" ng-change="vm.updateValue(property)" placeholder="{{ Lang::get('shop::admin.properties.decimal') }}">
                                     </div>
                                 </div>
 
@@ -139,6 +139,7 @@
                             </div>
 
                             <div ng-switch-when="options">
+
                                 <div class="form-group col-md-5">
                                     <div class="input-group">
                                         <div class="input-group-addon" as-sortable-item-handle>
@@ -153,13 +154,19 @@
                                 </div>
                                 <div class="form-group col-md-6 col-md-offset-1">
 
-                                    <select ng-model="vm.product.properties[property.id].option_id" ng-options="option.id as option.translations[vm.options.locale].name for option in property.options" class="form-control"></select>
+                                    <select ng-options="option.id as option.translations[vm.options.locale].name for option in property.options" ng-model="vm.product.properties[property.id].option_id" class="form-control">
+                                        <option value="">{{ Lang::get('shop::admin.properties.select') }}</option>
+                                    </select>
 
-                                    <div class="input-group">
+                                    <div class="input-group" ng-show="vm.product.properties[property.id].option_id">
                                         <div class="input-group-addon">{{ Lang::get('shop::admin.properties.value') }}</div>
-                                        <input class="form-control" type="text" ng-model="vm.newOption">
+
+                                        @{{ property.options }}
+
+                                        <input class="form-control" type="text" placeholder="{{ Lang::get('shop::admin.properties.option') }}" ng-model="property.options[vm.product.properties[property.id].option_id].translations[vm.options.locale].name">
+
                                         <div class="input-group-btn">
-                                            <button class="btn btn-primary"><i class="fa fa-plus"></i></button>
+                                            <button class="btn btn-primary"><i class="fa fa-trash"></i></button>
                                         </div>
                                     </div>
                                 </div>

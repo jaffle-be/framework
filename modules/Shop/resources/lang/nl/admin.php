@@ -18,7 +18,7 @@ return [
     ],
 
     'notifications' => [
-        'title'      => '',
+        'title' => '',
     ],
     'product'       => [
         'base'         => '',
@@ -40,8 +40,12 @@ return [
         'upc'          => '',
     ],
     'properties'    => [
-        'group' => '',
-        'name'  => '',
-        'value' => '',
+        'group'   => '',
+        'name'    => '',
+        'value'   => '',
+        'option'  => '',
+        'textual' => '',
+        'digits'  => '',
+        'decimal' => '',
     ],
 ];
