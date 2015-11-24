@@ -19,7 +19,6 @@ return [
 
     'notifications' => [
         'title'      => 'notifications',
-        'what-to-do' => '',
     ],
     'product'       => [
         'base'         => 'base',
