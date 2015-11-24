@@ -40,21 +40,4 @@
 
     </div>
 
-    {{--<div class="col-xs-12">
-
-        <div class="alert alert-danger">
-            <div class="title">Drafting</div>
-            <p>
-                drafting should be enabled by pressing a user button.
-                the server should then create a new draft document.
-                this should clone all tags etc to the draft document.
-                the draft itself should be tied to the original document.
-
-                upon publishing the draft will overwrite the original one completely
-                (except for maybe some original fields like the created timestamp)
-            </p>
-        </div>
-
-    </div>--}}
-
 </div>
