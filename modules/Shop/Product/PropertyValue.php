@@ -15,6 +15,13 @@ class PropertyValue extends Model
 
     protected $translationForeignKey = 'value_id';
 
+    protected $casts = [
+        'id' => 'integer',
+        'boolean' => 'boelean',
+        'numeric' => 'integer',
+        'float' => 'float',
+    ];
+
     public function product()
     {
         return $this->belongsTo('Modules\Shop\Product\Product', 'product_id');

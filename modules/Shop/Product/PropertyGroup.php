@@ -11,7 +11,7 @@ class PropertyGroup extends Model
 
     protected $table = 'product_properties_groups';
 
-    protected $fillable = ['name'];
+    protected $fillable = ['name', 'category_id'];
 
     protected $translatedAttributes = ['name'];
 

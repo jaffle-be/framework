@@ -150,7 +150,7 @@
                         <i class="fa fa-refresh" ng-show="searching"></i><i class="fa fa-search" ng-hide="searching"></i>
                     </div>
 
-                    <input type="text" class="form-control" placeholder="{{ Lang::get('shop::admin.category') }}"
+                    <input type="text" class="form-control" placeholder="{{ Lang::get('shop::admin.product.category') }}"
                            uib-typeahead="category.label for category in vm.searchCategory($viewValue, locale)"
                            typeahead-loading="searching"
                            typeahead-on-select="vm.addCategory($item, $model, $label)"
@@ -171,7 +171,7 @@
         <div class="clearfix"></div>
 
         <div class="alert alert-warning">
-            {{ Lang::get('shop::admin.deleting-red-category') }}
+            {{ Lang::get('shop::admin.product.red-category') }}
         </div>
 
         <ul class="nav">

@@ -3,13 +3,13 @@
     <div class="ibox">
 
         <div class="ibox-title">
-            <h5>{{ Lang::get('shop::admin.notifications') }}</h5>
+            <h5>{{ Lang::get('shop::admin.notifications.title') }}</h5>
         </div>
 
         <div class="ibox-content">
 
             <div class="alert alert-info">
-                {{ Lang::get('shop::admin.notifications-what-to-do') }}
+                {{ Lang::get('shop::admin.notifications.what-to-do') }}
             </div>
 
             <div class="text-center">
@@ -22,23 +22,23 @@
                     <th colspan="6">
 
                         <div class="dropdown" data-api="dropdown">
-                            <a class="btn btn-default dropdown-toggle" data-toggle="dropdown" href="#">{{ Lang::get('blog::admin.actions.actions') }}&nbsp;<span class="caret">&nbsp;</span></a>
+                            <a class="btn btn-default dropdown-toggle" data-toggle="dropdown" href="#">{{ Lang::get('shop::admin.actions.actions') }}&nbsp;<span class="caret">&nbsp;</span></a>
                             <ul class="dropdown-menu">
                                 <li>
-                                    <a select-all="vm.notifications" href="">{{ Lang::get('blog::admin.actions.select-all') }}</a>
+                                    <a select-all="vm.notifications" href="">{{ Lang::get('shop::admin.actions.select-all') }}</a>
                                 </li>
                                 <li>
-                                    <a select-none="vm.notifications" href="">{{ Lang::get('blog::admin.actions.select-none') }}</a>
+                                    <a select-none="vm.notifications" href="">{{ Lang::get('shop::admin.actions.select-none') }}</a>
                                 </li>
                                 <li class="divider"></li>
                                 <li>
-                                    <a ng-confirm="vm.batchAccept()" href="">{{ Lang::get('blog::admin.actions.accept') }}</a>
+                                    <a ng-confirm="vm.batchAccept()" href="">{{ Lang::get('shop::admin.actions.accept') }}</a>
                                 </li>
                                 <li>
-                                    <a ng-confirm="vm.batchReview()" href="">{{ Lang::get('blog::admin.actions.review') }}</a>
+                                    <a ng-confirm="vm.batchReview()" href="">{{ Lang::get('shop::admin.actions.review') }}</a>
                                 </li>
                                 <li>
-                                    <a ng-really="vm.batchDeny()" href="">{{ Lang::get('blog::admin.actions.deny') }}</a>
+                                    <a ng-really="vm.batchDeny()" href="">{{ Lang::get('shop::admin.actions.deny') }}</a>
                                 </li>
                             </ul>
                         </div>

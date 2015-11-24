@@ -200,8 +200,6 @@ class ProductController extends AdminController
                 {
                     $this->doCategoryAttach($product, $synonym, $added);
                 }
-
-                $baseProperties = Property::categoryProperties($category);
             }
         }
 
@@ -212,10 +210,12 @@ class ProductController extends AdminController
             $this->doCategoryAttach($product, $category, $added);
         }
 
+        $groups = isset($baseProperties) ? $this->propertyGroups($product->mainCategory()) : null;
+
         return new Collection([
             'categories' => $added,
-            'baseProperties' => isset($baseProperties) ? $baseProperties : null,
-            'propertyGroups' => isset($baseProperties) ? $this->propertyGroups($baseProperties) : null,
+            'propertyGroups' => $groups,
+            'baseProperties' => isset($baseProperties) ? $this->baseProperties($product->mainCategory(), $groups) : null,
             'hasMainCategory' => isset($baseProperties) ? true : false,
         ]);
     }
@@ -269,7 +269,7 @@ class ProductController extends AdminController
     protected function relations()
     {
         return ['translations', 'brand', 'brand.translations', 'categories', 'categories.translations',
-            'properties', 'properties', 'properties.option',
+            'properties', 'properties.translations', 'properties.option',
         ];
     }
 
@@ -319,34 +319,42 @@ class ProductController extends AdminController
         }
     }
 
-    protected function prepareProperties($product)
+    protected function prepareProperties(Product $product)
     {
         $category = $product->mainCategory();
 
         if($category)
         {
-            $properties = Property::categoryProperties($category);
+            $groups = $this->propertyGroups($product->mainCategory());
+
             $product->hasMainCategory = true;
-            $product->baseProperties = $properties->groupBy('group_id');
-            $product->propertyGroups = $this->propertyGroups($properties);
+            $product->baseProperties = $this->baseProperties($category, $groups);
+            $product->propertyGroups = $groups;
             $product->setRelation('properties',$product->properties->keyBy('property_id'));
         }
     }
 
-    protected function propertyGroups($baseProperties)
+    protected function propertyGroups(Category $category)
     {
-        $properties = $baseProperties->groupBy('group_id');
+        return PropertyGroup::where('category_id', $category->id)->with('translations')->get();
+    }
 
-        if($properties->count())
+    protected function baseProperties(Category $category, Collection $groups)
+    {
+        $properties = Property::categoryProperties($category);
+
+        $properties = $properties->groupBy('group_id');
+
+        //make sure that each category is a collection,
+        //so we can drop items in that group-sortable in the UI
+        foreach($groups as $group)
         {
-            $groups = $properties->keys();
-
-            $groups = $groups->filter(function($id){
-                return $id != null;
-            });
-
-            return PropertyGroup::with('translations')->whereIn('id', $groups)->get();
+            if(!$properties->has($group->id)){
+                $properties->put($group->id, new Collection());
+            };
         }
+
+        return $properties;
     }
 
 }

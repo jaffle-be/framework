@@ -5,7 +5,7 @@
         @include('system::admin.locale-tabs', ['clickRefresh' => true])
 
         <div class="ibox-title">
-            <h5>{{ Lang::get('shop::admin.selection.product.index') }}</h5>
+            <h5>{{ Lang::get('shop::admin.product.selections') }}</h5>
         </div>
 
         <div class="ibox-content">

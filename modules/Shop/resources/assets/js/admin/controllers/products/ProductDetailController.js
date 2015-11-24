@@ -2,46 +2,15 @@
     'use strict';
 
     angular.module('shop')
-        .controller('ProductDetailController', function ($scope, Product, ProductService, PropertyService, $state, $sce) {
+        .controller('ProductDetailController', function ($scope, Product, ProductService, PropertyService, PropertySortingService, $state, $sce) {
 
             this.products = ProductService;
-
-            $scope.groupSortingHandlers = {
-                itemMoved: function (event) {
-
-                },
-                orderChanged: function(event) {
-                    PropertyService.sortGroups(me.product.propertyGroups);
-                }
-            };
-
-            $scope.propertySortingHandlers = {
-                itemMoved: function (event) {
-                    var property = event.source.itemScope.modelValue;
-                    var from = event.source.sortableScope.$parent.group;
-                    var to = event.dest.sortableScope.$parent.group;
-
-                    var position = event.dest.index;
-
-                    _.each(event.dest.sortableScope.modelValue, function(item, key){
-
-                        if(item.id == property.id)
-                        {
-                            position = key
-                        }
-                    });
-
-                    PropertyService.moveProperty(property, from, to, position);
-                },
-                orderChanged: function(event) {
-                    var properties = event.dest.sortableScope.modelValue;
-                    PropertyService.sortProperties(properties);
-                }
-            };
+            this.newGroup = '';
+            this.product = false;
+            //helper to locking property sorting when sorting groups
 
             var me = this,
                 id = $state.params.id;
-
 
             this.load = function (id) {
 
@@ -49,6 +18,7 @@
                 {
                     this.products.find(id, function (product) {
                         me.product = product;
+                        $scope.sorting = PropertySortingService.init(product);
                     });
                 }
                 else
@@ -71,6 +41,17 @@
 
             this.renderHtml = function (html_code) {
                 return $sce.trustAsHtml(html_code);
+            };
+
+            this.createGroup = function()
+            {
+                var category = _.first(me.product.propertyGroups).category_id;
+                category = _.first(_.where(me.product.categories, {id: category}));
+                PropertyService.createGroup(category, me.options.locale, me.newGroup).then(function(group){
+                    me.newGroup = '';
+                    me.product.propertyGroups.push(group);
+                    me.product.baseProperties[group.id] = [];
+                });
             };
 
             this.load(id);

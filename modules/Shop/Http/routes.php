@@ -21,11 +21,10 @@ Route::group([
 
         Route::group(['prefix' => 'api/admin/shop'], function () {
 
-            //i should decently prefix all these routes
-
-            Route::post('properties/groups/sort', 'PropertyController@sortGroups');
+            Route::post('properties/groups/sort', 'PropertyGroupController@sortGroups');
             Route::post('properties/sort', 'PropertyController@sortProperties');
             Route::post('properties/move', 'PropertyController@moveProperty');
+            Route::resource('properties/groups', 'PropertyGroupController', ['only' => ['store', 'update', 'destroy']]);
 
             Route::post('products/suggest', 'ProductController@suggest');
             Route::post('products/add-category', 'ProductController@addCategory');

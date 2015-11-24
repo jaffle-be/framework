@@ -8,8 +8,8 @@
 
             <uib-tabset>
 
-                <uib-tab heading="base" active="vm.mainTabs[0]"></uib-tab>
-                <uib-tab heading="properties" active="vm.mainTabs[1]" ng-show="vm.product.hasMainCategory"></uib-tab>
+                <uib-tab heading="{{ Lang::get('shop::admin.product.base') }}" active="vm.mainTabs[0]"></uib-tab>
+                <uib-tab heading="{{ Lang::get('shop::admin.product.properties') }}" active="vm.mainTabs[1]" ng-show="vm.product.hasMainCategory"></uib-tab>
 
             </uib-tabset>
 

@@ -59,21 +59,4 @@ class PropertyController extends AdminController
         $property->save();
     }
 
-    public function sortGroups(Request $request, PropertyGroup $groups)
-    {
-        $order = $request->get('order');
-
-        if(count($order))
-        {
-            $groups = $groups->whereIn('id', $order)
-                ->get();
-
-            foreach($groups as $group)
-            {
-                $group->sort = array_search($group->id, $order);
-                $group->save();
-            }
-        }
-    }
-
 }
