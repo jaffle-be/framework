@@ -7,6 +7,7 @@
             this.products = ProductService;
             this.newGroup = '';
             this.product = false;
+            this.creatingValues = [];
             //helper to locking property sorting when sorting groups
 
             var me = this,
@@ -52,6 +53,83 @@
                     me.product.propertyGroups.push(group);
                     me.product.baseProperties[group.id] = [];
                 });
+            };
+
+            this.updateGroup = function(group)
+            {
+                PropertyService.updateGroup(group);
+            };
+
+            this.deleteGroup = function(group)
+            {
+                PropertyService.deleteGroup(group).then(function(response){
+                    if(response.status == 'oke')
+                    {
+                        _.remove(me.product.baseProperties, function(item, key){
+                            return key == group.id;
+                        });
+
+                        _.remove(me.product.propertyGroups, function(item){
+                            return item.id == group.id;
+                        });
+                    }
+                });
+            };
+
+            this.canDeleteGroup = function(group)
+            {
+                return me.product.baseProperties[group.id].length == 0;
+            };
+
+            this.updateProperty = function(property)
+            {
+                PropertyService.updateProperty(property);
+            };
+
+            this.deleteProperty = function(property)
+            {
+                PropertyService.deleteProperty(property).then(function(response){
+                    if(response.status == 'oke')
+                    {
+                        _.remove(me.product.baseProperties[group.id], function(item){
+                            return item.id == property.id;
+                        });
+
+                        _.remove(me.product.properties, function(item)
+                        {
+                            return item.property_id == property.id;
+                        });
+                    }
+                });
+            };
+
+            this.updateValue = function(property)
+            {
+                var value = me.product.properties[property.id];
+
+                //if we're creating already for this property, don't do anything
+                if(me.creatingValues[property.id])
+                {
+                    return;
+                }
+
+                //if the value has no id, it will be a new value.
+                if(!value.id)
+                {
+                    me.creatingValues[property.id] = true;
+                    value.product_id = me.product.id;
+                    value.property_id = property.id;
+                    PropertyService.createValue(value).then(function(response)
+                    {
+                        //set id, free future updates, and perform a last sync for updated entries.
+                        value = angular.extend(response, value);
+                        me.creatingValues[property.id] = false;
+                        value.$update();
+                    });
+                }
+                else{
+                    PropertyService.updateValue(value);
+                }
             };
 
             this.load(id);

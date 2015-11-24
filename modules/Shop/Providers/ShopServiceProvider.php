@@ -41,7 +41,7 @@ class ShopServiceProvider extends ServiceProvider
         $this->app['events']->listen('eloquent.deleted: ' . PropertyGroup::class, 'Modules\Shop\Product\PropertyObserver@deletedGroup');
 
         $this->app['events']->listen('eloquent.creating: ' . Property::class, 'Modules\Shop\Product\PropertyObserver@creatingProperty');
-        $this->app['events']->listen('eloquent.deleted: ' . Property::class, 'Modules\Shop\Product\PropertyObserver@deletedGroup');
+        $this->app['events']->listen('eloquent.deleted: ' . Property::class, 'Modules\Shop\Product\PropertyObserver@deletedProperty');
     }
 
     protected function observers()

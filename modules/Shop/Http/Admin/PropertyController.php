@@ -25,6 +25,30 @@ class PropertyController extends AdminController
         }
     }
 
+    public function update(Property $properties, Request $request)
+    {
+        $properties->fill(translation_input($request));
+
+        return $properties->save() ? $properties : false;
+    }
+
+    public function destroy(Property $properties)
+    {
+        if($properties->id)
+        {
+            if($properties->delete())
+            {
+                return json_encode(array(
+                    'status' => 'oke'
+                ));
+            }
+        }
+
+        return json_encode(array(
+            'status' => 'noke'
+        ));
+    }
+
     /**
      * Move from one group to another
      */

@@ -2,13 +2,23 @@
     'use strict';
 
     angular.module('shop')
-        .factory('PropertyService', function (PropertyGroup, $timeout, $http, $q) {
+        .factory('PropertyService', function (PropertyGroup, PropertyValue, $timeout, $http, $q) {
+
+            var groupTimeouts = [],
+                propertyTimeouts = [],
+                valueTimeouts = [];
 
             return {
                 createGroup: createGroup,
+                updateGroup: updateGroup,
+                deleteGroup: deleteGroup,
                 sortGroups : sortGroups,
+                updateProperty: updateProperty,
+                deleteProperty: deleteProperty,
                 sortProperties: sortProperties,
-                moveProperty: moveProperty
+                moveProperty: moveProperty,
+                createValue: createValue,
+                updateValue: updateValue,
             };
 
             function createGroup(category, locale, name)
@@ -26,6 +36,26 @@
                 return group.$save().then(function(response){
                     return response;
                 });
+            }
+
+            function updateGroup(group)
+            {
+                if(groupTimeouts[group.id])
+                {
+                    $timeout.cancel(groupTimeouts[group.id]);
+                }
+
+                groupTimeouts[group.id] = $timeout(function(){
+
+                    var copy = angular.copy(group);
+                    copy.$update();
+
+                }, 400);
+            }
+
+            function deleteGroup(group)
+            {
+                return group.$delete().then();
             }
 
             function sortGroups(groups)
@@ -56,6 +86,47 @@
                 }).then(function(response){
                     return response.data;
                 });
+            }
+
+            function updateProperty(property)
+            {
+                if(propertyTimeouts[property.id])
+                {
+                    $timeout.cancel(propertyTimeouts[property.id]);
+                }
+
+                propertyTimeouts[property.id] = $timeout(function(){
+
+                    var copy = angular.copy(property);
+                    copy.$update();
+
+                }, 400);
+            }
+
+            function deleteProperty(property)
+            {
+                return property.$delete().then();
+            }
+
+            function createValue(payload)
+            {
+                var value = new PropertyValue(payload);
+                return value.$save();
+            }
+            
+            function updateValue(value)
+            {
+                if(valueTimeouts[value.id])
+                {
+                    $timeout.cancel(valueTimeouts[value.id]);
+                }
+
+                valueTimeouts[value.id] = $timeout(function(){
+
+                    var copy = angular.copy(value);
+                    copy.$update();
+
+                }, 400);
             }
 
         });

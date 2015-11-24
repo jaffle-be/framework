@@ -22,4 +22,9 @@ class PropertyGroup extends Model
         return $this->belongsTo('Modules\Shop\Product\Category');
     }
 
+    public function properties()
+    {
+        return $this->hasMany('Modules\Shop\Product\Property', 'group_id');
+    }
+
 }

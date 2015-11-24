@@ -22,9 +22,11 @@
     <div ng-repeat="group in vm.product.propertyGroups" as-sortable-item is-disabled="sorting.changingProperty" class="ibox product-property-group">
 
         <div class="ibox-title form-inline">
-            <h5><i class="fa fa-arrows" as-sortable-item-handle></i><input type="text" class="form-control" ng-model="group.translations[vm.options.locale].name" ng-change="vm.updateGroup(group)" placeholder="{{ Lang::get('shop::admin.properties.group') }}">
-
+            <i class="pull-left fa fa-arrows" as-sortable-item-handle>&nbsp;</i>
+            <h5>
+                <input type="text" class="form-control" ng-model="group.translations[vm.options.locale].name" ng-change="vm.updateGroup(group)" placeholder="{{ Lang::get('shop::admin.properties.group') }}">
             </h5>
+            <button ng-show="vm.canDeleteGroup(group)" class="btn btn-danger btn-sm pull-right" ng-really="vm.deleteGroup(group)"><i class="fa fa-trash"></i></button>
         </div>
 
         <div class="ibox-content">
@@ -39,10 +41,22 @@
 
                             <div ng-switch-when="boolean">
 
-                                <div class="control-label col-xs-4">
-                                    <i class="fa fa-arrows pull-left" as-sortable-item-handle></i></div>
 
-                                <div class="input-group col-xs-8">
+                                <div class="form-group col-md-5">
+                                    <div class="input-group">
+                                        <div class="input-group-addon" as-sortable-item-handle>
+                                            <i class="fa fa-arrows">&nbsp;</i>{{ Lang::get('shop::admin.properties.name') }}
+                                        </div>
+                                        <input type="text" class="form-control" ng-model="property.translations[vm.options.locale].name" ng-change="vm.updateProperty(property)">
+                                        <div class="input-group-btn">
+                                            <button class="btn btn-danger" ng-really="vm.deleteProperty(property)"><i class="fa fa-trash"></i></button>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+                                <div class="form-group col-md-6 col-md-offset-1">
                                     <input type="checkbox" class="filled-in" ng-checked="vm.product.properties[property.id].boolean"/>
                                     <label for="published">@{{ property.translations[vm.options.locale].name }}</label>
                                 </div>
@@ -51,19 +65,22 @@
 
                             <div ng-switch-when="string">
 
-                                <div class="form-group col-md-6">
+                                <div class="form-group col-md-5">
                                     <div class="input-group">
                                         <div class="input-group-addon" as-sortable-item-handle>
                                             <i class="fa fa-arrows">&nbsp;</i>{{ Lang::get('shop::admin.properties.name') }}
                                         </div>
                                         <input type="text" class="form-control" ng-model="property.translations[vm.options.locale].name" ng-change="vm.updateProperty(property)">
+                                        <div class="input-group-btn">
+                                            <button class="btn btn-danger" ng-really="vm.deleteProperty(property)"><i class="fa fa-trash"></i></button>
+                                        </div>
                                     </div>
 
                                 </div>
-                                <div class="form-group col-md-6">
+                                <div class="form-group col-md-6 col-md-offset-1">
                                     <div class="input-group">
                                         <div class="input-group-addon">{{ Lang::get('shop::admin.properties.value') }}</div>
-                                        <input class="form-control" type="text" ng-model="vm.product.properties[property.id].translations[vm.options.locale].string">
+                                        <input class="form-control" type="text" ng-model="vm.product.properties[property.id].translations[vm.options.locale].string" ng-change="vm.updateValue(property)">
                                     </div>
                                 </div>
 
@@ -73,19 +90,22 @@
 
                             <div ng-switch-when="numeric">
 
-                                <div class="form-group col-md-6">
+                                <div class="form-group col-md-5">
                                     <div class="input-group">
                                         <div class="input-group-addon" as-sortable-item-handle>
                                             <i class="fa fa-arrows">&nbsp;</i>{{ Lang::get('shop::admin.properties.name') }}
                                         </div>
                                         <input type="text" class="form-control" ng-model="property.translations[vm.options.locale].name" ng-change="vm.updateProperty(property)">
+                                        <div class="input-group-btn">
+                                            <button class="btn btn-danger" ng-really="vm.deleteProperty(property)"><i class="fa fa-trash"></i></button>
+                                        </div>
                                     </div>
 
                                 </div>
-                                <div class="form-group col-md-6">
+                                <div class="form-group col-md-6 col-md-offset-1">
                                     <div class="input-group">
                                         <div class="input-group-addon">{{ Lang::get('shop::admin.properties.value') }}</div>
-                                        <input class="form-control" type="text" ng-model="vm.product.properties[property.id].numeric">
+                                        <input class="form-control" type="text" ng-model="vm.product.properties[property.id].numeric" ng-change="vm.updateValue(property)">
                                     </div>
                                 </div>
 
@@ -95,19 +115,22 @@
 
                             <div ng-switch-when="float">
 
-                                <div class="form-group col-md-6">
+                                <div class="form-group col-md-5">
                                     <div class="input-group">
                                         <div class="input-group-addon" as-sortable-item-handle>
                                             <i class="fa fa-arrows">&nbsp;</i>{{ Lang::get('shop::admin.properties.name') }}
                                         </div>
                                         <input type="text" class="form-control" ng-model="property.translations[vm.options.locale].name" ng-change="vm.updateProperty(property)">
+                                        <div class="input-group-btn">
+                                            <button class="btn btn-danger" ng-really="vm.deleteProperty(property)"><i class="fa fa-trash"></i></button>
+                                        </div>
                                     </div>
 
                                 </div>
-                                <div class="form-group col-md-6">
+                                <div class="form-group col-md-6 col-md-offset-1">
                                     <div class="input-group">
                                         <div class="input-group-addon">{{ Lang::get('shop::admin.properties.value') }}</div>
-                                        <input class="form-control" type="text" ng-model="vm.product.properties[property.id].float">
+                                        <input class="form-control" type="text" ng-model="vm.product.properties[property.id].float" ng-change="vm.updateValue(property)">
                                     </div>
                                 </div>
 
@@ -116,19 +139,28 @@
                             </div>
 
                             <div ng-switch-when="options">
-                                <div class="form-group col-md-6">
+                                <div class="form-group col-md-5">
                                     <div class="input-group">
                                         <div class="input-group-addon" as-sortable-item-handle>
                                             <i class="fa fa-arrows">&nbsp;</i>{{ Lang::get('shop::admin.properties.name') }}
                                         </div>
                                         <input type="text" class="form-control" ng-model="property.translations[vm.options.locale].name" ng-change="vm.updateProperty(property)">
+                                        <div class="input-group-btn">
+                                            <button class="btn btn-danger" ng-really="vm.deleteProperty(property)"><i class="fa fa-trash"></i></button>
+                                        </div>
                                     </div>
 
                                 </div>
-                                <div class="form-group col-md-6">
+                                <div class="form-group col-md-6 col-md-offset-1">
+
+                                    <select ng-model="vm.product.properties[property.id].option_id" ng-options="option.id as option.translations[vm.options.locale].name for option in property.options" class="form-control"></select>
+
                                     <div class="input-group">
                                         <div class="input-group-addon">{{ Lang::get('shop::admin.properties.value') }}</div>
-                                        <select ng-model="vm.product.properties[property.id].option_id" ng-options="option.id as option.translations[vm.options.locale].name for option in property.options" class="form-control"></select>
+                                        <input class="form-control" type="text" ng-model="vm.newOption">
+                                        <div class="input-group-btn">
+                                            <button class="btn btn-primary"><i class="fa fa-plus"></i></button>
+                                        </div>
                                     </div>
                                 </div>
 

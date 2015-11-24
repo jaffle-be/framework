@@ -14,6 +14,30 @@ class PropertyGroupController extends AdminController
         return $group->save() ? $group : false;
     }
 
+    public function update(PropertyGroup $groups, Request $request)
+    {
+        $groups->fill(translation_input($request));
+
+        return $groups->save() ? $groups : false;
+    }
+
+    public function destroy(PropertyGroup $groups)
+    {
+        if($groups->properties()->count() == 0)
+        {
+            if($groups->delete())
+            {
+                return json_encode(array(
+                    'status' => 'oke'
+                ));
+            }
+        }
+
+         return json_encode(array(
+             'status' => 'noke'
+         ));
+    }
+
     public function sortGroups(Request $request, PropertyGroup $groups)
     {
         $order = $request->get('order');
