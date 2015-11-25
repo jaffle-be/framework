@@ -11,13 +11,6 @@
 
                 var me = this;
 
-                this.list = function (type, id, success) {
-                    Category.list({
-                        ownerType: type,
-                        ownerId: id
-                    }, success);
-                };
-
                 this.update = function (category) {
 
                     if (this.timeouts[category.id])
@@ -45,20 +38,6 @@
                     return category.$save()
                 };
 
-                this.link = function (type, id, category, success) {
-                    category = new Category(category);
-                    category.$update({
-                        ownerType: type,
-                        ownerId: id,
-                    }, success);
-                };
-
-                this.delete = function (type, id, category, success, error) {
-                    return category.$delete({
-                        ownerType: type,
-                        ownerId: id,
-                    }).then(success, error);
-                };
 
                 this.search = function (params) {
                     return $http.get('api/admin/shop/categories', {
