@@ -5,6 +5,7 @@ use Modules\System\Translatable\Translatable;
 
 class PropertyOption extends Model
 {
+
     use Translatable;
 
     protected $table = 'product_properties_options';
@@ -14,6 +15,11 @@ class PropertyOption extends Model
     protected $translatedAttributes = ['name'];
 
     protected $translationForeignKey = 'option_id';
+
+    protected $casts = [
+        'id'          => 'integer',
+        'property_id' => 'integer',
+    ];
 
     public function property()
     {

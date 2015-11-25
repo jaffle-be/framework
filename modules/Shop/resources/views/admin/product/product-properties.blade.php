@@ -31,9 +31,9 @@
 
         <div class="ibox-content">
 
-            <div as-sortable="sorting.propertySortingHandlers" is-disabled="sorting.changingGroup" ng-model="vm.product.baseProperties[group.id]" class="property-wrapper">
+            <div as-sortable="sorting.propertySortingHandlers" is-disabled="sorting.changingGroup" ng-model="vm.product.propertyProperties[group.id]" class="property-wrapper">
 
-                <div ng-repeat="property in vm.product.baseProperties[group.id]" as-sortable-item>
+                <div ng-repeat="property in vm.product.propertyProperties[group.id]" as-sortable-item>
 
                     <div class="product-property">
 
@@ -59,6 +59,8 @@
                                 <div class="form-group col-md-6 col-md-offset-1">
                                     <input id="booleanProperty@{{ property.id }}" type="checkbox" class="filled-in" ng-model="vm.product.properties[property.id].boolean" ng-change="vm.updateValue(property)"/>
                                     <label for="booleanProperty@{{ property.id }}">@{{ property.translations[vm.options.locale].name }}</label>
+
+                                        <button class="pull-right btn btn-danger" ng-show="vm.product.properties[property.id].id" ng-really="vm.deleteValue(property)" ><i class="fa fa-trash"></i></button>
                                 </div>
 
                             </div>
@@ -81,6 +83,9 @@
                                     <div class="input-group">
                                         <div class="input-group-addon">{{ Lang::get('shop::admin.properties.value') }}</div>
                                         <input class="form-control" type="text" ng-model="vm.product.properties[property.id].translations[vm.options.locale].string" ng-change="vm.updateValue(property)" placeholder="{{ Lang::get('shop::admin.properties.textual') }}">
+                                        <div class="input-group-btn" ng-show="vm.product.properties[property.id].id">
+                                            <button class="btn btn-danger" ng-really="vm.deleteValue(property)" ><i class="fa fa-trash"></i></button>
+                                        </div>
                                     </div>
                                 </div>
 
@@ -106,6 +111,9 @@
                                     <div class="input-group">
                                         <div class="input-group-addon">{{ Lang::get('shop::admin.properties.value') }}</div>
                                         <input class="form-control" type="text" ng-model="vm.product.properties[property.id].numeric" ng-change="vm.updateValue(property)" placeholder="{{ Lang::get('shop::admin.properties.digits') }}">
+                                        <div class="input-group-btn" ng-show="vm.product.properties[property.id].id">
+                                            <button class="btn btn-danger" ng-really="vm.deleteValue(property)" ><i class="fa fa-trash"></i></button>
+                                        </div>
                                     </div>
                                 </div>
 
@@ -131,6 +139,9 @@
                                     <div class="input-group">
                                         <div class="input-group-addon">{{ Lang::get('shop::admin.properties.value') }}</div>
                                         <input class="form-control" type="text" ng-model="vm.product.properties[property.id].float" ng-change="vm.updateValue(property)" placeholder="{{ Lang::get('shop::admin.properties.decimal') }}">
+                                        <div class="input-group-btn" ng-show="vm.product.properties[property.id].id">
+                                            <button class="btn btn-danger" ng-really="vm.deleteValue(property)" ><i class="fa fa-trash"></i></button>
+                                        </div>
                                     </div>
                                 </div>
 
@@ -152,23 +163,33 @@
                                     </div>
 
                                 </div>
-                                <div class="form-group col-md-6 col-md-offset-1">
+                                <div class="col-md-6 col-md-offset-1">
 
-                                    <select ng-options="option.id as option.translations[vm.options.locale].name for option in property.options" ng-model="vm.product.properties[property.id].option_id" class="form-control">
-                                        <option value="">{{ Lang::get('shop::admin.properties.select') }}</option>
-                                    </select>
+                                    <div class="form-group">
 
-                                    <div class="input-group" ng-show="vm.product.properties[property.id].option_id">
-                                        <div class="input-group-addon">{{ Lang::get('shop::admin.properties.value') }}</div>
+                                        <select ng-options="item.id as item.translations[vm.options.locale].name for item in vm.product.propertyOptions[property.id]"
+                                                ng-model="vm.product.properties[property.id].option_id"
+                                                ng-change="vm.updateValue(property)"
+                                                class="form-control">
+                                            <option value="">{{ Lang::get('shop::admin.properties.select') }}</option>
+                                        </select>
 
-                                        @{{ property.options }}
+                                    </div>
 
-                                        <input class="form-control" type="text" placeholder="{{ Lang::get('shop::admin.properties.option') }}" ng-model="property.options[vm.product.properties[property.id].option_id].translations[vm.options.locale].name">
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <div class="input-group-addon">{{ Lang::get('shop::admin.properties.value') }}</div>
 
-                                        <div class="input-group-btn">
-                                            <button class="btn btn-primary"><i class="fa fa-trash"></i></button>
+                                            <input class="form-control" type="text" placeholder="{{ Lang::get('shop::admin.properties.option') }}"
+                                                   ng-model="vm.product.propertyOptions[property.id][vm.product.properties[property.id].option_id].translations[vm.options.locale].name"
+                                                   ng-change="vm.saveOption(property)">
+
+                                            <div class="input-group-btn">
+                                                <button class="btn btn-danger" ng-really="vm.deleteValue(property)" ng-show="vm.product.properties[property.id].id"><i class="fa fa-trash"></i></button>
+                                            </div>
                                         </div>
                                     </div>
+
                                 </div>
 
                                 <div class="clearfix"></div>

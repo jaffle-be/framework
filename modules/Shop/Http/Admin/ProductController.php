@@ -12,6 +12,7 @@ use Modules\Shop\Product\Category;
 use Modules\Shop\Product\Product;
 use Modules\Shop\Product\Property;
 use Modules\Shop\Product\PropertyGroup;
+use Modules\Shop\Product\PropertyOption;
 use Modules\System\Http\AdminController;
 use Modules\System\Locale;
 
@@ -215,7 +216,7 @@ class ProductController extends AdminController
         return new Collection([
             'categories' => $added,
             'propertyGroups' => $groups,
-            'baseProperties' => isset($baseProperties) ? $this->baseProperties($product->mainCategory(), $groups) : null,
+            'baseProperties' => isset($baseProperties) ? $this->mapGroups($product->mainCategory(), $groups) : null,
             'hasMainCategory' => isset($baseProperties) ? true : false,
         ]);
     }
@@ -269,7 +270,7 @@ class ProductController extends AdminController
     protected function relations()
     {
         return ['translations', 'brand', 'brand.translations', 'categories', 'categories.translations',
-            'properties', 'properties.translations', 'properties.option',
+            'properties', 'properties.translations',
         ];
     }
 
@@ -325,36 +326,42 @@ class ProductController extends AdminController
 
         if($category)
         {
-            $groups = $this->propertyGroups($product->mainCategory());
+            $category->load(['propertyGroups', 'propertyGroups.translations', 'properties', 'properties.translations']);
+
+            $product->propertyGroups = $category->propertyGroups;
+
+            $product->propertyProperties = $category->properties->groupBy('group_id');
+
+            foreach($product->propertyGroups as $group){
+                if(!$product->propertyProperties->has($group->id))
+                {
+                    //make sure we can add to empty groups
+                    $product->propertyProperties->put($group->id, new Collection());
+                }
+            }
+
+            $propertyIds = $category->properties->lists('id')->toArray();
+
+            if(count($propertyIds))
+            {
+                $product->propertyOptions = PropertyOption::with(['translations'])->whereIn('property_id', $propertyIds)->get()->groupBy('property_id');
+
+                $product->propertyOptions = $product->propertyOptions->map(function($item){
+                    return $item->keyBy('id');
+                });
+            }
+            else{
+                $product->propertyOptions = new Collection();
+            }
 
             $product->hasMainCategory = true;
-            $product->baseProperties = $this->baseProperties($category, $groups);
-            $product->propertyGroups = $groups;
-            $product->setRelation('properties',$product->properties->keyBy('property_id'));
+            $product->setRelation('properties', $product->properties->keyBy('property_id'));
         }
     }
 
     protected function propertyGroups(Category $category)
     {
         return PropertyGroup::where('category_id', $category->id)->with('translations')->get();
-    }
-
-    protected function baseProperties(Category $category, Collection $groups)
-    {
-        $properties = Property::categoryProperties($category);
-
-        $properties = $properties->groupBy('group_id');
-
-        //make sure that each category is a collection,
-        //so we can drop items in that group-sortable in the UI
-        foreach($groups as $group)
-        {
-            if(!$properties->has($group->id)){
-                $properties->put($group->id, new Collection());
-            };
-        }
-
-        return $properties;
     }
 
 }

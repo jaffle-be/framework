@@ -35,12 +35,4 @@ class Property extends Model
         return $this->belongsTo('Modules\Shop\Product\PropertyUnit', 'unit_id');
     }
 
-    public static function categoryProperties($category)
-    {
-        return static::query()
-            ->with(['translations', 'options', 'options.translations', 'unit', 'unit.translations'])
-            ->where('category_id', $category->id)
-            ->get();
-    }
-
 }

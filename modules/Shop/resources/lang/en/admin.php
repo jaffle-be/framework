@@ -47,6 +47,6 @@ return [
         'textual' => 'textual value',
         'digits'  => 'some digits',
         'decimal' => 'decimal value',
-
+        'select' => 'select or create new value',
     ],
 ];

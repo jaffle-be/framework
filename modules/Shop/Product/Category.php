@@ -65,6 +65,11 @@ class Category extends Model implements Pushable, Searchable
         return $this->hasMany('Modules\Shop\Product\PropertyGroup', 'category_id');
     }
 
+    public function properties()
+    {
+        return $this->hasMany('Modules\Shop\Product\Property', 'category_id');
+    }
+
     protected function getSearchableSuggestPayload($translation)
     {
         //for a category, we use all synonyms as possible input

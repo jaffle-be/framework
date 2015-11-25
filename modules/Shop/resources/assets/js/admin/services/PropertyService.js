@@ -2,11 +2,12 @@
     'use strict';
 
     angular.module('shop')
-        .factory('PropertyService', function (PropertyGroup, PropertyValue, $timeout, $http, $q) {
+        .factory('PropertyService', function (PropertyGroup, PropertyValue, PropertyOption, $timeout, $http, $q) {
 
             var groupTimeouts = [],
                 propertyTimeouts = [],
-                valueTimeouts = [];
+                valueTimeouts = [],
+                optionTimeouts = [];
 
             return {
                 createGroup: createGroup,
@@ -19,6 +20,8 @@
                 moveProperty: moveProperty,
                 createValue: createValue,
                 updateValue: updateValue,
+                createOption: createOption,
+                updateOption: updateOption,
             };
 
             function createGroup(category, locale, name)
@@ -111,7 +114,7 @@
             function createValue(payload)
             {
                 var value = new PropertyValue(payload);
-                return value.$save();
+                return value.$save().then();
             }
             
             function updateValue(value)
@@ -127,6 +130,27 @@
                     copy.$update();
 
                 }, 400);
+            }
+
+            function updateOption(option)
+            {
+                if(optionTimeouts[option.id])
+                {
+                    $timeout.cancel(optionTimeouts[option.id]);
+                }
+
+                optionTimeouts[option.id] = $timeout(function(){
+
+                    var copy = angular.copy(option);
+                    copy.$update();
+
+                }, 400);
+            }
+
+            function createOption(payload, success)
+            {
+                var option = new PropertyOption(payload);
+                return option.$save(success).then();
             }
 
         });

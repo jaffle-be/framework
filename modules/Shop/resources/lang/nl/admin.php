@@ -47,5 +47,6 @@ return [
         'textual' => '',
         'digits'  => '',
         'decimal' => '',
+        'select' => '',
     ],
 ];

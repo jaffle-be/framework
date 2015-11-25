@@ -22,6 +22,7 @@ Route::group([
         Route::group(['prefix' => 'api/admin/shop'], function () {
 
             Route::resource('properties/values', 'PropertyValueController', ['only' => ['store', 'update', 'destroy']]);
+            Route::resource('properties/options', 'PropertyOptionController', ['only' => ['store', 'update', 'destroy']]);
 
             Route::post('properties/groups/sort', 'PropertyGroupController@sortGroups');
             Route::resource('properties/groups', 'PropertyGroupController', ['only' => ['store', 'update', 'destroy']]);

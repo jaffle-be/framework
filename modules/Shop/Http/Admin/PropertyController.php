@@ -38,9 +38,9 @@ class PropertyController extends AdminController
         {
             if($properties->delete())
             {
-                return json_encode(array(
-                    'status' => 'oke'
-                ));
+                $properties->id = false;
+
+                return $properties;
             }
         }
 
