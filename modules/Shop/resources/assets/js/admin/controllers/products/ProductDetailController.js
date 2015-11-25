@@ -45,8 +45,7 @@
             };
 
             this.createGroup = function () {
-                var category = _.first(me.product.propertyGroups).category_id;
-                category = _.first(_.where(me.product.categories, {id: category}));
+                var category = _.first(_.where(me.product.categories, {original_id: null}));
                 PropertyService.createGroup(category, me.options.locale, me.newGroup).then(function (group) {
                     me.newGroup = '';
                     me.product.propertyGroups.push(group);
