@@ -120,13 +120,21 @@ class GammaController extends AdminController
         $productRequirements = function($query) use ($subscriptions)
         {
             $query->whereIn('account_id', $subscriptions->subscribedIds());
+            //also make sure the products are actually linked to a category
+            $query->join('product_categories_pivot', 'product_categories_pivot.product_id', '=', 'products.id');
         };
 
-        $brands = Brand::whereHas('products', $productRequirements)->with([
+        $categoryRequirements = function($query) use ($subscriptions)
+        {
+            $query->whereIn('account_id', $subscriptions->subscribedIds());
+        };
+
+        $brands = Brand::whereHas('products', $productRequirements)
+            ->with([
             'translations',
             'selection',
-            'categories' => function($query) use ($productRequirements) {
-                $query->whereHas('products', $productRequirements);
+            'categories' => function($query) use ($categoryRequirements) {
+                $query->whereHas('products', $categoryRequirements);
             },
             'categories.translations',
             'categories.selection'
