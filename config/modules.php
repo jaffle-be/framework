@@ -160,7 +160,7 @@ return [
     |
     */
     'cache' => [
-        'enabled' => false,
+        'enabled' => env('APP_ENV') == 'production' ? true :false,
         'key' => 'pingpong-modules',
         'lifetime' => 60,
     ],
