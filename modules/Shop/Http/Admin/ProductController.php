@@ -303,7 +303,7 @@ class ProductController extends AdminController
      */
     protected function indexesToUse(GammaSubscriptionManager $subscriptions)
     {
-        $accounts = $subscriptions->getSubscribedAccounts();
+        $accounts = $subscriptions->subscribedAccounts();
 
         $aliases = $accounts->lists('alias')->toArray();
 

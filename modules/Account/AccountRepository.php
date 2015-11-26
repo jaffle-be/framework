@@ -65,4 +65,20 @@ class AccountRepository implements AccountRepositoryInterface
     {
     }
 
+    /**
+     * Find the base account that's being used as the 'system' account
+     *
+     * @return mixed
+     */
+    public function baseAccount()
+    {
+        $digiredo = $this->account->newQueryWithoutScopes()->whereAlias('digiredo')->first();
+
+        if (!$digiredo) {
+            throw new \Exception('No default subscription account detected');
+        }
+
+        return $digiredo;
+    }
+
 }

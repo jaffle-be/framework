@@ -35,6 +35,16 @@ class CachedAccountRepository implements AccountRepositoryInterface
         return $this->__call(__FUNCTION__, func_get_args());
     }
 
+    /**
+     * Find the base account that's being used as the 'system' account
+     *
+     * @return mixed
+     */
+    public function baseAccount()
+    {
+        return $this->account->baseAccount();
+    }
+
     function __call($name, $arguments)
     {
         $result = call_user_func_array([$this->account, $name], $arguments);

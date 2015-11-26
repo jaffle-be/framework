@@ -3,21 +3,25 @@
 use Illuminate\Support\Collection;
 use Modules\Account\Account;
 use Modules\Account\AccountManager;
+use Modules\Account\AccountRepositoryInterface;
 
 class GammaSubscriptionManager
 {
     protected $accounts;
 
-    public function __construct(AccountManager $accounts)
+    protected $repo;
+
+    public function __construct(AccountManager $accounts, AccountRepositoryInterface $repo)
     {
         $this->accounts = $accounts;
+        $this->repo = $repo;
     }
 
-    public function getSubscribedAccounts(Account $account = null)
+    public function subscribedAccounts(Account $account = null)
     {
         $account = $this->defaultAccount($account);
 
-        $digiredo = $this->baseAccount($account);
+        $digiredo = $this->repo->baseAccount();
 
         //for now, shops are hardcoded to subscribe to digiredo and themselves.
         if($account->alias == $digiredo->alias)
@@ -31,7 +35,7 @@ class GammaSubscriptionManager
 
     public function subscribedIds($account = null)
     {
-        return $this->getSubscribedAccounts($account)->lists('id')->toArray();
+        return $this->subscribedAccounts($account)->lists('id')->toArray();
     }
 
     /**
@@ -47,22 +51,4 @@ class GammaSubscriptionManager
 
         return $this->accounts->account();
     }
-
-    /**
-     * @param Account $account
-     *
-     * @return mixed
-     * @throws \Exception
-     */
-    protected function baseAccount(Account $account)
-    {
-        $digiredo = $account->newQueryWithoutScopes()->whereAlias('digiredo')->first();
-
-        if (!$digiredo) {
-            throw new \Exception('No default subscription account detected');
-        }
-
-        return $digiredo;
-    }
-
 }
