@@ -22,7 +22,7 @@ var modules = 'modules/*/resources/assets/';
 var pkg = {
     admin: {
         js: {
-            "files": [
+            files: [
                 'modules/System/resources/assets/js/admin/app.js',
                 modules + 'js/admin/config.js',
                 modules + 'js/admin/services/**/*.js',
