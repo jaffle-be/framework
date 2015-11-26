@@ -2,9 +2,10 @@
 @import "../../../../../../bower_components/font-awesome/less/font-awesome";
 @import (inline) "../../../../../../bower_components/animate.css/animate.min.css";
 @import (inline) "../../../../../../bower_components/dropzone/dist/min/dropzone.min.css";
-@import (inline) "../../../../../../bower_components/ng-sortable/dist/ng-sortable.min.css";
 @import (inline) '../../../../../../bower_components/angularjs-toaster/toaster.min.css';
 @import "inspinia/style.less";
+
+@import (inline) "../../../../../../bower_components/ng-sortable/dist/ng-sortable.min.css";
 
 //correct bootstrap glyphicons font path
 @icon-font-path: '/fonts/';
@@ -75,6 +76,7 @@ div.datepicker {
 @import "theme-settings";
 @import "profile";
 @import "marketing";
+@import "shop";
 
 table {
 
@@ -93,4 +95,35 @@ div.search-navigation
     margin-bottom: 0;
   }
 
+}
+
+//sortables
+
+/* ******************************************* */
+/* Optional CSS, default style for ng-sortable */
+/* ******************************************* */
+
+.as-sortable-item, .as-sortable-placeholder {
+  min-height: 20px;
+  margin: 1px 2px 5px 1px;
+}
+
+.as-sortable-item {
+  background-color: #ffffff;
+}
+
+.as-sortable-item-handle {
+}
+
+.as-sortable-placeholder {
+  border: 1px dashed darkgrey;
+  box-sizing: border-box;
+  background-color: #dbdbdb;
+}
+
+.as-sortable-drag {
+  opacity: .8;
+}
+
+.as-sortable-hidden {
 }

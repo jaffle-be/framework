@@ -2,11 +2,22 @@
     'use strict';
 
     angular.module('shop')
-        .factory('ProductService', function (Product, $timeout, $http, $q) {
+        .factory('ProductService', function (Product, $timeout, $http, $q, toaster, $state) {
 
             return {
                 find: function (id, success) {
-                    Product.get({id: id}, success);
+                    Product.get({id: id}).$promise.then(success, function(response){
+
+                        if(response.status == 404)
+                        {
+                            toaster.error("Couldn't find product");
+                            $state.go('admin.shop.products');
+                        }
+                        else{
+                            toaster.error("something bad happened");
+                            $state.go('admin.shop.products');
+                        }
+                    });
                 },
                 query: function (params, success) {
                     Product.query(params, success);
@@ -26,6 +37,7 @@
 
                         this.timeout = $timeout(function () {
                             return destination.$update().then(function(response){
+
                                 deferred.resolve(response);
                             }, function(response){
                                 deferred.reject(response);

@@ -49,7 +49,6 @@ class ProductCategoryManager
             $this->dispatch(new DeactivateProduct($product, $category, $account));
 
             //deactivating the product will not be enough, we also need the record deleted
-
             $instance = $this->selections->newQueryWithoutScopes()
                 ->where([
                     'product_id' => $product->id,
@@ -103,8 +102,6 @@ class ProductCategoryManager
     }
 
     /**
-     * make sure to not use relation, since that always adds our globalscopes
-     *
      * @param ProductSelection $instance
      *
      * @return bool

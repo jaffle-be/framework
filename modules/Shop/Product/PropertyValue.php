@@ -5,15 +5,26 @@ use Modules\System\Translatable\Translatable;
 
 class PropertyValue extends Model
 {
+
     use Translatable;
 
     protected $table = 'product_properties_values';
 
-    protected $fillable = ['string', 'numeric', 'float'];
+    protected $fillable = ['product_id', 'property_id', 'option_id', 'string', 'numeric', 'float', 'boolean'];
 
     protected $translatedAttributes = ['string'];
 
     protected $translationForeignKey = 'value_id';
+
+    protected $casts = [
+        'id'          => 'integer',
+        'product_id'  => 'integer',
+        'property_id' => 'integer',
+        'option_id'   => 'integer',
+        'boolean'     => 'boolean',
+        'numeric'     => 'integer',
+        'float'       => 'float',
+    ];
 
     public function product()
     {

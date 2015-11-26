@@ -1,4 +1,4 @@
-<?php namespace Shop\Gamma;
+<?php namespace Test\Shop\Gamma;
 
 use DB;
 use Illuminate\Foundation\Bus\DispatchesJobs;
@@ -132,7 +132,7 @@ class ProductCategoryManagerFrontTest extends AdminTestCase
             $product->categories()->attach($category);
         });
 
-        return array($brand, $category, $products->get(0), $product2);
+        return array($brand, $category, $products->get(0), $products->get(1));
     }
 
     /**

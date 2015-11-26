@@ -1,4 +1,4 @@
-<?php namespace Marketing\Newsletter;
+<?php namespace Test\Marketing\Newsletter;
 
 use Test\AdminTestCase;
 

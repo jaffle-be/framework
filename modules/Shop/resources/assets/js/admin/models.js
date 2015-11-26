@@ -2,28 +2,31 @@
     'use strict';
 
     angular.module('shop')
-        .factory('Product', function ($resource, Category) {
+        .factory('Product', function ($resource, Category, PropertyService) {
             return $resource('api/admin/shop/products/:id', {id: '@id'}, {
                 query: {
                     isArray: false
                 },
                 get: {
                     method: 'GET',
-                    transformResponse: function (response) {
-                        response = angular.fromJson(response);
+                    transformResponse: function (response, something, status) {
 
-                        if (response.translations.length == 0)
+                        if(status == 200)
                         {
-                            response.translations = {};
+                            response = angular.fromJson(response);
+
+                            if (response.translations.length == 0)
+                            {
+                                response.translations = {};
+                            }
+
+                            response.categories = _.map(response.categories, function (category) {
+                                return new Category(category);
+                            });
+
+                            PropertyService.transformResponse(response);
+
                         }
-
-                        response.categories = _.map(response.categories, function (category) {
-                            return new Category(category);
-                        });
-
-                        response.baseProperties = _.map(response.baseProperties, function(item){
-                            return item
-                        });
 
                         return response;
                     }
@@ -57,6 +60,90 @@
                 query: {
                     isArray: false
                 },
+                get: {
+                    method: 'GET',
+                    transformResponse: function (response) {
+                        response = angular.fromJson(response);
+
+                        if (response.translations.length == 0)
+                        {
+                            response.translations = {};
+                        }
+
+                        return response;
+                    }
+                },
+                update: {
+                    method: 'PUT',
+                }
+            });
+        })
+
+        .factory('PropertyGroup', function($resource){
+            return $resource('api/admin/shop/properties/groups/:id', {id: '@id'}, {
+                get: {
+                    method: 'GET',
+                    transformResponse: function (response) {
+                        response = angular.fromJson(response);
+
+                        if (response.translations.length == 0)
+                        {
+                            response.translations = {};
+                        }
+
+                        return response;
+                    }
+                },
+                update: {
+                    method: 'PUT',
+                }
+            });
+        })
+
+        .factory('Property', function($resource){
+            return $resource('api/admin/shop/properties/:id', {id: '@id'}, {
+                get: {
+                    method: 'GET',
+                    transformResponse: function (response) {
+                        response = angular.fromJson(response);
+
+                        if (response.translations.length == 0)
+                        {
+                            response.translations = {};
+                        }
+
+                        return response;
+                    }
+                },
+                update: {
+                    method: 'PUT',
+                }
+            });
+        })
+
+        .factory('PropertyOption', function($resource){
+            return $resource('api/admin/shop/properties/options/:id', {id: '@id'}, {
+                get: {
+                    method: 'GET',
+                    transformResponse: function (response) {
+                        response = angular.fromJson(response);
+
+                        if (response.translations.length == 0)
+                        {
+                            response.translations = {};
+                        }
+
+                        return response;
+                    }
+                },
+                update: {
+                    method: 'PUT',
+                }
+            });
+        })
+
+        .factory('PropertyValue', function($resource){
+            return $resource('api/admin/shop/properties/values/:id', {id: '@id'}, {
                 get: {
                     method: 'GET',
                     transformResponse: function (response) {

@@ -1,11 +1,13 @@
 <?php namespace Modules\Shop\Product;
 
 use Illuminate\Database\Eloquent\Model;
+use Modules\System\Scopes\ModelAutoSort;
 use Modules\System\Translatable\Translatable;
 
 class Property extends Model
 {
     use Translatable;
+    use ModelAutoSort;
 
     protected $table = 'product_properties';
 
@@ -31,14 +33,6 @@ class Property extends Model
     public function unit()
     {
         return $this->belongsTo('Modules\Shop\Product\PropertyUnit', 'unit_id');
-    }
-
-    public static function categoryProperties($category)
-    {
-        return static::query()
-            ->with(['translations', 'options', 'options.translations', 'unit', 'unit.translations'])
-            ->where('category_id', $category->id)
-            ->get();
     }
 
 }

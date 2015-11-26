@@ -12,14 +12,6 @@ class ProductPropertyManager
         $this->category = $category;
     }
 
-    public function attach($payload)
-    {
-        $product = $this->product->find($payload['product_id']);
-        $category = $this->category->find($payload['category_id']);
-
-        //if the $category is a main category ->
-    }
-
     public function detach($payload)
     {
         $product = $this->product->find($payload['product_id']);

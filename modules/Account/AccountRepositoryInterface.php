@@ -20,6 +20,13 @@ interface AccountRepositoryInterface
     public function findByAlias($alias);
 
     /**
+     * Find the base account that's being used as the 'system' account
+     *
+     * @return mixed
+     */
+    public function baseAccount();
+
+    /**
      * method used to trigger cache update
      */
     public function updated();

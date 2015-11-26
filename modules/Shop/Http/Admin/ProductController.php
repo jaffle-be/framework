@@ -12,6 +12,7 @@ use Modules\Shop\Product\Category;
 use Modules\Shop\Product\Product;
 use Modules\Shop\Product\Property;
 use Modules\Shop\Product\PropertyGroup;
+use Modules\Shop\Product\PropertyOption;
 use Modules\System\Http\AdminController;
 use Modules\System\Locale;
 
@@ -200,8 +201,6 @@ class ProductController extends AdminController
                 {
                     $this->doCategoryAttach($product, $synonym, $added);
                 }
-
-                $baseProperties = Property::categoryProperties($category);
             }
         }
 
@@ -212,11 +211,16 @@ class ProductController extends AdminController
             $this->doCategoryAttach($product, $category, $added);
         }
 
+        $product->load($this->relations());
+
+        $this->prepareProperties($product);
+
         return new Collection([
             'categories' => $added,
-            'baseProperties' => isset($baseProperties) ? $baseProperties : null,
-            'propertyGroups' => isset($baseProperties) ? $this->propertyGroups($baseProperties) : null,
-            'hasMainCategory' => isset($baseProperties) ? true : false,
+            'propertyGroups' => isset($product->propertyGroups) ? $product->propertyGroups : null,
+            'propertyProperties' => isset($product->propertyProperties) ? $product->propertyProperties : null,
+            'propertyOptions' => isset($product->propertyOptions) ? $product->propertyOptions : null,
+            'hasMainCategory' => $product->mainCategory() ? true : false,
         ]);
     }
 
@@ -269,7 +273,7 @@ class ProductController extends AdminController
     protected function relations()
     {
         return ['translations', 'brand', 'brand.translations', 'categories', 'categories.translations',
-            'properties', 'properties', 'properties.option',
+            'properties', 'properties.translations',
         ];
     }
 
@@ -299,7 +303,7 @@ class ProductController extends AdminController
      */
     protected function indexesToUse(GammaSubscriptionManager $subscriptions)
     {
-        $accounts = $subscriptions->getSubscribedAccounts();
+        $accounts = $subscriptions->subscribedAccounts();
 
         $aliases = $accounts->lists('alias')->toArray();
 
@@ -319,34 +323,48 @@ class ProductController extends AdminController
         }
     }
 
-    protected function prepareProperties($product)
+    protected function prepareProperties(Product $product)
     {
         $category = $product->mainCategory();
 
         if($category)
         {
-            $properties = Property::categoryProperties($category);
+            $category->load(['propertyGroups', 'propertyGroups.translations', 'properties', 'properties.translations']);
+
+            $product->propertyGroups = $category->propertyGroups;
+
+            $product->propertyProperties = $category->properties->groupBy('group_id');
+
+            foreach($product->propertyGroups as $group){
+                if(!$product->propertyProperties->has($group->id))
+                {
+                    //make sure we can add to empty groups
+                    $product->propertyProperties->put($group->id, new Collection());
+                }
+            }
+
+            $propertyIds = $category->properties->lists('id')->toArray();
+
+            if(count($propertyIds))
+            {
+                $product->propertyOptions = PropertyOption::with(['translations'])->whereIn('property_id', $propertyIds)->get()->groupBy('property_id');
+
+                $product->propertyOptions = $product->propertyOptions->map(function($item){
+                    return $item->keyBy('id');
+                });
+            }
+            else{
+                $product->propertyOptions = new Collection();
+            }
+
             $product->hasMainCategory = true;
-            $product->baseProperties = $properties->groupBy('group_id');
-            $product->propertyGroups = $this->propertyGroups($properties);
-            $product->setRelation('properties',$product->properties->keyBy('property_id'));
+            $product->setRelation('properties', $product->properties->keyBy('property_id'));
         }
     }
 
-    protected function propertyGroups($baseProperties)
+    protected function propertyGroups(Category $category)
     {
-        $properties = $baseProperties->groupBy('group_id');
-
-        if($properties->count())
-        {
-            $groups = $properties->keys();
-
-            $groups = $groups->filter(function($id){
-                return $id != null;
-            });
-
-            return PropertyGroup::with('translations')->whereIn('id', $groups)->get();
-        }
+        return PropertyGroup::where('category_id', $category->id)->with('translations')->get();
     }
 
 }

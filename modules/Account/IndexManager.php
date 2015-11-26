@@ -24,6 +24,7 @@ class IndexManager
                 'actions' => [
                     [
                         'remove' => [
+                            'index' => config('search.index'),
                             'alias' => $account->alias,
                         ]
                     ]
@@ -72,5 +73,5 @@ class IndexManager
         $events->listen('eloquent.updated: ' . Account::class, __CLASS__ . '@add');
         $events->listen('eloquent.deleted: ' . Account::class, __CLASS__ . '@remove');
     }
-
+    
 }

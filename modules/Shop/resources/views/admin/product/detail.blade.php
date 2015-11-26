@@ -8,8 +8,8 @@
 
             <uib-tabset>
 
-                <uib-tab heading="base" active="vm.mainTabs[0]"></uib-tab>
-                <uib-tab heading="properties" active="vm.mainTabs[1]" ng-show="vm.product.hasMainCategory"></uib-tab>
+                <uib-tab heading="{{ Lang::get('shop::admin.product.base') }}" active="vm.mainTabs[0]"></uib-tab>
+                <uib-tab heading="{{ Lang::get('shop::admin.product.properties') }}" active="vm.mainTabs[1]" ng-show="vm.product.hasMainCategory"></uib-tab>
 
             </uib-tabset>
 
@@ -39,22 +39,5 @@
         @include('shop::admin.product.product-properties')
 
     </div>
-
-    {{--<div class="col-xs-12">
-
-        <div class="alert alert-danger">
-            <div class="title">Drafting</div>
-            <p>
-                drafting should be enabled by pressing a user button.
-                the server should then create a new draft document.
-                this should clone all tags etc to the draft document.
-                the draft itself should be tied to the original document.
-
-                upon publishing the draft will overwrite the original one completely
-                (except for maybe some original fields like the created timestamp)
-            </p>
-        </div>
-
-    </div>--}}
 
 </div>

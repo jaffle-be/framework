@@ -1,5 +1,6 @@
 <?php namespace Modules\System\Eventing;
 
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
 class BelongsToMany extends \Illuminate\Database\Eloquent\Relations\BelongsToMany
@@ -119,7 +120,11 @@ class BelongsToMany extends \Illuminate\Database\Eloquent\Relations\BelongsToMan
             }, $values);
 
             //fire based on the values, since the $ids can still contain invalid data.
-            app('events')->fire('eloquent.detached: ' . $this->relationName, $values);
+            foreach($values as $value)
+            {
+                app('events')->fire('eloquent.detached: ' . $this->relationName, [$value]);
+            }
+
         }
     }
 
