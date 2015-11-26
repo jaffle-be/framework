@@ -30,9 +30,6 @@ class ShopServiceProvider extends ServiceProvider
         $this->app['events']->listen('eloquent.attached: product_categories', 'Modules\Shop\Gamma\ProductCategoryManager@attach');
         $this->app['events']->listen('eloquent.detached: product_categories', 'Modules\Shop\Gamma\ProductCategoryManager@detach');
 
-        //we shouldn't be setting defaults so..
-        //maybe in the future, we'll want to set a value in our product table to speed things up
-        //$this->app['events']->listen('eloquent.attached: product_categories', 'Modules\Shop\Product\ProductPropertyManager@attach');
         $this->app['events']->listen('eloquent.detached: product_categories', 'Modules\Shop\Product\ProductPropertyManager@detach');
 
         $this->app['events']->listen('eloquent.saved: ' . CategoryTranslation::class, 'Modules\Shop\Product\CategorySuggestSyncer@handle');
