@@ -144,12 +144,12 @@ class BrandCategoryManager
 
     protected function combinationStillExists($product, $category_id)
     {
-        $products = $this->bareProducts();
-
-        $count = $products->where('brand_id', $product['brand_id'])
-            ->join($this->product->categories()->getTable(), $this->product->categories()->getForeignKey(), '=', $this->product->getKeyName())
-            ->where($this->product->categories()->getOtherKey(), $category_id)
+        $count = $this->product->newQueryWithoutScopes()
+            ->join('product_categories_pivot', 'product_categories_pivot.product_id', '=', 'products.id')
+            ->where('category_id', $category_id)
+            ->where('brand_id', $product['brand_id'])
             ->count();
+
 
         return $count > 0;
     }
