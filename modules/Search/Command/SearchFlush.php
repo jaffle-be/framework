@@ -2,8 +2,9 @@
 
 use Illuminate\Console\Command;
 use Modules\Search\SearchServiceInterface;
+use Symfony\Component\Console\Input\InputArgument;
 
-class Rebuild extends Command
+class SearchFlush extends Command
 {
 
     /**
@@ -11,14 +12,14 @@ class Rebuild extends Command
      *
      * @var string
      */
-    protected $name = 'search:rebuild';
+    protected $name = 'search:flush';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'rebuild the index for the elasticsearch instance.';
+    protected $description = 'Delete the entire index';
 
     /**
      * @var SearchServiceInterface
@@ -44,8 +45,6 @@ class Rebuild extends Command
      */
     public function fire()
     {
-        $this->call('search:flush');
-        $this->call('search:settings');
-        $this->call('search:build');
+        $this->service->flush();
     }
 }

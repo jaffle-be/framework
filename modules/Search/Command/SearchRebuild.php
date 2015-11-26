@@ -3,7 +3,7 @@
 use Illuminate\Console\Command;
 use Modules\Search\SearchServiceInterface;
 
-class UpdateSettings extends Command
+class SearchRebuild extends Command
 {
 
     /**
@@ -11,14 +11,14 @@ class UpdateSettings extends Command
      *
      * @var string
      */
-    protected $name = 'search:settings';
+    protected $name = 'search:rebuild';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Update the settings for the elasticsearch instance.';
+    protected $description = 'rebuild the index for the elasticsearch instance.';
 
     /**
      * @var SearchServiceInterface
@@ -44,8 +44,8 @@ class UpdateSettings extends Command
      */
     public function fire()
     {
-        $settings = config('search.settings');
-
-        $this->service->updateSettings($settings);
+        $this->call('search:flush');
+        $this->call('search:settings');
+        $this->call('search:build');
     }
 }

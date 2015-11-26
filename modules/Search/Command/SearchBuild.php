@@ -5,7 +5,7 @@ use Modules\Account\IndexManager;
 use Modules\Search\SearchServiceInterface;
 use Symfony\Component\Console\Input\InputArgument;
 
-class BuildIndexes extends Command
+class SearchBuild extends Command
 {
 
     /**

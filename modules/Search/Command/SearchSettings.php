@@ -2,9 +2,8 @@
 
 use Illuminate\Console\Command;
 use Modules\Search\SearchServiceInterface;
-use Symfony\Component\Console\Input\InputArgument;
 
-class FlushType extends Command
+class SearchSettings extends Command
 {
 
     /**
@@ -12,14 +11,14 @@ class FlushType extends Command
      *
      * @var string
      */
-    protected $name = 'search:flush';
+    protected $name = 'search:settings';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Delete the entire index';
+    protected $description = 'Update the settings for the elasticsearch instance.';
 
     /**
      * @var SearchServiceInterface
@@ -45,28 +44,8 @@ class FlushType extends Command
      */
     public function fire()
     {
-        $this->service->flush();
-    }
+        $settings = config('search.settings');
 
-    /**
-     * Get the console command arguments.
-     *
-     * @return array
-     */
-    protected function getArguments()
-    {
-        return array(
-            array('types', InputArgument::IS_ARRAY),
-        );
-    }
-
-    /**
-     * Get the console command options.
-     *
-     * @return array
-     */
-    protected function getOptions()
-    {
-        return [];
+        $this->service->updateSettings($settings);
     }
 }
