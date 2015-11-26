@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('shop')
-        .factory('PropertyService', function (PropertyGroup, PropertyValue, PropertyOption, $timeout, $http, $q) {
+        .factory('PropertyService', function (Property, PropertyValue, PropertyOption, PropertyGroup, $timeout, $http, $q) {
 
             var groupTimeouts = [],
                 propertyTimeouts = [],
@@ -10,6 +10,8 @@
                 optionTimeouts = [];
 
             return {
+                transformResponse: transformResponse,
+
                 createGroup: createGroup,
                 updateGroup: updateGroup,
                 deleteGroup: deleteGroup,
@@ -151,6 +153,30 @@
             {
                 var option = new PropertyOption(payload);
                 return option.$save(success).then();
+            }
+
+            function transformResponse(response)
+            {
+                response.propertyGroups = _.map(response.propertyGroups, function (group) {
+                    return new PropertyGroup(group);
+                });
+
+                _.each(response.propertyProperties, function (groupOfProperties, groupid, properties) {
+                    properties[groupid] = _.map(groupOfProperties, function(property){
+                        return new Property(property);
+                    });
+                });
+
+                _.each(response.propertyOptions, function(groupOptions){
+
+                    _.each(groupOptions, function(option, option_id, options){
+                        options[option_id] = new PropertyOption(option);
+                    });
+                });
+
+                _.each(response.properties, function(property, id, collection){
+                    collection[id] = new PropertyValue(property);
+                });
             }
 
         });

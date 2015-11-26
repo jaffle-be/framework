@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('shop')
-        .factory('Product', function ($resource, Category, PropertyGroup, Property, PropertyValue, PropertyOption) {
+        .factory('Product', function ($resource, Category, PropertyService) {
             return $resource('api/admin/shop/products/:id', {id: '@id'}, {
                 query: {
                     isArray: false
@@ -24,26 +24,8 @@
                                 return new Category(category);
                             });
 
-                            response.propertyGroups = _.map(response.propertyGroups, function (group) {
-                                return new PropertyGroup(group);
-                            });
+                            PropertyService.transformResponse(response);
 
-                            _.each(response.propertyProperties, function (groupOfProperties, groupid, properties) {
-                                properties[groupid] = _.map(groupOfProperties, function(property){
-                                    return new Property(property);
-                                });
-                            });
-
-                            _.each(response.propertyOptions, function(groupOptions){
-
-                                _.each(groupOptions, function(option, option_id, options){
-                                    options[option_id] = new PropertyOption(option);
-                                });
-                            });
-
-                            _.each(response.properties, function(property, id, collection){
-                                collection[id] = new PropertyValue(property);
-                            });
                         }
 
                         return response;

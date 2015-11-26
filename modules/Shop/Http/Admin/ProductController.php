@@ -211,13 +211,16 @@ class ProductController extends AdminController
             $this->doCategoryAttach($product, $category, $added);
         }
 
-        $groups = isset($baseProperties) ? $this->propertyGroups($product->mainCategory()) : null;
+        $product->load($this->relations());
+
+        $this->prepareProperties($product);
 
         return new Collection([
             'categories' => $added,
-            'propertyGroups' => $groups,
-            'baseProperties' => isset($baseProperties) ? $this->mapGroups($product->mainCategory(), $groups) : null,
-            'hasMainCategory' => isset($baseProperties) ? true : false,
+            'propertyGroups' => isset($product->propertyGroups) ? $product->propertyGroups : null,
+            'propertyProperties' => isset($product->propertyProperties) ? $product->propertyProperties : null,
+            'propertyOptions' => isset($product->propertyOptions) ? $product->propertyOptions : null,
+            'hasMainCategory' => $product->mainCategory() ? true : false,
         ]);
     }
 

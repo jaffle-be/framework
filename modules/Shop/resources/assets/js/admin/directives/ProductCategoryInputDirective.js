@@ -20,12 +20,13 @@
     }
 
 
-    InputController.$inject = ['CategoryService', 'ProductService', 'Category'];
-    function InputController(CategoryService, ProductService, Category)
+    InputController.$inject = ['CategoryService', 'ProductService', 'PropertyService', 'Category'];
+    function InputController(CategoryService, ProductService, PropertyService, Category)
     {
         this.services = {
             categories: CategoryService,
-            products: ProductService
+            products: ProductService,
+            properties: PropertyService,
         };
         this.models = {
             category: Category
@@ -103,11 +104,15 @@
                 me.product.categories.push(category);
             });
 
-            if(response.baseProperties)
+            if(response.propertyProperties)
             {
-                me.product.baseProperties = response.baseProperties;
+                me.services.properties.transformResponse(response);
+
+                //need to transform this response too.
+                me.product.propertyProperties = response.propertyProperties;
                 me.product.propertyGroups = response.propertyGroups;
-                me.product.hasMainCategory = true;
+                me.product.propertyOptions = response.propertyOptions;
+                me.product.hasMainCategory = response.hasMainCategory;
             }
 
             me.categoryInput = '';
@@ -134,8 +139,9 @@
                 if(response.status == 'flushed')
                 {
                     me.product.categories = [];
-                    me.product.baseProperties = [];
+                    me.product.propertyProperties = [];
                     me.product.propertyGroups = [];
+                    me.product.propertyOptions = [];
                     me.product.hasMainCategory = false;
                 }
             }

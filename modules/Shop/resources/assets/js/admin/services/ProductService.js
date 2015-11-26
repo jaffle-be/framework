@@ -37,6 +37,7 @@
 
                         this.timeout = $timeout(function () {
                             return destination.$update().then(function(response){
+
                                 deferred.resolve(response);
                             }, function(response){
                                 deferred.reject(response);
