@@ -1,4 +1,4 @@
-<?php namespace Shop\Gamma;
+<?php namespace Test\Shop\Gamma;
 
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Modules\Account\Account;

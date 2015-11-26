@@ -1,4 +1,4 @@
-<?php namespace System\Eventing;
+<?php namespace Test\System\Eventing;
 
 use Illuminate\Database\Eloquent\Collection;
 use Mockery;

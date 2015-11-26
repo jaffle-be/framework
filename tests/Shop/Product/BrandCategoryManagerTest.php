@@ -1,4 +1,4 @@
-<?php namespace Shop\Product;
+<?php namespace Test\Shop\Product;
 
 use Mockery;
 use Modules\Account\Account;

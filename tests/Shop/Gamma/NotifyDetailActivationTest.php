@@ -1,4 +1,4 @@
-<?php namespace Shop\Gamma;
+<?php namespace Test\Shop\Gamma;
 
 use Modules\Account\Account;
 use Modules\Shop\Gamma\GammaNotification;
