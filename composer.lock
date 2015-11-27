@@ -2637,12 +2637,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/jaffle-be/modules.git",
-                "reference": "0ed9e2d23b75890e41fe4c6139e6041bfc60fd42"
+                "reference": "ae7faf0632f1c6d4e6f9120fe5ec715e18d5a2eb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jaffle-be/modules/zipball/0ed9e2d23b75890e41fe4c6139e6041bfc60fd42",
-                "reference": "0ed9e2d23b75890e41fe4c6139e6041bfc60fd42",
+                "url": "https://api.github.com/repos/jaffle-be/modules/zipball/ae7faf0632f1c6d4e6f9120fe5ec715e18d5a2eb",
+                "reference": "ae7faf0632f1c6d4e6f9120fe5ec715e18d5a2eb",
                 "shasum": ""
             },
             "require": {
@@ -2682,7 +2682,7 @@
             "support": {
                 "source": "https://github.com/jaffle-be/modules/tree/master"
             },
-            "time": "2015-11-27 06:43:10"
+            "time": "2015-11-27 07:15:28"
         },
         {
             "name": "pingpong/support",
