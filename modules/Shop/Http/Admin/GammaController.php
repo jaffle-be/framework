@@ -138,16 +138,7 @@ class GammaController extends AdminController
             $query->whereIn('account_id', $subscriptions->subscribedIds());
         };
 
-        $brands = Brand::whereHas('products', $productRequirements)
-            ->with([
-                'translations',
-                'selection',
-                'categories' => function ($query) use ($categoryRequirements) {
-                    $query->whereHas('products', $categoryRequirements);
-                },
-                'categories.translations',
-                'categories.selection'
-            ]);
+        $brands = Brand::whereHas('products', $productRequirements);
 
         //if we passed in a brand, we used the suggest to find a brand.
         if ($brand = $request->get('brand')) {
@@ -168,6 +159,22 @@ class GammaController extends AdminController
 
         if (!count($ids)) {
             return new Collection();
+        }
+
+        $brands->load(['translations', 'selection']);
+
+        foreach($brands as $brand)
+        {
+            $brand->load([
+                'categories' => function ($query) use ($subscriptions, $brand) {
+                    $query->join('product_categories_pivot', 'product_categories_pivot.category_id', '=', 'product_categories.id')
+                        ->join('products', 'products.id', '=', 'product_categories_pivot.product_id')
+                        ->whereIn('products.account_id', $subscriptions->subscribedIds())
+                        ->where('products.brand_id', $brand->id);
+                },
+                'categories.translations',
+                'categories.selection'
+            ]);
         }
 
         $selections = $this->selections($gamma, 'brand_id', $ids);
