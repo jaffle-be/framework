@@ -27,36 +27,25 @@ class GammaController extends AdminController
     public function categories(GammaSelection $gamma, GammaNotification $notification, GammaSubscriptionManager $subscriptions, Request $request)
     {
         $productRequirements = function ($query) use ($subscriptions) {
-            $query->whereIn('account_id', $subscriptions->subscribedIds());
+            $query->whereIn('products.account_id', $subscriptions->subscribedIds());
         };
 
-        $categories = Category::whereHas('products', $productRequirements)->with([
-            'translations',
-            'selection',
-            'brands' => function($query) use ($productRequirements){
-                $query->whereHas('products', $productRequirements);
-            },
-            'brands.translations',
-            'brands.selection'
-        ]);
+        $categories = Category::whereHas('products', $productRequirements);
 
         //if we passed in a category, we used the suggest to find a category.
         //but we want to show our synonyms too.
-        if($category = $request->get('category'))
-        {
+        if ($category = $request->get('category')) {
             $category = Category::find($category);
 
-            if($category)
-            {
+            if ($category) {
                 $showingIds = array_merge([$category->id], $category->synonyms->lists('id')->toArray());
                 $categories->whereIn('id', $showingIds);
             }
         }
 
-        if($category){
+        if ($category) {
             $categories = $categories->paginate(5, ['*'], 'page', 1);
-        }
-        else{
+        } else {
             $categories = $categories->paginate(5);
         }
 
@@ -66,12 +55,34 @@ class GammaController extends AdminController
             return new Collection();
         }
 
+        $categories->load([
+            'translations',
+            'selection',
+        ]);
+
+        //load brands separately, or you'll be getting bad results
+        foreach ($categories as $category) {
+            $category->load(['brands' => function ($query) use ($subscriptions, $category) {
+
+                $query
+                    ->join('products', 'products.brand_id', '=', 'product_brands.id')
+                    ->join('product_categories_pivot', 'product_categories_pivot.product_id', '=', 'products.id')
+                    ->where('product_categories_pivot.category_id', $category->id)
+                    ->whereIn('products.account_id', $subscriptions->subscribedIds())
+                    ->distinct(['product_brands.*'])
+                    ->get(['product_brands.*']);
+            },
+
+                'brands.translations',
+                'brands.selection'
+            ]);
+        }
+
         $selections = $this->selections($gamma, 'category_id', $ids);
 
         $reviews = $this->reviews($notification, 'category_id', $ids);
 
         //use foreach instead of map, so we can reuse the original paginator.
-
         foreach ($categories as $key => $category) {
             $category->activated = $category->selection ? true : false;
             $category->selection = null;
@@ -117,44 +128,39 @@ class GammaController extends AdminController
 
     public function brands(GammaSelection $gamma, GammaNotification $notification, GammaSubscriptionManager $subscriptions, Request $request)
     {
-        $productRequirements = function($query) use ($subscriptions)
-        {
+        $productRequirements = function ($query) use ($subscriptions) {
             $query->whereIn('account_id', $subscriptions->subscribedIds());
             //also make sure the products are actually linked to a category
             $query->join('product_categories_pivot', 'product_categories_pivot.product_id', '=', 'products.id');
         };
 
-        $categoryRequirements = function($query) use ($subscriptions)
-        {
+        $categoryRequirements = function ($query) use ($subscriptions) {
             $query->whereIn('account_id', $subscriptions->subscribedIds());
         };
 
         $brands = Brand::whereHas('products', $productRequirements)
             ->with([
-            'translations',
-            'selection',
-            'categories' => function($query) use ($categoryRequirements) {
-                $query->whereHas('products', $categoryRequirements);
-            },
-            'categories.translations',
-            'categories.selection'
-        ]);
+                'translations',
+                'selection',
+                'categories' => function ($query) use ($categoryRequirements) {
+                    $query->whereHas('products', $categoryRequirements);
+                },
+                'categories.translations',
+                'categories.selection'
+            ]);
 
         //if we passed in a brand, we used the suggest to find a brand.
-        if($brand = $request->get('brand'))
-        {
+        if ($brand = $request->get('brand')) {
             $brand = Brand::find($brand);
 
-            if($brand)
-            {
+            if ($brand) {
                 $brands->where('id', $brand->id);
             }
         }
 
-        if($brand){
+        if ($brand) {
             $brands = $brands->paginate(5, ['*'], 'page', $page = 1);
-        }
-        else{
+        } else {
             $brands = $brands->paginate(5);
         }
 
