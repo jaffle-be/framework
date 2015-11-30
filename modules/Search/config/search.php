@@ -86,7 +86,12 @@ return [
                 'categories' => [
                     'class' => ProductCategorySelection::class,
                     'key' => 'selection_id',
+                ],
+                'properties' => [
+                    'class' => PropertyValue::class,
+                    'key' => 'product_id',
                 ]
+
             ],
         ],
 
