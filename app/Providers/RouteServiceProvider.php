@@ -53,6 +53,7 @@ class RouteServiceProvider extends ServiceProvider
         $router->model('groups', 'Modules\Shop\Product\PropertyGroup');
         $router->model('values', 'Modules\Shop\Product\PropertyValue');
         $router->model('options', 'Modules\Shop\Product\PropertyOption');
+        $router->model('units', 'Modules\Shop\Product\PropertyUnit');
         $router->model('category', 'Modules\Shop\Product\CategoryTranslation');
         $router->model('brand', 'Modules\Shop\Product\BrandTranslation');
         $router->model('selections', 'Modules\Shop\Gamma\ProductSelection');

@@ -9,6 +9,8 @@
             this.product = false;
             this.creatingValues = [];
             this.creatingOptions = [];
+            this.creatingProperty = false;
+            this.creatingPropertyForGroup = false;
 
             var me = this,
                 id = $state.params.id;
@@ -82,16 +84,13 @@
 
             this.deleteProperty = function (property) {
                 PropertyService.deleteProperty(property).then(function (response) {
-                    if (!property.id)
-                    {
-                        _.remove(me.product.propertyProperties[property.group_id], function (item) {
-                            return item.id == property.id;
-                        });
+                    _.remove(me.product.propertyProperties[property.group_id], function (item) {
+                        return item.id == property.id;
+                    });
 
-                        _.remove(me.product.properties, function (item) {
-                            return item.property_id == property.id;
-                        });
-                    }
+                    _.remove(me.product.properties, function (item) {
+                        return item.property_id == property.id;
+                    });
                 });
             };
 
@@ -172,13 +171,23 @@
                 }
             };
 
-            this.deleteValue = function(property)
-            {
+            this.deleteValue = function (property) {
                 var value = me.product.properties[property.id];
 
-                value.$delete().then(function(response){
+                value.$delete().then(function (response) {
                     me.product.properties[property.id] = null;
                 });
+            };
+
+            this.startCreatingProperty = function (group) {
+                me.creatingProperty = true;
+                me.creatingPropertyForGroup = group;
+            };
+
+            this.updateUnit = function(property)
+            {
+                var unit = me.product.propertyUnits[property.unit_id];
+                PropertyService.updateUnit(unit);
             };
 
             this.load(id);

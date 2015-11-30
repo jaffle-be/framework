@@ -13,6 +13,7 @@ use Modules\Shop\Product\Product;
 use Modules\Shop\Product\Property;
 use Modules\Shop\Product\PropertyGroup;
 use Modules\Shop\Product\PropertyOption;
+use Modules\Shop\Product\PropertyUnit;
 use Modules\System\Http\AdminController;
 use Modules\System\Locale;
 
@@ -88,13 +89,13 @@ class ProductController extends AdminController
         ));
     }
 
-    public function show(Product $product)
+    public function show(Product $product, PropertyUnit $unit)
     {
         $product->load($this->relations());
 
         $this->prepareMedia($product);
 
-        $this->prepareProperties($product);
+        $this->prepareProperties($product, $unit);
 
         return $product;
     }
@@ -174,7 +175,7 @@ class ProductController extends AdminController
         }
     }
 
-    public function addCategory(Request $request)
+    public function addCategory(Request $request, PropertyUnit $unit)
     {
         $this->validate($request, [
             'product_id' => 'exists:products,id',
@@ -213,13 +214,14 @@ class ProductController extends AdminController
 
         $product->load($this->relations());
 
-        $this->prepareProperties($product);
+        $this->prepareProperties($product, $unit);
 
         return new Collection([
             'categories' => $added,
             'propertyGroups' => isset($product->propertyGroups) ? $product->propertyGroups : null,
             'propertyProperties' => isset($product->propertyProperties) ? $product->propertyProperties : null,
             'propertyOptions' => isset($product->propertyOptions) ? $product->propertyOptions : null,
+            'propertyUnits' => isset($product->propertyUnits) ? $product->propertyUnits : null,
             'hasMainCategory' => $product->mainCategory() ? true : false,
         ]);
     }
@@ -323,7 +325,7 @@ class ProductController extends AdminController
         }
     }
 
-    protected function prepareProperties(Product $product)
+    protected function prepareProperties(Product $product, PropertyUnit $unit)
     {
         $category = $product->mainCategory();
 
@@ -342,6 +344,8 @@ class ProductController extends AdminController
                     $product->propertyProperties->put($group->id, new Collection());
                 }
             }
+
+            $product->propertyUnits = $unit->with('translations')->get()->keyBy('id');
 
             $propertyIds = $category->properties->lists('id')->toArray();
 

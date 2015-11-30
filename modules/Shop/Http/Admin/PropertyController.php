@@ -8,21 +8,12 @@ use Modules\System\Http\AdminController;
 class PropertyController extends AdminController
 {
 
-    public function sortProperties(Request $request, Property $properties)
+    public function store(Property $properties, Request $request, PropertyGroup $groups)
     {
-        $order = $request->get('order');
+        $group = $request->get('group_id');
+        $group = $groups->find($group);
 
-        if(count($order))
-        {
-            $properties = $properties->whereIn('id', $order)
-                ->get();
-
-            foreach($properties as $property)
-            {
-                $property->sort = array_search($property->id, $order);
-                $property->save();
-            }
-        }
+        return $properties->create(array_merge(translation_input($request), ['category_id' => $group->category_id]));
     }
 
     public function update(Property $properties, Request $request)
@@ -47,6 +38,23 @@ class PropertyController extends AdminController
         return json_encode(array(
             'status' => 'noke'
         ));
+    }
+
+    public function sortProperties(Request $request, Property $properties)
+    {
+        $order = $request->get('order');
+
+        if(count($order))
+        {
+            $properties = $properties->whereIn('id', $order)
+                ->get();
+
+            foreach($properties as $property)
+            {
+                $property->sort = array_search($property->id, $order);
+                $property->save();
+            }
+        }
     }
 
     /**

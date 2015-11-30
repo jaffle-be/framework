@@ -47,6 +47,7 @@ return [
         'textual' => '',
         'digits'  => '',
         'decimal' => '',
-        'select' => '',
+        'select'  => '',
+        'unit'    => '',
     ],
 ];

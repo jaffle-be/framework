@@ -18,7 +18,7 @@ return [
     ],
 
     'notifications' => [
-        'title'      => 'notifications',
+        'title' => 'notifications',
     ],
     'product'       => [
         'base'         => 'base',
@@ -40,13 +40,14 @@ return [
         'upc'          => 'upc',
     ],
     'properties'    => [
-        'group' => 'group',
-        'name'  => 'name',
-        'value' => 'value',
-        'option' => 'option',
+        'group'   => 'group',
+        'name'    => 'name',
+        'value'   => 'value',
+        'option'  => 'option',
         'textual' => 'textual value',
         'digits'  => 'some digits',
         'decimal' => 'decimal value',
-        'select' => 'select or create new value',
+        'select'  => 'select or create new value',
+        'unit'    => 'unit',
     ],
 ];

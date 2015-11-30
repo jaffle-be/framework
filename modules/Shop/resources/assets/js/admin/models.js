@@ -121,6 +121,27 @@
             });
         })
 
+        .factory('PropertyUnit', function($resource){
+            return $resource('api/admin/shop/properties/units/:id', {id: '@id'}, {
+                get: {
+                    method: 'GET',
+                    transformResponse: function (response) {
+                        response = angular.fromJson(response);
+
+                        if (response.translations.length == 0)
+                        {
+                            response.translations = {};
+                        }
+
+                        return response;
+                    }
+                },
+                update: {
+                    method: 'PUT',
+                }
+            });
+        })
+
         .factory('PropertyOption', function($resource){
             return $resource('api/admin/shop/properties/options/:id', {id: '@id'}, {
                 get: {

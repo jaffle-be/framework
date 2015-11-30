@@ -11,7 +11,7 @@ class Property extends Model
 
     protected $table = 'product_properties';
 
-    protected $fillable = ['name'];
+    protected $fillable = ['name', 'category_id', 'group_id', 'type', 'unit_id'];
 
     protected $translatedAttributes = ['name'];
 

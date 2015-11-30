@@ -112,6 +112,7 @@
                 me.product.propertyProperties = response.propertyProperties;
                 me.product.propertyGroups = response.propertyGroups;
                 me.product.propertyOptions = response.propertyOptions;
+                me.product.propertyUnits = response.propertyUnits;
                 me.product.hasMainCategory = response.hasMainCategory;
             }
 

@@ -2,12 +2,13 @@
     'use strict';
 
     angular.module('shop')
-        .factory('PropertyService', function (Property, PropertyValue, PropertyOption, PropertyGroup, $timeout, $http, $q) {
+        .factory('PropertyService', function (Property, PropertyValue, PropertyOption, PropertyGroup, PropertyUnit, $timeout, $http, $q) {
 
             var groupTimeouts = [],
                 propertyTimeouts = [],
                 valueTimeouts = [],
-                optionTimeouts = [];
+                optionTimeouts = [],
+                unitTimeouts = [];
 
             return {
                 transformResponse: transformResponse,
@@ -24,6 +25,8 @@
                 updateValue: updateValue,
                 createOption: createOption,
                 updateOption: updateOption,
+                createUnit: createUnit,
+                updateUnit: updateUnit,
             };
 
             function createGroup(category, locale, name)
@@ -174,9 +177,34 @@
                     });
                 });
 
+                _.each(response.propertyUnits, function(unit, id, units){
+                    units[id] = new PropertyUnit(unit);
+                });
+
                 _.each(response.properties, function(property, id, collection){
                     collection[id] = new PropertyValue(property);
                 });
+            }
+
+            function updateUnit(unit)
+            {
+                if(unitTimeouts[unit.id])
+                {
+                    $timeout.cancel(unitTimeouts[unit.id]);
+                }
+
+                unitTimeouts[unit.id] = $timeout(function(){
+
+                    var copy = angular.copy(unit);
+                    copy.$update();
+
+                }, 400);
+            }
+
+            function createUnit(payload, success)
+            {
+                var unit = new PropertyUnit(payload);
+                return unit.$save(success).then();
             }
 
         });
