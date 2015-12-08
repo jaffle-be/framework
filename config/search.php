@@ -94,6 +94,10 @@ return [
             ],
         ],
 
+        'product_properties_values' => [
+            'class' => PropertyValue::class,
+        ],
+
     ],
 
     'settings' => [

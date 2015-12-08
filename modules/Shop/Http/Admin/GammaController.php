@@ -170,7 +170,9 @@ class GammaController extends AdminController
                     $query->join('product_categories_pivot', 'product_categories_pivot.category_id', '=', 'product_categories.id')
                         ->join('products', 'products.id', '=', 'product_categories_pivot.product_id')
                         ->whereIn('products.account_id', $subscriptions->subscribedIds())
-                        ->where('products.brand_id', $brand->id);
+                        ->where('products.brand_id', $brand->id)
+                        ->distinct(['product_categories.*'])
+                        ->get(['product_categories.*']);
                 },
                 'categories.translations',
                 'categories.selection'

@@ -8,6 +8,7 @@ use Illuminate\Container\Container;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Events\Dispatcher;
 use Modules\Search\Model\Searchable;
+use Modules\System\MySoftDeletes;
 
 class SearchService implements SearchServiceInterface
 {
@@ -236,7 +237,20 @@ class SearchService implements SearchServiceInterface
 
     public function delete(Searchable $type)
     {
-        if (method_exists($type, 'forceDelete') && $type->beingFullyDeleted()) {
+        if (uses_trait($type, MySoftDeletes::class)) {
+            //only delete when fully being deleted.
+
+            if ($type->beingFullyDeleted()) {
+                $params = $this->data($type);
+
+                $params = array_except($params, ['body']);
+
+                $this->client->delete($params);
+            }
+            //maybe we should trigger an update here instead of doing nothing.
+        }
+        else {
+            //Even regular soft deletes can be deleted.
             $params = $this->data($type);
 
             $params = array_except($params, ['body']);
@@ -354,16 +368,15 @@ class SearchService implements SearchServiceInterface
 
         $indices->open($toggle);
 
-        foreach($this->config->getTypes() as $type)
-        {
+        foreach ($this->config->getTypes() as $type) {
             /** @var Searchable $object */
             $class = $this->config->getClass($type);
             $object = new $class();
 
             $indices->putMapping([
                 'index' => $this->config->getIndex(),
-                'type' => $type,
-                'body' => [
+                'type'  => $type,
+                'body'  => [
                     'properties' => $object->getSearchableMapping($this->config->getWith($type))
                 ],
             ]);

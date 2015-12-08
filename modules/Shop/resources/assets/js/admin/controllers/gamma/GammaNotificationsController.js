@@ -2,11 +2,12 @@
     'use strict';
 
     angular.module('shop')
-        .controller('GammaNotificationsController', function ($scope, toaster, GammaNotificationsService) {
+        .controller('GammaNotificationsController', function (toaster, GammaNotificationsService) {
 
             this.page = 1;
             this.totalItems = 0;
             this.notifications = [];
+            this.loaded = false;
 
             var me = this;
 
@@ -78,6 +79,7 @@
                 GammaNotificationsService.load({
                     page: me.page
                 }, function (response) {
+                    me.loaded = true;
                     me.notifications = response.data;
                     me.totalItems = response.total;
                 });

@@ -1,6 +1,8 @@
 <?php namespace Modules\Shop\Http;
 
 use Illuminate\Http\Request;
+use Modules\Search\SearchServiceInterface;
+use Modules\Shop\Gamma\GammaQueryResolver;
 use Modules\Shop\Product\BrandTranslation;
 use Modules\Shop\Product\CategoryTranslation;
 use Modules\Shop\Product\Product;
@@ -17,7 +19,7 @@ class ShopController extends FrontController
      */
     public function index()
     {
-        $products = Product::with(['translations', 'images', 'images.translations'])->get();
+        $products = Product::with(['translations', 'images', 'images.translations'])->take(15)->get();
 
         $latest = $this->section($products, 4);
 
@@ -41,10 +43,36 @@ class ShopController extends FrontController
         ]);
     }
 
-    public function category(CategoryTranslation $category, BrandTranslation $brand = null, Request $request)
+    /**
+     * @todo remove brand from this route, it's not usefull
+     *
+     * @param CategoryTranslation    $category
+     * @param BrandTranslation|null  $brand
+     * @param Request                $request
+     * @param SearchServiceInterface $search
+     *
+     * @return \Illuminate\Contracts\View\View
+     */
+    public function category(CategoryTranslation $category, BrandTranslation $brand = null, Request $request, GammaQueryResolver $resolver)
     {
         $category = $category->category;
-        $brand = $brand->brand;
+
+        $original = $category->original_id ? $category->originalCategory : $category;
+
+        $original->load([
+            'propertyGroups' => function($query){
+                $query->whereHas('properties', function($query){
+                    $query->where('type', '<>', 'string');
+                });
+            },
+            'propertyGroups.translations',
+            'propertyGroups.properties' => function($query){
+                $query->where('type', '<>', 'string');
+            },
+            'propertyGroups.properties.translations',
+        ]);
+
+        //within this category, get the active brands for this client, use the given category, not the original
 
         $defaults = [
             'count' => 20,
@@ -53,9 +81,16 @@ class ShopController extends FrontController
 
         $filters = array_merge($defaults, $request->all());
 
-        $products = \Modules\Shop\Product\Product::all();
+        $results = $resolver->resolve($original, $category);
 
-        return $this->theme->render('shop.category-' . $filters['view'], ['products' => $products, 'category' => $category, 'filters' => $filters]);
+        return $this->theme->render('shop.category-' . $filters['view'], [
+            'products'   => $results['products'],
+            'brands'     => $results['brands'],
+            'properties' => $results['properties'],
+            'category'   => $category,
+            'original'   => $original,
+            'filters'    => $filters,
+        ]);
     }
 
     public function product(ProductTranslation $product)

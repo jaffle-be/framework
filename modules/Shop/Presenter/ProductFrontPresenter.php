@@ -19,7 +19,7 @@ class ProductFrontPresenter extends BasePresenter
         $string = '';
 
         foreach ($this->entity->categories as $category) {
-            $string .= sprintf('<a href="%s">%s</a>', store_route('store.shop.category', [$category->translate()]), $category->name);
+            $string .= sprintf('<a href="%s">%s</a> ', store_route('store.shop.category', [$category->translate()]), $category->name);
         }
 
         return $string;
