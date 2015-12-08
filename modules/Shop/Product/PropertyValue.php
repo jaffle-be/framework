@@ -1,12 +1,15 @@
 <?php namespace Modules\Shop\Product;
 
 use Illuminate\Database\Eloquent\Model;
+use Modules\Search\Model\Searchable;
+use Modules\Search\Model\SearchableTrait;
 use Modules\System\Translatable\Translatable;
 
-class PropertyValue extends Model
+class PropertyValue extends Model implements Searchable
 {
 
     use Translatable;
+    use SearchableTrait;
 
     protected $table = 'product_properties_values';
 
@@ -25,6 +28,26 @@ class PropertyValue extends Model
         'numeric'     => 'integer',
         'float'       => 'float',
     ];
+
+    protected static $searchableMapping = [
+        'id'         => ['type' => 'integer'],
+        'product_id' => ['type' => 'integer'],
+        'property_id'   => ['type' => 'integer'],
+        'option_id' => ['type' => 'integer'],
+        'boolean'     => ['type' => 'boolean'],
+        'numeric'     => ['type' => 'integer'],
+        'float'       => ['type' => 'float'],
+
+        'created_at' => [
+            'type'   => 'date',
+            'format' => 'yyyy-MM-dd HH:mm:ss'
+        ],
+        'updated_at' => [
+            'type'   => 'date',
+            'format' => 'yyyy-MM-dd HH:mm:ss'
+        ],
+    ];
+
 
     public function product()
     {

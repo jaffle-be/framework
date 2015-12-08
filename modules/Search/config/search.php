@@ -7,6 +7,7 @@ use Modules\Shop\Gamma\ProductSelection;
 use Modules\Shop\Product\Brand;
 use Modules\Shop\Product\Category;
 use Modules\Shop\Product\Product;
+use Modules\Shop\Product\PropertyValue;
 use Modules\Users\User;
 
 return [
@@ -70,6 +71,10 @@ return [
                 'categories' => [
                     'class' => Category::class,
                     'key' => 'category_id',
+                ],
+                'properties' => [
+                    'class' => PropertyValue::class,
+                    'key' => 'product_id',
                 ]
             ]
         ],
@@ -81,7 +86,12 @@ return [
                 'categories' => [
                     'class' => ProductCategorySelection::class,
                     'key' => 'selection_id',
+                ],
+                'properties' => [
+                    'class' => PropertyValue::class,
+                    'key' => 'product_id',
                 ]
+
             ],
         ],
 

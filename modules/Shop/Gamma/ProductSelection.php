@@ -79,6 +79,11 @@ class ProductSelection extends Model implements Searchable
         return $this->belongsTo('Modules\Shop\Product\ActivePromotion');
     }
 
+    public function properties()
+    {
+        return $this->hasMany('Modules\Shop\Product\PropertyValue', 'product_id', 'product_id');
+    }
+
     /**
      * @param $brand_id
      * @param $category_id

@@ -22,7 +22,7 @@ class Product extends Model implements StoresMedia, PresentableEntity, SeoEntity
 
     protected $table = 'products';
 
-    protected $fillable = ['brand_id', 'ean', 'upc', 'name', 'title', 'content', 'published'];
+    protected $fillable = ['account_id', 'brand_id', 'ean', 'upc', 'name', 'title', 'content', 'published'];
 
     protected $translatedAttributes = ['name', 'title', 'content', 'published'];
 

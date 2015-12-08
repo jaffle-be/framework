@@ -72,12 +72,12 @@ class NotificationController extends AdminController
     {
         $relations = ['brand', 'brand.translations', 'category', 'category.translations', 'product', 'product.translations'];
 
-        $result = $notifications->notBeingProcessed()->with($relations)->orderBy('created_at', 'asc')->paginate();
+        $result = $notifications->notBeingProcessed()->with($relations)->orderBy('created_at', 'asc')->paginate(50);
 
         if ($result->count() < 0 && $request->get('page') > 1) {
             $request->put('page', 1);
 
-            return $notifications->notBeingProcessed()->with($relations)->orderBy('created_at', 'asc')->paginate();
+            return $notifications->notBeingProcessed()->with($relations)->orderBy('created_at', 'asc')->paginate(50);
         }
 
         return $result;

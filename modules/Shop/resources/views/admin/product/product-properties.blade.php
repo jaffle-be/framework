@@ -1,4 +1,4 @@
-<div class="ibox">
+<div ng-show="!vm.creatingProperty" class="ibox">
 
     <div class="ibox-content">
         <form class="form-horizontal" ng-submit="vm.createGroup()">

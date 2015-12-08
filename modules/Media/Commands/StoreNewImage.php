@@ -126,6 +126,7 @@ class StoreNewImage extends Job implements SelfHandling
         $resource = $image->make($this->currentPath);
         $this->width = $resource->width();
         $this->height = $resource->height();
+        unset($resource);
     }
 
     protected function handleFile(Filesystem $files, Configurator $config)
