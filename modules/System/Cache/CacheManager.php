@@ -16,13 +16,10 @@ class CacheManager extends \Illuminate\Cache\CacheManager
      */
     protected function getPrefix(array $config)
     {
-        if ($this->app->runningInConsole()) {
-            $identifier = 'console';
-        } else {
-            $identifier = env('APP_ALIAS');
-        }
 
-        return sprintf('cache:%s:%s', Arr::get($config, 'prefix') ?: $this->app['config']['cache.prefix'], $identifier);
+        $prefix = Arr::get($config, 'prefix') ?: $this->app['config']['cache.prefix'];
+
+        return sprintf('cache:%s:%s', $prefix, env('APP_ALIAS'));
     }
 
 }
