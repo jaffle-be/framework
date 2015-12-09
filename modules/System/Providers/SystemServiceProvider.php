@@ -20,10 +20,6 @@ class SystemServiceProvider extends ServiceProvider
     {
         parent::boot();
 
-        $this->extendCache();
-
-        $this->extendQueues();
-
         $this->validators();
 
         $this->viewGlobals();
@@ -103,20 +99,6 @@ class SystemServiceProvider extends ServiceProvider
                 $guard = app('auth');
                 $view->with('user', $guard->user());
             }
-        });
-    }
-
-    protected function extendQueues()
-    {
-        $this->app['queue']->extend('redis', function () {
-            return new RedisConnector(app('redis'));
-        });
-    }
-
-    protected function extendCache()
-    {
-        $this->app->extend('cache', function () {
-            return new CacheManager(app());
         });
     }
 
