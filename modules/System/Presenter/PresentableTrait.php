@@ -26,7 +26,7 @@ trait PresentableTrait
                 $this->presenterInstance = $presenter;
             }
             catch (\Exception $e) {
-                throw new \Exception('There is a problem building your entity presenter: ' . $this->presenter);
+                throw new \Exception('There is a problem building your entity presenter: ' . $this->presenter . "\nMessage: " . $e->getMessage());
             }
         }
 

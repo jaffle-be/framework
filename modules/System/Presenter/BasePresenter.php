@@ -13,6 +13,11 @@ abstract class BasePresenter implements EntityPresenter
         $this->entity = $entity;
     }
 
+    public function getPresentableEntity()
+    {
+        return $this->entity;
+    }
+
     /**
      * @param $name
      */

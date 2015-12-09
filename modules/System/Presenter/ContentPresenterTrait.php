@@ -27,13 +27,13 @@ trait ContentPresenterTrait
             $content = $this->compileShortcodes($content);
         }
 
-        return Markdown::convertToHtml($content);
+        return rtrim(Markdown::convertToHtml($content));
     }
 
     /**
      * @return bool
      */
-    protected function usePresentableCache()
+    public function usePresentableCache()
     {
         return $this instanceof PresentableCache && on_front();
     }
@@ -41,7 +41,7 @@ trait ContentPresenterTrait
     /**
      * @return mixed
      */
-    protected function contentToPresent()
+    public function contentToPresent()
     {
         return $this->entity->content;
     }
@@ -68,9 +68,12 @@ trait ContentPresenterTrait
     }
 
     /**
-     * @return mixed|string
+     * There's some funny things going on with the spaces in the text
+     * due to parsing it as markdown and then stripping the tags.
+     *
+     * @return string
      */
-    protected function freshlyBuiltExtract()
+    public function freshlyBuiltExtract()
     {
         $content = $this->contentToPresent();
 
@@ -84,17 +87,17 @@ trait ContentPresenterTrait
 
         $content = strip_tags($content);
 
-        return $content;
+        return rtrim($content);
     }
 
-    protected function removeCodeSamples($content)
+    public function removeCodeSamples($content)
     {
-        $content = preg_replace('/````(.|\s)*?````/', '', $content);
+        $content = preg_replace('/````(.|\s)*?````/', "\n", $content);
 
         return $content;
     }
 
-    protected function snippet($str, $wordCount = 60, $chars = null)
+    public function snippet($str, $wordCount = 60, $chars = null)
     {
 
         $string = implode(
@@ -138,7 +141,9 @@ trait ContentPresenterTrait
             }
         }
 
-        return $string . '&nbsp;...';
+        $string = rtrim($string, ' ');
+
+        return empty($string) ? null : $string . '&nbsp;...';
     }
 
 }
