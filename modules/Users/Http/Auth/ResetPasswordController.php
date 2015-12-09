@@ -32,7 +32,7 @@ class ResetPasswordController extends FrontController
             if ($user) {
                 $guard->loginUsingId($user->id);
 
-                return redirect()->to(store_route('store.dash'));
+                return redirect('admin/start');
             }
         }
 
