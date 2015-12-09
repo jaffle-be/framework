@@ -1,24 +1,21 @@
 <?php namespace App\Jobs;
 
-use Illuminate\Contracts\Config\Repository;
+use Modules\Account\AccountManager;
 
 abstract class Job {
 
-    protected $email_from;
+    protected $account;
 
-    protected $email_from_name;
-
-    public function setup()
+    public function __construct()
     {
-        /** @var Repository $config */
-        $config = app('config');
-
-        $config->set([
-            'mail.from' => ['address' => $this->job->email_from(), 'name' => $this->job->email_from_name()]
-        ]);
-
-        $config->set('app.url', $this->job->app_url());
-
-        app('url')->forceRootUrl($config->get('app.url'));
+        $this->account = app(AccountManager::class)->account();
     }
+
+    protected function baseData()
+    {
+        return [
+            'account' => $this->account
+        ];
+    }
+
 }

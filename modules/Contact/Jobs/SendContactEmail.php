@@ -2,23 +2,15 @@
 
 namespace Modules\Contact\Jobs;
 
-use App\Jobs\Job;
-use Illuminate\Contracts\Bus\SelfHandling;
-use Illuminate\Contracts\Queue\ShouldBeQueued;
+use App\Jobs\EmailJob;
 use Illuminate\Mail\Message;
-use Illuminate\Queue\InteractsWithQueue;
-use Modules\Account\Account;
 use Modules\Account\AccountContactInformation;
 use Modules\Theme\ThemeMailer;
 
 //this should probably move to the account module. as its sending a contact mail for the account
 //has nothing to do with address info or anything.
-class SendContactEmail extends Job implements SelfHandling, ShouldBeQueued
+class SendContactEmail extends EmailJob
 {
-
-    use InteractsWithQueue;
-
-    protected $account;
 
     /**
      * @var AccountContactInformation
@@ -58,47 +50,42 @@ class SendContactEmail extends Job implements SelfHandling, ShouldBeQueued
      * @param null                      $subject
      * @param null                      $copy
      */
-    public function __construct(Account $account, AccountContactInformation $contact, $name, $email, $message, $subject = null, $copy = null)
+    public function __construct(AccountContactInformation $contact, $name, $email, $message, $subject = null, $copy = null)
     {
-        $this->account = $account;
         $this->contact = $contact;
         $this->name = $name;
         $this->email = $email;
         $this->message = $message;
         $this->subject = $subject;
         $this->copy = $copy;
+        parent::__construct();
     }
 
     public function handle(ThemeMailer $mailer)
     {
-        $this->setup();
-
-        $email = $this->email;
-        $name = $this->name;
-        $contact = $this->contact;
-        $subject = $this->subject;
-        $copy = $this->copy;
-
         //can't use the key 'message', it's being overridden probably by the mailer
-        $payload = [
-            'account'         => $this->account,
+        $data = array_merge([
+            'email_from'      => $this->email,
+            'email_from_name' => $this->name,
+            'email_to'        => $this->contact->email,
             'contact_message' => $this->message,
-            'subject'         => $subject,
+            'subject'         => $this->subject,
             'email'           => $this->email,
             'name'            => $this->name
-        ];
+        ], $this->baseData());
 
-        $callback = function (Message $message) use ($email, $name, $contact, $subject, $copy) {
-            $message->from($email, $name);
-            $message->to($contact->email);
-            $message->subject($subject);
+        $me = $this;
 
-            if ($copy) {
-                $message->bcc($email, $name);
+        $mailer->send('contact::email', $data, function($message) use ($me)
+        {
+            /** @var Message $message */
+            $message->subject($me->subject);
+
+            if($me->copy)
+            {
+                $message->cc($me->copy, $me->name);
             }
-        };
-
-        $mailer->send('contact::email', $payload, $callback);
+        });
     }
 
 }

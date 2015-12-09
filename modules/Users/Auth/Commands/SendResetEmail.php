@@ -1,40 +1,31 @@
 <?php namespace Modules\Users\Auth\Commands;
 
-use App\Jobs\Job;
+use App\Jobs\EmailJob;
 use Exception;
-use Illuminate\Contracts\Bus\SelfHandling;
-use Illuminate\Contracts\Queue\ShouldBeQueued;
-use Illuminate\Log\Writer;
-use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Translation\Translator;
-use Modules\Account\AccountManager;
 use Modules\Theme\ThemeMailer;
 use Modules\Users\Auth\Tokens\Token;
 use Modules\Users\Contracts\TokenRepositoryInterface;
 use Modules\Users\Contracts\UserRepositoryInterface;
 
-class SendResetEmail extends Job implements SelfHandling, ShouldBeQueued
+class SendResetEmail extends EmailJob
 {
-
-    use InteractsWithQueue;
 
     /**
      * @var
      */
     protected $email;
 
-    protected $account;
-
     /**
      * Create a new command instance.
      *
      * @return void
      */
-    public function __construct($email, AccountManager $manager)
+    public function __construct($email)
     {
         $this->email = $email;
 
-        $this->account = $manager->account();
+        parent::__construct();
     }
 
     /**
@@ -43,10 +34,8 @@ class SendResetEmail extends Job implements SelfHandling, ShouldBeQueued
      * @param Translator               $lang
      * @param UserRepositoryInterface  $users
      */
-    public function handle(ThemeMailer $mail, TokenRepositoryInterface $tokens, Translator $lang, UserRepositoryInterface $users, Writer $log)
+    public function handle(ThemeMailer $mail, TokenRepositoryInterface $tokens, Translator $lang, UserRepositoryInterface $users)
     {
-        $this->setup();
-
         try {
             $user = $users->findUserByEmail($this->email);
 
@@ -60,17 +49,13 @@ class SendResetEmail extends Job implements SelfHandling, ShouldBeQueued
 
                 $subject = $lang->get('users::emails.reset-password.subject');
 
-                $log->info('just before send');
-
-                $send = $mail->send('users::emails.reset-password', [
+                $data = array_merge($this->baseData(), [
                     'user'    => $user,
                     'token'   => $token,
-                    'account' => $this->account,
-                ], function ($message) use ($user, $subject) {
-                    $message->from($this->job->email_from(), $this->job->email_from_name());
-                    $message->to($user->email);
-                    $message->subject($subject);
-                });
+                    'email_to' => $this->email,
+                ]);
+
+                $send = $mail->send('users::emails.reset-password', $data, $subject);
 
                 if ($send) {
                     $this->delete();
@@ -78,9 +63,9 @@ class SendResetEmail extends Job implements SelfHandling, ShouldBeQueued
             }
         }
         catch (Exception $e) {
-            $message = sprintf('Error sending reset mail\nmessage:%s\nfile:%s\nline:%s', $e->getMessage(), $e->getFile(), $e->getLine());
+            $this->release();
 
-            $log->error($message);
+            throw $e;
         }
     }
 

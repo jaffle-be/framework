@@ -30,7 +30,6 @@ class ContactController extends FrontController
         //if we have an advanced form, we also have the parameters subject, and copy
         $this->dispatchFromArray(SendContactEmail::class, [
             'contact' => $account->contactInformation->find($request->get('_id')),
-            'account' => $account,
             'email'   => $request->get('email'),
             'name'    => $request->get('name'),
             'message' => $request->get('message'),

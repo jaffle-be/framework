@@ -1,22 +1,25 @@
 <?php namespace Modules\Account\Http\Admin;
 
 use Illuminate\Contracts\Hashing\Hasher;
+use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Http\Request;
 use Illuminate\Translation\Translator;
 use Modules\Account\AccountManager;
+use Modules\Account\Jobs\Membership\SendInvitationEmail;
 use Modules\Account\MembershipInvitation;
 use Modules\System\Http\AdminController;
 use Modules\Theme\ThemeMailer;
 
 class MembershipInvitationController extends AdminController
 {
+    use DispatchesJobs;
 
     public function index(MembershipInvitation $invitation)
     {
         return MembershipInvitation::orderBy('created_at', 'asc')->get();
     }
 
-    public function store(Request $request, AccountManager $manager, ThemeMailer $mailer, Hasher $hasher, Translator $lang)
+    public function store(Request $request, AccountManager $manager, Hasher $hasher)
     {
         $this->validate($request, ['email' => 'required|email']);
 
@@ -31,11 +34,7 @@ class MembershipInvitationController extends AdminController
 
         $account->membershipInvitations()->save($invitation);
 
-        $mailer->send('account::admin.members.invitation.email', ['invitation' => $invitation], function ($message) use ($invitation, $account, $lang) {
-            $message->to($invitation->email);
-            $message->from($account->contactInformation->first()->email);
-            $message->subject($lang->get('account::admin.users.you-are-invited'));
-        });
+        $this->dispatch(new SendInvitationEmail($invitation));
 
         return $invitation;
     }
