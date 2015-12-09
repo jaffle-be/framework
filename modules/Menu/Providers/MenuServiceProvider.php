@@ -36,8 +36,4 @@ class MenuServiceProvider extends ServiceProvider
 
         $this->app['events']->listen('eloquent.saved:*', 'Modules\Menu\SavedMenuHookable');
     }
-
-    protected function observers()
-    {
-    }
 }

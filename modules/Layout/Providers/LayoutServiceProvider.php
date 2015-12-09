@@ -20,7 +20,4 @@ class LayoutServiceProvider extends ServiceProvider
     {
     }
 
-    protected function observers()
-    {
-    }
 }

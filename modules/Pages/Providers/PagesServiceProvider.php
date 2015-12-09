@@ -16,7 +16,4 @@ class PagesServiceProvider extends ServiceProvider
     {
     }
 
-    protected function observers()
-    {
-    }
 }

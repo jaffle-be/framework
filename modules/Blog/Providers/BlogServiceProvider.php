@@ -15,10 +15,7 @@ class BlogServiceProvider extends ServiceProvider
 
     protected function listeners()
     {
-    }
-
-    protected function observers()
-    {
         Post::observe('Modules\Blog\PostObserver');
     }
+
 }

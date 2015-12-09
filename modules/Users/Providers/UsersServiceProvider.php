@@ -27,10 +27,6 @@ class UsersServiceProvider extends ServiceProvider
         $events->listen('Modules\Users\Auth\Events\UserRegistered', 'Modules\Users\Auth\Handlers\UserRegisteredHandler');
     }
 
-    protected function observers()
-    {
-    }
-
     protected function bindAuthThrottler()
     {
         $this->app->singleton(ThrottleManager::class, function()

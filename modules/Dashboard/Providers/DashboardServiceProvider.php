@@ -20,7 +20,4 @@ class DashboardServiceProvider extends ServiceProvider
     {
     }
 
-    protected function observers()
-    {
-    }
 }

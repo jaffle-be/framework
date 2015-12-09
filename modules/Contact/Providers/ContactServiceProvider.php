@@ -11,10 +11,6 @@ class ContactServiceProvider extends ServiceProvider
     {
     }
 
-    protected function observers()
-    {
-    }
-
     protected function listeners()
     {
     }

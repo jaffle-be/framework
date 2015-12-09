@@ -15,7 +15,4 @@ class ModuleServiceProvider extends ServiceProvider
     {
     }
 
-    protected function observers()
-    {
-    }
 }

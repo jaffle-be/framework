@@ -39,10 +39,6 @@ class AccountServiceProvider extends ServiceProvider
         $this->indexers();
     }
 
-    protected function observers()
-    {
-    }
-
     protected function cacheBusting()
     {
         $this->app['events']->listen('eloquent.saved: Modules\\Contact\\Address', function ($address) {

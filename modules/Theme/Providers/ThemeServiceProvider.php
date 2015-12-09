@@ -44,10 +44,6 @@ class ThemeServiceProvider extends ServiceProvider
         $this->registerThemeServiceProviders();
     }
 
-    protected function observers()
-    {
-    }
-
     protected function listeners()
     {
     }

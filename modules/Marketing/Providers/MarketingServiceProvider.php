@@ -19,10 +19,6 @@ class MarketingServiceProvider extends ServiceProvider
 
     protected function listeners()
     {
-    }
-
-    protected function observers()
-    {
         $this->app->booted(function () {
 
             CampaignWidget::saving(function ($item) {
@@ -41,4 +37,5 @@ class MarketingServiceProvider extends ServiceProvider
             });
         });
     }
+
 }

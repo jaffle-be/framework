@@ -33,6 +33,8 @@ class MediaServiceProvider extends ServiceProvider
     protected function listeners()
     {
         $this->app['events']->listen('eloquent.deleted: *', 'Modules\Media\Cleanup');
+
+        $this->observers();
     }
 
     protected function observers()

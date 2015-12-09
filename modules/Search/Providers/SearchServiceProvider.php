@@ -12,10 +12,6 @@ class SearchServiceProvider extends ServiceProvider
 
     protected $namespace = 'search';
 
-    protected function observers()
-    {
-    }
-
     protected function listeners()
     {
         //keep this in the boot section so we bind to the event dispatcher actually used in the eloquent model instances.
