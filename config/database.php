@@ -126,10 +126,27 @@ return [
 
 		'cluster' => false,
 
+		//default should only be used for queues,
+		//cant specify redis queue connection to use.
 		'default' => [
 			'host'     => env('APP_ENV') == 'testing' ? 'localhost' : env('REDIS_HOST'),
 			'port'     => 6379,
 			'database' => 0,
+			'password' => env('APP_ENV') == 'testing' ? null :env('REDIS_PASS'),
+		],
+
+
+		'cache' => [
+			'host'     => env('APP_ENV') == 'testing' ? 'localhost' : env('REDIS_HOST'),
+			'port'     => 6379,
+			'database' => 1,
+			'password' => env('APP_ENV') == 'testing' ? null :env('REDIS_PASS'),
+		],
+
+		'broadcasting' => [
+			'host'     => env('APP_ENV') == 'testing' ? 'localhost' : env('REDIS_HOST'),
+			'port'     => 6379,
+			'database' => 2,
 			'password' => env('APP_ENV') == 'testing' ? null :env('REDIS_PASS'),
 		],
 

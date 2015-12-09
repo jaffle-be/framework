@@ -68,7 +68,7 @@ return [
 
 		'redis' => [
 			'driver' => 'redis',
-			'queue'  => 'default',
+			'queue'  => 'digiredo',
 			'expire' => 60,
 		],
 
