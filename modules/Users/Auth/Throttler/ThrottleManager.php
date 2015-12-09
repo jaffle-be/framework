@@ -6,6 +6,7 @@ use Illuminate\Contracts\Queue\Queue;
 use Illuminate\Contracts\Redis\Database;
 use Illuminate\Http\Request;
 use Modules\Users\Contracts\Throttler;
+use Predis\Client;
 
 class ThrottleManager implements Throttler
 {
@@ -13,7 +14,7 @@ class ThrottleManager implements Throttler
     const BASE_CACHE_KEY = 'users:auth:throttlers:';
 
     /**
-     * @var Database
+     * @var Client
      */
     protected $redis;
 
@@ -38,13 +39,13 @@ class ThrottleManager implements Throttler
     protected $ip;
 
     /**
-     * @param Database   $redis
+     * @param Client   $redis
      * @param Repository $config
      * @param Queue      $queue
      * @param Carbon     $carbon
      * @param Request    $request
      */
-    public function __construct(Database $redis, Repository $config, Queue $queue, Carbon $carbon, Request $request)
+    public function __construct(Client $redis, Repository $config, Queue $queue, Carbon $carbon, Request $request)
     {
         $this->redis = $redis;
 
