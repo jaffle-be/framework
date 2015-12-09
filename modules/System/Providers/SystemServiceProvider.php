@@ -61,11 +61,10 @@ class SystemServiceProvider extends ServiceProvider
 
     protected function listeners()
     {
-        $this->automateUriCleanup();
-        $this->automateUriCreation();
-        $this->automateContentFormatting();
+        $this->automateUriMaintenance();
+        $this->automateShortcodeFormatting();
         $this->pushableListeners();
-        $this->presentableCacheListeners();
+        $this->automatePresentableCaching();
     }
 
     protected function validators()
@@ -111,18 +110,14 @@ class SystemServiceProvider extends ServiceProvider
         });
     }
 
-    protected function automateUriCleanup()
+    protected function automateUriMaintenance()
     {
         $this->app['events']->listen('eloquent.deleting: *', 'Modules\System\Uri\CleanupPrepping');
         $this->app['events']->listen('eloquent.deleted: *', 'Modules\System\Uri\Cleanup');
-    }
-
-    protected function automateUriCreation()
-    {
         $this->app['events']->listen('eloquent.created: *', 'Modules\System\Uri\Creator');
     }
 
-    protected function automateContentFormatting()
+    protected function automateShortcodeFormatting()
     {
         $this->app['events']->listen('eloquent.saving: *', 'Modules\System\Presenter\ShortCodeFormatter');
     }
@@ -136,7 +131,7 @@ class SystemServiceProvider extends ServiceProvider
         $this->app['events']->listen('eloquent.detached: *', 'Modules\System\Pushable\PushableManager@detached');
     }
 
-    protected function presentableCacheListeners()
+    protected function automatePresentableCaching()
     {
         $this->app['events']->listen('eloquent.saving: *', 'Modules\System\Presenter\PresentableCacher');
     }
