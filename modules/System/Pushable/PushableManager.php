@@ -1,6 +1,6 @@
 <?php namespace Modules\System\Pushable;
 
-use Illuminate\Events\Dispatcher;
+use Illuminate\Contracts\Events\Dispatcher;
 
 class PushableManager
 {
@@ -22,14 +22,15 @@ class PushableManager
 
         $model = $arguments[0];
 
-        if (in_array($method, ['attached', 'detached'])) {
-
-            //when using attached or detached, the payload will always be an array of elements.
-            //so we send all those models
-            $model = $this->dataAsPushable($arguments);
-        }
-
         if ($model instanceof Pushable) {
+
+            if (in_array($method, ['attached', 'detached'])) {
+
+                //when using attached or detached, the payload will always be an array of elements.
+                //so we send all those models
+                $model = $this->belongsToManyPushable($arguments);
+            }
+
             $this->events->fire(new PushableEvent($model, $method));
         }
     }
@@ -47,9 +48,8 @@ class PushableManager
      *
      * @return BelongsToManyPushable
      */
-    protected function dataAsPushable($payload)
+    public function belongsToManyPushable($payload)
     {
-
         $relation = preg_replace('/eloquent\..+?: /', '', $this->events->firing());
 
         return new BelongsToManyPushable($payload, $relation);

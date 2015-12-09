@@ -3,7 +3,7 @@
 class BelongsToManyPushable implements Pushable
 {
 
-    public $data;
+    protected $data;
 
     protected $relation;
 

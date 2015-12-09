@@ -6,4 +6,7 @@ interface Pushable
     public function getPushableChannel();
 
     public function getPushableEventType();
+
+    public function getPushableData();
+
 }
