@@ -27,4 +27,14 @@ class TestCase extends \Illuminate\Foundation\Testing\TestCase
 
         return $app;
     }
+
+    protected function startMockingFront()
+    {
+        putenv('RUNNING_TESTS_FRONT=true');
+    }
+
+    protected function stopMockingFront()
+    {
+        putenv('RUNNING_TESTS_FRONT=false');
+    }
 }

@@ -52,26 +52,24 @@ class ContentPresenterTest extends TestCase
         $dummy = new DummyContentPresenter();
         $this->assertFalse($dummy->usePresentableCache());
 
-        //mock the front
-        putenv('RUNNING_TESTS_FRONT=true');
+        $this->startMockingFront();
 
         $dummy = new DummyCachableContentPresenter();
         $this->assertTrue($dummy->usePresentableCache());
 
         //switch back to most basic
-        putenv('RUNNING_TESTS_FRONT=false');
-
+        $this->stopMockingFront();
     }
 
     public function testExtractReturnsCachedExtractWhenWeShould()
     {
-        putenv('RUNNING_TESTS_FRONT=true');
+        $this->startMockingFront();
 
         $dummy = new DummyCachableContentPresenter();
 
         $this->assertSame('cached extract&nbsp;...', $dummy->extract());
 
-        putenv('RUNNING_TESTS_FRONT=false');
+        $this->stopMockingFront();
     }
 
     public function testExtractReturnsFreshExtractWhenItShould()
@@ -162,7 +160,7 @@ class ContentPresenterTest extends TestCase
     public function testGettingContentThroughCachedContent()
     {
         //mock the front
-        putenv('RUNNING_TESTS_FRONT=true');
+        $this->startMockingFront();
 
         $dummy = new DummyCachableContentPresenter();
         $entity = new DummyContentPresentableEntity();
@@ -171,7 +169,7 @@ class ContentPresenterTest extends TestCase
         $this->assertSame('cached content', $dummy->content());
 
         //switch back to most basic
-        putenv('RUNNING_TESTS_FRONT=false');
+        $this->stopMockingFront();
     }
 
     public function testGettingUncachedContent()
