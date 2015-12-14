@@ -61,13 +61,13 @@ class SearchBuild extends Command
         foreach ($types as $type) {
             $started = microtime(true);
 
-            $this->comment(sprintf('Starting to build index %s', $type));
+            $this->line(ucfirst($type));
 
             $this->service->build($type);
 
             $seconds = microtime(true) - $started;
 
-            $this->comment(sprintf('%s built in %s seconds', $type, $seconds));
+            $this->info(sprintf('%s seconds', $seconds));
         }
     }
 
