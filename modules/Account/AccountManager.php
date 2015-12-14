@@ -23,6 +23,23 @@ class AccountManager
         $this->application = $application;
     }
 
+    /**
+     * Allows to hotswap account
+     *
+     * @param          $account
+     * @param \Closure $closure
+     */
+    public function forced($account, \Closure $closure)
+    {
+        $previous = $this->account;
+
+        $this->account = $account;
+
+        $closure();
+
+        $this->account = $previous;
+    }
+
     public function boot()
     {
         //this alias should be set using your apache or nginx config.
