@@ -19,9 +19,9 @@ class ModelLocaleSpecificResourceScope implements ScopeInterface
     {
         $locale = app()->getLocale();
 
-        $locale = $this->locale->whereSlug($locale)->first();
+        $locale = $this->locale->where('slug', $locale)->first();
 
-        if ($this->locale) {
+        if ($locale) {
             $builder->where('locale_id', $locale->getKey());
         }
     }

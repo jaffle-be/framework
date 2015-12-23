@@ -10,7 +10,7 @@ trait ModelLocaleSpecificResource
         /** @var Request $request */
         $request = app('request');
 
-        if (app()->runningInConsole()) {
+        if (app()->runningInConsole() && !env('RUNNING_TESTS', false)) {
             return;
         }
 
