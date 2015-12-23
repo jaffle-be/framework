@@ -25,7 +25,7 @@ class ProductCategoryManager
     {
         //when attaching a category, need to make sure people with this selected are notified
         $category = $this->category->find($payload['category_id']);
-        $product = $this->product->find($payload['product_id']);
+        $product = $this->product->newQueryWithoutScopes()->find($payload['product_id']);
 
         $selections = $this->records($product, $category);
 
@@ -38,7 +38,7 @@ class ProductCategoryManager
     {
         $category_id = $payload['category_id'];
 
-        $product = $this->product->find($payload['product_id']);
+        $product = $this->product->newQueryWithoutScopes()->find($payload['product_id']);
         $category = $this->category->find($payload['category_id']);
 
         $records = $this->records($product, $category);

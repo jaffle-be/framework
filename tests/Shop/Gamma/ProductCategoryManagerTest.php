@@ -11,7 +11,7 @@ use Modules\Shop\Product\Category;
 use Modules\Shop\Product\Product;
 use Test\AdminTestCase;
 
-class ProductCategoryManagerFrontTest extends AdminTestCase
+class ProductCategoryManagerTest extends AdminTestCase
 {
 
     use DispatchesJobs;
@@ -196,6 +196,8 @@ class ProductCategoryManagerFrontTest extends AdminTestCase
 
     protected function updateIndex()
     {
+        //we manually created records to avoid all parts of our application to run.
+        //but we now need to manually update the index so everything is in the state we want it to be.
         $search = app('Modules\Search\SearchServiceInterface');
         $search->build('product_gamma');
     }
