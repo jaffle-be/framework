@@ -1,6 +1,7 @@
 <?php namespace Test;
 
 use App\Console\Kernel;
+use Illuminate\Database\Eloquent\Model;
 
 class TestCase extends \Illuminate\Foundation\Testing\TestCase
 {
@@ -15,6 +16,12 @@ class TestCase extends \Illuminate\Foundation\Testing\TestCase
     public function createApplication()
     {
         $this->stopMockingFront();
+
+        $reflection = new \ReflectionClass(Model::class);
+        $prop = $reflection->getProperty('globalScopes');
+        $prop->setAccessible(true);
+        $prop->setValue(null, []);
+
         $app = require __DIR__ . '/../bootstrap/app.php';
 
         $app->make(Kernel::class)->bootstrap();
