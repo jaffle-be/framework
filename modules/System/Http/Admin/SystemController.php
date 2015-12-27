@@ -8,7 +8,9 @@ use Illuminate\Foundation\Application;
 use Illuminate\Http\Request;
 use Modules\Account\AccountManager;
 use Modules\Account\AccountRepositoryInterface;
+use Modules\Module\Module;
 use Modules\System\Http\AdminController;
+use Modules\System\Locale;
 use Pusher;
 
 /**
@@ -24,8 +26,18 @@ class SystemController extends AdminController
      */
     public function index(Repository $config, Application $app)
     {
-        //this should return all settings needed for our angular app to work. It might be that this isn't even being called yet.
-        return system_options();
+        //this should return all settings needed for our angular app to work
+        $options['locale'] = $app->getLocale();
+
+        $options['systemLocales'] = $this->system_locales()->toArray();
+
+        $options['locales'] = $this->system_locales()->filter(function ($item) {
+            return $item->activated == true;
+        })->toArray();
+
+        $options['systemModules'] = $this->system_modules()->toArray();
+
+        return json_encode($options);
     }
 
     /**
@@ -73,4 +85,32 @@ class SystemController extends AdminController
         //broadcast event
         $pusher->trigger(pusher_account_channel(), 'system.hard-reload', []);
     }
+
+    protected function system_locales()
+    {
+        $accountLocales = app('Modules\Account\AccountManager')->account()->locales;
+
+        $systemLocales = Locale::with('translations')->get();
+
+        $systemLocales->each(function ($locale) use ($accountLocales) {
+            $locale->activated = $accountLocales->contains($locale->id);
+            $locale->active = app()->getLocale();
+        });
+
+        return $systemLocales->keyBy('slug');
+    }
+
+    protected function system_modules()
+    {
+        $accountModules = app('Modules\Account\AccountManager')->account()->modules;
+
+        $modules = Module::with('translations')->get();
+
+        $modules->each(function ($module) use ($accountModules) {
+            $module->activated = $accountModules->contains($module->id);
+        });
+
+        return $modules;
+    }
+
 }
