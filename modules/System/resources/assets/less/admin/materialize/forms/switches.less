@@ -3,78 +3,78 @@
 ***************/
 .switch,
 .switch * {
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -khtml-user-select: none;
-  -ms-user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -ms-user-select: none;
 }
 
 .switch label {
-  cursor: pointer;
+    cursor: pointer;
 }
 
 .switch label input[type=checkbox] {
-  opacity: 0;
-  width: 0;
-  height: 0;
+    opacity: 0;
+    width: 0;
+    height: 0;
 }
 
 .switch label input[type=checkbox]:checked + .lever {
-  background-color: @brand-primary;
+    background-color: @brand-primary;
 }
 
 .switch label input[type=checkbox]:checked + .lever:after {
-  background-color: @brand-primary;
+    background-color: @brand-primary;
 }
 
 .switch label .lever {
-  content: "";
-  display: inline-block;
-  position: relative;
-  width: 40px;
-  height: 15px;
-  background-color: @gray;
-  border-radius: 15px;
-  margin-right: 10px;
-  transition: background 0.3s ease;
-  vertical-align: middle;
-  margin: 0 16px;
+    content: "";
+    display: inline-block;
+    position: relative;
+    width: 40px;
+    height: 15px;
+    background-color: @gray;
+    border-radius: 15px;
+    margin-right: 10px;
+    transition: background 0.3s ease;
+    vertical-align: middle;
+    margin: 0 16px;
 }
 
 .switch label .lever:after {
-  content: "";
-  position: absolute;
-  display: inline-block;
-  width: 21px;
-  height: 21px;
-  background-color: @gray;
-  border-radius: 21px;
-  box-shadow: 0 1px 3px 1px rgba(0, 0, 0, .4);
-  left: -5px;
-  top: -3px;
-  transition: left 0.3s ease, background .3s ease, box-shadow 0.1s ease;
+    content: "";
+    position: absolute;
+    display: inline-block;
+    width: 21px;
+    height: 21px;
+    background-color: @gray;
+    border-radius: 21px;
+    box-shadow: 0 1px 3px 1px rgba(0, 0, 0, .4);
+    left: -5px;
+    top: -3px;
+    transition: left 0.3s ease, background .3s ease, box-shadow 0.1s ease;
 }
 
 // Switch active style
 input[type=checkbox]:checked:not(:disabled) ~ .lever:active:after {
-  box-shadow: 0 1px 3px 1px rgba(0, 0, 0, .4), 0 0 0 15px transparentize(@brand-primary, .9);
+    box-shadow: 0 1px 3px 1px rgba(0, 0, 0, .4), 0 0 0 15px transparentize(@brand-primary, .9);
 }
 
 input[type=checkbox]:not(:disabled) ~ .lever:active:after {
-  box-shadow: 0 1px 3px 1px rgba(0, 0, 0, .4), 0 0 0 15px rgba(0, 0, 0, .08);
+    box-shadow: 0 1px 3px 1px rgba(0, 0, 0, .4), 0 0 0 15px rgba(0, 0, 0, .08);
 }
 
 .switch label input[type=checkbox]:checked + .lever:after {
-  left: 24px;
+    left: 24px;
 }
 
 // Disabled Styles
 
 .switch input[type=checkbox][disabled] + .lever {
-  cursor: default;
+    cursor: default;
 }
 
 .switch label input[type=checkbox][disabled] + .lever:after,
 .switch label input[type=checkbox][disabled]:checked + .lever:after {
-  background-color: @brand-primary;
+    background-color: @brand-primary;
 }
