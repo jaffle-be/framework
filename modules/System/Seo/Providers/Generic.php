@@ -7,6 +7,7 @@ use Modules\System\Seo\SeoEntity;
 
 class Generic extends MetaTagProvider
 {
+
     protected function renderTitle($key, $value)
     {
         return "<title>$value</title>";

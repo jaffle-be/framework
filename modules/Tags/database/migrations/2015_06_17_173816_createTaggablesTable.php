@@ -5,6 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 
 class CreateTaggablesTable extends Migration
 {
+
     /**
      * Run the migrations.
      */

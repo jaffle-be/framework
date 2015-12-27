@@ -14,6 +14,7 @@ use Modules\Media\StoresMedia;
 
 class StoreNewImage extends Job
 {
+
     use DispatchesJobs;
 
     protected $account;
@@ -64,11 +65,6 @@ class StoreNewImage extends Job
     protected $path;
 
     /**
-     *
-     *
-     *
-     *
-     *
      * @internal param array $sizes
      */
     public function __construct(Account $account = null, StoresMedia $owner, $path, $rename = null)
@@ -114,8 +110,8 @@ class StoreNewImage extends Job
 
     /**
      * set the filename, extension and the size.
-     *
-     *
+
+
      */
     protected function dimensions(ImageManager $image)
     {
@@ -135,7 +131,7 @@ class StoreNewImage extends Job
         }
 
         //abstract path to actual file
-        $path = $abstract.$this->rename;
+        $path = $abstract . $this->rename;
 
         //always copy the file first
         $files->copy($this->currentPath, public_path($path));

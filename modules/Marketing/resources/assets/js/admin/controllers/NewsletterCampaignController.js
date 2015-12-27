@@ -70,8 +70,7 @@
 
                 _.each(me.campaigns, function (campaign) {
 
-                    if (campaign.isSelected)
-                    {
+                    if (campaign.isSelected) {
                         campaigns.push(campaign.id);
                     }
                 });

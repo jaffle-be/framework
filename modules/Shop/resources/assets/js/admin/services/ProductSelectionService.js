@@ -12,13 +12,11 @@
                     ProductSelection.query(params, success);
                 },
                 save: function (product, success) {
-                    if (product.id)
-                    {
+                    if (product.id) {
                         //use a copy, so the response will not reset the form to the last saved instance while typing.
                         var destination = angular.copy(product);
 
-                        if (this.timeout)
-                        {
+                        if (this.timeout) {
                             $timeout.cancel(this.timeout);
                         }
 
@@ -26,8 +24,7 @@
                             return destination.$update(success);
                         }, 400);
                     }
-                    else
-                    {
+                    else {
                         product.$save({}, success);
                     }
                 },
@@ -43,13 +40,12 @@
                         locale: locale
                     }).then(success);
                 },
-                searchSelection: function(query, locale)
-                {
+                searchSelection: function (query, locale) {
                     var data = {
-                        query:query,
+                        query: query,
                         locale: locale
                     };
-                    return $http.post('/api/admin/shop/gamma/selections/suggest', data).then(function(response){
+                    return $http.post('/api/admin/shop/gamma/selections/suggest', data).then(function (response) {
                         return response.data;
                     });
                 },

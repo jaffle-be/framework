@@ -8,6 +8,7 @@ use Illuminate\Database\DatabaseManager;
 
 class BrandCategoryManager
 {
+
     /**
      * @var Connection
      */
@@ -106,11 +107,7 @@ class BrandCategoryManager
     }
 
     /**
-     *
-     *
-     *
      * @return mixed
-     *
      * @internal param $brands
      */
     protected function combinationIsKnown($product, $category)
@@ -128,8 +125,6 @@ class BrandCategoryManager
     }
 
     /**
-     *
-     *
      * @return array
      */
     protected function findProduct($attached)
@@ -137,7 +132,7 @@ class BrandCategoryManager
         //load the product use the core table
         $products = $this->bareProducts();
 
-        $product = (array) $products->where($this->product->getKeyName(), $attached['product_id'])->first();
+        $product = (array)$products->where($this->product->getKeyName(), $attached['product_id'])->first();
 
         return $product;
     }
@@ -154,8 +149,6 @@ class BrandCategoryManager
     }
 
     /**
-     *
-     *
      * @return array
      */
     protected function response($payload)

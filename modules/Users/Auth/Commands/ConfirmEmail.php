@@ -9,6 +9,7 @@ use Modules\Users\Contracts\UserRepositoryInterface;
 
 class ConfirmEmail extends Job
 {
+
     protected $token;
 
     public function __construct(Token $token)

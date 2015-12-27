@@ -8,19 +8,20 @@ use Illuminate\Database\Eloquent\Scope;
 
 class SiteSluggableScope implements Scope
 {
+
     /**
      * Apply the scope to a given Eloquent query builder.
-     *
-     *
-     *
+
+
+
      */
     public function apply(Builder $builder, Model $model)
     {
         $builder->join('uris', function ($join) use ($model) {
             $join->where('uris.owner_type', '=', get_class($model));
-            $join->on('uris.owner_id', '=', $model->getTable().'.'.$model->getKeyName());
+            $join->on('uris.owner_id', '=', $model->getTable() . '.' . $model->getKeyName());
         })->select([
-            $model->getTable().'.*',
+            $model->getTable() . '.*',
             'uris.uri',
         ]);
     }

@@ -39,13 +39,13 @@
                 //these shouldn't be here, but the product controller is already to bloated
                 //and these one method per dedicated controller is a reasonably bad idea.
                 //it might be good in the future, for brand creation, but not for now
-                searchCategory: function(data){
-                    return $http.post('/api/admin/shop/categories/suggest', data).then(function(response){
+                searchCategory: function (data) {
+                    return $http.post('/api/admin/shop/categories/suggest', data).then(function (response) {
                         return response.data;
                     });
                 },
-                searchBrand: function(data){
-                    return $http.post('/api/admin/shop/brands/suggest', data).then(function(response){
+                searchBrand: function (data) {
+                    return $http.post('/api/admin/shop/brands/suggest', data).then(function (response) {
                         return response.data;
                     });
                 }

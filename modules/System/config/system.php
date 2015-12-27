@@ -3,7 +3,6 @@
 return [
 
     'installed' => false,
-
     /*
     |--------------------------------------------------------------------------
     | Application Locales
@@ -13,7 +12,6 @@ return [
     |
     */
     'locales' => ['en', 'nl', 'fr', 'de'],
-
     /*
     |--------------------------------------------------------------------------
     | Use fallback
@@ -25,7 +23,6 @@ return [
     | $useTranslationFallback when defined
     */
     'use_fallback' => false,
-
     /*
     |--------------------------------------------------------------------------
     | Fallback Locale
@@ -37,7 +34,6 @@ return [
     |
     */
     'fallback_locale' => 'en',
-
     /*
     |--------------------------------------------------------------------------
     | Translation Suffix
@@ -49,7 +45,6 @@ return [
     |
     */
     'translation_suffix' => 'Translation',
-
     /*
     |--------------------------------------------------------------------------
     | Locale key
@@ -60,7 +55,6 @@ return [
     |
     */
     'locale_key' => 'locale',
-
     /*
     |--------------------------------------------------------------------------
     | Make translated attributes always fillable
@@ -74,7 +68,6 @@ return [
     |
     */
     'always_fillable' => false,
-
     'seo' => [
 
         'webmaster_tools' => [
@@ -84,14 +77,12 @@ return [
             'pinterest' => null,
             'yandex' => null,
         ],
-
         'providers' => [
             Modules\System\Seo\Providers\Generic::class,
             Modules\System\Seo\Providers\Google::class,
             Modules\System\Seo\Providers\Twitter::class,
             Modules\System\Seo\Providers\Facebook::class,
         ],
-
         //these hold values per provider, that should have defaults per website
         //but should not be included in every request, mostly depending on the 'type'
         //that's been defined, we'll include a subset of attributes specific to that type only.
@@ -114,19 +105,16 @@ return [
                 ],
             ],
         ],
-
         'generic' => [
             'title' => 'Digiredo', // set false to total remove
             'description' => 'A multipurpose platform', // set false to total remove
             'keywords' => 'a multipurpose larangular platform',
         ],
-
         'twitter' => [
             'card' => 'summary_large_image',
             'site' => '@twarlop',
             'creator' => '@twarlop',
         ],
-
         'facebook' => [
             'app_id' => null,
             'type' => 'website',
@@ -136,7 +124,6 @@ return [
             'site_name' => 'digiredo.be',
             'images' => [],
         ],
-
         'google' => [
             'type' => 'website',
             'site_name' => 'digiredo.be',
@@ -145,7 +132,6 @@ return [
             'url' => false,
             'images' => [],
         ],
-
         'owners' => [
             'pages' => Modules\Pages\Page::class,
             'blog' => Modules\Blog\Post::class,

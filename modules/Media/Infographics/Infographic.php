@@ -10,6 +10,7 @@ use Modules\System\Scopes\ModelLocaleSpecificResource;
 
 class Infographic extends Model
 {
+
     use ModelAccountResource;
     use ModelAutoSort;
     use ModelLocaleSpecificResource;

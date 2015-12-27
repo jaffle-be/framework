@@ -37,8 +37,7 @@
                     if (this.locked)
                         return;
 
-                    if (!destination.id)
-                    {
+                    if (!destination.id) {
                         this.locked = true;
 
                         return destination.$save(function () {
@@ -46,10 +45,8 @@
                             $state.go('admin.marketing.campaign', {id: destination.id});
                         });
                     }
-                    else
-                    {
-                        if (this.timeout)
-                        {
+                    else {
+                        if (this.timeout) {
                             $timeout.cancel(this.timeout);
                         }
 
@@ -64,8 +61,7 @@
                 this.saveWidget = function (widget) {
                     var destination = angular.copy(widget);
 
-                    if (this.timeoutWidgets[destination.id])
-                    {
+                    if (this.timeoutWidgets[destination.id]) {
                         $timeout.cancel(this.timeoutWidgets[destination.id]);
                     }
 
@@ -108,18 +104,15 @@
             }
 
             function linkResourceToWidget(type, widget, resource) {
-                if (!(type == 'one' || type == 'two'))
-                {
+                if (!(type == 'one' || type == 'two')) {
                     throw new Error('invalid argument, only support for 2 elements');
                 }
 
-                if (type == 'one')
-                {
+                if (type == 'one') {
                     widget.resource_type = resource.type;
                     widget.resource_id = resource.value;
                 }
-                else
-                {
+                else {
                     widget.other_resource_type = resource.type;
                     widget.other_resource_id = resource.value;
                 }

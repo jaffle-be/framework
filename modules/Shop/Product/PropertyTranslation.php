@@ -6,6 +6,7 @@ use Modules\System\Translatable\TranslationModel;
 
 class PropertyTranslation extends TranslationModel
 {
+
     protected $table = 'product_properties_translations';
 
     protected $fillable = ['name'];

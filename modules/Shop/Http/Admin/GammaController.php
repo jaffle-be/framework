@@ -20,6 +20,7 @@ use Modules\System\Http\AdminController;
 
 class GammaController extends AdminController
 {
+
     public function templateCategories()
     {
         return view('shop::admin.categories.overview');
@@ -63,17 +64,17 @@ class GammaController extends AdminController
 
         //load brands separately, or you'll be getting bad results
         foreach ($categories as $category) {
-            $category->load(['brands' => function ($query) use ($subscriptions, $category) {
+            $category->load([
+                'brands' => function ($query) use ($subscriptions, $category) {
 
-                $query
-                    ->join('products', 'products.brand_id', '=', 'product_brands.id')
-                    ->join('product_categories_pivot', 'product_categories_pivot.product_id', '=', 'products.id')
-                    ->where('product_categories_pivot.category_id', $category->id)
-                    ->whereIn('products.account_id', $subscriptions->subscribedIds())
-                    ->distinct(['product_brands.*'])
-                    ->get(['product_brands.*']);
-            },
-
+                    $query
+                        ->join('products', 'products.brand_id', '=', 'product_brands.id')
+                        ->join('product_categories_pivot', 'product_categories_pivot.product_id', '=', 'products.id')
+                        ->where('product_categories_pivot.category_id', $category->id)
+                        ->whereIn('products.account_id', $subscriptions->subscribedIds())
+                        ->distinct(['product_brands.*'])
+                        ->get(['product_brands.*']);
+                },
                 'brands.translations',
                 'brands.selection',
             ]);

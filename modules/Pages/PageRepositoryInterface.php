@@ -4,6 +4,7 @@ namespace Modules\Pages;
 
 interface PageRepositoryInterface
 {
+
     /**
      * @return []
      */

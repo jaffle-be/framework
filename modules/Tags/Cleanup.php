@@ -7,6 +7,7 @@ use Modules\Tags\Commands\UntagSomething;
 
 class Cleanup
 {
+
     use DispatchesJobs;
 
     public function handle($owner)

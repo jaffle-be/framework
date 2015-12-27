@@ -7,6 +7,7 @@ use Modules\Account\AccountContactInformation;
 
 class UpdateInformation extends Job
 {
+
     /**
      * @var AccountContactInformation
      */

@@ -16,7 +16,6 @@ return [
         'select-none' => 'none',
         'unpublish' => 'unpublish',
     ],
-
     'notifications' => [
         'title' => 'notifications',
     ],

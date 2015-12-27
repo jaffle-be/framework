@@ -7,7 +7,6 @@ return [
         'select_all' => 'all',
         'select_none' => 'none',
     ],
-
     'project' => [
         'client' => 'client',
         'published' => 'published',

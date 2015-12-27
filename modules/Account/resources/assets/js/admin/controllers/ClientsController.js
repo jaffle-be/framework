@@ -24,8 +24,7 @@
             };
 
             this.deleteClient = function () {
-                if (this.client.id)
-                {
+                if (this.client.id) {
                     this.client.$delete({}, function () {
                         _.remove(me.clients, function (client) {
                             return client.id == me.client.id;
@@ -53,16 +52,14 @@
             };
 
             this.save = function () {
-                if (!this.client.id)
-                {
+                if (!this.client.id) {
                     return;
                 }
 
                 //don't update UI with returned object
                 var client = angular.copy(me.client);
 
-                if (this.timeouts[this.client.id])
-                {
+                if (this.timeouts[this.client.id]) {
                     $timeout.cancel(this.timeouts[this.client.id]);
                 }
 

@@ -5,6 +5,7 @@ use Modules\Module\Module;
 
 class InstallMarketingModule extends Migration
 {
+
     /**
      * Run the migrations.
      */

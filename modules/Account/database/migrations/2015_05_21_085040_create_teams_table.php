@@ -8,6 +8,7 @@ use Modules\Module\ModuleRoute;
 
 class CreateTeamsTable extends Migration
 {
+
     /**
      * Run the migrations.
      */

@@ -4,6 +4,7 @@ namespace Modules\System\Seo;
 
 interface SeoEntity
 {
+
     public function getSeoTitle();
 
     public function getSeoDescription();

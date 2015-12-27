@@ -6,6 +6,7 @@ use Modules\System\Translatable\Translatable;
 
 class Config
 {
+
     protected $config;
 
     protected $index;
@@ -34,7 +35,6 @@ class Config
      *
      * @return array
      * @internal param $types
-     *
      */
     protected function invertTypes()
     {
@@ -58,18 +58,18 @@ class Config
         if ($this->usesTranslations($type)) {
             $instance = $this->getInstance($type);
 
-            $with = array_merge($with, ['translations' => [
-                'class' => $instance->getTranslationModelName(),
-                'key' => $instance->translations()->getForeignKey(),
-            ]]);
+            $with = array_merge($with, [
+                'translations' => [
+                    'class' => $instance->getTranslationModelName(),
+                    'key' => $instance->translations()->getForeignKey(),
+                ]
+            ]);
         }
 
         return $with;
     }
 
     /**
-     *
-     *
      * @return array
      */
     protected function usesTranslations($type)
@@ -83,8 +83,6 @@ class Config
     }
 
     /**
-     *
-     *
      * @return mixed
      */
     protected function getInstance($type)
@@ -97,10 +95,6 @@ class Config
     }
 
     /**
-     *
-     *
-     *
-     *
      * @return mixed
      * @internal param $inverted
      * @internal param $config

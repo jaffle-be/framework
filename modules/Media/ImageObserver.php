@@ -9,6 +9,7 @@ use Illuminate\Filesystem\Filesystem;
  */
 class ImageObserver
 {
+
     /**
      * @var Filesystem
      */

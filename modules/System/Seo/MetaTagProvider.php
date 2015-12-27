@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 abstract class MetaTagProvider
 {
+
     protected $prefix;
 
     protected $config;
@@ -42,7 +43,7 @@ abstract class MetaTagProvider
         $properties = $this->eachProperties($this->properties);
         $images = $this->eachProperties($this->images, 'image');
 
-        return PHP_EOL.$properties.PHP_EOL.$images;
+        return PHP_EOL . $properties . PHP_EOL . $images;
     }
 
     protected function setupDefaults()
@@ -53,17 +54,15 @@ abstract class MetaTagProvider
             if ($key == 'images'):
                 if (empty($this->images)):
                     $this->images = $value;
-        endif; elseif (!empty($value) && !array_key_exists($key, $this->properties)):
+                endif;
+            elseif (!empty($value) && !array_key_exists($key, $this->properties)):
                 $this->addProperty($key, $value);
-        endif;
+            endif;
         endforeach;
     }
 
     /**
      * Add or update property.
-     *
-     *
-     *
      *
      * @return $this
      */
@@ -115,23 +114,17 @@ abstract class MetaTagProvider
     }
 
     /**
-     *
-     *
-     *
      * @return string
      */
     protected function nameForTypeSpecificProperty($type, $key)
     {
-        $property = $type.':'.$key;
+        $property = $type . ':' . $key;
 
         return $property;
     }
 
     /**
      * Make list of open graph tags.
-     *
-     *
-     *
      *
      * @return string
      */
@@ -143,7 +136,8 @@ abstract class MetaTagProvider
             // multiple properties
             if (is_array($value)):
 
-                $html = $this->handleMultipleProperties($prefix, $property, $value, $html); else:
+                $html = $this->handleMultipleProperties($prefix, $property, $value, $html);
+            else:
 
                 $key = $this->getPropertyKey($prefix, $property);
 
@@ -152,24 +146,19 @@ abstract class MetaTagProvider
                     continue;
                 }
 
-        if ($this->hasCustomRenderMethod($key)) {
-            $html[] = $this->customRenderMethod($key, $value);
-        } else {
-            $html[] = $this->tag($key, $value);
-        }
+                if ($this->hasCustomRenderMethod($key)) {
+                    $html[] = $this->customRenderMethod($key, $value);
+                } else {
+                    $html[] = $this->tag($key, $value);
+                }
 
-        endif;
+            endif;
         endforeach;
 
         return implode(PHP_EOL, $html);
     }
 
     /**
-     *
-     *
-     *
-     *
-     *
      * @return array
      */
     protected function handleMultipleProperties($prefix, $property, $value, $html)
@@ -183,23 +172,22 @@ abstract class MetaTagProvider
     }
 
     /**
-     *
-     *
-     *
      * @return string
      */
     protected function getPropertyKey($prefix, $property)
     {
         if (is_numeric($property)):
-            $key = $prefix.$property;
+            $key = $prefix . $property;
 
-        return $key; elseif (is_string($prefix)):
-            $key = (is_string($property)) ? $prefix.':'.$property : $prefix;
+            return $key;
+        elseif (is_string($prefix)):
+            $key = (is_string($property)) ? $prefix . ':' . $property : $prefix;
 
-        return $key; else:
+            return $key;
+        else:
             $key = $property;
 
-        return $key;
+            return $key;
         endif;
     }
 
@@ -211,13 +199,11 @@ abstract class MetaTagProvider
     }
 
     /**
-     *
-     *
      * @return string
      */
     protected function customRenderMethodName($key)
     {
-        $method = 'render'.ucfirst(camel_case($key));
+        $method = 'render' . ucfirst(camel_case($key));
 
         return $method;
     }
@@ -235,13 +221,11 @@ abstract class MetaTagProvider
             throw new \Exception('Need to define the prefix property for generating meta tags');
         }
 
-        return '<meta name="'.$this->prefix.strip_tags($key).'" content="'.strip_tags($value).'">';
+        return '<meta name="' . $this->prefix . strip_tags($key) . '" content="' . strip_tags($value) . '">';
     }
 
     /**
      * Remove property.
-     *
-     *
      *
      * @return $this
      */
@@ -255,8 +239,6 @@ abstract class MetaTagProvider
     /**
      * Add image to properties.
      *
-     *
-     *
      * @return $this
      */
     public function addImage($url)
@@ -268,8 +250,6 @@ abstract class MetaTagProvider
 
     /**
      * Add images to properties.
-     *
-     *
      *
      * @return $this
      */

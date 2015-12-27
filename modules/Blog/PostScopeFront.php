@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Scope;
 
 class PostScopeFront implements Scope
 {
+
     public function apply(Builder $builder, Model $model)
     {
         $builder->join('post_translations', function ($join) {

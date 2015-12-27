@@ -7,6 +7,7 @@ use Modules\System\Translatable\TranslationModel;
 
 class CleanupPrepping
 {
+
     public function handle($model)
     {
         if (method_exists($model, 'translations')) {

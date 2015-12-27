@@ -20,6 +20,7 @@ use Modules\Shop\Product\PropertyValue;
 
 class ImportResults extends Command
 {
+
     /**
      * The name and signature of the console command.
      *
@@ -172,8 +173,6 @@ class ImportResults extends Command
     }
 
     /**
-     *
-     *
      * @return static
      */
     protected function category($sub)
@@ -201,8 +200,6 @@ class ImportResults extends Command
     }
 
     /**
-     *
-     *
      * @return mixed
      */
     protected function propertyGroup(Category $category)
@@ -220,11 +217,6 @@ class ImportResults extends Command
     }
 
     /**
-     *
-     *
-     *
-     *
-     *
      * @return static
      */
     protected function productBase($account, $brand, $data, $category)
@@ -248,16 +240,11 @@ class ImportResults extends Command
     }
 
     /**
-     *
-     *
-     *
-     *
-     *
      * @internal param $data
      */
     protected function addImage($account, $product, $url, $counter)
     {
-        $path = base_path('storage').'/image_'.str_replace('/', '_', $product->name).$counter.'.jpg';
+        $path = base_path('storage') . '/image_' . str_replace('/', '_', $product->name) . $counter . '.jpg';
 
         if (!app('files')->exists($path)) {
             $content = file_get_contents($url);

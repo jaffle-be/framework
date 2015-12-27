@@ -8,14 +8,11 @@ use Illuminate\Session\TokenMismatchException;
 
 class VerifyCsrfToken extends BaseVerifier
 {
+
     /**
      * Handle an incoming request.
      *
-     *
-     *
-     *
      * @return mixed
-     *
      * @throws TokenMismatchException
      * @throws \Exception
      */

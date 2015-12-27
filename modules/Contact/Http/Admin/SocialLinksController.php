@@ -10,6 +10,7 @@ use Modules\System\Http\AdminController;
 
 class SocialLinksController extends AdminController
 {
+
     public function widget(SocialLinks $links)
     {
         return view('contact::admin.widgets.social-links', ['links' => $links->getFillable()]);

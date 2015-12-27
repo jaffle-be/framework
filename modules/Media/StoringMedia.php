@@ -10,6 +10,7 @@ use Modules\System\Scopes\ModelAccountResource;
 
 trait StoringMedia
 {
+
     use ImageDimensionHelpers;
 
     public function mediaStoresMultiple()
@@ -113,7 +114,7 @@ trait StoringMedia
         /** @var MorphOne $relation */
         $relation = $this->images();
 
-        $key = $this->getTable().'.'.$this->getKeyName();
+        $key = $this->getTable() . '.' . $this->getKeyName();
 
         $from = $relation->getQuery()->getQuery()->from;
 

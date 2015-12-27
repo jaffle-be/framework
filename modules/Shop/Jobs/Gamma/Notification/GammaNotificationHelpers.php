@@ -10,6 +10,7 @@ use Pusher;
 
 trait GammaNotificationHelpers
 {
+
     protected function beingProcessed(GammaNotification $notification, Account $account, Brand $brand, Category $category)
     {
         return $notification->newQueryWithoutScopes()
@@ -44,11 +45,6 @@ trait GammaNotificationHelpers
     }
 
     /**
-     *
-     *
-     *
-     *
-     *
      * @return mixed
      */
     protected function findExistingCombination(GammaNotification $notification, Account $account, Brand $brand, Category $category)

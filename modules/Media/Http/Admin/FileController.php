@@ -14,6 +14,7 @@ use Modules\Theme\ThemeManager;
 
 class FileController extends AdminController
 {
+
     use MediaWidgetPreperations;
 
     protected $media;
@@ -31,9 +32,6 @@ class FileController extends AdminController
     }
 
     /**
-     *
-     *
-     *
      * @return mixed
      */
     public function index(Request $request, Locale $locale)

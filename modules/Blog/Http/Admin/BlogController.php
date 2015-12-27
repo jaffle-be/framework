@@ -13,13 +13,20 @@ use Modules\System\Http\AdminController;
 
 class BlogController extends AdminController
 {
+
     use MediaWidgetPreperations;
 
     public function index(Request $request)
     {
-        $query = Post::with(['translations', 'tags', 'images', 'images.sizes' => function ($query) {
-            $query->dimension(150);
-        }, 'images.translations']);
+        $query = Post::with([
+            'translations',
+            'tags',
+            'images',
+            'images.sizes' => function ($query) {
+                $query->dimension(150);
+            },
+            'images.translations'
+        ]);
 
         $value = $request->get('query');
         $locale = $request->get('locale');
@@ -28,8 +35,8 @@ class BlogController extends AdminController
             $query->whereHas('translations', function ($q) use ($value, $locale) {
                 $q->where('locale', $locale);
                 $q->where(function ($q) use ($value) {
-                    $q->where('title', 'like', '%'.$value.'%')
-                        ->orWhere('content', 'like', '%'.$value.'%');
+                    $q->where('title', 'like', '%' . $value . '%')
+                        ->orWhere('content', 'like', '%' . $value . '%');
                 });
             });
         }

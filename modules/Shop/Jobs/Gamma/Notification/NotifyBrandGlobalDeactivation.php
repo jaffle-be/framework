@@ -9,6 +9,7 @@ use Modules\Shop\Product\Brand;
 
 class NotifyBrandGlobalDeactivation extends Job
 {
+
     use GammaNotificationHelpers;
 
     /**

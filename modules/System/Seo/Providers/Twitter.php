@@ -7,6 +7,7 @@ use Modules\System\Seo\SeoEntity;
 
 class Twitter extends MetaTagProvider
 {
+
     protected $prefix = 'twitter:';
 
     protected function handle(SeoEntity $seo)

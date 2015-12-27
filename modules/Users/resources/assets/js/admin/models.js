@@ -10,8 +10,7 @@
                     transformResponse: function (response) {
                         var data = angular.fromJson(response);
 
-                        if (data.translations.length == 0)
-                        {
+                        if (data.translations.length == 0) {
                             data.translations = {};
                         }
 

@@ -7,7 +7,13 @@ use Modules\System\Seo\SeoEntity;
 
 class Facebook extends MetaTagProvider
 {
+
     protected $prefix = 'og:';
+
+    public function renderAppId($key, $value)
+    {
+        return sprintf('<meta property="fb:app_id" content="%s">', $value);
+    }
 
     protected function tag($key, $value)
     {
@@ -16,15 +22,10 @@ class Facebook extends MetaTagProvider
         }
 
         if (str_contains($key, ':')) {
-            return '<meta property="'.strip_tags($key).'" content="'.strip_tags($value).'">';
+            return '<meta property="' . strip_tags($key) . '" content="' . strip_tags($value) . '">';
         } else {
-            return '<meta property="'.$this->prefix.strip_tags($key).'" content="'.strip_tags($value).'">';
+            return '<meta property="' . $this->prefix . strip_tags($key) . '" content="' . strip_tags($value) . '">';
         }
-    }
-
-    public function renderAppId($key, $value)
-    {
-        return sprintf('<meta property="fb:app_id" content="%s">', $value);
     }
 
     protected function handle(SeoEntity $seo)

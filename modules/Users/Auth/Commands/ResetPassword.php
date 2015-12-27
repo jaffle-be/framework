@@ -10,6 +10,7 @@ use Modules\Users\User;
 
 class ResetPassword extends Job
 {
+
     /**
      * @var string
      */
@@ -32,11 +33,11 @@ class ResetPassword extends Job
 
     /**
      * Create a new command instance.
-     *
-     *
-     *
-     *
-     *
+
+
+
+
+
      */
     public function __construct($email, Token $token, $password, $password_confirmation)
     {
@@ -47,9 +48,6 @@ class ResetPassword extends Job
     }
 
     /**
-     *
-     *
-     *
      * @return string
      */
     public function handle(UserRepositoryInterface $users, hasher $hasher)
@@ -76,8 +74,6 @@ class ResetPassword extends Job
     }
 
     /**
-     *
-     *
      * @return bool
      */
     protected function validToken(User $user)

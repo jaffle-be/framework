@@ -4,6 +4,7 @@ namespace Modules\Media;
 
 interface StoresMedia
 {
+
     public function images();
 
     public function videos();

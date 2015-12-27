@@ -6,6 +6,7 @@ use Illuminate\Database\Migrations\Migration;
 
 class ThemeSettingMigration extends Migration
 {
+
     use MigrateThemeSettings;
 
     protected $name;

@@ -12,6 +12,7 @@ use Thomaswelton\LaravelGravatar\Gravatar;
 
 class CheckGravatarImage extends Job
 {
+
     use DispatchesJobs;
 
     /**
@@ -33,13 +34,13 @@ class CheckGravatarImage extends Job
 
             $content = file_get_contents($url);
 
-            $tmpDir = storage_path('media'.'/'.$this->user->getMediaFolder());
+            $tmpDir = storage_path('media' . '/' . $this->user->getMediaFolder());
 
             if (!$files->isDirectory($tmpDir)) {
                 $files->makeDirectory($tmpDir, 0755, true);
             }
 
-            $path = $tmpDir.sha1(time().'user-profile-pic'.$this->user->id);
+            $path = $tmpDir . sha1(time() . 'user-profile-pic' . $this->user->id);
 
             $files->put($path, $content);
 
@@ -54,8 +55,6 @@ class CheckGravatarImage extends Job
     }
 
     /**
-     *
-     *
      * @return string
      */
     protected function pathWithExtension($path)
@@ -63,7 +62,7 @@ class CheckGravatarImage extends Job
         $info = getimagesize($path);
 
         //add the extension based on the image type
-        $finalPath = $path.image_type_to_extension($info[2]);
+        $finalPath = $path . image_type_to_extension($info[2]);
 
         return $finalPath;
     }

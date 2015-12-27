@@ -9,6 +9,7 @@ use Modules\Users\Contracts\UserRepositoryInterface;
 
 class Signin extends Job
 {
+
     protected $credentials;
 
     protected $remember_me;

@@ -9,6 +9,7 @@ use Modules\Media\StoresMedia;
 
 class RemoveSize extends Command
 {
+
     protected $signature = 'media:remove-size {size} {type=all}';
 
     /**
@@ -23,9 +24,9 @@ class RemoveSize extends Command
 
     /**
      * Create a new console command instance.
-     *
-     *
-     *
+
+
+
      */
     public function __construct(Configurator $config, Filesystem $files)
     {
@@ -58,9 +59,12 @@ class RemoveSize extends Command
 
             list($width, $height) = explode('x', $size, 2);
 
-            $owners->load(['images', 'images.sizes' => function ($query) use ($width, $height) {
-                $query->dimension($width, $height);
-            }]);
+            $owners->load([
+                'images',
+                'images.sizes' => function ($query) use ($width, $height) {
+                    $query->dimension($width, $height);
+                }
+            ]);
 
             foreach ($owners as $owner) {
                 /* @var StoresMedia $owner */
@@ -70,9 +74,6 @@ class RemoveSize extends Command
     }
 
     /**
-     *
-     *
-     *
      * @internal param $this
      */
     public function handleOwner(StoresMedia $owner, $size)
@@ -89,8 +90,6 @@ class RemoveSize extends Command
     }
 
     /**
-     *
-     *
      * @internal param $owner
      */
     public function handleImage($image)

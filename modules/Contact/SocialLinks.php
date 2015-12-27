@@ -7,6 +7,7 @@ use Modules\System\Scopes\ModelAccountResource;
 
 class SocialLinks extends Model
 {
+
     use ModelAccountResource;
 
     protected $table = 'contact_social_links';

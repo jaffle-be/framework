@@ -12,6 +12,7 @@ use Modules\Users\User;
 
 class Signup extends Job
 {
+
     protected $email;
 
     protected $password;

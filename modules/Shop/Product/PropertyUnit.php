@@ -7,6 +7,7 @@ use Modules\System\Translatable\Translatable;
 
 class PropertyUnit extends Model
 {
+
     use Translatable;
 
     protected $table = 'product_properties_units';

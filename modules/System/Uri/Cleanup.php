@@ -8,6 +8,7 @@ use Modules\System\Translatable\TranslationModel;
 
 class Cleanup
 {
+
     public function handle($object)
     {
         //we need to check for owns slug on the model itself,

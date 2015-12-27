@@ -6,6 +6,7 @@ use Illuminate\Contracts\Cache\Repository;
 
 class CachedAccountRepository implements AccountRepositoryInterface
 {
+
     protected $account;
 
     public function __construct(AccountRepository $account, Repository $cache)
@@ -27,23 +28,11 @@ class CachedAccountRepository implements AccountRepositoryInterface
     }
 
     /**
-     *
-     *
      * @return Account
      */
     public function newAccount(array $payload)
     {
         return $this->__call(__FUNCTION__, func_get_args());
-    }
-
-    /**
-     * Find the base account that's being used as the 'system' account.
-     *
-     * @return mixed
-     */
-    public function baseAccount()
-    {
-        return $this->account->baseAccount();
     }
 
     public function __call($name, $arguments)
@@ -58,5 +47,15 @@ class CachedAccountRepository implements AccountRepositoryInterface
     public function updated()
     {
         $this->cache->forget('account');
+    }
+
+    /**
+     * Find the base account that's being used as the 'system' account.
+     *
+     * @return mixed
+     */
+    public function baseAccount()
+    {
+        return $this->account->baseAccount();
     }
 }

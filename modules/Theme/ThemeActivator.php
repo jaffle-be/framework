@@ -9,6 +9,7 @@ use Modules\Account\AccountManager;
  */
 class ThemeActivator
 {
+
     /**
      * @var Theme
      */
@@ -25,8 +26,6 @@ class ThemeActivator
     protected $selector;
 
     /**
-     *
-     *
      *
      */
     public function __construct(Theme $theme, AccountManager $manager, ThemeSelection $selection)

@@ -12,12 +12,10 @@
 
                 this.save = function (address, callback, error) {
 
-                    if (!address.id)
-                    {
+                    if (!address.id) {
                         address.$save().then(callback, error);
                     }
-                    else
-                    {
+                    else {
                         var destination = angular.copy(address);
                         destination.$update().then(callback, error);
                     }

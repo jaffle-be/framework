@@ -5,6 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 
 class CreateUriTables extends Migration
 {
+
     /**
      * Run the migrations.
      */

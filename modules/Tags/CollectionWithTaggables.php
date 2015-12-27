@@ -6,6 +6,7 @@ use Illuminate\Support\Collection;
 
 trait CollectionWithTaggables
 {
+
     public function getUniqueTags()
     {
         $tags = new Collection();

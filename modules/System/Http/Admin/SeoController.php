@@ -10,6 +10,7 @@ use Modules\Theme\ThemeManager;
 
 class SeoController extends AdminController
 {
+
     public function __construct(ThemeManager $theme)
     {
         parent::__construct($theme);

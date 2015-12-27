@@ -13,14 +13,12 @@
                 id = $state.params.id;
 
             this.load = function (id) {
-                if (id)
-                {
+                if (id) {
                     this.post = this.posts.find(id, function (post) {
                         me.post = post;
                     });
                 }
-                else
-                {
+                else {
                     this.post = new Blog();
                 }
             };
@@ -35,8 +33,7 @@
                 var me = this;
                 me.drafting = true;
 
-                if (me.post.id)
-                {
+                if (me.post.id) {
                     this.posts.save(me.post);
                 }
             };

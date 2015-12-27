@@ -15,6 +15,7 @@ use Modules\System\Http\AdminController;
 
 class PagesController extends AdminController
 {
+
     use MediaWidgetPreperations;
 
     public function overview()
@@ -29,9 +30,14 @@ class PagesController extends AdminController
 
     public function index(Request $request)
     {
-        $query = Page::with(['translations', 'images', 'images.sizes' => function ($query) {
-            $query->dimension(150);
-        }, 'images.translations']);
+        $query = Page::with([
+            'translations',
+            'images',
+            'images.sizes' => function ($query) {
+                $query->dimension(150);
+            },
+            'images.translations'
+        ]);
 
         $value = $request->get('query');
         $locale = $request->get('locale');
@@ -40,8 +46,8 @@ class PagesController extends AdminController
             $query->whereHas('translations', function ($q) use ($value, $locale) {
                 $q->where('locale', $locale);
                 $q->where(function ($q) use ($value) {
-                    $q->where('title', 'like', '%'.$value.'%')
-                        ->orWhere('content', 'like', '%'.$value.'%');
+                    $q->where('title', 'like', '%' . $value . '%')
+                        ->orWhere('content', 'like', '%' . $value . '%');
                 });
             });
         }

@@ -10,6 +10,7 @@ use Illuminate\Filesystem\Filesystem;
  */
 class Cleanup
 {
+
     protected $files;
 
     public function __construct(Filesystem $files, Configurator $configurator)

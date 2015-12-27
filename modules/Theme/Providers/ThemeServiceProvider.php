@@ -2,14 +2,15 @@
 
 namespace Modules\Theme\Providers;
 
+use Modules\System\ServiceProvider;
 use Modules\Theme\Theme;
 use Modules\Theme\ThemeManager;
 use Modules\Theme\ThemeRepository;
 use Modules\Theme\ThemeSelection;
-use Modules\System\ServiceProvider;
 
 class ThemeServiceProvider extends ServiceProvider
 {
+
     protected $namespace = 'theme';
 
     public function boot()

@@ -5,6 +5,7 @@ use Modules\Tags\Tag;
 
 class TagTableSeeder extends Seeder
 {
+
     public function run()
     {
         foreach ([1, 2] as $account) {

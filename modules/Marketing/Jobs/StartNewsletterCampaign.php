@@ -12,6 +12,7 @@ use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class StartNewsletterCampaign extends Job
 {
+
     protected $campaign;
 
     protected $locale;

@@ -6,6 +6,7 @@ use Illuminate\Contracts\Events\Dispatcher;
 
 class PushableManager
 {
+
     protected $events;
 
     protected $supporting = ['created', 'deleted', 'updated', 'attached', 'detached'];
@@ -44,10 +45,7 @@ class PushableManager
      * need to mock an object for many to many relation.
      * the $model passed is simply the pivot data in array form.
      *
-     * 
-     *
      * @return BelongsToManyPushable
-     *
      * @internal param $model
      */
     public function belongsToManyPushable($payload)

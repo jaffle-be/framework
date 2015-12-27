@@ -3,16 +3,17 @@
 namespace Modules\Shop\Product;
 
 use Illuminate\Database\Eloquent\Model;
+use Modules\Media\StoresMedia;
 use Modules\Media\StoringMedia;
 use Modules\Search\Model\Searchable;
 use Modules\Search\Model\SearchableTrait;
 use Modules\System\Pushable\CanPush;
 use Modules\System\Pushable\Pushable;
 use Modules\System\Translatable\Translatable;
-use Modules\Media\StoresMedia;
 
 class Brand extends Model implements Pushable, Searchable, StoresMedia
 {
+
     use Translatable;
     use CanPush;
     use SearchableTrait;
@@ -61,7 +62,7 @@ class Brand extends Model implements Pushable, Searchable, StoresMedia
         $data = parent::toArray();
 
         if (isset($data['selection'])) {
-            $data['activated'] = (bool) $data['selection'];
+            $data['activated'] = (bool)$data['selection'];
 
             unset($data['selection']);
         }

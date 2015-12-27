@@ -3,9 +3,7 @@
 /**
  * Authentication can use the same controller each time, since we always use the same users table
  * The controllers themselves will redirect to the proper locations.
- *
  * all these routes represent routes that should handle authorization for access to admin areas.
- *
  * the subdomained ones are for the stores.
  * the regular one is for our native app.
  */

@@ -20,6 +20,7 @@ use Modules\System\Locale;
 
 class ProductController extends AdminController
 {
+
     use MediaWidgetPreperations;
 
     public function suggest(Request $request)
@@ -262,16 +263,19 @@ class ProductController extends AdminController
 
     protected function relations()
     {
-        return ['translations', 'brand', 'brand.translations', 'categories', 'categories.translations',
-            'properties', 'properties.translations',
+        return [
+            'translations',
+            'brand',
+            'brand.translations',
+            'categories',
+            'categories.translations',
+            'properties',
+            'properties.translations',
         ];
     }
 
     /**
-     *
-     *
      * @return Product
-     *
      * @throws \Exception
      */
     protected function deleteProduct(Product $product)
@@ -288,8 +292,6 @@ class ProductController extends AdminController
     }
 
     /**
-     *
-     *
      * @return mixed
      */
     protected function indexesToUse(GammaSubscriptionManager $subscriptions)
@@ -302,8 +304,6 @@ class ProductController extends AdminController
     }
 
     /**
-     *
-     *
      *
      */
     protected function doCategoryAttach($product, $category, $added)

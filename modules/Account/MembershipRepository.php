@@ -4,6 +4,7 @@ namespace Modules\Account;
 
 class MembershipRepository
 {
+
     /**
      * @var Membership
      */

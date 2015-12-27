@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Collection;
 
 trait MigrateThemeSettings
 {
+
     /**
      * @var Collection
      */
@@ -23,12 +24,25 @@ trait MigrateThemeSettings
 
             $setting = $theme->settings()->create($setting);
 
-            $method = 'settingsHandle'.ucfirst($type->name);
+            $method = 'settingsHandle' . ucfirst($type->name);
 
             if (method_exists($this, $method)) {
                 call_user_func([$this, $method], $setting);
             }
         }
+    }
+
+    protected function settingGetType(array $setting)
+    {
+        if (!static::$types) {
+            static::$types = ThemeSettingType::all()->keyBy('name');
+        }
+
+        if (!static::$types->has($setting['type'])) {
+            throw new Exception('Invalid setting type provided');
+        }
+
+        return static::$types->get($setting['type']);
     }
 
     protected function settingKeys()
@@ -56,28 +70,15 @@ trait MigrateThemeSettings
         $this->settingJsonHandle($setting);
     }
 
-    protected function settingsHandleText(ThemeSetting $setting)
-    {
-        $this->settingJsonHandle($setting);
-    }
-
-    protected function settingGetType(array $setting)
-    {
-        if (!static::$types) {
-            static::$types = ThemeSettingType::all()->keyBy('name');
-        }
-
-        if (!static::$types->has($setting['type'])) {
-            throw new Exception('Invalid setting type provided');
-        }
-
-        return static::$types->get($setting['type']);
-    }
-
     protected function settingJsonHandle(ThemeSetting $setting)
     {
         if (isset($this->defaults[$setting->key])) {
             $setting->defaults()->create(['value' => json_encode($this->defaults[$setting->key])]);
         }
+    }
+
+    protected function settingsHandleText(ThemeSetting $setting)
+    {
+        $this->settingJsonHandle($setting);
     }
 }

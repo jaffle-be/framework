@@ -14,10 +14,9 @@ use Modules\Users\Contracts\UserRepositoryInterface;
 
 class ConfirmEmailController extends FrontController
 {
+
     /**
      * Form for sending new confirmation email.
-     *
-     *
      *
      * @return \Illuminate\View\View
      */
@@ -30,10 +29,6 @@ class ConfirmEmailController extends FrontController
 
     /**
      * Trigger the actual sending of the email.
-     *
-     *
-     *
-     *
      *
      * @return \Illuminate\Http\RedirectResponse
      */
@@ -50,10 +45,6 @@ class ConfirmEmailController extends FrontController
 
     /**
      * The method which actually triggers the confirmation.
-     *
-     *
-     *
-     *
      *
      * @return \Illuminate\Http\RedirectResponse
      */

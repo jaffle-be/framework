@@ -25,8 +25,7 @@
                     if (this.locked)
                         return;
 
-                    if (!destination.id)
-                    {
+                    if (!destination.id) {
                         this.locked = true;
 
                         return destination.$save(function () {
@@ -34,10 +33,8 @@
                             $state.go('admin.pages.page', {id: destination.id});
                         });
                     }
-                    else
-                    {
-                        if (this.timeout)
-                        {
+                    else {
+                        if (this.timeout) {
                             $timeout.cancel(this.timeout);
                         }
 

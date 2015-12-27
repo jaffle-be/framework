@@ -6,7 +6,6 @@ return [
      * path should be relative to the public path, no need for a trailing slash
      */
     'path' => env('APP_ENV') == 'testing' ? 'media_testing' : 'media',
-
     'owners' => [
         'pages' => Modules\Pages\Page::class,
         'blog' => Modules\Blog\Post::class,
@@ -17,7 +16,6 @@ return [
         'product' => Modules\Shop\Product\Product::class,
         'newsletter' => Modules\Marketing\Newsletter\Campaign::class,
     ],
-
     'admin' => [
         'image' => [
             '512x',
@@ -26,7 +24,6 @@ return [
 
         ],
     ],
-
     'videos' => [
         //these values should be coming from the theme
     ],

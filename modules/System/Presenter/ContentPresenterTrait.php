@@ -6,6 +6,7 @@ use Markdown;
 
 trait ContentPresenterTrait
 {
+
     /**
      * Returns the entire post, fully loaded with shortcodes
      * Ready to be displayed onto your website.
@@ -50,12 +51,9 @@ trait ContentPresenterTrait
     /**
      * The extract should not contain any style or media
      * It should simply be a text snippet.
-     *
      * Therefor, at the end, we always strip all tags
      * We also strip out any shortcodes, which would only
      * inject either media or custom marked up content.
-     *
-     *
      *
      * @return string
      */
@@ -145,6 +143,6 @@ trait ContentPresenterTrait
 
         $string = rtrim($string, ' ');
 
-        return empty($string) ? null : $string.'&nbsp;...';
+        return empty($string) ? null : $string . '&nbsp;...';
     }
 }

@@ -10,6 +10,7 @@ use Modules\Shop\Product\Product;
 
 class ProductCategoryManager
 {
+
     use DispatchesJobs;
 
     public function __construct(GammaSelection $gamma, ProductSelection $selections, Product $product, Category $category, Account $account, GammaNotification $notifications)
@@ -79,9 +80,6 @@ class ProductCategoryManager
      * therefor -> we should use the table to query,
      * not the eloquent instance.
      *
-     *
-     *
-     *
      * @return \Illuminate\Database\Query\Builder
      */
     protected function records($product, $category)
@@ -106,8 +104,6 @@ class ProductCategoryManager
     }
 
     /**
-     *
-     *
      * @return bool
      */
     protected function otherCategories(ProductSelection $instance)

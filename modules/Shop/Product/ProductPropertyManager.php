@@ -4,6 +4,7 @@ namespace Modules\Shop\Product;
 
 class ProductPropertyManager
 {
+
     protected $product;
 
     protected $category;

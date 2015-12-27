@@ -8,6 +8,7 @@ use Modules\Account\AccountContactInformation;
 
 class NewInformation extends Job
 {
+
     /**
      * @var Account
      */

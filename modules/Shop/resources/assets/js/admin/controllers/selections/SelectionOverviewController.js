@@ -83,8 +83,7 @@
                     me = this;
 
                 _.each(this.selections, function (product) {
-                    if (product.isSelected)
-                    {
+                    if (product.isSelected) {
                         selections.push(product.id);
                     }
                 });
@@ -92,18 +91,15 @@
                 return selections;
             };
 
-            this.getTitle = function(product)
-            {
+            this.getTitle = function (product) {
                 return ProductService.getTitle(product, me.options.locale);
             };
 
-            this.searchSelection = function(query)
-            {
+            this.searchSelection = function (query) {
                 return ProductSelectionService.searchSelection(query, me.options.locale);
             };
 
-            this.goTo = function(item)
-            {
+            this.goTo = function (item) {
                 $state.go('admin.shop.selection', {id: item.value});
             };
 

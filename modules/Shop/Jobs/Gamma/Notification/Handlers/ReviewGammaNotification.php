@@ -12,6 +12,7 @@ use Pusher;
 
 class ReviewGammaNotification extends Job implements ShouldQueue
 {
+
     protected $notification;
 
     public function __construct(GammaNotification $notification)
@@ -48,7 +49,6 @@ class ReviewGammaNotification extends Job implements ShouldQueue
 
     /**
      *
-     *
      */
     protected function insertNewGammaSelection(GammaSelection $gamma, $notification)
     {
@@ -63,8 +63,6 @@ class ReviewGammaNotification extends Job implements ShouldQueue
     }
 
     /**
-     *
-     *
      *
      */
     protected function notifyWithinScope(CatalogRepositoryInterface $catalog, ProductSelection $selections, $status)
@@ -102,7 +100,6 @@ class ReviewGammaNotification extends Job implements ShouldQueue
     }
 
     /**
-     *
      *
      */
     protected function deleteExistingGammaSelection(GammaSelection $gamma, $notification)

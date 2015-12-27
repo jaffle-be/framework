@@ -8,6 +8,7 @@ use Modules\System\Http\AdminController;
 
 class PropertyOptionController extends AdminController
 {
+
     public function store(PropertyOption $options, Request $request)
     {
         $option = $options->newInstance(translation_input($request));

@@ -4,11 +4,12 @@ namespace Modules\Users\Providers;
 
 use Carbon\Carbon;
 use Illuminate\Redis\Database;
-use Modules\Users\Auth\Throttler\ThrottleManager;
 use Modules\System\ServiceProvider;
+use Modules\Users\Auth\Throttler\ThrottleManager;
 
 class UsersServiceProvider extends ServiceProvider
 {
+
     protected $namespace = 'users';
 
     public function register()

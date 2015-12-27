@@ -6,6 +6,7 @@ use Modules\Account\AccountManager;
 
 class MenuRepository implements MenuRepositoryInterface
 {
+
     /**
      * @var AccountManager
      */

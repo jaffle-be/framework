@@ -6,6 +6,7 @@ use App\Jobs\Job;
 
 class UntagSomething extends Job
 {
+
     protected $owner;
 
     protected $tag;

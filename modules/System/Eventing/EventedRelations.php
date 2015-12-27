@@ -4,16 +4,10 @@ namespace Modules\System\Eventing;
 
 trait EventedRelations
 {
+
     /**
      * EXACT COPY FROM SOURCE, BUT THE OBJECT CREATED IS IN OUR NAMESPACE.
-     *
      * Define a many-to-many relationship.
-     *
-     *
-     *
-     *
-     *
-     *
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
@@ -23,7 +17,7 @@ trait EventedRelations
         // name of the calling function. We will use that function name as the
         // title of this relation since that is a great convention to apply.
         if (is_null($relation) || empty($relation)) {
-            throw new \InvalidArgumentException('You should name evented relations in '.get_called_class());
+            throw new \InvalidArgumentException('You should name evented relations in ' . get_called_class());
         }
 
         // First, we'll need to determine the foreign key and "other key" for the

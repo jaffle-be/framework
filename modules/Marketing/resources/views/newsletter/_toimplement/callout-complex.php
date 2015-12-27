@@ -19,7 +19,8 @@
                                                     <td valign="top" class="textContent">
                                                         <h3>Callout</h3>
                                                         <br>
-                                                        A kitten or kitty is a juvenile domesticated cat. A feline litter usually consists of two to five kittens. To survive, kittens need the care of their mother for the first several weeks of their life. Kittens are highly social animals and spend most of their waking hours playing and interacting with available companions.
+                                                        A kitten or kitty is a juvenile domesticated cat. A feline litter usually consists of two to five kittens. To survive, kittens need the care of their mother for the first several weeks
+                                                        of their life. Kittens are highly social animals and spend most of their waking hours playing and interacting with available companions.
                                                     </td>
                                                 </tr>
                                                 <tr>

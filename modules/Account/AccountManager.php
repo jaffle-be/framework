@@ -7,6 +7,7 @@ use Illuminate\Foundation\Application;
 
 class AccountManager
 {
+
     protected $repo;
 
     protected $config;
@@ -24,9 +25,9 @@ class AccountManager
 
     /**
      * Allows to hotswap account.
-     *
-     *
-     *
+
+
+
      */
     public function forced($account, \Closure $closure)
     {

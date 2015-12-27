@@ -7,6 +7,7 @@ use Modules\Tags\Tag;
 
 class UpdateTag extends Job
 {
+
     /**
      * @var Tag
      */
@@ -18,7 +19,6 @@ class UpdateTag extends Job
     protected $input;
 
     /**
-     *
      *
      */
     public function __construct(Tag $tag, array $input)

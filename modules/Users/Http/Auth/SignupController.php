@@ -11,6 +11,7 @@ use Modules\Users\User;
 
 class SignupController extends FrontController
 {
+
     public function index()
     {
         $user = new User();

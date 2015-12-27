@@ -18,8 +18,7 @@
 
             this.load = function (id) {
 
-                if (id)
-                {
+                if (id) {
                     this.projects.find(id, function (project) {
                         me.project = project;
 
@@ -28,8 +27,7 @@
                         });
                     });
                 }
-                else
-                {
+                else {
                     me.project = new Portfolio();
                     me.collaborators = [];
                 }

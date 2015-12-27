@@ -20,7 +20,6 @@ $factory->define(Brand::class, function (Faker\Generator $faker) {
             'created_at' => $faker->dateTimeBetween('-1 years', '-1 months'),
             'updated_at' => $faker->dateTimeBetween('-1 months', 'now'),
         ],
-
         'created_at' => $faker->dateTimeBetween('-1 years', '-1 months'),
         'updated_at' => $faker->dateTimeBetween('-1 months', 'now'),
     ];
@@ -40,7 +39,6 @@ $factory->define(Category::class, function (Faker\Generator $faker) {
             'created_at' => $faker->dateTimeBetween('-1 years', '-1 months'),
             'updated_at' => $faker->dateTimeBetween('-1 months', 'now'),
         ],
-
         'created_at' => $faker->dateTimeBetween('-1 years', '-1 months'),
         'updated_at' => $faker->dateTimeBetween('-1 months', 'now'),
     ];
@@ -65,7 +63,6 @@ $factory->define(Product::class, function (Faker\Generator $faker) {
             'content' => $faker->realText(500),
             'published' => $faker->boolean(),
         ],
-
         'created_at' => $faker->dateTimeBetween('-1 years', '-1 months'),
         'updated_at' => $faker->dateTimeBetween('-1 months', 'now'),
     ];

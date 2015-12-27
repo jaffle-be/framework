@@ -10,6 +10,7 @@ use Modules\System\Http\AdminController;
 
 class TeamController extends AdminController
 {
+
     public function index(Team $team)
     {
         return $team->with(['translations'])->get();

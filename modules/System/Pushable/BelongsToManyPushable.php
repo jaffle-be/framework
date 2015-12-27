@@ -4,6 +4,7 @@ namespace Modules\System\Pushable;
 
 class BelongsToManyPushable implements Pushable
 {
+
     protected $data;
 
     protected $relation;
@@ -12,9 +13,9 @@ class BelongsToManyPushable implements Pushable
 
     /**
      * BelongsToManyPushable constructor.
-     *
-     *
-     *
+
+
+
      */
     public function __construct(array $data, $relation)
     {

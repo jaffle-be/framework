@@ -6,6 +6,7 @@ use Modules\Users\User;
 
 class PostRepository implements PostRepositoryInterface
 {
+
     protected $post;
 
     protected $translation;

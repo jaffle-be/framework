@@ -13,6 +13,7 @@ use Modules\Theme\ThemeManager;
 
 class ImageController extends AdminController
 {
+
     use MediaWidgetPreperations;
 
     /**
@@ -21,7 +22,6 @@ class ImageController extends AdminController
     protected $media;
 
     /**
-     *
      *
      */
     public function __construct(ThemeManager $theme, MediaRepositoryInterface $media)

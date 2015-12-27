@@ -7,6 +7,7 @@ use Illuminate\Contracts\Auth\Guard;
 
 class Signout extends Job
 {
+
     public function handle(Guard $guard)
     {
         $guard->logout();

@@ -21,6 +21,7 @@ use Modules\Users\User;
 
 class Post extends Model implements StoresMedia, Searchable, StoresTags, PresentableEntity, SeoEntity
 {
+
     use PresentableTrait;
     use Translatable;
     use Taggable;
@@ -60,8 +61,6 @@ class Post extends Model implements StoresMedia, Searchable, StoresTags, Present
 
     /**
      * Create a new Eloquent Collection instance.
-     *
-     *
      *
      * @return \Illuminate\Database\Eloquent\Collection
      */

@@ -7,6 +7,7 @@ use Modules\System\Locale;
 
 class TranslationCollection extends Collection
 {
+
     public function toArray()
     {
         $locales = Locale::all();

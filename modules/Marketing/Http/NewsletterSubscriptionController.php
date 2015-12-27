@@ -8,6 +8,7 @@ use Modules\System\Http\FrontController;
 
 class NewsletterSubscriptionController extends FrontController
 {
+
     public function store(Request $request, MailChimp $mailChimp)
     {
         $this->validate($request, ['email' => 'required|email']);

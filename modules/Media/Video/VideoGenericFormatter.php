@@ -6,6 +6,7 @@ use Illuminate\Http\JsonResponse;
 
 trait VideoGenericFormatter
 {
+
     protected function vimeoReponse($response)
     {
         $me = $this;

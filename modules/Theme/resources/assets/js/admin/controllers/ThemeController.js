@@ -10,10 +10,8 @@
 
             ThemeService.list(function (themes) {
                 me.themes = themes;
-                for (var i = 0; i < themes.length; i++)
-                {
-                    if (themes[i].active)
-                    {
+                for (var i = 0; i < themes.length; i++) {
+                    if (themes[i].active) {
                         me.theme = themes[i];
                     }
                 }
@@ -21,12 +19,10 @@
 
             this.activate = function () {
                 ThemeService.activate(this.theme, function (response) {
-                    if (response.data.status == 'oke')
-                    {
+                    if (response.data.status == 'oke') {
                         $window.location.reload();
                     }
-                    else
-                    {
+                    else {
                         me.failed = true;
                     }
 

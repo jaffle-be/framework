@@ -5,6 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 
 class CreateBrandsPivotTable extends Migration
 {
+
     /**
      * Run the migrations.
      */

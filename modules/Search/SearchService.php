@@ -12,6 +12,7 @@ use Modules\System\MySoftDeletes;
 
 class SearchService implements SearchServiceInterface
 {
+
     use SearchResponder;
 
     /**
@@ -51,8 +52,6 @@ class SearchService implements SearchServiceInterface
     protected $invertedTypes = [];
 
     /**
-     *
-     *
      *
      */
     public function __construct(Container $container, Client $client, Config $config)
@@ -94,9 +93,9 @@ class SearchService implements SearchServiceInterface
      * This method will bind all events to the eloquent model created, updated or deleted events.
      * Note the events are not the creating, updating or deleting events, as these would possibly
      * index data that might change due to a model observer adjusting data.
-     *
-     *
-     *
+
+
+
      */
     public function regularAutoIndex(Searchable $type, array $with)
     {
@@ -140,7 +139,7 @@ class SearchService implements SearchServiceInterface
     {
         $dispatcher = $this->container->make('events');
 
-        $event = 'eloquent.saved: '.$updated;
+        $event = 'eloquent.saved: ' . $updated;
 
         $dispatcher->listen($event, function ($model) use ($parent, $relation, $key, $with) {
 
@@ -281,13 +280,6 @@ class SearchService implements SearchServiceInterface
     /**
      * Search the index.
      *
-     *
-     *
-     *
-     *
-     *
-     *
-     *
      * @return mixed
      */
     public function search($type, array $params, $with = [], $paginated = 15, \Closure $highlighter = null)
@@ -343,8 +335,6 @@ class SearchService implements SearchServiceInterface
     /**
      * Update the settings for the elasticsearch instance.
      *
-     *
-     *
      * @return bool
      */
     public function updateSettings(array $settings)
@@ -387,10 +377,7 @@ class SearchService implements SearchServiceInterface
      * Return the actual type.
      * People could have passed in a simple classname.
      *
-     *
-     *
      * @return array|mixed
-     *
      * @throws Exception
      */
     protected function getSearchable($type)
@@ -413,8 +400,6 @@ class SearchService implements SearchServiceInterface
     }
 
     /**
-     *
-     *
      * @return array
      */
     protected function getBaseParams(Searchable $type)
@@ -438,8 +423,6 @@ class SearchService implements SearchServiceInterface
     }
 
     /**
-     *
-     *
      * @return array
      */
     protected function data(Searchable $type)

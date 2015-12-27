@@ -26,8 +26,7 @@
                     });
                 },
                 delayedSave: function (theme, setting, value) {
-                    if (this.timeouts[setting.id])
-                    {
+                    if (this.timeouts[setting.id]) {
                         $timeout.cancel(this.timeouts[setting.id]);
                     }
 

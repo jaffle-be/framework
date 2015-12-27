@@ -17,14 +17,12 @@ return [
      * Your app name might be a sane default value.
      */
     'index' => env('ES_INDEX', 'app'),
-
     /*
      * All the hosts that are in the cluster.
      */
     'hosts' => [
         env('APP_ENV') == 'testing' ? 'localhost' : env('ES_HOST'),
     ],
-
     /*
      * When adding a new type, add it here. This will allow you to easily rebuild the indexes using the build command.
      * Don't forget to add the new type as an argument when you execute the build command. You do not always want
@@ -37,7 +35,6 @@ return [
         'tags' => [
             'class' => 'Modules\Tags\Tag',
         ],
-
         'posts' => [
             'class' => Post::class,
             'with' => [
@@ -47,19 +44,15 @@ return [
                 ],
             ],
         ],
-
         'projects' => [
             'class' => Project::class,
         ],
-
         'product_brands' => [
             'class' => Brand::class,
         ],
-
         'product_categories' => [
             'class' => Category::class,
         ],
-
         'products' => [
             'routing' => 'account_id',
             'class' => Product::class,
@@ -78,7 +71,6 @@ return [
                 ],
             ],
         ],
-
         'product_gamma' => [
             'routing' => 'account_id',
             'class' => ProductSelection::class,
@@ -93,15 +85,12 @@ return [
                 ],
             ],
         ],
-
         'product_properties_values' => [
             'class' => PropertyValue::class,
         ],
 
     ],
-
     'refresh_interval' => '100ms',
-
     'settings' => [
         'index' => [
             'analysis' => [
@@ -111,24 +100,20 @@ return [
                         'tokenizer' => 'nGram',
                         'filter' => ['standard', 'asciifolding', 'lowercase', 'snowball', 'elision'],
                     ],
-
                     'custom_search_analyzer' => [
                         'type' => 'custom',
                         'tokenizer' => 'standard',
                         'filter' => ['standard', 'asciifolding', 'lowercase', 'snowball', 'elision'],
                     ],
-
                     'code' => [
                         'tokenizer' => 'pattern',
                         'filter' => ['standard', 'lowercase', 'code'],
                     ],
-
                     'email' => [
                         'tokenizer' => 'uax_url_email',
                         'filter' => ['email', 'lowercase', 'unique'],
                     ],
                 ],
-
                 'tokenizer' => [
                     'nGram' => [
                         'type' => 'nGram',
@@ -136,13 +121,11 @@ return [
                         'max_gram' => 20,
                     ],
                 ],
-
                 'filter' => [
                     'snowball' => [
                         'type' => 'snowball',
                         'language' => 'dutch',
                     ],
-
                     'code' => [
                         'type' => 'pattern_capture',
                         'preserve_original' => 1,
@@ -151,7 +134,6 @@ return [
                             '(\\d+)',
                         ],
                     ],
-
                     'email' => [
                         'type' => 'pattern_capture',
                         'preserve_original' => 1,

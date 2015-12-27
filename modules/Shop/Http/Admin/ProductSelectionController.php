@@ -12,6 +12,7 @@ use Modules\System\Http\AdminController;
 
 class ProductSelectionController extends AdminController
 {
+
     public function suggest(Request $request)
     {
         return suggest_completion('product_gamma', $request->get('query'), $request->get('locale'));

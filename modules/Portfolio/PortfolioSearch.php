@@ -7,6 +7,7 @@ use Modules\Account\AccountManager;
 
 trait PortfolioSearch
 {
+
     protected function projectsQuery(Request $request, AccountManager $manager, $locale)
     {
         return [
@@ -17,7 +18,7 @@ trait PortfolioSearch
                     'filtered' => [
                         'query' => [
                             'nested' => [
-                                'path' => 'translations.'.$locale,
+                                'path' => 'translations.' . $locale,
                                 'query' => [
                                     'multi_match' => [
                                         'query' => $request->get('query'),
@@ -27,7 +28,6 @@ trait PortfolioSearch
                                 ],
                             ],
                         ],
-
                         'filter' => [
                             'bool' => [
                                 'must' => [

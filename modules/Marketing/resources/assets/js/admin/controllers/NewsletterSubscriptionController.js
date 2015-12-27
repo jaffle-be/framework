@@ -62,8 +62,7 @@
                 var subscriptions = [];
 
                 _.each(this.subscriptions, function (subscription) {
-                    if (subscription.isSelected)
-                    {
+                    if (subscription.isSelected) {
                         subscriptions.push(subscription.id);
                     }
                 });

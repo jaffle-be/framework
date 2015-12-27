@@ -12,8 +12,7 @@
                 //file uploader
                 this.uploader = function (type, id, locale, handlers, ownerIdCallback) {
 
-                    if (typeof handlers === 'function')
-                    {
+                    if (typeof handlers === 'function') {
                         //handlers is only a success callback
                         handlers = {
                             success: handlers
@@ -49,8 +48,7 @@
 
                 this.update = function (type, id, file) {
 
-                    if (this.timeouts[file.id])
-                    {
+                    if (this.timeouts[file.id]) {
                         $timeout.cancel(this.timeouts[file.id]);
                     }
 

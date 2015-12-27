@@ -7,6 +7,7 @@ use Modules\Search\SearchServiceInterface;
 
 class SearchFlush extends Command
 {
+
     /**
      * The console command name.
      *
@@ -28,8 +29,8 @@ class SearchFlush extends Command
 
     /**
      * Create a new command instance.
-     *
-     *
+
+
      */
     public function __construct(SearchServiceInterface $service)
     {

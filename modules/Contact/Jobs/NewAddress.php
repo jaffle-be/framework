@@ -11,6 +11,7 @@ use Modules\System\Country\CountryRepository;
 
 class NewAddress extends Job
 {
+
     protected $input;
 
     public function __construct(array $input)

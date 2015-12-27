@@ -7,6 +7,7 @@ use SoapClient;
 
 class Vat
 {
+
     public function __construct(Request $request)
     {
         $this->request = $request;

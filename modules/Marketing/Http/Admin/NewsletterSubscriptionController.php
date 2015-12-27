@@ -8,6 +8,7 @@ use Modules\System\Http\FrontController;
 
 class NewsletterSubscriptionController extends FrontController
 {
+
     public function index(MailChimp $mailChimp, Request $request)
     {
         try {

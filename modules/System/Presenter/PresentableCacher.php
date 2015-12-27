@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class PresentableCacher
 {
+
     public function handle($model)
     {
         if ($model instanceof PresentableEntity && $model instanceof PresentableCache) {

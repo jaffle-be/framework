@@ -6,6 +6,7 @@ use Modules\Users\Contracts\UserRepositoryInterface;
 
 class UserRepository implements UserRepositoryInterface
 {
+
     /**
      * @var User
      */
@@ -17,8 +18,6 @@ class UserRepository implements UserRepositoryInterface
     }
 
     /**
-     *
-     *
      * @return User|null
      */
     public function findUserByConfirmationToken($token)

@@ -7,11 +7,9 @@ use Modules\Search\Model\Searchable;
 
 interface SearchServiceInterface
 {
+
     /**
      * Register the regular listeners for the given type.
-     *
-     *
-     *
      *
      * @return
      */
@@ -20,8 +18,6 @@ interface SearchServiceInterface
     /**
      * Build the index for a type.
      *
-     *
-     *
      * @return
      */
     public function build($type);
@@ -29,35 +25,26 @@ interface SearchServiceInterface
     /**
      * Add to index.
      *
-     *
-     *
-     *
      * @return
      */
     public function add(Searchable $type, $needsLoading = true);
 
     /**
      * Delete from index.
-     *
-     *
+
+
      */
     public function delete(Searchable $type);
 
     /**
      * Update a document in the index.
-     *
-     *
+
+
      */
     public function update(Searchable $type);
 
     /**
      * Search the index.
-     *
-     *
-     *
-     *
-     *
-     *
      *
      * @return mixed
      */
@@ -65,8 +52,6 @@ interface SearchServiceInterface
 
     /**
      * Aggregate an index.
-     *
-     *
      *
      * @return mixed
      */
@@ -80,8 +65,6 @@ interface SearchServiceInterface
     /**
      * Return the config for the searchable type.
      *
-     *
-     *
      * @return mixed
      */
     public function getConfig(Searchable $type);
@@ -89,15 +72,12 @@ interface SearchServiceInterface
     /**
      * Update the settings for the elasticsearch instance.
      *
-     *
-     *
      * @return bool
      */
     public function updateSettings(array $settings);
 
     /**
      * Boot the search service.
-     *
      * This method should parse the configurations and set the auto indexing.
      *
      * @return mixed

@@ -12,6 +12,7 @@ use Modules\System\Http\AdminController;
 
 class ContactAddressController extends AdminController
 {
+
     public function widget(CountryRepository $countries)
     {
         $countries = $countries->select();
@@ -21,9 +22,11 @@ class ContactAddressController extends AdminController
 
     public function show(Address $address)
     {
-        $address->load(['country' => function ($query) {
-            $query->get(['id', 'iso_code_2']);
-        }]);
+        $address->load([
+            'country' => function ($query) {
+                $query->get(['id', 'iso_code_2']);
+            }
+        ]);
 
         return $address;
     }

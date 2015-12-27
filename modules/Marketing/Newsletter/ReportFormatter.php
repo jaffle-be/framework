@@ -6,6 +6,7 @@ use Illuminate\Support\Collection;
 
 class ReportFormatter
 {
+
     protected $fields = [
         'hard_bounces',
         'soft_bounces',

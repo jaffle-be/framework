@@ -9,6 +9,7 @@ use Modules\Media\Video\Video;
 
 class MediaRepository implements MediaRepositoryInterface
 {
+
     protected $images;
 
     protected $config;
@@ -46,9 +47,6 @@ class MediaRepository implements MediaRepositoryInterface
     }
 
     /**
-     *
-     *
-     *
      * @return bool|static
      */
     public function createImage(StoresMedia $owner, array $payload)
@@ -78,9 +76,6 @@ class MediaRepository implements MediaRepositoryInterface
     }
 
     /**
-     *
-     *
-     *
      * @return mixed
      */
     public function createThumbnailImage(array $payload, Image $original)
@@ -100,9 +95,6 @@ class MediaRepository implements MediaRepositoryInterface
     }
 
     /**
-     *
-     *
-     *
      * @return Image|bool
      */
     public function createInfographic(StoresMedia $owner, array $payload)
@@ -122,9 +114,6 @@ class MediaRepository implements MediaRepositoryInterface
     }
 
     /**
-     *
-     *
-     *
      * @return Infographic|bool
      */
     public function createThumbnailInfographic(array $payload, Infographic $original)
@@ -146,9 +135,6 @@ class MediaRepository implements MediaRepositoryInterface
     }
 
     /**
-     *
-     *
-     *
      * @return File|bool
      */
     public function createFile(StoresMedia $owner, array $payload)

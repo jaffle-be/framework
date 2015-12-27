@@ -12,6 +12,7 @@ use Modules\Shop\Product\Category;
 
 class CleanupDetail extends Job
 {
+
     /**
      * @var Brand
      */
@@ -49,9 +50,11 @@ class CleanupDetail extends Job
             ->get(['product_gamma.*']);
 
         foreach ($selections as $selection) {
-            $selections->load(['categories' => function ($query) {
-                $query->withTrashed();
-            }]);
+            $selections->load([
+                'categories' => function ($query) {
+                    $query->withTrashed();
+                }
+            ]);
 
             foreach ($selection->categories as $category) {
                 $category->forceDelete();
@@ -73,9 +76,6 @@ class CleanupDetail extends Job
     }
 
     /**
-     *
-     *
-     *
      * @return bool
      */
     protected function shouldNotRun(ProductSelection $products, GammaNotification $notifications)

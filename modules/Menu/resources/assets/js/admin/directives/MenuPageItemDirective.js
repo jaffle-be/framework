@@ -20,16 +20,14 @@
                     var me = this;
 
                     this.pageName = function (page) {
-                        if (page.translations[$scope.locale] && page.translations[$scope.locale].title)
-                        {
+                        if (page.translations[$scope.locale] && page.translations[$scope.locale].title) {
                             return page.translations[$scope.locale].title
                         }
 
                         var name;
 
                         _.each(page.translations, function (item) {
-                            if (item.title)
-                            {
+                            if (item.title) {
                                 name = item.title;
                             }
                         });
@@ -39,13 +37,11 @@
 
                     this.saveItem = function (delayed) {
                         //only save existing
-                        if (!$scope.item.id)
-                        {
+                        if (!$scope.item.id) {
                             return;
                         }
 
-                        if (typeof delayed === 'undefined')
-                        {
+                        if (typeof delayed === 'undefined') {
                             delayed = true;
                         }
 
@@ -54,8 +50,7 @@
                     };
 
                     this.createItem = function () {
-                        if (this.selectedPage)
-                        {
+                        if (this.selectedPage) {
                             var created = new MenuItem({
                                 menu_id: $scope.menu.id,
                                 page_id: me.selectedPage
@@ -73,8 +68,7 @@
 
                     this.deleteItem = function () {
                         MenuService.deleteItem($scope.item, function (response) {
-                            if (!response.id)
-                            {
+                            if (!response.id) {
                                 _.remove($scope.menu.items, function (item) {
                                     return item.id == $scope.item.id;
                                 });

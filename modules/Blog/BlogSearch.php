@@ -7,6 +7,7 @@ use Modules\Account\AccountManager;
 
 trait BlogSearch
 {
+
     protected function postsQuery(Request $request, AccountManager $manager, $locale)
     {
         return [

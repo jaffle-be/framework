@@ -11,6 +11,7 @@ use Pusher;
 
 class NotifyDetailDeactivation extends Job
 {
+
     use GammaNotificationHelpers;
 
     protected $brand;

@@ -10,6 +10,7 @@ use Modules\System\Uri\Uri;
 
 class UriController extends FrontController
 {
+
     use BlogFrontControlling, PagesFrontControlling;
 
     public function handle(Uri $uri, Uri $suburi = null, Uri $subesturi = null)
@@ -33,10 +34,6 @@ class UriController extends FrontController
     }
 
     /**
-     *
-     *
-     *
-     *
      * @return Uri
      */
     protected function resourceToDisplay(Uri $uri, Uri $suburi = null, Uri $subesturi = null)

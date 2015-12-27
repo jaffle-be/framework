@@ -9,6 +9,7 @@ use Modules\System\Translatable\Translatable;
 
 class PropertyValue extends Model implements Searchable
 {
+
     use Translatable;
     use SearchableTrait;
 
@@ -38,7 +39,6 @@ class PropertyValue extends Model implements Searchable
         'boolean' => ['type' => 'boolean'],
         'numeric' => ['type' => 'integer'],
         'float' => ['type' => 'float'],
-
         'created_at' => [
             'type' => 'date',
             'format' => 'yyyy-MM-dd HH:mm:ss',

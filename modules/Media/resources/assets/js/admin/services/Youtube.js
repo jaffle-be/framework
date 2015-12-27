@@ -15,8 +15,7 @@
                     //only search for a video if the link field doesn't start with http:// or https://
                     //or 'does not have a url value' but very loosely validated.
                     var pattern = /https?:\/\//;
-                    if (typeof this.input.url == 'string' && !pattern.test(this.input.url))
-                    {
+                    if (typeof this.input.url == 'string' && !pattern.test(this.input.url)) {
                         return VideoService.search(this.mode, this.input.url, function (response) {
                             return response.data;
                         });
@@ -58,8 +57,7 @@
                     //we'll get it back from the answer and use that to add to the videos array.
 
                     var success = function (video) {
-                        if (!videos[locale])
-                        {
+                        if (!videos[locale]) {
                             videos[locale] = [];
                         }
 
@@ -73,8 +71,7 @@
 
                         //make sure the response is not a full html document.
                         //why? this would pop a toast for each character in that document :-)
-                        if (typeof response.data == 'string')
-                        {
+                        if (typeof response.data == 'string') {
                             toaster.error(response.data);
                         }
                     };
@@ -89,12 +86,10 @@
                         locale: locale
                     };
 
-                    if (this.preview)
-                    {
+                    if (this.preview) {
                         payload.provider_id = this.id(this.preview);
                     }
-                    else
-                    {
+                    else {
                         payload.url = this.input.url;
                     }
 

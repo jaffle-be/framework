@@ -7,6 +7,7 @@ use Modules\System\ServiceProvider;
 
 class BlogServiceProvider extends ServiceProvider
 {
+
     protected $namespace = 'blog';
 
     public function register()

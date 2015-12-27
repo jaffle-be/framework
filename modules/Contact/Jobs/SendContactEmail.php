@@ -11,6 +11,7 @@ use Modules\Theme\ThemeMailer;
 //has nothing to do with address info or anything.
 class SendContactEmail extends EmailJob
 {
+
     /**
      * @var AccountContactInformation
      */
@@ -42,11 +43,6 @@ class SendContactEmail extends EmailJob
     protected $copy;
 
     /**
-     *
-     *
-     *
-     *
-     *
      *
      */
     public function __construct(AccountContactInformation $contact, $name, $email, $message, $subject = null, $copy = null)

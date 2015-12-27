@@ -11,6 +11,7 @@ use Modules\Media\ImageDimensionHelpers;
 
 abstract class Seeder extends BaseSeeder
 {
+
     use DispatchesJobs;
     use ImageDimensionHelpers;
 
@@ -47,9 +48,7 @@ abstract class Seeder extends BaseSeeder
 
     /**
      * @return mixed
-     *
      * @throws Exception
-     *
      * @internal param $images
      * @internal param $sizes
      */
@@ -57,7 +56,7 @@ abstract class Seeder extends BaseSeeder
     {
         //run images cachings.
         foreach ($this->image_names as $image) {
-            $path = $this->prefix.$image;
+            $path = $this->prefix . $image;
 
             $media = app('Modules\Media\Configurator');
 
@@ -93,6 +92,6 @@ abstract class Seeder extends BaseSeeder
         $this->validateSeederModel();
         $image = rand(0, count($this->image_names) - 1);
 
-        $this->dispatch(new StoreNewImage($account, $owner, $this->prefix.$this->image_names[$image]));
+        $this->dispatch(new StoreNewImage($account, $owner, $this->prefix . $this->image_names[$image]));
     }
 }

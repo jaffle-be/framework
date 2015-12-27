@@ -14,6 +14,7 @@ use Modules\Tags\Tag;
 
 class TagController extends AdminController
 {
+
     public function widget()
     {
         return view('tags::admin.widget');
@@ -39,7 +40,7 @@ class TagController extends AdminController
             })
             ->whereHas('translations', function ($q) use ($value, $locale) {
                 $q->where('locale', $locale);
-                $q->where('name', 'like', '%'.$value.'%');
+                $q->where('name', 'like', '%' . $value . '%');
             })
             ->paginate(10);
 
@@ -108,10 +109,7 @@ class TagController extends AdminController
     }
 
     /**
-     *
-     *
      * @return array
-     *
      * @throws \Exception
      */
     protected function owner(Request $request)

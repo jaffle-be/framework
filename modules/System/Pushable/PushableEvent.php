@@ -7,6 +7,7 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
 class PushableEvent extends Event implements ShouldBroadcast
 {
+
     public $data;
 
     protected $event;
@@ -34,7 +35,7 @@ class PushableEvent extends Event implements ShouldBroadcast
 
     public function broadcastAs()
     {
-        return $this->data->getPushableEventType().'.'.$this->event;
+        return $this->data->getPushableEventType() . '.' . $this->event;
     }
 
     public function broadcastWith()

@@ -8,6 +8,7 @@ use Modules\Users\User;
 
 class UserRegistered extends Event
 {
+
     public $user;
 
     public $invitation;

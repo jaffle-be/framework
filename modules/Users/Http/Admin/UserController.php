@@ -10,12 +10,11 @@ use Modules\Users\Jobs\CheckGravatarImage;
 
 class UserController extends AdminController
 {
+
     use MediaWidgetPreperations;
 
     /**
      * the actual page.
-     *
-     *
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */

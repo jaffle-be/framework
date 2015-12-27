@@ -10,6 +10,7 @@ use Modules\System\Seeder;
 
 class BrandTableSeeder extends Seeder
 {
+
     use DispatchesJobs;
 
     /**
@@ -50,8 +51,6 @@ class BrandTableSeeder extends Seeder
     }
 
     /**
-     *
-     *
      * @return mixed|string
      */
     protected function data($file)
@@ -71,11 +70,14 @@ class BrandTableSeeder extends Seeder
             $existing = Brand::create([
                 'nl' => [
                     'name' => $brand->name,
-                ], 'en' => [
+                ],
+                'en' => [
                     'name' => $brand->name,
-                ], 'fr' => [
+                ],
+                'fr' => [
                     'name' => $brand->name,
-                ], 'de' => [
+                ],
+                'de' => [
                     'name' => $brand->name,
                 ],
             ]);

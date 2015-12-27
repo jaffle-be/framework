@@ -21,6 +21,7 @@ use Modules\System\Http\AdminController;
 
 class NewsletterCampaignController extends AdminController
 {
+
     use BlogSearch;
     use PortfolioSearch;
 
@@ -34,7 +35,7 @@ class NewsletterCampaignController extends AdminController
         if (!empty($value)) {
             $query->whereHas('translations', function ($q) use ($value, $locale) {
                 $q->where('locale', $locale);
-                $q->where('title', 'like', '%'.$value.'%');
+                $q->where('title', 'like', '%' . $value . '%');
             });
         }
 
@@ -142,7 +143,7 @@ class NewsletterCampaignController extends AdminController
 
         foreach ($posts as $post) {
             $result->push([
-                'label' => 'post: '.$post->translate($request->get('locale'))->title,
+                'label' => 'post: ' . $post->translate($request->get('locale'))->title,
                 'type' => Post::class,
                 'value' => $post->id,
             ]);
@@ -150,7 +151,7 @@ class NewsletterCampaignController extends AdminController
 
         foreach ($projects as $project) {
             $result->push([
-                'label' => 'project: '.$project->translate($request->get('locale'))->title,
+                'label' => 'project: ' . $project->translate($request->get('locale'))->title,
                 'type' => Project::class,
                 'value' => $project->id,
             ]);
@@ -172,9 +173,15 @@ class NewsletterCampaignController extends AdminController
     protected function relations()
     {
         return [
-            'images', 'images.sizes', 'translations',
-            'widgets', 'widgets.image', 'widgets.imageLeft', 'widgets.imageRight',
-            'widgets.resource', 'widgets.otherResource',
+            'images',
+            'images.sizes',
+            'translations',
+            'widgets',
+            'widgets.image',
+            'widgets.imageLeft',
+            'widgets.imageRight',
+            'widgets.resource',
+            'widgets.otherResource',
             'widgets.translations',
         ];
     }
@@ -207,7 +214,6 @@ class NewsletterCampaignController extends AdminController
 
     /**
      *
-     *
      */
     protected function loadMailchimpDataForCampaign(MailChimp $mailChimp, $translation)
     {
@@ -223,10 +229,6 @@ class NewsletterCampaignController extends AdminController
     }
 
     /**
-     *
-     *
-     *
-     *
      * @return array
      */
     protected function detailedResponse(Campaign $newsletter, CampaignBuilder $builder, MailChimp $mailChimp)
@@ -247,9 +249,6 @@ class NewsletterCampaignController extends AdminController
     }
 
     /**
-     *
-     *
-     *
      * @return array
      */
     protected function getReportSummary(MailChimp $mailChimp, $translation)

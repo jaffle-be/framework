@@ -5,6 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 
 class CreateCategoriesPivotTable extends Migration
 {
+
     /**
      * Run the migrations.
      */

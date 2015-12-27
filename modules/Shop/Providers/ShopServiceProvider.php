@@ -9,6 +9,7 @@ use Modules\System\ServiceProvider;
 
 class ShopServiceProvider extends ServiceProvider
 {
+
     protected $namespace = 'shop';
 
     /**
@@ -30,12 +31,12 @@ class ShopServiceProvider extends ServiceProvider
 
         $this->app['events']->listen('eloquent.detached: product_categories', 'Modules\Shop\Product\ProductPropertyManager@detach');
 
-        $this->app['events']->listen('eloquent.saved: '.CategoryTranslation::class, 'Modules\Shop\Product\CategorySuggestSyncer@handle');
+        $this->app['events']->listen('eloquent.saved: ' . CategoryTranslation::class, 'Modules\Shop\Product\CategorySuggestSyncer@handle');
 
-        $this->app['events']->listen('eloquent.creating: '.PropertyGroup::class, 'Modules\Shop\Product\PropertyObserver@creatingGroup');
-        $this->app['events']->listen('eloquent.deleted: '.PropertyGroup::class, 'Modules\Shop\Product\PropertyObserver@deletedGroup');
+        $this->app['events']->listen('eloquent.creating: ' . PropertyGroup::class, 'Modules\Shop\Product\PropertyObserver@creatingGroup');
+        $this->app['events']->listen('eloquent.deleted: ' . PropertyGroup::class, 'Modules\Shop\Product\PropertyObserver@deletedGroup');
 
-        $this->app['events']->listen('eloquent.creating: '.Property::class, 'Modules\Shop\Product\PropertyObserver@creatingProperty');
-        $this->app['events']->listen('eloquent.deleted: '.Property::class, 'Modules\Shop\Product\PropertyObserver@deletedProperty');
+        $this->app['events']->listen('eloquent.creating: ' . Property::class, 'Modules\Shop\Product\PropertyObserver@creatingProperty');
+        $this->app['events']->listen('eloquent.deleted: ' . Property::class, 'Modules\Shop\Product\PropertyObserver@deletedProperty');
     }
 }

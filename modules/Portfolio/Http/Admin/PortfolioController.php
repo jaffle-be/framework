@@ -11,6 +11,7 @@ use Modules\System\Http\AdminController;
 
 class PortfolioController extends AdminController
 {
+
     use MediaWidgetPreperations;
 
     public function overview()
@@ -42,8 +43,8 @@ class PortfolioController extends AdminController
 
                 $q->where('locale', $locale);
                 $q->where(function ($q) use ($value) {
-                    $q->where('title', 'like', '%'.$value.'%')
-                        ->orWhere('content', 'like', '%'.$value.'%');
+                    $q->where('title', 'like', '%' . $value . '%')
+                        ->orWhere('content', 'like', '%' . $value . '%');
                 });
             });
         }

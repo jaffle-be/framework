@@ -10,6 +10,7 @@ use Modules\Shop\Product\Category;
 
 class ActivateCategory extends Job
 {
+
     use DispatchesJobs;
 
     /**

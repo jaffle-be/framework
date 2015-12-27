@@ -6,6 +6,7 @@ use App\Http\Requests\Request;
 
 class ResetPasswordRequest extends Request
 {
+
     public function authorize()
     {
         return true;

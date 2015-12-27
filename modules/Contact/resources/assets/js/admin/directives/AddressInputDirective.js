@@ -60,23 +60,19 @@
                     };
 
                     function clearValues() {
-                        for (var geoValueKey in formInputs)
-                        {
+                        for (var geoValueKey in formInputs) {
                             var input = formInputs[geoValueKey];
                             var dot = input.name.indexOf('.');
 
                             //check for subrelations.
-                            if (dot == -1)
-                            {
+                            if (dot == -1) {
                                 $scope.address[input.name] = '';
                             }
-                            else
-                            {
+                            else {
                                 var related = input.name.substring(0, dot);
                                 var name = input.name.substring(dot + 1);
 
-                                if ($scope.address[related])
-                                {
+                                if ($scope.address[related]) {
                                     $scope.address[related][name] = '';
                                 }
                             }
@@ -86,8 +82,7 @@
                     function setValues(place) {
                         // Get each component of the address from the place details
                         // and fill the corresponding field on the form.
-                        for (var i = 0; i < place.address_components.length; i++)
-                        {
+                        for (var i = 0; i < place.address_components.length; i++) {
 
                             // each address component is provided with some types to add a meaning to the data.
                             // we use the first added meaning, as this should always be the one we need.
@@ -97,22 +92,18 @@
                             var component = formInputs[addressType];
 
                             //apply the actual value to the scope if the component exists.
-                            if (component)
-                            {
+                            if (component) {
 
                                 var dot = component.name.indexOf('.');
                                 //check for subrelations
-                                if (dot == -1)
-                                {
+                                if (dot == -1) {
                                     $scope.address[component.name] = place.address_components[i][component.type];
                                 }
-                                else
-                                {
+                                else {
                                     var related = component.name.substring(0, dot);
                                     var name = component.name.substring(dot + 1);
 
-                                    if (!$scope.address[related])
-                                    {
+                                    if (!$scope.address[related]) {
                                         $scope.address[related] = {};
                                     }
 
@@ -164,8 +155,7 @@
                         };
 
                         //override to the actuall address if one provided.
-                        if ($scope.address.latitude && $scope.address.longitude)
-                        {
+                        if ($scope.address.latitude && $scope.address.longitude) {
                             mapOptions.center = {
                                 lat: $scope.address.latitude,
                                 lng: $scope.address.longitude
@@ -180,17 +170,14 @@
 
                         google.maps.event.addListener(autocomplete, 'place_changed', function (event) {
                             var place = autocomplete.getPlace();
-                            if (!place.geometry)
-                            {
+                            if (!place.geometry) {
                                 return;
                             }
 
                             // If the place has a geometry, then present it on a map.
-                            if (place.geometry.viewport)
-                            {
+                            if (place.geometry.viewport) {
                                 $scope.map.fitBounds(place.geometry.viewport);
-                            } else
-                            {
+                            } else {
                                 var bounds = new google.maps.LatLngBounds();
                                 bounds.extend(place.geometry.location);
                                 $scope.map.setCenter(place.geometry.location);
@@ -213,16 +200,14 @@
                         });
                     };
 
-                    if ($scope.id)
-                    {
+                    if ($scope.id) {
                         this.$address.find($scope.id, function (address) {
                             $scope.address = address;
                             $scope.searched = true;
                             me.initMap();
                         });
                     }
-                    else
-                    {
+                    else {
                         $scope.address = new ContactAddress();
                         me.initMap();
                     }

@@ -6,6 +6,7 @@ use Modules\Media\Image;
 
 trait MediaShortcodes
 {
+
     protected function compileMediaShortcodes($content)
     {
         $content = $this->compileImageShortcode($content);
@@ -32,8 +33,6 @@ trait MediaShortcodes
 
     /**
      * Return a sorted array with all requested images.
-     *
-     *
      *
      * @return array
      */
@@ -66,9 +65,6 @@ trait MediaShortcodes
      * other customisations through html/css. We want our content to adhere to the
      * styles provided per account. No need to allow a client to mess around.
      *
-     *
-     *
-     *
      * @return mixed
      */
     protected function addImage(&$content, $image)
@@ -98,7 +94,7 @@ trait MediaShortcodes
             return false;
         }
 
-        $title = $img->title ?: 'image_'.$placement['counter'];
+        $title = $img->title ?: 'image_' . $placement['counter'];
 
         if (!$float = $placement['float']) {
             return $this->handleFullWidth($title, $this->imageLink($img, true));
@@ -113,20 +109,14 @@ trait MediaShortcodes
      * in most cases this simply means: don't add padding to the element containing the entire post
      * you should instead add the padding or margin to the content related tags within that container.
      *
-     *
-     *
-     *
      * @return string
      */
     protected function handleFullWidth($title, $link)
     {
-        return sprintf('{.full-width.blog-img}'.PHP_EOL.'![%s](%s){.img-responsive.full-width}', $title, $link);
+        return sprintf('{.full-width.blog-img}' . PHP_EOL . '![%s](%s){.img-responsive.full-width}', $title, $link);
     }
 
     /**
-     *
-     *
-     *
      * @return string
      */
     protected function imageLink(Image $img, $big)
@@ -142,10 +132,6 @@ trait MediaShortcodes
      * is a path that references an image which is smaller then the viewport.
      * If not, it would simply just take up the full width due to .img-responsive.
      *
-     *
-     *
-     *
-     *
      * @return string
      */
     protected function handleFloat($title, $link, $float)
@@ -155,7 +141,7 @@ trait MediaShortcodes
         //since like this, content will get unreadable on certain screens
         //since its smashed in a narrow area next to the image
         //the image should probably only actually float when we're on a @screen-lg?
-        return sprintf('{.clearfix}'.PHP_EOL.'![%s](%s){.img-responsive%s}', $title, $link, $float);
+        return sprintf('{.clearfix}' . PHP_EOL . '![%s](%s){.img-responsive%s}', $title, $link, $float);
     }
 
     protected function compileVideoShortcode($content)
@@ -168,7 +154,7 @@ trait MediaShortcodes
             $replacement = '';
 
             if ($video = $this->videos->get($counter)) {
-                $replacement = '<figure class="responsive-video">'.$video->embed.'</figure>';
+                $replacement = '<figure class="responsive-video">' . $video->embed . '</figure>';
             }
 
             $content = preg_replace('/#video#/', $replacement, $content, 1);
@@ -210,8 +196,6 @@ trait MediaShortcodes
     /**
      * Return a sorted array with all requested images.
      *
-     *
-     *
      * @return int
      */
     protected function getWantedInfographics($content)
@@ -244,8 +228,6 @@ trait MediaShortcodes
 
     /**
      * Return a sorted array with all requested images.
-     *
-     *
      *
      * @return int
      */

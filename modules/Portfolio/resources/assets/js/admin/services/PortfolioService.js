@@ -12,13 +12,11 @@
                     Portfolio.query(params, success);
                 },
                 save: function (project, success) {
-                    if (project.id)
-                    {
+                    if (project.id) {
                         //use a copy, so the response will not reset the form to the last saved instance while typing.
                         var destination = angular.copy(project);
 
-                        if (this.timeout)
-                        {
+                        if (this.timeout) {
                             $timeout.cancel(this.timeout);
                         }
 
@@ -26,8 +24,7 @@
                             return destination.$update(success);
                         }, 400);
                     }
-                    else
-                    {
+                    else {
                         project.$save({}, success);
                     }
                 },

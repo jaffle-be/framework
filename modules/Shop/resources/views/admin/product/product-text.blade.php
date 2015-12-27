@@ -74,59 +74,59 @@
 
         </form>
 
-                <div class="col-md-6">
+        <div class="col-md-6">
 
-                    <category-input product="vm.product" locale="vm.options.locale"></category-input>
+            <category-input product="vm.product" locale="vm.options.locale"></category-input>
 
-                </div>
+        </div>
 
-            </div>
+    </div>
 
-            <hr>
+    <hr>
 
 
     <form ng-submit="vm.save()" name="productForm" novalidate>
 
-            <div class="row">
+        <div class="row">
 
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label for="title" class="control-label">{{ Lang::get('shop::admin.product.ean') }}</label>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="title" class="control-label">{{ Lang::get('shop::admin.product.ean') }}</label>
 
-                        <div>
-                            <input ng-change="vm.save()" autocomplete="off" type="text" name="ean" id="ean" class="form-control" ng-model="vm.product.ean"/>
-                        </div>
+                    <div>
+                        <input ng-change="vm.save()" autocomplete="off" type="text" name="ean" id="ean" class="form-control" ng-model="vm.product.ean"/>
                     </div>
-
-                </div>
-
-                <div class="col-md-6">
-
-                    <div class="form-group">
-                        <label for="title" class="control-label">{{ Lang::get('shop::admin.product.upc') }}</label>
-
-                        <div>
-                            <input ng-change="vm.save()" autocomplete="off" type="text" name="upc" id="upc" class="form-control" ng-model="vm.product.upc"/>
-                        </div>
-                    </div>
-
                 </div>
 
             </div>
 
-            <hr>
+            <div class="col-md-6">
 
-            <div class="form-group">
-                <label for="content" class="control-label">{{ Lang::get('shop::admin.product.content') }}</label>
+                <div class="form-group">
+                    <label for="title" class="control-label">{{ Lang::get('shop::admin.product.upc') }}</label>
 
-                <div>
-                    <textarea auto-size class="form-control autosize-lg" ng-model="vm.product.translations[vm.options.locale].content" ng-change="vm.save()"></textarea>
+                    <div>
+                        <input ng-change="vm.save()" autocomplete="off" type="text" name="upc" id="upc" class="form-control" ng-model="vm.product.upc"/>
+                    </div>
                 </div>
+
             </div>
 
-        </form>
+        </div>
 
-    </div>
+        <hr>
+
+        <div class="form-group">
+            <label for="content" class="control-label">{{ Lang::get('shop::admin.product.content') }}</label>
+
+            <div>
+                <textarea auto-size class="form-control autosize-lg" ng-model="vm.product.translations[vm.options.locale].content" ng-change="vm.save()"></textarea>
+            </div>
+        </div>
+
+    </form>
+
+</div>
 
 </div>
 

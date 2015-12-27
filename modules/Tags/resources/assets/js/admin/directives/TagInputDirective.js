@@ -48,8 +48,7 @@
                     };
 
                     //only load when we're working on an existing document.
-                    if ($scope.ownerId)
-                    {
+                    if ($scope.ownerId) {
                         TagService.list($scope.ownerType, $scope.ownerId, function (response) {
                             $scope.tags = response;
                         });

@@ -6,6 +6,7 @@ use Modules\System\Presenter\BasePresenter;
 
 class MenuItemFrontPresenter extends BasePresenter
 {
+
     public function url()
     {
         if ($this->entity->page) {
@@ -25,7 +26,7 @@ class MenuItemFrontPresenter extends BasePresenter
 
         $translation = $page->translate(null, true);
 
-        return '/'.$translation->slug->uri;
+        return '/' . $translation->slug->uri;
     }
 
     public function shouldPresent()

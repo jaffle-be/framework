@@ -9,6 +9,7 @@ use Modules\Account\MembershipOwner;
 
 class NewMembership extends Job
 {
+
     /**
      * @var Account
      */

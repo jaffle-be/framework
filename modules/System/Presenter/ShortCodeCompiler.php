@@ -4,6 +4,7 @@ namespace Modules\System\Presenter;
 
 trait ShortCodeCompiler
 {
+
     public function formatShortcodes($content)
     {
         return $this->loopShortcodes('format', $content);
@@ -12,11 +13,11 @@ trait ShortCodeCompiler
     public function loopShortcodes($type, $content)
     {
         if (!property_exists($this, 'shortcodes')) {
-            throw new \Exception('You need to add the shortcodes property to '.get_called_class());
+            throw new \Exception('You need to add the shortcodes property to ' . get_called_class());
         }
 
         foreach ($this->shortcodes as $code) {
-            $method = $type.ucfirst($code).'ShortCodes';
+            $method = $type . ucfirst($code) . 'ShortCodes';
 
             if (method_exists($this, $method)) {
                 $content = $this->$method($content);

@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\Guard;
 
 class PageObserver
 {
+
     /**
      * @var Guard
      */

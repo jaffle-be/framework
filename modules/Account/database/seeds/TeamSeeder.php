@@ -7,6 +7,7 @@ use Modules\System\Seeder;
 
 class TeamSeeder extends Seeder
 {
+
     public function run()
     {
         foreach ([1, 2] as $account) {

@@ -9,6 +9,7 @@ use Modules\Account\MembershipOwner;
 
 class AcceptMembership extends Job
 {
+
     use DispatchesJobs;
 
     protected $invitation;

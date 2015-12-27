@@ -12,6 +12,7 @@ use Modules\System\Locale;
 
 class AddNewVideo extends Job
 {
+
     use VideoGenericFormatter;
 
     /**
@@ -104,7 +105,7 @@ class AddNewVideo extends Job
         }
 
         if ($id) {
-            $response = $vimeo->request('/videos/'.$id);
+            $response = $vimeo->request('/videos/' . $id);
 
             return $this->vimeoVideoResponse($response['body']);
         }

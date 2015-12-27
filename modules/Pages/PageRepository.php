@@ -4,6 +4,7 @@ namespace Modules\Pages;
 
 class PageRepository implements PageRepositoryInterface
 {
+
     protected $page;
 
     public function __construct(Page $page)

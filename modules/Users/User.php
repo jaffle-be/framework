@@ -16,6 +16,7 @@ use Modules\System\Translatable\Translatable;
 
 class User extends Model implements Authenticatable, MembershipOwner, AddressOwner, StoresMedia, Searchable
 {
+
     use OwnsAddress;
     use StoringMedia;
     use Translatable;
@@ -90,7 +91,7 @@ class User extends Model implements Authenticatable, MembershipOwner, AddressOwn
 
     public function getNameAttribute()
     {
-        $fullname = trim($this->firstname.' '.$this->lastname);
+        $fullname = trim($this->firstname . ' ' . $this->lastname);
 
         return $fullname ?: 'John Doe';
     }
@@ -112,8 +113,8 @@ class User extends Model implements Authenticatable, MembershipOwner, AddressOwn
 
     /**
      * Set the token value for the "remember me" session.
-     *
-     *
+
+
      */
     public function setRememberToken($value)
     {

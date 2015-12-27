@@ -6,6 +6,7 @@ use Modules\Users\User;
 
 class ProfileSeeder extends Seeder
 {
+
     public function run()
     {
         $this->profileInfo();

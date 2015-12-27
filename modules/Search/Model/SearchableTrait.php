@@ -13,6 +13,7 @@ use Modules\System\Translatable\Translatable;
  */
 trait SearchableTrait
 {
+
     /**
      * @var SearchServiceInterface
      */
@@ -62,7 +63,7 @@ trait SearchableTrait
 
     public function useSearchableRouting()
     {
-        return config('search.types.'.$this->getSearchableType().'.routing', false);
+        return config('search.types.' . $this->getSearchableType() . '.routing', false);
     }
 
     /**
@@ -102,13 +103,11 @@ trait SearchableTrait
     }
 
     /**
-     *
-     *
      * @return string
      */
     public function getSearchableEventname($event)
     {
-        return "eloquent.{$event}: ".get_class($this);
+        return "eloquent.{$event}: " . get_class($this);
     }
 
     /**
@@ -220,9 +219,6 @@ trait SearchableTrait
     }
 
     /**
-     *
-     *
-     *
      * @return array
      */
     protected function getRelationType($relation, $model)
@@ -236,8 +232,6 @@ trait SearchableTrait
     }
 
     /**
-     *
-     *
      * @return array|bool
      */
     protected function relationNeedsLooping($type)
@@ -254,9 +248,6 @@ trait SearchableTrait
     }
 
     /**
-     *
-     *
-     *
      * @return Collection
      */
     protected function getLoopedRelationData($build, $relation_data)
@@ -275,9 +266,6 @@ trait SearchableTrait
     }
 
     /**
-     *
-     *
-     *
      * @return mixed
      */
     protected function getSimpleRelationData($build, $relation_data)
@@ -316,8 +304,6 @@ trait SearchableTrait
     /**
      * keep this public, this allows for easy searching inheriting.
      *
-     *
-     *
      * @return array
      */
     public function getSearchableSuggestData(Searchable $inheritFrom = null)
@@ -341,25 +327,20 @@ trait SearchableTrait
     }
 
     /**
-     *
-     *
-     *
      * @return string
      */
     protected function getSearchableSuggestName($locale, Searchable $inheritFrom = null)
     {
-        $suffix = '_suggest_'.$locale->slug;
+        $suffix = '_suggest_' . $locale->slug;
 
         if ($inheritFrom) {
-            return $inheritFrom->getSearchableType().$suffix;
+            return $inheritFrom->getSearchableType() . $suffix;
         }
 
-        return $this->getSearchableType().$suffix;
+        return $this->getSearchableType() . $suffix;
     }
 
     /**
-     *
-     *
      * @return array
      */
     protected function getSearchableSuggestPayload($translation)

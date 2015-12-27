@@ -12,6 +12,7 @@ use Modules\System\Translatable\TranslationModel;
 
 class BrandTranslation extends TranslationModel implements SluggableInterface, PresentableEntity, Searchable
 {
+
     use Sluggable, PresentableTrait;
     use SearchableTrait;
 

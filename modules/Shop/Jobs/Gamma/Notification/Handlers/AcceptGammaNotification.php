@@ -13,6 +13,7 @@ use Pusher;
 
 class AcceptGammaNotification extends Job implements ShouldQueue
 {
+
     use DispatchesJobs;
 
     protected $notification;
@@ -64,8 +65,6 @@ class AcceptGammaNotification extends Job implements ShouldQueue
     }
 
     /**
-     *
-     *
      * @throws \Exception
      */
     protected function finish(Pusher $pusher)

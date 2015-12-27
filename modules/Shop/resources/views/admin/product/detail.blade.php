@@ -17,7 +17,6 @@
     </div>
 
 
-
     <div class="row" ng-show="vm.mainTabs[0]">
         <div class="col-xs-12 col-sm-7 col-md-8 col-lg-9">
 

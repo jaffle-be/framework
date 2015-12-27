@@ -7,6 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 
 class Cooldown extends Job implements ShouldQueue
 {
+
     protected $ip;
 
     protected $email;

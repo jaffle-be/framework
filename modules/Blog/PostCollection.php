@@ -7,5 +7,6 @@ use Modules\Media\ImageOwners;
 
 class PostCollection extends Collection
 {
+
     use ImageOwners;
 }

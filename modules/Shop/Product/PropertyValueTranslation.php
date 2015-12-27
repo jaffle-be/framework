@@ -8,6 +8,7 @@ use Modules\System\Translatable\TranslationModel;
 
 class PropertyValueTranslation extends TranslationModel implements Searchable
 {
+
     use SearchableTrait;
 
     protected $table = 'product_properties_values_translations';

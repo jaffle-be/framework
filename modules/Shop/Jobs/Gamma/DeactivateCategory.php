@@ -9,6 +9,7 @@ use Modules\Shop\Product\Category;
 
 class DeactivateCategory extends Job
 {
+
     /**
      * @var Category
      */

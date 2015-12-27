@@ -9,6 +9,7 @@ use Modules\Theme\ThemeSettingOption;
 
 class ThemeController extends AdminController
 {
+
     public function index()
     {
         $themes = $this->theme->supported();

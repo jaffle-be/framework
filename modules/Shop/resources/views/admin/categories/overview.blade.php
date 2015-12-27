@@ -15,6 +15,7 @@
                        typeahead-wait-ms="400"
                        typeahead-highlight="true"
                        ng-model="vm.searchInput">
+
                 <div class="input-group-addon">
                     <i ng-show="vm.selectedCategory" ng-click="vm.clearSelection()" class="fa fa-times"></i>
                     <span ng-hide="vm.selectedCategory">&nbsp;&nbsp;</span>

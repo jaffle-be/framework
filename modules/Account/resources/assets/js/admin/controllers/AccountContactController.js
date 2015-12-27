@@ -15,23 +15,20 @@
 
             this.save = function () {
 
-                if (this.timer)
-                {
+                if (this.timer) {
                     $timeout.cancel(this.timer);
                 }
 
                 this.timer = $timeout(function () {
 
-                    if (!me.info.id)
-                    {
+                    if (!me.info.id) {
                         me.info.$save(function () {
                             $scope.errors = [];
                         }, function (response) {
                             $scope.errors = response.data;
                         });
                     }
-                    else
-                    {
+                    else {
                         //don't update UI with returned object
                         var info = angular.copy(me.info);
 

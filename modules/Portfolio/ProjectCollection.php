@@ -7,5 +7,6 @@ use Modules\Tags\CollectionWithTaggables;
 
 class ProjectCollection extends Collection
 {
+
     use CollectionWithTaggables;
 }

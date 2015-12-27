@@ -11,6 +11,7 @@ use Modules\Users\Auth\Events\UserRegistered;
 
 class UserRegisteredHandler
 {
+
     use DispatchesJobs;
 
     public function __construct(Mailer $mail, Repository $config)

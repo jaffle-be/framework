@@ -7,6 +7,7 @@ use Modules\System\Scopes\ModelAccountResource;
 
 class Menu extends Model
 {
+
     use ModelAccountResource;
 
     protected $table = 'menus';

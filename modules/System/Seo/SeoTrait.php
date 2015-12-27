@@ -9,6 +9,7 @@ use Modules\Users\User;
 
 trait SeoTrait
 {
+
     public function seo()
     {
         return $this->morphMany('Modules\System\Seo\SeoProperty', 'owner');

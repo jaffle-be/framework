@@ -9,6 +9,7 @@ use Modules\Shop\Product\Brand;
 
 class DeactivateBrand extends Job
 {
+
     /**
      * @var Brand
      */

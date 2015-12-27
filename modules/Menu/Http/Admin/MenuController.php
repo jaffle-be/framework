@@ -14,13 +14,13 @@ use Modules\Theme\ThemeManager;
 
 class MenuController extends AdminController
 {
+
     /**
      * @var MenuManager
      */
     protected $menu;
 
     /**
-     *
      *
      */
     public function __construct(ThemeManager $theme, MenuManager $menu)

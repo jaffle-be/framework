@@ -4,8 +4,7 @@
     function authHandler($window, $q) {
         return {
             responseError: function (response) {
-                if (response.status === 401)
-                {
+                if (response.status === 401) {
                     $window.location.href = response.data;
                 }
 
@@ -23,8 +22,7 @@
         .run(function ($rootScope, $window) {
             $rootScope.$on('$stateChangeError',
                 function (event, toState, toParams, fromState, fromParams, error) {
-                    if (error.status === 401)
-                    {
+                    if (error.status === 401) {
                         $window.location.href = error.data;
                         //this used to be hard coded. but we have different routes for signins on multiple locale installs.
                         //$window.location.href = '/auth/signin';

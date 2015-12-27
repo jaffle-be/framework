@@ -6,14 +6,13 @@
 
             return {
                 find: function (id, success) {
-                    Product.get({id: id}).$promise.then(success, function(response){
+                    Product.get({id: id}).$promise.then(success, function (response) {
 
-                        if(response.status == 404)
-                        {
+                        if (response.status == 404) {
                             toaster.error("Couldn't find product");
                             $state.go('admin.shop.products');
                         }
-                        else{
+                        else {
                             toaster.error("something bad happened");
                             $state.go('admin.shop.products');
                         }
@@ -23,23 +22,21 @@
                     Product.query(params, success);
                 },
                 save: function (product) {
-                    if (product.id)
-                    {
+                    if (product.id) {
                         //use a copy, so the response will not reset the form to the last saved instance while typing.
                         var destination = angular.copy(product);
                         var deferred = $q.defer();
 
-                        if (this.timeout)
-                        {
+                        if (this.timeout) {
                             this.previousDeferred.reject('canceled for new save');
                             $timeout.cancel(this.timeout);
                         }
 
                         this.timeout = $timeout(function () {
-                            return destination.$update().then(function(response){
+                            return destination.$update().then(function (response) {
 
                                 deferred.resolve(response);
-                            }, function(response){
+                            }, function (response) {
                                 deferred.reject(response);
                             });
                         }, 400);
@@ -48,8 +45,7 @@
 
                         return deferred.promise;
                     }
-                    else
-                    {
+                    else {
                         return product.$save({});
                     }
                 },
@@ -73,39 +69,34 @@
                         locale: locale
                     }).then(success);
                 },
-                searchProduct: function(query, locale)
-                {
+                searchProduct: function (query, locale) {
                     var data = {
-                        query:query,
+                        query: query,
                         locale: locale
                     };
-                    return $http.post('/api/admin/shop/products/suggest', data).then(function(response){
+                    return $http.post('/api/admin/shop/products/suggest', data).then(function (response) {
                         return response.data;
                     });
                 },
-                getTitle: function(product, locale)
-                {
+                getTitle: function (product, locale) {
                     var brand = product.brand.translations[locale].name;
 
                     product = product.translations[locale].name;
 
-                    if(!brand)
-                    {
+                    if (!brand) {
                         return product;
                     }
 
                     return product + ' - ' + brand;
                 },
 
-                addCategory: function(payload)
-                {
-                    return $http.post('api/admin/shop/products/add-category', payload).then(function(response){
+                addCategory: function (payload) {
+                    return $http.post('api/admin/shop/products/add-category', payload).then(function (response) {
                         return response.data;
                     });
                 },
-                removeCategory: function(payload)
-                {
-                    return $http.post('api/admin/shop/products/remove-category', payload).then(function(response){
+                removeCategory: function (payload) {
+                    return $http.post('api/admin/shop/products/remove-category', payload).then(function (response) {
                         return response.data;
                     });
                 }

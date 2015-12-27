@@ -13,6 +13,7 @@ use Modules\System\Locale;
 
 class StoreNewFile extends Job
 {
+
     protected $account;
 
     /**
@@ -67,10 +68,6 @@ class StoreNewFile extends Job
 
     /**
      *
-     *
-     *
-     *
-     *
      */
     public function __construct(Account $account, StoresMedia $owner, Locale $locale, $path, $rename = null)
     {
@@ -114,7 +111,7 @@ class StoreNewFile extends Job
         }
 
         //abstract path to actual file
-        $path = $abstract.$this->rename;
+        $path = $abstract . $this->rename;
 
         //always copy the file first
         $files->copy($this->currentPath, public_path($path));

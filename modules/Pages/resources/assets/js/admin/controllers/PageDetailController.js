@@ -13,14 +13,12 @@
                 id = $state.params.id;
 
             this.load = function (id) {
-                if (id)
-                {
+                if (id) {
                     this.page = this.pages.find(id, function (page) {
                         me.page = page;
                     });
                 }
-                else
-                {
+                else {
                     this.page = new Page();
                 }
             };
@@ -35,8 +33,7 @@
                 var me = this;
                 me.drafting = true;
 
-                if (me.page.id)
-                {
+                if (me.page.id) {
                     this.pages.save(me.page);
                 }
             };

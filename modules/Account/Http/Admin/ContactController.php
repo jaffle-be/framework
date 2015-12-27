@@ -10,6 +10,7 @@ use Modules\System\Http\AdminController;
 
 class ContactController extends AdminController
 {
+
     public function page(AccountManager $manager)
     {
         $account = $manager->account();
@@ -23,8 +24,6 @@ class ContactController extends AdminController
 
     /**
      * Index is the show method here, but we don't need an id to provide it.
-     *
-     *
      *
      * @return mixed
      */

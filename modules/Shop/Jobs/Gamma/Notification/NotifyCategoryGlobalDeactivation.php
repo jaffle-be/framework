@@ -10,6 +10,7 @@ use Modules\Shop\Product\Category;
 
 class NotifyCategoryGlobalDeactivation extends Job
 {
+
     use GammaNotificationHelpers;
 
     /**
@@ -51,10 +52,6 @@ class NotifyCategoryGlobalDeactivation extends Job
     }
 
     /**
-     *
-     *
-     *
-     *
      * @return mixed
      */
     protected function findExistingCombination(GammaNotification $notification, $brand, $category)

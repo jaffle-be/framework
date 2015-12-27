@@ -8,6 +8,7 @@ use Modules\Search\Model\Searchable;
 
 trait SearchResponder
 {
+
     protected function response($results, $with, $paginated, Searchable $model = null)
     {
         $collection = $this->asModels($results['hits']['hits'], $model);

@@ -89,8 +89,7 @@
                 var pages = [];
 
                 _.each(this.pages, function (page) {
-                    if (page.isSelected)
-                    {
+                    if (page.isSelected) {
                         pages.push(page.id);
                     }
                 });

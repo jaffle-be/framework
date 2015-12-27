@@ -11,6 +11,7 @@ use Predis\Client;
 
 class ThrottleManager implements Throttler
 {
+
     const BASE_CACHE_KEY = 'users:auth:throttlers:';
 
     /**
@@ -40,10 +41,6 @@ class ThrottleManager implements Throttler
 
     /**
      *
-     *
-     *
-     *
-     *
      */
     public function __construct(Client $redis, Repository $config, Queue $queue, Carbon $carbon, Request $request)
     {
@@ -61,8 +58,6 @@ class ThrottleManager implements Throttler
     /**
      * Is the current user allowed to do another attempt.
      *
-     *
-     *
      * @return bool
      */
     public function allows($email)
@@ -71,8 +66,6 @@ class ThrottleManager implements Throttler
     }
 
     /**
-     *
-     *
      * @return bool
      */
     public function throttle($email)
@@ -109,8 +102,6 @@ class ThrottleManager implements Throttler
     }
 
     /**
-     *
-     *
      * @return bool
      */
     protected function allowsEmail($email)
@@ -119,13 +110,11 @@ class ThrottleManager implements Throttler
     }
 
     /**
-     *
-     *
      * @return string
      */
     protected function key($field)
     {
-        return static::BASE_CACHE_KEY.$field;
+        return static::BASE_CACHE_KEY . $field;
     }
 
     /**
@@ -139,8 +128,6 @@ class ThrottleManager implements Throttler
     }
 
     /**
-     *
-     *
      * @return int
      */
     protected function getEmailCount($email)
@@ -151,9 +138,6 @@ class ThrottleManager implements Throttler
     }
 
     /**
-     *
-     *
-     *
      * @return mixed
      */
     protected function throttleIp($increment, $ip = null)
@@ -166,9 +150,6 @@ class ThrottleManager implements Throttler
     }
 
     /**
-     *
-     *
-     *
      * @return mixed
      */
     protected function throttleEmail($increment, $email)

@@ -8,7 +8,6 @@ return [
         'select-all' => 'all',
         'select-none' => 'none',
     ],
-
     'post' => [
         'content' => 'content',
         'create' => 'new post',

@@ -27,8 +27,7 @@
 
                 this.addLink = function (payload, success, error) {
 
-                    if (this.timeouts['creating'])
-                    {
+                    if (this.timeouts['creating']) {
                         $timeout.cancel(this.timeouts['creating']);
                     }
 
@@ -41,8 +40,7 @@
 
                 this.update = function (type, id, video) {
 
-                    if (this.timeouts[video.id])
-                    {
+                    if (this.timeouts[video.id]) {
                         $timeout.cancel(this.timeouts[video.id]);
                     }
 

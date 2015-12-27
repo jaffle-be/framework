@@ -5,6 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 
 class CreateMediaImages extends Migration
 {
+
     /**
      * Run the migrations.
      */

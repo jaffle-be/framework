@@ -15,6 +15,7 @@ use Modules\System\Locale;
 
 class StoreNewInfographic extends Job
 {
+
     use DispatchesJobs;
 
     protected $account;
@@ -71,10 +72,6 @@ class StoreNewInfographic extends Job
 
     /**
      *
-     *
-     *
-     *
-     *
      */
     public function __construct(Account $account, StoresMedia $owner, Locale $locale, $path, $rename = null)
     {
@@ -120,8 +117,8 @@ class StoreNewInfographic extends Job
 
     /**
      * set the filename, extension and the size.
-     *
-     *
+
+
      */
     protected function dimensions(ImageManager $image)
     {
@@ -140,7 +137,7 @@ class StoreNewInfographic extends Job
         }
 
         //abstract path to actual file
-        $path = $abstract.$this->rename;
+        $path = $abstract . $this->rename;
 
         //always copy the file first
         $files->copy($this->currentPath, public_path($path));

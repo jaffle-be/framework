@@ -7,9 +7,10 @@ use Modules\System\Seo\SeoEntity;
 
 class Google extends MetaTagProvider
 {
+
     protected function tag($key, $value)
     {
-        return '<meta itemprop="'.strip_tags($key).'" content="'.strip_tags($value).'">';
+        return '<meta itemprop="' . strip_tags($key) . '" content="' . strip_tags($value) . '">';
     }
 
     protected function handle(SeoEntity $seo)
@@ -37,9 +38,6 @@ class Google extends MetaTagProvider
     }
 
     /**
-     *
-     *
-     *
      * @return string
      */
     protected function nameForTypeSpecificProperty($type, $key)

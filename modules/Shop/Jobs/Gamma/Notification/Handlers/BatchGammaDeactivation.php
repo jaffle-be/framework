@@ -10,6 +10,7 @@ use Modules\Shop\Product\Category;
 
 class BatchGammaDeactivation extends Job
 {
+
     /**
      * @var Category
      */
@@ -26,8 +27,6 @@ class BatchGammaDeactivation extends Job
     protected $brand;
 
     /**
-     *
-     *
      *
      */
     public function __construct(Category $category, Account $account, Brand $brand)
@@ -62,17 +61,17 @@ class BatchGammaDeactivation extends Job
     }
 
     /**
-     *
-     *
      * @return mixed
      */
     protected function loadSelections(ProductSelection $productGamma)
     {
         $selections = $productGamma->chunkActiveProducts($this->brand->id, $this->category->id, $this->account->id);
 
-        $selections->load(['categories' => function ($query) {
-            $query->withTrashed();
-        }]);
+        $selections->load([
+            'categories' => function ($query) {
+                $query->withTrashed();
+            }
+        ]);
 
         return $selections;
     }

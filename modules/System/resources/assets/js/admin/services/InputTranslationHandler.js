@@ -9,10 +9,8 @@
             return function (locales, original) {
                 var translations = {};
 
-                for (var locale in locales)
-                {
-                    if (original[locale])
-                    {
+                for (var locale in locales) {
+                    if (original[locale]) {
                         translations[locale] = original[locale];
                     }
                 }

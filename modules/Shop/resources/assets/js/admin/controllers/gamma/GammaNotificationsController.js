@@ -90,8 +90,7 @@
                     me = this;
 
                 _.each(this.notifications, function (notification) {
-                    if (notification.isSelected)
-                    {
+                    if (notification.isSelected) {
                         notifications.push(notification.id);
                     }
                 });

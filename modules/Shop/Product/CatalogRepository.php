@@ -6,6 +6,7 @@ use Modules\Account\Account;
 
 class CatalogRepository implements CatalogRepositoryInterface
 {
+
     protected $product;
 
     protected $brand;

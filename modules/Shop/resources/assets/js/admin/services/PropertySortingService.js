@@ -56,8 +56,7 @@
 
                     _.each(event.dest.sortableScope.modelValue, function (item, key) {
 
-                        if (item.id == property.id)
-                        {
+                        if (item.id == property.id) {
                             position = key
                         }
                     });

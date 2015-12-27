@@ -5,6 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 
 class CreateProductPropertiesTable extends Migration
 {
+
     /**
      * Run the migrations.
      */

@@ -6,6 +6,7 @@ use Illuminate\Contracts\Cache\Repository;
 
 class AccountRepository implements AccountRepositoryInterface
 {
+
     protected $account;
 
     public function __construct(Account $account, Repository $cache)
@@ -25,8 +26,6 @@ class AccountRepository implements AccountRepositoryInterface
     }
 
     /**
-     *
-     *
      * @return Account
      */
     public function newAccount(array $payload)
@@ -36,8 +35,6 @@ class AccountRepository implements AccountRepositoryInterface
 
     /**
      * The alias represents the subdomain for the main app url an account is running under.
-     *
-     *
      *
      * @internal param $domain
      */
@@ -70,7 +67,6 @@ class AccountRepository implements AccountRepositoryInterface
      * Find the base account that's being used as the 'system' account.
      *
      * @return mixed
-     *
      * @throws \Exception
      */
     public function baseAccount()

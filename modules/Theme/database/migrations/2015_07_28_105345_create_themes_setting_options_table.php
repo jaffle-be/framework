@@ -5,6 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 
 class CreateThemesSettingOptionsTable extends Migration
 {
+
     /**
      * Run the migrations.
      */

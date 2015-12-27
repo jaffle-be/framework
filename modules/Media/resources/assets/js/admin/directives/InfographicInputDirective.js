@@ -24,8 +24,7 @@
                         $scope.dropzone = InfographicService.uploader($scope.ownerType, $scope.ownerId, $scope.locale, {
                             success: function (file, graphic, xhr) {
                                 graphic = new InfographicResource(graphic);
-                                if ($scope.graphics[$scope.locale] === undefined)
-                                {
+                                if ($scope.graphics[$scope.locale] === undefined) {
                                     $scope.graphics[$scope.locale] = [];
                                 }
 
@@ -35,12 +34,10 @@
                             },
                             error: function (file, message, response) {
                                 //added to avoid large popup when we try uploading a file which is too large
-                                if (response.status == 413)
-                                {
+                                if (response.status == 413) {
                                     toaster.error(response.statusText);
                                 }
-                                else
-                                {
+                                else {
                                     toaster.error(message);
                                 }
 
@@ -71,8 +68,7 @@
 
                     //move up means lower index
                     this.moveUp = function (graphic, index) {
-                        if (index - 1 >= 0)
-                        {
+                        if (index - 1 >= 0) {
                             $scope.graphics[$scope.locale][index] = $scope.graphics[$scope.locale][index - 1];
                             $scope.graphics[$scope.locale][index - 1] = graphic;
                             InfographicService.sort($scope.ownerType, $scope.ownerId, $scope.graphics[$scope.locale]);
@@ -81,8 +77,7 @@
 
                     //move down means higher index
                     this.moveDown = function (graphic, index) {
-                        if (index + 1 <= $scope.graphics[$scope.locale].length - 1)
-                        {
+                        if (index + 1 <= $scope.graphics[$scope.locale].length - 1) {
                             $scope.graphics[$scope.locale][index] = $scope.graphics[$scope.locale][index + 1];
                             $scope.graphics[$scope.locale][index + 1] = graphic;
                             InfographicService.sort($scope.ownerType, $scope.ownerId, $scope.graphics[$scope.locale]);

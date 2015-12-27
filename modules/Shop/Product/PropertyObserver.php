@@ -4,6 +4,7 @@ namespace Modules\Shop\Product;
 
 class PropertyObserver
 {
+
     protected $groups;
 
     protected $properties;

@@ -6,6 +6,7 @@ use Modules\System\Seeder;
 
 class MenuTableSeeder extends Seeder
 {
+
     public function run()
     {
         foreach (MenuItem::all() as $item) {

@@ -7,6 +7,7 @@ use Modules\Module\ModuleRoute;
 
 class CreatePostsTable extends Migration
 {
+
     /**
      * Run the migrations.
      */

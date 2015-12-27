@@ -8,6 +8,7 @@ use Modules\System\Http\AdminController;
 
 class PropertyUnitController extends AdminController
 {
+
     public function store(PropertyUnit $units, Request $request)
     {
         $unit = $units->newInstance(translation_input($request));

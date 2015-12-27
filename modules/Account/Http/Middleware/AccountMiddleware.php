@@ -8,6 +8,7 @@ use Modules\Account\AccountManager;
 
 class AccountMiddleware
 {
+
     protected $manager;
 
     public function __construct(AccountManager $manager)

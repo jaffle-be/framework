@@ -7,6 +7,7 @@ namespace Modules\Menu;
  */
 class MenuManager
 {
+
     /**
      * @var bool
      */
@@ -46,9 +47,6 @@ class MenuManager
     }
 
     /**
-     *
-     *
-     *
      * @return mixed
      */
     public function __call($name, $arguments)
@@ -57,7 +55,6 @@ class MenuManager
     }
 
     /**
-     *
      *
      */
     public function register($menu, array $options = array())
@@ -77,8 +74,6 @@ class MenuManager
     }
 
     /**
-     *
-     *
      * @return mixed
      */
     public function get($menu)

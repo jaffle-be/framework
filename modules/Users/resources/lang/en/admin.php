@@ -6,7 +6,6 @@ return [
         'level' => 'level',
         'skill' => 'skill',
     ],
-
     'profile' => [
         'basic-info' => 'basics',
         'bio' => 'bio',
@@ -18,7 +17,6 @@ return [
         'vat' => 'vat',
         'website' => 'website',
     ],
-
     'quote' => 'quote',
     'quote-author' => 'quote from',
 

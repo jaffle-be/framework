@@ -11,6 +11,7 @@ use Modules\Shop\Product\Product;
 
 class ActivateProduct extends Job
 {
+
     protected $product;
 
     protected $categorie;
@@ -49,8 +50,6 @@ class ActivateProduct extends Job
     }
 
     /**
-     *
-     *
      * @return ProductSelection
      */
     protected function baseSelectionExists(ProductSelection $selection)
@@ -86,8 +85,6 @@ class ActivateProduct extends Job
     }
 
     /**
-     *
-     *
      * @return ProductCategorySelection
      */
     protected function existingCategorySelection(ProductSelection $base)

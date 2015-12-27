@@ -89,8 +89,7 @@
                 var posts = [];
 
                 _.each(this.posts, function (post) {
-                    if (post.isSelected)
-                    {
+                    if (post.isSelected) {
                         posts.push(post.id);
                     }
                 });

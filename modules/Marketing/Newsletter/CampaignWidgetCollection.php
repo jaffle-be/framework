@@ -8,6 +8,7 @@ use Modules\Portfolio\Project;
 
 class CampaignWidgetCollection extends Collection
 {
+
     public function setData()
     {
         list($posts, $projects) = $this->getMaps();
@@ -79,7 +80,6 @@ class CampaignWidgetCollection extends Collection
 
     /**
      * @return array
-     *
      * @internal param Campaign $newsletter
      */
     protected function getMaps()

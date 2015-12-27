@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 trait MediaWidgetPreperations
 {
+
     protected function owner(Request $request)
     {
         $id = $request->get('ownerId');
@@ -21,13 +22,11 @@ trait MediaWidgetPreperations
         $media = array_intersect($valid, $media);
 
         foreach ($media as $type) {
-            call_user_func_array([$this, 'prepare'.ucfirst($type)], [$owner]);
+            call_user_func_array([$this, 'prepare' . ucfirst($type)], [$owner]);
         }
     }
 
     /**
-     *
-     *
      * @return Collection
      */
     protected function prepareImages($owner)
@@ -59,8 +58,6 @@ trait MediaWidgetPreperations
     }
 
     /**
-     *
-     *
      * @return mixed
      */
     protected function prepareInfographics($owner)

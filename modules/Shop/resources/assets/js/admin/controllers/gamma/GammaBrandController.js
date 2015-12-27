@@ -44,8 +44,7 @@
                 var brand = _.first(_.where(me.brands, {id: combination.brand.id}));
 
                 //if the brand is on the page, we'll need to add the category
-                if (brand)
-                {
+                if (brand) {
                     brand.categories.push(combination.category);
                     $scope.$apply();
                 }
@@ -55,8 +54,7 @@
                 var combination = _.first(combinations);
                 var brand = _.first(_.where(me.brands, {id: combination.brand_id}));
 
-                if (brand)
-                {
+                if (brand) {
                     _.remove(brand.categories, function (item) {
                         return item.id == combination.category_id;
                     });
@@ -67,12 +65,10 @@
             function createNotification(combination) {
                 var brand = _.first(_.where(me.brands, {id: combination.brand_id}));
 
-                if (brand)
-                {
+                if (brand) {
                     var category = _.first(_.where(brand.categories, {id: combination.category_id}));
 
-                    if (category)
-                    {
+                    if (category) {
                         category.inReview = true;
                         category.selected = combination.type == 'activate';
                         $scope.$apply();
@@ -83,12 +79,10 @@
             function acceptNotification(combination) {
                 var brand = _.first(_.where(me.brands, {id: combination.brand_id}));
 
-                if (brand)
-                {
+                if (brand) {
                     var category = _.first(_.where(brand.categories, {id: combination.category_id}));
 
-                    if (category)
-                    {
+                    if (category) {
                         category.inReview = false;
                         category.selected = combination.type == 'activate';
                         $scope.$apply();
@@ -99,12 +93,10 @@
             function denyNotification(combination) {
                 var brand = _.first(_.where(me.brands, {id: combination.brand_id}));
 
-                if (brand)
-                {
+                if (brand) {
                     var category = _.first(_.where(brand.categories, {id: combination.category_id}));
 
-                    if (category)
-                    {
+                    if (category) {
                         category.inReview = false;
                         category.selected = !(combination.type == 'activate');
                         $scope.$apply();
@@ -115,12 +107,10 @@
             function unselectGamma(combination) {
                 var brand = _.first(_.where(me.brands, {id: combination.brand_id}));
 
-                if (brand)
-                {
+                if (brand) {
                     var category = _.first(_.where(brand.categories, {id: combination.category_id}));
 
-                    if (category)
-                    {
+                    if (category) {
                         category.selected = false;
                         $scope.$apply();
                     }
@@ -130,12 +120,10 @@
             function selectGamma(combination) {
                 var brand = _.first(_.where(me.brands, {id: combination.brand_id}));
 
-                if (brand)
-                {
+                if (brand) {
                     var category = _.first(_.where(brand.categories, {id: combination.category_id}));
 
-                    if (category)
-                    {
+                    if (category) {
                         category.selected = true;
                         $scope.$apply();
                     }
@@ -145,8 +133,7 @@
             function activateBrand(combination) {
                 var brand = _.first(_.where(me.brands, {id: combination.brand_id}));
 
-                if (brand)
-                {
+                if (brand) {
                     brand.activated = true;
                     $scope.$apply();
                 }
@@ -155,8 +142,7 @@
             function deactivateBrand(combination) {
                 var brand = _.first(_.where(me.brands, {id: combination.brand_id}));
 
-                if (brand)
-                {
+                if (brand) {
                     brand.activated = false;
                     $scope.$apply();
                 }
@@ -166,8 +152,7 @@
 
                 _.each(me.brands, function (brand) {
                     var category = _.first(_.where(brand.categories, {id: combination.category_id}));
-                    if (category)
-                    {
+                    if (category) {
                         category.activated = true;
                     }
                 });
@@ -179,8 +164,7 @@
                 _.each(me.brands, function (brand) {
 
                     var category = _.first(_.where(brand.categories, {id: combination.category_id}));
-                    if (category)
-                    {
+                    if (category) {
                         category.activated = false;
                     }
                 });
@@ -224,8 +208,7 @@
                 };
 
                 //this was passed through the autosuggest
-                if(typeof item !== 'undefined')
-                {
+                if (typeof item !== 'undefined') {
                     //value is the id
                     data.brand = item.value;
                     //also remember the selection, so we can clear it
@@ -251,16 +234,14 @@
                 toaster.error(headers.statustext);
             }
 
-            function searchBrand(value)
-            {
+            function searchBrand(value) {
                 return GammaService.searchBrand({
                     query: value,
                     locale: me.options.locale
                 });
             }
 
-            function clearSelection()
-            {
+            function clearSelection() {
                 me.selectedBrand = false;
                 me.searchInput = '';
                 me.load();

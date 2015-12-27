@@ -7,6 +7,7 @@ use Modules\Account\AccountManager;
 
 class ContactRequest extends Request
 {
+
     public function rules()
     {
         return [

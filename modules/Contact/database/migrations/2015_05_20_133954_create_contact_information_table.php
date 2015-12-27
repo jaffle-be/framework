@@ -7,6 +7,7 @@ use Modules\Module\ModuleRoute;
 
 class CreateContactInformationTable extends Migration
 {
+
     /**
      * Run the migrations.
      */

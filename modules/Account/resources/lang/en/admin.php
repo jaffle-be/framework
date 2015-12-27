@@ -8,7 +8,6 @@ return [
         'name' => 'name',
         'website' => 'website',
     ],
-
     'contact' => [
         'info' => 'info',
         'email' => 'email',
@@ -17,18 +16,15 @@ return [
         'website' => 'website',
         'hours' => 'hours',
     ],
-
     'members' => [
         'membership' => 'membership',
         'owner' => 'owner',
     ],
-
     'team' => [
         'create' => 'create team',
         'new-team' => 'new team',
         'teams' => 'teams',
     ],
-
     'users' => [
         'email' => 'email',
         'invite' => 'invite',

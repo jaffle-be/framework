@@ -114,7 +114,8 @@
                                 <div class="form-group col-md-4 col-md-offset-1">
                                     <div class="input-group">
                                         <div class="input-group-addon">{{ Lang::get('shop::admin.properties.value') }}</div>
-                                        <input class="form-control" type="text" ng-model="vm.product.properties[property.id].translations[vm.options.locale].string" ng-change="vm.updateValue(property)" placeholder="{{ Lang::get('shop::admin.properties.textual') }}">
+                                        <input class="form-control" type="text" ng-model="vm.product.properties[property.id].translations[vm.options.locale].string" ng-change="vm.updateValue(property)"
+                                               placeholder="{{ Lang::get('shop::admin.properties.textual') }}">
 
                                         <div class="input-group-btn" ng-show="vm.product.properties[property.id].id">
                                             <button class="btn btn-danger" ng-really="vm.deleteValue(property)">
@@ -362,7 +363,6 @@
 
                     </div>
                 </div>
-
 
 
                 <div class="form-group text-center">

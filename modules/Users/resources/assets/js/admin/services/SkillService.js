@@ -14,8 +14,7 @@
 
                     var temp = angular.copy(skill);
 
-                    if (this.timeouts[skill.id])
-                    {
+                    if (this.timeouts[skill.id]) {
                         $timeout.cancel(this.timeouts[skill.id]);
                     }
 

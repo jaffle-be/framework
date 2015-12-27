@@ -4,11 +4,10 @@ namespace Modules\Account;
 
 interface AccountRepositoryInterface
 {
+
     public function findByDomain($domain);
 
     /**
-     *
-     *
      * @return Account
      */
     public function newAccount(array $payload);
@@ -16,10 +15,7 @@ interface AccountRepositoryInterface
     /**
      * The alias represents the subdomain for the main app url an account is running under.
      *
-     *
-     *
      * @return
-     *
      * @internal param $domain
      */
     public function findByAlias($alias);

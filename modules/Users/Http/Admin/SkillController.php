@@ -12,6 +12,7 @@ use Modules\Users\Skill;
 
 class SkillController extends AdminController
 {
+
     public function widget()
     {
         return view('tags::admin.widget');
@@ -37,7 +38,7 @@ class SkillController extends AdminController
             })
             ->whereHas('translations', function ($q) use ($value, $locale) {
                 $q->where('locale', $locale);
-                $q->where('name', 'like', '%'.$value.'%');
+                $q->where('name', 'like', '%' . $value . '%');
             })
             ->paginate(10);
 

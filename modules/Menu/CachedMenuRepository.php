@@ -7,6 +7,7 @@ use Modules\Account\AccountManager;
 
 class CachedMenuRepository implements MenuRepositoryInterface
 {
+
     /**
      * @var MenuRepository
      */
@@ -36,6 +37,11 @@ class CachedMenuRepository implements MenuRepositoryInterface
         });
     }
 
+    public function createMenu(array $payload)
+    {
+        return $this->__call(__FUNCTION__, func_get_args());
+    }
+
     public function __call($name, $arguments)
     {
         /*
@@ -49,11 +55,6 @@ class CachedMenuRepository implements MenuRepositoryInterface
         $this->cache->forget('menus');
 
         return $result;
-    }
-
-    public function createMenu(array $payload)
-    {
-        return $this->__call(__FUNCTION__, func_get_args());
     }
 
     public function cleanMenu(Menu $menu)

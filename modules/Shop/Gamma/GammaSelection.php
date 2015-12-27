@@ -9,6 +9,7 @@ use Modules\System\Scopes\ModelAccountResource;
 
 class GammaSelection extends Model implements Pushable
 {
+
     use ModelAccountResource;
     use CanPush;
 

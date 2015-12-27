@@ -8,6 +8,7 @@ use Modules\System\Http\AdminController;
 
 class PropertyValueController extends AdminController
 {
+
     public function store(PropertyValue $values, Request $request)
     {
         $value = $values->newInstance(translation_input($request));

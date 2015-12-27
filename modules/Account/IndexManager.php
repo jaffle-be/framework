@@ -6,6 +6,7 @@ use Modules\Search\SearchService;
 
 class IndexManager
 {
+
     protected $search;
 
     protected $account;
@@ -69,9 +70,9 @@ class IndexManager
 
     public function subscribe($events)
     {
-        $events->listen('eloquent.created: '.Account::class, __CLASS__.'@add');
-        $events->listen('eloquent.updating: '.Account::class, __CLASS__.'@remove');
-        $events->listen('eloquent.updated: '.Account::class, __CLASS__.'@add');
-        $events->listen('eloquent.deleted: '.Account::class, __CLASS__.'@remove');
+        $events->listen('eloquent.created: ' . Account::class, __CLASS__ . '@add');
+        $events->listen('eloquent.updating: ' . Account::class, __CLASS__ . '@remove');
+        $events->listen('eloquent.updated: ' . Account::class, __CLASS__ . '@add');
+        $events->listen('eloquent.deleted: ' . Account::class, __CLASS__ . '@remove');
     }
 }

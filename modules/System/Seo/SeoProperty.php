@@ -8,6 +8,7 @@ use Modules\System\Translatable\TranslationCollection;
 
 class SeoProperty extends Model
 {
+
     use ModelLocaleSpecificResource;
 
     protected $table = 'seo_properties';

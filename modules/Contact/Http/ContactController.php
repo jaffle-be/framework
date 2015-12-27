@@ -11,6 +11,7 @@ use Modules\System\Http\FrontController;
 
 class ContactController extends FrontController
 {
+
     use DispatchesJobs;
 
     public function index(AccountManager $manager, Store $session)
@@ -21,7 +22,7 @@ class ContactController extends FrontController
 
         $success = $session->get('success');
 
-        return $this->theme->render('contact.'.$this->theme->setting('contactLayout'), ['contact' => $contact, 'success' => $success]);
+        return $this->theme->render('contact.' . $this->theme->setting('contactLayout'), ['contact' => $contact, 'success' => $success]);
     }
 
     public function store(ContactRequest $request, AccountManager $account)
@@ -31,7 +32,7 @@ class ContactController extends FrontController
         $contact = $account->contactInformation->find($request->get('_id'));
 
         //if we have an advanced form, we also have the parameters subject, and copy
-        $this->dispatch(new SendContactEmail($contact, $request->get('name'), $request->get('email'),  $request->get('message'),  $request->get('subject', null), $request->get('copy', null)));
+        $this->dispatch(new SendContactEmail($contact, $request->get('name'), $request->get('email'), $request->get('message'), $request->get('subject', null), $request->get('copy', null)));
 
         return redirect()->back()->withSuccess(true);
     }

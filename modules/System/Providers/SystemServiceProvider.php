@@ -12,6 +12,7 @@ use Webuni\CommonMark\AttributesExtension\AttributesExtension;
 
 class SystemServiceProvider extends ServiceProvider
 {
+
     protected $namespace = 'system';
 
     public function boot()

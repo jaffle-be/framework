@@ -12,8 +12,7 @@
                 //image uploader
                 this.uploader = function (type, id, limit, handlers, ownerIdCallback) {
 
-                    if (typeof handlers === 'function')
-                    {
+                    if (typeof handlers === 'function') {
                         //handlers is only a success callback
                         handlers = {
                             success: handlers
@@ -38,8 +37,7 @@
                         handlers: handlers,
                     };
 
-                    if (limit)
-                    {
+                    if (limit) {
                         config.options.maxFiles = limit;
                     }
 
@@ -55,8 +53,7 @@
 
                 this.update = function (type, id, img) {
 
-                    if (this.timeouts[img.id])
-                    {
+                    if (this.timeouts[img.id]) {
                         $timeout.cancel(this.timeouts[img.id]);
                     }
 

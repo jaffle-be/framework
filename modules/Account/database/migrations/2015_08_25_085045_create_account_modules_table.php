@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateAccountModulesTable extends Migration
 {
+
     /**
      * Run the migrations.
      */

@@ -5,6 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 
 class CreateMembershipInvitationsTable extends Migration
 {
+
     /**
      * Run the migrations.
      */

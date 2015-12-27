@@ -8,6 +8,7 @@ use Illuminate\Session\Store;
 
 class LocaleMiddleware
 {
+
     public function __construct(Store $session)
     {
         $this->session = $session;
@@ -15,9 +16,6 @@ class LocaleMiddleware
 
     /**
      * Handle an incoming request.
-     *
-     *
-     *
      *
      * @return mixed
      */

@@ -59,8 +59,7 @@
 
             this.deleteMenu = function () {
                 MenuService.remove(this.menu, function (response) {
-                    if (!response.id)
-                    {
+                    if (!response.id) {
                         _.remove(me.menus, function (item) {
                             return item.id == me.menu.id;
                         });

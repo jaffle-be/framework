@@ -9,6 +9,7 @@ use Modules\Account\AccountRepositoryInterface;
 
 class GammaSubscriptionManager
 {
+
     protected $accounts;
 
     protected $repo;
@@ -39,8 +40,6 @@ class GammaSubscriptionManager
     }
 
     /**
-     *
-     *
      * @return bool|Account
      */
     protected function defaultAccount($account)

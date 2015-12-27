@@ -6,6 +6,7 @@ use Cviebrock\EloquentSluggable\SluggableTrait;
 
 trait Sluggable
 {
+
     use SluggableTrait;
 
     public function getRouteKeyName()

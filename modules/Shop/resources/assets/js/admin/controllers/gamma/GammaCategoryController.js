@@ -44,8 +44,7 @@
                 var category = _.first(_.where(me.categories, {id: combination.category.id}));
 
                 //if the brand is on the page, we'll need to add the category
-                if (category)
-                {
+                if (category) {
                     category.brands.push(combination.brand);
                     $scope.$apply();
                 }
@@ -55,8 +54,7 @@
                 var combination = _.first(combinations);
                 var category = _.first(_.where(me.categories, {id: combination.category_id}));
 
-                if (category)
-                {
+                if (category) {
                     _.remove(category.brands, function (item) {
                         return item.id == combination.brand_id;
                     });
@@ -67,12 +65,10 @@
             function createNotification(combination) {
                 var category = _.first(_.where(me.categories, {id: combination.category_id}));
 
-                if (category)
-                {
+                if (category) {
                     var brand = _.first(_.where(category.brands, {id: combination.brand_id}));
 
-                    if (brand)
-                    {
+                    if (brand) {
                         brand.inReview = true;
                         brand.selected = combination.type == 'activate';
                         $scope.$apply();
@@ -83,12 +79,10 @@
             function acceptNotification(combination) {
                 var category = _.first(_.where(me.categories, {id: combination.category_id}));
 
-                if (category)
-                {
+                if (category) {
                     var brand = _.first(_.where(category.brands, {id: combination.brand_id}));
 
-                    if (brand)
-                    {
+                    if (brand) {
                         brand.inReview = false;
                         brand.selected = combination.type == 'activate';
                         $scope.$apply();
@@ -99,12 +93,10 @@
             function denyNotification(combination) {
                 var category = _.first(_.where(me.categories, {id: combination.category_id}));
 
-                if (category)
-                {
+                if (category) {
                     var brand = _.first(_.where(category.brands, {id: combination.brand_id}));
 
-                    if (brand)
-                    {
+                    if (brand) {
                         brand.inReview = false;
                         brand.selected = !(combination.type == 'activate');
                         $scope.$apply();
@@ -115,12 +107,10 @@
             function unselectGamma(combination) {
                 var category = _.first(_.where(me.categories, {id: combination.category_id}));
 
-                if (category)
-                {
+                if (category) {
                     var brand = _.first(_.where(category.brands, {id: combination.brand_id}));
 
-                    if (brand)
-                    {
+                    if (brand) {
                         brand.selected = false;
                         $scope.$apply();
                     }
@@ -130,11 +120,9 @@
             function selectGamma(combination) {
                 var category = _.first(_.where(me.categories, {id: combination.category_id}));
 
-                if (category)
-                {
+                if (category) {
                     var brand = _.first(_.where(category.brands, {id: combination.brand_id}));
-                    if (brand)
-                    {
+                    if (brand) {
                         brand.selected = true;
                         $scope.$apply();
                     }
@@ -144,8 +132,7 @@
             function activateBrand(combination) {
                 _.each(me.categories, function (category) {
                     var brand = _.first(_.where(category.brands, {id: combination.brand_id}));
-                    if (brand)
-                    {
+                    if (brand) {
                         brand.activated = true;
                     }
                 });
@@ -156,8 +143,7 @@
             function deactivateBrand(combination) {
                 _.each(me.categories, function (category) {
                     var brand = _.first(_.where(category.brands, {id: combination.brand_id}));
-                    if (brand)
-                    {
+                    if (brand) {
                         brand.activated = false;
                     }
                 });
@@ -167,8 +153,7 @@
 
             function activateCategory(combination) {
                 var category = _.first(_.where(me.categories, {id: combination.category_id}));
-                if (category)
-                {
+                if (category) {
                     category.activated = true;
                     $scope.$apply();
                 }
@@ -176,8 +161,7 @@
 
             function deactivateCategory(combination) {
                 var category = _.first(_.where(me.categories, {id: combination.category_id}));
-                if (category)
-                {
+                if (category) {
                     category.activated = false;
                     $scope.$apply();
                 }
@@ -218,8 +202,7 @@
                 };
 
                 //this was passed through the autosuggest
-                if(typeof item !== 'undefined')
-                {
+                if (typeof item !== 'undefined') {
                     //value is the id
                     data.category = item.value;
                     //also remember the selection, so we can clear it
@@ -245,16 +228,14 @@
                 toaster.error(headers.statustext);
             }
 
-            function searchCategory(value)
-            {
+            function searchCategory(value) {
                 return GammaService.searchCategory({
                     query: value,
                     locale: me.options.locale
                 });
             }
 
-            function clearSelection()
-            {
+            function clearSelection() {
                 me.selectedCategory = false;
                 me.searchInput = '';
                 me.load();

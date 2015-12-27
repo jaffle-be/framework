@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Token extends Model
 {
+
     const TYPE_RESET = 0;
     const TYPE_CONFIRMATION = 1;
 

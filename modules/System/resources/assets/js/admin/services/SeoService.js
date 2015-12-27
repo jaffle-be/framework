@@ -19,8 +19,7 @@
 
                     var key = id + 'locale' + locale;
 
-                    if (this.timeouts[key])
-                    {
+                    if (this.timeouts[key]) {
                         $timeout.cancel(this.timeouts[key]);
                     }
 

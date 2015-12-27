@@ -10,6 +10,7 @@ use Modules\Account\MembershipOwner;
 
 class NewAccount extends Job
 {
+
     use DispatchesJobs;
 
     /**

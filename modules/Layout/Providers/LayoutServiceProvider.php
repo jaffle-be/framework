@@ -6,6 +6,7 @@ use Modules\System\ServiceProvider;
 
 class LayoutServiceProvider extends ServiceProvider
 {
+
     protected $namespace = 'layout';
 
     /**

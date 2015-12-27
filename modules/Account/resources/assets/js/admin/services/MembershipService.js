@@ -41,8 +41,7 @@
                     return team.$delete().then(success);
                 },
                 updateTeam: function (team, success) {
-                    if (this.timeout)
-                    {
+                    if (this.timeout) {
                         $timeout.cancel(this.timeout);
                     }
 

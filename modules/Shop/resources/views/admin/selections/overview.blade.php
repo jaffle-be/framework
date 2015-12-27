@@ -66,7 +66,7 @@
                                            typeahead-on-select="vm.goTo($item)"
                                            typeahead-wait-ms="400"
                                            typeahead-highlight="true"
-                                           ng-model="vm.searchInput">                                </div>
+                                           ng-model="vm.searchInput"></div>
 
                             </div>
                             <div class="col-xs-3">

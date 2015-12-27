@@ -12,6 +12,7 @@ use Modules\Media\StoresMedia;
 
 class Rebatch extends Command
 {
+
     use DispatchesJobs;
 
     protected $signature = 'media:rebatch {type=all} {--sizes=all} {--force}';
@@ -54,8 +55,6 @@ class Rebatch extends Command
 
     /**
      *
-     *
-     *
      */
     protected function handleType(StoresMedia $type, array $sizes, $force)
     {
@@ -81,8 +80,6 @@ class Rebatch extends Command
 
     /**
      *
-     *
-     *
      */
     protected function handleOwner(StoresMedia $owner, array $sizes, $force)
     {
@@ -98,8 +95,6 @@ class Rebatch extends Command
     }
 
     /**
-     *
-     *
      *
      */
     protected function handleImage(array $sizes, Image $image, $force)
@@ -126,7 +121,7 @@ class Rebatch extends Command
 
             $info = pathinfo($path);
 
-            $path = $info['dirname'].'/'.$size.'/'.$info['basename'];
+            $path = $info['dirname'] . '/' . $size . '/' . $info['basename'];
 
             if (!$this->imageHasSize($image, $path)) {
                 $resizing[] = $size;
@@ -137,9 +132,6 @@ class Rebatch extends Command
     }
 
     /**
-     *
-     *
-     *
      * @return mixed
      */
     protected function imageHasSize(Image $image, $path)

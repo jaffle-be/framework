@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 trait ModelLocaleSpecificResource
 {
+
     public static function bootModelLocaleSpecificResource()
     {
         /** @var Request $request */

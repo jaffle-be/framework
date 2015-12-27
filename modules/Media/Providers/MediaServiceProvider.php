@@ -9,6 +9,7 @@ use Modules\System\ServiceProvider;
 
 class MediaServiceProvider extends ServiceProvider
 {
+
     protected $namespace = 'media';
 
     public function provides()

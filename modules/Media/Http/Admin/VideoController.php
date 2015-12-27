@@ -15,6 +15,7 @@ use Modules\Theme\ThemeManager;
 
 class VideoController extends AdminController
 {
+
     use VideoGenericFormatter;
     use MediaWidgetPreperations;
 

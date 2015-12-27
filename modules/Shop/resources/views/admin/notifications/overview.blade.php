@@ -63,11 +63,13 @@
                                 <div ng-switch="" on="notification.type">
 
                                     <div ng-switch-when="activate">
-                                        product @{{ notification.product.translations[vm.options.locale].name }} in @{{ notification.category.translations[vm.options.locale].name }} from @{{ notification.brand.translations[vm.options.locale].name }}
+                                        product @{{ notification.product.translations[vm.options.locale].name }} in @{{ notification.category.translations[vm.options.locale].name }}
+                                        from @{{ notification.brand.translations[vm.options.locale].name }}
                                     </div>
 
                                     <div ng-switch-when="deactivate">
-                                        <strong>removing</strong> product @{{ notification.product.translations[vm.options.locale].name }} in @{{ notification.category.translations[vm.options.locale].name }} from @{{ notification.brand.translations[vm.options.locale].name }}
+                                        <strong>removing</strong> product @{{ notification.product.translations[vm.options.locale].name }} in @{{ notification.category.translations[vm.options.locale].name }}
+                                        from @{{ notification.brand.translations[vm.options.locale].name }}
                                     </div>
 
                                 </div>

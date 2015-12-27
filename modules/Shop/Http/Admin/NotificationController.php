@@ -11,6 +11,7 @@ use Modules\System\Http\AdminController;
 
 class NotificationController extends AdminController
 {
+
     public function template()
     {
         return view('shop::admin.notifications.overview');
@@ -85,9 +86,6 @@ class NotificationController extends AdminController
     }
 
     /**
-     *
-     *
-     *
      * @return GammaNotification
      */
     protected function requestedNotifications(GammaNotification $notifications, Request $request)

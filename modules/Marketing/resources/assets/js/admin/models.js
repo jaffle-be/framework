@@ -12,8 +12,7 @@
                     transformResponse: function (response) {
                         response = angular.fromJson(response);
 
-                        if (response.translations.length == 0)
-                        {
+                        if (response.translations.length == 0) {
                             response.translations = {};
                         }
 
@@ -22,8 +21,7 @@
                         });
 
                         response.widgets = _.map(response.widgets, function (widget) {
-                            if (widget.translations.length == 0)
-                            {
+                            if (widget.translations.length == 0) {
                                 widget.translations = {};
                             }
                             return widget;
@@ -62,8 +60,7 @@
                     transformResponse: function (response) {
                         response = angular.fromJson(response);
 
-                        if (response.translations.length == 0)
-                        {
+                        if (response.translations.length == 0) {
                             response.translations = {};
                         }
 

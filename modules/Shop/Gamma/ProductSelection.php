@@ -10,6 +10,7 @@ use Modules\System\Scopes\ModelAccountResource;
 
 class ProductSelection extends Model implements Searchable
 {
+
     use MySoftDeletes;
     use SearchableTrait;
     use ModelAccountResource;
@@ -47,8 +48,6 @@ class ProductSelection extends Model implements Searchable
      * we basically want to override the suggest for this one to the one of the products
      * so it will always automatically inheret the same search options as the products,
      * but it will only search selections.
-     *
-     *
      *
      * @return mixed
      */
@@ -88,10 +87,6 @@ class ProductSelection extends Model implements Searchable
     }
 
     /**
-     *
-     *
-     *
-     *
      * @return int
      */
     public function countActiveProducts($brand_id, $category_id, $account_id)

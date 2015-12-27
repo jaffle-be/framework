@@ -6,6 +6,7 @@ use Modules\Search\SearchServiceInterface;
 
 class CategorySuggestSyncer
 {
+
     public function handle(CategoryTranslation $translation)
     {
         $model = $translation->category;

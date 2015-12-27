@@ -11,6 +11,7 @@ use Modules\Shop\Product\Product;
 
 class DeactivateProduct extends Job
 {
+
     protected $product;
 
     protected $categorie;
@@ -43,10 +44,12 @@ class DeactivateProduct extends Job
         } else {
             $category_id = $this->category->id;
 
-            $record->load(['categories' => function ($query) use ($category_id) {
-                $query->where('category_id', $category_id);
-                $query->withTrashed();
-            }]);
+            $record->load([
+                'categories' => function ($query) use ($category_id) {
+                    $query->where('category_id', $category_id);
+                    $query->withTrashed();
+                }
+            ]);
 
             $category = $record->categories->first();
 
@@ -65,8 +68,6 @@ class DeactivateProduct extends Job
     }
 
     /**
-     *
-     *
      * @return ProductCategorySelection
      */
     protected function attachCategory($record)
@@ -82,8 +83,6 @@ class DeactivateProduct extends Job
      * do the query manually, so we won't depend on account manager.
      * if this ever get's called in a global system context,
      * it will now still work.
-     *
-     *
      *
      * @return \Illuminate\Database\Eloquent\Model|null|static
      */

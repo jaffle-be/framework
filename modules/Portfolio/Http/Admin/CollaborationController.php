@@ -9,6 +9,7 @@ use Modules\System\Http\AdminController;
 
 class CollaborationController extends AdminController
 {
+
     public function index(Project $portfolio, AccountManager $manager)
     {
         $account = $manager->account();

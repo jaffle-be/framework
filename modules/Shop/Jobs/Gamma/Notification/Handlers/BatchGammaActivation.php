@@ -13,6 +13,7 @@ use Modules\Shop\Product\Category;
 
 class BatchGammaActivation extends Job
 {
+
     use DispatchesJobs;
 
     /**
@@ -32,8 +33,6 @@ class BatchGammaActivation extends Job
 
     /**
      *
-     *
-     *
      */
     public function __construct(Category $category, Account $account, Brand $brand)
     {
@@ -43,7 +42,6 @@ class BatchGammaActivation extends Job
     }
 
     /**
-     *
      *
      */
     public function handle(CatalogRepositoryInterface $catalog, GammaSelection $gamma)

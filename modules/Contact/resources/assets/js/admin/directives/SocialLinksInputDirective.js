@@ -24,8 +24,7 @@
                     }
 
                     this.save = function () {
-                        if (timeout)
-                        {
+                        if (timeout) {
                             $timeout.cancel(timeout);
                         }
 

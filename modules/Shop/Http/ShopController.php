@@ -3,7 +3,6 @@
 namespace Modules\Shop\Http;
 
 use Illuminate\Http\Request;
-use Modules\Search\SearchServiceInterface;
 use Modules\Shop\Gamma\GammaQueryResolver;
 use Modules\Shop\Product\BrandTranslation;
 use Modules\Shop\Product\CategoryTranslation;
@@ -13,6 +12,7 @@ use Modules\System\Http\FrontController;
 
 class ShopController extends FrontController
 {
+
     /**
      * Shop home.
      *
@@ -46,14 +46,7 @@ class ShopController extends FrontController
 
     /**
      * @todo     remove brand from this route, it's not usefull
-     *
-     *
-     *
-     *
-     *
-     *
      * @return \Illuminate\Contracts\View\View
-     *
      * @internal param SearchServiceInterface $search
      */
     public function category(CategoryTranslation $category, BrandTranslation $brand = null, Request $request, GammaQueryResolver $resolver)
@@ -86,7 +79,7 @@ class ShopController extends FrontController
 
         $results = $resolver->resolve($original, $category);
 
-        return $this->theme->render('shop.category-'.$filters['view'], [
+        return $this->theme->render('shop.category-' . $filters['view'], [
             'products' => $results['products'],
             'brands' => $results['brands'],
             'properties' => $results['properties'],

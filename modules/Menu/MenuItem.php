@@ -10,6 +10,7 @@ use Modules\System\Translatable\Translatable;
 
 class MenuItem extends Model implements PresentableEntity
 {
+
     use Translatable;
     use ModelAutoSort;
     use PresentableTrait;

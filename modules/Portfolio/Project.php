@@ -19,6 +19,7 @@ use Modules\Tags\Taggable;
 
 class Project extends Model implements StoresMedia, Searchable, StoresTags, PresentableEntity, SeoEntity
 {
+
     use Translatable;
     use PresentableTrait;
     use Taggable;

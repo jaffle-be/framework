@@ -8,6 +8,7 @@ use Modules\System\ServiceProvider;
 
 class MarketingServiceProvider extends ServiceProvider
 {
+
     protected $namespace = 'marketing';
 
     public function register()

@@ -9,6 +9,7 @@ use Modules\System\Presenter\ShortCodeCompiler;
 
 class PageFrontPresenter extends BasePresenter
 {
+
     protected $shortcodes = ['media'];
 
     use ContentPresenterTrait;

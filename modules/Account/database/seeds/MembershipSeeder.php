@@ -6,6 +6,7 @@ use Modules\Users\User;
 
 class MembershipSeeder extends Seeder
 {
+
     public function run()
     {
         foreach ([1, 2] as $account) {

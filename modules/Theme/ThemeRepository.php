@@ -6,6 +6,7 @@ use Modules\Account\AccountManager;
 
 class ThemeRepository implements ThemeRepositoryInterface
 {
+
     protected $theme;
 
     protected $selector;
@@ -78,8 +79,6 @@ class ThemeRepository implements ThemeRepositoryInterface
     }
 
     /**
-     *
-     *
      * @return ThemeSelection|bool
      */
     public function activate($theme)
@@ -108,8 +107,6 @@ class ThemeRepository implements ThemeRepositoryInterface
     }
 
     /**
-     *
-     *
      * @return ThemeSelection
      */
     protected function createSelection(Theme $theme)
@@ -128,7 +125,6 @@ class ThemeRepository implements ThemeRepositoryInterface
     }
 
     /**
-     *
      *
      */
     protected function addDefaults(Theme $theme, ThemeSelection $selection)
@@ -151,9 +147,6 @@ class ThemeRepository implements ThemeRepositoryInterface
     }
 
     /**
-     *
-     *
-     *
      *
      */
     protected function setupSelectDefault($selection, ThemeSettingDefault $default, $account, ThemeSetting $setting)

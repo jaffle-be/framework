@@ -9,6 +9,7 @@ use Modules\System\Http\AdminController;
 
 class MembershipController extends AdminController
 {
+
     public function page()
     {
         return view('account::admin.members.overview');
@@ -24,8 +25,6 @@ class MembershipController extends AdminController
     }
 
     /**
-     *
-     *
      * @return mixed
      */
     public function index(AccountManager $manager)

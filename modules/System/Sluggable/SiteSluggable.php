@@ -8,6 +8,7 @@ use Modules\System\Uri\Uri;
 
 trait SiteSluggable
 {
+
     use Sluggable;
 
     protected function needsSlugging()
@@ -57,8 +58,6 @@ trait SiteSluggable
 
     /**
      * Set the slug manually.
-     *
-     *
      *
      * @internal param string $slug
      */
@@ -128,8 +127,6 @@ trait SiteSluggable
     /**
      * Get all existing slugs that are similar to the given slug.
      *
-     *
-     *
      * @return array
      */
     protected function getExistingSlugs($slug)
@@ -140,7 +137,7 @@ trait SiteSluggable
 
         $query = $uri->where(function ($query) use ($slug, $config) {
             $query->where('uri', $slug)
-                ->orWhere('uri', 'like', $slug.$config['separator'].'%');
+                ->orWhere('uri', 'like', $slug . $config['separator'] . '%');
         });
 
         $this->load('slug');

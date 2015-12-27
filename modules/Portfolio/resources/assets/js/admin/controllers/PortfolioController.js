@@ -83,8 +83,7 @@
                     me = this;
 
                 _.each(this.projects, function (project) {
-                    if (project.isSelected)
-                    {
+                    if (project.isSelected) {
                         projects.push(project.id);
                     }
                 });

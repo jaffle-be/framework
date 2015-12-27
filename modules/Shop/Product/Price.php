@@ -7,6 +7,7 @@ use Modules\System\Scopes\ModelAccountResource;
 
 class Price extends Model
 {
+
     use ModelAccountResource;
 
     protected $table = 'product_prices';

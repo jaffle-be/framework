@@ -5,9 +5,6 @@ use Modules\Module\Module;
 
 if (!function_exists('uses_trait')) {
     /**
-     *
-     *
-     *
      * @return bool
      */
     function uses_trait($class, $trait)
@@ -101,7 +98,7 @@ if (!function_exists('store_route')) {
         if ($force) {
             //replace the current locale with the requested locale
             //added the dots, to make sure we don't replace anything else
-            $name = str_replace('.'.app()->getLocale().'.', '.'.$force.'.', $name);
+            $name = str_replace('.' . app()->getLocale() . '.', '.' . $force . '.', $name);
         }
 
         return route($name, array_merge($arguments, $parameters));
@@ -113,7 +110,7 @@ if (!function_exists('pusher_account_channel')) {
     {
         $accounts = app('Modules\Account\AccountManager');
 
-        return 'private-'.($accounts->account() ? $accounts->account()->alias : 'digiredo');
+        return 'private-' . ($accounts->account() ? $accounts->account()->alias : 'digiredo');
     }
 }
 
@@ -195,7 +192,7 @@ if (!function_exists('ago')) {
     {
         $carbon = app(Laravelrus\LocalizedCarbon\LocalizedCarbon::class);
 
-        if (is_numeric($timestamp) && (int) $timestamp == $timestamp) {
+        if (is_numeric($timestamp) && (int)$timestamp == $timestamp) {
             $date = $carbon->createFromTimestamp($timestamp);
         } else {
             $date = new \DateTime($timestamp);

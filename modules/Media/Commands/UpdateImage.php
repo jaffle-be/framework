@@ -10,6 +10,7 @@ use Modules\Media\Image;
  */
 class UpdateImage extends Job
 {
+
     /**
      * @var Image
      */
@@ -21,7 +22,6 @@ class UpdateImage extends Job
     protected $input;
 
     /**
-     *
      *
      */
     public function __construct(Image $image, array $input)

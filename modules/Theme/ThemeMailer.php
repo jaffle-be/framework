@@ -7,6 +7,7 @@ use Illuminate\Mail\Mailer;
 
 class ThemeMailer implements MailContract
 {
+
     /**
      * @var Theme
      */
@@ -19,7 +20,6 @@ class ThemeMailer implements MailContract
 
     /**
      *
-     *
      */
     public function __construct(Theme $theme, Mailer $mailer)
     {
@@ -31,9 +31,6 @@ class ThemeMailer implements MailContract
     /**
      * Send a new message when only a raw text part.
      *
-     *
-     *
-     *
      * @return int
      */
     public function raw($text, $callback)
@@ -42,12 +39,7 @@ class ThemeMailer implements MailContract
     }
 
     /**
-     *
-     *
-     *
-     *
      * @throws \Exception
-     *
      * @return bool
      */
     public function send($view, array $data, $callback)
@@ -79,21 +71,6 @@ class ThemeMailer implements MailContract
         return $result;
     }
 
-    /**
-     * Get the array of failed recipients.
-     *
-     * @return array
-     */
-    public function failures()
-    {
-        return $this->mailer->failures();
-    }
-
-    protected function resolveThemeTemplate()
-    {
-        return config('theme.email_template');
-    }
-
     protected function validateData($data)
     {
         if (!isset($data['email_from'], $data['email_from_name'], $data['email_to'], $data['root_url'])) {
@@ -101,10 +78,23 @@ class ThemeMailer implements MailContract
         }
     }
 
+    protected function resolveThemeTemplate()
+    {
+        return config('theme.email_template');
+    }
+
+    protected function setRootUrl($new)
+    {
+        $old = config('app.url');
+
+        config()->set('app.url', $new);
+
+        app('url')->forceRootUrl($new);
+
+        return $old;
+    }
+
     /**
-     *
-     *
-     *
      * @return \Closure
      */
     protected function stringClosure(array $data, $callback)
@@ -119,9 +109,6 @@ class ThemeMailer implements MailContract
     }
 
     /**
-     *
-     *
-     *
      * @return \Closure
      */
     protected function closureClosure(array $data, $callback)
@@ -138,14 +125,13 @@ class ThemeMailer implements MailContract
         };
     }
 
-    protected function setRootUrl($new)
+    /**
+     * Get the array of failed recipients.
+     *
+     * @return array
+     */
+    public function failures()
     {
-        $old = config('app.url');
-
-        config()->set('app.url', $new);
-
-        app('url')->forceRootUrl($new);
-
-        return $old;
+        return $this->mailer->failures();
     }
 }

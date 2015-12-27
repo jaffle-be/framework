@@ -4,6 +4,7 @@ namespace Modules\System\Presenter;
 
 abstract class BasePresenter implements EntityPresenter
 {
+
     /**
      * @var PresentableEntity
      */

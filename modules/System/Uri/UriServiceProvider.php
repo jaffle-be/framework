@@ -6,6 +6,7 @@ use Illuminate\Support\ServiceProvider;
 
 class UriServiceProvider extends ServiceProvider
 {
+
     /**
      * Register the service provider.
      */

@@ -9,6 +9,7 @@ use Modules\Account\AccountManager;
 
 class ModelAccountOrSystemResourceScope implements Scope
 {
+
     public function __construct(AccountManager $manager)
     {
         $this->account = $manager->account();

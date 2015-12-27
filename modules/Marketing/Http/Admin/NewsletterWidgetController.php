@@ -10,6 +10,7 @@ use Modules\System\Http\AdminController;
 
 class NewsletterWidgetController extends AdminController
 {
+
     public function store(Campaign $campaign, Request $request)
     {
         $this->validate($request, ['name' => 'required']);

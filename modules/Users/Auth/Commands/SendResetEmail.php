@@ -12,6 +12,7 @@ use Modules\Users\Contracts\UserRepositoryInterface;
 
 class SendResetEmail extends EmailJob
 {
+
     /**
      * @var
      */
@@ -19,8 +20,8 @@ class SendResetEmail extends EmailJob
 
     /**
      * Create a new command instance.
-     *
-     *
+
+
      */
     public function __construct($email)
     {
@@ -30,11 +31,6 @@ class SendResetEmail extends EmailJob
     }
 
     /**
-     *
-     *
-     *
-     *
-     *
      * @throws Exception
      */
     public function handle(ThemeMailer $mail, TokenRepositoryInterface $tokens, Translator $lang, UserRepositoryInterface $users)

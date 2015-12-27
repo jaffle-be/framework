@@ -4,6 +4,7 @@ namespace Modules\Media\Image;
 
 trait ImageModelTrait
 {
+
     public function original()
     {
         return $this->belongsTo(get_class($this), 'original_id');
