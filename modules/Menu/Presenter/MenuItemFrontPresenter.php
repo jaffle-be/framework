@@ -1,10 +1,11 @@
-<?php namespace Modules\Menu\Presenter;
+<?php
+
+namespace Modules\Menu\Presenter;
 
 use Modules\System\Presenter\BasePresenter;
 
 class MenuItemFrontPresenter extends BasePresenter
 {
-
     public function url()
     {
         if ($this->entity->page) {
@@ -24,7 +25,7 @@ class MenuItemFrontPresenter extends BasePresenter
 
         $translation = $page->translate(null, true);
 
-        return '/' . $translation->slug->uri;
+        return '/'.$translation->slug->uri;
     }
 
     public function shouldPresent()
@@ -63,5 +64,4 @@ class MenuItemFrontPresenter extends BasePresenter
 
         return $this->entity->route && $modules->contains($this->entity->route->module->id);
     }
-
 }

@@ -1,10 +1,11 @@
-<?php namespace Modules\Media\Video;
+<?php
+
+namespace Modules\Media\Video;
 
 use Illuminate\Http\JsonResponse;
 
 trait VideoGenericFormatter
 {
-
     protected function vimeoReponse($response)
     {
         $me = $this;
@@ -29,14 +30,14 @@ trait VideoGenericFormatter
         $picture = array_pop($pictures);
 
         return [
-            'provider'           => 'vimeo',
-            'provider_id'        => str_replace('/videos/', '', $video->uri),
+            'provider' => 'vimeo',
+            'provider_id' => str_replace('/videos/', '', $video->uri),
             'provider_thumbnail' => $picture->link,
-            'title'              => $video->name,
-            'description'        => $video->description,
-            'width'              => $video->width,
-            'height'             => $video->height,
-            'publishedAt'        => $video->created_time,
+            'title' => $video->name,
+            'description' => $video->description,
+            'width' => $video->width,
+            'height' => $video->height,
+            'publishedAt' => $video->created_time,
         ];
     }
 
@@ -55,15 +56,15 @@ trait VideoGenericFormatter
         list($width, $height) = $this->parseYoutubeVideoDimensions($video);
 
         return [
-            'provider'           => 'youtube',
+            'provider' => 'youtube',
             //if the video comes from video by id, the id won't be an object like in the search function
-            'provider_id'        => is_object($video->id) ? $video->id->videoId : $video->id,
+            'provider_id' => is_object($video->id) ? $video->id->videoId : $video->id,
             'provider_thumbnail' => isset($video->snippet->thumbnails->maxres) ? $video->snippet->thumbnails->maxres->url : $video->snippet->thumbnails->high->url,
-            'title'              => $video->snippet->title,
-            'description'        => $video->snippet->description,
-            'width'              => $width,
-            'height'             => $height,
-            'publishedAt'        => $video->snippet->publishedAt,
+            'title' => $video->snippet->title,
+            'description' => $video->snippet->description,
+            'width' => $width,
+            'height' => $height,
+            'publishedAt' => $video->snippet->publishedAt,
         ];
     }
 
@@ -78,5 +79,4 @@ trait VideoGenericFormatter
 
         return [null, null];
     }
-
 }

@@ -1,11 +1,12 @@
-<?php namespace Modules\System\Presenter;
+<?php
+
+namespace Modules\System\Presenter;
 
 use Modules\Media\Shortcodes\MediaShortcodes;
 use Modules\System\Translatable\TranslationModel;
 
 class ShortCodeFormatter
 {
-
     use ShortCodeCompiler;
     use MediaShortcodes;
 
@@ -25,5 +26,4 @@ class ShortCodeFormatter
             }
         }
     }
-
 }

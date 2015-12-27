@@ -1,4 +1,6 @@
-<?php namespace Modules\Shop\Gamma;
+<?php
+
+namespace Modules\Shop\Gamma;
 
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Modules\Account\Account;
@@ -8,7 +10,6 @@ use Modules\Shop\Product\Product;
 
 class ProductCategoryManager
 {
-
     use DispatchesJobs;
 
     public function __construct(GammaSelection $gamma, ProductSelection $selections, Product $product, Category $category, Account $account, GammaNotification $notifications)
@@ -52,7 +53,7 @@ class ProductCategoryManager
             $instance = $this->selections->newQueryWithoutScopes()
                 ->where([
                     'product_id' => $product->id,
-                    'brand_id'   => $product->brand_id,
+                    'brand_id' => $product->brand_id,
                     'account_id' => $record->account_id,
                 ])->first();
 
@@ -76,7 +77,7 @@ class ProductCategoryManager
     /**
      * actions should run for all accounts
      * therefor -> we should use the table to query,
-     * not the eloquent instance
+     * not the eloquent instance.
      *
      * @return \Illuminate\Database\Query\Builder
      */
@@ -93,11 +94,11 @@ class ProductCategoryManager
     protected function notify($accountid, $product, $category_id, $status)
     {
         $this->notifications->create([
-            'account_id'  => $accountid,
-            'product_id'  => $product->id,
+            'account_id' => $accountid,
+            'product_id' => $product->id,
             'category_id' => $category_id,
-            'brand_id'    => $product->brand_id,
-            'type'        => $status
+            'brand_id' => $product->brand_id,
+            'type' => $status,
         ]);
     }
 
@@ -115,5 +116,4 @@ class ProductCategoryManager
 
         return $query->count() == 0;
     }
-
 }

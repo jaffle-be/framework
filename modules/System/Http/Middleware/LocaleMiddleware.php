@@ -1,4 +1,6 @@
-<?php namespace Modules\System\Http\Middleware;
+<?php
+
+namespace Modules\System\Http\Middleware;
 
 use Closure;
 use Illuminate\Cookie\CookieJar;
@@ -6,7 +8,6 @@ use Illuminate\Session\Store;
 
 class LocaleMiddleware
 {
-
     public function __construct(Store $session)
     {
         $this->session = $session;
@@ -15,8 +16,8 @@ class LocaleMiddleware
     /**
      * Handle an incoming request.
      *
-     * @param  \Illuminate\Http\Request $request
-     * @param  \Closure                 $next
+     * @param \Illuminate\Http\Request $request
+     * @param \Closure                 $next
      *
      * @return mixed
      */
@@ -40,7 +41,7 @@ class LocaleMiddleware
 
                 app()->setLocale($locale);
 
-                /** @var CookieJar $cookies */
+                /* @var CookieJar $cookies */
 
                 if (!$request->hasCookie('locale') && $request->getRequestUri() != '/') {
                     $cookies = app('cookie');

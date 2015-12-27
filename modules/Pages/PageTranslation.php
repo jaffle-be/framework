@@ -1,4 +1,6 @@
-<?php namespace Modules\Pages;
+<?php
+
+namespace Modules\Pages;
 
 use Cviebrock\EloquentSluggable\SluggableInterface;
 use Modules\Search\Model\Searchable;
@@ -13,7 +15,6 @@ use Modules\System\Translatable\TranslationModel;
 
 class PageTranslation extends TranslationModel implements Searchable, SluggableInterface, OwnsSlug, PresentableEntity, PresentableCache
 {
-
     use SearchableTrait, SiteSluggable, PresentableTrait, FrontScoping;
 
     protected $table = 'page_translations';
@@ -27,7 +28,7 @@ class PageTranslation extends TranslationModel implements Searchable, SluggableI
     ];
 
     protected $casts = [
-        'published' => 'boolean'
+        'published' => 'boolean',
     ];
 
     public function getAccount()
@@ -42,13 +43,12 @@ class PageTranslation extends TranslationModel implements Searchable, SluggableI
 
     protected static $searchableMapping = [
         'created_at' => [
-            'type'   => 'date',
-            'format' => 'yyyy-MM-dd HH:mm:ss'
+            'type' => 'date',
+            'format' => 'yyyy-MM-dd HH:mm:ss',
         ],
         'updated_at' => [
-            'type'   => 'date',
-            'format' => 'yyyy-MM-dd HH:mm:ss'
+            'type' => 'date',
+            'format' => 'yyyy-MM-dd HH:mm:ss',
         ],
     ];
-
 }

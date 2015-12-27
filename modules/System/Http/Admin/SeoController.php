@@ -1,4 +1,6 @@
-<?php namespace Modules\System\Http\Admin;
+<?php
+
+namespace Modules\System\Http\Admin;
 
 use Illuminate\Http\Request;
 use Modules\System\Http\AdminController;
@@ -8,7 +10,6 @@ use Modules\Theme\ThemeManager;
 
 class SeoController extends AdminController
 {
-
     public function __construct(ThemeManager $theme)
     {
         parent::__construct($theme);
@@ -50,10 +51,10 @@ class SeoController extends AdminController
         } else {
             if ($this->hasData($request)) {
                 $seo = new SeoProperty([
-                    'locale_id'   => $locale->id,
-                    'title'       => $request->get('title'),
+                    'locale_id' => $locale->id,
+                    'title' => $request->get('title'),
                     'description' => $request->get('description'),
-                    'keywords'    => $request->get('keywords')
+                    'keywords' => $request->get('keywords'),
                 ]);
 
                 $owner->seo()->save($seo);
@@ -87,5 +88,4 @@ class SeoController extends AdminController
 
         return $finder->findOrFail($ownerId);
     }
-
 }

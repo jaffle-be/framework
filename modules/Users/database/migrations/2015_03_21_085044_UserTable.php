@@ -5,11 +5,8 @@ use Illuminate\Database\Schema\Blueprint;
 
 class UserTable extends Migration
 {
-
     /**
      * Run the migrations.
-     *
-     * @return void
      */
     public function up()
     {
@@ -35,12 +32,9 @@ class UserTable extends Migration
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
     public function down()
     {
         Schema::drop('users');
     }
-
 }

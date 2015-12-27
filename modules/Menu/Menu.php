@@ -1,11 +1,12 @@
-<?php namespace Modules\Menu;
+<?php
+
+namespace Modules\Menu;
 
 use Illuminate\Database\Eloquent\Model;
 use Modules\System\Scopes\ModelAccountResource;
 
 class Menu extends Model
 {
-
     use ModelAccountResource;
 
     protected $table = 'menus';

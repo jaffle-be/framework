@@ -1,4 +1,6 @@
-<?php namespace Modules\Search\Command;
+<?php
+
+namespace Modules\Search\Command;
 
 use Illuminate\Console\Command;
 use Modules\Search\Config;
@@ -6,7 +8,6 @@ use Modules\Search\SearchServiceInterface;
 
 class SearchSpeed extends Command
 {
-
     protected $signature = 'search:speed {speed?}';
 
     protected $description = 'set the refresh_interval for elasticsearch';
@@ -38,14 +39,13 @@ class SearchSpeed extends Command
 
         $settings = [
             'index' => $this->config->getIndex(),
-            'body'  => [
+            'body' => [
                 'index' => [
-                    'refresh_interval' => $speed
-                ]
+                    'refresh_interval' => $speed,
+                ],
             ],
         ];
 
         $client->indices()->putSettings($settings);
     }
-
 }

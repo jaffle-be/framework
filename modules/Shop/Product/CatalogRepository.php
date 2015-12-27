@@ -1,10 +1,11 @@
-<?php namespace Modules\Shop\Product;
+<?php
+
+namespace Modules\Shop\Product;
 
 use Modules\Account\Account;
 
 class CatalogRepository implements CatalogRepositoryInterface
 {
-
     protected $product;
 
     protected $brand;
@@ -35,5 +36,4 @@ class CatalogRepository implements CatalogRepositoryInterface
             ->where('brand_id', $brand->id)
             ->chunk(100, $callback);
     }
-
 }

@@ -5,11 +5,8 @@ use Illuminate\Database\Schema\Blueprint;
 
 class CreateProductPropertiesTable extends Migration
 {
-
     /**
      * Run the migrations.
-     *
-     * @return void
      */
     public function up()
     {
@@ -30,12 +27,12 @@ class CreateProductPropertiesTable extends Migration
             $table->timestamps();
         });
 
-        Schema::create('product_properties_units', function(Blueprint $table){
+        Schema::create('product_properties_units', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
         });
 
-        Schema::create('product_properties_units_translations', function(Blueprint $table){
+        Schema::create('product_properties_units_translations', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('unit_id', false, true);
             $table->foreign('unit_id', 'translation_to_product_property_unit')->references('id')->on('product_properties_units')->onDelete('cascade');
@@ -108,13 +105,10 @@ class CreateProductPropertiesTable extends Migration
             $table->string('string')->nullable();
             $table->timestamps();
         });
-
     }
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
     public function down()
     {
@@ -153,13 +147,12 @@ class CreateProductPropertiesTable extends Migration
         Schema::drop('product_properties_units', function (Blueprint $table) {
         });
 
-        Schema::drop('product_properties_groups_translations', function(Blueprint $table){
+        Schema::drop('product_properties_groups_translations', function (Blueprint $table) {
             $table->dropForeign('translation_to_product_property_group');
         });
 
-        Schema::drop('product_properties_groups', function(Blueprint $table){
+        Schema::drop('product_properties_groups', function (Blueprint $table) {
             $table->dropForeign('property_group_to_category');
         });
     }
-
 }

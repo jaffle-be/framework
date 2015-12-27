@@ -1,4 +1,6 @@
-<?php namespace Modules\System\Uri;
+<?php
+
+namespace Modules\System\Uri;
 
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Modules\System\Sluggable\OwnsSlug;
@@ -6,7 +8,6 @@ use Modules\System\Translatable\TranslationModel;
 
 class Cleanup
 {
-
     public function handle($object)
     {
         //we need to check for owns slug on the model itself,
@@ -49,5 +50,4 @@ class Cleanup
         //only return true when all previus conditions are right
         return true;
     }
-
 }

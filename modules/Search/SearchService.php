@@ -12,7 +12,6 @@ use Modules\System\MySoftDeletes;
 
 class SearchService implements SearchServiceInterface
 {
-
     use SearchResponder;
 
     /**
@@ -21,7 +20,6 @@ class SearchService implements SearchServiceInterface
     protected $container;
 
     /**
-     *
      * @var Client
      */
     protected $client;
@@ -56,7 +54,6 @@ class SearchService implements SearchServiceInterface
      * @param Container $container
      * @param Client    $client
      * @param array     $config
-     *
      */
     public function __construct(Container $container, Client $client, Config $config)
     {
@@ -79,10 +76,9 @@ class SearchService implements SearchServiceInterface
     protected function autoIndex()
     {
         foreach ($this->config->getTypes() as $type) {
-
             $class = $this->config->getClass($type);
 
-            $class = new $class;
+            $class = new $class();
 
             $class->setSearchableService($this);
 
@@ -110,7 +106,6 @@ class SearchService implements SearchServiceInterface
         $me = $this;
 
         foreach ($this->listeners as $event => $listener) {
-
             $trigger = $type->getSearchableEventname($event);
 
             $type->setSearchableService($me);
@@ -129,7 +124,6 @@ class SearchService implements SearchServiceInterface
     protected function invertedAutoIndex($updated, $inverted)
     {
         foreach ($inverted as $invert) {
-
             $parent = new $invert['class']();
 
             $relation = $invert['relation'];
@@ -146,7 +140,7 @@ class SearchService implements SearchServiceInterface
     {
         $dispatcher = $this->container->make('events');
 
-        $event = 'eloquent.saved: ' . $updated;
+        $event = 'eloquent.saved: '.$updated;
 
         $dispatcher->listen($event, function ($model) use ($parent, $relation, $key, $with) {
 
@@ -170,7 +164,7 @@ class SearchService implements SearchServiceInterface
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function build($type)
     {
@@ -195,7 +189,7 @@ class SearchService implements SearchServiceInterface
                     $documents->load([
                         $relation => function ($query) {
                             $query->withTrashed();
-                        }
+                        },
                     ]);
                 } else {
                     $documents->load($relation);
@@ -248,8 +242,7 @@ class SearchService implements SearchServiceInterface
                 $this->client->delete($params);
             }
             //maybe we should trigger an update here instead of doing nothing.
-        }
-        else {
+        } else {
             //Even regular soft deletes can be deleted.
             $params = $this->data($type);
 
@@ -272,9 +265,9 @@ class SearchService implements SearchServiceInterface
         $type->load(array_keys($this->config->getWith($type->getSearchableType())));
 
         $params = array_merge($params, [
-            'id'   => $type->getSearchableId(),
+            'id' => $type->getSearchableId(),
             'body' => [
-                'doc' => $type->getSearchableDocument()
+                'doc' => $type->getSearchableDocument(),
             ],
         ]);
 
@@ -286,7 +279,7 @@ class SearchService implements SearchServiceInterface
     }
 
     /**
-     * Search the index
+     * Search the index.
      *
      * @param array $params
      *
@@ -311,7 +304,7 @@ class SearchService implements SearchServiceInterface
             //data should always be manipulated through your relational database.
             foreach ($result['hits']['hits'] as &$hit) {
                 if (isset($hit['highlight'])) {
-                    $hit["_source"] = $highlighter($hit['_source'], $hit['highlight']);
+                    $hit['_source'] = $highlighter($hit['_source'], $hit['highlight']);
                 }
             }
         }
@@ -361,7 +354,7 @@ class SearchService implements SearchServiceInterface
 
         $settings = [
             'index' => $this->config->getIndex(),
-            'body'  => $settings,
+            'body' => $settings,
         ];
 
         $indices->putSettings($settings);
@@ -369,15 +362,15 @@ class SearchService implements SearchServiceInterface
         $indices->open($toggle);
 
         foreach ($this->config->getTypes() as $type) {
-            /** @var Searchable $object */
+            /* @var Searchable $object */
             $class = $this->config->getClass($type);
             $object = new $class();
 
             $indices->putMapping([
                 'index' => $this->config->getIndex(),
-                'type'  => $type,
-                'body'  => [
-                    'properties' => $object->getSearchableMapping($this->config->getWith($type))
+                'type' => $type,
+                'body' => [
+                    'properties' => $object->getSearchableMapping($this->config->getWith($type)),
                 ],
             ]);
         }
@@ -392,6 +385,7 @@ class SearchService implements SearchServiceInterface
      * @param $type
      *
      * @return array|mixed
+     *
      * @throws Exception
      */
     protected function getSearchable($type)
@@ -422,7 +416,7 @@ class SearchService implements SearchServiceInterface
     {
         return [
             'index' => $this->config->getIndex(),
-            'type'  => $type->getSearchableType()
+            'type' => $type->getSearchableType(),
         ];
     }
 
@@ -447,9 +441,9 @@ class SearchService implements SearchServiceInterface
     {
         $params = [
             'index' => $this->config->getIndex(),
-            'type'  => $type->getSearchableType(),
-            'id'    => $type->getSearchableId(),
-            'body'  => $type->getSearchableDocument(),
+            'type' => $type->getSearchableType(),
+            'id' => $type->getSearchableId(),
+            'body' => $type->getSearchableDocument(),
         ];
 
         if ($routing = $type->useSearchableRouting()) {
@@ -490,8 +484,8 @@ class SearchService implements SearchServiceInterface
             } else {
                 //the value represents the order in which to sort.
                 $sorting[$column] = [
-                    "order"         => $sorting[$column],
-                    "unmapped_type" => 'boolean'
+                    'order' => $sorting[$column],
+                    'unmapped_type' => 'boolean',
                 ];
             }
 
@@ -505,5 +499,4 @@ class SearchService implements SearchServiceInterface
         //return the entire array as a result.
         return $params;
     }
-
 }

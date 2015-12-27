@@ -1,21 +1,20 @@
-<?php namespace Modules\Media\Commands;
+<?php
+
+namespace Modules\Media\Commands;
 
 use App\Jobs\Job;
 use Exception;
-
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Intervention\Image\ImageManager;
 use Modules\Account\Account;
 use Modules\Media\Configurator;
-use Modules\Media\Media;
 use Modules\Media\MediaRepositoryInterface;
 use Modules\Media\StoresMedia;
 use Modules\System\Locale;
 
 class StoreNewInfographic extends Job
 {
-
     use DispatchesJobs;
 
     protected $account;
@@ -102,17 +101,14 @@ class StoreNewInfographic extends Job
 
         try {
             $image = $repo->createInfographic($this->owner, $this->getPayload());
-        }
-        catch (Exception $query) {
+        } catch (Exception $query) {
             $files->delete(public_path($this->path));
 
             return false;
         }
 
         if ($image) {
-
             foreach ($config->getImageSizes($this->owner) as $size) {
-
                 $this->dispatch(new ResizeInfographic($image, $size, $this->currentPath));
             }
 
@@ -123,7 +119,7 @@ class StoreNewInfographic extends Job
     }
 
     /**
-     * set the filename, extension and the size
+     * set the filename, extension and the size.
      */
     protected function dimensions(ImageManager $image)
     {
@@ -142,7 +138,7 @@ class StoreNewInfographic extends Job
         }
 
         //abstract path to actual file
-        $path = $abstract . $this->rename;
+        $path = $abstract.$this->rename;
 
         //always copy the file first
         $files->copy($this->currentPath, public_path($path));
@@ -164,12 +160,12 @@ class StoreNewInfographic extends Job
     {
         return [
             'account_id' => $this->account->id,
-            'locale_id'  => $this->locale->id,
-            'path'       => $this->path,
-            'filename'   => $this->rename,
-            'extension'  => $this->extension,
-            'width'      => $this->width,
-            'height'     => $this->height,
+            'locale_id' => $this->locale->id,
+            'path' => $this->path,
+            'filename' => $this->rename,
+            'extension' => $this->extension,
+            'width' => $this->width,
+            'height' => $this->height,
         ];
     }
 }

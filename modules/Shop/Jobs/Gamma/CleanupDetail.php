@@ -1,7 +1,8 @@
-<?php namespace Modules\Shop\Jobs\Gamma;
+<?php
+
+namespace Modules\Shop\Jobs\Gamma;
 
 use App\Jobs\Job;
-
 use Modules\Account\Account;
 use Modules\Shop\Gamma\GammaNotification;
 use Modules\Shop\Gamma\GammaSelection;
@@ -11,7 +12,6 @@ use Modules\Shop\Product\Category;
 
 class CleanupDetail extends Job
 {
-
     /**
      * @var Brand
      */
@@ -62,9 +62,9 @@ class CleanupDetail extends Job
 
         $selections = $gamma->newQueryWithoutScopes()
             ->where([
-                'account_id'  => $this->account->id,
-                'brand_id'    => $this->brand->id,
-                'category_id' => $this->category->id
+                'account_id' => $this->account->id,
+                'brand_id' => $this->brand->id,
+                'category_id' => $this->category->id,
             ])->get();
 
         foreach ($selections as $selection) {
@@ -85,7 +85,7 @@ class CleanupDetail extends Job
         }
 
         $payload = [
-            'brand_id'    => $this->brand->id,
+            'brand_id' => $this->brand->id,
             'category_id' => $this->category->id,
         ];
 
@@ -95,5 +95,4 @@ class CleanupDetail extends Job
 
         return false;
     }
-
 }

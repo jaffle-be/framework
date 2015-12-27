@@ -1,11 +1,12 @@
-<?php namespace Modules\Theme;
+<?php
+
+namespace Modules\Theme;
 
 use Illuminate\Database\Eloquent\Model;
 use Modules\System\Scopes\ModelAccountResource;
 
 class ThemeSettingValue extends Model
 {
-
     use ModelAccountResource;
     use \Modules\System\Translatable\Translatable;
 
@@ -31,5 +32,4 @@ class ThemeSettingValue extends Model
     {
         return $this->belongsTo('Modules\Theme\ThemeSetting', 'key_id');
     }
-
 }

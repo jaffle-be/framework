@@ -1,4 +1,6 @@
-<?php namespace Modules\Media\Providers;
+<?php
+
+namespace Modules\Media\Providers;
 
 use Modules\Media\Files\File;
 use Modules\Media\Image;
@@ -7,7 +9,6 @@ use Modules\System\ServiceProvider;
 
 class MediaServiceProvider extends ServiceProvider
 {
-
     protected $namespace = 'media';
 
     public function provides()
@@ -17,8 +18,6 @@ class MediaServiceProvider extends ServiceProvider
 
     /**
      * Register the application services.
-     *
-     * @return void
      */
     public function register()
     {

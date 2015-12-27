@@ -1,16 +1,15 @@
-<?php namespace Modules\Dashboard\Providers;
+<?php
+
+namespace Modules\Dashboard\Providers;
 
 use Modules\System\ServiceProvider;
 
 class DashboardServiceProvider extends ServiceProvider
 {
-
     protected $namespace = 'dashboard';
 
     /**
      * Register the service provider.
-     *
-     * @return void
      */
     public function register()
     {
@@ -19,5 +18,4 @@ class DashboardServiceProvider extends ServiceProvider
     protected function listeners()
     {
     }
-
 }

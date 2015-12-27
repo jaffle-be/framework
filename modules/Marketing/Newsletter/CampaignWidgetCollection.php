@@ -1,4 +1,6 @@
-<?php namespace Modules\Marketing\Newsletter;
+<?php
+
+namespace Modules\Marketing\Newsletter;
 
 use Illuminate\Database\Eloquent\Collection;
 use Modules\Blog\Post;
@@ -6,7 +8,6 @@ use Modules\Portfolio\Project;
 
 class CampaignWidgetCollection extends Collection
 {
-
     public function setData()
     {
         list($posts, $projects) = $this->getMaps();
@@ -114,5 +115,4 @@ class CampaignWidgetCollection extends Collection
 
         return array($posts, $projects);
     }
-
 }

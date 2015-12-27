@@ -1,4 +1,6 @@
-<?php namespace Modules\Media\Http\Admin;
+<?php
+
+namespace Modules\Media\Http\Admin;
 
 use Illuminate\Http\Request;
 use Modules\Media\Commands\UploadNewInfographic;
@@ -11,7 +13,6 @@ use Modules\Theme\ThemeManager;
 
 class InfographicController extends AdminController
 {
-
     use MediaWidgetPreperations;
 
     protected $media;
@@ -55,7 +56,6 @@ class InfographicController extends AdminController
         $owner = $this->owner($request);
 
         if ($infographic->owner->id == $owner->id) {
-
             $input = $request->except('_token');
 
             $infographic->fill($input);
@@ -87,5 +87,4 @@ class InfographicController extends AdminController
             $infographic->save();
         }
     }
-
 }

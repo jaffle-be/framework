@@ -1,4 +1,6 @@
-<?php namespace Modules\System\Http\Admin;
+<?php
+
+namespace Modules\System\Http\Admin;
 
 use Illuminate\Config\Repository;
 use Illuminate\Contracts\Auth\Guard;
@@ -11,7 +13,6 @@ use Pusher;
 
 class SystemController extends AdminController
 {
-
     public function index(Repository $config, Application $app)
     {
         //this should return all settings needed for our angular app to work. It might be that this isn't even being called yet.
@@ -50,5 +51,4 @@ class SystemController extends AdminController
         //broadcast event
         $pusher->trigger(pusher_account_channel(), 'system.hard-reload', []);
     }
-
 }

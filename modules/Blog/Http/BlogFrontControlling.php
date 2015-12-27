@@ -1,11 +1,12 @@
-<?php namespace Modules\Blog\Http;
+<?php
+
+namespace Modules\Blog\Http;
 
 use Modules\Blog\PostRepositoryInterface;
 use Modules\Blog\PostTranslation;
 
 trait BlogFrontControlling
 {
-
     /**
      * @param PostTranslation         $post
      * @param PostRepositoryInterface $posts
@@ -24,5 +25,4 @@ trait BlogFrontControlling
 
         return $this->theme->render('blog.detail', ['post' => $post, 'related' => $related]);
     }
-
 }

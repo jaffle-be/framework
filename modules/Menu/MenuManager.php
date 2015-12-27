@@ -1,13 +1,12 @@
-<?php namespace Modules\Menu;
+<?php
+
+namespace Modules\Menu;
 
 /**
- * Class MenuManager
- *
- * @package Modules\Menu
+ * Class MenuManager.
  */
 class MenuManager
 {
-
     /**
      * @var bool
      */
@@ -52,7 +51,7 @@ class MenuManager
      *
      * @return mixed
      */
-    function __call($name, $arguments)
+    public function __call($name, $arguments)
     {
         return call_user_func_array([$this->repository, $name], $arguments);
     }

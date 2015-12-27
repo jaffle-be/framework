@@ -1,10 +1,11 @@
-<?php namespace Modules\Tags;
+<?php
+
+namespace Modules\Tags;
 
 use Illuminate\Support\Collection;
 
 trait CollectionWithTaggables
 {
-
     public function getUniqueTags()
     {
         $tags = new Collection();
@@ -17,5 +18,4 @@ trait CollectionWithTaggables
 
         return $tags;
     }
-
 }

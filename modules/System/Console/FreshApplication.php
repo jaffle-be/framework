@@ -1,11 +1,12 @@
-<?php namespace Modules\System\Console;
+<?php
+
+namespace Modules\System\Console;
 
 use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
 
 class FreshApplication extends Command
 {
-
     protected $signature = 'system:fresh {--seed}';
 
     protected $description = 'test';
@@ -32,13 +33,11 @@ class FreshApplication extends Command
         $this->call('search:flush');
         $this->call('search:settings');
         $this->call('search:build');
-        
-        if($this->option('seed'))
-        {
+
+        if ($this->option('seed')) {
             $this->call('db:seed');
         }
 
         $this->call('search:speed');
     }
-
 }

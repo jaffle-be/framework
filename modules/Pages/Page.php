@@ -1,4 +1,6 @@
-<?php namespace Modules\Pages;
+<?php
+
+namespace Modules\Pages;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
@@ -17,7 +19,6 @@ use Modules\System\Translatable\Translatable;
 
 class Page extends Model implements StoresMedia, SeoEntity, PresentableEntity, MenuHookable
 {
-
     use PresentableTrait;
     use Translatable;
     use StoringMedia;
@@ -81,5 +82,4 @@ class Page extends Model implements StoresMedia, SeoEntity, PresentableEntity, M
             return $item['title'];
         }, $translations);
     }
-
 }

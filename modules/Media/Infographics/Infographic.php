@@ -1,4 +1,6 @@
-<?php namespace Modules\Media\Infographics;
+<?php
+
+namespace Modules\Media\Infographics;
 
 use Illuminate\Database\Eloquent\Model;
 use Modules\Media\Image\ImageModelTrait;
@@ -8,7 +10,6 @@ use Modules\System\Scopes\ModelLocaleSpecificResource;
 
 class Infographic extends Model
 {
-
     use ModelAccountResource;
     use ModelAutoSort;
     use ModelLocaleSpecificResource;
@@ -24,5 +25,4 @@ class Infographic extends Model
     {
         return $this->morphTo();
     }
-
 }

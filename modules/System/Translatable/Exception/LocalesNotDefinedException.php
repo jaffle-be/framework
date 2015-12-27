@@ -1,5 +1,7 @@
-<?php namespace Modules\System\Translatable\Exception;
+<?php
+
+namespace Modules\System\Translatable\Exception;
+
 class LocalesNotDefinedException extends \Exception
 {
-
 }

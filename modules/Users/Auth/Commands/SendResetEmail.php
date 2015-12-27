@@ -1,4 +1,6 @@
-<?php namespace Modules\Users\Auth\Commands;
+<?php
+
+namespace Modules\Users\Auth\Commands;
 
 use App\Jobs\EmailJob;
 use Exception;
@@ -10,7 +12,6 @@ use Modules\Users\Contracts\UserRepositoryInterface;
 
 class SendResetEmail extends EmailJob
 {
-
     /**
      * @var
      */
@@ -18,8 +19,6 @@ class SendResetEmail extends EmailJob
 
     /**
      * Create a new command instance.
-     *
-     * @return void
      */
     public function __construct($email)
     {
@@ -40,7 +39,6 @@ class SendResetEmail extends EmailJob
             $user = $users->findUserByEmail($this->email);
 
             if ($user) {
-
                 $token = $tokens->createNewToken(Token::TYPE_RESET, $this->email);
 
                 $user->resetToken()->associate($token);
@@ -50,8 +48,8 @@ class SendResetEmail extends EmailJob
                 $subject = $lang->get('users::emails.reset-password.subject');
 
                 $data = array_merge($this->baseData(), [
-                    'user'    => $user,
-                    'token'   => $token,
+                    'user' => $user,
+                    'token' => $token,
                     'email_to' => $this->email,
                 ]);
 
@@ -61,12 +59,10 @@ class SendResetEmail extends EmailJob
                     $this->delete();
                 }
             }
-        }
-        catch (Exception $e) {
+        } catch (Exception $e) {
             $this->release();
 
             throw $e;
         }
     }
-
 }

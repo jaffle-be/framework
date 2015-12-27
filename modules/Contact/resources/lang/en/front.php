@@ -2,11 +2,11 @@
 
 return [
     'breadcrumb' => 'Contact',
-    'email'      => [
-        'intro'   => 'Someone wants to contact us.',
+    'email' => [
+        'intro' => 'Someone wants to contact us.',
         'subject' => 'subject',
         'message' => 'message',
-        'email'   => 'email',
-        'name'    => 'name',
-    ]
+        'email' => 'email',
+        'name' => 'name',
+    ],
 ];

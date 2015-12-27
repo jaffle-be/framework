@@ -1,8 +1,9 @@
-<?php namespace Modules\Media\Image;
+<?php
+
+namespace Modules\Media\Image;
 
 trait ImageModelTrait
 {
-
     public function original()
     {
         return $this->belongsTo(get_class($this), 'original_id');
@@ -16,7 +17,6 @@ trait ImageModelTrait
     public function thumbnail($width = null, $height = null)
     {
         if (!$this->relationLoaded('sizes')) {
-
             $this->load(['sizes']);
         }
 
@@ -41,7 +41,6 @@ trait ImageModelTrait
         }
 
         if ($image = $this->sizes->first()) {
-
             return $image->path;
         }
     }
@@ -60,7 +59,7 @@ trait ImageModelTrait
 
         if ($boolean == 'and') {
             $query->where($clause);
-        } else if ($boolean == 'or') {
+        } elseif ($boolean == 'or') {
             $query->orWhere($clause);
         }
     }
@@ -70,7 +69,6 @@ trait ImageModelTrait
         $query->where(function ($query) use ($sizes) {
 
             foreach ($sizes as $size) {
-
                 $width = $size[0];
 
                 $height = isset($size[1]) ? $size[1] : null;

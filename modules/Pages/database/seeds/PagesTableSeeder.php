@@ -6,7 +6,6 @@ use Modules\System\Seeder;
 
 class PagesTableSeeder extends Seeder
 {
-
     public function __construct()
     {
         $this->model = new Page();
@@ -21,8 +20,7 @@ class PagesTableSeeder extends Seeder
 
             //flip array since array_rand returns the keys from an array
 
-            for ($i = 0; $i < $amount; $i++) {
-
+            for ($i = 0; $i < $amount; ++$i) {
                 $page = $this->model->newInstance($this->texts());
 
                 $page->user_id = 1;
@@ -38,7 +36,7 @@ class PagesTableSeeder extends Seeder
 
     protected function subPages($page, $accountid)
     {
-        for ($i = 0; $i < 3; $i++) {
+        for ($i = 0; $i < 3; ++$i) {
 
             //let's just make a clone of the page and give it another title
             $subpage = $this->model->newInstance($this->texts());
@@ -56,34 +54,33 @@ class PagesTableSeeder extends Seeder
     {
         return [
             'nl' => [
-                'title'      => $this->nl->sentence(),
-                'content'    => $this->nl->realText(500),
+                'title' => $this->nl->sentence(),
+                'content' => $this->nl->realText(500),
                 'created_at' => $this->nl->dateTimeBetween('-3 months', 'now'),
                 'updated_at' => $this->nl->dateTimeBetween('-2 months', 'now'),
-                'published'  => rand(0, 1),
+                'published' => rand(0, 1),
             ],
             'fr' => [
-                'title'      => $this->fr->sentence(),
-                'content'    => $this->fr->realText(500),
+                'title' => $this->fr->sentence(),
+                'content' => $this->fr->realText(500),
                 'created_at' => $this->nl->dateTimeBetween('-3 months', 'now'),
                 'updated_at' => $this->nl->dateTimeBetween('-2 months', 'now'),
-                'published'  => rand(0, 1),
+                'published' => rand(0, 1),
             ],
             'en' => [
-                'title'      => $this->en->sentence(),
-                'content'    => $this->en->realText(500),
+                'title' => $this->en->sentence(),
+                'content' => $this->en->realText(500),
                 'created_at' => $this->nl->dateTimeBetween('-3 months', 'now'),
                 'updated_at' => $this->nl->dateTimeBetween('-2 months', 'now'),
-                'published'  => rand(0, 1),
+                'published' => rand(0, 1),
             ],
             'de' => [
-                'title'      => $this->de->sentence(),
-                'content'    => $this->de->realText(500),
+                'title' => $this->de->sentence(),
+                'content' => $this->de->realText(500),
                 'created_at' => $this->nl->dateTimeBetween('-3 months', 'now'),
                 'updated_at' => $this->nl->dateTimeBetween('-2 months', 'now'),
-                'published'  => rand(0, 1),
-            ]
+                'published' => rand(0, 1),
+            ],
         ];
     }
-
 }

@@ -1,4 +1,6 @@
-<?php namespace Modules\Shop\Gamma;
+<?php
+
+namespace Modules\Shop\Gamma;
 
 use Illuminate\Database\Eloquent\Model;
 use Modules\System\Pushable\CanPush;
@@ -7,7 +9,6 @@ use Modules\System\Scopes\ModelAccountResource;
 
 class GammaNotification extends Model implements Pushable
 {
-
     use ModelAccountResource;
     use CanPush;
 
@@ -43,5 +44,4 @@ class GammaNotification extends Model implements Pushable
     {
         $query->where('processing', 1);
     }
-
 }

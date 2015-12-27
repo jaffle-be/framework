@@ -1,14 +1,14 @@
-<?php namespace Modules\Users\Auth\Commands;
+<?php
+
+namespace Modules\Users\Auth\Commands;
 
 use App\Jobs\Job;
 use Illuminate\Contracts\Auth\Guard;
-
 use Modules\Users\Contracts\Throttler;
 use Modules\Users\Contracts\UserRepositoryInterface;
 
 class Signin extends Job
 {
-
     protected $credentials;
 
     protected $remember_me;
@@ -36,11 +36,9 @@ class Signin extends Job
         $email = $credentials['email'];
 
         if ($throttler->allows($email)) {
-
             if ($auth->attempt($credentials, $this->remember_me)) {
                 return $auth->user();
             } else {
-
                 $user = $users->findUserByEmail($email);
 
                 //do not throttle when the user is still unconfirmed, so we can display a message

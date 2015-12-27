@@ -5,11 +5,8 @@ use Illuminate\Database\Schema\Blueprint;
 
 class CreateAccountContactInformationTable extends Migration
 {
-
     /**
      * Run the migrations.
-     *
-     * @return void
      */
     public function up()
     {
@@ -28,8 +25,6 @@ class CreateAccountContactInformationTable extends Migration
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
     public function down()
     {
@@ -37,5 +32,4 @@ class CreateAccountContactInformationTable extends Migration
             $table->dropForeign('account_contact_information_to_account');
         });
     }
-
 }

@@ -1,20 +1,19 @@
-<?php namespace Modules\Media\Commands;
+<?php
+
+namespace Modules\Media\Commands;
 
 use App\Jobs\Job;
 use Exception;
-
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Intervention\Image\ImageManager;
 use Modules\Account\Account;
 use Modules\Media\Configurator;
-use Modules\Media\Media;
 use Modules\Media\MediaRepositoryInterface;
 use Modules\Media\StoresMedia;
 
 class StoreNewImage extends Job
 {
-
     use DispatchesJobs;
 
     protected $account;
@@ -95,15 +94,13 @@ class StoreNewImage extends Job
 
         try {
             $image = $repo->createImage($this->owner, $this->getPayload());
-        }
-        catch (Exception $e) {
+        } catch (Exception $e) {
             $files->delete(public_path($this->path));
 
             return false;
         }
 
         if ($image) {
-
             foreach ($config->getImageSizes($this->owner) as $size) {
                 $this->dispatch(new ResizeImage($image, $size, $this->currentPath));
             }
@@ -115,7 +112,7 @@ class StoreNewImage extends Job
     }
 
     /**
-     * set the filename, extension and the size
+     * set the filename, extension and the size.
      */
     protected function dimensions(ImageManager $image)
     {
@@ -135,7 +132,7 @@ class StoreNewImage extends Job
         }
 
         //abstract path to actual file
-        $path = $abstract . $this->rename;
+        $path = $abstract.$this->rename;
 
         //always copy the file first
         $files->copy($this->currentPath, public_path($path));
@@ -157,11 +154,11 @@ class StoreNewImage extends Job
     {
         return [
             'account_id' => $this->account ? $this->account->id : null,
-            'path'       => $this->path,
-            'filename'   => $this->rename,
-            'extension'  => $this->extension,
-            'width'      => $this->width,
-            'height'     => $this->height,
+            'path' => $this->path,
+            'filename' => $this->rename,
+            'extension' => $this->extension,
+            'width' => $this->width,
+            'height' => $this->height,
         ];
     }
 }

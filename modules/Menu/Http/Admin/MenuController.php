@@ -1,4 +1,6 @@
-<?php namespace Modules\Menu\Http\Admin;
+<?php
+
+namespace Modules\Menu\Http\Admin;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
@@ -12,7 +14,6 @@ use Modules\Theme\ThemeManager;
 
 class MenuController extends AdminController
 {
-
     /**
      * @var MenuManager
      */
@@ -64,7 +65,7 @@ class MenuController extends AdminController
         $this->validate($request, ['name' => 'required']);
 
         return $this->menu->createMenu([
-            'name' => $request->get('name')
+            'name' => $request->get('name'),
         ]);
     }
 
@@ -81,5 +82,4 @@ class MenuController extends AdminController
 
         $this->menu->sortMenu($menu, $order);
     }
-
 }

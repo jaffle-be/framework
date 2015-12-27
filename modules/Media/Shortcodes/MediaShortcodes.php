@@ -1,10 +1,11 @@
-<?php namespace Modules\Media\Shortcodes;
+<?php
+
+namespace Modules\Media\Shortcodes;
 
 use Modules\Media\Image;
 
 trait MediaShortcodes
 {
-
     protected function compileMediaShortcodes($content)
     {
         $content = $this->compileImageShortcode($content);
@@ -30,7 +31,6 @@ trait MediaShortcodes
     }
 
     /**
-     *
      * Return a sorted array with all requested images.
      *
      * @param $content
@@ -51,7 +51,7 @@ trait MediaShortcodes
                 //to use it
                 'counter' => $key + 1,
                 'pattern' => $pattern,
-                'float'   => str_replace(':', '.pull-', $float)
+                'float' => str_replace(':', '.pull-', $float),
             ];
         }
 
@@ -94,7 +94,7 @@ trait MediaShortcodes
             return false;
         }
 
-        $title = $img->title ?: 'image_' . $placement['counter'];
+        $title = $img->title ?: 'image_'.$placement['counter'];
 
         if (!$float = $placement['float']) {
             return $this->handleFullWidth($title, $this->imageLink($img, true));
@@ -116,7 +116,7 @@ trait MediaShortcodes
      */
     protected function handleFullWidth($title, $link)
     {
-        return sprintf('{.full-width.blog-img}' . PHP_EOL . '![%s](%s){.img-responsive.full-width}', $title, $link);
+        return sprintf('{.full-width.blog-img}'.PHP_EOL.'![%s](%s){.img-responsive.full-width}', $title, $link);
     }
 
     /**
@@ -136,7 +136,7 @@ trait MediaShortcodes
      * This one simply pulls an images left or right.
      * If it's not being pulled, make sure the path that's being used,
      * is a path that references an image which is smaller then the viewport.
-     * If not, it would simply just take up the full width due to .img-responsive
+     * If not, it would simply just take up the full width due to .img-responsive.
      *
      * @param $title
      * @param $link
@@ -151,7 +151,7 @@ trait MediaShortcodes
         //since like this, content will get unreadable on certain screens
         //since its smashed in a narrow area next to the image
         //the image should probably only actually float when we're on a @screen-lg?
-        return sprintf('{.clearfix}' . PHP_EOL . '![%s](%s){.img-responsive%s}', $title, $link, $float);
+        return sprintf('{.clearfix}'.PHP_EOL.'![%s](%s){.img-responsive%s}', $title, $link, $float);
     }
 
     protected function compileVideoShortcode($content)
@@ -164,12 +164,12 @@ trait MediaShortcodes
             $replacement = '';
 
             if ($video = $this->videos->get($counter)) {
-                $replacement = '<figure class="responsive-video">' . $video->embed . '</figure>';
+                $replacement = '<figure class="responsive-video">'.$video->embed.'</figure>';
             }
 
             $content = preg_replace('/#video#/', $replacement, $content, 1);
 
-            $counter++;
+            ++$counter;
         }
 
         return $content;
@@ -197,14 +197,13 @@ trait MediaShortcodes
 
             $content = preg_replace('/#infographic#/', $replacement, $content, 1);
 
-            $counter++;
+            ++$counter;
         }
 
         return $content;
     }
 
     /**
-     *
      * Return a sorted array with all requested images.
      *
      * @param $content
@@ -233,14 +232,13 @@ trait MediaShortcodes
 
             $content = preg_replace('/#file#/', $replacement, $content, 1);
 
-            $counter++;
+            ++$counter;
         }
 
         return $content;
     }
 
     /**
-     *
      * Return a sorted array with all requested images.
      *
      * @param $content
@@ -279,5 +277,4 @@ trait MediaShortcodes
 
         return $content;
     }
-
 }

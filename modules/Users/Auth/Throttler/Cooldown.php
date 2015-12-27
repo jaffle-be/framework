@@ -1,11 +1,12 @@
-<?php namespace Modules\Users\Auth\Throttler;
+<?php
+
+namespace Modules\Users\Auth\Throttler;
 
 use App\Jobs\Job;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
 class Cooldown extends Job implements ShouldQueue
 {
-
     protected $ip;
 
     protected $email;
@@ -20,5 +21,4 @@ class Cooldown extends Job implements ShouldQueue
     {
         $throttler->cooldown($this->ip, $this->email);
     }
-
 }

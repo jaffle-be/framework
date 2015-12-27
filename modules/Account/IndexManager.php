@@ -1,10 +1,11 @@
-<?php namespace Modules\Account;
+<?php
+
+namespace Modules\Account;
 
 use Modules\Search\SearchService;
 
 class IndexManager
 {
-
     protected $search;
 
     protected $account;
@@ -26,10 +27,10 @@ class IndexManager
                         'remove' => [
                             'index' => config('search.index'),
                             'alias' => $account->alias,
-                        ]
-                    ]
-                ]
-            ]
+                        ],
+                    ],
+                ],
+            ],
         ]);
     }
 
@@ -51,27 +52,26 @@ class IndexManager
                         'add' => [
                             'index' => config('search.index'),
                             'alias' => [
-                                'alias'   => $account->alias,
+                                'alias' => $account->alias,
                                 'routing' => $account->id,
-                                'filter'  => [
+                                'filter' => [
                                     'term' => [
-                                        'account_id' => $account->id
-                                    ]
-                                ]
-                            ]
-                        ]
-                    ]
-                ]
-            ]
+                                        'account_id' => $account->id,
+                                    ],
+                                ],
+                            ],
+                        ],
+                    ],
+                ],
+            ],
         ]);
     }
 
     public function subscribe($events)
     {
-        $events->listen('eloquent.created: ' . Account::class, __CLASS__ . '@add');
-        $events->listen('eloquent.updating: ' . Account::class, __CLASS__ . '@remove');
-        $events->listen('eloquent.updated: ' . Account::class, __CLASS__ . '@add');
-        $events->listen('eloquent.deleted: ' . Account::class, __CLASS__ . '@remove');
+        $events->listen('eloquent.created: '.Account::class, __CLASS__.'@add');
+        $events->listen('eloquent.updating: '.Account::class, __CLASS__.'@remove');
+        $events->listen('eloquent.updated: '.Account::class, __CLASS__.'@add');
+        $events->listen('eloquent.deleted: '.Account::class, __CLASS__.'@remove');
     }
-    
 }

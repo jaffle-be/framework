@@ -1,10 +1,11 @@
-<?php namespace Modules\Search;
+<?php
+
+namespace Modules\Search;
 
 use Modules\System\Translatable\Translatable;
 
 class Config
 {
-
     protected $config;
 
     protected $index;
@@ -38,11 +39,9 @@ class Config
     protected function invertTypes()
     {
         foreach ($this->types as $type => $config) {
-
             $parent = $config['class'];
 
             foreach ($this->getWith($type) as $relation => $nestedConfig) {
-
                 $nested = $nestedConfig['class'];
 
                 $key = $nestedConfig['key'];
@@ -61,7 +60,7 @@ class Config
 
             $with = array_merge($with, ['translations' => [
                 'class' => $instance->getTranslationModelName(),
-                'key'   => $instance->translations()->getForeignKey(),
+                'key' => $instance->translations()->getForeignKey(),
             ]]);
         }
 
@@ -92,7 +91,7 @@ class Config
     {
         $class = $this->getClass($type);
 
-        $object = new $class;
+        $object = new $class();
 
         return $object;
     }
@@ -113,9 +112,9 @@ class Config
         }
 
         $this->inverted[$nested][] = [
-            'class'    => $parent,
-            'key'      => $key,
-            'relation' => $relation
+            'class' => $parent,
+            'key' => $key,
+            'relation' => $relation,
         ];
     }
 
@@ -143,5 +142,4 @@ class Config
     {
         return $this->config['refresh_interval'];
     }
-
 }

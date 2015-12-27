@@ -1,19 +1,18 @@
-<?php namespace Modules\Media\Commands;
+<?php
+
+namespace Modules\Media\Commands;
 
 use App\Jobs\Job;
 use Exception;
-
 use Illuminate\Filesystem\Filesystem;
 use Modules\Account\Account;
 use Modules\Media\Configurator;
-use Modules\Media\Media;
 use Modules\Media\MediaRepositoryInterface;
 use Modules\Media\StoresMedia;
 use Modules\System\Locale;
 
 class StoreNewFile extends Job
 {
-
     protected $account;
 
     /**
@@ -97,8 +96,7 @@ class StoreNewFile extends Job
 
         try {
             return $repo->createFile($this->owner, $this->getPayload());
-        }
-        catch (Exception $exception) {
+        } catch (Exception $exception) {
             //probably duplicate file error, always remove created file on error.
             $files->delete(public_path($this->path));
 
@@ -116,7 +114,7 @@ class StoreNewFile extends Job
         }
 
         //abstract path to actual file
-        $path = $abstract . $this->rename;
+        $path = $abstract.$this->rename;
 
         //always copy the file first
         $files->copy($this->currentPath, public_path($path));
@@ -138,10 +136,10 @@ class StoreNewFile extends Job
     {
         return [
             'account_id' => $this->account->id,
-            'locale_id'  => $this->locale->id,
-            'path'       => $this->path,
-            'filename'   => $this->rename,
-            'extension'  => $this->extension,
+            'locale_id' => $this->locale->id,
+            'path' => $this->path,
+            'filename' => $this->rename,
+            'extension' => $this->extension,
         ];
     }
 }

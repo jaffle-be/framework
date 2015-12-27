@@ -1,4 +1,6 @@
-<?php namespace Modules\Search\Http;
+<?php
+
+namespace Modules\Search\Http;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
@@ -11,7 +13,6 @@ use Modules\System\Http\FrontController;
 
 class SearchController extends FrontController
 {
-
     use BlogSearch;
     use PortfolioSearch;
 
@@ -30,5 +31,4 @@ class SearchController extends FrontController
 
         return $this->theme->render('search.index', ['posts' => $posts, 'projects' => $projects]);
     }
-
 }

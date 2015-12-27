@@ -1,11 +1,12 @@
-<?php namespace Modules\Menu\Providers;
+<?php
+
+namespace Modules\Menu\Providers;
 
 use Modules\Menu\MenuManager;
 use Modules\System\ServiceProvider;
 
 class MenuServiceProvider extends ServiceProvider
 {
-
     protected $namespace = 'menu';
 
     public function register()

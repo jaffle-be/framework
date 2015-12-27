@@ -1,7 +1,8 @@
-<?php namespace Modules\Shop\Jobs\Gamma;
+<?php
+
+namespace Modules\Shop\Jobs\Gamma;
 
 use App\Jobs\Job;
-
 use Modules\Account\Account;
 use Modules\Shop\Gamma\ProductCategorySelection;
 use Modules\Shop\Gamma\ProductSelection;
@@ -10,7 +11,6 @@ use Modules\Shop\Product\Product;
 
 class DeactivateProduct extends Job
 {
-
     protected $product;
 
     protected $categorie;
@@ -31,7 +31,7 @@ class DeactivateProduct extends Job
         $payload = [
             'account_id' => $this->account->id,
             'product_id' => $this->product->id,
-            'brand_id'   => $this->product->brand_id,
+            'brand_id' => $this->product->brand_id,
         ];
 
         $record = $this->getExisting($selection);

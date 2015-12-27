@@ -1,4 +1,6 @@
-<?php namespace Modules\Media;
+<?php
+
+namespace Modules\Media;
 
 use InvalidArgumentException;
 use Modules\Media\Files\File;
@@ -7,7 +9,6 @@ use Modules\Media\Video\Video;
 
 class MediaRepository implements MediaRepositoryInterface
 {
-
     protected $images;
 
     protected $config;
@@ -164,5 +165,4 @@ class MediaRepository implements MediaRepositoryInterface
 
         return $file->save() ? $file : false;
     }
-
 }

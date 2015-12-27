@@ -1,7 +1,8 @@
-<?php namespace Modules\Shop\Jobs\Gamma\Notification\Handlers;
+<?php
+
+namespace Modules\Shop\Jobs\Gamma\Notification\Handlers;
 
 use App\Jobs\Job;
-
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Modules\Shop\Gamma\GammaNotification;
 use Modules\Shop\Gamma\GammaSelection;
@@ -11,7 +12,6 @@ use Pusher;
 
 class ReviewGammaNotification extends Job implements ShouldQueue
 {
-
     protected $notification;
 
     public function __construct(GammaNotification $notification)
@@ -54,8 +54,8 @@ class ReviewGammaNotification extends Job implements ShouldQueue
     {
         $instancePayload = [
             'category_id' => $notification->category->id,
-            'brand_id'    => $notification->brand->id,
-            'account_id'  => $notification->account->id
+            'brand_id' => $notification->brand->id,
+            'account_id' => $notification->account->id,
         ];
 
         $selection = $gamma->newInstance($instancePayload);
@@ -78,13 +78,12 @@ class ReviewGammaNotification extends Job implements ShouldQueue
                 ->get()->keyBy('product_id');
 
             foreach ($products as $product) {
-
                 $notificationPayload = [
-                    'product_id'  => $product->id,
+                    'product_id' => $product->id,
                     'category_id' => $notification->category->id,
-                    'brand_id'    => $notification->brand->id,
-                    'account_id'  => $notification->account->id,
-                    'type'        => $status,
+                    'brand_id' => $notification->brand->id,
+                    'account_id' => $notification->account->id,
+                    'type' => $status,
                 ];
 
                 $record = $records->get($product->id);

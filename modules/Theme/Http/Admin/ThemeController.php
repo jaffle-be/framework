@@ -1,4 +1,6 @@
-<?php namespace Modules\Theme\Http\Admin;
+<?php
+
+namespace Modules\Theme\Http\Admin;
 
 use Illuminate\Http\Request;
 use Modules\Account\AccountManager;
@@ -7,7 +9,6 @@ use Modules\Theme\ThemeSettingOption;
 
 class ThemeController extends AdminController
 {
-
     public function index()
     {
         $themes = $this->theme->supported();
@@ -30,7 +31,7 @@ class ThemeController extends AdminController
         $themes = $this->theme->supported();
 
         return view('theme::admin.settings', [
-            'themes'  => $themes,
+            'themes' => $themes,
             'account' => $manager->account(),
             'current' => $this->theme->current(),
         ]);
@@ -67,12 +68,12 @@ class ThemeController extends AdminController
     {
         if ($this->theme->activate($theme)) {
             return json_encode(array(
-                'status' => 'oke'
+                'status' => 'oke',
             ));
         }
 
         return json_encode(array(
-            'status' => 'noke'
+            'status' => 'noke',
         ));
     }
 
@@ -80,5 +81,4 @@ class ThemeController extends AdminController
     {
         return $this->theme->current();
     }
-
 }

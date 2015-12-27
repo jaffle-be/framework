@@ -4,7 +4,6 @@ use Modules\Shop\Product\ProductTranslation;
 
 if (env('APP_MULTIPLE_LOCALES')) {
     foreach (config('system.locales') as $locale) {
-
         Breadcrumbs::register("store.$locale.shop.index", function ($breadcrumbs) use ($locale) {
             $breadcrumbs->parent("store.$locale.home");
             $breadcrumbs->push(Lang::get('shop::front.shop'), store_route('store.shop.index'));
@@ -41,7 +40,6 @@ if (env('APP_MULTIPLE_LOCALES')) {
         });
     }
 } else {
-
     Breadcrumbs::register('store.shop.index', function ($breadcrumbs) {
         $breadcrumbs->parent('store.home');
         $breadcrumbs->push(Lang::get('shop::front.shop'), store_route('store.shop.index'));

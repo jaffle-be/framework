@@ -1,4 +1,6 @@
-<?php namespace Modules\Shop\Http\Admin;
+<?php
+
+namespace Modules\Shop\Http\Admin;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
@@ -18,7 +20,6 @@ use Modules\System\Http\AdminController;
 
 class GammaController extends AdminController
 {
-
     public function templateCategories()
     {
         return view('shop::admin.categories.overview');
@@ -74,7 +75,7 @@ class GammaController extends AdminController
             },
 
                 'brands.translations',
-                'brands.selection'
+                'brands.selection',
             ]);
         }
 
@@ -163,8 +164,7 @@ class GammaController extends AdminController
 
         $brands->load(['translations', 'selection']);
 
-        foreach($brands as $brand)
-        {
+        foreach ($brands as $brand) {
             $brand->load([
                 'categories' => function ($query) use ($subscriptions, $brand) {
                     $query->join('product_categories_pivot', 'product_categories_pivot.category_id', '=', 'product_categories.id')
@@ -175,7 +175,7 @@ class GammaController extends AdminController
                         ->get(['product_categories.*']);
                 },
                 'categories.translations',
-                'categories.selection'
+                'categories.selection',
             ]);
         }
 
@@ -254,5 +254,4 @@ class GammaController extends AdminController
 
         return $reviews;
     }
-
 }

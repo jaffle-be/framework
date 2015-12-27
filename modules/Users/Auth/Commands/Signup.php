@@ -1,8 +1,9 @@
-<?php namespace Modules\Users\Auth\Commands;
+<?php
+
+namespace Modules\Users\Auth\Commands;
 
 use App\Jobs\Job;
 use Exception;
-
 use Illuminate\Contracts\Hashing\Hasher;
 use Illuminate\Events\Dispatcher;
 use Modules\Account\MembershipInvitation;
@@ -11,7 +12,6 @@ use Modules\Users\User;
 
 class Signup extends Job
 {
-
     protected $email;
 
     protected $password;
@@ -35,7 +35,6 @@ class Signup extends Job
 
         //we already have a user with this email.
         try {
-
             if (!$this->user) {
                 $this->user = $user;
                 $this->user->email = $this->email;
@@ -48,8 +47,7 @@ class Signup extends Job
             $connection->commit();
 
             return $this->user;
-        }
-        catch (Exception $e) {
+        } catch (Exception $e) {
             $connection->rollBack();
             throw $e;
         }

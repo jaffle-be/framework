@@ -9,7 +9,6 @@ use Modules\System\Seeder;
 
 class AccountTableSeeder extends Seeder
 {
-
     public function run()
     {
         $account = $this->account('digiredo');
@@ -37,32 +36,32 @@ class AccountTableSeeder extends Seeder
     {
         Role::create([
             'account_id' => $account->id,
-            'nl'         => [
+            'nl' => [
                 'name' => 'admin',
             ],
-            'fr'         => [
+            'fr' => [
                 'name' => 'admin',
             ],
-            'en'         => [
+            'en' => [
                 'name' => 'admin',
             ],
-            'de'         => [
+            'de' => [
                 'name' => 'admin',
             ],
         ]);
 
         Role::create([
             'account_id' => $account->id,
-            'nl'         => [
+            'nl' => [
                 'name' => 'guest',
             ],
-            'fr'         => [
+            'fr' => [
                 'name' => 'guest',
             ],
-            'en'         => [
+            'en' => [
                 'name' => 'guest',
             ],
-            'de'         => [
+            'de' => [
                 'name' => 'guest',
             ],
         ]);
@@ -73,9 +72,9 @@ class AccountTableSeeder extends Seeder
      */
     protected function membershipInvitations($account)
     {
-        for ($i = 0; $i < 5; $i++) {
+        for ($i = 0; $i < 5; ++$i) {
             $account->membershipInvitations()->create([
-                'email' => $this->faker->email
+                'email' => $this->faker->email,
             ]);
         }
     }
@@ -87,17 +86,17 @@ class AccountTableSeeder extends Seeder
     {
         if (env('APP_ENV') == 'production') {
             $account = Account::create([
-                'alias'  => $name,
+                'alias' => $name,
                 'domain' => "$name.be",
             ]);
-        } else if (env('APP_ENV') == 'develop') {
+        } elseif (env('APP_ENV') == 'develop') {
             $account = Account::create([
-                'alias'  => '' . $name . '',
+                'alias' => ''.$name.'',
                 'domain' => "dev.$name.be",
             ]);
         } else {
             $account = Account::create([
-                'alias'  => $name,
+                'alias' => $name,
                 'domain' => "$name.local",
             ]);
         }
@@ -113,34 +112,33 @@ class AccountTableSeeder extends Seeder
     protected function contactInformation($account)
     {
         $info = new AccountContactInformation([
-            'email'   => 'thomas@jaffle.be',
-            'phone'   => '0473/506720',
+            'email' => 'thomas@jaffle.be',
+            'phone' => '0473/506720',
             'website' => 'http://jaffle.be',
-            'vat'     => '0538.819.360',
-            'hours'   => json_encode([
+            'vat' => '0538.819.360',
+            'hours' => json_encode([
                 'some random hours',
                 'lol',
                 'lol',
-                'lol'
+                'lol',
             ]),
         ]);
 
         $account->contactInformation()->save($info);
 
         $address = new Address([
-            'latitude'  => '50.8909351',
+            'latitude' => '50.8909351',
             'longitude' => '3.4132522',
             'firstname' => '',
-            'lastname'  => '',
-            'street'    => 'Stuifkouter',
-            'box'       => '64',
-            'postcode'  => '8790',
-            'city'      => 'Waregem',
+            'lastname' => '',
+            'street' => 'Stuifkouter',
+            'box' => '64',
+            'postcode' => '8790',
+            'city' => 'Waregem',
         ]);
 
         $address->country_id = 21;
 
         $info->address()->save($address);
     }
-
 }

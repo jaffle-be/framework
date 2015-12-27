@@ -1,4 +1,6 @@
-<?php namespace Modules\Blog\Http\Admin;
+<?php
+
+namespace Modules\Blog\Http\Admin;
 
 use Carbon\Carbon;
 use Illuminate\Contracts\Auth\Guard;
@@ -11,7 +13,6 @@ use Modules\System\Http\AdminController;
 
 class BlogController extends AdminController
 {
-
     use MediaWidgetPreperations;
 
     public function index(Request $request)
@@ -27,8 +28,8 @@ class BlogController extends AdminController
             $query->whereHas('translations', function ($q) use ($value, $locale) {
                 $q->where('locale', $locale);
                 $q->where(function ($q) use ($value) {
-                    $q->where('title', 'like', '%' . $value . '%')
-                        ->orWhere('content', 'like', '%' . $value . '%');
+                    $q->where('title', 'like', '%'.$value.'%')
+                        ->orWhere('content', 'like', '%'.$value.'%');
                 });
             });
         }
@@ -51,7 +52,7 @@ class BlogController extends AdminController
         }
 
         return json_encode(array(
-            'status' => 'noke'
+            'status' => 'noke',
         ));
     }
 

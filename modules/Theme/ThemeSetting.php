@@ -1,11 +1,12 @@
-<?php namespace Modules\Theme;
+<?php
+
+namespace Modules\Theme;
 
 use Illuminate\Database\Eloquent\Model;
 use Modules\System\Translatable\Translatable;
 
 class ThemeSetting extends Model
 {
-
     use Translatable;
 
     protected $table = 'themes_setting_keys';
@@ -18,7 +19,7 @@ class ThemeSetting extends Model
 
     protected $casts = [
         'boolean' => 'boolean',
-        'key'     => 'string',
+        'key' => 'string',
     ];
 
     public function options()
@@ -49,7 +50,7 @@ class ThemeSetting extends Model
     }
 
     /**
-     * Currently only used in the angular part, to return them through an /api/admin call
+     * Currently only used in the angular part, to return them through an /api/admin call.
      *
      * @return array
      */
@@ -59,7 +60,7 @@ class ThemeSetting extends Model
 
         switch ($this->type->name) {
             case 'boolean':
-                $result['value'] = (bool)$result['value'];
+                $result['value'] = (bool) $result['value'];
                 break;
 
             case 'string':
@@ -111,5 +112,4 @@ class ThemeSetting extends Model
             }
         }
     }
-
 }

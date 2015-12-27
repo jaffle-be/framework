@@ -1,6 +1,7 @@
-<?php namespace Modules\Tags;
+<?php
+
+namespace Modules\Tags;
 
 interface StoresTags
 {
-
 }

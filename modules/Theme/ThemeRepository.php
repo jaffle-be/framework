@@ -1,10 +1,11 @@
-<?php namespace Modules\Theme;
+<?php
+
+namespace Modules\Theme;
 
 use Modules\Account\AccountManager;
 
 class ThemeRepository implements ThemeRepositoryInterface
 {
-
     protected $theme;
 
     protected $selector;
@@ -115,9 +116,9 @@ class ThemeRepository implements ThemeRepositoryInterface
     {
         if ($this->account->account()) {
             $selector = $this->selector->create([
-                'theme_id'   => $theme->getKey(),
+                'theme_id' => $theme->getKey(),
                 'account_id' => $this->account->account()->getKey(),
-                'active'     => true
+                'active' => true,
             ]);
 
             $this->addDefaults($theme, $selector);
@@ -139,7 +140,6 @@ class ThemeRepository implements ThemeRepositoryInterface
             $default = $setting->defaults;
 
             if ($default) {
-
                 if ($setting->type->name == 'select') {
                     $this->setupSelectDefault($selection, $default, $account, $setting);
                 } elseif (in_array($setting->type->name, ['string', 'text'])) {
@@ -173,10 +173,10 @@ class ThemeRepository implements ThemeRepositoryInterface
         $type = $setting->type->name;
 
         $setting->value()->create([
-            'account_id'   => $account,
+            'account_id' => $account,
             'selection_id' => $selection,
-            'nl'           => [$type => $json->nl],
-            'en'           => [$type => $json->en],
+            'nl' => [$type => $json->nl],
+            'en' => [$type => $json->en],
         ]);
     }
 
@@ -194,8 +194,8 @@ class ThemeRepository implements ThemeRepositoryInterface
 
         if ($checked) {
             $setting->value()->create([
-                'value'        => true,
-                'account_id'   => $this->account->account()->id,
+                'value' => true,
+                'account_id' => $this->account->account()->id,
                 'selection_id' => $this->selection()->id,
             ]);
         }
@@ -208,8 +208,8 @@ class ThemeRepository implements ThemeRepositoryInterface
         $setting->value()->delete();
 
         $setting->value()->create([
-            'option_id'    => $option->id,
-            'account_id'   => $this->account->account()->id,
+            'option_id' => $option->id,
+            'account_id' => $this->account->account()->id,
             'selection_id' => $this->selection()->id,
         ]);
     }
@@ -219,7 +219,6 @@ class ThemeRepository implements ThemeRepositoryInterface
         $value = $setting->value;
 
         if (!$value) {
-
             $input = array_merge(['account_id' => $this->account->account()->id, 'selection_id' => $this->selection()->id], $input);
 
             return $setting->value()->create($input);
@@ -234,7 +233,6 @@ class ThemeRepository implements ThemeRepositoryInterface
     {
         //if no original
         if (!$setting->value) {
-
             $input = array_merge(['value' => $value], ['account_id' => $this->account->account()->id, 'selection_id' => $this->selection()->id]);
 
             return $setting->value()->create($input);
@@ -244,5 +242,4 @@ class ThemeRepository implements ThemeRepositoryInterface
 
         $value->save();
     }
-
 }

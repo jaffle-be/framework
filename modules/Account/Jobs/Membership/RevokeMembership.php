@@ -1,12 +1,12 @@
-<?php namespace Modules\Account\Jobs\Membership;
+<?php
+
+namespace Modules\Account\Jobs\Membership;
 
 use App\Jobs\Job;
-
 use Modules\Account\Membership;
 
 class RevokeMembership extends Job
 {
-
     /**
      * @var Membership
      */

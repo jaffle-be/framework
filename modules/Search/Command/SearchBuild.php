@@ -1,4 +1,6 @@
-<?php namespace Modules\Search\Command;
+<?php
+
+namespace Modules\Search\Command;
 
 use Illuminate\Console\Command;
 use Modules\Account\IndexManager;
@@ -7,7 +9,6 @@ use Symfony\Component\Console\Input\InputArgument;
 
 class SearchBuild extends Command
 {
-
     /**
      * The console command name.
      *

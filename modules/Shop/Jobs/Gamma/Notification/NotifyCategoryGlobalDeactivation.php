@@ -1,15 +1,15 @@
-<?php namespace Modules\Shop\Jobs\Gamma\Notification;
+<?php
+
+namespace Modules\Shop\Jobs\Gamma\Notification;
 
 use App\Jobs\Job;
-
 use Modules\Account\Account;
 use Modules\Shop\Gamma\CategorySelection;
 use Modules\Shop\Gamma\GammaNotification;
 use Modules\Shop\Product\Category;
 
-class NotifyCategoryDeactivation extends Job
+class NotifyCategoryGlobalDeactivation extends Job
 {
-
     use GammaNotificationHelpers;
 
     /**
@@ -33,17 +33,16 @@ class NotifyCategoryDeactivation extends Job
         $this->category->selection->delete();
 
         foreach ($this->category->brands as $brand) {
-
             $existing = $this->findExistingCombination($notification, $brand, $this->category);
 
             if ($existing) {
                 $existing->delete();
             } else {
                 $instance = $notification->newInstance([
-                    'account_id'  => $this->account->id,
+                    'account_id' => $this->account->id,
                     'category_id' => $this->category->id,
-                    'brand_id'    => $brand->id,
-                    'type'        => CategorySelection::DEACTIVATE,
+                    'brand_id' => $brand->id,
+                    'type' => CategorySelection::DEACTIVATE,
                 ]);
 
                 $instance->save();
@@ -66,5 +65,4 @@ class NotifyCategoryDeactivation extends Job
 
         return $existing;
     }
-
 }

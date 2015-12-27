@@ -1,17 +1,15 @@
-<?php namespace Modules\Media\Commands;
+<?php
+
+namespace Modules\Media\Commands;
 
 use App\Jobs\Job;
-
 use Modules\Media\Image;
 
 /**
- * Class UpdateImage
- *
- * @package Modules\Media\Commands
+ * Class UpdateImage.
  */
 class UpdateImage extends Job
 {
-
     /**
      * @var Image
      */
@@ -41,5 +39,4 @@ class UpdateImage extends Job
 
         return $this->image->save() ? $this->image : false;
     }
-
 }

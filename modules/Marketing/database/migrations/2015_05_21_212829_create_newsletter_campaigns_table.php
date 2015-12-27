@@ -5,11 +5,8 @@ use Illuminate\Database\Schema\Blueprint;
 
 class CreateNewsletterCampaignsTable extends Migration
 {
-
     /**
      * Run the migrations.
-     *
-     * @return void
      */
     public function up()
     {
@@ -76,12 +73,9 @@ class CreateNewsletterCampaignsTable extends Migration
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
     public function down()
     {
-
         Schema::drop('newsletter_campaign_widget_translations', function (Blueprint $table) {
             $table->dropForeign('translation_to_newsletter_widget');
         });

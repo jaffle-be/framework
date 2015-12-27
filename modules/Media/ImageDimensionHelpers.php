@@ -1,17 +1,19 @@
-<?php namespace Modules\Media;
+<?php
+
+namespace Modules\Media;
 
 use Exception;
 
 trait ImageDimensionHelpers
 {
-
     /**
      * Dimensions can be passed like this:
      * 150x150 to have a fixed dimension
      * 150x to have a auto resize with a max width of
-     * x150 to have a auto resize with a max height of
+     * x150 to have a auto resize with a max height of.
      *
      * @return array
+     *
      * @throws Exception
      */
     protected function dimensions($size)
@@ -47,7 +49,6 @@ trait ImageDimensionHelpers
             };
         }
 
-        return null;
+        return;
     }
-
 }

@@ -10,7 +10,6 @@ use Modules\System\Seeder;
 
 class BrandTableSeeder extends Seeder
 {
-
     use DispatchesJobs;
 
     /**
@@ -34,8 +33,6 @@ class BrandTableSeeder extends Seeder
 
     /**
      * Run the database seeds.
-     *
-     * @return void
      */
     public function run()
     {
@@ -72,16 +69,13 @@ class BrandTableSeeder extends Seeder
             $file = $this->image($brand->name, $brand->brands);
 
             $existing = Brand::create([
-                'nl'   => [
+                'nl' => [
                     'name' => $brand->name,
-                ]
-                , 'en' => [
+                ], 'en' => [
                     'name' => $brand->name,
-                ]
-                , 'fr' => [
+                ], 'fr' => [
                     'name' => $brand->name,
-                ]
-                , 'de' => [
+                ], 'de' => [
                     'name' => $brand->name,
                 ],
             ]);
@@ -111,5 +105,4 @@ class BrandTableSeeder extends Seeder
 
         return $path;
     }
-
 }

@@ -1,4 +1,6 @@
-<?php namespace Modules\Shop\Http\Admin;
+<?php
+
+namespace Modules\Shop\Http\Admin;
 
 use Illuminate\Http\Request;
 use Modules\Account\AccountManager;
@@ -10,7 +12,6 @@ use Modules\System\Http\AdminController;
 
 class ProductSelectionController extends AdminController
 {
-
     public function suggest(Request $request)
     {
         return suggest_completion('product_gamma', $request->get('query'), $request->get('locale'));
@@ -25,18 +26,18 @@ class ProductSelectionController extends AdminController
         //allright
 
         $query = [
-            'index'   => config('search.index'),
-            'type'    => $selections->getSearchableType(),
-            'body'    => [
+            'index' => config('search.index'),
+            'type' => $selections->getSearchableType(),
+            'body' => [
                 'query' => [
                     'filtered' => [
                         'query' => [
-                            'match_all' => new \StdClass()
+                            'match_all' => new \StdClass(),
                         ],
-                    ]
-                ]
+                    ],
+                ],
             ],
-            'routing' => $account->id
+            'routing' => $account->id,
         ];
 
         $relations = [
@@ -132,5 +133,4 @@ class ProductSelectionController extends AdminController
     {
         return ['translations', 'translations'];
     }
-
 }

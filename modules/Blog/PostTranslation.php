@@ -1,4 +1,6 @@
-<?php namespace Modules\Blog;
+<?php
+
+namespace Modules\Blog;
 
 use Cviebrock\EloquentSluggable\SluggableInterface;
 use Modules\Search\Model\Searchable;
@@ -13,7 +15,6 @@ use Modules\System\Translatable\TranslationModel;
 
 class PostTranslation extends TranslationModel implements Searchable, SluggableInterface, OwnsSlug, PresentableEntity, PresentableCache
 {
-
     use SearchableTrait, SiteSluggable, PresentableTrait, FrontScoping;
 
     protected $table = 'post_translations';
@@ -40,16 +41,16 @@ class PostTranslation extends TranslationModel implements Searchable, SluggableI
 
     protected static $searchableMapping = [
         'publish_at' => [
-            'type'   => 'date',
-            'format' => 'yyyy-MM-dd'
+            'type' => 'date',
+            'format' => 'yyyy-MM-dd',
         ],
         'created_at' => [
-            'type'   => 'date',
-            'format' => 'yyyy-MM-dd HH:mm:ss'
+            'type' => 'date',
+            'format' => 'yyyy-MM-dd HH:mm:ss',
         ],
         'updated_at' => [
-            'type'   => 'date',
-            'format' => 'yyyy-MM-dd HH:mm:ss'
+            'type' => 'date',
+            'format' => 'yyyy-MM-dd HH:mm:ss',
         ],
     ];
 

@@ -1,11 +1,12 @@
-<?php namespace Modules\Search\Command;
+<?php
+
+namespace Modules\Search\Command;
 
 use Illuminate\Console\Command;
 use Modules\Search\SearchServiceInterface;
 
 class SearchRebuild extends Command
 {
-
     /**
      * The console command name.
      *

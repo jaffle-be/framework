@@ -1,8 +1,9 @@
-<?php namespace Modules\Marketing\Newsletter;
+<?php
+
+namespace Modules\Marketing\Newsletter;
 
 class CampaignBuilder
 {
-
     protected $widgets = [
 
         ['name' => 'regular/2col', 'items' => 2],
@@ -41,8 +42,8 @@ class CampaignBuilder
 
         return view('marketing::newsletter.campaign', [
             'translation' => $translation,
-            'campaign'    => $campaign,
-            'locale'      => $locale,
+            'campaign' => $campaign,
+            'locale' => $locale,
         ])->render();
     }
 
@@ -50,5 +51,4 @@ class CampaignBuilder
     {
         return $this->widgets;
     }
-
 }

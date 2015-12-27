@@ -1,11 +1,12 @@
-<?php namespace Modules\System\Translatable;
+<?php
+
+namespace Modules\System\Translatable;
 
 use Illuminate\Database\Eloquent\Collection;
 use Modules\System\Locale;
 
 class TranslationCollection extends Collection
 {
-
     public function toArray()
     {
         $locales = Locale::all();

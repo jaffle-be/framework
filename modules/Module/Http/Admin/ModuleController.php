@@ -1,4 +1,6 @@
-<?php namespace Modules\Module\Http\Admin;
+<?php
+
+namespace Modules\Module\Http\Admin;
 
 use Illuminate\Http\Request;
 use Modules\Account\AccountManager;
@@ -8,7 +10,6 @@ use Pusher;
 
 class ModuleController extends AdminController
 {
-
     public function toggle(Request $request, Module $module, AccountManager $manager, Pusher $pusher)
     {
         $module = $module->findOrFail($request->get('id'));
@@ -29,5 +30,4 @@ class ModuleController extends AdminController
             $pusher->trigger(pusher_account_channel(), 'system.hard-reload', []);
         }
     }
-
 }

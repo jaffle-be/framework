@@ -1,12 +1,12 @@
-<?php namespace Modules\Blog\Jobs;
+<?php
+
+namespace Modules\Blog\Jobs;
 
 use App\Jobs\Job;
-
 use Modules\Blog\Post;
 
 class UpdatePost extends Job
 {
-
     /**
      * @var Post
      */
@@ -29,5 +29,4 @@ class UpdatePost extends Job
 
         return $this->post->save() ? $this->post : false;
     }
-
 }

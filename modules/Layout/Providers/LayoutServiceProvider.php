@@ -1,16 +1,15 @@
-<?php namespace Modules\Layout\Providers;
+<?php
+
+namespace Modules\Layout\Providers;
 
 use Modules\System\ServiceProvider;
 
 class LayoutServiceProvider extends ServiceProvider
 {
-
     protected $namespace = 'layout';
 
     /**
      * Register the service provider.
-     *
-     * @return void
      */
     public function register()
     {
@@ -19,5 +18,4 @@ class LayoutServiceProvider extends ServiceProvider
     protected function listeners()
     {
     }
-
 }

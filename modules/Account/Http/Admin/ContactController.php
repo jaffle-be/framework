@@ -10,7 +10,6 @@ use Modules\System\Http\AdminController;
 
 class ContactController extends AdminController
 {
-
     public function page(AccountManager $manager)
     {
         $account = $manager->account();
@@ -42,5 +41,4 @@ class ContactController extends AdminController
 
         $manager->updated();
     }
-
 }

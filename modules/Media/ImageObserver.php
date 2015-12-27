@@ -1,15 +1,14 @@
-<?php namespace Modules\Media;
+<?php
+
+namespace Modules\Media;
 
 use Illuminate\Filesystem\Filesystem;
 
 /**
- * Class ImageObserver
- *
- * @package Media
+ * Class ImageObserver.
  */
 class ImageObserver
 {
-
     /**
      * @var Filesystem
      */
@@ -45,5 +44,4 @@ class ImageObserver
     {
         $this->files->delete(public_path($image->path));
     }
-
 }

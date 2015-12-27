@@ -1,8 +1,9 @@
-<?php namespace Modules\Contact\Jobs;
+<?php
+
+namespace Modules\Contact\Jobs;
 
 use App\Jobs\Job;
 use Exception;
-
 use Illuminate\Contracts\Config\Repository;
 use Modules\Contact\Address;
 use Modules\Contact\AddressOwner;
@@ -10,7 +11,6 @@ use Modules\System\Country\CountryRepository;
 
 class NewAddress extends Job
 {
-
     protected $input;
 
     public function __construct(array $input)
@@ -55,5 +55,4 @@ class NewAddress extends Job
 
         return $finder->findOrFail($owner_id);
     }
-
 }

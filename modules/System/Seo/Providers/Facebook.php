@@ -1,11 +1,12 @@
-<?php namespace Modules\System\Seo\Providers;
+<?php
+
+namespace Modules\System\Seo\Providers;
 
 use Modules\System\Seo\MetaTagProvider;
 use Modules\System\Seo\SeoEntity;
 
 class Facebook extends MetaTagProvider
 {
-
     protected $prefix = 'og:';
 
     protected function tag($key, $value)
@@ -15,9 +16,9 @@ class Facebook extends MetaTagProvider
         }
 
         if (str_contains($key, ':')) {
-            return '<meta property="' . strip_tags($key) . '" content="' . strip_tags($value) . '">';
+            return '<meta property="'.strip_tags($key).'" content="'.strip_tags($value).'">';
         } else {
-            return '<meta property="' . $this->prefix . strip_tags($key) . '" content="' . strip_tags($value) . '">';
+            return '<meta property="'.$this->prefix.strip_tags($key).'" content="'.strip_tags($value).'">';
         }
     }
 
@@ -46,5 +47,4 @@ class Facebook extends MetaTagProvider
             $this->addProperty('image', asset($image->path));
         }
     }
-
 }

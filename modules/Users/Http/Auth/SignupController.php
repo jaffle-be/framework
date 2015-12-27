@@ -1,4 +1,6 @@
-<?php namespace Modules\Users\Http\Auth;
+<?php
+
+namespace Modules\Users\Http\Auth;
 
 use Illuminate\Auth\Guard;
 use Modules\Account\MembershipInvitation;
@@ -9,7 +11,6 @@ use Modules\Users\User;
 
 class SignupController extends FrontController
 {
-
     public function index()
     {
         $user = new User();
@@ -32,7 +33,6 @@ class SignupController extends FrontController
         }
 
         if ($user = $this->dispatch(new Signup($request->get('email'), $request->get('password'), $invitation))) {
-
             if ($user->confirmed) {
                 //user can be logged in too
                 $guard->login($user);

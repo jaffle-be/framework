@@ -7,11 +7,8 @@ use Modules\Module\ModuleRoute;
 
 class CreatePostsTable extends Migration
 {
-
     /**
      * Run the migrations.
-     *
-     * @return void
      */
     public function up()
     {
@@ -41,33 +38,33 @@ class CreatePostsTable extends Migration
         //install the module itself.
         $module = Module::create([
             'namespace' => 'blog',
-            'nl'        => [
+            'nl' => [
                 'name' => 'Blog',
             ],
-            'en'        => [
+            'en' => [
                 'name' => 'Blog',
             ],
-            'fr'        => [
+            'fr' => [
                 'name' => 'Blog',
             ],
-            'de'        => [
+            'de' => [
                 'name' => 'Blog',
-            ]
+            ],
         ]);
 
         $module->routes()->save(new ModuleRoute([
             'name' => 'store.blog.index',
-            'nl'   => [
-                'title' => 'blog overview'
+            'nl' => [
+                'title' => 'blog overview',
             ],
-            'en'   => [
-                'title' => 'blog overview'
+            'en' => [
+                'title' => 'blog overview',
             ],
-            'fr'   => [
-                'title' => 'blog overview'
+            'fr' => [
+                'title' => 'blog overview',
             ],
-            'de'   => [
-                'title' => 'blog overview'
+            'de' => [
+                'title' => 'blog overview',
             ],
 
         ]));
@@ -75,8 +72,6 @@ class CreatePostsTable extends Migration
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
     public function down()
     {

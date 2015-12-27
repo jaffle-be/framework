@@ -1,7 +1,8 @@
-<?php namespace Modules\Shop\Jobs\Gamma\Notification\Handlers;
+<?php
+
+namespace Modules\Shop\Jobs\Gamma\Notification\Handlers;
 
 use App\Jobs\Job;
-
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Modules\Shop\Gamma\GammaNotification;
@@ -12,7 +13,6 @@ use Pusher;
 
 class AcceptGammaNotification extends Job implements ShouldQueue
 {
-
     use DispatchesJobs;
 
     protected $notification;
@@ -74,5 +74,4 @@ class AcceptGammaNotification extends Job implements ShouldQueue
 
         $this->notification->delete();
     }
-
 }

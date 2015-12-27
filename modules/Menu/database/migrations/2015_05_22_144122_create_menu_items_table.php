@@ -5,11 +5,8 @@ use Illuminate\Database\Schema\Blueprint;
 
 class CreateMenuItemsTable extends Migration
 {
-
     /**
      * Run the migrations.
-     *
-     * @return void
      */
     public function up()
     {
@@ -43,8 +40,6 @@ class CreateMenuItemsTable extends Migration
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
     public function down()
     {
@@ -58,5 +53,4 @@ class CreateMenuItemsTable extends Migration
             $table->dropForeign('menu_item_to_module_route');
         });
     }
-
 }

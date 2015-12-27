@@ -1,8 +1,9 @@
-<?php namespace Modules\System\Presenter;
+<?php
+
+namespace Modules\System\Presenter;
 
 abstract class BasePresenter implements EntityPresenter
 {
-
     /**
      * @var PresentableEntity
      */
@@ -29,5 +30,4 @@ abstract class BasePresenter implements EntityPresenter
 
         return $this->entity->{$name};
     }
-
 }

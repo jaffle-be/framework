@@ -1,10 +1,11 @@
-<?php namespace Modules\Module;
+<?php
+
+namespace Modules\Module;
 
 use Illuminate\Database\Eloquent\Collection;
 
 class ModuleCollection extends Collection
 {
-
     public function active($module)
     {
         return $this->first(function ($key, $item) use ($module) {
@@ -24,5 +25,4 @@ class ModuleCollection extends Collection
 
         return $routes;
     }
-
 }

@@ -1,10 +1,11 @@
-<?php namespace Modules\Theme;
+<?php
+
+namespace Modules\Theme;
 
 use Illuminate\Contracts\Cache\Repository;
 
 class CachedThemeRepository implements ThemeRepositoryInterface
 {
-
     protected $theme;
 
     /**
@@ -36,7 +37,7 @@ class CachedThemeRepository implements ThemeRepositoryInterface
         return $this->__call(__FUNCTION__, func_get_args());
     }
 
-    function __call($name, $arguments)
+    public function __call($name, $arguments)
     {
         $result = call_user_func_array([$this->theme, $name], $arguments);
 
@@ -44,5 +45,4 @@ class CachedThemeRepository implements ThemeRepositoryInterface
 
         return $result;
     }
-
 }

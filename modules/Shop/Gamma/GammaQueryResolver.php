@@ -1,4 +1,6 @@
-<?php namespace Modules\Shop\Gamma;
+<?php
+
+namespace Modules\Shop\Gamma;
 
 use Illuminate\Http\Request;
 use Modules\Account\AccountManager;
@@ -10,7 +12,6 @@ use Modules\Shop\Product\Property;
 
 class GammaQueryResolver
 {
-
     use SearchResponder;
 
     protected $request;
@@ -35,8 +36,8 @@ class GammaQueryResolver
 
         $query = [
             'index' => $index,
-            'type'  => 'product_gamma',
-            'body'  => $this->getQuery($category)
+            'type' => 'product_gamma',
+            'body' => $this->getQuery($category),
         ];
 
         $result = $this->service->getClient()->search($query);
@@ -45,7 +46,7 @@ class GammaQueryResolver
 
         return [
             'products' => $this->products($result),
-            'brands'   => $this->brands($result),
+            'brands' => $this->brands($result),
             'properties' => $properties,
             'values' => $this->values($category, $properties),
         ];
@@ -54,32 +55,32 @@ class GammaQueryResolver
     protected function getQuery(Category $category)
     {
         return [
-            "query" => [
-                "nested" => [
-                    "path"  => "categories",
-                    "query" => [
-                        "filtered" => [
-                            "query"  => [
-                                "match_all" => []
+            'query' => [
+                'nested' => [
+                    'path' => 'categories',
+                    'query' => [
+                        'filtered' => [
+                            'query' => [
+                                'match_all' => [],
                             ],
-                            "filter" => [
-                                "term" => [
-                                    "categories.category_id" => $category->id
-                                ]
-                            ]
-                        ]
-                    ]
-                ]
-            ],
-            "aggs"  => [
-                "brands"     => [
-                    "terms" => [
-                        "field" => "brand_id",
-                        "size"  => 100
-                    ]
+                            'filter' => [
+                                'term' => [
+                                    'categories.category_id' => $category->id,
+                                ],
+                            ],
+                        ],
+                    ],
                 ],
-                "properties" => $this->propertyAggregations($category)
-            ]
+            ],
+            'aggs' => [
+                'brands' => [
+                    'terms' => [
+                        'field' => 'brand_id',
+                        'size' => 100,
+                    ],
+                ],
+                'properties' => $this->propertyAggregations($category),
+            ],
         ];
     }
 
@@ -118,17 +119,15 @@ class GammaQueryResolver
 
         $results = [];
 
-        foreach($properties as $filter => $sub_agg)
-        {
+        foreach ($properties as $filter => $sub_agg) {
             $property_id = str_replace('property_filter_', '', $filter);
 
             $results[$property_id] = [];
 
-            $buckets = $sub_agg['property_' . $property_id]['buckets'];
+            $buckets = $sub_agg['property_'.$property_id]['buckets'];
 
-            foreach($buckets as $bucket)
-            {
-                $results[$property_id][$bucket["key"]] = $bucket['doc_count'];
+            foreach ($buckets as $bucket) {
+                $results[$property_id][$bucket['key']] = $bucket['doc_count'];
             }
         }
 
@@ -164,17 +163,16 @@ class GammaQueryResolver
         //run through using groups, since that's being used on the website,
         //we end up avoiding a few extra queries likes this.
         foreach ($original->propertyGroups as $group) {
-
             foreach ($group->properties as $property) {
-                $aggs["property_filter_" . $property->id] = $this->propertyFilterAggregation($property);
+                $aggs['property_filter_'.$property->id] = $this->propertyFilterAggregation($property);
             }
         }
 
         return [
-            "nested" => [
-                "path" => "properties"
+            'nested' => [
+                'path' => 'properties',
             ],
-            "aggs"   => $aggs
+            'aggs' => $aggs,
         ];
     }
 
@@ -183,31 +181,27 @@ class GammaQueryResolver
      */
     protected function propertyValueAggregation(Property $property)
     {
-        if($property->type == 'string')
-        {
+        if ($property->type == 'string') {
             return [
-                "terms" => [
-                    "field" => "properties.boolean",
-                    "size"  => 10
-                ]
+                'terms' => [
+                    'field' => 'properties.boolean',
+                    'size' => 10,
+                ],
             ];
-        }
-        else if($property->type == 'options')
-        {
+        } elseif ($property->type == 'options') {
             return [
-                "terms" => [
-                    "field" => "properties.option_id",
-                    "size"  => 10
-                ]
+                'terms' => [
+                    'field' => 'properties.option_id',
+                    'size' => 10,
+                ],
             ];
-
         }
 
         return [
-            "terms" => [
-                "field" => "properties." . $property->type,
-                "size"  => 10
-            ]
+            'terms' => [
+                'field' => 'properties.'.$property->type,
+                'size' => 10,
+            ],
         ];
     }
 
@@ -219,14 +213,14 @@ class GammaQueryResolver
     protected function propertyFilterAggregation($property)
     {
         return [
-            "filter" => [
-                "term" => [
-                    "properties.property_id" => $property->id
-                ]
+            'filter' => [
+                'term' => [
+                    'properties.property_id' => $property->id,
+                ],
             ],
-            "aggs"   => [
-                'property_' . $property->id => $this->propertyValueAggregation($property)
-            ]
+            'aggs' => [
+                'property_'.$property->id => $this->propertyValueAggregation($property),
+            ],
         ];
     }
 
@@ -234,5 +228,4 @@ class GammaQueryResolver
     {
         //need to load all the values for this property
     }
-
 }

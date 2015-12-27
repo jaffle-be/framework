@@ -1,10 +1,11 @@
-<?php namespace Modules\Blog;
+<?php
+
+namespace Modules\Blog;
 
 use Illuminate\Contracts\Auth\Guard;
 
 class PostObserver
 {
-
     public function __construct(Guard $guard)
     {
         $this->auth = $guard;
@@ -16,5 +17,4 @@ class PostObserver
             $post->user()->associate($this->auth->user());
         }
     }
-
 }

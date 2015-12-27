@@ -1,7 +1,8 @@
-<?php namespace Modules\Account\Jobs;
+<?php
+
+namespace Modules\Account\Jobs;
 
 use App\Jobs\Job;
-
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Modules\Account\AccountRepository;
 use Modules\Account\Jobs\Membership\NewMembership;
@@ -9,7 +10,6 @@ use Modules\Account\MembershipOwner;
 
 class NewAccount extends Job
 {
-
     use DispatchesJobs;
 
     /**
@@ -38,9 +38,9 @@ class NewAccount extends Job
     {
         //create the new account
         $account = $repo->newAccount([
-            'alias'   => $this->alias,
-            'domain'  => $this->domain,
-            'user_id' => $this->owner->getKey()
+            'alias' => $this->alias,
+            'domain' => $this->domain,
+            'user_id' => $this->owner->getKey(),
         ]);
 
         if (!$account) {
@@ -54,5 +54,4 @@ class NewAccount extends Job
             return false;
         }
     }
-
 }

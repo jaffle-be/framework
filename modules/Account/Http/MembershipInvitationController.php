@@ -1,4 +1,6 @@
-<?php namespace Modules\Account\Http;
+<?php
+
+namespace Modules\Account\Http;
 
 use Illuminate\Contracts\Auth\Guard;
 use Modules\Account\MembershipRepository;
@@ -8,7 +10,6 @@ use Modules\Users\User;
 
 class MembershipInvitationController extends FrontController
 {
-
     public function show(MembershipRepository $repository, $invitation, Guard $guard)
     {
         $invitation = $repository->findInvitationByToken($invitation);
@@ -20,7 +21,6 @@ class MembershipInvitationController extends FrontController
         //do we have an invitation for a user with a registered account?
         //if so, we simply accept it instead of asking for credentials.
         if ($user = User::where('email', $invitation->email)->limit(1)->first()) {
-
             $user = $this->dispatch(new Signup(false, false, $invitation));
 
             if ($user->confirmed) {

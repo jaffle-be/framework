@@ -1,4 +1,6 @@
-<?php namespace Modules\Portfolio;
+<?php
+
+namespace Modules\Portfolio;
 
 use Illuminate\Database\Eloquent\Model;
 use Modules\Media\StoresMedia;
@@ -17,7 +19,6 @@ use Modules\Tags\Taggable;
 
 class Project extends Model implements StoresMedia, Searchable, StoresTags, PresentableEntity, SeoEntity
 {
-
     use Translatable;
     use PresentableTrait;
     use Taggable;
@@ -27,7 +28,7 @@ class Project extends Model implements StoresMedia, Searchable, StoresTags, Pres
     use SearchableTrait;
     use FrontScoping;
 
-    protected $table = "portfolio_projects";
+    protected $table = 'portfolio_projects';
 
     protected $media = '{account}/portfolio';
 
@@ -41,12 +42,12 @@ class Project extends Model implements StoresMedia, Searchable, StoresTags, Pres
 
     protected static $searchableMapping = [
         'created_at' => [
-            'type'   => 'date',
-            'format' => 'yyyy-MM-dd HH:mm:ss'
+            'type' => 'date',
+            'format' => 'yyyy-MM-dd HH:mm:ss',
         ],
         'updated_at' => [
-            'type'   => 'date',
-            'format' => 'yyyy-MM-dd HH:mm:ss'
+            'type' => 'date',
+            'format' => 'yyyy-MM-dd HH:mm:ss',
         ],
     ];
 
@@ -85,5 +86,4 @@ class Project extends Model implements StoresMedia, Searchable, StoresTags, Pres
     {
         return 'projects';
     }
-
 }

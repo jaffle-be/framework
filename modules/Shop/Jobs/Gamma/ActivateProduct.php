@@ -1,7 +1,8 @@
-<?php namespace Modules\Shop\Jobs\Gamma;
+<?php
+
+namespace Modules\Shop\Jobs\Gamma;
 
 use App\Jobs\Job;
-
 use Modules\Account\Account;
 use Modules\Shop\Gamma\ProductCategorySelection;
 use Modules\Shop\Gamma\ProductSelection;
@@ -10,7 +11,6 @@ use Modules\Shop\Product\Product;
 
 class ActivateProduct extends Job
 {
-
     protected $product;
 
     protected $categorie;
@@ -31,7 +31,6 @@ class ActivateProduct extends Job
         if (!$base) {
             $this->handleFullNewRecord($products);
         } else {
-
             $selection = $this->existingCategorySelection($base);
 
             if ($selection) {
@@ -80,7 +79,7 @@ class ActivateProduct extends Job
         $base = $products->create([
             'account_id' => $this->account->id,
             'product_id' => $this->product->id,
-            'brand_id'   => $this->product->brand_id,
+            'brand_id' => $this->product->brand_id,
         ]);
 
         $this->attachCategory($base);
@@ -100,5 +99,4 @@ class ActivateProduct extends Job
 
         return $selection;
     }
-
 }

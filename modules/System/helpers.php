@@ -1,22 +1,24 @@
 <?php
+
 use Illuminate\Http\Request;
 use Modules\Module\Module;
 
-if (!function_exists('uses_trait'))
-{
+if (!function_exists('uses_trait')) {
     /**
      * @param $class
      * @param $trait
      *
      * @return bool
      */
-    function uses_trait($class, $trait){
+    function uses_trait($class, $trait)
+    {
         $stuff = class_uses($class);
+
         return in_array($trait, $stuff);
     }
 }
 
-/**
+/*
  * Used to help set the configuration through json on the front side.
  * Found in the actual views, will most likely be at the same html element
  * where the angular page specific controller is assigned
@@ -25,7 +27,6 @@ if (!function_exists('uses_trait'))
  */
 
 if (!function_exists('system_options')) {
-
     function system_options()
     {
         $options['locale'] = app()->getLocale();
@@ -42,7 +43,7 @@ if (!function_exists('system_options')) {
     }
 }
 
-/**
+/*
  * Return all supported locales
  *
  * It also contains extra info about which locales are activated and which not.
@@ -68,7 +69,7 @@ if (!function_exists('system_locales')) {
     }
 }
 
-/**
+/*
  * Return all supported modules
  *
  * @return \Illuminate\Database\Eloquent\Collection|static[]
@@ -100,7 +101,7 @@ if (!function_exists('store_route')) {
         if ($force) {
             //replace the current locale with the requested locale
             //added the dots, to make sure we don't replace anything else
-            $name = str_replace('.' . app()->getLocale() . '.', '.' . $force . '.', $name);
+            $name = str_replace('.'.app()->getLocale().'.', '.'.$force.'.', $name);
         }
 
         return route($name, array_merge($arguments, $parameters));
@@ -112,14 +113,14 @@ if (!function_exists('pusher_account_channel')) {
     {
         $accounts = app('Modules\Account\AccountManager');
 
-        return 'private-' . ($accounts->account() ? $accounts->account()->alias : 'digiredo');
+        return 'private-'.($accounts->account() ? $accounts->account()->alias : 'digiredo');
     }
 }
 
 if (!function_exists('pusher_system_channel')) {
     function pusher_system_channel()
     {
-//        return 'private-system';
+        //        return 'private-system';
         return pusher_account_channel();
     }
 }
@@ -170,6 +171,7 @@ if (!function_exists('latest_tweets')) {
 
         $tweets = $cache->sear('tweets', function () {
             return [];
+
             return json_decode(app('ttwitter')->getUserTimeline(['screen_name' => 'twarlop', 'count' => 20, 'format' => 'json']));
         });
 
@@ -193,7 +195,7 @@ if (!function_exists('ago')) {
     {
         $carbon = app(Laravelrus\LocalizedCarbon\LocalizedCarbon::class);
 
-        if (is_numeric($timestamp) && (int)$timestamp == $timestamp) {
+        if (is_numeric($timestamp) && (int) $timestamp == $timestamp) {
             $date = $carbon->createFromTimestamp($timestamp);
         } else {
             $date = new \DateTime($timestamp);

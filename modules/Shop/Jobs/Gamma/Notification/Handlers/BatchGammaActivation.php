@@ -1,7 +1,8 @@
-<?php namespace Modules\Shop\Jobs\Gamma\Notification\Handlers;
+<?php
+
+namespace Modules\Shop\Jobs\Gamma\Notification\Handlers;
 
 use App\Jobs\Job;
-
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Modules\Account\Account;
 use Modules\Shop\Gamma\GammaSelection;
@@ -49,7 +50,7 @@ class BatchGammaActivation extends Job
     {
         $this->insertGamma($gamma);
 
-        $catalog->chunkWithinBrandCategory($this->account, $this->brand, $this->category, function ($products){
+        $catalog->chunkWithinBrandCategory($this->account, $this->brand, $this->category, function ($products) {
             foreach ($products as $product) {
                 $this->dispatch(new ActivateProduct($product, $this->category, $this->account));
             }
@@ -64,13 +65,10 @@ class BatchGammaActivation extends Job
         //insert this as a gamma selection
         $selected = $gamma->newInstance([
             'category_id' => $this->category->id,
-            'brand_id'    => $this->brand->id,
-            'account_id'  => $this->account->id
+            'brand_id' => $this->brand->id,
+            'account_id' => $this->account->id,
         ]);
 
         $selected->save();
     }
-
-
-
 }

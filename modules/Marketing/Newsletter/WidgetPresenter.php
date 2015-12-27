@@ -1,10 +1,11 @@
-<?php namespace Modules\Marketing\Newsletter;
+<?php
+
+namespace Modules\Marketing\Newsletter;
 
 use Modules\System\Presenter\BasePresenter;
 
 class WidgetPresenter extends BasePresenter
 {
-
     public function image()
     {
         if ($this->entity->manual) {
@@ -85,5 +86,4 @@ class WidgetPresenter extends BasePresenter
             return $this->entity->otherResource->translate($locale)->text;
         }
     }
-
 }

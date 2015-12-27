@@ -1,4 +1,6 @@
-<?php namespace Modules\Account\Http\Admin;
+<?php
+
+namespace Modules\Account\Http\Admin;
 
 use Illuminate\Http\Request;
 use Modules\Account\AccountManager;
@@ -8,7 +10,6 @@ use Modules\System\Http\AdminController;
 
 class TeamController extends AdminController
 {
-
     public function index(Team $team)
     {
         return $team->with(['translations'])->get();
@@ -20,7 +21,7 @@ class TeamController extends AdminController
 
         if (!$membership) {
             return json_encode(array(
-                'status' => 'noke'
+                'status' => 'noke',
             ));
         }
 
@@ -68,5 +69,4 @@ class TeamController extends AdminController
             return $team;
         }
     }
-
 }

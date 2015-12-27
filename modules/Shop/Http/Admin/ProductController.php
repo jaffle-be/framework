@@ -1,4 +1,6 @@
-<?php namespace Modules\Shop\Http\Admin;
+<?php
+
+namespace Modules\Shop\Http\Admin;
 
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Http\Request;
@@ -10,7 +12,6 @@ use Modules\Shop\Gamma\GammaSubscriptionManager;
 use Modules\Shop\Jobs\UpdateProduct;
 use Modules\Shop\Product\Category;
 use Modules\Shop\Product\Product;
-use Modules\Shop\Product\Property;
 use Modules\Shop\Product\PropertyGroup;
 use Modules\Shop\Product\PropertyOption;
 use Modules\Shop\Product\PropertyUnit;
@@ -36,17 +37,17 @@ class ProductController extends AdminController
         $indexes = $this->indexesToUse($subscriptions);
 
         $query = [
-            'index'   => $indexes,
-            'type'    => $products->getSearchableType(),
-            'body'    => [
+            'index' => $indexes,
+            'type' => $products->getSearchableType(),
+            'body' => [
                 'query' => [
                     'filtered' => [
                         'query' => [
-                            'match_all' => new \StdClass()
+                            'match_all' => new \StdClass(),
                         ],
-                    ]
-                ]
-            ]
+                    ],
+                ],
+            ],
         ];
 
         return $search->search('products', $query, [
@@ -54,7 +55,7 @@ class ProductController extends AdminController
             'brand.translations',
             'images',
             'images.sizes' => $thumbnailRequirements,
-            'images.translations'
+            'images.translations',
         ]);
     }
 
@@ -71,8 +72,7 @@ class ProductController extends AdminController
 
         $name = $request->get('name');
 
-        foreach(Locale::all() as $locale)
-        {
+        foreach (Locale::all() as $locale) {
             $input[$locale->slug] = ['name' => $name];
         }
 
@@ -85,7 +85,7 @@ class ProductController extends AdminController
         }
 
         return json_encode(array(
-            'status' => 'noke'
+            'status' => 'noke',
         ));
     }
 
@@ -184,24 +184,20 @@ class ProductController extends AdminController
 
         $added = new Collection();
 
-        if(!$category->original_id)
-        {
+        if (!$category->original_id) {
             //we can only add a main category if the count is 0
-            if($product->categories->count() == 0)
-            {
+            if ($product->categories->count() == 0) {
                 $category->load(['synonyms', 'synonyms.translations', 'translations']);
                 //add main category, and each synonym.
                 $this->doCategoryAttach($product, $category, $added);
 
-                foreach($category->synonyms as $synonym)
-                {
+                foreach ($category->synonyms as $synonym) {
                     $this->doCategoryAttach($product, $synonym, $added);
                 }
             }
         }
 
-        if($category->original_id)
-        {
+        if ($category->original_id) {
             $category->load(['translations']);
 
             $this->doCategoryAttach($product, $category, $added);
@@ -234,18 +230,15 @@ class ProductController extends AdminController
         $product->load('categories');
         $category->load('translations');
 
-        if($product->categories->contains($category->id))
-        {
+        if ($product->categories->contains($category->id)) {
             //is the category the main category or a synonym?
-            if(!$category->original_id)
-            {
+            if (!$category->original_id) {
                 //we can only have 1 main category and synonyms to that category
                 //so we can do an empty sync here
                 $product->categories()->sync([]);
 
                 return json_encode(['status' => 'flushed']);
-            }
-            else{
+            } else {
                 $product->categories()->detach($category);
 
                 return $category;
@@ -253,7 +246,7 @@ class ProductController extends AdminController
         }
 
         return json_encode([
-            'status' => false
+            'status' => false,
         ]);
     }
 
@@ -278,6 +271,7 @@ class ProductController extends AdminController
      * @param Product $product
      *
      * @return Product
+     *
      * @throws \Exception
      */
     protected function deleteProduct(Product $product)
@@ -324,17 +318,15 @@ class ProductController extends AdminController
     {
         $category = $product->mainCategory();
 
-        if($category)
-        {
+        if ($category) {
             $category->load(['propertyGroups', 'propertyGroups.translations', 'properties', 'properties.translations']);
 
             $product->propertyGroups = $category->propertyGroups;
 
             $product->propertyProperties = $category->properties->groupBy('group_id');
 
-            foreach($product->propertyGroups as $group){
-                if(!$product->propertyProperties->has($group->id))
-                {
+            foreach ($product->propertyGroups as $group) {
+                if (!$product->propertyProperties->has($group->id)) {
                     //make sure we can add to empty groups
                     $product->propertyProperties->put($group->id, new Collection());
                 }
@@ -344,15 +336,13 @@ class ProductController extends AdminController
 
             $propertyIds = $category->properties->lists('id')->toArray();
 
-            if(count($propertyIds))
-            {
+            if (count($propertyIds)) {
                 $product->propertyOptions = PropertyOption::with(['translations'])->whereIn('property_id', $propertyIds)->get()->groupBy('property_id');
 
-                $product->propertyOptions = $product->propertyOptions->map(function($item){
+                $product->propertyOptions = $product->propertyOptions->map(function ($item) {
                     return $item->keyBy('id');
                 });
-            }
-            else{
+            } else {
                 $product->propertyOptions = new Collection();
             }
 
@@ -365,5 +355,4 @@ class ProductController extends AdminController
     {
         return PropertyGroup::where('category_id', $category->id)->with('translations')->get();
     }
-
 }

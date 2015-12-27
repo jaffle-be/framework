@@ -11,7 +11,6 @@ use Modules\Theme\ThemeMailer;
 //has nothing to do with address info or anything.
 class SendContactEmail extends EmailJob
 {
-
     /**
      * @var AccountContactInformation
      */
@@ -65,27 +64,24 @@ class SendContactEmail extends EmailJob
     {
         //can't use the key 'message', it's being overridden probably by the mailer
         $data = array_merge([
-            'email_from'      => $this->email,
+            'email_from' => $this->email,
             'email_from_name' => $this->name,
-            'email_to'        => $this->contact->email,
+            'email_to' => $this->contact->email,
             'contact_message' => $this->message,
-            'subject'         => $this->subject,
-            'email'           => $this->email,
-            'name'            => $this->name
+            'subject' => $this->subject,
+            'email' => $this->email,
+            'name' => $this->name,
         ], $this->baseData());
 
         $me = $this;
 
-        $mailer->send('contact::email', $data, function($message) use ($me)
-        {
-            /** @var Message $message */
+        $mailer->send('contact::email', $data, function ($message) use ($me) {
+            /* @var Message $message */
             $message->subject($me->subject);
 
-            if($me->copy)
-            {
+            if ($me->copy) {
                 $message->cc($me->copy, $me->name);
             }
         });
     }
-
 }

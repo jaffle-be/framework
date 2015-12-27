@@ -1,14 +1,13 @@
-<?php namespace Modules\System\Uri;
+<?php
+
+namespace Modules\System\Uri;
 
 use Illuminate\Support\ServiceProvider;
 
 class UriServiceProvider extends ServiceProvider
 {
-
     /**
      * Register the service provider.
-     *
-     * @return void
      */
     public function boot()
     {
@@ -17,11 +16,10 @@ class UriServiceProvider extends ServiceProvider
         //if we didn't do this, this smart route would overwrite about any route we had defined elsewhere.
 
         if (env('APP_MULTIPLE_LOCALES')) {
-
             foreach (config('system.locales') as $locale) {
                 app('router')->group([
                     'as' => 'store.',
-                    'middleware' => ['web']
+                    'middleware' => ['web'],
                 ], function ($router) use ($locale) {
                     $router->get("$locale/{uri}/{suburi?}/{subesturi?}", ['uses' => 'Modules\System\Http\UriController@handle', 'as' => "$locale.uri.show"]);
                 });
@@ -29,7 +27,7 @@ class UriServiceProvider extends ServiceProvider
         } else {
             app('router')->group([
                 'as' => 'store.',
-                'middleware' => ['web']
+                'middleware' => ['web'],
             ], function ($router) {
                 $router->get('{uri}/{suburi?}/{subesturi?}', ['uses' => 'Modules\System\Http\UriController@handle', 'as' => 'uri.show']);
             });
@@ -38,11 +36,8 @@ class UriServiceProvider extends ServiceProvider
 
     /**
      * Register the service provider.
-     *
-     * @return void
      */
     public function register()
     {
     }
-
 }

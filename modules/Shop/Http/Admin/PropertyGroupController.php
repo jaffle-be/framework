@@ -1,4 +1,6 @@
-<?php namespace Modules\Shop\Http\Admin;
+<?php
+
+namespace Modules\Shop\Http\Admin;
 
 use Illuminate\Http\Request;
 use Modules\Shop\Product\PropertyGroup;
@@ -6,7 +8,6 @@ use Modules\System\Http\AdminController;
 
 class PropertyGroupController extends AdminController
 {
-
     public function store(Request $request)
     {
         $group = new PropertyGroup(translation_input($request));
@@ -23,18 +24,16 @@ class PropertyGroupController extends AdminController
 
     public function destroy(PropertyGroup $groups)
     {
-        if($groups->properties()->count() == 0)
-        {
-            if($groups->delete())
-            {
+        if ($groups->properties()->count() == 0) {
+            if ($groups->delete()) {
                 return json_encode(array(
-                    'status' => 'oke'
+                    'status' => 'oke',
                 ));
             }
         }
 
-         return json_encode(array(
-             'status' => 'noke'
+        return json_encode(array(
+             'status' => 'noke',
          ));
     }
 
@@ -42,17 +41,14 @@ class PropertyGroupController extends AdminController
     {
         $order = $request->get('order');
 
-        if(count($order))
-        {
+        if (count($order)) {
             $groups = $groups->whereIn('id', $order)
                 ->get();
 
-            foreach($groups as $group)
-            {
+            foreach ($groups as $group) {
                 $group->sort = array_search($group->id, $order);
                 $group->save();
             }
         }
     }
-
 }

@@ -1,4 +1,6 @@
-<?php namespace Modules\Shop\Console;
+<?php
+
+namespace Modules\Shop\Console;
 
 use Illuminate\Console\Command;
 use Illuminate\Foundation\Bus\DispatchesJobs;
@@ -18,7 +20,6 @@ use Modules\Shop\Product\PropertyValue;
 
 class ImportResults extends Command
 {
-
     /**
      * The name and signature of the console command.
      *
@@ -44,19 +45,14 @@ class ImportResults extends Command
         $account = $this->account();
 
         foreach ($results->hoofdcategories as $main_category) {
-
             foreach ($main_category->subcategories as $key => $sub) {
-
-                if(isset($sub->producten))
-                {
+                if (isset($sub->producten)) {
                     $category = $this->category($sub);
 
                     $group = $this->propertyGroup($category);
 
                     foreach ($sub->producten as $data) {
-
-                        if(isset($data->name, $data->product_title, $data->description))
-                        {
+                        if (isset($data->name, $data->product_title, $data->description)) {
                             $product = $this->productBase($account, $brand, $data, $category);
                             $this->productProperties($product, $data, $category, $group);
                             $this->productImages($account, $product, $data);
@@ -78,16 +74,15 @@ class ImportResults extends Command
                         'type' => 'options',
                         'category_id' => $category->id,
                         'group_id' => $group->id,
-                        'nl'   => [
+                        'nl' => [
                             'name' => $spec->spec,
                         ],
-                        'en'   => [
+                        'en' => [
                             'name' => $spec->spec,
-                        ]
+                        ],
                     ]);
                     $prop = $prop->id;
-                }
-                else{
+                } else {
                     $prop = $prop->property_id;
                 }
 
@@ -95,8 +90,7 @@ class ImportResults extends Command
                     ->where('property_id', $prop)
                     ->where('name', $spec->value)->first();
 
-                if(!$option)
-                {
+                if (!$option) {
                     $option = PropertyOption::create([
                         'property_id' => $prop,
                         'nl' => [
@@ -108,8 +102,7 @@ class ImportResults extends Command
                     ]);
 
                     $option = $option->id;
-                }
-                else{
+                } else {
                     $option = $option->option_id;
                 }
 
@@ -126,25 +119,19 @@ class ImportResults extends Command
     {
         $counter = 1;
 
-        if(isset($data->image) && !empty($data->image))
-        {
+        if (isset($data->image) && !empty($data->image)) {
             $this->addImage($account, $product, $data->image, $counter);
-            $counter++;
+            ++$counter;
         }
 
-        if(isset($data->images) && is_array($data->images))
-        {
-            foreach($data->images as $image)
-            {
-                if($image)
-                {
+        if (isset($data->images) && is_array($data->images)) {
+            foreach ($data->images as $image) {
+                if ($image) {
                     $this->addImage($account, $product, $image->image, $counter);
-                    $counter++;
+                    ++$counter;
                 }
             }
         }
-
-
     }
 
     /**
@@ -202,7 +189,7 @@ class ImportResults extends Command
                 ],
                 'en' => [
                     'name' => $title,
-                ]
+                ],
             ]);
 
             return $category;
@@ -226,7 +213,7 @@ class ImportResults extends Command
             ],
             'en' => [
                 'name' => 'other',
-            ]
+            ],
         ]));
 
         return $group;
@@ -244,15 +231,15 @@ class ImportResults extends Command
     {
         $product = Product::create([
             'account_id' => $account->id,
-            'brand_id'   => $brand,
-            'nl'         => [
-                'name'    => $data->name,
-                'title'   => $data->product_title,
+            'brand_id' => $brand,
+            'nl' => [
+                'name' => $data->name,
+                'title' => $data->product_title,
                 'content' => $data->description,
             ],
-            'en'         => [
-                'name'    => $data->name,
-            ]
+            'en' => [
+                'name' => $data->name,
+            ],
         ]);
 
         $product->categories()->save($category);
@@ -267,7 +254,7 @@ class ImportResults extends Command
      */
     protected function addImage($account, $product, $url, $counter)
     {
-        $path = base_path('storage') . '/image_' . str_replace('/', '_', $product->name) . $counter . '.jpg';
+        $path = base_path('storage').'/image_'.str_replace('/', '_', $product->name).$counter.'.jpg';
 
         if (!app('files')->exists($path)) {
             $content = file_get_contents($url);
@@ -278,10 +265,8 @@ class ImportResults extends Command
 
         $image = getimagesize($path);
 
-        if($image[0] > 270)
-        {
+        if ($image[0] > 270) {
             $this->dispatch(new StoreNewImage($account, $product, $path));
         }
     }
-
 }

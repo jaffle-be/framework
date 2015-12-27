@@ -1,4 +1,6 @@
-<?php namespace Modules\Shop\Presenter;
+<?php
+
+namespace Modules\Shop\Presenter;
 
 use Modules\Media\Shortcodes\MediaShortcodes;
 use Modules\System\Presenter\BasePresenter;
@@ -7,7 +9,6 @@ use Modules\System\Presenter\ShortCodeCompiler;
 
 class ProductFrontPresenter extends BasePresenter
 {
-
     protected $shortcodes = ['media'];
 
     use ContentPresenterTrait;
@@ -24,5 +25,4 @@ class ProductFrontPresenter extends BasePresenter
 
         return $string;
     }
-
 }

@@ -1,14 +1,14 @@
-<?php namespace Modules\Account\Jobs\Membership;
+<?php
+
+namespace Modules\Account\Jobs\Membership;
 
 use App\Jobs\Job;
-
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Modules\Account\MembershipInvitation;
 use Modules\Account\MembershipOwner;
 
 class AcceptMembership extends Job
 {
-
     use DispatchesJobs;
 
     protected $invitation;
@@ -32,5 +32,4 @@ class AcceptMembership extends Job
 
         return false;
     }
-
 }

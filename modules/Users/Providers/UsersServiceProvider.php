@@ -1,14 +1,14 @@
-<?php namespace Modules\Users\Providers;
+<?php
+
+namespace Modules\Users\Providers;
 
 use Carbon\Carbon;
-use Illuminate\Cache\Repository;
 use Illuminate\Redis\Database;
 use Modules\Users\Auth\Throttler\ThrottleManager;
 use Modules\System\ServiceProvider;
 
 class UsersServiceProvider extends ServiceProvider
 {
-
     protected $namespace = 'users';
 
     public function register()
@@ -29,8 +29,7 @@ class UsersServiceProvider extends ServiceProvider
 
     protected function bindAuthThrottler()
     {
-        $this->app->singleton(ThrottleManager::class, function()
-        {
+        $this->app->singleton(ThrottleManager::class, function () {
             /* @var $redis Database */
             $redis = app('redis')->connection(config('cache.stores.redis.connection'));
 

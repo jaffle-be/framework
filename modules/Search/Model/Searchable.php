@@ -7,7 +7,6 @@ use Modules\Search\SearchServiceInterface;
 
 interface Searchable
 {
-
     /**
      * Set the client for searching.
      *
@@ -107,7 +106,8 @@ interface Searchable
 
     /**
      * Return the data for elastic suggestions
-     * if $inheritFrom is passed, it will use that to name the suggest
+     * if $inheritFrom is passed, it will use that to name the suggest.
+     *
      * @param Searchable|null $inheritFrom
      *
      * @return mixed

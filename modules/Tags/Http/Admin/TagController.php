@@ -1,4 +1,6 @@
-<?php namespace Modules\Tags\Http\Admin;
+<?php
+
+namespace Modules\Tags\Http\Admin;
 
 use Illuminate\Http\Request;
 use Illuminate\Pagination\Paginator;
@@ -12,7 +14,6 @@ use Modules\Tags\Tag;
 
 class TagController extends AdminController
 {
-
     public function widget()
     {
         return view('tags::admin.widget');
@@ -38,7 +39,7 @@ class TagController extends AdminController
             })
             ->whereHas('translations', function ($q) use ($value, $locale) {
                 $q->where('locale', $locale);
-                $q->where('name', 'like', '%' . $value . '%');
+                $q->where('name', 'like', '%'.$value.'%');
             })
             ->paginate(10);
 
@@ -61,7 +62,6 @@ class TagController extends AdminController
         $owner = $this->owner($request);
 
         if ($owner) {
-
             $tag = $this->dispatch(new CreateNewTag($locale, $name));
 
             if ($tag) {
@@ -80,7 +80,6 @@ class TagController extends AdminController
 
         //if the owner didn't contain the tag, we wanted to add it.
         if (!$owner->tags->contains($tag->id)) {
-
             $this->dispatch(new TagSomething($tag, $owner));
         }
 
@@ -102,7 +101,7 @@ class TagController extends AdminController
 
         $owner->load([
             'tags',
-            'tags.translations'
+            'tags.translations',
         ]);
 
         return $owner->tags;
@@ -128,5 +127,4 @@ class TagController extends AdminController
 
         return $finder->findOrFail($ownerId);
     }
-
 }

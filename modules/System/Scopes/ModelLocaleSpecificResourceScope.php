@@ -1,4 +1,6 @@
-<?php namespace Modules\System\Scopes;
+<?php
+
+namespace Modules\System\Scopes;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
@@ -7,7 +9,6 @@ use Modules\System\Locale;
 
 class ModelLocaleSpecificResourceScope implements Scope
 {
-
     protected $locale;
 
     public function __construct(Locale $locale)
@@ -25,5 +26,4 @@ class ModelLocaleSpecificResourceScope implements Scope
             $builder->where('locale_id', $locale->getKey());
         }
     }
-
 }

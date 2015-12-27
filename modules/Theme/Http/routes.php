@@ -1,16 +1,16 @@
 <?php
 
 /**
- * store controllers
+ * store controllers.
  */
 Route::group([
     'namespace' => 'Modules\Theme\Http',
-    'as'        => 'store.',
+    'as' => 'store.',
     'middleware' => ['web'],
 ], function () {
 
     Route::group([
-        'namespace' => 'Admin'
+        'namespace' => 'Admin',
     ], function () {
         Route::group(['prefix' => 'templates/admin'], function () {
             //template files, load at top so we do not end up in the show method

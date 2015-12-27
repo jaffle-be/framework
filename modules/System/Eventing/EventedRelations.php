@@ -1,18 +1,19 @@
-<?php namespace Modules\System\Eventing;
+<?php
+
+namespace Modules\System\Eventing;
 
 trait EventedRelations
 {
-
     /**
-     * EXACT COPY FROM SOURCE, BUT THE OBJECT CREATED IS IN OUR NAMESPACE
+     * EXACT COPY FROM SOURCE, BUT THE OBJECT CREATED IS IN OUR NAMESPACE.
      *
      * Define a many-to-many relationship.
      *
-     * @param  string $related
-     * @param  string $table
-     * @param  string $foreignKey
-     * @param  string $otherKey
-     * @param  string $relation
+     * @param string $related
+     * @param string $table
+     * @param string $foreignKey
+     * @param string $otherKey
+     * @param string $relation
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
@@ -22,7 +23,7 @@ trait EventedRelations
         // name of the calling function. We will use that function name as the
         // title of this relation since that is a great convention to apply.
         if (is_null($relation) || empty($relation)) {
-            throw new \InvalidArgumentException('You should name evented relations in ' . get_called_class());
+            throw new \InvalidArgumentException('You should name evented relations in '.get_called_class());
         }
 
         // First, we'll need to determine the foreign key and "other key" for the
@@ -30,7 +31,7 @@ trait EventedRelations
         // instances as well as the relationship instances we need for this.
         $foreignKey = $foreignKey ?: $this->getForeignKey();
 
-        $instance = new $related;
+        $instance = new $related();
 
         $otherKey = $otherKey ?: $instance->getForeignKey();
 
@@ -49,5 +50,4 @@ trait EventedRelations
         //ALMOST EXACT COPY (EXCEPT THE ERROR THROWN AT THE TOP), BUT THE OBJECT CREATED IS WITHIN OUR NAMESPACE
         return new BelongsToMany($query, $this, $table, $foreignKey, $otherKey, $relation);
     }
-
 }

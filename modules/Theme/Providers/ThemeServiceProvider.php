@@ -10,7 +10,6 @@ use Modules\System\ServiceProvider;
 
 class ThemeServiceProvider extends ServiceProvider
 {
-
     protected $namespace = 'theme';
 
     public function boot()
@@ -24,8 +23,6 @@ class ThemeServiceProvider extends ServiceProvider
 
     /**
      * Register the service provider.
-     *
-     * @return void
      */
     public function register()
     {
@@ -61,7 +58,7 @@ class ThemeServiceProvider extends ServiceProvider
 
     protected function registerThemeServiceProviders()
     {
-        /**
+        /*
          * @todo improve registering theme service providers
          *
          *       This should only happen once at the theme selection page.
@@ -78,5 +75,4 @@ class ThemeServiceProvider extends ServiceProvider
             $this->app->register(sprintf('Themes\\%s\\Providers\\%sServiceProvider', $theme, $theme));
         }
     }
-
 }

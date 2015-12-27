@@ -1,4 +1,6 @@
-<?php namespace Modules\Tags;
+<?php
+
+namespace Modules\Tags;
 
 use Illuminate\Database\Eloquent\Model;
 use Modules\Search\Model\Searchable;
@@ -8,12 +10,11 @@ use Modules\System\Translatable\Translatable;
 
 class Tag extends Model implements Searchable
 {
-
     use Translatable;
     use ModelAccountResource;
     use SearchableTrait;
 
-    protected $table = "tags";
+    protected $table = 'tags';
 
     protected $with = 'translations';
 
@@ -22,15 +23,15 @@ class Tag extends Model implements Searchable
     protected $translatedAttributes = ['name'];
 
     protected static $searchableMapping = [
-        'id'         => ['type' => 'integer'],
-        'account_id'  => ['type' => 'integer'],
+        'id' => ['type' => 'integer'],
+        'account_id' => ['type' => 'integer'],
         'created_at' => [
-            'type'   => 'date',
-            'format' => 'yyyy-MM-dd HH:mm:ss'
+            'type' => 'date',
+            'format' => 'yyyy-MM-dd HH:mm:ss',
         ],
         'updated_at' => [
-            'type'   => 'date',
-            'format' => 'yyyy-MM-dd HH:mm:ss'
+            'type' => 'date',
+            'format' => 'yyyy-MM-dd HH:mm:ss',
         ],
     ];
 
@@ -51,12 +52,11 @@ class Tag extends Model implements Searchable
 
     public function getCubeportfolioAttribute()
     {
-        return 'cube' . str_slug(ucfirst($this->name));
+        return 'cube'.str_slug(ucfirst($this->name));
     }
 
     public function newCollection(array $models = [])
     {
         return new TagCollection($models);
     }
-
 }

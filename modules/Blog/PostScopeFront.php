@@ -1,4 +1,6 @@
-<?php namespace Modules\Blog;
+<?php
+
+namespace Modules\Blog;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
@@ -7,7 +9,6 @@ use Illuminate\Database\Eloquent\Scope;
 
 class PostScopeFront implements Scope
 {
-
     public function apply(Builder $builder, Model $model)
     {
         $builder->join('post_translations', function ($join) {
@@ -18,5 +19,4 @@ class PostScopeFront implements Scope
 
         $builder->select(['posts.*']);
     }
-
 }

@@ -1,15 +1,14 @@
-<?php namespace Modules\Theme;
+<?php
+
+namespace Modules\Theme;
 
 use Modules\Account\AccountManager;
 
 /**
- * Class ThemeActivator
- *
- * @package Modules\Theme
+ * Class ThemeActivator.
  */
 class ThemeActivator
 {
-
     /**
      * @var Theme
      */
@@ -36,5 +35,4 @@ class ThemeActivator
         $this->account = $manager->account();
         $this->selector = $selection;
     }
-
 }

@@ -2,7 +2,7 @@
 
 return [
 
-    'installed'          => false,
+    'installed' => false,
 
     /*
     |--------------------------------------------------------------------------
@@ -12,7 +12,7 @@ return [
     | Contains an array with the applications available locales.
     |
     */
-    'locales'            => ['en', 'nl', 'fr', 'de'],
+    'locales' => ['en', 'nl', 'fr', 'de'],
 
     /*
     |--------------------------------------------------------------------------
@@ -24,7 +24,7 @@ return [
     | instance, this value will be overridden by the property
     | $useTranslationFallback when defined
     */
-    'use_fallback'       => false,
+    'use_fallback' => false,
 
     /*
     |--------------------------------------------------------------------------
@@ -36,7 +36,7 @@ return [
     | set it to false.
     |
     */
-    'fallback_locale'    => 'en',
+    'fallback_locale' => 'en',
 
     /*
     |--------------------------------------------------------------------------
@@ -59,7 +59,7 @@ return [
     | translation model.
     |
     */
-    'locale_key'         => 'locale',
+    'locale_key' => 'locale',
 
     /*
     |--------------------------------------------------------------------------
@@ -73,19 +73,19 @@ return [
     | Set this to true only if you understand the security risks.
     |
     */
-    'always_fillable'    => false,
+    'always_fillable' => false,
 
-    'seo'                => [
+    'seo' => [
 
         'webmaster_tools' => [
-            'google'    => null,
-            'bing'      => null,
-            'alexa'     => null,
+            'google' => null,
+            'bing' => null,
+            'alexa' => null,
             'pinterest' => null,
-            'yandex'    => null
+            'yandex' => null,
         ],
 
-        'providers'       => [
+        'providers' => [
             Modules\System\Seo\Providers\Generic::class,
             Modules\System\Seo\Providers\Google::class,
             Modules\System\Seo\Providers\Twitter::class,
@@ -95,63 +95,63 @@ return [
         //these hold values per provider, that should have defaults per website
         //but should not be included in every request, mostly depending on the 'type'
         //that's been defined, we'll include a subset of attributes specific to that type only.
-        'defaults'        => [
-            'twitter'  => [
+        'defaults' => [
+            'twitter' => [
 
             ],
             'facebook' => [
                 'article' => [
                     //link to facebook profile or facebook id
-                    'author'    => null,
+                    'author' => null,
                     //link to facebook profile or facebook id
                     'publisher' => null,
-                ]
+                ],
             ],
-            'google'   => [
+            'google' => [
                 'article' => [
-                    'author'    => 'https://www.facebook.com/thomas.warlop',
+                    'author' => 'https://www.facebook.com/thomas.warlop',
                     'publisher' => 'https://www.facebook.com/thomas.warlop',
-                ]
-            ]
+                ],
+            ],
         ],
 
-        'generic'         => [
-            'title'       => 'Digiredo', // set false to total remove
+        'generic' => [
+            'title' => 'Digiredo', // set false to total remove
             'description' => 'A multipurpose platform', // set false to total remove
-            'keywords'    => 'a multipurpose larangular platform'
+            'keywords' => 'a multipurpose larangular platform',
         ],
 
-        'twitter'         => [
-            'card'    => 'summary_large_image',
-            'site'    => '@twarlop',
+        'twitter' => [
+            'card' => 'summary_large_image',
+            'site' => '@twarlop',
             'creator' => '@twarlop',
         ],
 
-        'facebook'        => [
-            'app_id'      => null,
-            'type'        => 'website',
-            'title'       => 'Digiredo', // set false to total remove
+        'facebook' => [
+            'app_id' => null,
+            'type' => 'website',
+            'title' => 'Digiredo', // set false to total remove
             'description' => 'A multipurpose platform', // set false to total remove
-            'url'         => false,
-            'site_name'   => 'digiredo.be',
-            'images'      => [],
+            'url' => false,
+            'site_name' => 'digiredo.be',
+            'images' => [],
         ],
 
-        'google'          => [
-            'type'        => 'website',
-            'site_name'   => 'digiredo.be',
-            'title'       => 'Digiredo', // set false to total remove
+        'google' => [
+            'type' => 'website',
+            'site_name' => 'digiredo.be',
+            'title' => 'Digiredo', // set false to total remove
             'description' => 'A multipurpose platform', // set false to total remove
-            'url'         => false,
-            'images'      => [],
+            'url' => false,
+            'images' => [],
         ],
 
-        'owners'          => [
-            'pages'     => Modules\Pages\Page::class,
-            'blog'      => Modules\Blog\Post::class,
+        'owners' => [
+            'pages' => Modules\Pages\Page::class,
+            'blog' => Modules\Blog\Post::class,
             'portfolio' => Modules\Portfolio\Project::class,
-            'product'   => Modules\Shop\Product\Product::class,
-        ]
+            'product' => Modules\Shop\Product\Product::class,
+        ],
 
     ],
 ];

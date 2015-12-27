@@ -1,4 +1,6 @@
-<?php namespace Modules\Shop\Jobs\Gamma\Notification\Handlers;
+<?php
+
+namespace Modules\Shop\Jobs\Gamma\Notification\Handlers;
 
 use App\Jobs\Job;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -11,7 +13,6 @@ use Pusher;
 
 class DenyGammaNotification extends Job implements ShouldQueue
 {
-
     use DispatchesJobs;
 
     protected $notification;
@@ -58,8 +59,8 @@ class DenyGammaNotification extends Job implements ShouldQueue
 
         if (!$exists) {
             $gamma->create([
-                'account_id'  => $this->notification->account_id,
-                'brand_id'    => $this->notification->brand_id,
+                'account_id' => $this->notification->account_id,
+                'brand_id' => $this->notification->brand_id,
                 'category_id' => $this->notification->category_id,
             ]);
         }
@@ -94,5 +95,4 @@ class DenyGammaNotification extends Job implements ShouldQueue
     {
         $this->dispatch(new CleanupDetail($this->notification->brand, $this->notification->category, $this->notification->account));
     }
-
 }

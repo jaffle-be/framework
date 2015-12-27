@@ -1,4 +1,6 @@
-<?php namespace Modules\Media;
+<?php
+
+namespace Modules\Media;
 
 use Illuminate\Contracts\Config\Repository;
 use InvalidArgumentException;
@@ -6,7 +8,6 @@ use Modules\Theme\ThemeManager;
 
 class Configurator
 {
-
     protected $config;
 
     protected $owners;
@@ -39,12 +40,12 @@ class Configurator
 
     public function getPublicBasePath(StoresMedia $owner)
     {
-        return public_path($this->config->get('media.path') . '/' . $owner->getMediaFolder());
+        return public_path($this->config->get('media.path').'/'.$owner->getMediaFolder());
     }
 
     public function getPublicPath(StoresMedia $owner, $type, $size = null)
     {
-        $path = $this->config->get('media.path') . '/' . $owner->getMediaFolder($type, $size);
+        $path = $this->config->get('media.path').'/'.$owner->getMediaFolder($type, $size);
 
         return public_path($path);
     }
@@ -55,7 +56,7 @@ class Configurator
             throw new InvalidArgumentException('Need to pass a proper media type');
         }
 
-        return $this->config->get('media.path') . '/' . $owner->getMediaFolder($type, $size);
+        return $this->config->get('media.path').'/'.$owner->getMediaFolder($type, $size);
     }
 
     /**
@@ -79,7 +80,7 @@ class Configurator
             $name = strtolower($current->name);
         }
 
-        $config = $this->config->get($name . '.media.images.' . $alias);
+        $config = $this->config->get($name.'.media.images.'.$alias);
 
         //add our dimension for the admin, flip to be able to merge
         $sizes = array_merge(array_flip($config), array_flip($this->config->get('media.admin.image')));
@@ -99,7 +100,7 @@ class Configurator
     }
 
     /**
-     * Return the alias used for the given media owner type
+     * Return the alias used for the given media owner type.
      *
      * @param StoresMedia $owner
      *
@@ -117,7 +118,7 @@ class Configurator
     }
 
     /**
-     * Return the full classname for the media owner type for the given alias
+     * Return the full classname for the media owner type for the given alias.
      *
      * @param $alias
      */
@@ -152,5 +153,4 @@ class Configurator
     {
         return count($this->getTypes($type)) > 0;
     }
-
 }

@@ -1,4 +1,6 @@
-<?php namespace Modules\Shop\Gamma;
+<?php
+
+namespace Modules\Shop\Gamma;
 
 use Illuminate\Database\Eloquent\Collection;
 use Modules\Shop\Product\Brand;
@@ -7,7 +9,6 @@ use Modules\Shop\Product\Category;
 
 class GammaRepository implements GammaRepositoryInterface
 {
-
     protected $brands;
 
     protected $categories;
@@ -52,5 +53,4 @@ class GammaRepository implements GammaRepositoryInterface
 
         return $this->catalog->findBrands($ids);
     }
-
 }

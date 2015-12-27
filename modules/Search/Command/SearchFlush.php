@@ -1,12 +1,12 @@
-<?php namespace Modules\Search\Command;
+<?php
+
+namespace Modules\Search\Command;
 
 use Illuminate\Console\Command;
 use Modules\Search\SearchServiceInterface;
-use Symfony\Component\Console\Input\InputArgument;
 
 class SearchFlush extends Command
 {
-
     /**
      * The console command name.
      *

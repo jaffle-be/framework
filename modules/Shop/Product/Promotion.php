@@ -1,11 +1,12 @@
-<?php namespace Modules\Shop\Product;
+<?php
+
+namespace Modules\Shop\Product;
 
 use Illuminate\Database\Eloquent\Model;
 use Modules\System\Scopes\ModelAccountResource;
 
 class Promotion extends Model
 {
-
     use ModelAccountResource;
 
     protected $table = 'product_promotions';
@@ -26,5 +27,4 @@ class Promotion extends Model
     {
         return $this->belongsTo('Modules\Shop\Product\Product');
     }
-
 }

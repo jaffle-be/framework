@@ -1,4 +1,6 @@
-<?php namespace Modules\Shop\Http\Admin;
+<?php
+
+namespace Modules\Shop\Http\Admin;
 
 use Illuminate\Http\Request;
 use Modules\Shop\Product\PropertyValue;
@@ -6,18 +8,16 @@ use Modules\System\Http\AdminController;
 
 class PropertyValueController extends AdminController
 {
-
     public function store(PropertyValue $values, Request $request)
     {
         $value = $values->newInstance(translation_input($request));
 
-        if($value->save())
-        {
+        if ($value->save()) {
             return $value;
         }
 
         return json_encode(array(
-            'status' => 'noke'
+            'status' => 'noke',
         ));
     }
 
@@ -25,33 +25,29 @@ class PropertyValueController extends AdminController
     {
         $values->fill(translation_input($request));
 
-        if($values->save())
-        {
+        if ($values->save()) {
             return json_encode(array(
-                'status' => 'oke'
+                'status' => 'oke',
             ));
         }
 
         return json_encode(array(
-            'status' => 'noke'
+            'status' => 'noke',
         ));
     }
 
     public function destroy(PropertyValue $values)
     {
-        if($values->id)
-        {
-            if($values->delete())
-            {
+        if ($values->id) {
+            if ($values->delete()) {
                 return json_encode(array(
-                    'status' => 'oke'
+                    'status' => 'oke',
                 ));
             }
         }
 
         return json_encode(array(
-            'status' => 'noke'
+            'status' => 'noke',
         ));
     }
-
 }

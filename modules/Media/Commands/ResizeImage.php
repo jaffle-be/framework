@@ -1,8 +1,9 @@
-<?php namespace Modules\Media\Commands;
+<?php
+
+namespace Modules\Media\Commands;
 
 use App\Jobs\Job;
 use Exception;
-
 use Illuminate\Filesystem\Filesystem;
 use Intervention\Image\ImageManager;
 use Modules\Media\Image;
@@ -11,7 +12,6 @@ use Modules\Media\MediaRepositoryInterface;
 
 class ResizeImage extends Job
 {
-
     use ImageDimensionHelpers;
 
     protected $image;
@@ -67,8 +67,7 @@ class ResizeImage extends Job
 
             try {
                 $media->createThumbnailImage($this->getPayload($width, $height, $path), $this->image);
-            }
-            catch (Exception $e) {
+            } catch (Exception $e) {
                 $files->delete(public_path($path));
 
                 unset($image);
@@ -82,14 +81,13 @@ class ResizeImage extends Job
 
     /**
      * @param Filesystem $files
-     *
      * @param bool       $public
      *
      * @return string
      */
     protected function getFolder(Filesystem $files, $public = false)
     {
-        $base = $this->directory . '/' . $this->size;
+        $base = $this->directory.'/'.$this->size;
 
         $folder = public_path($base);
 
@@ -113,7 +111,7 @@ class ResizeImage extends Job
     {
         $folder = $this->getFolder($files, $public);
 
-        $path = $folder . '/' . $this->filename;
+        $path = $folder.'/'.$this->filename;
 
         return $path;
     }
@@ -128,11 +126,11 @@ class ResizeImage extends Job
     protected function getPayload($width, $height, $path)
     {
         return [
-            'filename'  => $this->filename,
-            'width'     => $width,
-            'height'    => $height,
+            'filename' => $this->filename,
+            'width' => $width,
+            'height' => $height,
             'extension' => $this->extension,
-            'path'      => $path,
+            'path' => $path,
         ];
     }
 }

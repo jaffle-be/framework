@@ -1,10 +1,11 @@
-<?php namespace Modules\Users\Auth\Tokens;
+<?php
+
+namespace Modules\Users\Auth\Tokens;
 
 use Illuminate\Database\Eloquent\Model;
 
 class Token extends Model
 {
-
     const TYPE_RESET = 0;
     const TYPE_CONFIRMATION = 1;
 
@@ -17,7 +18,6 @@ class Token extends Model
     protected $dates = ['expires_at'];
 
     protected $cast = [
-        'token_type' => 'int'
+        'token_type' => 'int',
     ];
-
 }

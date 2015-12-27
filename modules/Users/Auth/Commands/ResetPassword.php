@@ -1,7 +1,8 @@
-<?php namespace Modules\Users\Auth\Commands;
+<?php
+
+namespace Modules\Users\Auth\Commands;
 
 use App\Jobs\Job;
-
 use Illuminate\Contracts\Hashing\Hasher;
 use Modules\Users\Auth\Tokens\Token;
 use Modules\Users\Contracts\UserRepositoryInterface;
@@ -9,7 +10,6 @@ use Modules\Users\User;
 
 class ResetPassword extends Job
 {
-
     /**
      * @var string
      */
@@ -32,8 +32,6 @@ class ResetPassword extends Job
 
     /**
      * Create a new command instance.
-     *
-     * @return void
      */
     public function __construct($email, Token $token, $password, $password_confirmation)
     {

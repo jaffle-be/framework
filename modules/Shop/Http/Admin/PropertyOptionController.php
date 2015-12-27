@@ -1,4 +1,6 @@
-<?php namespace Modules\Shop\Http\Admin;
+<?php
+
+namespace Modules\Shop\Http\Admin;
 
 use Illuminate\Http\Request;
 use Modules\Shop\Product\PropertyOption;
@@ -10,13 +12,12 @@ class PropertyOptionController extends AdminController
     {
         $option = $options->newInstance(translation_input($request));
 
-        if($option->save())
-        {
+        if ($option->save()) {
             return $option;
         }
 
         return json_encode(array(
-            'status' => 'noke'
+            'status' => 'noke',
         ));
     }
 
@@ -24,32 +25,29 @@ class PropertyOptionController extends AdminController
     {
         $options->fill(translation_input($request));
 
-        if($options->save())
-        {
+        if ($options->save()) {
             return json_encode(array(
-                'status' => 'oke'
+                'status' => 'oke',
             ));
         }
 
         return json_encode(array(
-            'status' => 'noke'
+            'status' => 'noke',
         ));
     }
 
     public function destroy(PropertyOption $options)
     {
-        if($options->id)
-        {
-            if($options->delete())
-            {
+        if ($options->id) {
+            if ($options->delete()) {
                 return json_encode(array(
-                    'status' => 'oke'
+                    'status' => 'oke',
                 ));
             }
         }
 
         return json_encode(array(
-            'status' => 'noke'
+            'status' => 'noke',
         ));
     }
 }

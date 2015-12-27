@@ -3,13 +3,11 @@
 namespace Modules\Contact\Jobs;
 
 use App\Jobs\Job;
-
 use Modules\Contact\Address;
 use Modules\System\Country\CountryRepository;
 
 class UpdateAddress extends Job
 {
-
     /**
      * @var Address
      */
@@ -22,7 +20,6 @@ class UpdateAddress extends Job
 
     public function __construct(Address $address, array $input)
     {
-
         $this->address = $address;
         $this->input = $input;
     }
@@ -49,5 +46,4 @@ class UpdateAddress extends Job
 
         return false;
     }
-
 }

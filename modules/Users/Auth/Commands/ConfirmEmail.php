@@ -1,14 +1,14 @@
-<?php namespace Modules\Users\Auth\Commands;
+<?php
+
+namespace Modules\Users\Auth\Commands;
 
 use App\Jobs\Job;
 use Illuminate\Contracts\Auth\Guard;
-
 use Modules\Users\Auth\Tokens\Token;
 use Modules\Users\Contracts\UserRepositoryInterface;
 
 class ConfirmEmail extends Job
 {
-
     protected $token;
 
     public function __construct(Token $token)
@@ -38,5 +38,4 @@ class ConfirmEmail extends Job
 
         return $user;
     }
-
 }

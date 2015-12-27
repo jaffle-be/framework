@@ -1,10 +1,11 @@
-<?php namespace Modules\Theme;
+<?php
+
+namespace Modules\Theme;
 
 use Illuminate\Database\Migrations\Migration;
 
 class ThemeSettingMigration extends Migration
 {
-
     use MigrateThemeSettings;
 
     protected $name;
@@ -35,5 +36,4 @@ class ThemeSettingMigration extends Migration
         ThemeSetting::whereIn('key', $this->settingKeys())
             ->delete();
     }
-
 }

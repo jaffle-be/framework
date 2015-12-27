@@ -1,4 +1,6 @@
-<?php namespace Modules\Account\Jobs\Membership;
+<?php
+
+namespace Modules\Account\Jobs\Membership;
 
 use App\Jobs\EmailJob;
 use Illuminate\Translation\Translator;
@@ -19,10 +21,9 @@ class SendInvitationEmail extends EmailJob
     {
         $data = array_merge($this->baseData(), [
             'invitation' => $this->invitation,
-            'email_to' => $this->invitation->email
+            'email_to' => $this->invitation->email,
         ]);
 
         return $mailer->send('account::admin.members.invitation.email', $data, $lang->get('account::admin.users.you-are-invited'));
     }
-
 }

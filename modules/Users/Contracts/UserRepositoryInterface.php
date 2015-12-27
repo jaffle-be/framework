@@ -1,8 +1,9 @@
-<?php namespace Modules\Users\Contracts;
+<?php
+
+namespace Modules\Users\Contracts;
 
 interface UserRepositoryInterface
 {
-
     /**
      * @param $token
      *

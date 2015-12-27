@@ -1,10 +1,11 @@
-<?php namespace Modules\Pages;
+<?php
+
+namespace Modules\Pages;
 
 use Illuminate\Contracts\Auth\Guard;
 
 class PageObserver
 {
-
     /**
      * @var Guard
      */
@@ -24,5 +25,4 @@ class PageObserver
             $post->user()->associate($this->auth->user());
         }
     }
-
 }

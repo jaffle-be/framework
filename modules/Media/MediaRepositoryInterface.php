@@ -1,4 +1,6 @@
-<?php namespace Modules\Media;
+<?php
+
+namespace Modules\Media;
 
 use Modules\Media\Files\File;
 use Modules\Media\Infographics\Infographic;
@@ -6,7 +8,6 @@ use Modules\Media\Video\Video;
 
 interface MediaRepositoryInterface
 {
-
     /**
      * @param $type
      * @param $id
@@ -62,5 +63,4 @@ interface MediaRepositoryInterface
      * @return File|bool
      */
     public function createFile(StoresMedia $owner, array $payload);
-
 }

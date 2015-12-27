@@ -1,8 +1,9 @@
-<?php namespace Modules\Portfolio;
+<?php
+
+namespace Modules\Portfolio;
 
 class PortfolioRepository implements PortfolioRepositoryInterface
 {
-
     /**
      * @var Project
      */
@@ -17,5 +18,4 @@ class PortfolioRepository implements PortfolioRepositoryInterface
     {
         return $this->project->orderBy('date', 'desc')->take($limit)->get();
     }
-
 }

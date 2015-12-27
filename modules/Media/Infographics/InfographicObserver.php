@@ -1,15 +1,14 @@
-<?php namespace Modules\Media\Infographics;
+<?php
+
+namespace Modules\Media\Infographics;
 
 use Illuminate\Filesystem\Filesystem;
 
 /**
- * Class InfographicObserver
- *
- * @package Media
+ * Class InfographicObserver.
  */
 class InfographicObserver
 {
-
     /**
      * @var Filesystem
      */
@@ -43,5 +42,4 @@ class InfographicObserver
     {
         $this->files->delete(public_path($graphic->path));
     }
-
 }

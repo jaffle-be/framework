@@ -1,11 +1,12 @@
-<?php namespace Modules\Contact;
+<?php
+
+namespace Modules\Contact;
 
 use Illuminate\Database\Eloquent\Model;
 use Modules\System\Scopes\ModelAccountResource;
 
 class SocialLinks extends Model
 {
-
     use ModelAccountResource;
 
     protected $table = 'contact_social_links';
@@ -48,5 +49,4 @@ class SocialLinks extends Model
 
         return array_flip(array_except($fillable, ['id', 'account_id']));
     }
-
 }

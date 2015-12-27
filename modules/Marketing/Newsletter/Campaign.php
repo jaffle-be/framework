@@ -1,4 +1,6 @@
-<?php namespace Modules\Marketing\Newsletter;
+<?php
+
+namespace Modules\Marketing\Newsletter;
 
 use Illuminate\Database\Eloquent\Model;
 use Modules\Media\StoresMedia;
@@ -8,7 +10,6 @@ use Modules\System\Translatable\Translatable;
 
 class Campaign extends Model implements StoresMedia
 {
-
     protected $media = '{account}/newsletters';
 
     use StoringMedia;

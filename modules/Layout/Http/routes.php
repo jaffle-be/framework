@@ -2,7 +2,7 @@
 
 Route::group([
     'namespace' => 'Modules\Layout\Http',
-    'as'        => 'store.',
+    'as' => 'store.',
     'middleware' => ['web'],
 ],
     function () {

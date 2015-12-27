@@ -1,4 +1,6 @@
-<?php namespace Modules\Portfolio\Http\Admin;
+<?php
+
+namespace Modules\Portfolio\Http\Admin;
 
 use Illuminate\Http\Request;
 use Modules\Account\AccountManager;
@@ -7,7 +9,6 @@ use Modules\System\Http\AdminController;
 
 class CollaborationController extends AdminController
 {
-
     public function index(Project $portfolio, AccountManager $manager)
     {
         $account = $manager->account();
@@ -33,5 +34,4 @@ class CollaborationController extends AdminController
             $portfolio->collaborators()->detach($request->get('member'));
         }
     }
-
 }

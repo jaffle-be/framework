@@ -1,4 +1,6 @@
-<?php namespace Modules\Menu\Http\Admin;
+<?php
+
+namespace Modules\Menu\Http\Admin;
 
 use Illuminate\Http\Request;
 use Modules\Account\AccountManager;
@@ -13,7 +15,6 @@ use Modules\Theme\ThemeManager;
 
 class MenuItemController extends AdminController
 {
-
     /**
      * @var MenuManager
      */
@@ -66,7 +67,6 @@ class MenuItemController extends AdminController
                 }
             }
         } else {
-
             $rules = [
                 'url' => 'required',
             ];
@@ -113,5 +113,4 @@ class MenuItemController extends AdminController
 
         return $this->menu->deleteItem($item);
     }
-
 }

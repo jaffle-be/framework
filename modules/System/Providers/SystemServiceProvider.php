@@ -12,7 +12,6 @@ use Webuni\CommonMark\AttributesExtension\AttributesExtension;
 
 class SystemServiceProvider extends ServiceProvider
 {
-
     protected $namespace = 'system';
 
     public function boot()
@@ -28,13 +27,11 @@ class SystemServiceProvider extends ServiceProvider
 
     /**
      * Register the service provider.
-     *
-     * @return void
      */
     public function register()
     {
         $this->app->singleton('Pusher', function ($app) {
-            $config = $this->app['config']->get("broadcasting.connections.pusher");
+            $config = $this->app['config']->get('broadcasting.connections.pusher');
 
             return new \Pusher($config['key'], $config['secret'], $config['app_id'], array_get($config, 'options', []));
         });
@@ -78,7 +75,7 @@ class SystemServiceProvider extends ServiceProvider
      */
     protected function viewGlobals()
     {
-        /** @var Factory $view */
+        /* @var Factory $view */
         $this->app['view']->composer('*', function (View $view) {
 
             if (!isset($view['account'])) {
@@ -105,9 +102,9 @@ class SystemServiceProvider extends ServiceProvider
          */
         Blade::directive('copyright', function ($expression) {
 
-            $format = "%s &copy; <a target=\"_blank\" href=\"%s\">%s</a> All Rights Reserved.";
+            $format = '%s &copy; <a target="_blank" href="%s">%s</a> All Rights Reserved.';
 
-            return sprintf($format, \Carbon\Carbon::now()->format('Y'), "http://digiredo.be", "Digiredo");
+            return sprintf($format, \Carbon\Carbon::now()->format('Y'), 'http://digiredo.be', 'Digiredo');
         });
     }
 
@@ -136,5 +133,4 @@ class SystemServiceProvider extends ServiceProvider
     {
         $this->app['events']->listen('eloquent.saving: *', 'Modules\System\Presenter\PresentableCacher');
     }
-
 }

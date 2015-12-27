@@ -1,11 +1,11 @@
 <?php
 
 /**
- * store controllers
+ * store controllers.
  */
 Route::group([
     'namespace' => 'Modules\Tags\Http',
-    'as'        => 'store.',
+    'as' => 'store.',
     'middleware' => ['web'],
 ], function () {
 

@@ -5,7 +5,7 @@
             <strong>{{ str_replace('-' . env('APP_ENV'), '', env('APP_NAME')) }}</strong>
         </div>
         <div>
-            <? $year = Carbon\Carbon::now()->format('Y') ?>
+            <?php $year = Carbon\Carbon::now()->format('Y') ?>
 
             @if($year != 2015)
                 <strong>Copyright</strong> &copy; 2015-{{ $year }}

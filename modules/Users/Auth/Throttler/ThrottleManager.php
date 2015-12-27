@@ -1,16 +1,16 @@
-<?php namespace Modules\Users\Auth\Throttler;
+<?php
+
+namespace Modules\Users\Auth\Throttler;
 
 use Carbon\Carbon;
 use Illuminate\Contracts\Config\Repository;
 use Illuminate\Contracts\Queue\Queue;
-use Illuminate\Contracts\Redis\Database;
 use Illuminate\Http\Request;
 use Modules\Users\Contracts\Throttler;
 use Predis\Client;
 
 class ThrottleManager implements Throttler
 {
-
     const BASE_CACHE_KEY = 'users:auth:throttlers:';
 
     /**
@@ -39,7 +39,7 @@ class ThrottleManager implements Throttler
     protected $ip;
 
     /**
-     * @param Client   $redis
+     * @param Client     $redis
      * @param Repository $config
      * @param Queue      $queue
      * @param Carbon     $carbon
@@ -125,7 +125,7 @@ class ThrottleManager implements Throttler
      */
     protected function key($field)
     {
-        return static::BASE_CACHE_KEY . $field;
+        return static::BASE_CACHE_KEY.$field;
     }
 
     /**

@@ -1,4 +1,6 @@
-<?php namespace Modules\Search;
+<?php
+
+namespace Modules\Search;
 
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Pagination\Paginator;
@@ -6,7 +8,6 @@ use Modules\Search\Model\Searchable;
 
 trait SearchResponder
 {
-
     protected function response($results, $with, $paginated, Searchable $model = null)
     {
         $collection = $this->asModels($results['hits']['hits'], $model);
@@ -18,7 +19,6 @@ trait SearchResponder
          * so developer should only pass with relations that aren't being indexed by Elasticsearch
          */
         if ($with) {
-
             $model->unguard();
 
             $collection = $model->newCollection($collection);
@@ -30,7 +30,7 @@ trait SearchResponder
 
         if ($paginated) {
 
-            /**
+            /*
              * if we lazy loaded some relations, we need to get back an array to paginate.
              * not an optimal way of doing this, but i believe there isn't a better way at this point,
              * since the paginator only takes an array.
@@ -70,5 +70,4 @@ trait SearchResponder
 
         return $items;
     }
-
 }

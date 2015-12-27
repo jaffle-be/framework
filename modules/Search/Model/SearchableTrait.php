@@ -1,7 +1,7 @@
 <?php
+
 namespace Modules\Search\Model;
 
-use App;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Modules\Search\SearchServiceInterface;
@@ -9,13 +9,10 @@ use Modules\System\Locale;
 use Modules\System\Translatable\Translatable;
 
 /**
- * Class SearchableTrait
- *
- * @package Modules\Search\Model
+ * Class SearchableTrait.
  */
 trait SearchableTrait
 {
-
     /**
      * @var SearchServiceInterface
      */
@@ -65,7 +62,7 @@ trait SearchableTrait
 
     public function useSearchableRouting()
     {
-        return config('search.types.' . $this->getSearchableType() . '.routing', false);
+        return config('search.types.'.$this->getSearchableType().'.routing', false);
     }
 
     /**
@@ -111,7 +108,7 @@ trait SearchableTrait
      */
     public function getSearchableEventname($event)
     {
-        return "eloquent.{$event}: " . get_class($this);
+        return "eloquent.{$event}: ".get_class($this);
     }
 
     /**
@@ -123,7 +120,7 @@ trait SearchableTrait
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function getSearchableNewModel($data, array $with)
     {
@@ -142,11 +139,9 @@ trait SearchableTrait
 
         //need to setup relations too :-)
         foreach ($with as $relation => $build) {
-
             $type = $this->getRelationType($relation, $model);
 
             if ($relation_data = $this->getSearchableNestedDocument($relations, $relation)) {
-
                 if ($needsLoop = $this->relationNeedsLooping($type)) {
                     $relation_data = $this->getLoopedRelationData($build, $relation_data);
                 } else {
@@ -180,29 +175,25 @@ trait SearchableTrait
             $mapping = static::$searchableMapping;
         }
 
-        if(uses_trait(static::class, Translatable::class))
-        {
+        if (uses_trait(static::class, Translatable::class)) {
             $suggests = [];
 
-            foreach(Locale::all() as $locale)
-            {
+            foreach (Locale::all() as $locale) {
                 $suggests[$this->getSearchableSuggestName($locale)] = [
                     'type' => 'completion',
                     'analyzer' => 'simple',
                     'search_analyzer' => 'simple',
-                    'payloads' => true
+                    'payloads' => true,
                 ];
             }
 
             $mapping = array_merge($mapping, $suggests);
         }
 
-
         foreach ($with as $type => $config) {
-            $related = new $config['class'];
+            $related = new $config['class']();
 
             if ($type == 'translations') {
-
                 if (!$related instanceof Searchable) {
                     throw new \Exception(sprintf('Translation model %s needs to be searchable', get_class($related)));
                 }
@@ -211,17 +202,17 @@ trait SearchableTrait
 
                 foreach (config('system.locales') as $locale) {
                     $nested_map[$locale] = [
-                        'type'       => 'nested',
-                        'properties' => $locale_map
+                        'type' => 'nested',
+                        'properties' => $locale_map,
                     ];
                 }
-            } else if ($related instanceof Searchable) {
+            } elseif ($related instanceof Searchable) {
                 $nested_map = $related->getSearchableMapping(array());
             }
 
             $mapping[$type] = [
-                'type'       => 'nested',
-                'properties' => isset($nested_map) ? $nested_map : []
+                'type' => 'nested',
+                'properties' => isset($nested_map) ? $nested_map : [],
             ];
         }
 
@@ -323,7 +314,8 @@ trait SearchableTrait
     }
 
     /**
-     * keep this public, this allows for easy searching inheriting
+     * keep this public, this allows for easy searching inheriting.
+     *
      * @return array
      */
     public function getSearchableSuggestData(Searchable $inheritFrom = null)
@@ -335,8 +327,7 @@ trait SearchableTrait
             foreach (Locale::all() as $locale) {
                 $translation = $this->translate($locale->slug);
 
-                if(!$translation)
-                {
+                if (!$translation) {
                     continue;
                 }
 
@@ -354,14 +345,13 @@ trait SearchableTrait
      */
     protected function getSearchableSuggestName($locale, Searchable $inheritFrom = null)
     {
-        $suffix = '_suggest_' . $locale->slug;
+        $suffix = '_suggest_'.$locale->slug;
 
-        if($inheritFrom)
-        {
-            return $inheritFrom->getSearchableType() . $suffix;
+        if ($inheritFrom) {
+            return $inheritFrom->getSearchableType().$suffix;
         }
 
-        return $this->getSearchableType() . $suffix;
+        return $this->getSearchableType().$suffix;
     }
 
     /**
@@ -372,13 +362,12 @@ trait SearchableTrait
     protected function getSearchableSuggestPayload($translation)
     {
         return [
-            'input'   => $translation->name,
-            'output'  => $translation->name,
+            'input' => $translation->name,
+            'output' => $translation->name,
             'payload' => [
                 'label' => $translation->name,
                 'value' => $this->id,
-            ]
+            ],
         ];
     }
-
 }

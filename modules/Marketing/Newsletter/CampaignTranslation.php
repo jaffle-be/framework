@@ -1,10 +1,11 @@
-<?php namespace Modules\Marketing\Newsletter;
+<?php
+
+namespace Modules\Marketing\Newsletter;
 
 use Modules\System\Translatable\TranslationModel;
 
 class CampaignTranslation extends TranslationModel
 {
-
     protected $table = 'newsletter_campaign_translations';
 
     protected $fillable = ['title', 'subject', 'intro'];
@@ -18,5 +19,4 @@ class CampaignTranslation extends TranslationModel
     {
         return $this->belongsTo('Modules\Marketing\Newsletter\Campaign');
     }
-
 }

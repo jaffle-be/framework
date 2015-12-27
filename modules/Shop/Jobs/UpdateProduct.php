@@ -1,12 +1,12 @@
-<?php namespace Modules\Shop\Jobs;
+<?php
+
+namespace Modules\Shop\Jobs;
 
 use App\Jobs\Job;
-
 use Modules\Shop\Product\Product;
 
 class UpdateProduct extends Job
 {
-
     /**
      * @var Product
      */
@@ -29,5 +29,4 @@ class UpdateProduct extends Job
 
         return $this->product->save() ? $this->product : false;
     }
-
 }

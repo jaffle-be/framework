@@ -1,4 +1,6 @@
-<?php namespace Modules\System\Scopes;
+<?php
+
+namespace Modules\System\Scopes;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
@@ -7,7 +9,6 @@ use Modules\Account\AccountManager;
 
 class ModelAccountOrSystemResourceScope implements Scope
 {
-
     public function __construct(AccountManager $manager)
     {
         $this->account = $manager->account();
@@ -22,5 +23,4 @@ class ModelAccountOrSystemResourceScope implements Scope
             });
         }
     }
-
 }

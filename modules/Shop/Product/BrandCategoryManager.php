@@ -1,4 +1,6 @@
-<?php namespace Modules\Shop\Product;
+<?php
+
+namespace Modules\Shop\Product;
 
 use Illuminate\Contracts\Events\Dispatcher;
 use Illuminate\Database\Connection;
@@ -6,7 +8,6 @@ use Illuminate\Database\DatabaseManager;
 
 class BrandCategoryManager
 {
-
     /**
      * @var Connection
      */
@@ -46,11 +47,9 @@ class BrandCategoryManager
             $product = $this->findProduct($attached);
 
             if ($product) {
-
                 if (!$this->combinationIsKnown($product, $attached['category_id'])) {
-
                     $payload = [
-                        'brand_id'    => $product['brand_id'],
+                        'brand_id' => $product['brand_id'],
                         'category_id' => $attached['category_id'],
                     ];
 
@@ -71,14 +70,13 @@ class BrandCategoryManager
             //need to check if there is still a product with this association
             //if not -> delete it for the brands too
             if (!$this->combinationStillExists($product, $detached['category_id'])) {
-
                 $this->brandCombinations()->where('category_id', $detached['category_id'])
                     ->where('brand_id', $product['brand_id'])
                     ->delete();
 
                 $payload = [
                     'category_id' => $detached['category_id'],
-                    'brand_id'    => $product['brand_id']
+                    'brand_id' => $product['brand_id'],
                 ];
 
                 //when detaching, we can simply return an array, as the data no longer matters.
@@ -137,7 +135,7 @@ class BrandCategoryManager
         //load the product use the core table
         $products = $this->bareProducts();
 
-        $product = (array)$products->where($this->product->getKeyName(), $attached['product_id'])->first();
+        $product = (array) $products->where($this->product->getKeyName(), $attached['product_id'])->first();
 
         return $product;
     }
@@ -149,7 +147,6 @@ class BrandCategoryManager
             ->where('category_id', $category_id)
             ->where('brand_id', $product['brand_id'])
             ->count();
-
 
         return $count > 0;
     }
@@ -166,8 +163,7 @@ class BrandCategoryManager
 
         return [
             'category' => $category->toArray(),
-            'brand'    => $brand->toArray()
+            'brand' => $brand->toArray(),
         ];
     }
-
 }

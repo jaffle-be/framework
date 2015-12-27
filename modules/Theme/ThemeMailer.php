@@ -7,7 +7,6 @@ use Illuminate\Mail\Mailer;
 
 class ThemeMailer implements MailContract
 {
-
     /**
      * @var Theme
      */
@@ -32,8 +31,8 @@ class ThemeMailer implements MailContract
     /**
      * Send a new message when only a raw text part.
      *
-     * @param  string          $text
-     * @param  \Closure|string $callback
+     * @param string          $text
+     * @param \Closure|string $callback
      *
      * @return int
      */
@@ -48,6 +47,7 @@ class ThemeMailer implements MailContract
      * @param \Closure|string $callback
      *
      * @throws \Exception
+     *
      * @return bool
      */
     public function send($view, array $data, $callback)
@@ -55,21 +55,17 @@ class ThemeMailer implements MailContract
         $this->validateData($data);
 
         $data = array_merge($data, [
-            'theme'          => $this->theme,
-            'theme_template' => $this->resolveThemeTemplate()
+            'theme' => $this->theme,
+            'theme_template' => $this->resolveThemeTemplate(),
         ]);
 
         $previousRootUrl = $this->setRootUrl($data['root_url']);
 
         //let's wrap our closure to automatically to set email defaults.
         //when we passed a string, our callback represents the subject line
-        if(is_string($callback))
-        {
-
+        if (is_string($callback)) {
             $callback = $this->stringClosure($data, $callback);
-        }
-        else
-        {
+        } else {
             //if we don't have a subject, but a closure, we'll be wrapping it again
             //and call the closure itself at the bottom of our wrapping closure.
             //this allows us to override it in the originally passed closure.
@@ -100,8 +96,7 @@ class ThemeMailer implements MailContract
 
     protected function validateData($data)
     {
-        if(!isset($data['email_from'], $data['email_from_name'], $data['email_to'], $data['root_url']))
-        {
+        if (!isset($data['email_from'], $data['email_from_name'], $data['email_to'], $data['root_url'])) {
             throw new \Exception('need all valid email fields in the data array');
         }
     }
@@ -153,5 +148,4 @@ class ThemeMailer implements MailContract
 
         return $old;
     }
-
 }

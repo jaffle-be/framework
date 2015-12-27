@@ -1,11 +1,12 @@
-<?php namespace Modules\Menu;
+<?php
+
+namespace Modules\Menu;
 
 use Illuminate\Contracts\Cache\Repository;
 use Modules\Account\AccountManager;
 
 class CachedMenuRepository implements MenuRepositoryInterface
 {
-
     /**
      * @var MenuRepository
      */
@@ -35,9 +36,9 @@ class CachedMenuRepository implements MenuRepositoryInterface
         });
     }
 
-    function __call($name, $arguments)
+    public function __call($name, $arguments)
     {
-        /**
+        /*
          * simple strategy: for any database altering method we do the following:
          * - call the parent method
          * - bust the cache
@@ -74,5 +75,4 @@ class CachedMenuRepository implements MenuRepositoryInterface
     {
         return $this->__call(__FUNCTION__, func_get_args());
     }
-
 }

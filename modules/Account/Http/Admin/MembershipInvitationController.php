@@ -1,14 +1,14 @@
-<?php namespace Modules\Account\Http\Admin;
+<?php
+
+namespace Modules\Account\Http\Admin;
 
 use Illuminate\Contracts\Hashing\Hasher;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Http\Request;
-use Illuminate\Translation\Translator;
 use Modules\Account\AccountManager;
 use Modules\Account\Jobs\Membership\SendInvitationEmail;
 use Modules\Account\MembershipInvitation;
 use Modules\System\Http\AdminController;
-use Modules\Theme\ThemeMailer;
 
 class MembershipInvitationController extends AdminController
 {
@@ -63,10 +63,9 @@ class MembershipInvitationController extends AdminController
     protected function getNewHash(Request $request, Hasher $hasher)
     {
         $email = $request->get('email');
-        $hash = $hasher->make(time() . 'someRandome123string' . $email);
+        $hash = $hasher->make(time().'someRandome123string'.$email);
         $hash = str_replace('/', '_', $hash);
 
         return $hash;
     }
-
 }

@@ -1,8 +1,9 @@
-<?php namespace Modules\Shop\Product;
+<?php
+
+namespace Modules\Shop\Product;
 
 class PropertyObserver
 {
-
     protected $groups;
 
     protected $properties;
@@ -26,7 +27,7 @@ class PropertyObserver
         $this->groups->where('category_id', $group->category_id)
             ->where('sort', '>', $group->sort)
             ->update([
-                'sort' => \DB::raw('sort - 1')
+                'sort' => \DB::raw('sort - 1'),
             ]);
     }
 
@@ -46,8 +47,7 @@ class PropertyObserver
             ->where('group_id', $property->group_id)
             ->where('sort', '>', $property->sort)
             ->update([
-                'sort' => \DB::raw('sort - 1')
+                'sort' => \DB::raw('sort - 1'),
             ]);
     }
-
 }

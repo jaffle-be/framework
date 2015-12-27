@@ -1,10 +1,11 @@
-<?php namespace Modules\System\Scopes;
+<?php
+
+namespace Modules\System\Scopes;
 
 use Illuminate\Http\Request;
 
 trait ModelLocaleSpecificResource
 {
-
     public static function bootModelLocaleSpecificResource()
     {
         /** @var Request $request */
@@ -28,5 +29,4 @@ trait ModelLocaleSpecificResource
     {
         return new LocalisedResourceCollection($items);
     }
-
 }

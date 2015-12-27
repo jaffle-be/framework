@@ -6,11 +6,8 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateAccountModulesTable extends Migration
 {
-
     /**
      * Run the migrations.
-     *
-     * @return void
      */
     public function up()
     {
@@ -25,8 +22,6 @@ class CreateAccountModulesTable extends Migration
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
     public function down()
     {

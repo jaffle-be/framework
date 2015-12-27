@@ -1,11 +1,12 @@
-<?php namespace Modules\Pages\Http;
+<?php
+
+namespace Modules\Pages\Http;
 
 use Modules\Pages\PageRepositoryInterface;
 use Modules\Pages\PageTranslation;
 
 trait PagesFrontControlling
 {
-
     public function renderPageDetail(PageTranslation $page, PageRepositoryInterface $pages)
     {
         $page = $page->page;

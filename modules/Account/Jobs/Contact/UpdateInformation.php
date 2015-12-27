@@ -1,12 +1,12 @@
-<?php namespace Modules\Account\Jobs\Contact;
+<?php
+
+namespace Modules\Account\Jobs\Contact;
 
 use App\Jobs\Job;
-
 use Modules\Account\AccountContactInformation;
 
 class UpdateInformation extends Job
 {
-
     /**
      * @var AccountContactInformation
      */
@@ -29,5 +29,4 @@ class UpdateInformation extends Job
 
         return $this->info->save();
     }
-
 }

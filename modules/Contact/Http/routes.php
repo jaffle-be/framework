@@ -2,7 +2,7 @@
 
 Route::group([
     'namespace' => 'Modules\Contact\Http',
-    'as'        => 'store.',
+    'as' => 'store.',
     'middleware' => ['web'],
 ], function () {
 

@@ -1,4 +1,6 @@
-<?php namespace Modules\Media\Commands;
+<?php
+
+namespace Modules\Media\Commands;
 
 use App\Jobs\Job;
 use Illuminate\Filesystem\Filesystem;
@@ -9,7 +11,6 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class UploadNewImage extends Job
 {
-
     use DispatchesJobs;
 
     /**
@@ -34,17 +35,17 @@ class UploadNewImage extends Job
 
     public function handle(Filesystem $files, AccountManager $manager)
     {
-        $temp_dir = storage_path('media') . '/' . $this->owner->getMediaFolder('images');
+        $temp_dir = storage_path('media').'/'.$this->owner->getMediaFolder('images');
 
         $name = $this->uniqueName();
 
         $this->image->move($temp_dir, $name);
 
-        $temp_file = $temp_dir . $name;
+        $temp_file = $temp_dir.$name;
 
-        $name_with_extension = $name . $this->extension($temp_file);
+        $name_with_extension = $name.$this->extension($temp_file);
 
-        $final_path = $temp_file . $name_with_extension;
+        $final_path = $temp_file.$name_with_extension;
 
         $files->move($temp_file, $final_path);
 
@@ -57,7 +58,7 @@ class UploadNewImage extends Job
 
     protected function uniqueName()
     {
-        return sha1(md5($this->image->getClientOriginalName()) . time());
+        return sha1(md5($this->image->getClientOriginalName()).time());
     }
 
     private function extension($path)
@@ -66,5 +67,4 @@ class UploadNewImage extends Job
 
         return image_type_to_extension($info[2]);
     }
-
 }

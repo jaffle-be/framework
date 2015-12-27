@@ -1,7 +1,8 @@
-<?php namespace Modules\Shop\Jobs\Gamma;
+<?php
+
+namespace Modules\Shop\Jobs\Gamma;
 
 use App\Jobs\Job;
-
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Modules\Account\Account;
 use Modules\Shop\Gamma\CategorySelection;
@@ -9,7 +10,6 @@ use Modules\Shop\Product\Category;
 
 class ActivateCategory extends Job
 {
-
     use DispatchesJobs;
 
     /**

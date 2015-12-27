@@ -1,8 +1,9 @@
-<?php namespace Modules\Account;
+<?php
+
+namespace Modules\Account;
 
 class MembershipRepository
 {
-
     /**
      * @var Membership
      */
@@ -34,5 +35,4 @@ class MembershipRepository
             ->where('token', $token)
             ->first();
     }
-
 }

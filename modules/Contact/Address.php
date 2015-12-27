@@ -6,15 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Address extends Model
 {
-
-    protected $table = "contact_address";
+    protected $table = 'contact_address';
 
     protected $casts = [
-        'latitude'  => 'double',
+        'latitude' => 'double',
         'longitude' => 'double',
     ];
 
-    protected $fillable = ["firstname", "lastname", "street", "box", "postcode", "city", "latitude", "longitude"];
+    protected $fillable = ['firstname', 'lastname', 'street', 'box', 'postcode', 'city', 'latitude', 'longitude'];
 
     protected $hidden = ['owner_id', 'owner_type', 'created_at', 'updated_at', 'country_id'];
 
@@ -65,5 +64,4 @@ class Address extends Model
     {
         return $this->belongsTo('Modules\System\Country\Country', 'country_id');
     }
-
 }

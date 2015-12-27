@@ -1,10 +1,11 @@
-<?php namespace Modules\System\Sluggable;
+<?php
+
+namespace Modules\System\Sluggable;
 
 use Cviebrock\EloquentSluggable\SluggableTrait;
 
 trait Sluggable
 {
-
     use SluggableTrait;
 
     public function getRouteKeyName()
@@ -15,5 +16,4 @@ trait Sluggable
 
         return $this->getKeyName();
     }
-
 }

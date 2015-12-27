@@ -1,8 +1,8 @@
-<?php namespace Modules\Contact;
+<?php
+
+namespace Modules\Contact;
 
 interface AddressOwner
 {
-
     public function address();
-
 }

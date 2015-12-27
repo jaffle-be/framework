@@ -9,7 +9,6 @@ use Modules\System\ServiceProvider;
 
 class SearchServiceProvider extends ServiceProvider
 {
-
     protected $namespace = 'search';
 
     protected function listeners()
@@ -20,8 +19,6 @@ class SearchServiceProvider extends ServiceProvider
 
     /**
      * Register the service provider.
-     *
-     * @return void
      */
     public function register()
     {
@@ -60,5 +57,4 @@ class SearchServiceProvider extends ServiceProvider
             \Modules\Search\Command\SearchSpeed::class,
         ]);
     }
-
 }

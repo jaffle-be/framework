@@ -1,11 +1,12 @@
-<?php namespace Modules\Portfolio;
+<?php
+
+namespace Modules\Portfolio;
 
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Modules\Tags\Commands\UntagSomething;
 
 class ProjectObserver
 {
-
     use DispatchesJobs;
 
     public function deleting(Project $project)
@@ -22,5 +23,4 @@ class ProjectObserver
             $image->delete();
         }
     }
-
 }

@@ -5,11 +5,8 @@ use Illuminate\Database\Schema\Blueprint;
 
 class UserProfileTranslationsTable extends Migration
 {
-
     /**
      * Run the migrations.
-     *
-     * @return void
      */
     public function up()
     {
@@ -27,8 +24,6 @@ class UserProfileTranslationsTable extends Migration
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
     public function down()
     {
@@ -36,5 +31,4 @@ class UserProfileTranslationsTable extends Migration
             $table->dropForeign('profile_translation_to_user');
         });
     }
-
 }

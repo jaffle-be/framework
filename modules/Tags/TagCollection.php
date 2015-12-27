@@ -1,12 +1,13 @@
-<?php namespace Modules\Tags;
+<?php
+
+namespace Modules\Tags;
 
 use Illuminate\Database\Eloquent\Collection;
 
 class TagCollection extends Collection
 {
-
     /**
-     * Format the collection for output
+     * Format the collection for output.
      *
      * @param string $format
      * @param string $glue
@@ -37,5 +38,4 @@ class TagCollection extends Collection
 
         return $formats;
     }
-
 }

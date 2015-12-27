@@ -1,6 +1,7 @@
-<?php namespace Modules\Shop\Providers;
+<?php
 
-use Modules\Shop\Product\Category;
+namespace Modules\Shop\Providers;
+
 use Modules\Shop\Product\CategoryTranslation;
 use Modules\Shop\Product\Property;
 use Modules\Shop\Product\PropertyGroup;
@@ -8,13 +9,10 @@ use Modules\System\ServiceProvider;
 
 class ShopServiceProvider extends ServiceProvider
 {
-
     protected $namespace = 'shop';
 
     /**
      * Register the application services.
-     *
-     * @return void
      */
     public function register()
     {
@@ -32,13 +30,12 @@ class ShopServiceProvider extends ServiceProvider
 
         $this->app['events']->listen('eloquent.detached: product_categories', 'Modules\Shop\Product\ProductPropertyManager@detach');
 
-        $this->app['events']->listen('eloquent.saved: ' . CategoryTranslation::class, 'Modules\Shop\Product\CategorySuggestSyncer@handle');
+        $this->app['events']->listen('eloquent.saved: '.CategoryTranslation::class, 'Modules\Shop\Product\CategorySuggestSyncer@handle');
 
-        $this->app['events']->listen('eloquent.creating: ' . PropertyGroup::class, 'Modules\Shop\Product\PropertyObserver@creatingGroup');
-        $this->app['events']->listen('eloquent.deleted: ' . PropertyGroup::class, 'Modules\Shop\Product\PropertyObserver@deletedGroup');
+        $this->app['events']->listen('eloquent.creating: '.PropertyGroup::class, 'Modules\Shop\Product\PropertyObserver@creatingGroup');
+        $this->app['events']->listen('eloquent.deleted: '.PropertyGroup::class, 'Modules\Shop\Product\PropertyObserver@deletedGroup');
 
-        $this->app['events']->listen('eloquent.creating: ' . Property::class, 'Modules\Shop\Product\PropertyObserver@creatingProperty');
-        $this->app['events']->listen('eloquent.deleted: ' . Property::class, 'Modules\Shop\Product\PropertyObserver@deletedProperty');
+        $this->app['events']->listen('eloquent.creating: '.Property::class, 'Modules\Shop\Product\PropertyObserver@creatingProperty');
+        $this->app['events']->listen('eloquent.deleted: '.Property::class, 'Modules\Shop\Product\PropertyObserver@deletedProperty');
     }
-
 }

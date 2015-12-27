@@ -1,4 +1,6 @@
-<?php namespace Modules\Users\Http\Auth;
+<?php
+
+namespace Modules\Users\Http\Auth;
 
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Http\Request;
@@ -12,7 +14,6 @@ use Modules\Users\Contracts\UserRepositoryInterface;
 
 class ConfirmEmailController extends FrontController
 {
-
     /**
      * Form for sending new confirmation email.
      *
@@ -47,7 +48,7 @@ class ConfirmEmailController extends FrontController
     }
 
     /**
-     * The method which actually triggers the confirmation
+     * The method which actually triggers the confirmation.
      *
      * @param                          $token
      * @param TokenRepositoryInterface $tokens

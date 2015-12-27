@@ -1,4 +1,6 @@
-<?php namespace Modules\Account\Http\Admin;
+<?php
+
+namespace Modules\Account\Http\Admin;
 
 use Illuminate\Http\Request;
 use Modules\Account\AccountManager;
@@ -8,7 +10,6 @@ use Modules\System\Http\AdminController;
 
 class ClientController extends AdminController
 {
-
     use MediaWidgetPreperations;
 
     public function page()
@@ -45,5 +46,4 @@ class ClientController extends AdminController
     {
         $client->delete();
     }
-
 }

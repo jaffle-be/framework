@@ -1,4 +1,6 @@
-<?php namespace Modules\Media\Video;
+<?php
+
+namespace Modules\Media\Video;
 
 use Illuminate\Database\Eloquent\Model;
 use Modules\System\Scopes\ModelAccountResource;
@@ -7,7 +9,6 @@ use Modules\System\Scopes\ModelLocaleSpecificResource;
 
 class Video extends Model
 {
-
     use ModelAccountResource;
     use ModelAutoSort;
     use ModelLocaleSpecificResource;

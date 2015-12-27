@@ -1,4 +1,6 @@
-<?php namespace Modules\Shop\Http;
+<?php
+
+namespace Modules\Shop\Http;
 
 use Illuminate\Http\Request;
 use Modules\Search\SearchServiceInterface;
@@ -11,9 +13,8 @@ use Modules\System\Http\FrontController;
 
 class ShopController extends FrontController
 {
-
     /**
-     * Shop home
+     * Shop home.
      *
      * @return \Illuminate\Contracts\View\View
      */
@@ -34,12 +35,12 @@ class ShopController extends FrontController
         $tweets = latest_tweets_about(4);
 
         return $this->theme->render('shop.store', [
-            'latest'      => $latest,
-            'featured'    => $featured,
-            'sales'       => $sales,
+            'latest' => $latest,
+            'featured' => $featured,
+            'sales' => $sales,
             'bestsellers' => $bestsellers,
-            'top'         => $top,
-            'tweets'      => $tweets
+            'top' => $top,
+            'tweets' => $tweets,
         ]);
     }
 
@@ -60,13 +61,13 @@ class ShopController extends FrontController
         $original = $category->original_id ? $category->originalCategory : $category;
 
         $original->load([
-            'propertyGroups' => function($query){
-                $query->whereHas('properties', function($query){
+            'propertyGroups' => function ($query) {
+                $query->whereHas('properties', function ($query) {
                     $query->where('type', '<>', 'string');
                 });
             },
             'propertyGroups.translations',
-            'propertyGroups.properties' => function($query){
+            'propertyGroups.properties' => function ($query) {
                 $query->where('type', '<>', 'string');
             },
             'propertyGroups.properties.translations',
@@ -76,20 +77,20 @@ class ShopController extends FrontController
 
         $defaults = [
             'count' => 20,
-            'view'  => 'list',
+            'view' => 'list',
         ];
 
         $filters = array_merge($defaults, $request->all());
 
         $results = $resolver->resolve($original, $category);
 
-        return $this->theme->render('shop.category-' . $filters['view'], [
-            'products'   => $results['products'],
-            'brands'     => $results['brands'],
+        return $this->theme->render('shop.category-'.$filters['view'], [
+            'products' => $results['products'],
+            'brands' => $results['brands'],
             'properties' => $results['properties'],
-            'category'   => $category,
-            'original'   => $original,
-            'filters'    => $filters,
+            'category' => $category,
+            'original' => $original,
+            'filters' => $filters,
         ]);
     }
 

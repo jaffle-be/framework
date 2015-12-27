@@ -1,11 +1,12 @@
-<?php namespace Modules\Module;
+<?php
+
+namespace Modules\Module;
 
 use Illuminate\Database\Eloquent\Model;
 use Modules\System\Translatable\Translatable;
 
 class Module extends Model
 {
-
     use Translatable;
 
     protected $table = 'modules';
@@ -23,5 +24,4 @@ class Module extends Model
     {
         return new ModuleCollection($models);
     }
-
 }

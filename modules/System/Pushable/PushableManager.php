@@ -1,10 +1,11 @@
-<?php namespace Modules\System\Pushable;
+<?php
+
+namespace Modules\System\Pushable;
 
 use Illuminate\Contracts\Events\Dispatcher;
 
 class PushableManager
 {
-
     protected $events;
 
     protected $supporting = ['created', 'deleted', 'updated', 'attached', 'detached'];
@@ -23,7 +24,6 @@ class PushableManager
         $model = $arguments[0];
 
         if ($model instanceof Pushable) {
-
             if (in_array($method, ['attached', 'detached'])) {
 
                 //when using attached or detached, the payload will always be an array of elements.
@@ -54,5 +54,4 @@ class PushableManager
 
         return new BelongsToManyPushable($payload, $relation);
     }
-
 }

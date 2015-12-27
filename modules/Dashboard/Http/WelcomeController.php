@@ -1,17 +1,17 @@
-<?php namespace Modules\Dashboard\Http;
+<?php
+
+namespace Modules\Dashboard\Http;
 
 use Cookie;
 use Illuminate\Http\Request;
 use Illuminate\Session\Store;
 use Modules\Account\AccountManager;
 use Modules\Account\MembershipInvitation;
-use Modules\Media\Media;
 use Modules\System\Http\FrontController;
 use Modules\Theme\Theme;
 
 class WelcomeController extends FrontController
 {
-
     /**
      * This route is only valid for multi locale applications.
      *
@@ -52,11 +52,11 @@ class WelcomeController extends FrontController
         $config = config('translatable');
 
         $config = [
-            'locale'          => \App::getLocale(),
+            'locale' => \App::getLocale(),
             'fallback_locale' => $config['fallback_locale'],
-            'locales'         => $config['locales'],
-            'user'            => \Auth::user(),
-            'rpp'             => 40
+            'locales' => $config['locales'],
+            'user' => \Auth::user(),
+            'rpp' => 40,
         ];
 
         return $config;
@@ -65,9 +65,9 @@ class WelcomeController extends FrontController
     public function test(Theme $theme)
     {
         return view('account::admin.members.invitation.email', [
-            'theme'          => $theme,
+            'theme' => $theme,
             'theme_template' => config('theme.email_template'),
-            'invitation'     => MembershipInvitation::first()
+            'invitation' => MembershipInvitation::first(),
         ]);
     }
 }

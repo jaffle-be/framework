@@ -1,10 +1,11 @@
-<?php namespace Modules\System\Seo;
+<?php
+
+namespace Modules\System\Seo;
 
 use Illuminate\Http\Request;
 
 abstract class MetaTagProvider
 {
-
     protected $prefix;
 
     protected $config;
@@ -41,7 +42,7 @@ abstract class MetaTagProvider
         $properties = $this->eachProperties($this->properties);
         $images = $this->eachProperties($this->images, 'image');
 
-        return PHP_EOL . $properties . PHP_EOL . $images;
+        return PHP_EOL.$properties.PHP_EOL.$images;
     }
 
     protected function setupDefaults()
@@ -52,10 +53,9 @@ abstract class MetaTagProvider
             if ($key == 'images'):
                 if (empty($this->images)):
                     $this->images = $value;
-                endif;
-            elseif (!empty($value) && !array_key_exists($key, $this->properties)):
+        endif; elseif (!empty($value) && !array_key_exists($key, $this->properties)):
                 $this->addProperty($key, $value);
-            endif;
+        endif;
         endforeach;
     }
 
@@ -91,7 +91,6 @@ abstract class MetaTagProvider
         //this basically doesn't work for facebook.
         //facebook wants the same url for the same page in different locales
         //duh :(
-
     }
 
     abstract protected function handle(SeoEntity $seo);
@@ -123,13 +122,13 @@ abstract class MetaTagProvider
      */
     protected function nameForTypeSpecificProperty($type, $key)
     {
-        $property = $type . ':' . $key;
+        $property = $type.':'.$key;
 
         return $property;
     }
 
     /**
-     * Make list of open graph tags
+     * Make list of open graph tags.
      *
      * @param array       $properties
      * @param null|string $prefix
@@ -144,8 +143,7 @@ abstract class MetaTagProvider
             // multiple properties
             if (is_array($value)):
 
-                $html = $this->handleMultipleProperties($prefix, $property, $value, $html);
-            else:
+                $html = $this->handleMultipleProperties($prefix, $property, $value, $html); else:
 
                 $key = $this->getPropertyKey($prefix, $property);
 
@@ -154,13 +152,13 @@ abstract class MetaTagProvider
                     continue;
                 }
 
-                if ($this->hasCustomRenderMethod($key)) {
-                    $html[] = $this->customRenderMethod($key, $value);
-                } else {
-                    $html[] = $this->tag($key, $value);
-                }
+        if ($this->hasCustomRenderMethod($key)) {
+            $html[] = $this->customRenderMethod($key, $value);
+        } else {
+            $html[] = $this->tag($key, $value);
+        }
 
-            endif;
+        endif;
         endforeach;
 
         return implode(PHP_EOL, $html);
@@ -193,17 +191,15 @@ abstract class MetaTagProvider
     protected function getPropertyKey($prefix, $property)
     {
         if (is_numeric($property)):
-            $key = $prefix . $property;
+            $key = $prefix.$property;
 
-            return $key;
-        elseif (is_string($prefix)):
-            $key = (is_string($property)) ? $prefix . ':' . $property : $prefix;
+        return $key; elseif (is_string($prefix)):
+            $key = (is_string($property)) ? $prefix.':'.$property : $prefix;
 
-            return $key;
-        else:
+        return $key; else:
             $key = $property;
 
-            return $key;
+        return $key;
         endif;
     }
 
@@ -221,7 +217,7 @@ abstract class MetaTagProvider
      */
     protected function customRenderMethodName($key)
     {
-        $method = 'render' . ucfirst(camel_case($key));
+        $method = 'render'.ucfirst(camel_case($key));
 
         return $method;
     }
@@ -239,7 +235,7 @@ abstract class MetaTagProvider
             throw new \Exception('Need to define the prefix property for generating meta tags');
         }
 
-        return '<meta name="' . $this->prefix . strip_tags($key) . '" content="' . strip_tags($value) . '">';
+        return '<meta name="'.$this->prefix.strip_tags($key).'" content="'.strip_tags($value).'">';
     }
 
     /**
@@ -283,5 +279,4 @@ abstract class MetaTagProvider
 
         return $this;
     }
-
 }

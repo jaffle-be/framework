@@ -1,4 +1,6 @@
-<?php namespace Modules\Menu;
+<?php
+
+namespace Modules\Menu;
 
 use DaveJamesMiller\Breadcrumbs\CurrentRoute;
 use DaveJamesMiller\Breadcrumbs\Manager;
@@ -6,7 +8,6 @@ use Illuminate\View\Factory;
 
 class Breadcrumbs
 {
-
     protected $manager;
 
     protected $route;
@@ -44,5 +45,4 @@ class Breadcrumbs
     {
         call_user_func_array([$this->manager, $method], $params);
     }
-
 }

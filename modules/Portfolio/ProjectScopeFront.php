@@ -1,4 +1,6 @@
-<?php namespace Modules\Portfolio;
+<?php
+
+namespace Modules\Portfolio;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
@@ -6,7 +8,6 @@ use Illuminate\Database\Eloquent\Scope;
 
 class ProjectScopeFront implements Scope
 {
-
     public function apply(Builder $builder, Model $model)
     {
         $builder->join('portfolio_project_translations', function ($join) {
@@ -17,5 +18,4 @@ class ProjectScopeFront implements Scope
 
         $builder->select(['portfolio_projects.*']);
     }
-
 }

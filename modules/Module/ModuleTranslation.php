@@ -1,11 +1,12 @@
-<?php namespace Modules\Module;
+<?php
+
+namespace Modules\Module;
 
 use Modules\System\Translatable\TranslationModel;
 
 class ModuleTranslation extends TranslationModel
 {
-
-    protected $table = "module_translations";
+    protected $table = 'module_translations';
 
     protected $fillable = ['name'];
 
@@ -13,5 +14,4 @@ class ModuleTranslation extends TranslationModel
     {
         return $this->belongsTo('Modules\Module\Module');
     }
-
 }

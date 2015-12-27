@@ -3,9 +3,9 @@
 return [
     'locales' => 'active languages',
 
-    'seo'     => [
-        'title'       => 'title',
+    'seo' => [
+        'title' => 'title',
         'description' => 'description',
-        'keywords'    => 'keywords',
-    ]
+        'keywords' => 'keywords',
+    ],
 ];

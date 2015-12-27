@@ -12,7 +12,6 @@ use Modules\System\Http\AdminController;
 
 class ContactAddressController extends AdminController
 {
-
     public function widget(CountryRepository $countries)
     {
         $countries = $countries->select();
@@ -45,5 +44,4 @@ class ContactAddressController extends AdminController
             return $address;
         }
     }
-
 }

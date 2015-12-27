@@ -1,4 +1,6 @@
-<?php namespace Modules\Pages\Http\Admin;
+<?php
+
+namespace Modules\Pages\Http\Admin;
 
 use Exception;
 use Illuminate\Contracts\Auth\Guard;
@@ -13,7 +15,6 @@ use Modules\System\Http\AdminController;
 
 class PagesController extends AdminController
 {
-
     use MediaWidgetPreperations;
 
     public function overview()
@@ -39,8 +40,8 @@ class PagesController extends AdminController
             $query->whereHas('translations', function ($q) use ($value, $locale) {
                 $q->where('locale', $locale);
                 $q->where(function ($q) use ($value) {
-                    $q->where('title', 'like', '%' . $value . '%')
-                        ->orWhere('content', 'like', '%' . $value . '%');
+                    $q->where('title', 'like', '%'.$value.'%')
+                        ->orWhere('content', 'like', '%'.$value.'%');
                 });
             });
         }
@@ -63,7 +64,7 @@ class PagesController extends AdminController
         }
 
         return json_encode(array(
-            'status' => 'noke'
+            'status' => 'noke',
         ));
     }
 
@@ -218,5 +219,4 @@ class PagesController extends AdminController
     {
         return ['translations', 'translations.slug', 'children', 'children.translations'];
     }
-
 }

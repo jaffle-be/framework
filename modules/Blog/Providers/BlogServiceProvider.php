@@ -1,11 +1,12 @@
-<?php namespace Modules\Blog\Providers;
+<?php
+
+namespace Modules\Blog\Providers;
 
 use Modules\Blog\Post;
 use Modules\System\ServiceProvider;
 
 class BlogServiceProvider extends ServiceProvider
 {
-
     protected $namespace = 'blog';
 
     public function register()
@@ -17,5 +18,4 @@ class BlogServiceProvider extends ServiceProvider
     {
         Post::observe('Modules\Blog\PostObserver');
     }
-
 }

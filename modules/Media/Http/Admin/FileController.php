@@ -1,4 +1,6 @@
-<?php namespace Modules\Media\Http\Admin;
+<?php
+
+namespace Modules\Media\Http\Admin;
 
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -12,7 +14,6 @@ use Modules\Theme\ThemeManager;
 
 class FileController extends AdminController
 {
-
     use MediaWidgetPreperations;
 
     protected $media;
@@ -62,7 +63,6 @@ class FileController extends AdminController
         $owner = $this->owner($request);
 
         if ($file->owner->id == $owner->id) {
-
             $input = $request->except(['_token']);
 
             $file->fill($input);
@@ -94,5 +94,4 @@ class FileController extends AdminController
             $file->save();
         }
     }
-
 }

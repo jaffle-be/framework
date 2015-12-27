@@ -1,10 +1,11 @@
-<?php namespace Modules\System\Scopes;
+<?php
+
+namespace Modules\System\Scopes;
 
 use Illuminate\Database\Eloquent\Collection;
 
 class LocalisedResourceCollection extends Collection
 {
-
     public function toArray()
     {
         $byLocales = $this->byLocale();

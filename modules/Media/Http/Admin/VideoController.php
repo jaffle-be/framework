@@ -1,4 +1,6 @@
-<?php namespace Modules\Media\Http\Admin;
+<?php
+
+namespace Modules\Media\Http\Admin;
 
 use Alaouy\Youtube\Youtube;
 use Illuminate\Http\JsonResponse;
@@ -13,7 +15,6 @@ use Modules\Theme\ThemeManager;
 
 class VideoController extends AdminController
 {
-
     use VideoGenericFormatter;
     use MediaWidgetPreperations;
 
@@ -62,7 +63,6 @@ class VideoController extends AdminController
         $owner = $this->owner($request);
 
         if ($video->owner->id == $owner->id) {
-
             $input = $request->except(['_token', '_method']);
 
             $video->fill($input);
@@ -98,7 +98,7 @@ class VideoController extends AdminController
     public function search(Request $request)
     {
         $this->validate($request, [
-            'query' => 'required'
+            'query' => 'required',
         ]);
 
         if ($request->get('mode') == 'youtube') {
@@ -116,5 +116,4 @@ class VideoController extends AdminController
             return $this->vimeoReponse($response);
         }
     }
-
 }

@@ -1,4 +1,6 @@
-<?php namespace Modules\Users\Auth\Handlers;
+<?php
+
+namespace Modules\Users\Auth\Handlers;
 
 use Illuminate\Contracts\Config\Repository;
 use Illuminate\Contracts\Mail\Mailer;
@@ -9,7 +11,6 @@ use Modules\Users\Auth\Events\UserRegistered;
 
 class UserRegisteredHandler
 {
-
     use DispatchesJobs;
 
     public function __construct(Mailer $mail, Repository $config)
@@ -23,7 +24,6 @@ class UserRegisteredHandler
         $auto_confirm = $this->config->get('users.auth.auto_confirmation');
 
         if ($event->invitation) {
-
             $event->user->confirmed = 1;
             $event->user->save();
 

@@ -1,10 +1,11 @@
-<?php namespace Modules\System\Http\Middleware;
+<?php
+
+namespace Modules\System\Http\Middleware;
 
 use Closure;
 
 class HttpsProtocol
 {
-
     public function handle($request, Closure $next)
     {
         if (!$request->secure() && env('APP_ENV') === 'production') {
@@ -13,5 +14,4 @@ class HttpsProtocol
 
         return $next($request);
     }
-
 }

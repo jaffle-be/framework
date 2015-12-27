@@ -1,4 +1,6 @@
-<?php namespace Modules\Shop\Product;
+<?php
+
+namespace Modules\Shop\Product;
 
 use Illuminate\Database\Eloquent\Model;
 use Modules\Search\Model\Searchable;
@@ -7,7 +9,6 @@ use Modules\System\Translatable\Translatable;
 
 class PropertyValue extends Model implements Searchable
 {
-
     use Translatable;
     use SearchableTrait;
 
@@ -20,34 +21,33 @@ class PropertyValue extends Model implements Searchable
     protected $translationForeignKey = 'value_id';
 
     protected $casts = [
-        'id'          => 'integer',
-        'product_id'  => 'integer',
+        'id' => 'integer',
+        'product_id' => 'integer',
         'property_id' => 'integer',
-        'option_id'   => 'integer',
-        'boolean'     => 'boolean',
-        'numeric'     => 'integer',
-        'float'       => 'float',
+        'option_id' => 'integer',
+        'boolean' => 'boolean',
+        'numeric' => 'integer',
+        'float' => 'float',
     ];
 
     protected static $searchableMapping = [
-        'id'         => ['type' => 'integer'],
+        'id' => ['type' => 'integer'],
         'product_id' => ['type' => 'integer'],
-        'property_id'   => ['type' => 'integer'],
+        'property_id' => ['type' => 'integer'],
         'option_id' => ['type' => 'integer'],
-        'boolean'     => ['type' => 'boolean'],
-        'numeric'     => ['type' => 'integer'],
-        'float'       => ['type' => 'float'],
+        'boolean' => ['type' => 'boolean'],
+        'numeric' => ['type' => 'integer'],
+        'float' => ['type' => 'float'],
 
         'created_at' => [
-            'type'   => 'date',
-            'format' => 'yyyy-MM-dd HH:mm:ss'
+            'type' => 'date',
+            'format' => 'yyyy-MM-dd HH:mm:ss',
         ],
         'updated_at' => [
-            'type'   => 'date',
-            'format' => 'yyyy-MM-dd HH:mm:ss'
+            'type' => 'date',
+            'format' => 'yyyy-MM-dd HH:mm:ss',
         ],
     ];
-
 
     public function product()
     {

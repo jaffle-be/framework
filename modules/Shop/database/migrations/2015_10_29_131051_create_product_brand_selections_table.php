@@ -5,11 +5,8 @@ use Illuminate\Database\Schema\Blueprint;
 
 class CreateProductBrandSelectionsTable extends Migration
 {
-
     /**
      * Run the migrations.
-     *
-     * @return void
      */
     public function up()
     {
@@ -26,8 +23,6 @@ class CreateProductBrandSelectionsTable extends Migration
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
     public function down()
     {
@@ -36,5 +31,4 @@ class CreateProductBrandSelectionsTable extends Migration
             $table->dropForeign('gamma_brand_selection_to_brand');
         });
     }
-
 }

@@ -1,4 +1,6 @@
-<?php namespace Modules\Layout\Http;
+<?php
+
+namespace Modules\Layout\Http;
 
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Session\Store;
@@ -7,15 +9,14 @@ use Modules\System\Http\AdminController;
 
 class TemplateController extends AdminController
 {
-
     public function template($template, Guard $guard, AccountManager $manager, Store $session)
     {
         $user = $guard->user();
 
-        return view('layout::admin.' . $template, [
-            'user'    => $user,
+        return view('layout::admin.'.$template, [
+            'user' => $user,
             'account' => $manager->account(),
-            'theme'   => $this->theme->current(),
+            'theme' => $this->theme->current(),
         ]);
     }
 }

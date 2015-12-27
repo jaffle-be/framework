@@ -1,7 +1,8 @@
-<?php namespace Modules\Shop\Jobs\Gamma\Notification;
+<?php
+
+namespace Modules\Shop\Jobs\Gamma\Notification;
 
 use App\Jobs\Job;
-
 use Modules\Account\Account;
 use Modules\Shop\Gamma\GammaNotification;
 use Modules\Shop\Product\Brand;
@@ -10,7 +11,6 @@ use Pusher;
 
 class NotifyDetailActivation extends Job
 {
-
     use GammaNotificationHelpers;
 
     protected $category;
@@ -38,14 +38,13 @@ class NotifyDetailActivation extends Job
 
         if ($canceled === 0) {
             $instance = $notification->newInstance([
-                'account_id'            => $this->account->id,
-                'category_id'           => $this->category->id,
-                'brand_id'              => $this->brand->id,
-                'type'                  => 'activate',
+                'account_id' => $this->account->id,
+                'category_id' => $this->category->id,
+                'brand_id' => $this->brand->id,
+                'type' => 'activate',
             ]);
 
             $instance->save();
         }
     }
-
 }

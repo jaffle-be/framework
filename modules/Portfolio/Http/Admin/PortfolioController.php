@@ -1,4 +1,6 @@
-<?php namespace Modules\Portfolio\Http\Admin;
+<?php
+
+namespace Modules\Portfolio\Http\Admin;
 
 use Illuminate\Http\Request;
 use Modules\Account\AccountManager;
@@ -9,7 +11,6 @@ use Modules\System\Http\AdminController;
 
 class PortfolioController extends AdminController
 {
-
     use MediaWidgetPreperations;
 
     public function overview()
@@ -30,7 +31,7 @@ class PortfolioController extends AdminController
             'images.sizes' => function ($query) {
                 $query->dimension(150);
             },
-            'translations'
+            'translations',
         ])->orderBy('date', 'asc');
 
         $value = $request->get('query');
@@ -41,8 +42,8 @@ class PortfolioController extends AdminController
 
                 $q->where('locale', $locale);
                 $q->where(function ($q) use ($value) {
-                    $q->where('title', 'like', '%' . $value . '%')
-                        ->orWhere('content', 'like', '%' . $value . '%');
+                    $q->where('title', 'like', '%'.$value.'%')
+                        ->orWhere('content', 'like', '%'.$value.'%');
                 });
             });
         }
@@ -140,5 +141,4 @@ class PortfolioController extends AdminController
             }
         }
     }
-
 }

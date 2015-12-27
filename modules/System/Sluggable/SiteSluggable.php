@@ -1,4 +1,6 @@
-<?php namespace Modules\System\Sluggable;
+<?php
+
+namespace Modules\System\Sluggable;
 
 use Modules\System\Locale;
 use Modules\System\Scopes\SiteSluggableScope;
@@ -6,7 +8,6 @@ use Modules\System\Uri\Uri;
 
 trait SiteSluggable
 {
-
     use Sluggable;
 
     protected function needsSlugging()
@@ -17,7 +18,6 @@ trait SiteSluggable
     public function getRouteKeyName()
     {
         if (!starts_with(app('request')->getRequestUri(), ['/admin', '/api'])) {
-
             return 'uris.uri';
         }
 
@@ -99,8 +99,8 @@ trait SiteSluggable
             //slugs should always be account specific, at least for now
             $slug = new Uri([
                 'account_id' => $account->id,
-                'locale_id'  => $locale->id,
-                'uri'        => $uri,
+                'locale_id' => $locale->id,
+                'uri' => $uri,
             ]);
 
             $this->slug()->save($slug);
@@ -138,7 +138,7 @@ trait SiteSluggable
 
         $query = $uri->where(function ($query) use ($slug, $config) {
             $query->where('uri', $slug)
-                ->orWhere('uri', 'like', $slug . $config['separator'] . '%');
+                ->orWhere('uri', 'like', $slug.$config['separator'].'%');
         });
 
         $this->load('slug');
@@ -152,5 +152,4 @@ trait SiteSluggable
 
         return $list->all();
     }
-
 }

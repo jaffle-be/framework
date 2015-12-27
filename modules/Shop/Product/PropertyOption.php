@@ -1,11 +1,12 @@
-<?php namespace Modules\Shop\Product;
+<?php
+
+namespace Modules\Shop\Product;
 
 use Illuminate\Database\Eloquent\Model;
 use Modules\System\Translatable\Translatable;
 
 class PropertyOption extends Model
 {
-
     use Translatable;
 
     protected $table = 'product_properties_options';
@@ -17,7 +18,7 @@ class PropertyOption extends Model
     protected $translationForeignKey = 'option_id';
 
     protected $casts = [
-        'id'          => 'integer',
+        'id' => 'integer',
         'property_id' => 'integer',
     ];
 
@@ -25,5 +26,4 @@ class PropertyOption extends Model
     {
         return $this->belongsTo('Modules\Shop\Product\Property', 'property_id');
     }
-
 }

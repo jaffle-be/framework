@@ -45,7 +45,7 @@ $factory->defineAs(ProductCategorySelection::class, 'deleted', function (Faker\G
 
 $factory->defineAs(GammaNotification::class, 'activate', function (Faker\Generator $faker) {
     return [
-        'type'       => 'activate',
+        'type' => 'activate',
         'created_at' => $faker->dateTimeBetween('-1 years', '-1 months'),
         'updated_at' => $faker->dateTimeBetween('-1 months', 'now'),
     ];
@@ -53,7 +53,7 @@ $factory->defineAs(GammaNotification::class, 'activate', function (Faker\Generat
 
 $factory->defineAs(GammaNotification::class, 'deactivate', function (Faker\Generator $faker) {
     return [
-        'type'       => 'deactivate',
+        'type' => 'deactivate',
         'created_at' => $faker->dateTimeBetween('-1 years', '-1 months'),
         'updated_at' => $faker->dateTimeBetween('-1 months', 'now'),
     ];

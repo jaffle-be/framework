@@ -1,4 +1,6 @@
-<?php namespace Modules\Media\Http\Admin;
+<?php
+
+namespace Modules\Media\Http\Admin;
 
 use Illuminate\Http\Request;
 use Modules\Media\Commands\UpdateImage;
@@ -11,7 +13,6 @@ use Modules\Theme\ThemeManager;
 
 class ImageController extends AdminController
 {
-
     use MediaWidgetPreperations;
 
     /**
@@ -64,7 +65,6 @@ class ImageController extends AdminController
         $owner = $this->owner($request);
 
         if ($image->owner->id == $owner->id) {
-
             $input = translation_input($request, ['_token', 'title']);
 
             return $this->dispatch(new UpdateImage($image, $input));
@@ -94,5 +94,4 @@ class ImageController extends AdminController
             $image->save();
         }
     }
-
 }

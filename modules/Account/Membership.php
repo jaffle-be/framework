@@ -1,10 +1,11 @@
-<?php namespace Modules\Account;
+<?php
+
+namespace Modules\Account;
 
 use Illuminate\Database\Eloquent\Model;
 
 class Membership extends Model
 {
-
     protected $table = 'account_memberships';
 
     protected $fillable = ['is_owner'];
@@ -28,5 +29,4 @@ class Membership extends Model
     {
         return $this->belongsToMany('Modules\Account\Team', 'account_team_memberships');
     }
-
 }

@@ -1,11 +1,12 @@
-<?php namespace Modules\System;
+<?php
+
+namespace Modules\System;
 
 use Illuminate\Database\Eloquent\Model;
 use Modules\System\Translatable\Translatable;
 
 class Locale extends Model
 {
-
     use Translatable;
 
     protected $table = 'locales';
@@ -15,5 +16,4 @@ class Locale extends Model
     protected $translatedAttributes = ['name'];
 
     public $timestamps = false;
-
 }

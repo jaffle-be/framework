@@ -1,10 +1,11 @@
-<?php namespace Modules\System\Presenter;
+<?php
+
+namespace Modules\System\Presenter;
 
 use Markdown;
 
 trait ContentPresenterTrait
 {
-
     /**
      * Returns the entire post, fully loaded with shortcodes
      * Ready to be displayed onto your website.
@@ -99,7 +100,6 @@ trait ContentPresenterTrait
 
     public function snippet($str, $wordCount = 60, $chars = null)
     {
-
         $string = implode(
             '',
             array_slice(
@@ -143,7 +143,6 @@ trait ContentPresenterTrait
 
         $string = rtrim($string, ' ');
 
-        return empty($string) ? null : $string . '&nbsp;...';
+        return empty($string) ? null : $string.'&nbsp;...';
     }
-
 }

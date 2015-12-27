@@ -1,11 +1,12 @@
-<?php namespace Modules\System\Uri;
+<?php
+
+namespace Modules\System\Uri;
 
 use Modules\System\Sluggable\OwnsSlug;
 use Modules\System\Translatable\TranslationModel;
 
 class CleanupPrepping
 {
-
     public function handle($model)
     {
         if (method_exists($model, 'translations')) {
@@ -16,5 +17,4 @@ class CleanupPrepping
             }
         }
     }
-
 }

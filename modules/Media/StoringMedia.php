@@ -1,4 +1,6 @@
-<?php namespace Modules\Media;
+<?php
+
+namespace Modules\Media;
 
 use Exception;
 use Illuminate\Database\Eloquent\Builder;
@@ -8,7 +10,6 @@ use Modules\System\Scopes\ModelAccountResource;
 
 trait StoringMedia
 {
-
     use ImageDimensionHelpers;
 
     public function mediaStoresMultiple()
@@ -77,13 +78,11 @@ trait StoringMedia
 
     public function getMediaFolder($type = null, $size = null)
     {
-        if(uses_trait(get_class($this), ModelAccountResource::class))
-        {
+        if (uses_trait(get_class($this), ModelAccountResource::class)) {
             $account = isset($this->attributes['account_id']) ? $this->attributes['account_id'] : app('Modules\Account\AccountManager')->account()->id;
 
             $media = str_replace('{account}', $account, $this->media);
-        }
-        else{
+        } else {
             $media = $this->media;
         }
 
@@ -114,16 +113,15 @@ trait StoringMedia
         /** @var MorphOne $relation */
         $relation = $this->images();
 
-        $key = $this->getTable() . '.' . $this->getKeyName();
+        $key = $this->getTable().'.'.$this->getKeyName();
 
         $from = $relation->getQuery()->getQuery()->from;
 
-        $builder->join($from, function($join) use ($relation, $key){
+        $builder->join($from, function ($join) use ($relation, $key) {
             $join->where($relation->getMorphType(), '=', $relation->getMorphClass());
             $join->on($relation->getForeignKey(), '=', $key);
         });
 
         return $builder;
     }
-
 }

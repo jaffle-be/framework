@@ -1,10 +1,11 @@
-<?php namespace Modules\Tags\Providers;
+<?php
+
+namespace Modules\Tags\Providers;
 
 use Modules\System\ServiceProvider;
 
 class TagsServiceProvider extends ServiceProvider
 {
-
     protected $namespace = 'tags';
 
     public function listeners()
@@ -19,5 +20,4 @@ class TagsServiceProvider extends ServiceProvider
     public function register()
     {
     }
-
 }

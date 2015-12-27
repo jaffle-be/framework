@@ -1,11 +1,12 @@
-<?php namespace Modules\Theme;
+<?php
+
+namespace Modules\Theme;
 
 use Exception;
 use Illuminate\Database\Eloquent\Collection;
 
 trait MigrateThemeSettings
 {
-
     /**
      * @var Collection
      */
@@ -14,7 +15,6 @@ trait MigrateThemeSettings
     protected function settings(Theme $theme)
     {
         foreach ($this->settings as $setting) {
-
             $type = $this->settingGetType($setting);
 
             $setting['type_id'] = $type->id;
@@ -23,7 +23,7 @@ trait MigrateThemeSettings
 
             $setting = $theme->settings()->create($setting);
 
-            $method = 'settingsHandle' . ucfirst($type->name);
+            $method = 'settingsHandle'.ucfirst($type->name);
 
             if (method_exists($this, $method)) {
                 call_user_func([$this, $method], $setting);
@@ -80,5 +80,4 @@ trait MigrateThemeSettings
             $setting->defaults()->create(['value' => json_encode($this->defaults[$setting->key])]);
         }
     }
-
 }

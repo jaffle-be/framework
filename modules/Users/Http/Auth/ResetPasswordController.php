@@ -1,4 +1,6 @@
-<?php namespace Modules\Users\Http\Auth;
+<?php
+
+namespace Modules\Users\Http\Auth;
 
 use Illuminate\Contracts\Auth\Guard;
 use Lang;
@@ -9,9 +11,8 @@ use Modules\Users\Auth\Tokens\TokenRepository;
 
 class ResetPasswordController extends FrontController
 {
-
     /**
-     * Show the form for resetting the password
+     * Show the form for resetting the password.
      *
      * @param $token
      *

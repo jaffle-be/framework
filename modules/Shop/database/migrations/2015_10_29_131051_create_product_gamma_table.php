@@ -5,11 +5,8 @@ use Illuminate\Database\Schema\Blueprint;
 
 class CreateProductGammaTable extends Migration
 {
-
     /**
      * Run the migrations.
-     *
-     * @return void
      */
     public function up()
     {
@@ -40,8 +37,6 @@ class CreateProductGammaTable extends Migration
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
     public function down()
     {
@@ -56,5 +51,4 @@ class CreateProductGammaTable extends Migration
             $table->dropForeign('gamma_to_brand');
         });
     }
-
 }

@@ -1,10 +1,11 @@
-<?php namespace Modules\Users;
+<?php
+
+namespace Modules\Users;
 
 use Modules\Users\Contracts\UserRepositoryInterface;
 
 class UserRepository implements UserRepositoryInterface
 {
-
     /**
      * @var User
      */

@@ -1,7 +1,8 @@
-<?php namespace Modules\Shop\Jobs\Gamma\Notification\Handlers;
+<?php
+
+namespace Modules\Shop\Jobs\Gamma\Notification\Handlers;
 
 use App\Jobs\Job;
-
 use Modules\Account\Account;
 use Modules\Shop\Gamma\ProductSelection;
 use Modules\Shop\Product\Brand;
@@ -9,7 +10,6 @@ use Modules\Shop\Product\Category;
 
 class BatchGammaDeactivation extends Job
 {
-
     /**
      * @var Category
      */
@@ -41,12 +41,10 @@ class BatchGammaDeactivation extends Job
     {
         //chunk alike thinking here
         while ($productGamma->countActiveProducts($this->brand->id, $this->category->id, $this->account->id) > 0) {
-
             $selections = $this->loadSelections($productGamma);
 
             foreach ($selections as $selection) {
-
-                $category = $selection->categories->first(function ($key, $item){
+                $category = $selection->categories->first(function ($key, $item) {
                     return $item->category_id == $this->category->id;
                 });
 
@@ -55,7 +53,6 @@ class BatchGammaDeactivation extends Job
                 $active = $selection->categories->filter(function ($item) {
                     return !$item->trashed();
                 });
-
 
                 if ($active->count() == 0) {
                     $selection->delete();
@@ -73,11 +70,10 @@ class BatchGammaDeactivation extends Job
     {
         $selections = $productGamma->chunkActiveProducts($this->brand->id, $this->category->id, $this->account->id);
 
-        $selections->load(['categories' => function ($query){
+        $selections->load(['categories' => function ($query) {
             $query->withTrashed();
         }]);
 
         return $selections;
     }
-
 }
