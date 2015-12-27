@@ -6,7 +6,6 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Support\Str;
 use Modules\Media\Commands\StoreNewImage;
 use Modules\Shop\Product\Brand;
-use Modules\Shop\Product\BrandTranslation;
 use Modules\System\Seeder;
 
 class BrandTableSeeder extends Seeder
@@ -40,14 +39,16 @@ class BrandTableSeeder extends Seeder
      */
     public function run()
     {
-        $path = base_path('database/data/brands.json');
+        if (Brand::count() == 0) {
+            $path = base_path('database/data/brands.json');
 
-        if (file_exists($path)) {
-            $data = $this->data($path);
+            if (file_exists($path)) {
+                $data = $this->data($path);
 
-            $this->brands($data->brands);
-        } else {
-            throw new \Exception("Couldn't find brands.json file");
+                $this->brands($data->brands);
+            } else {
+                throw new \Exception("Couldn't find brands.json file");
+            }
         }
     }
 
@@ -70,26 +71,20 @@ class BrandTableSeeder extends Seeder
         foreach ($brands as $brand) {
             $file = $this->image($brand->name, $brand->brands);
 
-            $existing = BrandTranslation::where('name', $brand->name)->first();
-
-            if (!$existing) {
-                $existing = Brand::create([
-                    'nl'   => [
-                        'name' => $brand->name,
-                    ]
-                    , 'en' => [
-                        'name' => $brand->name,
-                    ]
-                    , 'fr' => [
-                        'name' => $brand->name,
-                    ]
-                    , 'de' => [
-                        'name' => $brand->name,
-                    ],
-                ]);
-            } else {
-                $existing = $existing->brand;
-            }
+            $existing = Brand::create([
+                'nl'   => [
+                    'name' => $brand->name,
+                ]
+                , 'en' => [
+                    'name' => $brand->name,
+                ]
+                , 'fr' => [
+                    'name' => $brand->name,
+                ]
+                , 'de' => [
+                    'name' => $brand->name,
+                ],
+            ]);
 
             $this->dispatch(new StoreNewImage(null, $existing, $file));
         }

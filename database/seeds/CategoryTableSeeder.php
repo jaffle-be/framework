@@ -1,7 +1,6 @@
 <?php
 
 use Modules\Shop\Product\Category;
-use Modules\Shop\Product\CategoryTranslation;
 use Modules\System\Seeder;
 
 class CategoryTableSeeder extends Seeder
@@ -14,14 +13,16 @@ class CategoryTableSeeder extends Seeder
      */
     public function run()
     {
-        $path = base_path('database/data/categories.json');
+        if (Category::count() == 0) {
+            $path = base_path('database/data/categories.json');
 
-        if (file_exists($path)) {
-            $data = $this->data($path);
+            if (file_exists($path)) {
+                $data = $this->data($path);
 
-            $this->categories($data);
-        } else {
-            throw new \Exception("Couldn't find categories.json file");
+                $this->categories($data);
+            } else {
+                throw new \Exception("Couldn't find categories.json file");
+            }
         }
     }
 
@@ -34,22 +35,17 @@ class CategoryTableSeeder extends Seeder
         return $data;
     }
 
-
     protected function categories($data)
     {
-        foreach($data as $category)
-        {
+        foreach ($data as $category) {
             $name = $category->naam;
 
-            if(CategoryTranslation::where('name', $name)->count() == 0)
-            {
-                Category::create([
-                    'nl' => ['name' => $name],
-                    'en' => ['name' => $name],
-                    'fr' => ['name' => $name],
-                    'de' => ['name' => $name],
-                ]);
-            }
+            Category::create([
+                'nl' => ['name' => $name],
+                'en' => ['name' => $name],
+                'fr' => ['name' => $name],
+                'de' => ['name' => $name],
+            ]);
         }
     }
 

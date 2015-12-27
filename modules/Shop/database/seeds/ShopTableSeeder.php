@@ -28,15 +28,10 @@ class ShopTableSeeder extends Seeder
 
     public function run($count = 15)
     {
-        if (Brand::count() == 0) {
-            $this->call(BrandTableSeeder::class);
-        }
-        if (Category::count() == 0) {
-            $this->call(CategoryTableSeeder::class);
-        }
+        $this->call(BrandTableSeeder::class);
+        $this->call(CategoryTableSeeder::class);
 
-        if (Property::count() == 0)
-        {
+        if (Property::count() == 0) {
             $this->baseProperties();
         }
 
@@ -51,12 +46,11 @@ class ShopTableSeeder extends Seeder
 
         $accounts = Account::take(2)->get();
 
-        foreach($accounts as $account)
-        {
+        foreach ($accounts as $account) {
             for ($i = 0; $i < $amount; $i++) {
 
                 $product = factory(Product::class)->create([
-                    'brand_id' => $brands->random(1)->id,
+                    'brand_id'   => $brands->random(1)->id,
                     'account_id' => $account->id,
                 ]);
 
@@ -66,8 +60,7 @@ class ShopTableSeeder extends Seeder
 
                 $categoryIds = [$category->id];
 
-                if($category->synonyms)
-                {
+                if ($category->synonyms) {
                     $categoryIds = array_merge($categoryIds, $category->synonyms->lists('id')->toArray());
                 }
 
@@ -150,18 +143,16 @@ class ShopTableSeeder extends Seeder
     {
         $properties = Property::where('category_id', $category->id)->get();
 
-        $properties = $properties->random(rand(5,10));
+        $properties = $properties->random(rand(5, 10));
 
         $values = new Collection();
 
-        foreach($properties as $property)
-        {
+        foreach ($properties as $property) {
             $payload = [
                 'property_id' => $property->id
             ];
 
-            if($property->options->count())
-            {
+            if ($property->options->count()) {
                 $payload['option_id'] = $property->options->random(1)->id;
             }
 
@@ -176,32 +167,31 @@ class ShopTableSeeder extends Seeder
         factory(PropertyUnit::class)->times(35)->create();
         $units = PropertyUnit::all();
 
-        foreach(Category::all() as $category)
-        {
+        foreach (Category::all() as $category) {
             $groups = factory(PropertyGroup::class)->times(4)->create([
                 'category_id' => $category->id,
             ]);
 
             factory(Property::class, 'numeric')->times(4)->create([
-                'unit_id' => $units->random(1)->id,
-                'group_id' => $groups->random(1)->id,
+                'unit_id'     => $units->random(1)->id,
+                'group_id'    => $groups->random(1)->id,
                 'category_id' => $category->id,
             ]);
             factory(Property::class, 'boolean')->times(5)->create([
-                'group_id' => $groups->random(1)->id,
+                'group_id'    => $groups->random(1)->id,
                 'category_id' => $category->id,
             ]);
             factory(Property::class, 'float')->times(1)->create([
-                'group_id' => $groups->random(1)->id,
+                'group_id'    => $groups->random(1)->id,
                 'category_id' => $category->id
             ]);
             factory(Property::class, 'string')->times(3)->create([
-                'group_id' => $groups->random(1)->id,
+                'group_id'    => $groups->random(1)->id,
                 'category_id' => $category->id
             ]);
 
             factory(Property::class, 'options')->times(3)->create([
-                'group_id' => $groups->random(1)->id,
+                'group_id'    => $groups->random(1)->id,
                 'category_id' => $category->id
             ])->each(function ($property) {
                 factory(PropertyOption::class)->times(rand(4, 10))->create([
@@ -209,8 +199,6 @@ class ShopTableSeeder extends Seeder
                 ]);
             });
         }
-
-
     }
 
 }
