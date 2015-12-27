@@ -91,11 +91,16 @@ return [
                     'class' => PropertyValue::class,
                     'key' => 'product_id',
                 ]
-
             ],
         ],
 
+        'product_properties_values' => [
+            'class' => PropertyValue::class,
+        ],
+
     ],
+
+    'refresh_interval' => '100ms',
 
     'settings' => [
         'index' => [

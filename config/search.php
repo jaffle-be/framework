@@ -100,6 +100,8 @@ return [
 
     ],
 
+    'refresh_interval' => '100ms',
+
     'settings' => [
         'index' => [
             'analysis' => [

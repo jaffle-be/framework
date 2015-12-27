@@ -5,6 +5,8 @@ use Modules\System\Translatable\Translatable;
 class Config
 {
 
+    protected $config;
+
     protected $index;
 
     protected $types = [];
@@ -135,6 +137,11 @@ class Config
     public function getInvertedTypes()
     {
         return $this->inverted;
+    }
+
+    public function getSpeed()
+    {
+        return $this->config['refresh_interval'];
     }
 
 }

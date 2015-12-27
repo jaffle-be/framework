@@ -34,9 +34,11 @@ class SearchServiceProvider extends ServiceProvider
 
     protected function registerService()
     {
+        $this->app[Config::class] = new Config(config('search'));
+
         $this->app['Modules\Search\SearchService'] = $this->app->share(function ($app) {
 
-            $config = new Config(config('search'));
+            $config = $app[Config::class];
 
             $client = ClientBuilder::create()
                 ->setHosts(config('search.hosts'))
@@ -50,7 +52,13 @@ class SearchServiceProvider extends ServiceProvider
 
     protected function registerCommands()
     {
-        $this->commands(['Modules\Search\Command\SearchBuild', 'Modules\Search\Command\SearchFlush', 'Modules\Search\Command\SearchSettings', 'Modules\Search\Command\SearchRebuild']);
+        $this->commands([
+            \Modules\Search\Command\SearchBuild::class,
+            \Modules\Search\Command\SearchFlush::class,
+            \Modules\Search\Command\SearchSettings::class,
+            \Modules\Search\Command\SearchRebuild::class,
+            \Modules\Search\Command\SearchSpeed::class,
+        ]);
     }
 
 }
