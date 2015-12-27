@@ -1,4 +1,4 @@
-<div ng-controller="NewsletterCampaignController as vm" ng-init="vm.options = {{ system_options() }}">
+<div ng-controller="NewsletterCampaignController as vm">
     <div class="ibox" st-table="vm.campaigns" st-pipe="vm.list">
 
         @include('system::admin.locale-tabs', ['clickRefresh' => true])

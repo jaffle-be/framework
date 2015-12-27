@@ -2,9 +2,10 @@
     'use strict';
 
     angular.module('marketing')
-        .controller('NewsletterCampaignDetailController', function ($scope, $state, NewsletterCampaign, NewsletterCampaignService, $sce, toaster) {
+        .controller('NewsletterCampaignDetailController', function ($scope, $state, System, NewsletterCampaign, NewsletterCampaignService, $sce, toaster) {
 
             this.campaigns = NewsletterCampaignService;
+            this.options = System.options;
             this.itemsPerRow = 1;
             //active state for tabs
             this.widgetTabs = [true, false];
