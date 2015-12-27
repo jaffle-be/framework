@@ -22,7 +22,8 @@
 
         <label for="">{{ Lang::get('system::admin.seo.description') }}</label>
 
-        <textarea rows="2" class="form-control" ng-model="seo[locale].description" ng-change="ctrl.updateSeo()"></textarea>
+        <textarea rows="2" class="form-control" ng-model="seo[locale].description"
+                  ng-change="ctrl.updateSeo()"></textarea>
 
     </div>
 
