@@ -5,8 +5,7 @@ namespace Modules\System\Providers;
 use Blade;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Factory;
-use Modules\System\Cache\CacheManager;
-use Modules\System\Queue\RedisConnector;
+use Modules\System\Console\FreshApplication;
 use Modules\System\Seo\SeoManager;
 use Modules\System\ServiceProvider;
 use Webuni\CommonMark\AttributesExtension\AttributesExtension;
@@ -57,6 +56,8 @@ class SystemServiceProvider extends ServiceProvider
         $this->app->booted(function ($app) {
             $app->register('Modules\System\Uri\UriServiceProvider');
         });
+
+        $this->commands([FreshApplication::class]);
     }
 
     protected function listeners()
