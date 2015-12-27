@@ -1,4 +1,4 @@
-<div class="ibox" ng-controller="LocaleController as vm" ng-init="vm.options = {{ system_options() }}">
+<div class="ibox" ng-controller="LocaleController as vm">
 
     <div class="ibox-title">
         <h5>{{ Lang::get('system::admin.locales') }}</h5>
