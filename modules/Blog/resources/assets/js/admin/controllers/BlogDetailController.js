@@ -2,8 +2,9 @@
     'use strict';
 
     angular.module('blog')
-        .controller('BlogDetailController', function ($scope, $state, Blog, BlogService) {
+        .controller('BlogDetailController', function ($scope, $state, System, Blog, BlogService) {
 
+            this.options = System.options;
             this.posts = BlogService;
             $scope.status = {
                 datepickerStatus: false
