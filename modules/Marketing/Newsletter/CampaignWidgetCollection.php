@@ -79,7 +79,7 @@ class CampaignWidgetCollection extends Collection
 
     /**
      *
-     * @internal param Campaign $newsletter
+     * $newsletter
      */
     protected function getMaps()
     {

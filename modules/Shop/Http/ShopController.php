@@ -46,7 +46,7 @@ class ShopController extends FrontController
     /**
      * @todo     remove brand from this route, it's not usefull
      *
-     * @internal param SearchServiceInterface $search
+     * $search
      */
     public function category(CategoryTranslation $category, BrandTranslation $brand = null, Request $request, GammaQueryResolver $resolver)
     {

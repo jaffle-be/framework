@@ -239,7 +239,7 @@ class ImportResults extends Command
     }
 
     /**
-     * @internal param $data
+     * $data
      */
     protected function addImage($account, $product, $url, $counter)
     {

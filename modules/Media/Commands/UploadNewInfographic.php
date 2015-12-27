@@ -30,7 +30,7 @@ class UploadNewInfographic extends Job
     protected $locale;
 
     /**
-     * @internal param UploadedFile $image
+     * $image
      */
     public function __construct(StoresMedia $owner, UploadedFile $graphic, Locale $locale)
     {

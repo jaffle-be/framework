@@ -35,7 +35,7 @@ class AccountRepository implements AccountRepositoryInterface
     /**
      * The alias represents the subdomain for the main app url an account is running under.
      *
-     * @internal param $domain
+     * $domain
      */
     public function findByAlias($alias)
     {

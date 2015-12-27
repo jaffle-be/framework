@@ -107,7 +107,7 @@ class BrandCategoryManager
 
     /**
      *
-     * @internal param $brands
+     * $brands
      */
     protected function combinationIsKnown($product, $category)
     {

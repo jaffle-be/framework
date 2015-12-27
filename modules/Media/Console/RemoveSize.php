@@ -70,7 +70,7 @@ class RemoveSize extends Command
     }
 
     /**
-     * @internal param $this
+     * $this
      */
     public function handleOwner(StoresMedia $owner, $size)
     {
@@ -86,7 +86,7 @@ class RemoveSize extends Command
     }
 
     /**
-     * @internal param $owner
+     * $owner
      */
     public function handleImage($image)
     {

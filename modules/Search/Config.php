@@ -33,7 +33,7 @@ class Config
      * We can then use it to trigger nested document changes.
      *
      *
-     * @internal param $types
+     * $types
      */
     protected function invertTypes()
     {
@@ -95,9 +95,9 @@ class Config
 
     /**
      *
-     * @internal param $inverted
-     * @internal param $config
-     * @internal param $class
+     * $inverted
+     * $config
+     * $class
      */
     protected function invert($nested, $parent, $key, $relation)
     {

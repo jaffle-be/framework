@@ -48,8 +48,8 @@ abstract class Seeder extends BaseSeeder
     /**
      *
      * @throws Exception
-     * @internal param $images
-     * @internal param $sizes
+     * $images
+     * $sizes
      */
     protected function preImageCaching()
     {

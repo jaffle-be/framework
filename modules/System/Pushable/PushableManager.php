@@ -45,7 +45,7 @@ class PushableManager
      * the $model passed is simply the pivot data in array form.
      *
      *
-     * @internal param $model
+     * $model
      */
     public function belongsToManyPushable($payload)
     {

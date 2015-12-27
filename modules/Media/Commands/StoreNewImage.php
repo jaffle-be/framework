@@ -64,7 +64,7 @@ class StoreNewImage extends Job
     protected $path;
 
     /**
-     * @internal param array $sizes
+     * $sizes
      */
     public function __construct(Account $account = null, StoresMedia $owner, $path, $rename = null)
     {

@@ -30,7 +30,7 @@ class UploadNewFile extends Job
     protected $locale;
 
     /**
-     * @internal param UploadedFile $image
+     * $image
      */
     public function __construct(StoresMedia $owner, UploadedFile $file, Locale $locale)
     {

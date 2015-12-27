@@ -58,7 +58,7 @@ trait SiteSluggable
     /**
      * Set the slug manually.
      *
-     * @internal param string $slug
+     * $slug
      */
     protected function setSlug($uri)
     {

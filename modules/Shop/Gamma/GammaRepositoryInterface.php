@@ -10,7 +10,7 @@ interface GammaRepositoryInterface
 {
     /**
      *
-     * @internal param Account $account
+     * $account
      */
     public function categoriesForBrand(Brand $brand);
 
