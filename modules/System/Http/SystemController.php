@@ -23,8 +23,8 @@ class SystemController extends FrontController
     }
 
     /**
-     * @param Account $account
-     * @param         $locale
+     *
+     *
      *
      * @return mixed
      */

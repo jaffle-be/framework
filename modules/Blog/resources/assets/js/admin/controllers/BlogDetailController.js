@@ -29,7 +29,7 @@
              * trigger a save for a document that exists but hold the autosave when it's a
              * document we're creating.
              *
-             * @param manual
+             *
              */
             this.save = function () {
                 var me = this;

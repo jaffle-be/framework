@@ -13,8 +13,8 @@ class BelongsToManyPushable implements Pushable
     /**
      * BelongsToManyPushable constructor.
      *
-     * @param array $data
-     * @param       $relation
+     *
+     *
      */
     public function __construct(array $data, $relation)
     {

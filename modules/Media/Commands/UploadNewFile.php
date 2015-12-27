@@ -30,9 +30,9 @@ class UploadNewFile extends Job
     protected $locale;
 
     /**
-     * @param StoresMedia  $owner
-     * @param UploadedFile $file
-     * @param Locale       $locale
+     *
+     *
+     *
      *
      * @internal param UploadedFile $image
      */

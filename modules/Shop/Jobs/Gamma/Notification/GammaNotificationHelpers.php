@@ -44,10 +44,10 @@ trait GammaNotificationHelpers
     }
 
     /**
-     * @param GammaNotification $notification
-     * @param Account           $account
-     * @param Brand             $brand
-     * @param Category          $category
+     *
+     *
+     *
+     *
      *
      * @return mixed
      */

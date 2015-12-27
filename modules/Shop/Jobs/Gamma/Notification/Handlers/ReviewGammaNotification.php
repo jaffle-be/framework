@@ -47,8 +47,8 @@ class ReviewGammaNotification extends Job implements ShouldQueue
     }
 
     /**
-     * @param GammaSelection $gamma
-     * @param                $notification
+     *
+     *
      */
     protected function insertNewGammaSelection(GammaSelection $gamma, $notification)
     {
@@ -63,9 +63,9 @@ class ReviewGammaNotification extends Job implements ShouldQueue
     }
 
     /**
-     * @param CatalogRepositoryInterface $catalog
-     * @param ProductSelection           $selections
-     * @param                            $status
+     *
+     *
+     *
      */
     protected function notifyWithinScope(CatalogRepositoryInterface $catalog, ProductSelection $selections, $status)
     {
@@ -102,8 +102,8 @@ class ReviewGammaNotification extends Job implements ShouldQueue
     }
 
     /**
-     * @param GammaSelection $gamma
-     * @param                $notification
+     *
+     *
      */
     protected function deleteExistingGammaSelection(GammaSelection $gamma, $notification)
     {

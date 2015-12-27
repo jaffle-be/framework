@@ -39,11 +39,11 @@ class ThrottleManager implements Throttler
     protected $ip;
 
     /**
-     * @param Client     $redis
-     * @param Repository $config
-     * @param Queue      $queue
-     * @param Carbon     $carbon
-     * @param Request    $request
+     *
+     *
+     *
+     *
+     *
      */
     public function __construct(Client $redis, Repository $config, Queue $queue, Carbon $carbon, Request $request)
     {
@@ -61,7 +61,7 @@ class ThrottleManager implements Throttler
     /**
      * Is the current user allowed to do another attempt.
      *
-     * @param $email
+     *
      *
      * @return bool
      */
@@ -71,7 +71,7 @@ class ThrottleManager implements Throttler
     }
 
     /**
-     * @param $email
+     *
      *
      * @return bool
      */
@@ -83,7 +83,7 @@ class ThrottleManager implements Throttler
     }
 
     /**
-     * @param $email
+     *
      */
     protected function startCooldown($email)
     {
@@ -109,7 +109,7 @@ class ThrottleManager implements Throttler
     }
 
     /**
-     * @param $email
+     *
      *
      * @return bool
      */
@@ -119,7 +119,7 @@ class ThrottleManager implements Throttler
     }
 
     /**
-     * @param string $field email or ip
+     *
      *
      * @return string
      */
@@ -139,7 +139,7 @@ class ThrottleManager implements Throttler
     }
 
     /**
-     * @param $email
+     *
      *
      * @return int
      */
@@ -151,8 +151,8 @@ class ThrottleManager implements Throttler
     }
 
     /**
-     * @param      $increment
-     * @param null $ip
+     *
+     *
      *
      * @return mixed
      */
@@ -166,8 +166,8 @@ class ThrottleManager implements Throttler
     }
 
     /**
-     * @param $increment
-     * @param $email
+     *
+     *
      *
      * @return mixed
      */

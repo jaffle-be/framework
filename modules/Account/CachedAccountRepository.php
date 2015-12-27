@@ -27,7 +27,7 @@ class CachedAccountRepository implements AccountRepositoryInterface
     }
 
     /**
-     * @param array $payload
+     *
      *
      * @return Account
      */

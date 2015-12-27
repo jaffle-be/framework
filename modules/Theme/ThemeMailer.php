@@ -18,8 +18,8 @@ class ThemeMailer implements MailContract
     protected $mailer;
 
     /**
-     * @param Theme  $theme
-     * @param Mailer $mailer
+     *
+     *
      */
     public function __construct(Theme $theme, Mailer $mailer)
     {
@@ -31,8 +31,8 @@ class ThemeMailer implements MailContract
     /**
      * Send a new message when only a raw text part.
      *
-     * @param string          $text
-     * @param \Closure|string $callback
+     *
+     *
      *
      * @return int
      */
@@ -42,9 +42,9 @@ class ThemeMailer implements MailContract
     }
 
     /**
-     * @param array|string    $view
-     * @param array           $data
-     * @param \Closure|string $callback
+     *
+     *
+     *
      *
      * @throws \Exception
      *
@@ -102,8 +102,8 @@ class ThemeMailer implements MailContract
     }
 
     /**
-     * @param array $data
-     * @param       $callback
+     *
+     *
      *
      * @return \Closure
      */
@@ -119,8 +119,8 @@ class ThemeMailer implements MailContract
     }
 
     /**
-     * @param array $data
-     * @param       $callback
+     *
+     *
      *
      * @return \Closure
      */

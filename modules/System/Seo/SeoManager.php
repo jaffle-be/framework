@@ -50,7 +50,7 @@ class SeoManager
     }
 
     /**
-     * @param $provider
+     *
      *
      * @return MetaTagProvider
      */

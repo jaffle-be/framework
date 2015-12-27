@@ -58,7 +58,7 @@ trait SiteSluggable
     /**
      * Set the slug manually.
      *
-     * @param $uri
+     *
      *
      * @internal param string $slug
      */
@@ -128,7 +128,7 @@ trait SiteSluggable
     /**
      * Get all existing slugs that are similar to the given slug.
      *
-     * @param string $slug
+     *
      *
      * @return array
      */

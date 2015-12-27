@@ -20,7 +20,7 @@ abstract class BasePresenter implements EntityPresenter
     }
 
     /**
-     * @param $name
+     *
      */
     public function __get($name)
     {

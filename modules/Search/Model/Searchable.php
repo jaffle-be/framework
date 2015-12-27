@@ -10,7 +10,7 @@ interface Searchable
     /**
      * Set the client for searching.
      *
-     * @param SearchServiceInterface $service
+     *
      *
      * @return mixed
      */
@@ -26,7 +26,7 @@ interface Searchable
     /**
      * Set the index for searching.
      *
-     * @param string $index
+     *
      */
     public function setSearchableIndex($index);
 
@@ -80,7 +80,7 @@ interface Searchable
     /**
      * Get the corresponding model event to listen for when auto indexing.
      *
-     * @param $event
+     *
      *
      * @return mixed
      */
@@ -90,8 +90,8 @@ interface Searchable
      * This is a 'hook' to a new model creation.
      * if it ever changes in eloquent, you only need to adjust this part.
      *
-     * @param       $data
-     * @param array $with
+     *
+     *
      *
      * @return
      */
@@ -99,6 +99,8 @@ interface Searchable
 
     /**
      * Return the mappings to use to index our data.
+     *
+     *
      *
      * @return mixed
      */
@@ -108,7 +110,7 @@ interface Searchable
      * Return the data for elastic suggestions
      * if $inheritFrom is passed, it will use that to name the suggest.
      *
-     * @param Searchable|null $inheritFrom
+     *
      *
      * @return mixed
      */

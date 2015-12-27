@@ -33,7 +33,7 @@ trait MediaShortcodes
     /**
      * Return a sorted array with all requested images.
      *
-     * @param $content
+     *
      *
      * @return array
      */
@@ -66,8 +66,8 @@ trait MediaShortcodes
      * other customisations through html/css. We want our content to adhere to the
      * styles provided per account. No need to allow a client to mess around.
      *
-     * @param $content
-     * @param $image
+     *
+     *
      *
      * @return mixed
      */
@@ -113,8 +113,8 @@ trait MediaShortcodes
      * in most cases this simply means: don't add padding to the element containing the entire post
      * you should instead add the padding or margin to the content related tags within that container.
      *
-     * @param $title
-     * @param $link
+     *
+     *
      *
      * @return string
      */
@@ -124,8 +124,8 @@ trait MediaShortcodes
     }
 
     /**
-     * @param Image $img
-     * @param bool  $big
+     *
+     *
      *
      * @return string
      */
@@ -142,9 +142,9 @@ trait MediaShortcodes
      * is a path that references an image which is smaller then the viewport.
      * If not, it would simply just take up the full width due to .img-responsive.
      *
-     * @param $title
-     * @param $link
-     * @param $float
+     *
+     *
+     *
      *
      * @return string
      */
@@ -210,7 +210,7 @@ trait MediaShortcodes
     /**
      * Return a sorted array with all requested images.
      *
-     * @param $content
+     *
      *
      * @return int
      */
@@ -245,7 +245,7 @@ trait MediaShortcodes
     /**
      * Return a sorted array with all requested images.
      *
-     * @param $content
+     *
      *
      * @return int
      */

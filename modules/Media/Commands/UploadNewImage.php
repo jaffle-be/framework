@@ -24,8 +24,8 @@ class UploadNewImage extends Job
     protected $image;
 
     /**
-     * @param StoresMedia  $owner
-     * @param UploadedFile $image
+     *
+     *
      */
     public function __construct(StoresMedia $owner, UploadedFile $image)
     {

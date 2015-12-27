@@ -42,12 +42,12 @@ class SendContactEmail extends EmailJob
     protected $copy;
 
     /**
-     * @param AccountContactInformation $contact
-     * @param                           $name
-     * @param                           $email
-     * @param                           $message
-     * @param null                      $subject
-     * @param null                      $copy
+     *
+     *
+     *
+     *
+     *
+     *
      */
     public function __construct(AccountContactInformation $contact, $name, $email, $message, $subject = null, $copy = null)
     {

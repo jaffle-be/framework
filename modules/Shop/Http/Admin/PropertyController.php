@@ -57,9 +57,9 @@ class PropertyController extends AdminController
     /**
      * Move from one group to another.
      *
-     * @param Request       $request
-     * @param PropertyGroup $groups
-     * @param Property      $properties
+     *
+     *
+     *
      */
     public function moveProperty(Request $request, PropertyGroup $groups, Property $properties)
     {

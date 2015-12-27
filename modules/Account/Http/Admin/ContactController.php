@@ -24,7 +24,7 @@ class ContactController extends AdminController
     /**
      * Index is the show method here, but we don't need an id to provide it.
      *
-     * @param AccountManager $manager
+     *
      *
      * @return mixed
      */

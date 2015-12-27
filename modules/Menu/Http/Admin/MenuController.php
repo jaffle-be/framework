@@ -20,8 +20,8 @@ class MenuController extends AdminController
     protected $menu;
 
     /**
-     * @param ThemeManager $theme
-     * @param MenuManager  $menu
+     *
+     *
      */
     public function __construct(ThemeManager $theme, MenuManager $menu)
     {

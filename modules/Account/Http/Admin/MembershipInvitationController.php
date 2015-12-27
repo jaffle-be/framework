@@ -55,8 +55,8 @@ class MembershipInvitationController extends AdminController
     }
 
     /**
-     * @param Request $request
-     * @param Hasher  $hasher
+     *
+     *
      *
      * @return array
      */

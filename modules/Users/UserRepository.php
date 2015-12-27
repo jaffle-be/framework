@@ -17,7 +17,7 @@ class UserRepository implements UserRepositoryInterface
     }
 
     /**
-     * @param $token
+     *
      *
      * @return User|null
      */

@@ -38,7 +38,7 @@ class MenuManager
     protected $repository;
 
     /**
-     * @param MenuRepositoryInterface $repository
+     *
      */
     public function __construct(MenuRepositoryInterface $repository)
     {
@@ -46,8 +46,8 @@ class MenuManager
     }
 
     /**
-     * @param $name
-     * @param $arguments
+     *
+     *
      *
      * @return mixed
      */
@@ -57,8 +57,8 @@ class MenuManager
     }
 
     /**
-     * @param       $menu
-     * @param array $options
+     *
+     *
      */
     public function register($menu, array $options = array())
     {
@@ -77,7 +77,7 @@ class MenuManager
     }
 
     /**
-     * @param $menu
+     *
      *
      * @return mixed
      */

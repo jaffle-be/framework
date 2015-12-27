@@ -26,9 +26,9 @@ class BatchGammaDeactivation extends Job
     protected $brand;
 
     /**
-     * @param Category $category
-     * @param Brand    $brand
-     * @param Account  $account
+     *
+     *
+     *
      */
     public function __construct(Category $category, Account $account, Brand $brand)
     {
@@ -62,7 +62,7 @@ class BatchGammaDeactivation extends Job
     }
 
     /**
-     * @param ProductSelection $productGamma
+     *
      *
      * @return mixed
      */

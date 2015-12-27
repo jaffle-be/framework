@@ -62,8 +62,8 @@ abstract class MetaTagProvider
     /**
      * Add or update property.
      *
-     * @param string       $key
-     * @param string|array $value
+     *
+     *
      *
      * @return $this
      */
@@ -115,8 +115,8 @@ abstract class MetaTagProvider
     }
 
     /**
-     * @param $type
-     * @param $key
+     *
+     *
      *
      * @return string
      */
@@ -130,8 +130,8 @@ abstract class MetaTagProvider
     /**
      * Make list of open graph tags.
      *
-     * @param array       $properties
-     * @param null|string $prefix
+     *
+     *
      *
      * @return string
      */
@@ -165,10 +165,10 @@ abstract class MetaTagProvider
     }
 
     /**
-     * @param $prefix
-     * @param $property
-     * @param $value
-     * @param $html
+     *
+     *
+     *
+     *
      *
      * @return array
      */
@@ -183,8 +183,8 @@ abstract class MetaTagProvider
     }
 
     /**
-     * @param $prefix
-     * @param $property
+     *
+     *
      *
      * @return string
      */
@@ -211,7 +211,7 @@ abstract class MetaTagProvider
     }
 
     /**
-     * @param $key
+     *
      *
      * @return string
      */
@@ -241,7 +241,7 @@ abstract class MetaTagProvider
     /**
      * Remove property.
      *
-     * @param string $key
+     *
      *
      * @return $this
      */
@@ -255,7 +255,7 @@ abstract class MetaTagProvider
     /**
      * Add image to properties.
      *
-     * @param string $url
+     *
      *
      * @return $this
      */
@@ -269,7 +269,7 @@ abstract class MetaTagProvider
     /**
      * Add images to properties.
      *
-     * @param array $urls
+     *
      *
      * @return $this
      */

@@ -5,8 +5,8 @@ use Modules\Module\Module;
 
 if (!function_exists('uses_trait')) {
     /**
-     * @param $class
-     * @param $trait
+     *
+     *
      *
      * @return bool
      */

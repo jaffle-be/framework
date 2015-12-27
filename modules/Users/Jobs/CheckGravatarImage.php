@@ -54,7 +54,7 @@ class CheckGravatarImage extends Job
     }
 
     /**
-     * @param $path
+     *
      *
      * @return string
      */

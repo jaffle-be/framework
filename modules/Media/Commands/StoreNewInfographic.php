@@ -70,11 +70,11 @@ class StoreNewInfographic extends Job
     protected $path;
 
     /**
-     * @param Account     $account
-     * @param StoresMedia $owner
-     * @param Locale      $locale
-     * @param string      $path
-     * @param null        $rename
+     *
+     *
+     *
+     *
+     *
      */
     public function __construct(Account $account, StoresMedia $owner, Locale $locale, $path, $rename = null)
     {
@@ -121,7 +121,7 @@ class StoreNewInfographic extends Job
     /**
      * set the filename, extension and the size.
      *
-     * @param ImageManager $image
+     *
      */
     protected function dimensions(ImageManager $image)
     {

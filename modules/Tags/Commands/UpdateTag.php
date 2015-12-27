@@ -18,8 +18,8 @@ class UpdateTag extends Job
     protected $input;
 
     /**
-     * @param Tag   $tag
-     * @param array $input
+     *
+     *
      */
     public function __construct(Tag $tag, array $input)
     {

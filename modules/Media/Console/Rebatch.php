@@ -53,9 +53,9 @@ class Rebatch extends Command
     }
 
     /**
-     * @param StoresMedia $type
-     * @param array       $sizes
-     * @param bool        $force
+     *
+     *
+     *
      */
     protected function handleType(StoresMedia $type, array $sizes, $force)
     {
@@ -80,9 +80,9 @@ class Rebatch extends Command
     }
 
     /**
-     * @param StoresMedia $owner
-     * @param array       $sizes
-     * @param bool        $force
+     *
+     *
+     *
      */
     protected function handleOwner(StoresMedia $owner, array $sizes, $force)
     {
@@ -98,9 +98,9 @@ class Rebatch extends Command
     }
 
     /**
-     * @param array $sizes
-     * @param Image $image
-     * @param bool  $force
+     *
+     *
+     *
      */
     protected function handleImage(array $sizes, Image $image, $force)
     {
@@ -137,8 +137,8 @@ class Rebatch extends Command
     }
 
     /**
-     * @param Image $image
-     * @param       $path
+     *
+     *
      *
      * @return mixed
      */

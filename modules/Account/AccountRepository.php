@@ -25,7 +25,7 @@ class AccountRepository implements AccountRepositoryInterface
     }
 
     /**
-     * @param array $payload
+     *
      *
      * @return Account
      */
@@ -37,7 +37,7 @@ class AccountRepository implements AccountRepositoryInterface
     /**
      * The alias represents the subdomain for the main app url an account is running under.
      *
-     * @param $alias
+     *
      *
      * @internal param $domain
      */

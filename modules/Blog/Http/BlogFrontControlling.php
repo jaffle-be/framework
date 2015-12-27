@@ -8,8 +8,8 @@ use Modules\Blog\PostTranslation;
 trait BlogFrontControlling
 {
     /**
-     * @param PostTranslation         $post
-     * @param PostRepositoryInterface $posts
+     *
+     *
      *
      * @return \Illuminate\Contracts\View\View
      */

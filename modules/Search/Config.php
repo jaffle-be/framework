@@ -32,9 +32,9 @@ class Config
      * This method will save an inverted array of relations.
      * We can then use it to trigger nested document changes.
      *
-     * @param $types
-     *
      * @return array
+     * @internal param $types
+     *
      */
     protected function invertTypes()
     {
@@ -68,7 +68,7 @@ class Config
     }
 
     /**
-     * @param $type
+     *
      *
      * @return array
      */
@@ -83,7 +83,7 @@ class Config
     }
 
     /**
-     * @param $type
+     *
      *
      * @return mixed
      */
@@ -97,13 +97,14 @@ class Config
     }
 
     /**
-     * @param $key
-     * @param $inverted
-     * @param $config
-     * @param $class
-     * @param $relation
+     *
+     *
+     *
      *
      * @return mixed
+     * @internal param $inverted
+     * @internal param $config
+     * @internal param $class
      */
     protected function invert($nested, $parent, $key, $relation)
     {

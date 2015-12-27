@@ -172,7 +172,7 @@ class ImportResults extends Command
     }
 
     /**
-     * @param $sub
+     *
      *
      * @return static
      */
@@ -201,7 +201,7 @@ class ImportResults extends Command
     }
 
     /**
-     * @param $category
+     *
      *
      * @return mixed
      */
@@ -220,10 +220,10 @@ class ImportResults extends Command
     }
 
     /**
-     * @param $account
-     * @param $brand
-     * @param $data
-     * @param $category
+     *
+     *
+     *
+     *
      *
      * @return static
      */
@@ -248,10 +248,10 @@ class ImportResults extends Command
     }
 
     /**
-     * @param $account
-     * @param $product
-     * @param $url
-     * @param $counter
+     *
+     *
+     *
+     *
      *
      * @internal param $data
      */

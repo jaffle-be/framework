@@ -10,7 +10,7 @@ use Modules\Shop\Product\Category;
 interface GammaRepositoryInterface
 {
     /**
-     * @param Brand $brand
+     *
      *
      * @return Collection
      *

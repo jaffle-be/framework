@@ -9,8 +9,8 @@ class TagCollection extends Collection
     /**
      * Format the collection for output.
      *
-     * @param string $format
-     * @param string $glue
+     *
+     *
      *
      * @return array|string
      */

@@ -206,8 +206,8 @@ class NewsletterCampaignController extends AdminController
     }
 
     /**
-     * @param MailChimp $mailChimp
-     * @param           $translation
+     *
+     *
      */
     protected function loadMailchimpDataForCampaign(MailChimp $mailChimp, $translation)
     {
@@ -223,9 +223,9 @@ class NewsletterCampaignController extends AdminController
     }
 
     /**
-     * @param Campaign        $newsletter
-     * @param CampaignBuilder $builder
-     * @param MailChimp       $mailChimp
+     *
+     *
+     *
      *
      * @return array
      */
@@ -247,8 +247,8 @@ class NewsletterCampaignController extends AdminController
     }
 
     /**
-     * @param MailChimp $mailChimp
-     * @param           $translation
+     *
+     *
      *
      * @return array
      */

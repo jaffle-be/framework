@@ -108,7 +108,7 @@ class TagController extends AdminController
     }
 
     /**
-     * @param Request $request
+     *
      *
      * @return array
      *

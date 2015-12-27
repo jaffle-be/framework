@@ -24,7 +24,7 @@ class MembershipController extends AdminController
     }
 
     /**
-     * @param AccountManager $manager
+     *
      *
      * @return mixed
      */

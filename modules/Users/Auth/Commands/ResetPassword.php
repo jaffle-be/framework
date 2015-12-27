@@ -33,10 +33,10 @@ class ResetPassword extends Job
     /**
      * Create a new command instance.
      *
-     * @param       $email
-     * @param Token $token
-     * @param       $password
-     * @param       $password_confirmation
+     *
+     *
+     *
+     *
      */
     public function __construct($email, Token $token, $password, $password_confirmation)
     {
@@ -47,8 +47,8 @@ class ResetPassword extends Job
     }
 
     /**
-     * @param UserRepositoryInterface $users
-     * @param Hasher                  $hasher
+     *
+     *
      *
      * @return string
      */
@@ -76,7 +76,7 @@ class ResetPassword extends Job
     }
 
     /**
-     * @param $user
+     *
      *
      * @return bool
      */

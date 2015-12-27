@@ -59,7 +59,7 @@ abstract class Seeder extends BaseSeeder
     /**
      * Seed the given connection from the given path.
      *
-     * @param string $class
+     *
      */
     public function call($class)
     {

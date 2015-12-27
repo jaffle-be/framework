@@ -50,7 +50,7 @@ class BrandTableSeeder extends Seeder
     }
 
     /**
-     * @param $file
+     *
      *
      * @return mixed|string
      */

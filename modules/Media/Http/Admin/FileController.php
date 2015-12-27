@@ -31,8 +31,8 @@ class FileController extends AdminController
     }
 
     /**
-     * @param Request $request
-     * @param Locale  $locale
+     *
+     *
      *
      * @return mixed
      */

@@ -85,8 +85,8 @@ class NotificationController extends AdminController
     }
 
     /**
-     * @param GammaNotification $notifications
-     * @param Request           $request
+     *
+     *
      *
      * @return GammaNotification
      */

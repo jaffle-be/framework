@@ -39,7 +39,7 @@ class GammaSubscriptionManager
     }
 
     /**
-     * @param Account|null $account
+     *
      *
      * @return bool|Account
      */

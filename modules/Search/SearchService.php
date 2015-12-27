@@ -51,9 +51,9 @@ class SearchService implements SearchServiceInterface
     protected $invertedTypes = [];
 
     /**
-     * @param Container $container
-     * @param Client    $client
-     * @param array     $config
+     *
+     *
+     *
      */
     public function __construct(Container $container, Client $client, Config $config)
     {
@@ -95,8 +95,8 @@ class SearchService implements SearchServiceInterface
      * Note the events are not the creating, updating or deleting events, as these would possibly
      * index data that might change due to a model observer adjusting data.
      *
-     * @param Searchable $type
-     * @param array      $with
+     *
+     *
      */
     public function regularAutoIndex(Searchable $type, array $with)
     {
@@ -281,7 +281,12 @@ class SearchService implements SearchServiceInterface
     /**
      * Search the index.
      *
-     * @param array $params
+     *
+     *
+     *
+     *
+     *
+     *
      *
      * @return mixed
      */
@@ -338,7 +343,7 @@ class SearchService implements SearchServiceInterface
     /**
      * Update the settings for the elasticsearch instance.
      *
-     * @param array $settings
+     *
      *
      * @return bool
      */
@@ -382,7 +387,7 @@ class SearchService implements SearchServiceInterface
      * Return the actual type.
      * People could have passed in a simple classname.
      *
-     * @param $type
+     *
      *
      * @return array|mixed
      *
@@ -408,7 +413,7 @@ class SearchService implements SearchServiceInterface
     }
 
     /**
-     * @param Searchable $type
+     *
      *
      * @return array
      */
@@ -433,7 +438,7 @@ class SearchService implements SearchServiceInterface
     }
 
     /**
-     * @param Searchable $type
+     *
      *
      * @return array
      */

@@ -20,7 +20,7 @@ class SendResetEmail extends EmailJob
     /**
      * Create a new command instance.
      *
-     * @param $email
+     *
      */
     public function __construct($email)
     {
@@ -30,10 +30,10 @@ class SendResetEmail extends EmailJob
     }
 
     /**
-     * @param ThemeMailer              $mail
-     * @param TokenRepositoryInterface $tokens
-     * @param Translator               $lang
-     * @param UserRepositoryInterface  $users
+     *
+     *
+     *
+     *
      *
      * @throws Exception
      */

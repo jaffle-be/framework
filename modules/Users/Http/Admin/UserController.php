@@ -15,7 +15,7 @@ class UserController extends AdminController
     /**
      * the actual page.
      *
-     * @param Guard $guard
+     *
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */

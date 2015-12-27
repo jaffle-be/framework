@@ -78,7 +78,7 @@ class ThemeRepository implements ThemeRepositoryInterface
     }
 
     /**
-     * @param $theme
+     *
      *
      * @return ThemeSelection|bool
      */
@@ -108,7 +108,7 @@ class ThemeRepository implements ThemeRepositoryInterface
     }
 
     /**
-     * @param Theme $theme
+     *
      *
      * @return ThemeSelection
      */
@@ -128,8 +128,8 @@ class ThemeRepository implements ThemeRepositoryInterface
     }
 
     /**
-     * @param Theme          $theme
-     * @param ThemeSelection $selection
+     *
+     *
      */
     protected function addDefaults(Theme $theme, ThemeSelection $selection)
     {
@@ -151,10 +151,10 @@ class ThemeRepository implements ThemeRepositoryInterface
     }
 
     /**
-     * @param ThemeSelection $selection
-     * @param                $default
-     * @param                $account
-     * @param                $setting
+     *
+     *
+     *
+     *
      */
     protected function setupSelectDefault($selection, ThemeSettingDefault $default, $account, ThemeSetting $setting)
     {

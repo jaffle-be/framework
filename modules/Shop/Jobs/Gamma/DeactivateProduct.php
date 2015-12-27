@@ -65,7 +65,7 @@ class DeactivateProduct extends Job
     }
 
     /**
-     * @param $record
+     *
      *
      * @return ProductCategorySelection
      */
@@ -83,7 +83,7 @@ class DeactivateProduct extends Job
      * if this ever get's called in a global system context,
      * it will now still work.
      *
-     * @param ProductSelection $selection
+     *
      *
      * @return \Illuminate\Database\Eloquent\Model|null|static
      */

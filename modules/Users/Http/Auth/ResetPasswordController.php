@@ -14,7 +14,7 @@ class ResetPasswordController extends FrontController
     /**
      * Show the form for resetting the password.
      *
-     * @param $token
+     *
      *
      * @return \Illuminate\View\View
      */

@@ -113,7 +113,7 @@ class User extends Model implements Authenticatable, MembershipOwner, AddressOwn
     /**
      * Set the token value for the "remember me" session.
      *
-     * @param string $value
+     *
      */
     public function setRememberToken($value)
     {

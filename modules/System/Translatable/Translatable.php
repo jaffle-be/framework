@@ -35,8 +35,8 @@ trait Translatable
     }
 
     /**
-     * @param null      $locale
-     * @param bool|null $withFallback
+     *
+     *
      *
      * @return Model|null
      */
@@ -301,8 +301,8 @@ trait Translatable
      *      'name' => 'Griechenland'    // The translated name
      *  ]
      *
-     * @param Builder $query
-     * @param string  $translationField
+     *
+     *
      */
     public function scopeListsTranslations(Builder $query, $translationField)
     {

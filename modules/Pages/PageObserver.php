@@ -12,7 +12,7 @@ class PageObserver
     protected $auth;
 
     /**
-     * @param Guard $guard
+     *
      */
     public function __construct(Guard $guard)
     {

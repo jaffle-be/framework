@@ -80,8 +80,8 @@ class ResizeImage extends Job
     }
 
     /**
-     * @param Filesystem $files
-     * @param bool       $public
+     *
+     *
      *
      * @return string
      */
@@ -103,8 +103,8 @@ class ResizeImage extends Job
     }
 
     /**
-     * @param Filesystem $files
-     * @param bool       $public
+     *
+     *
      *
      * @return string
      */
@@ -118,9 +118,9 @@ class ResizeImage extends Job
     }
 
     /**
-     * @param $width
-     * @param $height
-     * @param $path
+     *
+     *
+     *
      *
      * @return array
      */

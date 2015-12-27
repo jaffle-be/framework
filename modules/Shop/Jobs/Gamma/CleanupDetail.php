@@ -73,8 +73,8 @@ class CleanupDetail extends Job
     }
 
     /**
-     * @param ProductSelection  $products
-     * @param GammaNotification $notifications
+     *
+     *
      *
      * @return bool
      */

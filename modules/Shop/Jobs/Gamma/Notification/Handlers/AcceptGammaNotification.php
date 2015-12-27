@@ -64,7 +64,7 @@ class AcceptGammaNotification extends Job implements ShouldQueue
     }
 
     /**
-     * @param Pusher $pusher
+     *
      *
      * @throws \Exception
      */

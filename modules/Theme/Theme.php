@@ -21,7 +21,7 @@ class Theme extends Model implements StoresMedia
     /**
      * Return an asset from a theme.
      *
-     * @param $asset
+     *
      *
      * @return string
      */

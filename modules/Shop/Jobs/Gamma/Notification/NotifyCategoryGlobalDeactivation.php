@@ -51,9 +51,9 @@ class NotifyCategoryGlobalDeactivation extends Job
     }
 
     /**
-     * @param GammaNotification $notification
-     * @param                   $brand
-     * @param                   $category
+     *
+     *
+     *
      *
      * @return mixed
      */

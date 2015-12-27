@@ -5,7 +5,7 @@ namespace Modules\Users\Contracts;
 interface UserRepositoryInterface
 {
     /**
-     * @param $token
+     *
      *
      * @return User|null
      */

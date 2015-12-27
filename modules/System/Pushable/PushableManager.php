@@ -44,7 +44,7 @@ class PushableManager
      * need to mock an object for many to many relation.
      * the $model passed is simply the pivot data in array form.
      *
-     * @param $payload
+     * 
      *
      * @return BelongsToManyPushable
      *

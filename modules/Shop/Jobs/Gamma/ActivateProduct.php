@@ -49,7 +49,7 @@ class ActivateProduct extends Job
     }
 
     /**
-     * @param ProductSelection $selection
+     *
      *
      * @return ProductSelection
      */
@@ -62,7 +62,7 @@ class ActivateProduct extends Job
     }
 
     /**
-     * @param $base
+     *
      */
     protected function attachCategory(ProductSelection $base)
     {
@@ -72,7 +72,7 @@ class ActivateProduct extends Job
     }
 
     /**
-     * @param ProductSelection $products
+     *
      */
     protected function handleFullNewRecord(ProductSelection $products)
     {
@@ -86,7 +86,7 @@ class ActivateProduct extends Job
     }
 
     /**
-     * @param $base
+     *
      *
      * @return ProductCategorySelection
      */

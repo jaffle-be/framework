@@ -21,8 +21,8 @@ class ImageController extends AdminController
     protected $media;
 
     /**
-     * @param ThemeManager             $theme
-     * @param MediaRepositoryInterface $media
+     *
+     *
      */
     public function __construct(ThemeManager $theme, MediaRepositoryInterface $media)
     {

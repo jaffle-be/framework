@@ -26,7 +26,7 @@ trait MediaWidgetPreperations
     }
 
     /**
-     * @param $owner
+     *
      *
      * @return Collection
      */
@@ -59,7 +59,7 @@ trait MediaWidgetPreperations
     }
 
     /**
-     * @param $owner
+     *
      *
      * @return mixed
      */

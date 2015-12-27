@@ -31,9 +31,9 @@ class BatchGammaActivation extends Job
     protected $brand;
 
     /**
-     * @param Category $category
-     * @param Account  $account
-     * @param Brand    $brand
+     *
+     *
+     *
      */
     public function __construct(Category $category, Account $account, Brand $brand)
     {
@@ -43,8 +43,8 @@ class BatchGammaActivation extends Job
     }
 
     /**
-     * @param CatalogRepositoryInterface $catalog
-     * @param GammaSelection             $gamma
+     *
+     *
      */
     public function handle(CatalogRepositoryInterface $catalog, GammaSelection $gamma)
     {
@@ -58,7 +58,7 @@ class BatchGammaActivation extends Job
     }
 
     /**
-     * @param GammaSelection $gamma
+     *
      */
     protected function insertGamma(GammaSelection $gamma)
     {

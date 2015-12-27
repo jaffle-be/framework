@@ -7,7 +7,7 @@ interface AccountRepositoryInterface
     public function findByDomain($domain);
 
     /**
-     * @param array $payload
+     *
      *
      * @return Account
      */
@@ -16,7 +16,7 @@ interface AccountRepositoryInterface
     /**
      * The alias represents the subdomain for the main app url an account is running under.
      *
-     * @param $alias
+     *
      *
      * @return
      *

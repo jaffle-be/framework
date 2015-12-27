@@ -21,9 +21,9 @@ class MenuItemController extends AdminController
     protected $menu;
 
     /**
-     * @param ThemeManager   $theme
-     * @param MenuManager    $menu
-     * @param AccountManager $account
+     *
+     *
+     *
      */
     public function __construct(ThemeManager $theme, MenuManager $menu, AccountManager $account)
     {
@@ -35,12 +35,12 @@ class MenuItemController extends AdminController
     }
 
     /**
-     * @param Menu        $menu
-     * @param MenuItem    $item
-     * @param Request     $request
-     * @param Page        $page
-     * @param Locale      $locale
-     * @param ModuleRoute $route
+     *
+     *
+     *
+     *
+     *
+     *
      *
      * @return mixed
      */
@@ -88,9 +88,9 @@ class MenuItemController extends AdminController
     }
 
     /**
-     * @param Menu     $menu
-     * @param MenuItem $item
-     * @param Request  $request
+     *
+     *
+     *
      *
      * @return mixed
      */
@@ -102,8 +102,8 @@ class MenuItemController extends AdminController
     }
 
     /**
-     * @param Menu     $menu
-     * @param MenuItem $item
+     *
+     *
      *
      * @return mixed
      */

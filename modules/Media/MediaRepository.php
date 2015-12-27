@@ -46,8 +46,8 @@ class MediaRepository implements MediaRepositoryInterface
     }
 
     /**
-     * @param StoresMedia $owner
-     * @param array       $payload
+     *
+     *
      *
      * @return bool|static
      */
@@ -78,8 +78,8 @@ class MediaRepository implements MediaRepositoryInterface
     }
 
     /**
-     * @param array      $payload
-     * @param Image|null $original
+     *
+     *
      *
      * @return mixed
      */
@@ -100,8 +100,8 @@ class MediaRepository implements MediaRepositoryInterface
     }
 
     /**
-     * @param StoresMedia $owner
-     * @param array       $payload
+     *
+     *
      *
      * @return Image|bool
      */
@@ -122,8 +122,8 @@ class MediaRepository implements MediaRepositoryInterface
     }
 
     /**
-     * @param array            $payload
-     * @param Infographic|null $original
+     *
+     *
      *
      * @return Infographic|bool
      */
@@ -146,8 +146,8 @@ class MediaRepository implements MediaRepositoryInterface
     }
 
     /**
-     * @param StoresMedia $owner
-     * @param array       $payload
+     *
+     *
      *
      * @return File|bool
      */

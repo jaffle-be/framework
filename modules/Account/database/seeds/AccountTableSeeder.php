@@ -68,7 +68,7 @@ class AccountTableSeeder extends Seeder
     }
 
     /**
-     * @param $account
+     *
      */
     protected function membershipInvitations($account)
     {
@@ -80,7 +80,7 @@ class AccountTableSeeder extends Seeder
     }
 
     /**
-     * @param $name
+     *
      *
      * @return static
      */
@@ -107,7 +107,7 @@ class AccountTableSeeder extends Seeder
     }
 
     /**
-     * @param $account
+     *
      *
      * @return AccountContactInformation
      */

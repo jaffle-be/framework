@@ -29,7 +29,7 @@ trait SearchableTrait
     protected static $searchableRouting = false;
 
     /**
-     * @param SearchServiceInterface $client
+     *
      */
     public function setSearchableService(SearchServiceInterface $client)
     {
@@ -45,7 +45,7 @@ trait SearchableTrait
     }
 
     /**
-     * @param $index
+     *
      */
     public function setSearchableIndex($index)
     {
@@ -102,7 +102,7 @@ trait SearchableTrait
     }
 
     /**
-     * @param $event
+     *
      *
      * @return string
      */
@@ -220,8 +220,8 @@ trait SearchableTrait
     }
 
     /**
-     * @param $relation
-     * @param $model
+     *
+     *
      *
      * @return array
      */
@@ -236,7 +236,7 @@ trait SearchableTrait
     }
 
     /**
-     * @param $type
+     *
      *
      * @return array|bool
      */
@@ -254,8 +254,8 @@ trait SearchableTrait
     }
 
     /**
-     * @param $build
-     * @param $relation_data
+     *
+     *
      *
      * @return Collection
      */
@@ -275,8 +275,8 @@ trait SearchableTrait
     }
 
     /**
-     * @param $build
-     * @param $relation_data
+     *
+     *
      *
      * @return mixed
      */
@@ -316,6 +316,8 @@ trait SearchableTrait
     /**
      * keep this public, this allows for easy searching inheriting.
      *
+     *
+     *
      * @return array
      */
     public function getSearchableSuggestData(Searchable $inheritFrom = null)
@@ -339,7 +341,8 @@ trait SearchableTrait
     }
 
     /**
-     * @param $locale
+     *
+     *
      *
      * @return string
      */
@@ -355,7 +358,7 @@ trait SearchableTrait
     }
 
     /**
-     * @param $translation
+     *
      *
      * @return array
      */

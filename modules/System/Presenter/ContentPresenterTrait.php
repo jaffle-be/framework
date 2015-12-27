@@ -55,7 +55,7 @@ trait ContentPresenterTrait
      * We also strip out any shortcodes, which would only
      * inject either media or custom marked up content.
      *
-     * @param null $chars
+     *
      *
      * @return string
      */

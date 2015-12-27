@@ -10,9 +10,9 @@ class BelongsToMany extends \Illuminate\Database\Eloquent\Relations\BelongsToMan
     /**
      * Attach a model to the parent.
      *
-     * @param mixed $id
-     * @param array $attributes
-     * @param bool  $touch
+     *
+     *
+     *
      */
     public function attach($id, array $attributes = [], $touch = true)
     {
@@ -36,8 +36,8 @@ class BelongsToMany extends \Illuminate\Database\Eloquent\Relations\BelongsToMan
     /**
      * Sync the intermediate tables with a list of IDs or collection of models.
      *
-     * @param \Illuminate\Database\Eloquent\Collection|array $ids
-     * @param bool                                           $detaching
+     *
+     *
      *
      * @return array
      */
@@ -88,8 +88,8 @@ class BelongsToMany extends \Illuminate\Database\Eloquent\Relations\BelongsToMan
     /**
      * Detach models from the relationship.
      *
-     * @param int|array $ids
-     * @param bool      $touch
+     *
+     *
      *
      * @return int
      */

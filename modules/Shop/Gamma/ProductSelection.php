@@ -48,7 +48,7 @@ class ProductSelection extends Model implements Searchable
      * so it will always automatically inheret the same search options as the products,
      * but it will only search selections.
      *
-     * @param Searchable $inheritFrom
+     *
      *
      * @return mixed
      */
@@ -88,9 +88,9 @@ class ProductSelection extends Model implements Searchable
     }
 
     /**
-     * @param $brand_id
-     * @param $category_id
-     * @param $account_id
+     *
+     *
+     *
      *
      * @return int
      */

@@ -15,7 +15,7 @@ class InfographicObserver
     protected $files;
 
     /**
-     * @param Filesystem $files
+     *
      */
     public function __construct(Filesystem $files)
     {
@@ -23,7 +23,7 @@ class InfographicObserver
     }
 
     /**
-     * @param Infographic $graphic
+     *
      */
     public function deleting(Infographic $graphic)
     {
@@ -36,7 +36,7 @@ class InfographicObserver
     }
 
     /**
-     * @param Infographic $graphic
+     *
      */
     public function deleted(Infographic $graphic)
     {

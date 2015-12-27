@@ -66,11 +66,11 @@ class StoreNewFile extends Job
     protected $path;
 
     /**
-     * @param Account     $account
-     * @param StoresMedia $owner
-     * @param Locale      $locale
-     * @param string      $path
-     * @param null        $rename
+     *
+     *
+     *
+     *
+     *
      */
     public function __construct(Account $account, StoresMedia $owner, Locale $locale, $path, $rename = null)
     {

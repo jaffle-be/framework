@@ -47,10 +47,10 @@ class ShopController extends FrontController
     /**
      * @todo     remove brand from this route, it's not usefull
      *
-     * @param CategoryTranslation   $category
-     * @param BrandTranslation|null $brand
-     * @param Request               $request
-     * @param GammaQueryResolver    $resolver
+     *
+     *
+     *
+     *
      *
      * @return \Illuminate\Contracts\View\View
      *

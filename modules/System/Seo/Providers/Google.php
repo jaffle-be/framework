@@ -37,8 +37,8 @@ class Google extends MetaTagProvider
     }
 
     /**
-     * @param $type
-     * @param $key
+     *
+     *
      *
      * @return string
      */

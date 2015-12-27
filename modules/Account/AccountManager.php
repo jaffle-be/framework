@@ -25,8 +25,8 @@ class AccountManager
     /**
      * Allows to hotswap account.
      *
-     * @param          $account
-     * @param \Closure $closure
+     *
+     *
      */
     public function forced($account, \Closure $closure)
     {

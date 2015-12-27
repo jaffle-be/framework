@@ -12,7 +12,7 @@ trait ImageDimensionHelpers
      * 150x to have a auto resize with a max width of
      * x150 to have a auto resize with a max height of.
      *
-     * @param $size
+     *
      *
      * @return array
      *

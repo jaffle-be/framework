@@ -31,7 +31,8 @@ class SearchBuild extends Command
     /**
      * Create a new command instance.
      *
-     * @param SearchServiceInterface $service
+     *
+     *
      */
     public function __construct(SearchServiceInterface $service, IndexManager $indexManager)
     {

@@ -40,7 +40,7 @@ abstract class ServiceProvider extends Provider
     abstract protected function listeners();
 
     /**
-     * @param $dir
+     *
      */
     protected function routes($dir)
     {
@@ -66,7 +66,7 @@ abstract class ServiceProvider extends Provider
     }
 
     /**
-     * @param $dir
+     *
      */
     protected function publish($dir)
     {
@@ -86,7 +86,7 @@ abstract class ServiceProvider extends Provider
     }
 
     /**
-     * @param $dir
+     *
      */
     protected function views($dir)
     {
@@ -97,7 +97,7 @@ abstract class ServiceProvider extends Provider
     }
 
     /**
-     * @param $dir
+     *
      */
     protected function lang($dir)
     {
@@ -108,7 +108,7 @@ abstract class ServiceProvider extends Provider
     }
 
     /**
-     * @param $dir
+     *
      */
     protected function config($dir)
     {

@@ -106,8 +106,8 @@ class BrandCategoryManager
     }
 
     /**
-     * @param $product
-     * @param $category
+     *
+     *
      *
      * @return mixed
      *
@@ -128,7 +128,7 @@ class BrandCategoryManager
     }
 
     /**
-     * @param $attached
+     *
      *
      * @return array
      */
@@ -154,7 +154,7 @@ class BrandCategoryManager
     }
 
     /**
-     * @param $payload
+     *
      *
      * @return array
      */

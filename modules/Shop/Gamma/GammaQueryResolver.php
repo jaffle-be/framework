@@ -85,7 +85,7 @@ class GammaQueryResolver
     }
 
     /**
-     * @param $result
+     *
      *
      * @return array|\Illuminate\Pagination\LengthAwarePaginator
      */
@@ -135,7 +135,7 @@ class GammaQueryResolver
     }
 
     /**
-     * @param $result
+     *
      *
      * @return array
      */
@@ -177,7 +177,7 @@ class GammaQueryResolver
     }
 
     /**
-     * @param Property $property
+     *
      *
      * @return array
      */
@@ -208,7 +208,7 @@ class GammaQueryResolver
     }
 
     /**
-     * @param $property
+     *
      *
      * @return array
      */

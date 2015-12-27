@@ -30,9 +30,9 @@ class UploadNewInfographic extends Job
     protected $locale;
 
     /**
-     * @param StoresMedia  $owner
-     * @param UploadedFile $graphic
-     * @param Locale       $locale
+     *
+     *
+     *
      *
      * @internal param UploadedFile $image
      */

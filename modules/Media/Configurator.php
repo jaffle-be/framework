@@ -64,8 +64,8 @@ class Configurator
      * Need to watch out with this, it could cause problems for content that will be
      * created by our own team.
      *
-     * @param StoresMedia $owner
-     * @param string      $requested
+     *
+     *
      *
      * @return array
      */
@@ -103,7 +103,7 @@ class Configurator
     /**
      * Return the alias used for the given media owner type.
      *
-     * @param StoresMedia $owner
+     *
      *
      * @return mixed
      */
@@ -121,7 +121,7 @@ class Configurator
     /**
      * Return the full classname for the media owner type for the given alias.
      *
-     * @param $alias
+     *
      */
     public function classname($alias)
     {
@@ -141,7 +141,7 @@ class Configurator
     }
 
     /**
-     * @param $type
+     *
      *
      * @return bool
      */

@@ -268,7 +268,7 @@ class ProductController extends AdminController
     }
 
     /**
-     * @param Product $product
+     *
      *
      * @return Product
      *
@@ -288,7 +288,7 @@ class ProductController extends AdminController
     }
 
     /**
-     * @param GammaSubscriptionManager $subscriptions
+     *
      *
      * @return mixed
      */
@@ -302,9 +302,9 @@ class ProductController extends AdminController
     }
 
     /**
-     * @param $product
-     * @param $category
-     * @param $added
+     *
+     *
+     *
      */
     protected function doCategoryAttach($product, $category, $added)
     {

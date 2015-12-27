@@ -17,7 +17,7 @@ class ConfirmEmailController extends FrontController
     /**
      * Form for sending new confirmation email.
      *
-     * @param Request $request
+     *
      *
      * @return \Illuminate\View\View
      */
@@ -31,9 +31,9 @@ class ConfirmEmailController extends FrontController
     /**
      * Trigger the actual sending of the email.
      *
-     * @param Request                 $request
-     * @param UserRepositoryInterface $users
-     * @param AccountManager          $manager
+     *
+     *
+     *
      *
      * @return \Illuminate\Http\RedirectResponse
      */
@@ -51,9 +51,9 @@ class ConfirmEmailController extends FrontController
     /**
      * The method which actually triggers the confirmation.
      *
-     * @param                          $token
-     * @param TokenRepositoryInterface $tokens
-     * @param Guard                    $guard
+     *
+     *
+     *
      *
      * @return \Illuminate\Http\RedirectResponse
      */

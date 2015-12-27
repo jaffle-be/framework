@@ -2,9 +2,9 @@
 
 if (!function_exists('suggest_completion')) {
     /**
-     * @param $type
-     * @param $query
-     * @param $locale
+     *
+     *
+     *
      *
      * @return array
      */

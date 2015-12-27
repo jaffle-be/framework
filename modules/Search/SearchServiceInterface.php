@@ -10,8 +10,8 @@ interface SearchServiceInterface
     /**
      * Register the regular listeners for the given type.
      *
-     * @param Searchable $type
-     * @param array      $with
+     *
+     *
      *
      * @return
      */
@@ -20,7 +20,7 @@ interface SearchServiceInterface
     /**
      * Build the index for a type.
      *
-     * @param string|Searchable $type
+     *
      *
      * @return
      */
@@ -29,32 +29,35 @@ interface SearchServiceInterface
     /**
      * Add to index.
      *
-     * @param Searchable $type
+     *
+     *
+     *
+     * @return
      */
     public function add(Searchable $type, $needsLoading = true);
 
     /**
      * Delete from index.
      *
-     * @param Searchable $type
+     *
      */
     public function delete(Searchable $type);
 
     /**
      * Update a document in the index.
      *
-     * @param Searchable $type
+     *
      */
     public function update(Searchable $type);
 
     /**
      * Search the index.
      *
-     * @param               $type
-     * @param array         $params
-     * @param array         $with
-     * @param int           $paginated
-     * @param \Closure|null $highlighter
+     *
+     *
+     *
+     *
+     *
      *
      * @return mixed
      */
@@ -63,7 +66,7 @@ interface SearchServiceInterface
     /**
      * Aggregate an index.
      *
-     * @param array $params
+     *
      *
      * @return mixed
      */
@@ -77,7 +80,7 @@ interface SearchServiceInterface
     /**
      * Return the config for the searchable type.
      *
-     * @param Searchable $type
+     *
      *
      * @return mixed
      */
@@ -86,7 +89,7 @@ interface SearchServiceInterface
     /**
      * Update the settings for the elasticsearch instance.
      *
-     * @param array $settings
+     *
      *
      * @return bool
      */

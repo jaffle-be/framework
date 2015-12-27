@@ -48,7 +48,7 @@ class DenyGammaNotification extends Job implements ShouldQueue
     }
 
     /**
-     * @param GammaSelection $gamma
+     *
      */
     protected function denyDeactivation(GammaSelection $gamma)
     {
@@ -80,7 +80,7 @@ class DenyGammaNotification extends Job implements ShouldQueue
     }
 
     /**
-     * @param Pusher $pusher
+     *
      *
      * @throws \Exception
      */

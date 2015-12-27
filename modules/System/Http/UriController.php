@@ -33,9 +33,9 @@ class UriController extends FrontController
     }
 
     /**
-     * @param Uri $uri
-     * @param Uri $suburi
-     * @param Uri $subesturi
+     *
+     *
+     *
      *
      * @return Uri
      */
