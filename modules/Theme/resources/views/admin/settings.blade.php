@@ -1,4 +1,4 @@
-<div class="wrapper-content" ng-controller="ThemeController as vm" ng-init="vm.options = {{ system_options() }}">
+<div class="wrapper-content" ng-controller="ThemeController as vm">
 
     <div class="row">
 

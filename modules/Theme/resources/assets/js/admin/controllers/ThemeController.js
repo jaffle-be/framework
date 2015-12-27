@@ -2,7 +2,8 @@
     'use strict';
 
     angular.module('theme')
-        .controller('ThemeController', function (ThemeService, Theme, $window) {
+        .controller('ThemeController', function (ThemeService, Theme, $window, System) {
+            this.options = System.options;
             this.themes = [];
             this.theme = false;
 
