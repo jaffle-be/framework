@@ -10,14 +10,16 @@ use Modules\Account\AccountManager;
 /**
  * Class SystemController
  * @package Modules\System\Http
- */class SystemController extends FrontController
+ */
+class SystemController extends FrontController
 {
     /**
-* @param Store $session
-* @param Request $request
-* @param AccountManager $accounts
- * @return \Illuminate\Http\RedirectResponse
-*/public function locale(Store $session, Request $request, AccountManager $accounts)
+     * @param Store $session
+     * @param Request $request
+     * @param AccountManager $accounts
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function locale(Store $session, Request $request, AccountManager $accounts)
     {
         $account = $accounts->account();
 
@@ -31,10 +33,11 @@ use Modules\Account\AccountManager;
     }
 
     /**
-* @param Account $account
-* @param $locale
-* @return
-*/    protected function is_account_locale(Account $account, $locale)
+     * @param Account $account
+     * @param $locale
+     * @return
+     */
+    protected function is_account_locale(Account $account, $locale)
     {
         return $account->locales->filter(function ($item) use ($locale) {
             return $item->slug == $locale;

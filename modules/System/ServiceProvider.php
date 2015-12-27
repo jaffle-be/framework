@@ -8,7 +8,8 @@ use ReflectionClass;
 /**
  * Class ServiceProvider
  * @package Modules\System
- */abstract class ServiceProvider extends Provider
+ */
+abstract class ServiceProvider extends Provider
 {
     protected $namespace = false;
 
@@ -60,8 +61,9 @@ use ReflectionClass;
 
 
     /**
-* @param $dir
-*/ublic function helpers($dir)
+     * @param $dir
+     */
+    public function helpers($dir)
     {
         $file = $dir.'helpers.php';
 
@@ -72,8 +74,9 @@ use ReflectionClass;
 
 
     /**
-* @param $dir
-*/    protected function routes($dir)
+     * @param $dir
+     */
+    protected function routes($dir)
     {
         if (! $this->app->routesAreCached()) {
             $routes = $dir.'/Http/routes.php';
@@ -98,8 +101,9 @@ use ReflectionClass;
 
 
     /**
-* @param $dir
-*/    protected function publish($dir)
+     * @param $dir
+     */
+    protected function publish($dir)
     {
         $publish = [];
 
@@ -118,8 +122,9 @@ use ReflectionClass;
 
 
     /**
-* @param $dir
-*/    protected function views($dir)
+     * @param $dir
+     */
+    protected function views($dir)
     {
         $views = $dir.'/resources/views/';
         if (file_exists($views)) {
@@ -129,8 +134,9 @@ use ReflectionClass;
 
 
     /**
-* @param $dir
-*/    protected function lang($dir)
+     * @param $dir
+     */
+    protected function lang($dir)
     {
         $lang = $dir.'/resources/lang';
         if (file_exists($lang)) {
@@ -140,8 +146,9 @@ use ReflectionClass;
 
 
     /**
-* @param $dir
-*/    protected function config($dir)
+     * @param $dir
+     */
+    protected function config($dir)
     {
         $config = $dir.'/config/'.$this->namespace.'.php';
 

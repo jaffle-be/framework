@@ -2,7 +2,6 @@
 
 namespace Modules\Search;
 
-use Elasticsearch\Client;
 use Modules\Search\Model\Searchable;
 
 /**

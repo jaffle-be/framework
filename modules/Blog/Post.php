@@ -22,7 +22,8 @@ use Modules\Users\User;
 /**
  * Class Post
  * @package Modules\Blog
- */class Post extends Model implements StoresMedia, Searchable, StoresTags, PresentableEntity, SeoEntity
+ */
+class Post extends Model implements StoresMedia, Searchable, StoresTags, PresentableEntity, SeoEntity
 {
     use PresentableTrait;
     use Translatable;
@@ -57,8 +58,9 @@ use Modules\Users\User;
     ];
 
     /**
- * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-*/public function user()
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function user()
     {
         return $this->belongsTo('Modules\Users\User');
     }
@@ -66,34 +68,38 @@ use Modules\Users\User;
     /**
      * Create a new Eloquent Collection instance.
      *
-* @param array $models
-* @return \Illuminate\Database\Eloquent\Collection|PostCollection
-*/    public function newCollection(array $models = [])
+     * @param array $models
+     * @return \Illuminate\Database\Eloquent\Collection|PostCollection
+     */
+    public function newCollection(array $models = [])
     {
         return new PostCollection($models);
     }
 
 
     /**
-* @param Builder $builder
-*/ublic function scopeLatest(Builder $builder)
+     * @param Builder $builder
+     */
+    public function scopeLatest(Builder $builder)
     {
         $builder->orderBy('post_translations.publish_at');
     }
 
 
     /**
-* @param Builder $builder
-* @param User $user
-*/ublic function scopeAuthoredBy(Builder $builder, User $user)
+     * @param Builder $builder
+     * @param User $user
+     */
+    public function scopeAuthoredBy(Builder $builder, User $user)
     {
         $builder->where('user_id', $user->id);
     }
 
 
     /**
-* @param Builder $builder
-*/ublic function scopeRelated(Builder $builder)
+     * @param Builder $builder
+     */
+    public function scopeRelated(Builder $builder)
     {
     }
 }

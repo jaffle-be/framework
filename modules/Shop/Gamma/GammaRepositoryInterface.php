@@ -2,7 +2,6 @@
 
 namespace Modules\Shop\Gamma;
 
-use Illuminate\Database\Eloquent\Collection;
 use Modules\Shop\Product\Brand;
 use Modules\Shop\Product\Category;
 

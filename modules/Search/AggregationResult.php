@@ -41,7 +41,7 @@ class AggregationResult extends Collection
     /**
      * Run a map over each of the items.
      *
-     * @param  callable  $callback
+     * @param  callable $callback
      * @return static
      */
     public function map(callable $callback)

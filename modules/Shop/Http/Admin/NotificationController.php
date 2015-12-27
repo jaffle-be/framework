@@ -12,29 +12,33 @@ use Modules\System\Http\AdminController;
 /**
  * Class NotificationController
  * @package Modules\Shop\Http\Admin
- */class NotificationController extends AdminController
+ */
+class NotificationController extends AdminController
 {
     /**
- * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-*/public function template()
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function template()
     {
         return view('shop::admin.notifications.overview');
     }
 
     /**
-* @param GammaNotification $notifications
-* @param Request $request
- * @return mixed
-*/public function overview(GammaNotification $notifications, Request $request)
+     * @param GammaNotification $notifications
+     * @param Request $request
+     * @return mixed
+     */
+    public function overview(GammaNotification $notifications, Request $request)
     {
         return $this->refreshedPageData($notifications, $request);
     }
 
     /**
-* @param GammaNotification $notifications
-* @param Request $request
- * @return mixed
-*/public function accept(GammaNotification $notifications, Request $request)
+     * @param GammaNotification $notifications
+     * @param Request $request
+     * @return mixed
+     */
+    public function accept(GammaNotification $notifications, Request $request)
     {
         $requested = $this->requestedNotifications($notifications, $request);
 
@@ -52,10 +56,11 @@ use Modules\System\Http\AdminController;
     }
 
     /**
-* @param GammaNotification $notifications
-* @param Request $request
- * @return mixed
-*/public function review(GammaNotification $notifications, Request $request)
+     * @param GammaNotification $notifications
+     * @param Request $request
+     * @return mixed
+     */
+    public function review(GammaNotification $notifications, Request $request)
     {
         $requested = $this->requestedNotifications($notifications, $request);
 
@@ -73,10 +78,11 @@ use Modules\System\Http\AdminController;
     }
 
     /**
-* @param GammaNotification $notifications
-* @param Request $request
- * @return mixed
-*/public function deny(GammaNotification $notifications, Request $request)
+     * @param GammaNotification $notifications
+     * @param Request $request
+     * @return mixed
+     */
+    public function deny(GammaNotification $notifications, Request $request)
     {
         $requested = $this->requestedNotifications($notifications, $request);
 
@@ -91,10 +97,11 @@ use Modules\System\Http\AdminController;
     }
 
     /**
-* @param $notifications
-* @param Request $request
- * @return mixed
-*/protected function refreshedPageData($notifications, Request $request)
+     * @param $notifications
+     * @param Request $request
+     * @return mixed
+     */
+    protected function refreshedPageData($notifications, Request $request)
     {
         $relations = ['brand', 'brand.translations', 'category', 'category.translations', 'product', 'product.translations'];
 
@@ -110,10 +117,11 @@ use Modules\System\Http\AdminController;
     }
 
     /**
-* @param GammaNotification $notifications
-* @param Request $request
-* @return GammaNotification
-*/    protected function requestedNotifications(GammaNotification $notifications, Request $request)
+     * @param GammaNotification $notifications
+     * @param Request $request
+     * @return GammaNotification
+     */
+    protected function requestedNotifications(GammaNotification $notifications, Request $request)
     {
         $notifications = $notifications->whereIn('id', $request->get('notifications'))->get();
 

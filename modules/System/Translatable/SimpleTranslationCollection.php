@@ -23,7 +23,7 @@ class SimpleTranslationCollection extends Collection
     /**
      * Get the collection of items as JSON.
      *
-     * @param  int  $options
+     * @param  int $options
      * @return string
      */
     public function toJson($options = 0)

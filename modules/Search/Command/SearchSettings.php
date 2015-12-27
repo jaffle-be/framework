@@ -8,7 +8,8 @@ use Modules\Search\SearchServiceInterface;
 /**
  * Class SearchSettings
  * @package Modules\Search\Command
- */class SearchSettings extends Command
+ */
+class SearchSettings extends Command
 {
     /**
      * The console command name.
@@ -31,8 +32,8 @@ use Modules\Search\SearchServiceInterface;
 
     /**
      * Create a new command instance.
-* @param SearchServiceInterface $service
-*/
+     * @param SearchServiceInterface $service
+     */
     public function __construct(SearchServiceInterface $service)
     {
         parent::__construct();

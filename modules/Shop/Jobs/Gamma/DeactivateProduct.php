@@ -12,7 +12,8 @@ use Modules\Shop\Product\Product;
 /**
  * Class DeactivateProduct
  * @package Modules\Shop\Jobs\Gamma
- */class DeactivateProduct extends Job
+ */
+class DeactivateProduct extends Job
 {
     protected $product;
 
@@ -21,10 +22,11 @@ use Modules\Shop\Product\Product;
     protected $account;
 
     /**
-* @param Product $product
-* @param Category $category
-* @param Account $account
- */public function __construct(Product $product, Category $category, Account $account)
+     * @param Product $product
+     * @param Category $category
+     * @param Account $account
+     */
+    public function __construct(Product $product, Category $category, Account $account)
     {
         $this->product = $product;
         $this->category = $category;
@@ -32,9 +34,10 @@ use Modules\Shop\Product\Product;
     }
 
     /**
-* @param ProductSelection $selection
-* @throws \Exception
-*/public function handle(ProductSelection $selection)
+     * @param ProductSelection $selection
+     * @throws \Exception
+     */
+    public function handle(ProductSelection $selection)
     {
         //when no record exists, insert and delete (or do it manually)
         //when a record exists trash it.
@@ -77,9 +80,10 @@ use Modules\Shop\Product\Product;
     }
 
     /**
-* @param $record
-* @return ProductCategorySelection
-*/    protected function attachCategory($record)
+     * @param $record
+     * @return ProductCategorySelection
+     */
+    protected function attachCategory($record)
     {
         $category = new ProductCategorySelection(['category_id' => $this->category->id]);
 
@@ -94,9 +98,10 @@ use Modules\Shop\Product\Product;
      * if this ever get's called in a global system context,
      * it will now still work.
      *
-* @param ProductSelection $selection
-* @return \Illuminate\Database\Eloquent\Model|null|static
-*/   protected function getExisting(ProductSelection $selection)
+     * @param ProductSelection $selection
+     * @return \Illuminate\Database\Eloquent\Model|null|static
+     */
+    protected function getExisting(ProductSelection $selection)
     {
         return $selection->newQueryWithoutScopes()
             ->where('account_id', $this->account->id)

@@ -2,9 +2,7 @@
 
 namespace Modules\Media;
 
-use Modules\Media\Files\File;
 use Modules\Media\Infographics\Infographic;
-use Modules\Media\Video\Video;
 
 /**
  * Interface MediaRepositoryInterface
