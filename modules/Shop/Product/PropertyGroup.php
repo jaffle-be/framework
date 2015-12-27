@@ -8,7 +8,6 @@ use Modules\System\Translatable\Translatable;
 
 class PropertyGroup extends Model
 {
-
     use Translatable;
     use ModelAutoSort;
 

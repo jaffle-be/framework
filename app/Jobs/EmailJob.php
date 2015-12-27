@@ -1,4 +1,6 @@
-<?php namespace App\Jobs;
+<?php
+
+namespace App\Jobs;
 
 use Illuminate\Contracts\Bus\SelfHandling;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -8,7 +10,6 @@ use Modules\Account\AccountManager;
 
 class EmailJob extends Job implements SelfHandling, ShouldQueue
 {
-
     use InteractsWithQueue, SerializesModels;
 
     protected $account;
@@ -38,5 +39,4 @@ class EmailJob extends Job implements SelfHandling, ShouldQueue
             'root_url' => $this->root_url,
         ]);
     }
-
 }

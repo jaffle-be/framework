@@ -10,7 +10,6 @@ use Modules\System\Translatable\Translatable;
 
 class Client extends Model implements StoresMedia
 {
-
     use Translatable;
     use StoringMedia;
     use ModelAccountResource;

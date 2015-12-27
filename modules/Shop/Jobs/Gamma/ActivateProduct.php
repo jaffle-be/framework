@@ -11,7 +11,6 @@ use Modules\Shop\Product\Product;
 
 class ActivateProduct extends Job
 {
-
     protected $product;
 
     protected $categorie;
@@ -29,7 +28,7 @@ class ActivateProduct extends Job
     {
         $base = $this->baseSelectionExists($products);
 
-        if (!$base) {
+        if (! $base) {
             $this->handleFullNewRecord($products);
         } else {
             $selection = $this->existingCategorySelection($base);

@@ -9,7 +9,6 @@ use Modules\Media\Video\Video;
 
 class MediaRepository implements MediaRepositoryInterface
 {
-
     protected $images;
 
     protected $config;

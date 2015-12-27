@@ -7,7 +7,6 @@ use Modules\Account\Membership;
 
 class RevokeMembership extends Job
 {
-
     /**
      * @var Membership
      */

@@ -6,7 +6,6 @@ use Modules\System\Seeder;
 
 class PagesTableSeeder extends Seeder
 {
-
     public function __construct()
     {
         $this->model = new Page();
@@ -22,7 +21,6 @@ class PagesTableSeeder extends Seeder
             //flip array since array_rand returns the keys from an array
 
             for ($i = 0; $i < $amount; $i++) {
-
                 $page = $this->model->newInstance($this->texts());
 
                 $page->user_id = 1;
@@ -82,8 +80,7 @@ class PagesTableSeeder extends Seeder
                 'created_at' => $this->nl->dateTimeBetween('-3 months', 'now'),
                 'updated_at' => $this->nl->dateTimeBetween('-2 months', 'now'),
                 'published'  => rand(0, 1),
-            ]
+            ],
         ];
     }
-
 }

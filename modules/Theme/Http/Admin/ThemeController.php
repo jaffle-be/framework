@@ -9,7 +9,6 @@ use Modules\Theme\ThemeSettingOption;
 
 class ThemeController extends AdminController
 {
-
     public function index()
     {
         $themes = $this->theme->supported();
@@ -68,14 +67,14 @@ class ThemeController extends AdminController
     public function activate($theme)
     {
         if ($this->theme->activate($theme)) {
-            return json_encode(array(
+            return json_encode([
                 'status' => 'oke',
-            ));
+            ]);
         }
 
-        return json_encode(array(
+        return json_encode([
             'status' => 'noke',
-        ));
+        ]);
     }
 
     public function current()

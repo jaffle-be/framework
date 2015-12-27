@@ -5,7 +5,6 @@ use Illuminate\Database\Schema\Blueprint;
 
 class CreateSeoPropertiesTable extends Migration
 {
-
     /**
      * Run the migrations.
      *
@@ -33,7 +32,7 @@ class CreateSeoPropertiesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('seo_properties', function (Blueprint $table){
+        Schema::drop('seo_properties', function (Blueprint $table) {
             $table->dropForeign('seo_property_to_locale');
         });
     }

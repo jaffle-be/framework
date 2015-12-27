@@ -1,4 +1,6 @@
-<?php namespace Test\Shop\Gamma;
+<?php
+
+namespace Test\Shop\Gamma;
 
 use Modules\Account\Account;
 use Modules\Shop\Gamma\GammaNotification;
@@ -9,7 +11,6 @@ use Test\AdminTestCase;
 
 class NotifyDetailActivationTest extends AdminTestCase
 {
-
     /**
      * @expectedException \Symfony\Component\HttpKernel\Exception\HttpException
      * @expectedExceptionMessage this gamma detail is still being processed
@@ -25,7 +26,7 @@ class NotifyDetailActivationTest extends AdminTestCase
             'brand_id'    => $brand->id,
             'category_id' => $category->id,
             'account_id'  => $account->id,
-            'processing'  => true
+            'processing'  => true,
         ]);
 
         $this->execute($brand, $category, $account);
@@ -43,7 +44,7 @@ class NotifyDetailActivationTest extends AdminTestCase
             'brand_id'    => $brand->id,
             'category_id' => $category->id,
             'account_id'  => $account->id,
-            'type'        => 'activate'
+            'type'        => 'activate',
         ]);
     }
 
@@ -66,7 +67,7 @@ class NotifyDetailActivationTest extends AdminTestCase
             'brand_id'    => $brand->id,
             'category_id' => $category->id,
             'account_id'  => $account->id,
-            'type'        => 'activate'
+            'type'        => 'activate',
         ]);
     }
 
@@ -80,5 +81,4 @@ class NotifyDetailActivationTest extends AdminTestCase
         $job = new NotifyDetailActivation($brand, $category, $account);
         $job->handle(new GammaNotification(), app('Pusher'));
     }
-
 }

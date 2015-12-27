@@ -5,7 +5,6 @@ use Modules\Users\User;
 
 class UsersTableSeeder extends Seeder
 {
-
     public function run()
     {
         User::create([

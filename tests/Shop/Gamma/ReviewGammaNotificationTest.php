@@ -1,4 +1,6 @@
-<?php namespace Test\Shop\Gamma;
+<?php
+
+namespace Test\Shop\Gamma;
 
 use Modules\Account\Account;
 use Modules\Shop\Gamma\GammaNotification;
@@ -13,7 +15,6 @@ use Test\AdminTestCase;
 
 class ReviewGammaNotificationTest extends AdminTestCase
 {
-
     public function testReviewingBatchActivation()
     {
         list($category_id, $account_id, $brand_id, $notification, $otherProduct) = $this->startData();
@@ -63,7 +64,7 @@ class ReviewGammaNotificationTest extends AdminTestCase
         ]);
 
         $this->notSeeInDatabase('product_gamma_notifications', [
-            'id' => $notification->id
+            'id' => $notification->id,
         ]);
     }
 
@@ -74,11 +75,11 @@ class ReviewGammaNotificationTest extends AdminTestCase
         $brand = factory(Brand::class)->create();
         $product1 = factory(Product::class)->create([
             'brand_id' => $brand->id,
-            'account_id' => $account->id
+            'account_id' => $account->id,
         ]);
         $product2 = factory(Product::class)->create([
             'brand_id' => $brand->id,
-            'account_id' => $account->id
+            'account_id' => $account->id,
         ]);
         $category = factory(Category::class)->create();
 
@@ -95,11 +96,11 @@ class ReviewGammaNotificationTest extends AdminTestCase
         $selection = factory(ProductSelection::class)->create([
             'account_id'  => $account->id,
             'brand_id'    => $brand->id,
-            'product_id' => $product1->id
+            'product_id' => $product1->id,
         ]);
 
         $selection->categories()->save(factory(ProductCategorySelection::class)->make([
-            'category_id' => $category->id
+            'category_id' => $category->id,
         ]));
 
         //product2 not
@@ -110,7 +111,7 @@ class ReviewGammaNotificationTest extends AdminTestCase
         ]);
 
         $selection->categories()->save(factory(ProductCategorySelection::class, 'deleted')->make([
-            'category_id' => $category->id
+            'category_id' => $category->id,
         ]));
 
         $notification = factory(GammaNotification::class, 'deactivate')->create([
@@ -124,7 +125,7 @@ class ReviewGammaNotificationTest extends AdminTestCase
 
         //original notification is gone
         $this->notSeeInDatabase('product_gamma_notifications', [
-            'id' => $notification->id
+            'id' => $notification->id,
         ]);
 
         //should only see notification for product 1
@@ -133,7 +134,7 @@ class ReviewGammaNotificationTest extends AdminTestCase
             'product_id' => $product1->id,
             'type' => 'deactivate',
             'brand_id'    => $brand->id,
-            'category_id' => $category->id
+            'category_id' => $category->id,
         ]);
 
         $this->notSeeInDatabase('product_gamma_notifications', [
@@ -145,7 +146,7 @@ class ReviewGammaNotificationTest extends AdminTestCase
         $this->seeInDatabase('product_gamma_selections', [
             'account_id' => $account->id,
             'brand_id' => $brand->id,
-            'category_id' => $category->id
+            'category_id' => $category->id,
         ]);
 
         //product selections should still be the same
@@ -200,12 +201,11 @@ class ReviewGammaNotificationTest extends AdminTestCase
 
         $notification->save();
 
-        return array($category->id, $account1->id, $brand->id, $notification, $notSee);
+        return [$category->id, $account1->id, $brand->id, $notification, $notSee];
     }
 
     protected function handleJob(ReviewGammaNotification $job)
     {
         $job->handle(new GammaSelection(), app('Pusher'), app('Modules\Shop\Product\CatalogRepositoryInterface'), new ProductSelection(), new GammaNotification());
     }
-
 }

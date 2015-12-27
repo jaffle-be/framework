@@ -14,7 +14,6 @@ use Modules\Media\StoresMedia;
 
 class StoreNewImage extends Job
 {
-
     use DispatchesJobs;
 
     protected $account;
@@ -81,7 +80,7 @@ class StoreNewImage extends Job
 
     public function handle(MediaRepositoryInterface $repo, ImageManager $images, Filesystem $files, Configurator $config)
     {
-        if (!$files->exists($this->currentPath)) {
+        if (! $files->exists($this->currentPath)) {
             return false;
         }
 
@@ -110,8 +109,6 @@ class StoreNewImage extends Job
 
     /**
      * set the filename, extension and the size.
-
-
      */
     protected function dimensions(ImageManager $image)
     {
@@ -126,12 +123,12 @@ class StoreNewImage extends Job
         $abstract = $config->getAbstractPath($this->owner, 'images');
         $public = $config->getPublicPath($this->owner, 'images');
 
-        if (!$files->isDirectory($public)) {
+        if (! $files->isDirectory($public)) {
             $files->makeDirectory($public, 0755, true);
         }
 
         //abstract path to actual file
-        $path = $abstract . $this->rename;
+        $path = $abstract.$this->rename;
 
         //always copy the file first
         $files->copy($this->currentPath, public_path($path));

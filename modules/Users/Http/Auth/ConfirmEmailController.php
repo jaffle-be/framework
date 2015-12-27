@@ -14,7 +14,6 @@ use Modules\Users\Contracts\UserRepositoryInterface;
 
 class ConfirmEmailController extends FrontController
 {
-
     /**
      * Form for sending new confirmation email.
      *

@@ -10,7 +10,6 @@ use Modules\Shop\Product\Category;
 
 class NotifyCategoryGlobalDeactivation extends Job
 {
-
     use GammaNotificationHelpers;
 
     /**

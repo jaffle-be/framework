@@ -8,7 +8,6 @@ use Modules\System\Uri\Uri;
 
 trait SiteSluggable
 {
-
     use Sluggable;
 
     protected function needsSlugging()
@@ -18,7 +17,7 @@ trait SiteSluggable
 
     public function getRouteKeyName()
     {
-        if (!starts_with(app('request')->getRequestUri(), ['/admin', '/api'])) {
+        if (! starts_with(app('request')->getRequestUri(), ['/admin', '/api'])) {
             return 'uris.uri';
         }
 
@@ -35,11 +34,11 @@ trait SiteSluggable
         /** @var Request $request */
         $request = app('request');
 
-        if (app()->runningInConsole() && !env('RUNNING_TESTS', false)) {
+        if (app()->runningInConsole() && ! env('RUNNING_TESTS', false)) {
             return;
         }
 
-        if (!starts_with($request->getRequestUri(), ['/admin', '/api'])) {
+        if (! starts_with($request->getRequestUri(), ['/admin', '/api'])) {
             static::addGlobalScope(new SiteSluggableScope());
         }
     }
@@ -96,7 +95,7 @@ trait SiteSluggable
 
         $this->load('slug');
 
-        if (!$slug = $this->slug) {
+        if (! $slug = $this->slug) {
             //slugs should always be account specific, at least for now
             $slug = new Uri([
                 'account_id' => $account->id,
@@ -137,7 +136,7 @@ trait SiteSluggable
 
         $query = $uri->where(function ($query) use ($slug, $config) {
             $query->where('uri', $slug)
-                ->orWhere('uri', 'like', $slug . $config['separator'] . '%');
+                ->orWhere('uri', 'like', $slug.$config['separator'].'%');
         });
 
         $this->load('slug');

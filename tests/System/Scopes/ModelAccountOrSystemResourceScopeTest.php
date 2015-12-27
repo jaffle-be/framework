@@ -1,4 +1,6 @@
-<?php namespace Test\System\Scopes;
+<?php
+
+namespace Test\System\Scopes;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
@@ -13,12 +15,10 @@ class ModelAccountOrSystemResourceScopeSql extends Model
 {
     use ModelAccountOrSystemResource;
     protected $table = 'test';
-
 }
 
 class ModelAccountOrSystemResourceScopeTest extends TestCase
 {
-
     public function testApplyingScopeWillNotWorkWhenNoValidAccount()
     {
         $manager = $this->managerWithoutAccount();
@@ -39,7 +39,7 @@ class ModelAccountOrSystemResourceScopeTest extends TestCase
         $builder = m::mock(Builder::class);
         $model = m::mock(Model::class);
 
-        $builder->shouldReceive('where')->once()->with(m::on(function($argument){
+        $builder->shouldReceive('where')->once()->with(m::on(function ($argument) {
             return $argument instanceof \Closure;
         }))->andReturnSelf();
 
@@ -50,7 +50,7 @@ class ModelAccountOrSystemResourceScopeTest extends TestCase
     {
         $query = new ModelAccountOrSystemResourceScopeSql();
         $query = $query->newQuery()->toSql();
-        $this->assertSame("select * from `test` where (`account_id` = ? or `account_id` is null)", $query);
+        $this->assertSame('select * from `test` where (`account_id` = ? or `account_id` is null)', $query);
     }
 
     /**
@@ -77,5 +77,4 @@ class ModelAccountOrSystemResourceScopeTest extends TestCase
 
         return $manager;
     }
-
 }

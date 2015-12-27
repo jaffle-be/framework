@@ -12,7 +12,6 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class UploadNewFile extends Job
 {
-
     use DispatchesJobs;
 
     /**
@@ -42,17 +41,17 @@ class UploadNewFile extends Job
 
     public function handle(Filesystem $files, AccountManager $manager)
     {
-        $temp_dir = storage_path('media') . '/' . $this->owner->getMediaFolder('files');
+        $temp_dir = storage_path('media').'/'.$this->owner->getMediaFolder('files');
 
         $name = $this->uniqueName();
 
         $this->file->move($temp_dir, $name);
 
-        $temp_file = $temp_dir . $name;
+        $temp_file = $temp_dir.$name;
 
-        $name_with_extension = $name . $this->extension($temp_file);
+        $name_with_extension = $name.$this->extension($temp_file);
 
-        $final_path = $temp_dir . $name_with_extension;
+        $final_path = $temp_dir.$name_with_extension;
 
         $files->move($temp_file, $final_path);
 

@@ -7,7 +7,6 @@ use ReflectionClass;
 
 abstract class ServiceProvider extends Provider
 {
-
     protected $namespace = false;
 
     protected $setups = [
@@ -30,7 +29,7 @@ abstract class ServiceProvider extends Provider
 
     public function boot()
     {
-        if (!$this->namespace) {
+        if (! $this->namespace) {
             throw new \Exception('Please set the namespace for the provider');
         }
 
@@ -51,14 +50,14 @@ abstract class ServiceProvider extends Provider
         $reflection = new ReflectionClass($this);
         $dir = dirname($reflection->getFileName());
 
-        return $dir . '/../';
+        return $dir.'/../';
     }
 
     abstract protected function listeners();
 
     public function helpers($dir)
     {
-        $file = $dir . 'helpers.php';
+        $file = $dir.'helpers.php';
 
         if (file_exists($file)) {
             include $file;
@@ -70,8 +69,8 @@ abstract class ServiceProvider extends Provider
      */
     protected function routes($dir)
     {
-        if (!$this->app->routesAreCached()) {
-            $routes = $dir . '/Http/routes.php';
+        if (! $this->app->routesAreCached()) {
+            $routes = $dir.'/Http/routes.php';
             if (file_exists($routes)) {
                 include $routes;
             }
@@ -83,7 +82,7 @@ abstract class ServiceProvider extends Provider
          * In the boot method, the connection isn't available yet.
          */
         $this->app->booted(function () use ($dir) {
-            $breadcrumbs = $dir . '/Http/breadcrumbs.php';
+            $breadcrumbs = $dir.'/Http/breadcrumbs.php';
 
             if (file_exists($breadcrumbs)) {
                 include $breadcrumbs;
@@ -100,7 +99,7 @@ abstract class ServiceProvider extends Provider
 
         array_walk($this->publishing, function ($value) use ($dir, &$publish) {
 
-            $key = $dir . $value;
+            $key = $dir.$value;
 
             if (file_exists($key) || is_dir($key)) {
                 $value = base_path(ltrim($value, '/'));
@@ -116,7 +115,7 @@ abstract class ServiceProvider extends Provider
      */
     protected function views($dir)
     {
-        $views = $dir . '/resources/views/';
+        $views = $dir.'/resources/views/';
         if (file_exists($views)) {
             $this->loadViewsFrom($views, $this->namespace);
         }
@@ -127,7 +126,7 @@ abstract class ServiceProvider extends Provider
      */
     protected function lang($dir)
     {
-        $lang = $dir . '/resources/lang';
+        $lang = $dir.'/resources/lang';
         if (file_exists($lang)) {
             $this->loadTranslationsFrom($lang, $this->namespace);
         }
@@ -138,7 +137,7 @@ abstract class ServiceProvider extends Provider
      */
     protected function config($dir)
     {
-        $config = $dir . '/config/' . $this->namespace . '.php';
+        $config = $dir.'/config/'.$this->namespace.'.php';
 
         if (file_exists($config)) {
             $this->mergeConfigFrom($config, $this->namespace);

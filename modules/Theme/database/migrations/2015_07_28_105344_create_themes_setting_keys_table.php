@@ -6,7 +6,6 @@ use Modules\Theme\ThemeSettingType;
 
 class CreateThemesSettingKeysTable extends Migration
 {
-
     /**
      * Run the migrations.
      */

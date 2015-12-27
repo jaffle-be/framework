@@ -9,7 +9,6 @@ use Modules\Account\AccountManager;
 
 class ModelAccountResourceScope implements Scope
 {
-
     public function __construct(AccountManager $manager)
     {
         $this->account = $manager->account();
@@ -18,7 +17,7 @@ class ModelAccountResourceScope implements Scope
     public function apply(Builder $builder, Model $model)
     {
         if ($this->account) {
-            $builder->where($model->getTable() . '.account_id', $this->account->getKey());
+            $builder->where($model->getTable().'.account_id', $this->account->getKey());
         }
     }
 }

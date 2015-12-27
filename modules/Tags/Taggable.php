@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
 trait Taggable
 {
-
     public function tags()
     {
         return $this->morphToMany('Modules\Tags\Tag', 'taggable');
@@ -19,7 +18,7 @@ trait Taggable
         /** @var MorphToMany $relation */
         $relation = $this->tags();
 
-        $key = $this->getTable() . '.' . $this->getKeyName();
+        $key = $this->getTable().'.'.$this->getKeyName();
 
         if ($tags->count()) {
             $builder->join($relation->getTable(), function ($join) use ($relation, $key, $tags) {

@@ -14,7 +14,6 @@ use Modules\System\Translatable\TranslationModel;
 
 class ProjectTranslation extends TranslationModel implements Searchable, SluggableInterface, PresentableEntity, PresentableCache
 {
-
     use SearchableTrait, Sluggable, PresentableTrait, FrontScoping;
 
     protected $table = 'portfolio_project_translations';

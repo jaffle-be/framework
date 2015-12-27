@@ -20,7 +20,6 @@ use Modules\Shop\Product\PropertyValue;
 
 class ImportResults extends Command
 {
-
     /**
      * The name and signature of the console command.
      *
@@ -67,10 +66,10 @@ class ImportResults extends Command
     protected function productProperties($product, $data, $category, $group)
     {
         foreach ($data->specs as $spec) {
-            if (!empty($spec->spec) && !empty($spec->value)) {
+            if (! empty($spec->spec) && ! empty($spec->value)) {
                 $prop = PropertyTranslation::where('name', $spec->spec)->first();
 
-                if (!$prop) {
+                if (! $prop) {
                     $prop = Property::create([
                         'type' => 'options',
                         'category_id' => $category->id,
@@ -91,7 +90,7 @@ class ImportResults extends Command
                     ->where('property_id', $prop)
                     ->where('name', $spec->value)->first();
 
-                if (!$option) {
+                if (! $option) {
                     $option = PropertyOption::create([
                         'property_id' => $prop,
                         'nl' => [
@@ -120,7 +119,7 @@ class ImportResults extends Command
     {
         $counter = 1;
 
-        if (isset($data->image) && !empty($data->image)) {
+        if (isset($data->image) && ! empty($data->image)) {
             $this->addImage($account, $product, $data->image, $counter);
             ++$counter;
         }
@@ -142,7 +141,7 @@ class ImportResults extends Command
     {
         $brand = BrandTranslation::where('name', 'Philips')->first();
 
-        if (!$brand) {
+        if (! $brand) {
             $brand = Brand::create([
                 'nl' => [
                     'name' => 'Philips',
@@ -181,7 +180,7 @@ class ImportResults extends Command
 
         $category = CategoryTranslation::where('name', $title)->first();
 
-        if (!$category) {
+        if (! $category) {
             $category = Category::create([
                 'nl' => [
                     'name' => $title,
@@ -244,9 +243,9 @@ class ImportResults extends Command
      */
     protected function addImage($account, $product, $url, $counter)
     {
-        $path = base_path('storage') . '/image_' . str_replace('/', '_', $product->name) . $counter . '.jpg';
+        $path = base_path('storage').'/image_'.str_replace('/', '_', $product->name).$counter.'.jpg';
 
-        if (!app('files')->exists($path)) {
+        if (! app('files')->exists($path)) {
             $content = file_get_contents($url);
 
             //for some reason, storage_path is wrong in console?

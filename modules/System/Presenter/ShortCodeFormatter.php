@@ -7,7 +7,6 @@ use Modules\System\Translatable\TranslationModel;
 
 class ShortCodeFormatter
 {
-
     use ShortCodeCompiler;
     use MediaShortcodes;
 
@@ -16,8 +15,6 @@ class ShortCodeFormatter
     /**
      * This is making sure that shortcodes are always put on their separate lines.
      * if not, they would break the rendering of the markdown.
-
-
      */
     public function handle($model)
     {

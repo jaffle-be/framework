@@ -10,7 +10,6 @@ use Modules\Users\User;
 
 class SigninController extends FrontController
 {
-
     public function index()
     {
         return $this->theme->render('auth.login');

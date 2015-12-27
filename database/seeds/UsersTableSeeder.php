@@ -5,7 +5,6 @@ use Modules\Users\User;
 
 class UsersTableSeeder extends Seeder
 {
-
     public function run()
     {
         User::create([
@@ -13,8 +12,7 @@ class UsersTableSeeder extends Seeder
             'password'  => \Hash::make('thomasthomas'),
             'firstname' => 'Thomas',
             'lastname'  => 'Warlop',
-            'confirmed' => 1
+            'confirmed' => 1,
         ]);
     }
-
 }

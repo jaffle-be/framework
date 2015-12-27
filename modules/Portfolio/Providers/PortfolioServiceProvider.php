@@ -8,7 +8,6 @@ use Modules\System\ServiceProvider;
 
 class PortfolioServiceProvider extends ServiceProvider
 {
-
     protected $namespace = 'portfolio';
 
     public function register()

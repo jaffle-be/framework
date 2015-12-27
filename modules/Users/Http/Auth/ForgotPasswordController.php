@@ -9,7 +9,6 @@ use Modules\Users\Auth\Requests\ForgotPasswordRequest;
 
 class ForgotPasswordController extends FrontController
 {
-
     public function index()
     {
         return $this->theme->render('auth.forgot-password');

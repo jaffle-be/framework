@@ -8,7 +8,6 @@ use Modules\System\Translatable\TranslationModel;
 
 class Cleanup
 {
-
     public function handle($object)
     {
         //we need to check for owns slug on the model itself,
@@ -29,22 +28,22 @@ class Cleanup
 
     protected function translationOwnsSlug($object)
     {
-        if (!method_exists($object, 'translations')) {
+        if (! method_exists($object, 'translations')) {
             return false;
         }
 
-        if (!$object->translations() instanceof Relation) {
+        if (! $object->translations() instanceof Relation) {
             return false;
         }
 
-        if (!$instance = $object->translations()->getRelated()) {
+        if (! $instance = $object->translations()->getRelated()) {
             return false;
         }
 
-        if (!$instance instanceof TranslationModel) {
+        if (! $instance instanceof TranslationModel) {
             return false;
         }
-        if (!$instance instanceof OwnsSlug) {
+        if (! $instance instanceof OwnsSlug) {
             return false;
         }
 

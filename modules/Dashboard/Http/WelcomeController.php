@@ -12,7 +12,6 @@ use Modules\Theme\Theme;
 
 class WelcomeController extends FrontController
 {
-
     /**
      * This route is only valid for multi locale applications.
      *

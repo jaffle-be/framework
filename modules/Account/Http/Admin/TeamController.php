@@ -10,7 +10,6 @@ use Modules\System\Http\AdminController;
 
 class TeamController extends AdminController
 {
-
     public function index(Team $team)
     {
         return $team->with(['translations'])->get();
@@ -20,10 +19,10 @@ class TeamController extends AdminController
     {
         $membership = $membership->find($request->get('membership'));
 
-        if (!$membership) {
-            return json_encode(array(
+        if (! $membership) {
+            return json_encode([
                 'status' => 'noke',
-            ));
+            ]);
         }
 
         $team = $teams->find($team);

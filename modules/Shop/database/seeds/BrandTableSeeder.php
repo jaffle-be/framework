@@ -10,7 +10,6 @@ use Modules\System\Seeder;
 
 class BrandTableSeeder extends Seeder
 {
-
     use DispatchesJobs;
 
     /**
@@ -101,7 +100,7 @@ class BrandTableSeeder extends Seeder
 
         $path = base_path("database/images/brands/$name.$extension");
 
-        if (!file_exists($path)) {
+        if (! file_exists($path)) {
             $this->error('need to publish images for brands');
         }
 

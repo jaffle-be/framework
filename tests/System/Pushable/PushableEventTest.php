@@ -1,12 +1,13 @@
-<?php namespace Test\System\Pushable;
+<?php
+
+namespace Test\System\Pushable;
 
 use Modules\System\Pushable\Pushable;
 use Modules\System\Pushable\PushableEvent;
 use Test\TestCase;
 
-
-class DataDummyPushable implements Pushable{
-
+class DataDummyPushable implements Pushable
+{
     public function getPushableChannel()
     {
         return 'some channel';
@@ -21,12 +22,10 @@ class DataDummyPushable implements Pushable{
     {
         return 'pushable data';
     }
-
 }
 
 class PushableEventTest extends TestCase
 {
-
     public function testGettingTheChannelToBroadcastOn()
     {
         $event = new PushableEvent(new DataDummyPushable(), 'some name');

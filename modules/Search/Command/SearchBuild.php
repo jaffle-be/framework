@@ -9,7 +9,6 @@ use Symfony\Component\Console\Input\InputArgument;
 
 class SearchBuild extends Command
 {
-
     /**
      * The console command name.
      *
@@ -31,9 +30,6 @@ class SearchBuild extends Command
 
     /**
      * Create a new command instance.
-
-
-
      */
     public function __construct(SearchServiceInterface $service, IndexManager $indexManager)
     {
@@ -81,8 +77,8 @@ class SearchBuild extends Command
      */
     protected function getArguments()
     {
-        return array(
-            array('types', InputArgument::IS_ARRAY, []),
-        );
+        return [
+            ['types', InputArgument::IS_ARRAY, []],
+        ];
     }
 }

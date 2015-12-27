@@ -11,7 +11,6 @@ use Modules\System\Country\CountryRepository;
 
 class NewAddress extends Job
 {
-
     protected $input;
 
     public function __construct(array $input)
@@ -48,7 +47,7 @@ class NewAddress extends Job
 
     protected function resolveOwner($owners, $owner_id, $owner_type)
     {
-        if (!isset($owners[$owner_type])) {
+        if (! isset($owners[$owner_type])) {
             throw new Exception('Invalid owner type trying to create address');
         }
 

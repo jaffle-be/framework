@@ -6,7 +6,6 @@ use Modules\System\Translatable\TranslationModel;
 
 class CampaignTranslation extends TranslationModel
 {
-
     protected $table = 'newsletter_campaign_translations';
 
     protected $fillable = ['title', 'subject', 'intro'];

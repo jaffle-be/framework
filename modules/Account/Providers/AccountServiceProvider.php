@@ -9,7 +9,6 @@ use Modules\System\ServiceProvider;
 
 class AccountServiceProvider extends ServiceProvider
 {
-
     protected $defer = false;
 
     protected $namespace = 'account';

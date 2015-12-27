@@ -7,7 +7,6 @@ use Modules\Search\SearchServiceInterface;
 
 class SearchRebuild extends Command
 {
-
     /**
      * The console command name.
      *
@@ -29,8 +28,6 @@ class SearchRebuild extends Command
 
     /**
      * Create a new command instance.
-
-
      */
     public function __construct(SearchServiceInterface $service)
     {

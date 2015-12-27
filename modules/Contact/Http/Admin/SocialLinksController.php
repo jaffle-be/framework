@@ -10,7 +10,6 @@ use Modules\System\Http\AdminController;
 
 class SocialLinksController extends AdminController
 {
-
     public function widget(SocialLinks $links)
     {
         return view('contact::admin.widgets.social-links', ['links' => $links->getFillable()]);
@@ -49,7 +48,7 @@ class SocialLinksController extends AdminController
 
         $owners = config('contact.social_links_owners');
 
-        if (!isset($owners[$type])) {
+        if (! isset($owners[$type])) {
             throw new Exception('Invalid owner type provided for social links');
         }
 

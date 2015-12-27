@@ -1,11 +1,11 @@
-<?php namespace Test;
+<?php
+
+namespace Test;
 
 use App\Console\Kernel;
-use Illuminate\Database\Eloquent\Model;
 
 class TestCase extends \Illuminate\Foundation\Testing\TestCase
 {
-
     protected $baseUrl = 'http://digiredo.local';
 
     /**
@@ -17,7 +17,7 @@ class TestCase extends \Illuminate\Foundation\Testing\TestCase
     {
         $this->stopMockingFront();
 
-        $app = require __DIR__ . '/../bootstrap/app.php';
+        $app = require __DIR__.'/../bootstrap/app.php';
 
         $app->make(Kernel::class)->bootstrap();
 

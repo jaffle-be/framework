@@ -1,4 +1,6 @@
-<?php namespace Test\System\Scopes;
+<?php
+
+namespace Test\System\Scopes;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
@@ -28,7 +30,6 @@ class DummyAutoSortUsingArrayDefinedValues extends Model
 
 class ModelAutoSortScopeTest extends TestCase
 {
-
     public function testItUsesTheCorrectDefaults()
     {
         $scope = new ModelAutoSortScope();
@@ -58,5 +59,4 @@ class ModelAutoSortScopeTest extends TestCase
         $builder->shouldReceive('orderBy')->with('fieldname', 'desc')->once();
         $scope->apply($builder, $model);
     }
-
 }

@@ -4,7 +4,6 @@ namespace Modules\Account;
 
 interface AccountRepositoryInterface
 {
-
     public function findByDomain($domain);
 
     /**

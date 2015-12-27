@@ -9,12 +9,12 @@ return [
      */
     'address_owners' => [
         'account' => 'Modules\Account\AccountContactInformation',
-        'user'    => 'Modules\Users\User'
+        'user'    => 'Modules\Users\User',
     ],
 
     'social_links_owners' => [
         'account' => 'Modules\Account\Account',
-        'user'    => 'Modules\Users\User'
-    ]
+        'user'    => 'Modules\Users\User',
+    ],
 
 ];

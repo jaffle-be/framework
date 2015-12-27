@@ -7,7 +7,6 @@ use Modules\Shop\Product\Product;
 
 class UpdateProduct extends Job
 {
-
     /**
      * @var Product
      */

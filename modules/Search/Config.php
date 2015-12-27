@@ -6,7 +6,6 @@ use Modules\System\Translatable\Translatable;
 
 class Config
 {
-
     protected $config;
 
     protected $index;
@@ -62,7 +61,7 @@ class Config
                 'translations' => [
                     'class' => $instance->getTranslationModelName(),
                     'key' => $instance->translations()->getForeignKey(),
-                ]
+                ],
             ]);
         }
 
@@ -102,7 +101,7 @@ class Config
      */
     protected function invert($nested, $parent, $key, $relation)
     {
-        if (!array_key_exists($nested, $this->inverted)) {
+        if (! array_key_exists($nested, $this->inverted)) {
             $this->inverted[$nested] = [];
         }
 

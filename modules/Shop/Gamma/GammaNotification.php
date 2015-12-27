@@ -9,7 +9,6 @@ use Modules\System\Scopes\ModelAccountResource;
 
 class GammaNotification extends Model implements Pushable
 {
-
     use ModelAccountResource;
     use CanPush;
 

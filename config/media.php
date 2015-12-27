@@ -2,7 +2,7 @@
 
 return [
 
-    /**
+    /*
      * path should be relative to the public path, no need for a trailing slash
      */
     'path'   => env('APP_ENV') == 'testing' ? 'media_testing' : 'media',
@@ -25,11 +25,11 @@ return [
         ],
         'video' => [
 
-        ]
+        ],
     ],
 
     'videos' => [
         //these values should be coming from the theme
-    ]
+    ],
 
 ];

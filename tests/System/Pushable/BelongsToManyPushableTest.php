@@ -1,11 +1,12 @@
-<?php namespace Test\System\Pushable;
+<?php
+
+namespace Test\System\Pushable;
 
 use Modules\System\Pushable\BelongsToManyPushable;
 use Test\TestCase;
 
 class BelongsToManyPushableTest extends TestCase
 {
-
     public function testGettingPushableEventType()
     {
         $instance = new BelongsToManyPushable(['some' => 'data'], 'some relation');
@@ -17,5 +18,4 @@ class BelongsToManyPushableTest extends TestCase
         $instance = new BelongsToManyPushable(['some' => 'data'], 'some relation');
         $this->assertSame(['some' => 'data'], $instance->getPushableData());
     }
-
 }

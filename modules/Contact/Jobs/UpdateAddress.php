@@ -8,7 +8,6 @@ use Modules\System\Country\CountryRepository;
 
 class UpdateAddress extends Job
 {
-
     /**
      * @var Address
      */

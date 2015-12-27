@@ -6,7 +6,6 @@ use Modules\System\ServiceProvider;
 
 class TagsServiceProvider extends ServiceProvider
 {
-
     protected $namespace = 'tags';
 
     public function listeners()

@@ -15,7 +15,6 @@ use Modules\Theme\ThemeManager;
 
 class MenuItemController extends AdminController
 {
-
     /**
      * @var MenuManager
      */

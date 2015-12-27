@@ -1,10 +1,11 @@
 <?php
-return array(
-	"second" => "saniye",
-	"minute" => "dakika",
-	"hour" => "saat",
-	"day" => "gün",
-	"week" => "hafta",
-	"month" => "ay",
-	"year" => "yıl",
-);
+
+return [
+    'second' => 'saniye',
+    'minute' => 'dakika',
+    'hour' => 'saat',
+    'day' => 'gün',
+    'week' => 'hafta',
+    'month' => 'ay',
+    'year' => 'yıl',
+];

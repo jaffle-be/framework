@@ -4,7 +4,6 @@ namespace Modules\Menu;
 
 interface MenuRepositoryInterface
 {
-
     public function getMenus();
 
     public function findMenu($id);

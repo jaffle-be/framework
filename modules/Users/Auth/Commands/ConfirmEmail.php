@@ -9,7 +9,6 @@ use Modules\Users\Contracts\UserRepositoryInterface;
 
 class ConfirmEmail extends Job
 {
-
     protected $token;
 
     public function __construct(Token $token)
@@ -22,7 +21,7 @@ class ConfirmEmail extends Job
         $user = $users->findUserByConfirmationToken($this->token->id);
 
         if ($user) {
-            if (!$user->confirmed) {
+            if (! $user->confirmed) {
                 $user->confirmed = 1;
             }
 

@@ -13,7 +13,6 @@ use Modules\Shop\Product\Category;
 
 class BatchGammaActivation extends Job
 {
-
     use DispatchesJobs;
 
     /**

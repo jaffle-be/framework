@@ -12,7 +12,6 @@ use Webuni\CommonMark\AttributesExtension\AttributesExtension;
 
 class SystemServiceProvider extends ServiceProvider
 {
-
     protected $namespace = 'system';
 
     public function boot()
@@ -79,17 +78,17 @@ class SystemServiceProvider extends ServiceProvider
         /* @var Factory $view */
         $this->app['view']->composer('*', function (View $view) {
 
-            if (!isset($view['account'])) {
+            if (! isset($view['account'])) {
                 $accounts = app('Modules\Account\AccountManager');
                 $view->with('account', $accounts->account());
             }
 
-            if (!isset($view['theme'])) {
+            if (! isset($view['theme'])) {
                 $theme = app('Modules\Theme\Theme');
                 $view->with('theme', $theme);
             }
 
-            if (!isset($view['user'])) {
+            if (! isset($view['user'])) {
                 $guard = app('auth');
                 $view->with('user', $guard->user());
             }

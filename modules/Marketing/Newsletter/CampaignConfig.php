@@ -4,7 +4,6 @@ namespace Modules\Marketing\Newsletter;
 
 class CampaignConfig
 {
-
     public function fromEmail()
     {
         return 'thomas.warlop@gmail.com';

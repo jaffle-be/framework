@@ -7,7 +7,6 @@ use Modules\System\Scopes\ModelAccountResource;
 
 class Role extends Model
 {
-
     use ModelAccountResource;
     use \Modules\System\Translatable\Translatable;
 

@@ -6,7 +6,6 @@ use Modules\System\ServiceProvider;
 
 class PagesServiceProvider extends ServiceProvider
 {
-
     protected $namespace = 'pages';
 
     public function register()

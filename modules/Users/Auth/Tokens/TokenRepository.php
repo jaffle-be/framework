@@ -8,7 +8,6 @@ use Modules\Users\Contracts\TokenRepositoryInterface;
 
 class TokenRepository implements TokenRepositoryInterface
 {
-
     /**
      * @var Token
      */

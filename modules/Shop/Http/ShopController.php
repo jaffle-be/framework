@@ -12,7 +12,6 @@ use Modules\System\Http\FrontController;
 
 class ShopController extends FrontController
 {
-
     /**
      * Shop home.
      *
@@ -79,7 +78,7 @@ class ShopController extends FrontController
 
         $results = $resolver->resolve($original, $category);
 
-        return $this->theme->render('shop.category-' . $filters['view'], [
+        return $this->theme->render('shop.category-'.$filters['view'], [
             'products' => $results['products'],
             'brands' => $results['brands'],
             'properties' => $results['properties'],
@@ -93,7 +92,7 @@ class ShopController extends FrontController
     {
         $product = $product->product;
 
-        if (!$product) {
+        if (! $product) {
             abort(404);
         }
 

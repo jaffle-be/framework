@@ -11,7 +11,6 @@ use Pusher;
 
 class NotifyDetailActivation extends Job
 {
-
     use GammaNotificationHelpers;
 
     protected $category;

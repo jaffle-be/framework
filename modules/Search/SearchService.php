@@ -12,7 +12,6 @@ use Modules\System\MySoftDeletes;
 
 class SearchService implements SearchServiceInterface
 {
-
     use SearchResponder;
 
     /**
@@ -35,11 +34,11 @@ class SearchService implements SearchServiceInterface
     /**
      * @var array
      */
-    protected $listeners = array(
+    protected $listeners = [
         'created' => 'add',
         'updated' => 'update',
         'deleted' => 'delete',
-    );
+    ];
 
     /**
      * @var array
@@ -93,9 +92,6 @@ class SearchService implements SearchServiceInterface
      * This method will bind all events to the eloquent model created, updated or deleted events.
      * Note the events are not the creating, updating or deleting events, as these would possibly
      * index data that might change due to a model observer adjusting data.
-
-
-
      */
     public function regularAutoIndex(Searchable $type, array $with)
     {
@@ -139,7 +135,7 @@ class SearchService implements SearchServiceInterface
     {
         $dispatcher = $this->container->make('events');
 
-        $event = 'eloquent.saved: ' . $updated;
+        $event = 'eloquent.saved: '.$updated;
 
         $dispatcher->listen($event, function ($model) use ($parent, $relation, $key, $with) {
 
@@ -389,10 +385,10 @@ class SearchService implements SearchServiceInterface
 
             $type = $this->container->make($classname);
 
-            return array($type, array_keys($with));
+            return [$type, array_keys($with)];
         }
 
-        if (!is_object($type) || !($type instanceof Searchable)) {
+        if (! is_object($type) || ! ($type instanceof Searchable)) {
             throw new Exception('Invalid searchable provided, expecting something Modules\Search\\Searchable');
         }
 
@@ -416,7 +412,7 @@ class SearchService implements SearchServiceInterface
 
         $indices = $this->client->indices();
 
-        if (!$indices->exists($params)) {
+        if (! $indices->exists($params)) {
             $indices->create($params);
             sleep(1);
         }
@@ -465,7 +461,7 @@ class SearchService implements SearchServiceInterface
             if (is_array($sorting[$column])) {
                 //the sorting is already set up as a object/array value (depends if you look at it from json or php)
                 //so we only need to verify the existence of the unmapped_type parameter.
-                if (!isset($sorting[$column]['unmapped_type'])) {
+                if (! isset($sorting[$column]['unmapped_type'])) {
                     //lets take boolean, as its probably one of the fastest.
                     $sorting[$column]['unmapped_type'] = 'boolean';
                 }

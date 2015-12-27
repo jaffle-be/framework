@@ -1,6 +1,7 @@
-<?php namespace App\Jobs;
+<?php
 
-abstract class Job {
+namespace App\Jobs;
 
-
+abstract class Job
+{
 }

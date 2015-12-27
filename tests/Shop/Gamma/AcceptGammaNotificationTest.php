@@ -1,4 +1,6 @@
-<?php namespace Test\Shop\Gamma;
+<?php
+
+namespace Test\Shop\Gamma;
 
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Mockery as m;
@@ -31,7 +33,6 @@ class AcceptGammaNotificationTest extends AdminTestCase
         $job = new AcceptGammaNotification($notification);
         $this->handleJob($job);
     }
-
 
     public function testAcceptingAProductActivation()
     {
@@ -92,5 +93,4 @@ class AcceptGammaNotificationTest extends AdminTestCase
         $pusher->shouldReceive('trigger');
         $job->handle($pusher);
     }
-
 }

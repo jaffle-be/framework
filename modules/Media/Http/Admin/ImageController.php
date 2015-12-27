@@ -13,7 +13,6 @@ use Modules\Theme\ThemeManager;
 
 class ImageController extends AdminController
 {
-
     use MediaWidgetPreperations;
 
     /**

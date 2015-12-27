@@ -6,7 +6,6 @@ use Modules\Module\Module;
 
 class CreatePagesTables extends Migration
 {
-
     /**
      * Run the migrations.
      */

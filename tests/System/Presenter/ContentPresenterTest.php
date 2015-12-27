@@ -1,4 +1,6 @@
-<?php namespace Test\System\Presenter;
+<?php
+
+namespace Test\System\Presenter;
 
 use Modules\Media\Shortcodes\MediaShortcodes;
 use Modules\System\Presenter\BasePresenter;
@@ -8,8 +10,8 @@ use Modules\System\Presenter\PresentableEntity;
 use Modules\System\Presenter\ShortCodeCompiler;
 use Test\TestCase;
 
-class DummyContentPresentableEntity implements PresentableEntity{
-
+class DummyContentPresentableEntity implements PresentableEntity
+{
     public $content = 'content';
 
     public $extract = 'extract';
@@ -21,32 +23,28 @@ class DummyContentPresentableEntity implements PresentableEntity{
 
         return $dummy;
     }
-
 }
 
-class DummyContentPresenter extends BasePresenter{
-
+class DummyContentPresenter extends BasePresenter
+{
     protected $shortcodes = ['media'];
 
     use ContentPresenterTrait;
     use ShortCodeCompiler;
     use MediaShortcodes;
-
 }
 
-class DummyCachableContentPresenter extends BasePresenter implements PresentableCache{
-
+class DummyCachableContentPresenter extends BasePresenter implements PresentableCache
+{
     protected $cached_content = 'cached content';
 
     protected $cached_extract = 'cached extract';
 
     use ContentPresenterTrait;
-
 }
 
 class ContentPresenterTest extends TestCase
 {
-
     public function testCheckingIfWeNeedToUseCache()
     {
         $dummy = new DummyContentPresenter();
@@ -77,15 +75,15 @@ class ContentPresenterTest extends TestCase
         $dummy = new DummyContentPresenter();
         $dummy->setPresentableEntity(new DummyContentPresentableEntity());
 
-        $this->assertSame("content&nbsp;...", $dummy->extract());
+        $this->assertSame('content&nbsp;...', $dummy->extract());
     }
 
     public function testRemovingCodeSamples()
     {
         $dummy = new DummyContentPresenter();
 
-        $string = "``test``";
-        $string2 = "````test something that should be valid code````";
+        $string = '``test``';
+        $string2 = '````test something that should be valid code````';
         $string3 = "multiline\n````test something that should be valid code````";
 
         $this->assertSame('``test``', $dummy->removeCodeSamples($string));
@@ -124,14 +122,14 @@ class ContentPresenterTest extends TestCase
         $dummy = new DummyContentPresenter();
         $dummy->setPresentableEntity($entity);
 
-        $entity->content = "#image#";
+        $entity->content = '#image#';
         $this->assertSame('', $dummy->freshlyBuiltExtract());
 
-        $entity->content = "#image##image#";
+        $entity->content = '#image##image#';
         $this->assertSame('', $dummy->freshlyBuiltExtract());
 
-        $entity->content = "text #image# text";
-        $this->assertSame("text  text", $dummy->freshlyBuiltExtract());
+        $entity->content = 'text #image# text';
+        $this->assertSame('text  text', $dummy->freshlyBuiltExtract());
     }
 
     public function testLimitingWordsForSnippetWorks()
@@ -182,5 +180,4 @@ class ContentPresenterTest extends TestCase
 
         $this->assertSame('<h1>title <strong>strong</strong></h1>', $dummy->content());
     }
-
 }

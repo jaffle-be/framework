@@ -7,7 +7,6 @@ use Modules\System\Translatable\Translatable;
 
 class Locale extends Model
 {
-
     use Translatable;
 
     public $timestamps = false;

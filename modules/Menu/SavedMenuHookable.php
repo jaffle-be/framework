@@ -7,7 +7,6 @@ use Modules\Pages\Page;
 
 class SavedMenuHookable
 {
-
     protected $account;
 
     protected $menu;

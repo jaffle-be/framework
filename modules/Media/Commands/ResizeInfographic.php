@@ -12,7 +12,6 @@ use Modules\Media\MediaRepositoryInterface;
 
 class ResizeInfographic extends Job
 {
-
     use ImageDimensionHelpers;
 
     protected $graphic;
@@ -85,11 +84,11 @@ class ResizeInfographic extends Job
      */
     protected function getFolder(Filesystem $files, $public = false)
     {
-        $base = $this->directory . '/' . $this->size;
+        $base = $this->directory.'/'.$this->size;
 
         $folder = public_path($base);
 
-        if (!$files->isDirectory($folder)) {
+        if (! $files->isDirectory($folder)) {
             $files->makeDirectory($folder);
         }
 
@@ -107,7 +106,7 @@ class ResizeInfographic extends Job
     {
         $folder = $this->getFolder($files, $public);
 
-        $path = $folder . '/' . $this->filename;
+        $path = $folder.'/'.$this->filename;
 
         return $path;
     }

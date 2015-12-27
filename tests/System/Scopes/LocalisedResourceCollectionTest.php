@@ -1,4 +1,6 @@
-<?php namespace Test\System\Scopes;
+<?php
+
+namespace Test\System\Scopes;
 
 use Illuminate\Database\Eloquent\Collection;
 use Mockery as m;
@@ -9,7 +11,6 @@ use Test\TestCase;
 
 class DummyLocalisedResource
 {
-
     use ModelLocaleSpecificResource;
 
     public $id;
@@ -36,24 +37,23 @@ class DummyLocalisedResource
 
 class LocalisedResourceCollectionTest extends TestCase
 {
-
     public function testToArray()
     {
         $collection = new LocalisedResourceCollection([
             new DummyLocalisedResource([
                 'id'        => 1000,
-                'locale_id' => 1
+                'locale_id' => 1,
             ]),
 
             new DummyLocalisedResource([
                 'id'        => 2000,
-                'locale_id' => 1
+                'locale_id' => 1,
             ]),
 
             new DummyLocalisedResource([
                 'id'        => 3000,
-                'locale_id' => 2
-            ])
+                'locale_id' => 2,
+            ]),
         ]);
 
         $result = $collection->toArray();
@@ -76,18 +76,18 @@ class LocalisedResourceCollectionTest extends TestCase
         $collection = new LocalisedResourceCollection([
             new DummyLocalisedResource([
                 'id'        => 1000,
-                'locale_id' => 1
+                'locale_id' => 1,
             ]),
 
             new DummyLocalisedResource([
                 'id'        => 2000,
-                'locale_id' => 1
+                'locale_id' => 1,
             ]),
 
             new DummyLocalisedResource([
                 'id'        => 3000,
-                'locale_id' => 2
-            ])
+                'locale_id' => 2,
+            ]),
         ]);
 
         $result = $collection->byLocale();
@@ -120,7 +120,7 @@ class LocalisedResourceCollectionTest extends TestCase
             new Locale([
                 'id'   => 3,
                 'slug' => 'en',
-            ])
+            ]),
         ];
 
         $locales = m::mock(Locale::class);
@@ -129,5 +129,4 @@ class LocalisedResourceCollectionTest extends TestCase
 
         $this->app[Locale::class] = $locales;
     }
-
 }

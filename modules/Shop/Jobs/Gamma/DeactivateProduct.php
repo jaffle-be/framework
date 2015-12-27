@@ -11,7 +11,6 @@ use Modules\Shop\Product\Product;
 
 class DeactivateProduct extends Job
 {
-
     protected $product;
 
     protected $categorie;
@@ -37,7 +36,7 @@ class DeactivateProduct extends Job
 
         $record = $this->getExisting($selection);
 
-        if (!$record) {
+        if (! $record) {
             $record = $selection->create($payload);
 
             $category = $this->attachCategory($record);
@@ -48,12 +47,12 @@ class DeactivateProduct extends Job
                 'categories' => function ($query) use ($category_id) {
                     $query->where('category_id', $category_id);
                     $query->withTrashed();
-                }
+                },
             ]);
 
             $category = $record->categories->first();
 
-            if (!$category) {
+            if (! $category) {
                 $category = $this->attachCategory($record);
             }
         }

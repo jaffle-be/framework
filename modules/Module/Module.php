@@ -7,7 +7,6 @@ use Modules\System\Translatable\Translatable;
 
 class Module extends Model
 {
-
     use Translatable;
 
     protected $table = 'modules';

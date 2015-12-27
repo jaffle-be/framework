@@ -8,7 +8,6 @@ use Modules\Media\StoringMedia;
 
 class Theme extends Model implements StoresMedia
 {
-
     use StoringMedia;
 
     protected $table = 'themes';
@@ -26,7 +25,7 @@ class Theme extends Model implements StoresMedia
      */
     public function asset($asset)
     {
-        $asset = config('theme.public_path') . '/' . $this->name . '/assets/' . ltrim($asset, '/');
+        $asset = config('theme.public_path').'/'.$this->name.'/assets/'.ltrim($asset, '/');
 
         return asset($asset);
     }

@@ -7,7 +7,6 @@ use Modules\Module\ModuleRoute;
 
 class CreatePortfolioProjects extends Migration
 {
-
     /**
      * Run the migrations.
      */

@@ -1,4 +1,6 @@
-<?php namespace Test;
+<?php
+
+namespace Test;
 
 use Illuminate\Foundation\Console\Kernel;
 
@@ -27,7 +29,7 @@ class FrontTestCase extends \Illuminate\Foundation\Testing\TestCase
     {
         putenv('RUNNING_TESTS_FRONT=true');
 
-        $app = require __DIR__ . '/../bootstrap/app.php';
+        $app = require __DIR__.'/../bootstrap/app.php';
 
         $app->make(Kernel::class)->bootstrap();
 
@@ -38,5 +40,4 @@ class FrontTestCase extends \Illuminate\Foundation\Testing\TestCase
     {
         return app('Modules\Account\AccountManager')->account();
     }
-
 }

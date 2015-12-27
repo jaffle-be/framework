@@ -8,7 +8,6 @@ use Modules\Module\ModuleRoute;
 
 class CreateTeamsTable extends Migration
 {
-
     /**
      * Run the migrations.
      *
@@ -55,22 +54,22 @@ class CreateTeamsTable extends Migration
             ],
             'de'        => [
                 'name' => 'Team',
-            ]
+            ],
         ]);
 
         $module->routes()->save(new ModuleRoute([
             'name' => 'store.team.index',
             'nl'   => [
-                'title' => 'team'
+                'title' => 'team',
             ],
             'en'   => [
-                'title' => 'team'
+                'title' => 'team',
             ],
             'fr'   => [
-                'title' => 'team'
+                'title' => 'team',
             ],
             'de'   => [
-                'title' => 'team'
+                'title' => 'team',
             ],
 
         ]));

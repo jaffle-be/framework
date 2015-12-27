@@ -20,7 +20,6 @@ use Modules\System\Locale;
 
 class ProductController extends AdminController
 {
-
     use MediaWidgetPreperations;
 
     public function suggest(Request $request)
@@ -85,9 +84,9 @@ class ProductController extends AdminController
             return $product;
         }
 
-        return json_encode(array(
+        return json_encode([
             'status' => 'noke',
-        ));
+        ]);
     }
 
     public function show(Product $product, PropertyUnit $unit)
@@ -105,7 +104,7 @@ class ProductController extends AdminController
     {
         $product->load($this->relations());
 
-        if (!$this->dispatch(new UpdateProduct($product, translation_input($request, ['name', 'title', 'content', 'published'])))) {
+        if (! $this->dispatch(new UpdateProduct($product, translation_input($request, ['name', 'title', 'content', 'published'])))) {
             return response('500', 'something bad happened');
         }
 
@@ -185,7 +184,7 @@ class ProductController extends AdminController
 
         $added = new Collection();
 
-        if (!$category->original_id) {
+        if (! $category->original_id) {
             //we can only add a main category if the count is 0
             if ($product->categories->count() == 0) {
                 $category->load(['synonyms', 'synonyms.translations', 'translations']);
@@ -233,7 +232,7 @@ class ProductController extends AdminController
 
         if ($product->categories->contains($category->id)) {
             //is the category the main category or a synonym?
-            if (!$category->original_id) {
+            if (! $category->original_id) {
                 //we can only have 1 main category and synonyms to that category
                 //so we can do an empty sync here
                 $product->categories()->sync([]);
@@ -308,7 +307,7 @@ class ProductController extends AdminController
      */
     protected function doCategoryAttach($product, $category, $added)
     {
-        if (!$product->categories->contains($category->id)) {
+        if (! $product->categories->contains($category->id)) {
             $product->categories()->attach($category);
             $added->push($category);
         }
@@ -326,7 +325,7 @@ class ProductController extends AdminController
             $product->propertyProperties = $category->properties->groupBy('group_id');
 
             foreach ($product->propertyGroups as $group) {
-                if (!$product->propertyProperties->has($group->id)) {
+                if (! $product->propertyProperties->has($group->id)) {
                     //make sure we can add to empty groups
                     $product->propertyProperties->put($group->id, new Collection());
                 }

@@ -8,7 +8,6 @@ use Modules\System\Translatable\Translatable;
 
 class Team extends Model
 {
-
     use ModelAccountResource;
     use Translatable;
 
@@ -25,6 +24,6 @@ class Team extends Model
 
     public function getCubeportfolioAttribute()
     {
-        return 'cube' . str_slug(ucfirst($this->name));
+        return 'cube'.str_slug(ucfirst($this->name));
     }
 }

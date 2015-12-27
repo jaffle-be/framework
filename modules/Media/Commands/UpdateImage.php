@@ -10,7 +10,6 @@ use Modules\Media\Image;
  */
 class UpdateImage extends Job
 {
-
     /**
      * @var Image
      */

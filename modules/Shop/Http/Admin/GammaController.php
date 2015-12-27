@@ -20,7 +20,6 @@ use Modules\System\Http\AdminController;
 
 class GammaController extends AdminController
 {
-
     public function templateCategories()
     {
         return view('shop::admin.categories.overview');
@@ -53,7 +52,7 @@ class GammaController extends AdminController
 
         $ids = $categories->lists('id')->toArray();
 
-        if (!count($ids)) {
+        if (! count($ids)) {
             return new Collection();
         }
 
@@ -99,7 +98,7 @@ class GammaController extends AdminController
                 $inReview = $bReviews && $bReviews->contains('brand_id', $brand->id);
                 $actuallySelected = $bSelections && $bSelections->contains('brand_id', $brand->id);
 
-                $brand->selected = ($actuallySelected && !$inReview) || (!$actuallySelected && $inReview);
+                $brand->selected = ($actuallySelected && ! $inReview) || (! $actuallySelected && $inReview);
                 $brand->inReview = $inReview;
 
                 return $brand;
@@ -159,7 +158,7 @@ class GammaController extends AdminController
 
         $ids = $brands->lists('id')->toArray();
 
-        if (!count($ids)) {
+        if (! count($ids)) {
             return new Collection();
         }
 
@@ -200,7 +199,7 @@ class GammaController extends AdminController
                 $inReview = $cReviews && $cReviews->contains('category_id', $category->id);
                 $actuallySelected = $cSelections && $cSelections->contains('category_id', $category->id);
 
-                $category->selected = ($actuallySelected && !$inReview) || (!$actuallySelected && $inReview);
+                $category->selected = ($actuallySelected && ! $inReview) || (! $actuallySelected && $inReview);
                 $category->inReview = $inReview;
 
                 return $category;

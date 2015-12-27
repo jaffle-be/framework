@@ -13,7 +13,6 @@ use Modules\System\Translatable\TranslationModel;
 
 class Category extends Model implements Pushable, Searchable
 {
-
     use Translatable;
     use EventedRelations;
     use CanPush;
@@ -94,13 +93,13 @@ class Category extends Model implements Pushable, Searchable
             });
 
             $translations = $translations->filter(function ($item) {
-                return $item instanceof TranslationModel && !empty($item->name);
+                return $item instanceof TranslationModel && ! empty($item->name);
             });
 
             $names = $translations->lists('name')->toArray();
 
             $input = array_merge([$originalName], $names);
-            $output = $originalName . ', ' . implode(', ', $names);
+            $output = $originalName.', '.implode(', ', $names);
         }
 
         $label = $output;

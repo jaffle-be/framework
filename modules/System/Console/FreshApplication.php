@@ -7,7 +7,6 @@ use Illuminate\Filesystem\Filesystem;
 
 class FreshApplication extends Command
 {
-
     protected $signature = 'system:fresh {--seed}';
 
     protected $description = 'test';

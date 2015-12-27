@@ -8,7 +8,6 @@ use Modules\System\Translatable\TranslationModel;
 
 class TagTranslation extends TranslationModel implements Searchable
 {
-
     use SearchableTrait;
 
     protected $table = 'tag_translations';

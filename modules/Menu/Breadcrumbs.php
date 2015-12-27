@@ -8,7 +8,6 @@ use Illuminate\View\Factory;
 
 class Breadcrumbs
 {
-
     protected $manager;
 
     protected $route;

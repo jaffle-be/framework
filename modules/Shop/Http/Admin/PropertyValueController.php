@@ -8,7 +8,6 @@ use Modules\System\Http\AdminController;
 
 class PropertyValueController extends AdminController
 {
-
     public function store(PropertyValue $values, Request $request)
     {
         $value = $values->newInstance(translation_input($request));
@@ -17,9 +16,9 @@ class PropertyValueController extends AdminController
             return $value;
         }
 
-        return json_encode(array(
+        return json_encode([
             'status' => 'noke',
-        ));
+        ]);
     }
 
     public function update(PropertyValue $values, Request $request)
@@ -27,28 +26,28 @@ class PropertyValueController extends AdminController
         $values->fill(translation_input($request));
 
         if ($values->save()) {
-            return json_encode(array(
+            return json_encode([
                 'status' => 'oke',
-            ));
+            ]);
         }
 
-        return json_encode(array(
+        return json_encode([
             'status' => 'noke',
-        ));
+        ]);
     }
 
     public function destroy(PropertyValue $values)
     {
         if ($values->id) {
             if ($values->delete()) {
-                return json_encode(array(
+                return json_encode([
                     'status' => 'oke',
-                ));
+                ]);
             }
         }
 
-        return json_encode(array(
+        return json_encode([
             'status' => 'noke',
-        ));
+        ]);
     }
 }

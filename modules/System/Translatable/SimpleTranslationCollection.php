@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Collection;
 
 class SimpleTranslationCollection extends Collection
 {
-
     public function toArray()
     {
         return with(new Collection($this->items))->keyBy('locale')->toArray();

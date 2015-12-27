@@ -10,7 +10,6 @@ use Pusher;
 
 class ModuleController extends AdminController
 {
-
     public function toggle(Request $request, Module $module, AccountManager $manager, Pusher $pusher)
     {
         $module = $module->findOrFail($request->get('id'));

@@ -6,7 +6,6 @@ use App\Http\Requests\Request;
 
 class ForgotPasswordRequest extends Request
 {
-
     /**
      * Determine if the user is authorized to make this request.
      *

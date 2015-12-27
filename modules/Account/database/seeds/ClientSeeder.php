@@ -5,7 +5,6 @@ use Modules\System\Seeder;
 
 class ClientSeeder extends Seeder
 {
-
     public function run()
     {
         $accounts = [1, 2];

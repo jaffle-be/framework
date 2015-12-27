@@ -5,7 +5,6 @@ use Illuminate\Database\Schema\Blueprint;
 
 class CreateCategoriesPivotTable extends Migration
 {
-
     /**
      * Run the migrations.
      *
@@ -34,5 +33,4 @@ class CreateCategoriesPivotTable extends Migration
             $table->dropForeign('categories_product_pivot_to_category');
         });
     }
-
 }

@@ -21,7 +21,6 @@ use Modules\Users\User;
 
 class Post extends Model implements StoresMedia, Searchable, StoresTags, PresentableEntity, SeoEntity
 {
-
     use PresentableTrait;
     use Translatable;
     use Taggable;

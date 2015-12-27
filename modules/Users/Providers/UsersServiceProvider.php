@@ -9,7 +9,6 @@ use Modules\Users\Auth\Throttler\ThrottleManager;
 
 class UsersServiceProvider extends ServiceProvider
 {
-
     protected $namespace = 'users';
 
     public function register()

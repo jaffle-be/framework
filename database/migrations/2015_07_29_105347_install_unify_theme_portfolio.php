@@ -4,7 +4,6 @@ use Modules\Theme\ThemeSettingMigration;
 
 class InstallUnifyThemePortfolio extends ThemeSettingMigration
 {
-
     protected $name = 'Unify';
 
     protected $version = '1.0';
@@ -12,16 +11,16 @@ class InstallUnifyThemePortfolio extends ThemeSettingMigration
     protected $defaults = [
         'portfolioColumns' => 3,
         'portfolioMainTitleOverview' => [
-            'nl' => "Wat we allemaal gemaakt hebben",
+            'nl' => 'Wat we allemaal gemaakt hebben',
             'en' => "What we've been creating",
         ],
         'portfolioProjectDetails' => [
-            'nl' => "De reutemeteut",
-            'en' => "The details",
+            'nl' => 'De reutemeteut',
+            'en' => 'The details',
         ],
         'portfolioProjectDescription' => [
-            'nl' => "Ons verhaal",
-            'en' => "Our story about this",
+            'nl' => 'Ons verhaal',
+            'en' => 'Our story about this',
         ],
     ];
 
@@ -32,19 +31,19 @@ class InstallUnifyThemePortfolio extends ThemeSettingMigration
             'type' => 'select',
             'nl'  => [
                 'name'        => 'portfolio columns',
-                'explanation' => 'portfolio columns'
+                'explanation' => 'portfolio columns',
             ],
             'fr'  => [
                 'name'        => 'portfolio columns',
-                'explanation' => 'portfolio columns'
+                'explanation' => 'portfolio columns',
             ],
             'de'  => [
                 'name'        => 'portfolio columns',
-                'explanation' => 'portfolio columns'
+                'explanation' => 'portfolio columns',
             ],
             'en'  => [
                 'name'        => 'portfolio columns',
-                'explanation' => 'portfolio columns'
+                'explanation' => 'portfolio columns',
             ],
         ],
 
@@ -53,19 +52,19 @@ class InstallUnifyThemePortfolio extends ThemeSettingMigration
             'type' => 'boolean',
             'nl'      => [
                 'name'        => 'portfolio grid',
-                'explanation' => 'portfolio grid'
+                'explanation' => 'portfolio grid',
             ],
             'fr'      => [
                 'name'        => 'portfolio grid',
-                'explanation' => 'portfolio grid'
+                'explanation' => 'portfolio grid',
             ],
             'de'      => [
                 'name'        => 'portfolio grid',
-                'explanation' => 'portfolio grid'
+                'explanation' => 'portfolio grid',
             ],
             'en'      => [
                 'name'        => 'portfolio grid',
-                'explanation' => 'portfolio grid'
+                'explanation' => 'portfolio grid',
             ],
         ],
 
@@ -74,41 +73,40 @@ class InstallUnifyThemePortfolio extends ThemeSettingMigration
             'type' => 'boolean',
             'nl'      => [
                 'name'        => 'portfolio spaced',
-                'explanation' => 'portfolio spaced'
+                'explanation' => 'portfolio spaced',
             ],
             'fr'      => [
                 'name'        => 'portfolio spaced',
-                'explanation' => 'portfolio spaced'
+                'explanation' => 'portfolio spaced',
             ],
             'de'      => [
                 'name'        => 'portfolio spaced',
-                'explanation' => 'portfolio spaced'
+                'explanation' => 'portfolio spaced',
             ],
             'en'      => [
                 'name'        => 'portfolio spaced',
-                'explanation' => 'portfolio spaced'
+                'explanation' => 'portfolio spaced',
             ],
         ],
-
 
         [
             'key' => 'portfolioMainTitleOverview',
             'type' => 'string',
             'nl'   => [
                 'name'        => 'portfolio main title overview',
-                'explanation' => 'portfolio main title overview'
+                'explanation' => 'portfolio main title overview',
             ],
             'fr'   => [
                 'name'        => 'portfolio main title overview',
-                'explanation' => 'portfolio main title overview'
+                'explanation' => 'portfolio main title overview',
             ],
             'de'   => [
                 'name'        => 'portfolio main title overview',
-                'explanation' => 'portfolio main title overview'
+                'explanation' => 'portfolio main title overview',
             ],
             'en'   => [
                 'name'        => 'portfolio main title overview',
-                'explanation' => 'portfolio main title overview'
+                'explanation' => 'portfolio main title overview',
             ],
         ],
 
@@ -117,19 +115,19 @@ class InstallUnifyThemePortfolio extends ThemeSettingMigration
             'type' => 'string',
             'nl'   => [
                 'name'        => 'portfolio project details title',
-                'explanation' => 'portfolio project details title'
+                'explanation' => 'portfolio project details title',
             ],
             'fr'   => [
                 'name'        => 'portfolio project details title',
-                'explanation' => 'portfolio project details title'
+                'explanation' => 'portfolio project details title',
             ],
             'de'   => [
                 'name'        => 'portfolio project details title',
-                'explanation' => 'portfolio project details title'
+                'explanation' => 'portfolio project details title',
             ],
             'en'   => [
                 'name'        => 'portfolio project details title',
-                'explanation' => 'portfolio project details title'
+                'explanation' => 'portfolio project details title',
             ],
         ],
 
@@ -138,19 +136,19 @@ class InstallUnifyThemePortfolio extends ThemeSettingMigration
             'type' => 'string',
             'nl'   => [
                 'name'        => 'portfolio project description title',
-                'explanation' => 'portfolio project description title'
+                'explanation' => 'portfolio project description title',
             ],
             'fr'   => [
                 'name'        => 'portfolio project description title',
-                'explanation' => 'portfolio project description title'
+                'explanation' => 'portfolio project description title',
             ],
             'de'   => [
                 'name'        => 'portfolio project description title',
-                'explanation' => 'portfolio project description title'
+                'explanation' => 'portfolio project description title',
             ],
             'en'   => [
                 'name'        => 'portfolio project description title',
-                'explanation' => 'portfolio project description title'
+                'explanation' => 'portfolio project description title',
             ],
         ],
     ];
@@ -164,5 +162,4 @@ class InstallUnifyThemePortfolio extends ThemeSettingMigration
         ],
 
     ];
-
 }

@@ -6,7 +6,6 @@ use Illuminate\Foundation\Application;
 
 class CountryRepository
 {
-
     protected $country;
 
     public function __construct(Application $application, Country $country, CountryTranslation $translation)
@@ -22,9 +21,9 @@ class CountryRepository
         $trans = $this->translation->getTable();
 
         return $this->country
-            ->join($trans, $country . '.id', '=', $trans . '.country_id')
-            ->where($trans . '.locale', $this->application->getLocale())
-            ->orderBy($trans . '.name', 'asc')
+            ->join($trans, $country.'.id', '=', $trans.'.country_id')
+            ->where($trans.'.locale', $this->application->getLocale())
+            ->orderBy($trans.'.name', 'asc')
             ->lists('name', 'iso_code_2');
     }
 

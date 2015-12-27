@@ -1,4 +1,6 @@
-<?php namespace Test\Blog;
+<?php
+
+namespace Test\Blog;
 
 use Modules\Account\Account;
 use Modules\Users\User;
@@ -26,6 +28,5 @@ class BlogTest extends FrontTestCase
 
     public function testWeCantAccessUnpublishedMaterial()
     {
-
     }
 }

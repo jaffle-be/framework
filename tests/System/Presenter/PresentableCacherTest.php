@@ -1,4 +1,6 @@
-<?php namespace Test\System\Presenter;
+<?php
+
+namespace Test\System\Presenter;
 
 use Modules\System\Presenter\BasePresenter;
 use Modules\System\Presenter\PresentableCache;
@@ -6,9 +8,8 @@ use Modules\System\Presenter\PresentableCacher;
 use Modules\System\Presenter\PresentableEntity;
 use Test\TestCase;
 
-
-class DummyPresentableCachableEntity implements PresentableEntity, PresentableCache{
-
+class DummyPresentableCachableEntity implements PresentableEntity, PresentableCache
+{
     //these fields will be filled during tests if they succeed
     public $cached_content;
     public $cached_extract;
@@ -17,7 +18,6 @@ class DummyPresentableCachableEntity implements PresentableEntity, PresentableCa
     {
         return true;
     }
-
 
     /**
      * @return BasePresenter
@@ -29,7 +29,6 @@ class DummyPresentableCachableEntity implements PresentableEntity, PresentableCa
 
         return $presenter;
     }
-
 }
 
 class DummyPresentableCachableEntityPresenter extends BasePresenter
@@ -45,10 +44,8 @@ class DummyPresentableCachableEntityPresenter extends BasePresenter
     }
 }
 
-
 class PresentableCacherTest extends TestCase
 {
-
     public function testIfItCashesContentField()
     {
         $cacher = new PresentableCacher();
@@ -57,7 +54,6 @@ class PresentableCacherTest extends TestCase
         $cacher->handle($entity);
 
         $this->assertSame('my presented content', $entity->cached_content);
-
     }
 
     public function testIfItCashesExtractField()
@@ -69,5 +65,4 @@ class PresentableCacherTest extends TestCase
 
         $this->assertSame('my presented extract', $entity->cached_extract);
     }
-
 }

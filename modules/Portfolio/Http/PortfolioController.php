@@ -9,7 +9,6 @@ use Modules\Tags\Tag;
 
 class PortfolioController extends FrontController
 {
-
     public function index(Project $project, Tag $tags)
     {
         $projects = $project->with($this->relations())->orderBy('date', 'desc')->get();
@@ -33,7 +32,7 @@ class PortfolioController extends FrontController
 
         $project = $portfolio->project;
 
-        if (!$project) {
+        if (! $project) {
             abort(404);
         }
 
@@ -45,15 +44,15 @@ class PortfolioController extends FrontController
 
         $relatedProjects = $project->with($relations)
             ->taggedWith($tags)
-            ->where($project->getTable() . '.' . $project->getKeyName(), '<>', $project->id)
-            ->orderBy($project->getTable() . '.date', 'desc')
+            ->where($project->getTable().'.'.$project->getKeyName(), '<>', $project->id)
+            ->orderBy($project->getTable().'.date', 'desc')
             ->take(4)
             ->get();
 
         if ($relatedProjects->count() < 4) {
             $extra = $project->with($relations)
-                ->where($project->getTable() . '.' . $project->getKeyName(), '<>', $project->id)
-                ->orderBy($project->getTable() . '.date', 'desc')
+                ->where($project->getTable().'.'.$project->getKeyName(), '<>', $project->id)
+                ->orderBy($project->getTable().'.date', 'desc')
                 ->take(4)
                 ->get();
 

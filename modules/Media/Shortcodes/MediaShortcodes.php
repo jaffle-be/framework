@@ -6,7 +6,6 @@ use Modules\Media\Image;
 
 trait MediaShortcodes
 {
-
     protected function compileMediaShortcodes($content)
     {
         $content = $this->compileImageShortcode($content);
@@ -90,13 +89,13 @@ trait MediaShortcodes
         //#image:left#
         //#image:right#
 
-        if (!$img) {
+        if (! $img) {
             return false;
         }
 
-        $title = $img->title ?: 'image_' . $placement['counter'];
+        $title = $img->title ?: 'image_'.$placement['counter'];
 
-        if (!$float = $placement['float']) {
+        if (! $float = $placement['float']) {
             return $this->handleFullWidth($title, $this->imageLink($img, true));
         } else {
             return $this->handleFloat($title, $this->imageLink($img, false), $float);
@@ -113,7 +112,7 @@ trait MediaShortcodes
      */
     protected function handleFullWidth($title, $link)
     {
-        return sprintf('{.full-width.blog-img}' . PHP_EOL . '![%s](%s){.img-responsive.full-width}', $title, $link);
+        return sprintf('{.full-width.blog-img}'.PHP_EOL.'![%s](%s){.img-responsive.full-width}', $title, $link);
     }
 
     /**
@@ -141,7 +140,7 @@ trait MediaShortcodes
         //since like this, content will get unreadable on certain screens
         //since its smashed in a narrow area next to the image
         //the image should probably only actually float when we're on a @screen-lg?
-        return sprintf('{.clearfix}' . PHP_EOL . '![%s](%s){.img-responsive%s}', $title, $link, $float);
+        return sprintf('{.clearfix}'.PHP_EOL.'![%s](%s){.img-responsive%s}', $title, $link, $float);
     }
 
     protected function compileVideoShortcode($content)
@@ -154,7 +153,7 @@ trait MediaShortcodes
             $replacement = '';
 
             if ($video = $this->videos->get($counter)) {
-                $replacement = '<figure class="responsive-video">' . $video->embed . '</figure>';
+                $replacement = '<figure class="responsive-video">'.$video->embed.'</figure>';
             }
 
             $content = preg_replace('/#video#/', $replacement, $content, 1);

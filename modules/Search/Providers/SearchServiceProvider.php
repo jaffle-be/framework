@@ -9,7 +9,6 @@ use Modules\System\ServiceProvider;
 
 class SearchServiceProvider extends ServiceProvider
 {
-
     protected $namespace = 'search';
 
     protected function listeners()

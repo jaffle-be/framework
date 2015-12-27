@@ -6,7 +6,6 @@ use Illuminate\Contracts\Events\Dispatcher;
 
 class PushableManager
 {
-
     protected $events;
 
     protected $supporting = ['created', 'deleted', 'updated', 'attached', 'detached'];
@@ -18,7 +17,7 @@ class PushableManager
 
     public function __call($method, $arguments)
     {
-        if (!$this->supported($method)) {
+        if (! $this->supported($method)) {
             return;
         }
 

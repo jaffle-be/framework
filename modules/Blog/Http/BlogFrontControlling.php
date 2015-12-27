@@ -7,7 +7,6 @@ use Modules\Blog\PostTranslation;
 
 trait BlogFrontControlling
 {
-
     /**
      * @return \Illuminate\Contracts\View\View
      */

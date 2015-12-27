@@ -10,7 +10,6 @@ use Test\TestCase;
 
 class CountryRepositoryTest extends TestCase
 {
-
     public function testItCanFindCountryByIsoCode2()
     {
         /* @var $db Connection */
@@ -46,8 +45,7 @@ class CountryRepositoryTest extends TestCase
 
         $result = $repo->select()->toArray();
 
-        foreach($samples as $sample)
-        {
+        foreach ($samples as $sample) {
             $this->assertArraySubset([$sample->iso_code_2 => $sample->name], $result);
         }
 
@@ -60,7 +58,7 @@ class CountryRepositoryTest extends TestCase
     protected function cleanCountries($db)
     {
         $db->table('country')->where([
-            'iso_code_2' => 'xx'
+            'iso_code_2' => 'xx',
         ])->delete();
     }
 
@@ -88,5 +86,4 @@ class CountryRepositoryTest extends TestCase
 
         return $repo;
     }
-
 }

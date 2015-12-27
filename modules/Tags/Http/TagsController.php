@@ -7,7 +7,6 @@ use Modules\Tags\Tag;
 
 class TagsController extends FrontController
 {
-
     public function show(Tag $tag)
     {
         $content = $tag->content;

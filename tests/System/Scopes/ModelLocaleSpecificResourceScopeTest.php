@@ -1,4 +1,6 @@
-<?php namespace Test\System\Scopes;
+<?php
+
+namespace Test\System\Scopes;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
@@ -9,7 +11,6 @@ use Mockery as m;
 
 class ModelLocaleSpecificResourceScopeTest extends TestCase
 {
-
     public function testItWillNotAdjustQueryWhenNoLocalesSpecified()
     {
         $currentLocale = app()->getLocale();
@@ -36,7 +37,6 @@ class ModelLocaleSpecificResourceScopeTest extends TestCase
         $locale->shouldReceive('where')->once()->with('slug', $currentLocale)->andReturnSelf();
         $locale->shouldReceive('first')->once()->andReturn($dbLocaleMock);
 
-
         $builder = m::mock(Builder::class);
         $builder->shouldReceive('where')->once()->with('locale_id', 99);
 
@@ -45,5 +45,4 @@ class ModelLocaleSpecificResourceScopeTest extends TestCase
         $scope = new ModelLocaleSpecificResourceScope($locale);
         $scope->apply($builder, $model);
     }
-
 }

@@ -9,7 +9,6 @@ use Modules\Users\Contracts\UserRepositoryInterface;
 
 class Signin extends Job
 {
-
     protected $credentials;
 
     protected $remember_me;
@@ -43,7 +42,7 @@ class Signin extends Job
                 $user = $users->findUserByEmail($email);
 
                 //do not throttle when the user is still unconfirmed, so we can display a message
-                if (!$user || $user->confirmed == 1) {
+                if (! $user || $user->confirmed == 1) {
                     $throttler->throttle($email);
                 } else {
                     return 'unconfirmed';

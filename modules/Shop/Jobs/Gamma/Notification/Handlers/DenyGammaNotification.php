@@ -13,7 +13,6 @@ use Pusher;
 
 class DenyGammaNotification extends Job implements ShouldQueue
 {
-
     use DispatchesJobs;
 
     protected $notification;
@@ -58,7 +57,7 @@ class DenyGammaNotification extends Job implements ShouldQueue
             ->where('brand_id', $this->notification->brand->id)
             ->first();
 
-        if (!$exists) {
+        if (! $exists) {
             $gamma->create([
                 'account_id' => $this->notification->account_id,
                 'brand_id' => $this->notification->brand_id,

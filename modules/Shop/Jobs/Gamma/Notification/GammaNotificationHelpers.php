@@ -10,7 +10,6 @@ use Pusher;
 
 trait GammaNotificationHelpers
 {
-
     protected function beingProcessed(GammaNotification $notification, Account $account, Brand $brand, Category $category)
     {
         return $notification->newQueryWithoutScopes()

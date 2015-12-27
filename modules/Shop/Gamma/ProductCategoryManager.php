@@ -10,7 +10,6 @@ use Modules\Shop\Product\Product;
 
 class ProductCategoryManager
 {
-
     use DispatchesJobs;
 
     public function __construct(GammaSelection $gamma, ProductSelection $selections, Product $product, Category $category, Account $account, GammaNotification $notifications)

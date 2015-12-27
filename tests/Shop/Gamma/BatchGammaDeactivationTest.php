@@ -1,6 +1,7 @@
-<?php namespace Test\Shop\Gamma;
+<?php
 
-use Carbon\Carbon;
+namespace Test\Shop\Gamma;
+
 use Illuminate\Database\Eloquent\Collection;
 use Mockery as m;
 use Modules\Account\Account;
@@ -14,7 +15,6 @@ use Test\TestCase;
 
 class BatchGammaDeactivationTest extends TestCase
 {
-
     public function testItDoesntFireWhenNoActiveProducts()
     {
         $category = factory(Category::class)->create();
@@ -129,7 +129,7 @@ class BatchGammaDeactivationTest extends TestCase
         $this->seeInDatabase('product_gamma', [
             'account_id'  => $account->id,
             'product_id' => $product->id,
-            'deleted_at' => null
+            'deleted_at' => null,
         ]);
     }
 
@@ -174,6 +174,4 @@ class BatchGammaDeactivationTest extends TestCase
 
         $this->assertSame(1, $count);
     }
-
-
 }

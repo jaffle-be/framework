@@ -7,7 +7,6 @@ use Modules\Contact\HasSocialLinks;
 
 class Account extends Model
 {
-
     use HasSocialLinks;
 
     protected $table = 'accounts';
@@ -84,11 +83,11 @@ class Account extends Model
         if ($cached) {
             $image = $cached->sizes->filter(function ($image) use ($width, $height) {
 
-                if (!empty($with)) {
+                if (! empty($with)) {
                     return $image->width == $width;
                 }
 
-                if (!empty($height)) {
+                if (! empty($height)) {
                     return $image->height == $height;
                 }
             })->first();

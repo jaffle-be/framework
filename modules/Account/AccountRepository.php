@@ -6,7 +6,6 @@ use Illuminate\Contracts\Cache\Repository;
 
 class AccountRepository implements AccountRepositoryInterface
 {
-
     protected $account;
 
     public function __construct(Account $account, Repository $cache)
@@ -51,7 +50,7 @@ class AccountRepository implements AccountRepositoryInterface
         if ($account) {
             $contact = $account->contactInformation->first();
 
-            if (!$contact) {
+            if (! $contact) {
                 $contact = $account->contactInformation()->create([]);
             }
         }
@@ -73,7 +72,7 @@ class AccountRepository implements AccountRepositoryInterface
     {
         $digiredo = $this->account->newQueryWithoutScopes()->whereAlias('digiredo')->first();
 
-        if (!$digiredo) {
+        if (! $digiredo) {
             throw new \Exception('No default subscription account detected');
         }
 

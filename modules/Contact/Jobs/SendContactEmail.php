@@ -11,7 +11,6 @@ use Modules\Theme\ThemeMailer;
 //has nothing to do with address info or anything.
 class SendContactEmail extends EmailJob
 {
-
     /**
      * @var AccountContactInformation
      */

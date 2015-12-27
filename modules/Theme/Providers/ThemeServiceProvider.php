@@ -10,7 +10,6 @@ use Modules\Theme\ThemeSelection;
 
 class ThemeServiceProvider extends ServiceProvider
 {
-
     protected $namespace = 'theme';
 
     public function boot()
@@ -69,7 +68,7 @@ class ThemeServiceProvider extends ServiceProvider
         $files = scandir(config('theme.path'));
 
         $files = array_filter($files, function ($file) {
-            return !in_array($file, ['.', '..', '.DS_Store', '.gitignore']);
+            return ! in_array($file, ['.', '..', '.DS_Store', '.gitignore']);
         });
 
         foreach ($files as $theme) {

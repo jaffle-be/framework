@@ -12,7 +12,6 @@ use Modules\Media\StoresMedia;
 
 class Rebatch extends Command
 {
-
     use DispatchesJobs;
 
     protected $signature = 'media:rebatch {type=all} {--sizes=all} {--force}';
@@ -121,9 +120,9 @@ class Rebatch extends Command
 
             $info = pathinfo($path);
 
-            $path = $info['dirname'] . '/' . $size . '/' . $info['basename'];
+            $path = $info['dirname'].'/'.$size.'/'.$info['basename'];
 
-            if (!$this->imageHasSize($image, $path)) {
+            if (! $this->imageHasSize($image, $path)) {
                 $resizing[] = $size;
             }
         }

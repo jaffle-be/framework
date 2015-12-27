@@ -9,7 +9,6 @@ use Modules\System\Http\AdminController;
 
 class MembershipController extends AdminController
 {
-
     public function page()
     {
         return view('account::admin.members.overview');

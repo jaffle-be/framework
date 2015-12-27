@@ -6,7 +6,6 @@ use Modules\System\Seeder;
 
 class BlogTableSeeder extends Seeder
 {
-
     public function __construct()
     {
         $this->model = new Post();
@@ -26,7 +25,6 @@ class BlogTableSeeder extends Seeder
             $tags = array_flip($tags);
 
             for ($i = 0; $i < $amount; $i++) {
-
                 $post = $this->model->newInstance($this->texts($accountid));
 
                 $post->user_id = 1;
@@ -36,7 +34,7 @@ class BlogTableSeeder extends Seeder
                 $this->addImages($post);
 
                 $useTags = array_rand($tags, rand(1, 3));
-                $useTags = (array)$useTags;
+                $useTags = (array) $useTags;
                 $post->tags()->sync($useTags);
             }
         }
@@ -72,8 +70,7 @@ class BlogTableSeeder extends Seeder
                 'created_at' => $this->nl->dateTimeBetween('-3 months', 'now'),
                 'updated_at' => $this->nl->dateTimeBetween('-2 months', 'now'),
                 'publish_at' => rand(0, 1) ? $this->nl->dateTimeBetween('-1 months', '+3 months') : null,
-            ]
+            ],
         ];
     }
-
 }

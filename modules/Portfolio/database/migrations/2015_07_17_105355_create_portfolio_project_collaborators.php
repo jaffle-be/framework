@@ -5,7 +5,6 @@ use Illuminate\Database\Schema\Blueprint;
 
 class CreatePortfolioProjectCollaborators extends Migration
 {
-
     /**
      * Run the migrations.
      */

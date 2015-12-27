@@ -6,7 +6,6 @@ use Exception;
 
 trait ConfigWriter
 {
-
     protected function replaceConfigValue($path, $key, $value)
     {
         if (strpos($value, "'") !== false) {
@@ -17,7 +16,7 @@ trait ConfigWriter
 
         $pattern = sprintf('/([\'"]%s[\'"]\s*\=>\s*)(.*),?/', $key);
 
-        $replacement = '$1' . $value . ',';
+        $replacement = '$1'.$value.',';
 
         $matches = [];
 

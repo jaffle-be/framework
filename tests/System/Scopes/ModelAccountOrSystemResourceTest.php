@@ -1,11 +1,13 @@
-<?php namespace Test\System\Scopes;
+<?php
+
+namespace Test\System\Scopes;
 
 use Modules\System\Scopes\ModelAccountOrSystemResource;
 use Modules\System\Scopes\ModelAccountOrSystemResourceScope;
 use Test\TestCase;
 
-Class DummyModelAccountOrSystemResource{
-
+class DummyModelAccountOrSystemResource
+{
     public static $scopes = [];
 
     use ModelAccountOrSystemResource;
@@ -14,12 +16,10 @@ Class DummyModelAccountOrSystemResource{
     {
         static::$scopes[get_class($class)] = true;
     }
-
 }
 
 class ModelAccountOrSystemResourceTest extends TestCase
 {
-
     public function testBootingScope()
     {
         DummyModelAccountOrSystemResource::bootModelAccountOrSystemResource();
@@ -28,5 +28,4 @@ class ModelAccountOrSystemResourceTest extends TestCase
         $this->assertArrayHasKey($scope, DummyModelAccountOrSystemResource::$scopes);
         $this->assertTrue(DummyModelAccountOrSystemResource::$scopes[$scope]);
     }
-
 }

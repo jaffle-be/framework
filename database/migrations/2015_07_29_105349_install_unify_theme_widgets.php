@@ -4,48 +4,47 @@ use Modules\Theme\ThemeSettingMigration;
 
 class InstallUnifyThemeWidgets extends ThemeSettingMigration
 {
-
     protected $name = 'Unify';
 
     protected $version = '1.0';
 
     protected $defaults = [
         'widgetsOurClientsTitle'           => [
-            'nl' => "Wie je reeds voorging",
-            'en' => "These people put their trust in us",
+            'nl' => 'Wie je reeds voorging',
+            'en' => 'These people put their trust in us',
         ],
 
         'widgetsCallToActionTitle'         => [
             'nl' => 'Nieuwe website nodig? Nieuwe content nodig?',
-            'en' => 'Need a new website? Or better content?'
+            'en' => 'Need a new website? Or better content?',
         ],
         'widgetsCallToActionText'          => [
             'nl' => 'Als je met ons in zee gaat, doen wij het nodige om aan je eisen te voldoen. Bovendien doen we meestal net dat beetje extra, waardoor het eindresultaat beter is dan de oorspronkelijke verwachtingen',
-            'en' => 'You should really work with us. We always take care of our clients and make their business requirements our number one priority'
+            'en' => 'You should really work with us. We always take care of our clients and make their business requirements our number one priority',
         ],
         'widgetsCallToActionButton'        => [
             'nl' => 'Eindelijk!',
-            'en' => 'Finally!'
+            'en' => 'Finally!',
         ],
         'widgetsPortfolioTitle'            => [
             'nl' => 'Enkele van onze laatste werken',
-            'en' => 'Some of our latest works'
+            'en' => 'Some of our latest works',
         ],
         'widgetsPortfolioIntro'            => [
             'nl' => 'Stuk voor stuk worden projecten met de nodige zorg en stiptheid aan de klant afgeleverd. Hieronder zie je enkele resultaten van mensen die elk door hun passie uit te voeren samen werken aan een compleet project',
-            'en' => 'Each project will be handled with extreme care and deadlines will be met 99% of the time. Below you can see some of the results our team of passionate people created'
+            'en' => 'Each project will be handled with extreme care and deadlines will be met 99% of the time. Below you can see some of the results our team of passionate people created',
         ],
         'widgetsPortfolioSeeAll'            => [
             'nl' => 'Bekijk alle projecten',
-            'en' => 'See all projects'
+            'en' => 'See all projects',
         ],
         'widgetsRecentPostsTitle'          => [
             'nl' => 'We schrijven ook af en toe iets',
-            'en' => 'We also like to write down our thoughts'
+            'en' => 'We also like to write down our thoughts',
         ],
         'widgetsRecentPostsIntro'          => [
             'nl' => 'Soms moeten we iets neerpennen om een bepaald onderwerp beter te vatten. Hierbij proberen we deze bedenkingen online te delen zodat anderen kunnen leren uit onze ervaringen.',
-            'en' => 'Sometimes we need to write something down, before we can actually grasp the subject. Sometimes our mind just needs some way of ordering all that information. We decided to put these thoughts online, so everyone could learn from the mistakes we made or the results we achieved.'
+            'en' => 'Sometimes we need to write something down, before we can actually grasp the subject. Sometimes our mind just needs some way of ordering all that information. We decided to put these thoughts online, so everyone could learn from the mistakes we made or the results we achieved.',
         ],
         'widgetsServicesMediaMainTitle' => [
             'nl' => 'Eigenschappen',
@@ -53,90 +52,90 @@ class InstallUnifyThemeWidgets extends ThemeSettingMigration
         ],
         'widgetsServicesMediaTitle1'       => [
             'nl' => 'eigenschap 1',
-            'en' => 'feature 1'
+            'en' => 'feature 1',
         ],
         'widgetsServicesMediaText1'        => [
             'nl' => 'alles over wat eigenschap 1 betekent',
-            'en' => 'everything about what feature 1 can do'
+            'en' => 'everything about what feature 1 can do',
         ],
         'widgetsServicesMediaTitle2'       => [
             'nl' => 'eigenschap 2',
-            'en' => 'feature 2'
+            'en' => 'feature 2',
         ],
         'widgetsServicesMediaText2'        => [
             'nl' => 'alles over wat eigenschap 2 betekent',
-            'en' => 'everything about what feature 2 can do'
+            'en' => 'everything about what feature 2 can do',
         ],
         'widgetsServicesMediaTitle3'       => [
             'nl' => 'eigenschap 3',
-            'en' => 'feature 3'
+            'en' => 'feature 3',
         ],
         'widgetsServicesMediaText3'        => [
             'nl' => 'alles over wat eigenschap 3 betekent',
-            'en' => 'everything about what feature 3 can do'
+            'en' => 'everything about what feature 3 can do',
         ],
         'widgetsServicesNotesTitle1'       => [
             'nl' => 'dienst 1',
-            'en' => 'service 1'
+            'en' => 'service 1',
         ],
         'widgetsServicesNotesText1'        => [
             'nl' => 'alles over wat dienst 1 betekent',
-            'en' => 'everything about what service 1 means'
+            'en' => 'everything about what service 1 means',
         ],
         'widgetsServicesNotesTitle2'       => [
             'nl' => 'dienst 2',
-            'en' => 'service 2'
+            'en' => 'service 2',
         ],
         'widgetsServicesNotesText2'        => [
             'nl' => 'alles over wat dienst 2 betekent',
-            'en' => 'everything about what service 2 means'
+            'en' => 'everything about what service 2 means',
         ],
         'widgetsServicesNotesTitle3'       => [
             'nl' => 'dienst 3',
-            'en' => 'service 3'
+            'en' => 'service 3',
         ],
         'widgetsServicesNotesText3'        => [
             'nl' => 'alles over wat dienst 3 betekent',
-            'en' => 'everything about what service 3 means'
+            'en' => 'everything about what service 3 means',
         ],
         'widgetsServicesOverviewMainTitle' => [
             'nl' => 'Hier vind je alles over onze diensten',
-            'en' => 'everything you should know about our services'
+            'en' => 'everything you should know about our services',
         ],
         'widgetsServicesOverviewIntro'     => [
             'nl' => 'Wanneer je met ons samenwerkt, kan je altijd van volgende zaken zeker zijn',
-            'en' => 'If you work with us, rest assured, our services always include the following'
+            'en' => 'If you work with us, rest assured, our services always include the following',
         ],
         'widgetsServicesOverviewSubTitle1' => [
             'nl' => 'vanzelfsprekende dienst 1',
-            'en' => 'common service 1'
+            'en' => 'common service 1',
         ],
         'widgetsServicesOverviewSubText1'  => [
             'nl' => 'alles wat vanzelfsprekende dienst 1 betekent',
-            'en' => 'everything about this very common service 1'
+            'en' => 'everything about this very common service 1',
         ],
         'widgetsServicesOverviewSubTitle2' => [
             'nl' => 'vanzelfsprekende dienst 2',
-            'en' => 'common service 2'
+            'en' => 'common service 2',
         ],
         'widgetsServicesOverviewSubText2'  => [
             'nl' => 'alles wat vanzelfsprekende dienst 2 betekent',
-            'en' => 'everything about this very common service 2'
+            'en' => 'everything about this very common service 2',
         ],'widgetsServicesOverviewSubTitle3' => [
             'nl' => 'vanzelfsprekende dienst 3',
-            'en' => 'common service 3'
+            'en' => 'common service 3',
         ],
         'widgetsServicesOverviewSubText3'  => [
             'nl' => 'alles wat vanzelfsprekende dienst 3 betekent',
-            'en' => 'everything about this very common service 3'
+            'en' => 'everything about this very common service 3',
         ],
         'widgetsTestimonialsTitle1'        => [
             'nl' => 'Project 1 was echt top',
-            'en' => 'Project 1 was amazing'
+            'en' => 'Project 1 was amazing',
         ],
         'widgetsTestimonialsText1'         => [
             'nl' => 'Ze hebben hun job echt zo goed gedaan voor ons project 1',
-            'en' => 'They really pushed themselves for this project 1'
+            'en' => 'They really pushed themselves for this project 1',
         ],
         'widgetsTestimonialsName1' => [
             'nl' => 'Johny',
@@ -144,15 +143,15 @@ class InstallUnifyThemeWidgets extends ThemeSettingMigration
         ],
         'widgetsTestimonialsFunction1'      => [
             'nl' => 'zotte functie (CEO)',
-            'en' => 'crazy function (CEO)'
+            'en' => 'crazy function (CEO)',
         ],
         'widgetsTestimonialsTitle2'        => [
             'nl' => 'Project 2 was echt top',
-            'en' => 'Project 2 was amazing'
+            'en' => 'Project 2 was amazing',
         ],
         'widgetsTestimonialsText2'         => [
             'nl' => 'Ze hebben hun job echt zo goed gedaan voor ons project 2',
-            'en' => 'They really pushed themselves for this project 2'
+            'en' => 'They really pushed themselves for this project 2',
         ],
         'widgetsTestimonialsName2' => [
             'nl' => 'Johny',
@@ -160,15 +159,15 @@ class InstallUnifyThemeWidgets extends ThemeSettingMigration
         ],
         'widgetsTestimonialsFunction2'      => [
             'nl' => 'zotte functie (CEO)',
-            'en' => 'crazy function (CEO)'
+            'en' => 'crazy function (CEO)',
         ],
         'widgetsTestimonialsTitle3'        => [
             'nl' => 'Project 3 was echt top',
-            'en' => 'Project 3 was amazing'
+            'en' => 'Project 3 was amazing',
         ],
         'widgetsTestimonialsText3'         => [
             'nl' => 'Ze hebben hun job echt zo goed gedaan voor ons project 3',
-            'en' => 'They really pushed themselves for this project 3'
+            'en' => 'They really pushed themselves for this project 3',
         ],
         'widgetsTestimonialsName3' => [
             'nl' => 'Johny',
@@ -176,17 +175,16 @@ class InstallUnifyThemeWidgets extends ThemeSettingMigration
         ],
         'widgetsTestimonialsFunction3'      => [
             'nl' => 'zotte functie (CEO)',
-            'en' => 'crazy function (CEO)'
+            'en' => 'crazy function (CEO)',
         ],
         'widgetsCalloutTitle'      => [
             'nl' => 'Nog vragen? Je wil erin vliegen?',
-            'en' => 'Still have questions? Want to start?'
+            'en' => 'Still have questions? Want to start?',
         ],
         'widgetsCalloutButton'      => [
             'nl' => 'Laat het weten',
-            'en' => 'Let us know'
+            'en' => 'Let us know',
         ],
-
 
     ];
 
@@ -197,19 +195,19 @@ class InstallUnifyThemeWidgets extends ThemeSettingMigration
             'type' => 'string',
             'nl'   => [
                 'name'        => 'widgetOurClientsTitle',
-                'explanation' => 'widgetOurClientsTitle'
+                'explanation' => 'widgetOurClientsTitle',
             ],
             'en'   => [
                 'name'        => 'widgetOurClientsTitle',
-                'explanation' => 'widgetOurClientsTitle'
+                'explanation' => 'widgetOurClientsTitle',
             ],
             'de'   => [
                 'name'        => 'widgetOurClientsTitle',
-                'explanation' => 'widgetOurClientsTitle'
+                'explanation' => 'widgetOurClientsTitle',
             ],
             'fr'   => [
                 'name'        => 'widgetOurClientsTitle',
-                'explanation' => 'widgetOurClientsTitle'
+                'explanation' => 'widgetOurClientsTitle',
             ],
         ],
 
@@ -736,5 +734,4 @@ class InstallUnifyThemeWidgets extends ThemeSettingMigration
     protected $options = [
 
     ];
-
 }

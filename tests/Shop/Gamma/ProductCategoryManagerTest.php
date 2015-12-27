@@ -1,8 +1,9 @@
-<?php namespace Test\Shop\Gamma;
+<?php
+
+namespace Test\Shop\Gamma;
 
 use DB;
 use Illuminate\Foundation\Bus\DispatchesJobs;
-use Mockery as m;
 use Modules\Account\Account;
 use Modules\Shop\Jobs\Gamma\ActivateBrand;
 use Modules\Shop\Jobs\Gamma\ActivateCategory;
@@ -13,7 +14,6 @@ use Test\AdminTestCase;
 
 class ProductCategoryManagerTest extends AdminTestCase
 {
-
     use DispatchesJobs;
 
     public function testAttachingShouldNotifyAllAccountsThatHaveThatCombinationSelected()
@@ -47,7 +47,7 @@ class ProductCategoryManagerTest extends AdminTestCase
         $manager = app('Modules\Shop\Gamma\ProductCategoryManager');
         $manager->attach([
             'category_id' => $category->id,
-            'product_id'  => $product2->id
+            'product_id'  => $product2->id,
         ]);
 
         //see notifications for both accounts with detail activated
@@ -98,13 +98,13 @@ class ProductCategoryManagerTest extends AdminTestCase
 
         \DB::table('product_categories_pivot')->where([
             'product_id'  => $product1->id,
-            'category_id' => $category->id
+            'category_id' => $category->id,
         ])->delete();
 
         $manager = app('Modules\Shop\Gamma\ProductCategoryManager');
         $manager->detach([
             'category_id' => $category->id,
-            'product_id'  => $product1->id
+            'product_id'  => $product1->id,
         ]);
 
         //account 1, 3 should be cleaned, but there basically shouldn't even be one record left.
@@ -127,12 +127,12 @@ class ProductCategoryManagerTest extends AdminTestCase
 
         $products = factory(Product::class)->times(2)->create([
             'brand_id' => $brand->id,
-            'account_id' => $account->id
-        ])->each(function($product) use ($category){
+            'account_id' => $account->id,
+        ])->each(function ($product) use ($category) {
             $product->categories()->attach($category);
         });
 
-        return array($brand, $category, $products->get(0), $products->get(1));
+        return [$brand, $category, $products->get(0), $products->get(1)];
     }
 
     /**
@@ -161,7 +161,7 @@ class ProductCategoryManagerTest extends AdminTestCase
         $account2 = factory(Account::class)->create();
         $account3 = factory(Account::class)->create();
 
-        return array($account1, $account2, $account3);
+        return [$account1, $account2, $account3];
     }
 
     /**
@@ -188,7 +188,7 @@ class ProductCategoryManagerTest extends AdminTestCase
 
         DB::table('product_gamma_categories')->insert([
             'selection_id' => $selection1,
-            'category_id'  => $category->id
+            'category_id'  => $category->id,
         ]);
 
         return $selection1;
@@ -201,5 +201,4 @@ class ProductCategoryManagerTest extends AdminTestCase
         $search = app('Modules\Search\SearchServiceInterface');
         $search->build('product_gamma');
     }
-
 }

@@ -12,7 +12,6 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class UploadNewInfographic extends Job
 {
-
     use DispatchesJobs;
 
     /**
@@ -42,17 +41,17 @@ class UploadNewInfographic extends Job
 
     public function handle(Filesystem $files, AccountManager $manager)
     {
-        $temp_dir = storage_path('media') . '/' . $this->owner->getMediaFolder('infographics');
+        $temp_dir = storage_path('media').'/'.$this->owner->getMediaFolder('infographics');
 
         $name = $this->uniqueName();
 
         $this->graphic->move($temp_dir, $name);
 
-        $temp_file = $temp_dir . $name;
+        $temp_file = $temp_dir.$name;
 
-        $name_with_extension = $name . $this->extension($temp_file);
+        $name_with_extension = $name.$this->extension($temp_file);
 
-        $final_path = $temp_file . $name_with_extension;
+        $final_path = $temp_file.$name_with_extension;
 
         $files->move($temp_file, $final_path);
 
@@ -65,7 +64,7 @@ class UploadNewInfographic extends Job
 
     protected function uniqueName()
     {
-        return sha1(md5($this->graphic->getClientOriginalName()) . time());
+        return sha1(md5($this->graphic->getClientOriginalName()).time());
     }
 
     private function extension($path)

@@ -6,7 +6,6 @@ use Exception;
 
 trait ImageDimensionHelpers
 {
-
     /**
      * Dimensions can be passed like this:
      * 150x150 to have a fixed dimension
@@ -28,7 +27,7 @@ trait ImageDimensionHelpers
             throw new Exception('Invalid image size provided');
         }
 
-        return array($width, $height);
+        return [$width, $height];
     }
 
     protected function bothAreNull($width, $height)
@@ -38,7 +37,7 @@ trait ImageDimensionHelpers
 
     protected function hasNonNumeric($width, $height)
     {
-        return (!empty($width) && !is_numeric($width)) || (!empty($height) && !is_numeric($height));
+        return (! empty($width) && ! is_numeric($width)) || (! empty($height) && ! is_numeric($height));
     }
 
     protected function constraint($width, $height)

@@ -6,7 +6,6 @@ use Modules\System\Presenter\BasePresenter;
 
 class WidgetPresenter extends BasePresenter
 {
-
     public function image()
     {
         if ($this->entity->manual) {

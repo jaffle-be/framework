@@ -12,7 +12,6 @@ use Modules\System\Http\AdminController;
 
 class MembershipInvitationController extends AdminController
 {
-
     use DispatchesJobs;
 
     public function index(MembershipInvitation $invitation)
@@ -61,7 +60,7 @@ class MembershipInvitationController extends AdminController
     protected function getNewHash(Request $request, Hasher $hasher)
     {
         $email = $request->get('email');
-        $hash = $hasher->make(time() . 'someRandome123string' . $email);
+        $hash = $hasher->make(time().'someRandome123string'.$email);
         $hash = str_replace('/', '_', $hash);
 
         return $hash;

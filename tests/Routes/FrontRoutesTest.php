@@ -1,10 +1,11 @@
-<?php namespace Test\Routes;
+<?php
+
+namespace Test\Routes;
 
 use Test\FrontTestCase;
 
 class FrontRoutesFrontTest extends FrontTestCase
 {
-
     use RouteTests;
 
     /**
@@ -17,5 +18,4 @@ class FrontRoutesFrontTest extends FrontTestCase
         //we only test GET routes
         $this->tryRoute('store.home');
     }
-
 }

@@ -10,7 +10,6 @@ use Modules\Account\MembershipOwner;
 
 class NewAccount extends Job
 {
-
     use DispatchesJobs;
 
     /**
@@ -44,14 +43,14 @@ class NewAccount extends Job
             'user_id' => $this->owner->getKey(),
         ]);
 
-        if (!$account) {
+        if (! $account) {
             return false;
         }
 
         //setup the membership link
         $linked = $this->dispatch(new NewMembership($account, $this->owner));
 
-        if (!$linked) {
+        if (! $linked) {
             return false;
         }
     }

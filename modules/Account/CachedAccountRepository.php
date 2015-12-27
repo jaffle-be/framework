@@ -6,7 +6,6 @@ use Illuminate\Contracts\Cache\Repository;
 
 class CachedAccountRepository implements AccountRepositoryInterface
 {
-
     protected $account;
 
     public function __construct(AccountRepository $account, Repository $cache)

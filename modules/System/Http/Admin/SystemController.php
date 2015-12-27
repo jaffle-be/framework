@@ -13,7 +13,6 @@ use Pusher;
 
 class SystemController extends AdminController
 {
-
     public function index(Repository $config, Application $app)
     {
         //this should return all settings needed for our angular app to work. It might be that this isn't even being called yet.

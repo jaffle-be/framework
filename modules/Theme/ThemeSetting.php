@@ -7,7 +7,6 @@ use Modules\System\Translatable\Translatable;
 
 class ThemeSetting extends Model
 {
-
     use Translatable;
 
     protected $table = 'themes_setting_keys';
@@ -61,7 +60,7 @@ class ThemeSetting extends Model
 
         switch ($this->type->name) {
             case 'boolean':
-                $result['value'] = (bool)$result['value'];
+                $result['value'] = (bool) $result['value'];
                 break;
 
             case 'string':

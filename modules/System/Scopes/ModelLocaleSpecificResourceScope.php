@@ -9,7 +9,6 @@ use Modules\System\Locale;
 
 class ModelLocaleSpecificResourceScope implements Scope
 {
-
     protected $locale;
 
     public function __construct(Locale $locale)

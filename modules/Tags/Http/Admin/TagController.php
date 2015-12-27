@@ -14,7 +14,6 @@ use Modules\Tags\Tag;
 
 class TagController extends AdminController
 {
-
     public function widget()
     {
         return view('tags::admin.widget');
@@ -34,13 +33,13 @@ class TagController extends AdminController
         $tags = $tag
             ->with(['translations'])
             ->where(function ($q) use ($tags) {
-                if (!empty($tags)) {
+                if (! empty($tags)) {
                     $q->whereNotIn('id', $tags);
                 }
             })
             ->whereHas('translations', function ($q) use ($value, $locale) {
                 $q->where('locale', $locale);
-                $q->where('name', 'like', '%' . $value . '%');
+                $q->where('name', 'like', '%'.$value.'%');
             })
             ->paginate(10);
 
@@ -80,7 +79,7 @@ class TagController extends AdminController
         $tag->load(['translations']);
 
         //if the owner didn't contain the tag, we wanted to add it.
-        if (!$owner->tags->contains($tag->id)) {
+        if (! $owner->tags->contains($tag->id)) {
             $this->dispatch(new TagSomething($tag, $owner));
         }
 
@@ -119,7 +118,7 @@ class TagController extends AdminController
 
         $owners = config('tags.owners');
 
-        if (!isset($owners[$ownerType])) {
+        if (! isset($owners[$ownerType])) {
             throw new \Exception('Invalid owner type provided for tags');
         }
 

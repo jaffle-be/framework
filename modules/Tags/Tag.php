@@ -10,7 +10,6 @@ use Modules\System\Translatable\Translatable;
 
 class Tag extends Model implements Searchable
 {
-
     use Translatable;
     use ModelAccountResource;
     use SearchableTrait;
@@ -53,7 +52,7 @@ class Tag extends Model implements Searchable
 
     public function getCubeportfolioAttribute()
     {
-        return 'cube' . str_slug(ucfirst($this->name));
+        return 'cube'.str_slug(ucfirst($this->name));
     }
 
     public function newCollection(array $models = [])

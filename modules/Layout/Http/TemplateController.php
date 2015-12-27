@@ -9,12 +9,11 @@ use Modules\System\Http\AdminController;
 
 class TemplateController extends AdminController
 {
-
     public function template($template, Guard $guard, AccountManager $manager, Store $session)
     {
         $user = $guard->user();
 
-        return view('layout::admin.' . $template, [
+        return view('layout::admin.'.$template, [
             'user' => $user,
             'account' => $manager->account(),
             'theme' => $this->theme->current(),

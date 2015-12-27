@@ -1,4 +1,6 @@
-<?php namespace Test\System\Scopes;
+<?php
+
+namespace Test\System\Scopes;
 
 use Illuminate\Http\Request;
 use Modules\System\Scopes\LocalisedResourceCollection;
@@ -7,8 +9,8 @@ use Modules\System\Scopes\ModelLocaleSpecificResourceScope;
 use Test\TestCase;
 use Mockery as m;
 
-Class DummyModelLocaleSpecificResource{
-
+class DummyModelLocaleSpecificResource
+{
     public static $scopes = [];
 
     use ModelLocaleSpecificResource;
@@ -17,12 +19,10 @@ Class DummyModelLocaleSpecificResource{
     {
         static::$scopes[get_class($class)] = true;
     }
-
 }
 
 class ModelLocaleSpecificResourceTest extends TestCase
 {
-
     public function testBootingScopeWontWorkInConsole()
     {
         DummyModelLocaleSpecificResource::bootModelLocaleSpecificResource();
@@ -75,5 +75,4 @@ class ModelLocaleSpecificResourceTest extends TestCase
         $scope = ModelLocaleSpecificResourceScope::class;
         $this->assertArrayNotHasKey($scope, DummyModelLocaleSpecificResource::$scopes);
     }
-
 }

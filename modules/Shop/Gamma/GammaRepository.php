@@ -9,7 +9,6 @@ use Modules\Shop\Product\Category;
 
 class GammaRepository implements GammaRepositoryInterface
 {
-
     protected $brands;
 
     protected $categories;

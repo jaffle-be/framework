@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Collection;
 
 class ThemeSettingCollection extends Collection
 {
-
     public function byModule()
     {
         return $this->groupBy(function ($item) {

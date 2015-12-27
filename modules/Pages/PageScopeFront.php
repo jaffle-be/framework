@@ -4,5 +4,4 @@ namespace Modules\Pages;
 
 class PageScopeFront
 {
-
 }

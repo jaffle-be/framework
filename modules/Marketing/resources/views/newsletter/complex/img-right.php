@@ -17,7 +17,7 @@
                                             <table align="Right" border="0" cellpadding="0" cellspacing="0" width="200" class="flexibleContainer">
                                                 <tr>
                                                     <td align="Left" valign="top" class="imageContent">
-                                                        <img src="<?= asset($widget->present()->image) ?>" width="200" class="flexibleImage" style="max-width:200px;">
+                                                        <img src="<?php echo asset($widget->present()->image) ?>" width="200" class="flexibleImage" style="max-width:200px;">
                                                     </td>
                                                 </tr>
                                             </table>
@@ -28,9 +28,9 @@
                                             <table align="Left" border="0" cellpadding="0" cellspacing="0" width="280" class="flexibleContainer">
                                                 <tr>
                                                     <td valign="top" class="textContent">
-                                                        <h3><?= $widget->present()->title($locale) ?></h3>
+                                                        <h3><?php echo $widget->present()->title($locale) ?></h3>
                                                         <br>
-                                                        <?= $widget->present()->text($locale) ?>
+                                                        <?php echo $widget->present()->text($locale) ?>
                                                     </td>
                                                 </tr>
                                             </table>

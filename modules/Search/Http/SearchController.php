@@ -13,7 +13,6 @@ use Modules\System\Http\FrontController;
 
 class SearchController extends FrontController
 {
-
     use BlogSearch;
     use PortfolioSearch;
 

@@ -11,7 +11,6 @@ use Modules\System\Http\FrontController;
 
 class ContactController extends FrontController
 {
-
     use DispatchesJobs;
 
     public function index(AccountManager $manager, Store $session)
@@ -22,7 +21,7 @@ class ContactController extends FrontController
 
         $success = $session->get('success');
 
-        return $this->theme->render('contact.' . $this->theme->setting('contactLayout'), ['contact' => $contact, 'success' => $success]);
+        return $this->theme->render('contact.'.$this->theme->setting('contactLayout'), ['contact' => $contact, 'success' => $success]);
     }
 
     public function store(ContactRequest $request, AccountManager $account)

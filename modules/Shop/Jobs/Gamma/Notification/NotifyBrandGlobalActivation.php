@@ -11,7 +11,6 @@ use Pusher;
 
 class NotifyBrandGlobalActivation extends Job
 {
-
     use GammaNotificationHelpers;
 
     /**

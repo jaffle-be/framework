@@ -10,7 +10,6 @@ use Modules\System\Scopes\ModelAccountResource;
 
 class ProductSelection extends Model implements Searchable
 {
-
     use MySoftDeletes;
     use SearchableTrait;
     use ModelAccountResource;

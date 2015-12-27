@@ -6,7 +6,6 @@ use Modules\System\Seeder;
 
 class BlogTableSeeder extends Seeder
 {
-
     public function __construct()
     {
         $this->model = new Post();
@@ -35,7 +34,7 @@ class BlogTableSeeder extends Seeder
                 $this->addImages($post);
 
                 $useTags = array_rand($tags, rand(1, 3));
-                $useTags = (array)$useTags;
+                $useTags = (array) $useTags;
                 $post->tags()->sync($useTags);
             }
         }

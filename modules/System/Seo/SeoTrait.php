@@ -9,7 +9,6 @@ use Modules\Users\User;
 
 trait SeoTrait
 {
-
     public function seo()
     {
         return $this->morphMany('Modules\System\Seo\SeoProperty', 'owner');
@@ -19,7 +18,7 @@ trait SeoTrait
     {
         static $locale;
 
-        if (!$locale) {
+        if (! $locale) {
             $locale = app()->getLocale();
 
             $locale = Locale::whereSlug($locale)->first();

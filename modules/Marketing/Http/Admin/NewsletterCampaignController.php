@@ -21,7 +21,6 @@ use Modules\System\Http\AdminController;
 
 class NewsletterCampaignController extends AdminController
 {
-
     use BlogSearch;
     use PortfolioSearch;
 
@@ -32,10 +31,10 @@ class NewsletterCampaignController extends AdminController
         $value = $request->get('query');
         $locale = $request->get('locale');
 
-        if (!empty($value)) {
+        if (! empty($value)) {
             $query->whereHas('translations', function ($q) use ($value, $locale) {
                 $q->where('locale', $locale);
-                $q->where('title', 'like', '%' . $value . '%');
+                $q->where('title', 'like', '%'.$value.'%');
             });
         }
 
@@ -74,9 +73,9 @@ class NewsletterCampaignController extends AdminController
             return $newsletter;
         }
 
-        return json_encode(array(
+        return json_encode([
             'status' => 'noke',
-        ));
+        ]);
     }
 
     public function show(Campaign $newsletter, CampaignBuilder $builder, MailChimp $mailChimp)
@@ -88,7 +87,7 @@ class NewsletterCampaignController extends AdminController
     {
         $newsletter->load($this->relations());
 
-        if (!$this->dispatch(new UpdateCampaign($newsletter, translation_input($request, ['title', 'content', 'publish_at'])))) {
+        if (! $this->dispatch(new UpdateCampaign($newsletter, translation_input($request, ['title', 'content', 'publish_at'])))) {
             return response('500', 'something bad happened');
         }
 
@@ -143,7 +142,7 @@ class NewsletterCampaignController extends AdminController
 
         foreach ($posts as $post) {
             $result->push([
-                'label' => 'post: ' . $post->translate($request->get('locale'))->title,
+                'label' => 'post: '.$post->translate($request->get('locale'))->title,
                 'type' => Post::class,
                 'value' => $post->id,
             ]);
@@ -151,7 +150,7 @@ class NewsletterCampaignController extends AdminController
 
         foreach ($projects as $project) {
             $result->push([
-                'label' => 'project: ' . $project->translate($request->get('locale'))->title,
+                'label' => 'project: '.$project->translate($request->get('locale'))->title,
                 'type' => Project::class,
                 'value' => $project->id,
             ]);

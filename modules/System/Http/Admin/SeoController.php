@@ -10,7 +10,6 @@ use Modules\Theme\ThemeManager;
 
 class SeoController extends AdminController
 {
-
     public function __construct(ThemeManager $theme)
     {
         parent::__construct($theme);
@@ -32,7 +31,7 @@ class SeoController extends AdminController
 
         $locale = $locale->whereSlug($request->get('locale'))->first();
 
-        if (!$locale) {
+        if (! $locale) {
             return;
         }
 
@@ -81,7 +80,7 @@ class SeoController extends AdminController
 
         $owners = config('system.seo.owners');
 
-        if (!isset($owners[$ownerType])) {
+        if (! isset($owners[$ownerType])) {
             throw new \Exception('Invalid owner type provided for seo');
         }
 

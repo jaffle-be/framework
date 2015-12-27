@@ -6,7 +6,6 @@ use Modules\System\Seeder;
 
 class PagesTableSeeder extends Seeder
 {
-
     public function __construct()
     {
         $this->model = new Page();

@@ -4,20 +4,20 @@
 
         <div class="col-xs-6">
             <div>
-                <img src="<?= $left['img'] ?>" class="img-responsive">
+                <img src="<?php echo $left['img'] ?>" class="img-responsive">
             </div>
-            <h3><?= $left['title'] ?></h3>
+            <h3><?php echo $left['title'] ?></h3>
             <br>
-            <?= $left['text'] ?>
+            <?php echo $left['text'] ?>
         </div>
 
         <div class="col-xs-6">
             <div>
-                <img src="<?= $right['img'] ?>" class="img-responsive">
+                <img src="<?php echo $right['img'] ?>" class="img-responsive">
             </div>
-            <h3><?= $right['title'] ?></h3>
+            <h3><?php echo $right['title'] ?></h3>
             <br>
-            <?= $right['text'] ?>
+            <?php echo $right['text'] ?>
         </div>
 
     </div>

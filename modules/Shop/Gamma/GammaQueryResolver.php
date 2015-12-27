@@ -12,7 +12,6 @@ use Modules\Shop\Product\Property;
 
 class GammaQueryResolver
 {
-
     use SearchResponder;
 
     protected $request;
@@ -123,7 +122,7 @@ class GammaQueryResolver
 
             $results[$property_id] = [];
 
-            $buckets = $sub_agg['property_' . $property_id]['buckets'];
+            $buckets = $sub_agg['property_'.$property_id]['buckets'];
 
             foreach ($buckets as $bucket) {
                 $results[$property_id][$bucket['key']] = $bucket['doc_count'];
@@ -161,7 +160,7 @@ class GammaQueryResolver
         //we end up avoiding a few extra queries likes this.
         foreach ($original->propertyGroups as $group) {
             foreach ($group->properties as $property) {
-                $aggs['property_filter_' . $property->id] = $this->propertyFilterAggregation($property);
+                $aggs['property_filter_'.$property->id] = $this->propertyFilterAggregation($property);
             }
         }
 
@@ -196,7 +195,7 @@ class GammaQueryResolver
 
         return [
             'terms' => [
-                'field' => 'properties.' . $property->type,
+                'field' => 'properties.'.$property->type,
                 'size' => 10,
             ],
         ];
@@ -214,7 +213,7 @@ class GammaQueryResolver
                 ],
             ],
             'aggs' => [
-                'property_' . $property->id => $this->propertyValueAggregation($property),
+                'property_'.$property->id => $this->propertyValueAggregation($property),
             ],
         ];
     }

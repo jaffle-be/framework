@@ -15,7 +15,6 @@ use Modules\Theme\ThemeManager;
 
 class VideoController extends AdminController
 {
-
     use VideoGenericFormatter;
     use MediaWidgetPreperations;
 
@@ -52,7 +51,7 @@ class VideoController extends AdminController
 
         $video = $this->dispatch(new AddNewVideo($owner, $input));
 
-        if (!$video) {
+        if (! $video) {
             return new JsonResponse('Dit not match any movie', 422);
         }
 

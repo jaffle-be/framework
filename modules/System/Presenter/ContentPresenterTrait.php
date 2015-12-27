@@ -6,7 +6,6 @@ use Markdown;
 
 trait ContentPresenterTrait
 {
-
     /**
      * Returns the entire post, fully loaded with shortcodes
      * Ready to be displayed onto your website.
@@ -114,7 +113,7 @@ trait ContentPresenterTrait
             )
         );
 
-        if (!empty($chars)) {
+        if (! empty($chars)) {
             //oke, if the difference between chars and strlen is to high. we'd
             //be doing way to many while loops.
             //therefor, we will make sure that we first trim by hand to a reasonable strlen
@@ -143,6 +142,6 @@ trait ContentPresenterTrait
 
         $string = rtrim($string, ' ');
 
-        return empty($string) ? null : $string . '&nbsp;...';
+        return empty($string) ? null : $string.'&nbsp;...';
     }
 }

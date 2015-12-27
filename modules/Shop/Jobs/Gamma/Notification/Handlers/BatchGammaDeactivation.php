@@ -10,7 +10,6 @@ use Modules\Shop\Product\Category;
 
 class BatchGammaDeactivation extends Job
 {
-
     /**
      * @var Category
      */
@@ -50,7 +49,7 @@ class BatchGammaDeactivation extends Job
                 $category->delete();
 
                 $active = $selection->categories->filter(function ($item) {
-                    return !$item->trashed();
+                    return ! $item->trashed();
                 });
 
                 if ($active->count() == 0) {
@@ -70,7 +69,7 @@ class BatchGammaDeactivation extends Job
         $selections->load([
             'categories' => function ($query) {
                 $query->withTrashed();
-            }
+            },
         ]);
 
         return $selections;

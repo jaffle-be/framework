@@ -6,7 +6,6 @@ use Illuminate\Contracts\View\Factory;
 
 class Engine
 {
-
     protected $view;
 
     public function __construct(Factory $view)

@@ -1,4 +1,6 @@
-<?php namespace Test\Account;
+<?php
+
+namespace Test\Account;
 
 use Elasticsearch\Client;
 use Mockery as m;
@@ -7,7 +9,6 @@ use Test\AdminTestCase;
 
 class IndexManagerTest extends AdminTestCase
 {
-
     public function testItSubscribesToAllNecessaryEvents()
     {
         $events = m::mock('Illuminate\Contracts\Events\Dispatcher');
@@ -41,7 +42,7 @@ class IndexManagerTest extends AdminTestCase
         $search = app('Modules\Search\SearchServiceInterface');
         $client = $search->getClient();
 
-        /** @var Client $client */
+        /* @var Client $client */
         $response = $client->indices()->existsAlias([
             'name' => 'index.index',
         ]);
@@ -61,12 +62,11 @@ class IndexManagerTest extends AdminTestCase
         $search = app('Modules\Search\SearchServiceInterface');
         $client = $search->getClient();
 
-        /** @var Client $client */
+        /* @var Client $client */
         $response = $client->indices()->existsAlias([
-            'name' => $account->alias
+            'name' => $account->alias,
         ]);
 
         $this->assertFalse($response);
     }
-
 }

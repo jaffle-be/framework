@@ -13,7 +13,6 @@ use Modules\System\Http\AdminController;
 
 class BlogController extends AdminController
 {
-
     use MediaWidgetPreperations;
 
     public function index(Request $request)
@@ -25,18 +24,18 @@ class BlogController extends AdminController
             'images.sizes' => function ($query) {
                 $query->dimension(150);
             },
-            'images.translations'
+            'images.translations',
         ]);
 
         $value = $request->get('query');
         $locale = $request->get('locale');
 
-        if (!empty($value)) {
+        if (! empty($value)) {
             $query->whereHas('translations', function ($q) use ($value, $locale) {
                 $q->where('locale', $locale);
                 $q->where(function ($q) use ($value) {
-                    $q->where('title', 'like', '%' . $value . '%')
-                        ->orWhere('content', 'like', '%' . $value . '%');
+                    $q->where('title', 'like', '%'.$value.'%')
+                        ->orWhere('content', 'like', '%'.$value.'%');
                 });
             });
         }
@@ -58,9 +57,9 @@ class BlogController extends AdminController
             return $post;
         }
 
-        return json_encode(array(
+        return json_encode([
             'status' => 'noke',
-        ));
+        ]);
     }
 
     public function show(Post $post)
@@ -78,7 +77,7 @@ class BlogController extends AdminController
 
         $input = translation_input($request, ['title', 'content', 'publish_at']);
 
-        if (!$this->dispatch(new UpdatePost($post, $input))) {
+        if (! $this->dispatch(new UpdatePost($post, $input))) {
             return response('500', 'something bad happened');
         }
 

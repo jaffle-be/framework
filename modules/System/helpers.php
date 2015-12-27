@@ -3,7 +3,7 @@
 use Illuminate\Http\Request;
 use Modules\Module\Module;
 
-if (!function_exists('uses_trait')) {
+if (! function_exists('uses_trait')) {
     /**
      * @return bool
      */
@@ -23,7 +23,7 @@ if (!function_exists('uses_trait')) {
  * @return string
  */
 
-if (!function_exists('system_options')) {
+if (! function_exists('system_options')) {
     function system_options()
     {
         $options['locale'] = app()->getLocale();
@@ -50,7 +50,7 @@ if (!function_exists('system_options')) {
  * @return \Illuminate\Database\Eloquent\Collection|static[]
  */
 
-if (!function_exists('system_locales')) {
+if (! function_exists('system_locales')) {
     function system_locales()
     {
         $accountLocales = app('Modules\Account\AccountManager')->account()->locales;
@@ -71,7 +71,7 @@ if (!function_exists('system_locales')) {
  *
  * @return \Illuminate\Database\Eloquent\Collection|static[]
  */
-if (!function_exists('system_modules')) {
+if (! function_exists('system_modules')) {
     function system_modules()
     {
         $accountModules = app('Modules\Account\AccountManager')->account()->modules;
@@ -86,7 +86,7 @@ if (!function_exists('system_modules')) {
     }
 }
 
-if (!function_exists('store_route')) {
+if (! function_exists('store_route')) {
     function store_route($name, array $arguments = [], $parameters = [], $force = null)
     {
         if (env('APP_MULTIPLE_LOCALES')) {
@@ -98,23 +98,23 @@ if (!function_exists('store_route')) {
         if ($force) {
             //replace the current locale with the requested locale
             //added the dots, to make sure we don't replace anything else
-            $name = str_replace('.' . app()->getLocale() . '.', '.' . $force . '.', $name);
+            $name = str_replace('.'.app()->getLocale().'.', '.'.$force.'.', $name);
         }
 
         return route($name, array_merge($arguments, $parameters));
     }
 }
 
-if (!function_exists('pusher_account_channel')) {
+if (! function_exists('pusher_account_channel')) {
     function pusher_account_channel()
     {
         $accounts = app('Modules\Account\AccountManager');
 
-        return 'private-' . ($accounts->account() ? $accounts->account()->alias : 'digiredo');
+        return 'private-'.($accounts->account() ? $accounts->account()->alias : 'digiredo');
     }
 }
 
-if (!function_exists('pusher_system_channel')) {
+if (! function_exists('pusher_system_channel')) {
     function pusher_system_channel()
     {
         //        return 'private-system';
@@ -122,14 +122,14 @@ if (!function_exists('pusher_system_channel')) {
     }
 }
 
-if (!function_exists('on_front')) {
+if (! function_exists('on_front')) {
     function on_front()
     {
         //this use to be implemented with app()->runningUnitTests()
         //but our testing env is called testing.
         //so we use the env variable RUNNING_TESTS
         //which is defined in our phpunit.xml file
-        if (app()->runningInConsole() && !env('RUNNING_TESTS', false)) {
+        if (app()->runningInConsole() && ! env('RUNNING_TESTS', false)) {
             return false;
         }
 
@@ -140,11 +140,11 @@ if (!function_exists('on_front')) {
         /** @var Request $request */
         $request = app('request');
 
-        return !starts_with($request->getRequestUri(), ['/admin', '/api']);
+        return ! starts_with($request->getRequestUri(), ['/admin', '/api']);
     }
 }
 
-if (!function_exists('translation_input')) {
+if (! function_exists('translation_input')) {
     function translation_input(Request $request, array $except = [])
     {
         $input = $request->except($except);
@@ -161,7 +161,7 @@ if (!function_exists('translation_input')) {
     }
 }
 
-if (!function_exists('latest_tweets')) {
+if (! function_exists('latest_tweets')) {
     function latest_tweets($count = 3)
     {
         $cache = app('cache');
@@ -187,12 +187,12 @@ if (!function_exists('latest_tweets')) {
     }
 }
 
-if (!function_exists('ago')) {
+if (! function_exists('ago')) {
     function ago($timestamp)
     {
         $carbon = app(Laravelrus\LocalizedCarbon\LocalizedCarbon::class);
 
-        if (is_numeric($timestamp) && (int)$timestamp == $timestamp) {
+        if (is_numeric($timestamp) && (int) $timestamp == $timestamp) {
             $date = $carbon->createFromTimestamp($timestamp);
         } else {
             $date = new \DateTime($timestamp);

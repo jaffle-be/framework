@@ -7,7 +7,6 @@ use Modules\Tags\Tag;
 
 class CreateNewTag extends Job
 {
-
     protected $locale;
 
     protected $name;

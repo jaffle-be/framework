@@ -12,7 +12,6 @@ use Pusher;
 
 class NotifyCategoryGlobalActivation extends Job
 {
-
     use GammaNotificationHelpers;
 
     /**

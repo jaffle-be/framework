@@ -7,7 +7,6 @@ use Modules\Tags\Commands\UntagSomething;
 
 class ProjectObserver
 {
-
     use DispatchesJobs;
 
     public function deleting(Project $project)

@@ -1,4 +1,6 @@
-<?php namespace Test\Shop\Gamma;
+<?php
+
+namespace Test\Shop\Gamma;
 
 use Illuminate\Support\Collection;
 use Modules\Account\Account;
@@ -8,7 +10,6 @@ use Mockery as m;
 
 class GammaSubscriptionManagerTest extends AdminTestCase
 {
-
     public function testGettingIdsForNonSpecifiedAccountWillReturnIdsForTheAccountThatTheRequestWasMadeFor()
     {
         $account = factory(Account::class)->create([]);
@@ -72,7 +73,6 @@ class GammaSubscriptionManagerTest extends AdminTestCase
         $this->assertSame($account->id, $response->get(1)->id);
     }
 
-
     public function testGettingSubscribedAccountsForSpecifiedAccount()
     {
         $account = factory(Account::class)->create([]);
@@ -95,7 +95,4 @@ class GammaSubscriptionManagerTest extends AdminTestCase
         $this->assertSame($base->id, $response->get(0)->id);
         $this->assertSame($account->id, $response->get(1)->id);
     }
-
-
-
 }

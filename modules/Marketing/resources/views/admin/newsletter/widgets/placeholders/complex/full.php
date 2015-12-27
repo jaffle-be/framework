@@ -4,11 +4,11 @@
 
         <div class="col-xs-12">
             <div>
-                <img src="<?= $img ?>" class="img-responsive">
+                <img src="<?php echo $img ?>" class="img-responsive">
             </div>
-            <h3><?= $title ?></h3>
+            <h3><?php echo $title ?></h3>
             <br>
-            <?= $text ?>
+            <?php echo $text ?>
         </div>
 
     </div>

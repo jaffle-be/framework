@@ -7,7 +7,6 @@ namespace Modules\Menu;
  */
 class MenuManager
 {
-
     /**
      * @var bool
      */
@@ -57,7 +56,7 @@ class MenuManager
     /**
      *
      */
-    public function register($menu, array $options = array())
+    public function register($menu, array $options = [])
     {
         $this->supports[] = $menu;
         $this->options[$menu] = $options;
@@ -79,7 +78,7 @@ class MenuManager
     public function get($menu)
     {
         //by the time the first menu is rendered, we should know all supported menu's for the current theme.
-        if (!$this->hasBeenLoaded) {
+        if (! $this->hasBeenLoaded) {
             $this->load();
         }
 

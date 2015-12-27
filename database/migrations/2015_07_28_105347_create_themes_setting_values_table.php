@@ -31,7 +31,7 @@ class CreateThemesSettingValuesTable extends Migration
             $table->timestamps();
         });
 
-        Schema::create('themes_setting_value_translations', function(Blueprint $table){
+        Schema::create('themes_setting_value_translations', function (Blueprint $table) {
             $table->increments('id');
             $table->string('locale', 5);
             $table->integer('value_id', false, true);
@@ -49,17 +49,14 @@ class CreateThemesSettingValuesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('themes_setting_value_translations', function(Blueprint $table)
-        {
+        Schema::drop('themes_setting_value_translations', function (Blueprint $table) {
             $table->dropForeign('translation_to_theme_setting_values');
         });
 
-        Schema::drop('themes_setting_values', function(Blueprint $table)
-        {
+        Schema::drop('themes_setting_values', function (Blueprint $table) {
             $table->dropForeign('theme_setting_values_to_keys');
             $table->dropForeign('theme_setting_values_to_accounts');
             $table->dropForeign('theme_setting_values_to_option');
         });
-
     }
 }

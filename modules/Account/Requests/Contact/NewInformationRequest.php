@@ -6,7 +6,6 @@ use App\Http\Requests\Request;
 
 class NewInformationRequest extends Request
 {
-
     public function rules()
     {
         return [

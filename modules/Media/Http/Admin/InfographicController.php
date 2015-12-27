@@ -13,7 +13,6 @@ use Modules\Theme\ThemeManager;
 
 class InfographicController extends AdminController
 {
-
     use MediaWidgetPreperations;
 
     protected $media;

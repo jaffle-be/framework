@@ -1,4 +1,6 @@
-<?php namespace Test\System\Scopes;
+<?php
+
+namespace Test\System\Scopes;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
@@ -13,12 +15,10 @@ class ModelAccountResourceScopeSql extends Model
 {
     use ModelAccountResource;
     protected $table = 'test';
-
 }
 
 class ModelAccountResourceScopeTest extends TestCase
 {
-
     public function testApplyingScopeWillNotWorkWhenNoValidAccount()
     {
         $manager = $this->managerWithoutAccount();
@@ -49,7 +49,7 @@ class ModelAccountResourceScopeTest extends TestCase
     {
         $query = new ModelAccountResourceScopeSql();
         $query = $query->newQuery()->toSql();
-        $this->assertSame("select * from `test` where `test`.`account_id` = ?", $query);
+        $this->assertSame('select * from `test` where `test`.`account_id` = ?', $query);
     }
 
     /**
@@ -76,5 +76,4 @@ class ModelAccountResourceScopeTest extends TestCase
 
         return $manager;
     }
-
 }

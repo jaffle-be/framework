@@ -5,7 +5,6 @@ use Illuminate\Database\Schema\Blueprint;
 
 class CreateContactSocialLinksTable extends Migration
 {
-
     /**
      * Run the migrations.
      *
@@ -45,5 +44,4 @@ class CreateContactSocialLinksTable extends Migration
             $table->dropForeign('contact_social_links_to_account');
         });
     }
-
 }

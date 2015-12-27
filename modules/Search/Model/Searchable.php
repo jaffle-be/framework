@@ -7,7 +7,6 @@ use Modules\Search\SearchServiceInterface;
 
 interface Searchable
 {
-
     /**
      * Set the client for searching.
      *
@@ -24,8 +23,6 @@ interface Searchable
 
     /**
      * Set the index for searching.
-
-
      */
     public function setSearchableIndex($index);
 

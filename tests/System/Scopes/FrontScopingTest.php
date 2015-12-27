@@ -1,4 +1,6 @@
-<?php namespace Test\System\Scopes;
+<?php
+
+namespace Test\System\Scopes;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
@@ -6,8 +8,8 @@ use Illuminate\Database\Eloquent\ScopeInterface;
 use Modules\System\Scopes\FrontScoping;
 use Test\TestCase;
 
-Class DummyFrontScoping{
-
+class DummyFrontScoping
+{
     public static $scopes = [];
 
     use FrontScoping;
@@ -16,11 +18,10 @@ Class DummyFrontScoping{
     {
         static::$scopes[get_class($class)] = true;
     }
-
 }
 
-class DummyFrontScopingScopeFront implements ScopeInterface{
-
+class DummyFrontScopingScopeFront implements ScopeInterface
+{
     public function apply(Builder $builder, Model $model)
     {
     }
@@ -28,12 +29,10 @@ class DummyFrontScopingScopeFront implements ScopeInterface{
     public function remove(Builder $builder, Model $model)
     {
     }
-
 }
 
 class FrontScopingTest extends TestCase
 {
-
     public function tearDown()
     {
         DummyFrontScoping::$scopes = [];
@@ -56,5 +55,4 @@ class FrontScopingTest extends TestCase
         $scope = DummyFrontScopingScopeFront::class;
         $this->assertArrayNotHasKey($scope, DummyFrontScoping::$scopes);
     }
-
 }

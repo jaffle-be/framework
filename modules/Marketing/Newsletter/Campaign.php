@@ -10,7 +10,6 @@ use Modules\System\Translatable\Translatable;
 
 class Campaign extends Model implements StoresMedia
 {
-
     protected $media = '{account}/newsletters';
 
     use StoringMedia;

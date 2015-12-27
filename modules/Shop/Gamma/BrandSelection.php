@@ -9,7 +9,6 @@ use Modules\System\Scopes\ModelAccountResource;
 
 class BrandSelection extends Model implements Pushable
 {
-
     use ModelAccountResource;
     use CanPush;
 

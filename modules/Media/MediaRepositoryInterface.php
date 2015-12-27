@@ -8,7 +8,6 @@ use Modules\Media\Video\Video;
 
 interface MediaRepositoryInterface
 {
-
     /**
      * @return StoresMedia
      */

@@ -5,7 +5,6 @@ use Modules\System\Seeder;
 
 class CategoryTableSeeder extends Seeder
 {
-
     /**
      * Run the database seeds.
      */

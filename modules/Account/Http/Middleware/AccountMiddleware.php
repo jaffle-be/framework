@@ -8,7 +8,6 @@ use Modules\Account\AccountManager;
 
 class AccountMiddleware
 {
-
     protected $manager;
 
     public function __construct(AccountManager $manager)
@@ -20,7 +19,7 @@ class AccountMiddleware
     {
         $account = $this->manager->boot($request);
 
-        if (!$account) {
+        if (! $account) {
             return abort(403, 'Invalid account provided');
         }
 

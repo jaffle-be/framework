@@ -9,7 +9,6 @@ use Modules\System\MySoftDeletes;
 
 class ProductCategorySelection extends Model implements Searchable
 {
-
     use MySoftDeletes;
     use SearchableTrait;
 

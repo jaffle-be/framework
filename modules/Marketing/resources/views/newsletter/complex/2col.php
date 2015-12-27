@@ -17,14 +17,14 @@
                                             <table align="Left" border="0" cellpadding="0" cellspacing="0" width="240" class="flexibleContainer">
                                                 <tr>
                                                     <td valign="top" class="imageContent">
-                                                        <img src="<?= asset($widget->present()->image_left) ?>" width="240" class="flexibleImage" style="max-width:240px;">
+                                                        <img src="<?php echo asset($widget->present()->image_left) ?>" width="240" class="flexibleImage" style="max-width:240px;">
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td valign="top" class="textContent">
-                                                        <h3><?= $widget->present()->title_left($locale) ?></h3>
+                                                        <h3><?php echo $widget->present()->title_left($locale) ?></h3>
                                                         <br>
-                                                        <?= $widget->present()->text_left($locale) ?>
+                                                        <?php echo $widget->present()->text_left($locale) ?>
                                                     </td>
                                                 </tr>
                                             </table>
@@ -35,14 +35,14 @@
                                             <table align="Right" border="0" cellpadding="0" cellspacing="0" width="240" class="flexibleContainer">
                                                 <tr>
                                                     <td valign="top" class="imageContentLast">
-                                                        <img src="<?= asset($widget->present()->image_right) ?>" width="240" class="flexibleImage" style="max-width:240px;">
+                                                        <img src="<?php echo asset($widget->present()->image_right) ?>" width="240" class="flexibleImage" style="max-width:240px;">
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td valign="top" class="textContent">
-                                                        <h3><?= $widget->present()->title_right($locale) ?></h3>
+                                                        <h3><?php echo $widget->present()->title_right($locale) ?></h3>
                                                         <br>
-                                                        <?= $widget->present()->text_right($locale) ?>
+                                                        <?php echo $widget->present()->text_right($locale) ?>
                                                     </td>
                                                 </tr>
                                             </table>

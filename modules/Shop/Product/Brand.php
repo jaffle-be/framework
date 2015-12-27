@@ -13,7 +13,6 @@ use Modules\System\Translatable\Translatable;
 
 class Brand extends Model implements Pushable, Searchable, StoresMedia
 {
-
     use Translatable;
     use CanPush;
     use SearchableTrait;
@@ -62,7 +61,7 @@ class Brand extends Model implements Pushable, Searchable, StoresMedia
         $data = parent::toArray();
 
         if (isset($data['selection'])) {
-            $data['activated'] = (bool)$data['selection'];
+            $data['activated'] = (bool) $data['selection'];
 
             unset($data['selection']);
         }

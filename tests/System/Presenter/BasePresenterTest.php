@@ -1,4 +1,6 @@
-<?php namespace Test\System\Presenter;
+<?php
+
+namespace Test\System\Presenter;
 
 use Modules\System\Presenter\BasePresenter;
 use Modules\System\Presenter\PresentableEntity;
@@ -6,7 +8,6 @@ use Test\TestCase;
 
 class DummyPresentableEntity implements PresentableEntity
 {
-
     public $name = 'my name';
 
     /**
@@ -16,22 +17,18 @@ class DummyPresentableEntity implements PresentableEntity
     {
         return new DummyPresenter($this);
     }
-
 }
 
 class DummyPresenter extends BasePresenter
 {
-
     public function fromDummy()
     {
         return 'from dummy';
     }
-
 }
 
 class BasePresenterTest extends TestCase
 {
-
     public function testPropertyGetsReturnedFromEntityWhenNoMethodPresentOnPresenter()
     {
         $presenter = $this->presenter();
@@ -55,5 +52,4 @@ class BasePresenterTest extends TestCase
 
         return $presenter;
     }
-
 }

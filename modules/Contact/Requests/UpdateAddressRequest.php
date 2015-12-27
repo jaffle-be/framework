@@ -6,7 +6,6 @@ use App\Http\Requests\Request;
 
 class UpdateAddressRequest extends Request
 {
-
     public function rules()
     {
         return [

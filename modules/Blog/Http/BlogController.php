@@ -8,7 +8,6 @@ use Modules\System\Http\FrontController;
 
 class BlogController extends FrontController
 {
-
     use BlogFrontControlling;
 
     public function index(Post $post, PostRepositoryInterface $posts)

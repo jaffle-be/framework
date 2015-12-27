@@ -1,4 +1,6 @@
-<?php namespace Test\System\Presenter;
+<?php
+
+namespace Test\System\Presenter;
 
 use Modules\System\Presenter\BasePresenter;
 use Modules\System\Presenter\PresentableEntity;
@@ -7,8 +9,8 @@ use Modules\System\Translatable\TranslationModel;
 use Test\TestCase;
 use Mockery as m;
 
-class DummyShortCodeFormatterModel extends TranslationModel implements PresentableEntity{
-
+class DummyShortCodeFormatterModel extends TranslationModel implements PresentableEntity
+{
     public $content = 'some content with #image# shortcode';
 
     public function isDirty($attributes = null)
@@ -22,12 +24,10 @@ class DummyShortCodeFormatterModel extends TranslationModel implements Presentab
     public function present()
     {
     }
-
 }
 
 class ShortCodeFormatterTest extends TestCase
 {
-
     public function testTheActualFormattingGetsTriggered()
     {
         $formatter = new ShortCodeFormatter();
@@ -48,5 +48,4 @@ class ShortCodeFormatterTest extends TestCase
         $formatter = new ShortCodeFormatter();
         $formatter->handle($mock);
     }
-
 }

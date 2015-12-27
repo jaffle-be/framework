@@ -11,7 +11,6 @@ use Predis\Client;
 
 class ThrottleManager implements Throttler
 {
-
     const BASE_CACHE_KEY = 'users:auth:throttlers:';
 
     /**
@@ -114,7 +113,7 @@ class ThrottleManager implements Throttler
      */
     protected function key($field)
     {
-        return static::BASE_CACHE_KEY . $field;
+        return static::BASE_CACHE_KEY.$field;
     }
 
     /**

@@ -9,7 +9,6 @@ use Modules\Account\AccountRepositoryInterface;
 
 class GammaSubscriptionManager
 {
-
     protected $accounts;
 
     protected $repo;

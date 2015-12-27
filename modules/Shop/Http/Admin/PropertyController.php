@@ -9,7 +9,6 @@ use Modules\System\Http\AdminController;
 
 class PropertyController extends AdminController
 {
-
     public function store(Property $properties, Request $request, PropertyGroup $groups)
     {
         $group = $request->get('group_id');
@@ -35,9 +34,9 @@ class PropertyController extends AdminController
             }
         }
 
-        return json_encode(array(
+        return json_encode([
             'status' => 'noke',
-        ));
+        ]);
     }
 
     public function sortProperties(Request $request, Property $properties)
@@ -57,10 +56,6 @@ class PropertyController extends AdminController
 
     /**
      * Move from one group to another.
-
-
-
-
      */
     public function moveProperty(Request $request, PropertyGroup $groups, Property $properties)
     {

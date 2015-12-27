@@ -5,7 +5,6 @@ use Illuminate\Database\Schema\Blueprint;
 
 class CreateProductGammaNotificationsTable extends Migration
 {
-
     /**
      * Run the migrations.
      *
@@ -43,5 +42,4 @@ class CreateProductGammaNotificationsTable extends Migration
             $table->dropForeign('gamma_notification_to_product');
         });
     }
-
 }

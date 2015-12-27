@@ -9,7 +9,6 @@ use Modules\System\Translatable\Translatable;
 
 class PropertyValue extends Model implements Searchable
 {
-
     use Translatable;
     use SearchableTrait;
 

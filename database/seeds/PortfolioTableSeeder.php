@@ -9,7 +9,6 @@ use Modules\Users\User;
 
 class PortfolioTableSeeder extends Seeder
 {
-
     public function __construct()
     {
         $this->model = new Project();
@@ -20,7 +19,6 @@ class PortfolioTableSeeder extends Seeder
     public function run($creating = 15)
     {
         foreach ([1, 2] as $accountid) {
-
             $account = Account::find($accountid);
             $clients = Client::all();
 
@@ -30,7 +28,6 @@ class PortfolioTableSeeder extends Seeder
             $tags = array_flip(Tag::lists('id')->toArray());
 
             for ($i = 0; $i < $creating; $i++) {
-
                 $project = Modules\Portfolio\Project::create([
                     'account_id' => $account->id,
                     'date'       => $this->nl->dateTimeBetween('-3 months', 'now'),
@@ -62,7 +59,7 @@ class PortfolioTableSeeder extends Seeder
                         'content'    => $this->de->text(1300),
                         'created_at' => $this->de->dateTimeBetween('-3 months', 'now'),
                         'updated_at' => $this->de->dateTimeBetween('-2 months', 'now'),
-                    ]
+                    ],
                 ]);
 
                 $this->addImages($project);
@@ -87,5 +84,4 @@ class PortfolioTableSeeder extends Seeder
             }
         }
     }
-
 }

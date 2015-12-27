@@ -6,7 +6,6 @@ use Illuminate\Support\Collection;
 
 class AggregationResult extends Collection
 {
-
     protected $document_count;
 
     public function __construct($items = [], $document_count)

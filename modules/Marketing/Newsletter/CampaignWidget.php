@@ -10,7 +10,6 @@ use Modules\System\Translatable\Translatable;
 
 class CampaignWidget extends Model implements PresentableEntity
 {
-
     use Translatable;
     use ModelAutoSort;
     use PresentableTrait;
@@ -50,7 +49,7 @@ class CampaignWidget extends Model implements PresentableEntity
         'resource_type',
         'resource_id',
         'other_resource_type',
-        'other_resource_id'
+        'other_resource_id',
     ];
 
     protected $translatedAttributes = ['title', 'text', 'title_left', 'text_left', 'title_right', 'text_right'];

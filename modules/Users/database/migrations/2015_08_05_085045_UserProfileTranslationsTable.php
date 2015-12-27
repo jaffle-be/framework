@@ -5,7 +5,6 @@ use Illuminate\Database\Schema\Blueprint;
 
 class UserProfileTranslationsTable extends Migration
 {
-
     /**
      * Run the migrations.
      */

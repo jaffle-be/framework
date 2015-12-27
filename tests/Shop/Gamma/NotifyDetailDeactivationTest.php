@@ -1,4 +1,6 @@
-<?php namespace Test\Shop\Gamma;
+<?php
+
+namespace Test\Shop\Gamma;
 
 use Modules\Account\Account;
 use Modules\Shop\Gamma\GammaNotification;
@@ -9,7 +11,6 @@ use Test\AdminTestCase;
 
 class NotifyDetailDeactivationTest extends AdminTestCase
 {
-
     /**
      * @expectedException \Symfony\Component\HttpKernel\Exception\HttpException
      * @expectedExceptionMessage this gamma detail is still being processed
@@ -25,12 +26,11 @@ class NotifyDetailDeactivationTest extends AdminTestCase
             'brand_id' => $brand->id,
             'category_id' => $category->id,
             'account_id' => $account->id,
-            'processing' => true
+            'processing' => true,
         ]);
 
         $this->execute($brand, $category, $account);
     }
-
 
     public function testItAddsNotificationWhenNotCancelledTheInverse()
     {
@@ -44,7 +44,7 @@ class NotifyDetailDeactivationTest extends AdminTestCase
             'brand_id'    => $brand->id,
             'category_id' => $category->id,
             'account_id'  => $account->id,
-            'type'        => 'deactivate'
+            'type'        => 'deactivate',
         ]);
     }
 
@@ -67,7 +67,7 @@ class NotifyDetailDeactivationTest extends AdminTestCase
             'brand_id'    => $brand->id,
             'category_id' => $category->id,
             'account_id'  => $account->id,
-            'type'        => 'deactivate'
+            'type'        => 'deactivate',
         ]);
     }
 
@@ -81,5 +81,4 @@ class NotifyDetailDeactivationTest extends AdminTestCase
         $job = new NotifyDetailDeactivation($brand, $category, $account);
         $job->handle(new GammaNotification(), app('Pusher'));
     }
-
 }

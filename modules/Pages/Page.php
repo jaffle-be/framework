@@ -19,7 +19,6 @@ use Modules\System\Translatable\Translatable;
 
 class Page extends Model implements StoresMedia, SeoEntity, PresentableEntity, MenuHookable
 {
-
     use PresentableTrait;
     use Translatable;
     use StoringMedia;

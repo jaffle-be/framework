@@ -7,7 +7,6 @@ use Modules\Tags\Tag;
 
 class UpdateTag extends Job
 {
-
     /**
      * @var Tag
      */

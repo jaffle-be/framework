@@ -15,7 +15,6 @@ use Modules\System\Translatable\TranslationModel;
 
 class PostTranslation extends TranslationModel implements Searchable, SluggableInterface, OwnsSlug, PresentableEntity, PresentableCache
 {
-
     use SearchableTrait, SiteSluggable, PresentableTrait, FrontScoping;
 
     protected $table = 'post_translations';

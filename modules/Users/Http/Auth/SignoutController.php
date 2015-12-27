@@ -8,7 +8,6 @@ use Modules\Users\Auth\Commands\Signout;
 
 class SignoutController extends FrontController
 {
-
     public function index()
     {
         $command = new Signout();

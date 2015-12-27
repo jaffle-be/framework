@@ -4,7 +4,6 @@ use Modules\Theme\ThemeSettingMigration;
 
 class InstallUnifyThemeBlog extends ThemeSettingMigration
 {
-
     protected $name = 'Unify';
 
     protected $version = '1.0';
@@ -13,8 +12,8 @@ class InstallUnifyThemeBlog extends ThemeSettingMigration
         'blogOverview'     => 'masonry',
         'blogDetail'       => 'full-width/large-detail',
         'blogMainTitleOverview' => [
-            'en' => "What happens at digiredo, stays at digiredo",
-            'nl' => "Wat er bij ons gebeurt"
+            'en' => 'What happens at digiredo, stays at digiredo',
+            'nl' => 'Wat er bij ons gebeurt',
         ],
         'blogSidebarRecentPostsTitle' => [
             'en' => 'Recent posts',
@@ -27,7 +26,7 @@ class InstallUnifyThemeBlog extends ThemeSettingMigration
         'blogSidebarTagsTitle' => [
             'en' => 'Take a peek',
             'nl' => 'Neem een kijkje',
-        ]
+        ],
     ];
 
     protected $settings = [
@@ -37,19 +36,19 @@ class InstallUnifyThemeBlog extends ThemeSettingMigration
             'type' => 'select',
             'nl'  => [
                 'name'        => 'blog overview',
-                'explanation' => 'blog overview'
+                'explanation' => 'blog overview',
             ],
             'fr'  => [
                 'name'        => 'blog overview',
-                'explanation' => 'blog overview'
+                'explanation' => 'blog overview',
             ],
             'de'  => [
                 'name'        => 'blog overview',
-                'explanation' => 'blog overview'
+                'explanation' => 'blog overview',
             ],
             'en'  => [
                 'name'        => 'blog overview',
-                'explanation' => 'blog overview'
+                'explanation' => 'blog overview',
             ],
         ],
 
@@ -58,19 +57,19 @@ class InstallUnifyThemeBlog extends ThemeSettingMigration
             'type' => 'select',
             'nl'  => [
                 'name'        => 'blog detail',
-                'explanation' => 'blog detail'
+                'explanation' => 'blog detail',
             ],
             'fr'  => [
                 'name'        => 'blog detail',
-                'explanation' => 'blog detail'
+                'explanation' => 'blog detail',
             ],
             'de'  => [
                 'name'        => 'blog detail',
-                'explanation' => 'blog detail'
+                'explanation' => 'blog detail',
             ],
             'en'  => [
                 'name'        => 'blog detail',
-                'explanation' => 'blog detail'
+                'explanation' => 'blog detail',
             ],
         ],
 
@@ -79,19 +78,19 @@ class InstallUnifyThemeBlog extends ThemeSettingMigration
             'type' => 'string',
             'nl'   => [
                 'name'        => 'blog main title overview',
-                'explanation' => 'blog main title overview'
+                'explanation' => 'blog main title overview',
             ],
             'fr'   => [
                 'name'        => 'blog main title overview',
-                'explanation' => 'blog main title overview'
+                'explanation' => 'blog main title overview',
             ],
             'de'   => [
                 'name'        => 'blog main title overview',
-                'explanation' => 'blog main title overview'
+                'explanation' => 'blog main title overview',
             ],
             'en'   => [
                 'name'        => 'blog main title overview',
-                'explanation' => 'blog main title overview'
+                'explanation' => 'blog main title overview',
             ],
         ],
 
@@ -100,19 +99,19 @@ class InstallUnifyThemeBlog extends ThemeSettingMigration
             'type' => 'string',
             'nl'   => [
                 'name'        => 'recent posts sidebar title',
-                'explanation' => 'recent posts sidebar title'
+                'explanation' => 'recent posts sidebar title',
             ],
             'fr'   => [
                 'name'        => 'recent posts sidebar title',
-                'explanation' => 'recent posts sidebar title'
+                'explanation' => 'recent posts sidebar title',
             ],
             'de'   => [
                 'name'        => 'recent posts sidebar title',
-                'explanation' => 'recent posts sidebar title'
+                'explanation' => 'recent posts sidebar title',
             ],
             'en'   => [
                 'name'        => 'recent posts sidebar title',
-                'explanation' => 'recent posts sidebar title'
+                'explanation' => 'recent posts sidebar title',
             ],
         ],
 
@@ -121,19 +120,19 @@ class InstallUnifyThemeBlog extends ThemeSettingMigration
             'type' => 'string',
             'nl'   => [
                 'name'        => 'blog social links sidebar title',
-                'explanation' => 'blog social links sidebar title'
+                'explanation' => 'blog social links sidebar title',
             ],
             'fr'   => [
                 'name'        => 'blog social links sidebar title',
-                'explanation' => 'blog social links sidebar title'
+                'explanation' => 'blog social links sidebar title',
             ],
             'de'   => [
                 'name'        => 'blog social links sidebar title',
-                'explanation' => 'blog social links sidebar title'
+                'explanation' => 'blog social links sidebar title',
             ],
             'en'   => [
                 'name'        => 'blog social links sidebar title',
-                'explanation' => 'blog social links sidebar title'
+                'explanation' => 'blog social links sidebar title',
             ],
         ],
 
@@ -142,19 +141,19 @@ class InstallUnifyThemeBlog extends ThemeSettingMigration
             'type' => 'string',
             'nl'   => [
                 'name'        => 'blog tags sidebar title',
-                'explanation' => 'blog tags sidebar title'
+                'explanation' => 'blog tags sidebar title',
             ],
             'fr'   => [
                 'name'        => 'blog tags sidebar title',
-                'explanation' => 'blog tags sidebar title'
+                'explanation' => 'blog tags sidebar title',
             ],
             'de'   => [
                 'name'        => 'blog tags sidebar title',
-                'explanation' => 'blog tags sidebar title'
+                'explanation' => 'blog tags sidebar title',
             ],
             'en'   => [
                 'name'        => 'blog tags sidebar title',
-                'explanation' => 'blog tags sidebar title'
+                'explanation' => 'blog tags sidebar title',
             ],
         ],
 
@@ -191,5 +190,4 @@ class InstallUnifyThemeBlog extends ThemeSettingMigration
             ['value' => 'sidebar-right/large-detail-simple'],
         ],
     ];
-
 }

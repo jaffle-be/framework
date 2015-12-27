@@ -9,7 +9,6 @@ use Modules\System\Presenter\ShortCodeCompiler;
 
 class ProjectFrontPresenter extends BasePresenter
 {
-
     use ShortCodeCompiler;
     use ContentPresenterTrait;
     use MediaShortcodes;

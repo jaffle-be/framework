@@ -8,7 +8,6 @@ use Modules\Search\SearchServiceInterface;
 
 class SearchSpeed extends Command
 {
-
     protected $signature = 'search:speed {speed?}';
 
     protected $description = 'set the refresh_interval for elasticsearch';

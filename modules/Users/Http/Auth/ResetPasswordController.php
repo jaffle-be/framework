@@ -11,7 +11,6 @@ use Modules\Users\Auth\Tokens\TokenRepository;
 
 class ResetPasswordController extends FrontController
 {
-
     /**
      * Show the form for resetting the password.
      *

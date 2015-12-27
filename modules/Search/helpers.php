@@ -1,6 +1,6 @@
 <?php
 
-if (!function_exists('suggest_completion')) {
+if (! function_exists('suggest_completion')) {
     /**
      * @return array
      */
@@ -12,11 +12,11 @@ if (!function_exists('suggest_completion')) {
                 'not_important_name' => [
                     'text' => $query,
                     'completion' => [
-                        'field' => $type . '_suggest_' . $locale,
+                        'field' => $type.'_suggest_'.$locale,
                         'fuzzy' => [
                             //for every 5 chars, we allow a typo if the query is longer then 3,
                             //if not longer, no typos allowed
-                            'fuzziness' => strlen($query) > 3 ? (int)floor(strlen($query) / 5) + 1 : 0,
+                            'fuzziness' => strlen($query) > 3 ? (int) floor(strlen($query) / 5) + 1 : 0,
                             'max_expansions' => 10,
                             'prefix_length' => 0,
                         ],

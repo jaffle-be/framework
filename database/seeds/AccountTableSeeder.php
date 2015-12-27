@@ -9,7 +9,6 @@ use Modules\System\Seeder;
 
 class AccountTableSeeder extends Seeder
 {
-
     public function run()
     {
         $account = $this->account('digiredo');
@@ -75,7 +74,7 @@ class AccountTableSeeder extends Seeder
     {
         for ($i = 0; $i < 5; $i++) {
             $account->membershipInvitations()->create([
-                'email' => $this->faker->email
+                'email' => $this->faker->email,
             ]);
         }
     }
@@ -90,9 +89,9 @@ class AccountTableSeeder extends Seeder
                 'alias'  => $name,
                 'domain' => "$name.be",
             ]);
-        } else if (env('APP_ENV') == 'develop') {
+        } elseif (env('APP_ENV') == 'develop') {
             $account = Account::create([
-                'alias'  => '' . $name . '',
+                'alias'  => ''.$name.'',
                 'domain' => "dev.$name.be",
             ]);
         } else {
@@ -121,7 +120,7 @@ class AccountTableSeeder extends Seeder
                 'some random hours',
                 'lol',
                 'lol',
-                'lol'
+                'lol',
             ]),
         ]);
 
@@ -142,5 +141,4 @@ class AccountTableSeeder extends Seeder
 
         $info->address()->save($address);
     }
-
 }

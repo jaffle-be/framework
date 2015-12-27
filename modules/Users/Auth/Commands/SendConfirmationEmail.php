@@ -11,7 +11,6 @@ use Modules\Users\User;
 
 class SendConfirmationEmail extends EmailJob
 {
-
     /**
      * @var User
      */

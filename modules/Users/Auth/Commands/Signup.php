@@ -12,7 +12,6 @@ use Modules\Users\User;
 
 class Signup extends Job
 {
-
     protected $email;
 
     protected $password;
@@ -36,7 +35,7 @@ class Signup extends Job
 
         //we already have a user with this email.
         try {
-            if (!$this->user) {
+            if (! $this->user) {
                 $this->user = $user;
                 $this->user->email = $this->email;
                 $this->user->password = $hash->make($this->password);

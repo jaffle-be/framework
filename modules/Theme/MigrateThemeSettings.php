@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Collection;
 
 trait MigrateThemeSettings
 {
-
     /**
      * @var Collection
      */
@@ -24,7 +23,7 @@ trait MigrateThemeSettings
 
             $setting = $theme->settings()->create($setting);
 
-            $method = 'settingsHandle' . ucfirst($type->name);
+            $method = 'settingsHandle'.ucfirst($type->name);
 
             if (method_exists($this, $method)) {
                 call_user_func([$this, $method], $setting);
@@ -34,11 +33,11 @@ trait MigrateThemeSettings
 
     protected function settingGetType(array $setting)
     {
-        if (!static::$types) {
+        if (! static::$types) {
             static::$types = ThemeSettingType::all()->keyBy('name');
         }
 
-        if (!static::$types->has($setting['type'])) {
+        if (! static::$types->has($setting['type'])) {
             throw new Exception('Invalid setting type provided');
         }
 

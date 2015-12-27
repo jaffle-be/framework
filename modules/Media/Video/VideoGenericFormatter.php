@@ -6,7 +6,6 @@ use Illuminate\Http\JsonResponse;
 
 trait VideoGenericFormatter
 {
-
     protected function vimeoReponse($response)
     {
         $me = $this;
@@ -23,7 +22,7 @@ trait VideoGenericFormatter
 
     protected function vimeoVideoResponse($video)
     {
-        if (!is_object($video)) {
+        if (! is_object($video)) {
             $video = json_decode(json_encode($video));
         }
 

@@ -1,11 +1,13 @@
-<?php namespace Test\System\Scopes;
+<?php
+
+namespace Test\System\Scopes;
 
 use Modules\System\Scopes\ModelAutoSort;
 use Modules\System\Scopes\ModelAutoSortScope;
 use Test\TestCase;
 
-Class DummyModelAutoSort{
-
+class DummyModelAutoSort
+{
     public static $scopes = [];
 
     use ModelAutoSort;
@@ -14,12 +16,10 @@ Class DummyModelAutoSort{
     {
         static::$scopes[get_class($class)] = true;
     }
-
 }
 
 class ModelAutoSortTest extends TestCase
 {
-
     public function testBootingScope()
     {
         DummyModelAutoSort::bootModelAutoSort();
@@ -28,5 +28,4 @@ class ModelAutoSortTest extends TestCase
         $this->assertArrayHasKey($scope, DummyModelAutoSort::$scopes);
         $this->assertTrue(DummyModelAutoSort::$scopes[$scope]);
     }
-
 }

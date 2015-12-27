@@ -9,7 +9,6 @@ use Modules\Theme\ThemeMailer;
 
 class SendInvitationEmail extends EmailJob
 {
-
     protected $invitation;
 
     public function __construct(MembershipInvitation $invitation)

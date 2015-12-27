@@ -1,42 +1,38 @@
-<?php namespace Test\System\Pushable;
+<?php
+
+namespace Test\System\Pushable;
 
 use Modules\Shop\Gamma\BrandSelection;
 use Modules\System\Pushable\CanPush;
 use Modules\System\Scopes\ModelAccountResource;
 use Test\TestCase;
 
-
-class DummyCanPush{
-
+class DummyCanPush
+{
     use CanPush;
 
     public function toArray()
     {
         return ['some' => 'data'];
     }
-
 }
 
-class DummyCanPushWithDefinedPushableProperties{
-
+class DummyCanPushWithDefinedPushableProperties
+{
     use CanPush;
 
     protected $pushableChannel = 'defined channel';
 
     protected $pushableEventName = 'defined event name';
-
 }
 
-class DummyCanPushAccountResource {
-
+class DummyCanPushAccountResource
+{
     use CanPush, ModelAccountResource;
-
 }
-
 
 class CanPushTest extends TestCase
 {
-
     public function testGettingPushableChannelWhenChannelIsDefined()
     {
         $instance = new DummyCanPushWithDefinedPushableProperties();
@@ -75,5 +71,4 @@ class CanPushTest extends TestCase
         $instance = new DummyCanPush();
         $this->assertSame(['some' => 'data'], $instance->getPushableData());
     }
-
 }

@@ -8,7 +8,6 @@ use Modules\System\Sluggable\Sluggable;
 
 class Uri extends Model
 {
-
     use Sluggable;
     use ModelLocaleSpecificResource;
 

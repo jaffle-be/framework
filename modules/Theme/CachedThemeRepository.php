@@ -6,7 +6,6 @@ use Illuminate\Contracts\Cache\Repository;
 
 class CachedThemeRepository implements ThemeRepositoryInterface
 {
-
     protected $theme;
 
     /**

@@ -6,7 +6,6 @@ use Illuminate\Contracts\Auth\Guard;
 
 class PageObserver
 {
-
     /**
      * @var Guard
      */
@@ -22,7 +21,7 @@ class PageObserver
 
     public function creating(Page $post)
     {
-        if (!$post->user_id) {
+        if (! $post->user_id) {
             $post->user()->associate($this->auth->user());
         }
     }

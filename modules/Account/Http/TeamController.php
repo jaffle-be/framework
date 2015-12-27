@@ -10,7 +10,6 @@ use Modules\Users\User;
 
 class TeamController extends FrontController
 {
-
     public function index(AccountManager $accountManager, Team $team)
     {
         $account = $accountManager->account();
@@ -44,7 +43,7 @@ class TeamController extends FrontController
         $relations = ['member.socialLinks', 'member.skills', 'member.skills.translations'];
 
         array_walk($relations, function (&$value) use ($prefix) {
-            $value = $prefix . $value;
+            $value = $prefix.$value;
         });
 
         return $relations;

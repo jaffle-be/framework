@@ -8,7 +8,6 @@ use Modules\System\Http\AdminController;
 
 class PropertyGroupController extends AdminController
 {
-
     public function store(Request $request)
     {
         $group = new PropertyGroup(translation_input($request));
@@ -27,15 +26,15 @@ class PropertyGroupController extends AdminController
     {
         if ($groups->properties()->count() == 0) {
             if ($groups->delete()) {
-                return json_encode(array(
+                return json_encode([
                     'status' => 'oke',
-                ));
+                ]);
             }
         }
 
-        return json_encode(array(
+        return json_encode([
             'status' => 'noke',
-        ));
+        ]);
     }
 
     public function sortGroups(Request $request, PropertyGroup $groups)

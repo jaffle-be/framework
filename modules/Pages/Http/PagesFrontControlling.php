@@ -7,7 +7,6 @@ use Modules\Pages\PageTranslation;
 
 trait PagesFrontControlling
 {
-
     public function renderPageDetail(PageTranslation $page, PageRepositoryInterface $pages)
     {
         $page = $page->page;

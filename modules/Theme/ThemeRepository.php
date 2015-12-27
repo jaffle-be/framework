@@ -6,7 +6,6 @@ use Modules\Account\AccountManager;
 
 class ThemeRepository implements ThemeRepositoryInterface
 {
-
     protected $theme;
 
     protected $selector;
@@ -29,7 +28,7 @@ class ThemeRepository implements ThemeRepositoryInterface
         $selected = $this->selection();
 
         //we default to the unify theme
-        if (!$selected) {
+        if (! $selected) {
             $selected = $this->setupDefaultTheme();
         }
 
@@ -56,7 +55,7 @@ class ThemeRepository implements ThemeRepositoryInterface
     {
         $themes = $this->supported();
 
-        if (!$themes->count()) {
+        if (! $themes->count()) {
             return false;
         }
 
@@ -66,7 +65,7 @@ class ThemeRepository implements ThemeRepositoryInterface
             return $theme->name == $default;
         });
 
-        if (!$default) {
+        if (! $default) {
             return false;
         }
 
@@ -212,7 +211,7 @@ class ThemeRepository implements ThemeRepositoryInterface
     {
         $value = $setting->value;
 
-        if (!$value) {
+        if (! $value) {
             $input = array_merge(['account_id' => $this->account->account()->id, 'selection_id' => $this->selection()->id], $input);
 
             return $setting->value()->create($input);
@@ -226,7 +225,7 @@ class ThemeRepository implements ThemeRepositoryInterface
     public function updateNumeric($setting, $value)
     {
         //if no original
-        if (!$setting->value) {
+        if (! $setting->value) {
             $input = array_merge(['value' => $value], ['account_id' => $this->account->account()->id, 'selection_id' => $this->selection()->id]);
 
             return $setting->value()->create($input);

@@ -1,4 +1,6 @@
-<?php namespace Test\Shop\Gamma;
+<?php
+
+namespace Test\Shop\Gamma;
 
 use Illuminate\Bus\Dispatcher;
 use Mockery as m;
@@ -15,7 +17,6 @@ use Test\TestCase;
 
 class BatchGammaActivationTest extends TestCase
 {
-
     public function testActivationWillActivateSystemProducts()
     {
         $system = Account::where('alias', 'digiredo')->first();
@@ -39,8 +40,7 @@ class BatchGammaActivationTest extends TestCase
 
         $this->needsActivationCommandsDispatched();
 
-        app(AccountManager::class)->forced($account, function() use ($account, $brand, $category)
-        {
+        app(AccountManager::class)->forced($account, function () use ($account, $brand, $category) {
             $this->products($brand, $account, $category);
 
             $catalog = app(CatalogRepositoryInterface::class);
@@ -80,7 +80,7 @@ class BatchGammaActivationTest extends TestCase
         $gamma->shouldReceive('newInstance')->with([
             'account_id'  => $account->id,
             'brand_id'    => $brand->id,
-            'category_id' => $category->id
+            'category_id' => $category->id,
         ])->andReturn($gammaInstance);
 
         $gammaInstance->shouldReceive('save');
@@ -97,7 +97,7 @@ class BatchGammaActivationTest extends TestCase
         $brand = factory(Brand::class)->create();
         $category = factory(Category::class)->create();
 
-        return array($account, $brand, $category);
+        return [$account, $brand, $category];
     }
 
     /**
@@ -135,5 +135,4 @@ class BatchGammaActivationTest extends TestCase
         }));
         $this->app[Dispatcher::class] = $bus;
     }
-
 }

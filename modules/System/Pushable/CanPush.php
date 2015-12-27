@@ -6,7 +6,6 @@ use Modules\System\Scopes\ModelAccountResource;
 
 trait CanPush
 {
-
     public function getPushableChannel()
     {
         if (property_exists(get_class($this), 'pushableChannel')) {

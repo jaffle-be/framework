@@ -137,7 +137,7 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
 
-        /**
+        /*
          * Depending Service Providers
          */
         Fideloper\Proxy\TrustedProxyServiceProvider::class,
@@ -231,7 +231,6 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View'      => Illuminate\Support\Facades\View::class,
 
-
         //Application aliases
         'Theme' => 'Modules\Theme\Facade\Theme',
         'Menu' => 'Modules\Menu\Facade\Menu',
@@ -239,7 +238,7 @@ return [
         'Breadcrumbs' => 'DaveJamesMiller\Breadcrumbs\Facade',
 //        'Newrelic' => 'Intouch\LaravelNewrelic\Facades\Newrelic',
         'Captcha' => Mews\Captcha\Facades\Captcha::class,
-        'Markdown' => 'GrahamCampbell\Markdown\Facades\Markdown'
+        'Markdown' => 'GrahamCampbell\Markdown\Facades\Markdown',
 
     ],
 

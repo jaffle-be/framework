@@ -6,7 +6,6 @@ use Modules\Users\User;
 
 class ProfileSeeder extends Seeder
 {
-
     public function run()
     {
         $this->profileInfo();
@@ -34,7 +33,7 @@ class ProfileSeeder extends Seeder
                 'de' => [
                     'name'        => $this->nl->sentence(rand(1, 2), false),
                     'description' => $this->nl->paragraph(5),
-                ]
+                ],
 
             ];
 
@@ -79,5 +78,4 @@ class ProfileSeeder extends Seeder
             $user->save();
         }
     }
-
 }

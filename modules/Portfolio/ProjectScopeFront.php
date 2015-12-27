@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Scope;
 
 class ProjectScopeFront implements Scope
 {
-
     public function apply(Builder $builder, Model $model)
     {
         $builder->join('portfolio_project_translations', function ($join) {

@@ -7,7 +7,6 @@ use Modules\System\Scopes\ModelAccountResource;
 
 class ActivePromotion extends Model
 {
-
     use ModelAccountResource;
 
     protected $table = 'product_promotions_active';

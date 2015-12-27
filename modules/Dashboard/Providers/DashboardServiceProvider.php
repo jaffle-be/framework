@@ -6,7 +6,6 @@ use Modules\System\ServiceProvider;
 
 class DashboardServiceProvider extends ServiceProvider
 {
-
     protected $namespace = 'dashboard';
 
     /**

@@ -7,7 +7,6 @@ use Illuminate\Mail\Mailer;
 
 class ThemeMailer implements MailContract
 {
-
     /**
      * @var Theme
      */
@@ -73,7 +72,7 @@ class ThemeMailer implements MailContract
 
     protected function validateData($data)
     {
-        if (!isset($data['email_from'], $data['email_from_name'], $data['email_to'], $data['root_url'])) {
+        if (! isset($data['email_from'], $data['email_from_name'], $data['email_to'], $data['root_url'])) {
             throw new \Exception('need all valid email fields in the data array');
         }
     }
@@ -119,7 +118,7 @@ class ThemeMailer implements MailContract
 
             $callback($message);
 
-            if (!$message->from) {
+            if (! $message->from) {
                 throw new \Exception('need to set subject line');
             }
         };

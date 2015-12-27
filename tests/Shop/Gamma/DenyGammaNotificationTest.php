@@ -1,4 +1,6 @@
-<?php namespace Test\Shop\Gamma;
+<?php
+
+namespace Test\Shop\Gamma;
 
 use Mockery as m;
 use Modules\Account\Account;
@@ -14,7 +16,6 @@ use Test\AdminTestCase;
 
 class DenyGammaNotificationTest extends AdminTestCase
 {
-
     public function testDenyingBatchActivation()
     {
         list($account_id, $brand_id, $category_id, $notification) = $this->startData(false, 'activate');
@@ -31,11 +32,11 @@ class DenyGammaNotificationTest extends AdminTestCase
         //since it has a foreign key constraint to the product_gamma table
         //and we now already know it's empty
         $this->notSeeInDatabase('product_gamma_selections', [
-            'account_id' => $account_id
+            'account_id' => $account_id,
         ]);
 
         $this->notSeeInDatabase('product_gamma_notifications', [
-            'id' => $notification->id
+            'id' => $notification->id,
         ]);
     }
 
@@ -65,11 +66,11 @@ class DenyGammaNotificationTest extends AdminTestCase
         //since it has a foreign key constraint to the product_gamma table
         //and we now already know it's empty
         $this->notSeeInDatabase('product_gamma_selections', [
-            'account_id' => $account_id
+            'account_id' => $account_id,
         ]);
 
         $this->notSeeInDatabase('product_gamma_notifications', [
-            'id' => $notification->id
+            'id' => $notification->id,
         ]);
     }
 
@@ -102,8 +103,8 @@ class DenyGammaNotificationTest extends AdminTestCase
 
         $products = factory(Product::class)->times(2)->create([
             'brand_id' => $brand->id,
-            'account_id' => $account->id
-        ])->each(function($product) use ($category){
+            'account_id' => $account->id,
+        ])->each(function ($product) use ($category) {
             $product->categories()->attach($category);
         });
 
@@ -143,11 +144,10 @@ class DenyGammaNotificationTest extends AdminTestCase
         $this->database(new GammaSelection())->insert([
             'account_id'  => $account_id,
             'brand_id'    => $brand_id,
-            'category_id' => $category_id
+            'category_id' => $category_id,
         ]);
 
         foreach ($products as $product) {
-
             $id = $this->database(new ProductSelection())->insertGetId([
                 'account_id' => $account_id,
                 'brand_id'   => $brand_id,
@@ -156,11 +156,11 @@ class DenyGammaNotificationTest extends AdminTestCase
 
             $this->database(new ProductCategorySelection())->insert([
                 'selection_id' => $id,
-                'category_id'  => $category_id
+                'category_id'  => $category_id,
             ]);
         }
 
-        return array($account_id, $brand_id, $category_id, $notification, $products);
+        return [$account_id, $brand_id, $category_id, $notification, $products];
     }
 
     /**
@@ -177,7 +177,7 @@ class DenyGammaNotificationTest extends AdminTestCase
             ->where([
                 'account_id'  => $account_id,
                 'brand_id'    => $brand_id,
-                'category_id' => $category_id
+                'category_id' => $category_id,
             ])->count();
 
         $this->assertEquals($products->count(), $recordcount);
@@ -189,8 +189,7 @@ class DenyGammaNotificationTest extends AdminTestCase
         ]);
 
         $this->notSeeInDatabase('product_gamma_notifications', [
-            'id' => $notification->id
+            'id' => $notification->id,
         ]);
     }
-
 }

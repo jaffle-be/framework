@@ -9,7 +9,6 @@ use Modules\System\Translatable\Translatable;
 
 class ModuleRoute extends Model
 {
-
     use Translatable;
 
     protected $table = 'module_routes';

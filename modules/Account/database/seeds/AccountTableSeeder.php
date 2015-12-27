@@ -9,7 +9,6 @@ use Modules\System\Seeder;
 
 class AccountTableSeeder extends Seeder
 {
-
     public function run()
     {
         $account = $this->account('digiredo');
@@ -92,7 +91,7 @@ class AccountTableSeeder extends Seeder
             ]);
         } elseif (env('APP_ENV') == 'develop') {
             $account = Account::create([
-                'alias' => '' . $name . '',
+                'alias' => ''.$name.'',
                 'domain' => "dev.$name.be",
             ]);
         } else {

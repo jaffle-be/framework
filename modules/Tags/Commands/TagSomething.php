@@ -7,7 +7,6 @@ use Modules\Tags\Tag;
 
 class TagSomething extends Job
 {
-
     protected $owner;
 
     protected $tag;

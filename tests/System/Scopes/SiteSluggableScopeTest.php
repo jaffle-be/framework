@@ -1,4 +1,6 @@
-<?php namespace Test\System\Scopes;
+<?php
+
+namespace Test\System\Scopes;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
@@ -8,8 +10,8 @@ use Modules\System\Sluggable\SiteSluggable;
 use Test\TestCase;
 use Mockery as m;
 
-class SqlDummySiteSluggableScope extends Model{
-
+class SqlDummySiteSluggableScope extends Model
+{
     use SiteSluggable;
 
     public function getAccount()
@@ -26,19 +28,17 @@ class SqlDummySiteSluggableScope extends Model{
     {
         return 'keyname';
     }
-
 }
 
 class SiteSluggableScopeTest extends TestCase
 {
-
     public function testItJoinsWithTheUriTable()
     {
         $scope = new SiteSluggableScope();
 
         $builder = m::mock(Builder::class);
 
-        $builder->shouldReceive('join')->once()->with('uris', m::on(function($argument){
+        $builder->shouldReceive('join')->once()->with('uris', m::on(function ($argument) {
             return $argument instanceof \Closure;
         }))->andReturnSelf();
 
@@ -58,5 +58,4 @@ class SiteSluggableScopeTest extends TestCase
         $expected = 'select `tablename`.*, `uris`.`uri` from `tablename` inner join `uris` on `uris`.`owner_type` = ? and `uris`.`owner_id` = `tablename`.`keyname`';
         $this->assertSame($expected, $query);
     }
-
 }

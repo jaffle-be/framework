@@ -7,7 +7,6 @@ use Modules\Pages\Page;
 
 class UpdatePage extends Job
 {
-
     /**
      * @var Page
      */

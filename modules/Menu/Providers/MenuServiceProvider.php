@@ -7,7 +7,6 @@ use Modules\System\ServiceProvider;
 
 class MenuServiceProvider extends ServiceProvider
 {
-
     protected $namespace = 'menu';
 
     public function register()

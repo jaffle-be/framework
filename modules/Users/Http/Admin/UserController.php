@@ -10,7 +10,6 @@ use Modules\Users\Jobs\CheckGravatarImage;
 
 class UserController extends AdminController
 {
-
     use MediaWidgetPreperations;
 
     /**
@@ -49,13 +48,13 @@ class UserController extends AdminController
         $user->fill($data);
 
         if ($user->save()) {
-            return json_encode(array(
+            return json_encode([
                 'status' => 'oke',
-            ));
+            ]);
         }
 
-        return json_encode(array(
+        return json_encode([
             'status' => 'noke',
-        ));
+        ]);
     }
 }

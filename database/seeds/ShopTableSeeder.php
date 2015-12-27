@@ -18,7 +18,6 @@ use Modules\System\Seeder;
 
 class ShopTableSeeder extends Seeder
 {
-
     public function __construct()
     {
         $this->model = new Product();
@@ -48,7 +47,6 @@ class ShopTableSeeder extends Seeder
 
         foreach ($accounts as $account) {
             for ($i = 0; $i < $amount; $i++) {
-
                 $product = factory(Product::class)->create([
                     'brand_id'   => $brands->random(1)->id,
                     'account_id' => $account->id,
@@ -81,7 +79,6 @@ class ShopTableSeeder extends Seeder
         $counter = 0;
 
         while ($counter < $count) {
-
             $product->priceHistory()->save(new Price([
                 'account_id'  => $account,
                 'active_from' => $this->faker->dateTimeBetween('-3 years', '-5 months'),
@@ -96,7 +93,7 @@ class ShopTableSeeder extends Seeder
             $product->price()->save(new ActivePrice([
                 'account_id'   => $account,
                 'activated_on' => $this->faker->dateTimeBetween('-6 months', '-2 days'),
-                'value'        => rand(1000, 200000) / 10
+                'value'        => rand(1000, 200000) / 10,
             ]));
         }
     }
@@ -149,7 +146,7 @@ class ShopTableSeeder extends Seeder
 
         foreach ($properties as $property) {
             $payload = [
-                'property_id' => $property->id
+                'property_id' => $property->id,
             ];
 
             if ($property->options->count()) {
@@ -183,22 +180,21 @@ class ShopTableSeeder extends Seeder
             ]);
             factory(Property::class, 'float')->times(1)->create([
                 'group_id'    => $groups->random(1)->id,
-                'category_id' => $category->id
+                'category_id' => $category->id,
             ]);
             factory(Property::class, 'string')->times(3)->create([
                 'group_id'    => $groups->random(1)->id,
-                'category_id' => $category->id
+                'category_id' => $category->id,
             ]);
 
             factory(Property::class, 'options')->times(3)->create([
                 'group_id'    => $groups->random(1)->id,
-                'category_id' => $category->id
+                'category_id' => $category->id,
             ])->each(function ($property) {
                 factory(PropertyOption::class)->times(rand(4, 10))->create([
-                    'property_id' => $property->id
+                    'property_id' => $property->id,
                 ]);
             });
         }
     }
-
 }

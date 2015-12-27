@@ -10,7 +10,6 @@ use Modules\System\Scopes\ModelAccountResource;
 
 trait StoringMedia
 {
-
     use ImageDimensionHelpers;
 
     public function mediaStoresMultiple()
@@ -94,15 +93,15 @@ trait StoringMedia
             return sprintf('%s/%d/', $media, $this->attributes['id']);
         }
 
-        if (!empty($type) && !$config->isSupportedMediaType($type)) {
+        if (! empty($type) && ! $config->isSupportedMediaType($type)) {
             throw new InvalidArgumentException('Need valid media type to return a proper folder');
         }
 
-        if (!property_exists(get_class($this), 'media')) {
+        if (! property_exists(get_class($this), 'media')) {
             throw new Exception('Please define media attribute on your model');
         }
 
-        if (!$size) {
+        if (! $size) {
             return sprintf('%s/%d/%s/', $media, $this->attributes['id'], $type);
         }
 
@@ -114,7 +113,7 @@ trait StoringMedia
         /** @var MorphOne $relation */
         $relation = $this->images();
 
-        $key = $this->getTable() . '.' . $this->getKeyName();
+        $key = $this->getTable().'.'.$this->getKeyName();
 
         $from = $relation->getQuery()->getQuery()->from;
 

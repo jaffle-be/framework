@@ -11,7 +11,6 @@ use Modules\Users\User;
 
 class SignupController extends FrontController
 {
-
     public function index()
     {
         $user = new User();
@@ -21,14 +20,14 @@ class SignupController extends FrontController
 
     public function store(SignupRequest $request, Guard $guard)
     {
-        $data = $request->only(array('email', 'password'));
+        $data = $request->only(['email', 'password']);
 
         $invitation = null;
 
         if ($request->has('invitation')) {
             $invitation = MembershipInvitation::find($request->get('invitation'));
 
-            if (!$invitation) {
+            if (! $invitation) {
                 return redirect()->back()->with('message', 'failed');
             }
         }

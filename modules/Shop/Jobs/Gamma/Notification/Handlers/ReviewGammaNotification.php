@@ -12,7 +12,6 @@ use Pusher;
 
 class ReviewGammaNotification extends Job implements ShouldQueue
 {
-
     protected $notification;
 
     public function __construct(GammaNotification $notification)
@@ -88,9 +87,9 @@ class ReviewGammaNotification extends Job implements ShouldQueue
                 $record = $records->get($product->id);
 
                 //when notifying, we do not want to generate a warning for something that's already in that status.
-                if ($status == 'activate' && (!$record || $record->deleted_at)) {
+                if ($status == 'activate' && (! $record || $record->deleted_at)) {
                     $notification->create($notificationPayload);
-                } elseif ($status == 'deactivate' && ($record && !$record->deleted_at)) {
+                } elseif ($status == 'deactivate' && ($record && ! $record->deleted_at)) {
                     $notification->create($notificationPayload);
                 }
             }

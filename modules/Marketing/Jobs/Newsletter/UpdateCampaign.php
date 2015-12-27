@@ -7,7 +7,6 @@ use Modules\Marketing\Newsletter\Campaign;
 
 class UpdateCampaign extends Job
 {
-
     /**
      * @var Campaign
      */

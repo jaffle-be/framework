@@ -11,7 +11,6 @@ use Modules\Media\ImageDimensionHelpers;
 
 abstract class Seeder extends BaseSeeder
 {
-
     use DispatchesJobs;
     use ImageDimensionHelpers;
 
@@ -56,7 +55,7 @@ abstract class Seeder extends BaseSeeder
     {
         //run images cachings.
         foreach ($this->image_names as $image) {
-            $path = $this->prefix . $image;
+            $path = $this->prefix.$image;
 
             $media = app('Modules\Media\Configurator');
 
@@ -74,15 +73,15 @@ abstract class Seeder extends BaseSeeder
 
     protected function validateSeederModel()
     {
-        if (!isset($this->image_names)) {
+        if (! isset($this->image_names)) {
             throw new Exception('need to set image_names when calling this function');
         }
 
-        if (!isset($this->model)) {
+        if (! isset($this->model)) {
             throw new Exception('need to set the model when calling this function');
         }
 
-        if (!isset($this->prefix)) {
+        if (! isset($this->prefix)) {
             throw new Exception('need to set prefix when calling this function');
         }
     }
@@ -92,6 +91,6 @@ abstract class Seeder extends BaseSeeder
         $this->validateSeederModel();
         $image = rand(0, count($this->image_names) - 1);
 
-        $this->dispatch(new StoreNewImage($account, $owner, $this->prefix . $this->image_names[$image]));
+        $this->dispatch(new StoreNewImage($account, $owner, $this->prefix.$this->image_names[$image]));
     }
 }

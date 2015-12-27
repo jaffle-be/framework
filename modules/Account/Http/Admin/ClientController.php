@@ -10,7 +10,6 @@ use Modules\System\Http\AdminController;
 
 class ClientController extends AdminController
 {
-
     use MediaWidgetPreperations;
 
     public function page()

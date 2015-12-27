@@ -7,7 +7,6 @@ use Modules\Search\Model\Searchable;
 
 interface SearchServiceInterface
 {
-
     /**
      * Register the regular listeners for the given type.
      *
@@ -31,15 +30,11 @@ interface SearchServiceInterface
 
     /**
      * Delete from index.
-
-
      */
     public function delete(Searchable $type);
 
     /**
      * Update a document in the index.
-
-
      */
     public function update(Searchable $type);
 

@@ -10,7 +10,6 @@ use Modules\Shop\Product\Brand;
 
 class ActivateBrand extends Job
 {
-
     use DispatchesJobs;
 
     /**

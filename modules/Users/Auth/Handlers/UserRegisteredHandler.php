@@ -11,7 +11,6 @@ use Modules\Users\Auth\Events\UserRegistered;
 
 class UserRegisteredHandler
 {
-
     use DispatchesJobs;
 
     public function __construct(Mailer $mail, Repository $config)
@@ -31,7 +30,7 @@ class UserRegisteredHandler
             $this->dispatch(new AcceptMembership($event->invitation, $event->user));
         }
 
-        if (!$auto_confirm['auth.auto_confirmation']) {
+        if (! $auto_confirm['auth.auto_confirmation']) {
             //we need to send an email to confirm their email address.
             return $this->dispatch(new SendConfirmationEmail($event->user));
         }

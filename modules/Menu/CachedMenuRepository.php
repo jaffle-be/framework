@@ -7,7 +7,6 @@ use Modules\Account\AccountManager;
 
 class CachedMenuRepository implements MenuRepositoryInterface
 {
-
     /**
      * @var MenuRepository
      */

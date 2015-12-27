@@ -1,4 +1,6 @@
-<?php namespace Test;
+<?php
+
+namespace Test;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Console\Kernel;
@@ -26,7 +28,7 @@ class AdminTestCase extends \Illuminate\Foundation\Testing\TestCase
      */
     public function createApplication()
     {
-        $app = require __DIR__ . '/../bootstrap/app.php';
+        $app = require __DIR__.'/../bootstrap/app.php';
 
         $app->make(Kernel::class)->bootstrap();
 
@@ -42,5 +44,4 @@ class AdminTestCase extends \Illuminate\Foundation\Testing\TestCase
     {
         return $model->getConnection()->table($model->getTable());
     }
-
 }

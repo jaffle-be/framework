@@ -1,4 +1,6 @@
-<?php namespace Test\Shop\Product;
+<?php
+
+namespace Test\Shop\Product;
 
 use Mockery;
 use Modules\Account\Account;
@@ -10,7 +12,6 @@ use Test\AdminTestCase;
 
 class BrandCategoryManagerTest extends AdminTestCase
 {
-
     public function testAttachingWillAddNewCombinationIfNoneExists()
     {
         $manager = app('Modules\Shop\Product\BrandCategoryManager');
@@ -36,7 +37,6 @@ class BrandCategoryManagerTest extends AdminTestCase
 
         $category = factory(Category::class)->create();
 
-
         $db = app('Illuminate\Database\DatabaseManager');
 
         $mock = Mockery::spy('Illuminate\Contracts\Events\Dispatcher');
@@ -49,7 +49,6 @@ class BrandCategoryManagerTest extends AdminTestCase
 
         $manager->attach(['product_id' => $product->id, 'category_id' => $category->id]);
     }
-
 
     public function testAttachingWillKeepCombinationIfItAlreadyExisted()
     {
@@ -77,7 +76,6 @@ class BrandCategoryManagerTest extends AdminTestCase
 
         $this->seeInDatabase('product_brands_pivot', ['brand_id' => $brand_id, 'category_id' => $category->id]);
     }
-
 
     public function testDetachingWillNotRemoveCombinationIfItStillExists()
     {
@@ -167,9 +165,5 @@ class BrandCategoryManagerTest extends AdminTestCase
             'product_id' => $product1->id,
             'category_id' => $category->id,
         ]);
-
     }
-
-
-
 }

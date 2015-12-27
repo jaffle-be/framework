@@ -8,7 +8,6 @@ use Illuminate\Session\Store;
 
 class LocaleMiddleware
 {
-
     public function __construct(Store $session)
     {
         $this->session = $session;
@@ -32,7 +31,7 @@ class LocaleMiddleware
                 //if valid locale
                 $locale = $request->segment(1);
 
-                if (empty($locale) || !in_array($locale, config('system.locales'))) {
+                if (empty($locale) || ! in_array($locale, config('system.locales'))) {
                     //use the current default locale
                     $locale = app()->getLocale();
                 }
@@ -41,7 +40,7 @@ class LocaleMiddleware
 
                 /* @var CookieJar $cookies */
 
-                if (!$request->hasCookie('locale') && $request->getRequestUri() != '/') {
+                if (! $request->hasCookie('locale') && $request->getRequestUri() != '/') {
                     $cookies = app('cookie');
                     cookie()->queue(cookie()->forever('locale', $locale));
                 }

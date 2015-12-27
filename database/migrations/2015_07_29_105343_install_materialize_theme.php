@@ -4,7 +4,6 @@ use Modules\Theme\ThemeInstallationMigration;
 
 class InstallMaterializeTheme extends ThemeInstallationMigration
 {
-
     protected $name = 'Materialize';
 
     protected $settings = [
@@ -14,19 +13,19 @@ class InstallMaterializeTheme extends ThemeInstallationMigration
             'type' => 'select',
             'nl'  => [
                 'name'        => 'header view',
-                'explanation' => 'header view'
+                'explanation' => 'header view',
             ],
             'fr'  => [
                 'name'        => 'header view',
-                'explanation' => 'header view'
+                'explanation' => 'header view',
             ],
             'de'  => [
                 'name'        => 'header view',
-                'explanation' => 'header view'
+                'explanation' => 'header view',
             ],
             'en'  => [
                 'name'        => 'header view',
-                'explanation' => 'header view'
+                'explanation' => 'header view',
             ],
         ],
 
@@ -35,19 +34,19 @@ class InstallMaterializeTheme extends ThemeInstallationMigration
             'type' => 'select',
             'nl'  => [
                 'name'        => 'footer view',
-                'explanation' => 'footer view'
+                'explanation' => 'footer view',
             ],
             'fr'  => [
                 'name'        => 'footer view',
-                'explanation' => 'footer view'
+                'explanation' => 'footer view',
             ],
             'de'  => [
                 'name'        => 'footer view',
-                'explanation' => 'footer view'
+                'explanation' => 'footer view',
             ],
             'en'  => [
                 'name'        => 'footer view',
-                'explanation' => 'footer view'
+                'explanation' => 'footer view',
             ],
         ],
     ];
@@ -86,5 +85,4 @@ class InstallMaterializeTheme extends ThemeInstallationMigration
         ],
 
     ];
-
 }

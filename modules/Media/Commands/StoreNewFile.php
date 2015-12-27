@@ -13,7 +13,6 @@ use Modules\System\Locale;
 
 class StoreNewFile extends Job
 {
-
     protected $account;
 
     /**
@@ -84,7 +83,7 @@ class StoreNewFile extends Job
 
     public function handle(MediaRepositoryInterface $repo, Filesystem $files, Configurator $config)
     {
-        if (!$files->exists($this->currentPath)) {
+        if (! $files->exists($this->currentPath)) {
             return false;
         }
 
@@ -106,12 +105,12 @@ class StoreNewFile extends Job
         $abstract = $config->getAbstractPath($this->owner, 'files');
         $public = $config->getPublicPath($this->owner, 'files');
 
-        if (!$files->isDirectory($public)) {
+        if (! $files->isDirectory($public)) {
             $files->makeDirectory($public, 0755, true);
         }
 
         //abstract path to actual file
-        $path = $abstract . $this->rename;
+        $path = $abstract.$this->rename;
 
         //always copy the file first
         $files->copy($this->currentPath, public_path($path));

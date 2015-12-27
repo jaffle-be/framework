@@ -6,7 +6,6 @@ use Modules\System\Locale;
 
 class CreateLocalesTable extends Migration
 {
-
     /**
      * Run the migrations.
      */

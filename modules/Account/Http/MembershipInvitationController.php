@@ -10,12 +10,11 @@ use Modules\Users\User;
 
 class MembershipInvitationController extends FrontController
 {
-
     public function show(MembershipRepository $repository, $invitation, Guard $guard)
     {
         $invitation = $repository->findInvitationByToken($invitation);
 
-        if (!$invitation) {
+        if (! $invitation) {
             return redirect()->to(store_route('store.home'));
         }
 

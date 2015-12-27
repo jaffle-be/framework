@@ -10,7 +10,6 @@ use Modules\System\Translatable\Exception\LocalesNotDefinedException;
 
 trait Translatable
 {
-
     /*
      * Alias for getTranslation()
      */
@@ -78,7 +77,7 @@ trait Translatable
 
     public function getTranslationModelNameDefault()
     {
-        return get_class($this) . config('system.translation_suffix', 'Translation');
+        return get_class($this).config('system.translation_suffix', 'Translation');
     }
 
     public function getRelationKey()
@@ -234,7 +233,7 @@ trait Translatable
         $locales = config('system.locales');
 
         if (empty($locales)) {
-            throw new LocalesNotDefinedException('Please make sure you have run "php artisan config:publish dimsav/laravel-translatable" ' .
+            throw new LocalesNotDefinedException('Please make sure you have run "php artisan config:publish dimsav/laravel-translatable" '.
                 ' and that the locales configuration is defined.');
         }
 
@@ -296,26 +295,23 @@ trait Translatable
      *  [
      *      'id' => '1',                // The id of country
      *      'name' => 'Griechenland'    // The translated name
-     *  ]
-
-
-
+     *  ].
      */
     public function scopeListsTranslations(Builder $query, $translationField)
     {
         $withFallback = $this->useFallback();
 
         $query
-            ->select($this->getTable() . '.' . $this->getKeyName(), $this->getTranslationsTable() . '.' . $translationField)
-            ->leftJoin($this->getTranslationsTable(), $this->getTranslationsTable() . '.' . $this->getRelationKey(), '=', $this->getTable() . '.' . $this->getKeyName())
-            ->where($this->getTranslationsTable() . '.' . $this->getLocaleKey(), app()->getLocale());
+            ->select($this->getTable().'.'.$this->getKeyName(), $this->getTranslationsTable().'.'.$translationField)
+            ->leftJoin($this->getTranslationsTable(), $this->getTranslationsTable().'.'.$this->getRelationKey(), '=', $this->getTable().'.'.$this->getKeyName())
+            ->where($this->getTranslationsTable().'.'.$this->getLocaleKey(), app()->getLocale());
         if ($withFallback) {
             $query->orWhere(function (Builder $q) {
-                $q->where($this->getTranslationsTable() . '.' . $this->getLocaleKey(), $this->getFallbackLocale())
-                    ->whereNotIn($this->getTranslationsTable() . '.' . $this->getRelationKey(), function (QueryBuilder $q) {
-                        $q->select($this->getTranslationsTable() . '.' . $this->getRelationKey())
+                $q->where($this->getTranslationsTable().'.'.$this->getLocaleKey(), $this->getFallbackLocale())
+                    ->whereNotIn($this->getTranslationsTable().'.'.$this->getRelationKey(), function (QueryBuilder $q) {
+                        $q->select($this->getTranslationsTable().'.'.$this->getRelationKey())
                             ->from($this->getTranslationsTable())
-                            ->where($this->getTranslationsTable() . '.' . $this->getLocaleKey(), app()->getLocale());
+                            ->where($this->getTranslationsTable().'.'.$this->getLocaleKey(), app()->getLocale());
                     });
             });
         }

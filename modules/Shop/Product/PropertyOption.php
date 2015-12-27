@@ -7,7 +7,6 @@ use Modules\System\Translatable\Translatable;
 
 class PropertyOption extends Model
 {
-
     use Translatable;
 
     protected $table = 'product_properties_options';

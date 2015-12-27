@@ -1,42 +1,39 @@
-<?php namespace Test\System\Presenter;
+<?php
+
+namespace Test\System\Presenter;
 
 use Modules\System\Presenter\ShortCodeCompiler;
 use Test\TestCase;
-use Mockery as m;
 
-class ExceptionDummyShortCodeCompiler{
-
+class ExceptionDummyShortCodeCompiler
+{
     use ShortCodeCompiler;
-
 }
 
-class DummyShortCodeCompiler{
-
+class DummyShortCodeCompiler
+{
     protected $shortcodes = ['media', 'other'];
 
     use ShortCodeCompiler;
 
     public function compileMediaShortCodes($content)
     {
-        return $content . ' compiled';
+        return $content.' compiled';
     }
 
     public function compileOtherShortCodes($content)
     {
-        return $content . ' with others too';
+        return $content.' with others too';
     }
 
     public function formatMediaShortCodes($content)
     {
-        return $content . ' formatted';
+        return $content.' formatted';
     }
-
 }
-
 
 class ShortCodeCompilerTest extends TestCase
 {
-
     /**
      * @expectedException \Exception
      */
@@ -51,6 +48,4 @@ class ShortCodeCompilerTest extends TestCase
         $dummy = new DummyShortCodeCompiler();
         $this->assertSame('some content compiled with others too', $dummy->compileShortcodes('some content'));
     }
-
-
 }

@@ -12,7 +12,6 @@ use Modules\Shop\Product\Category;
 
 class CleanupDetail extends Job
 {
-
     /**
      * @var Brand
      */
@@ -53,7 +52,7 @@ class CleanupDetail extends Job
             $selections->load([
                 'categories' => function ($query) {
                     $query->withTrashed();
-                }
+                },
             ]);
 
             foreach ($selection->categories as $category) {

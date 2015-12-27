@@ -1,4 +1,6 @@
-<?php namespace Test\System\Eventing;
+<?php
+
+namespace Test\System\Eventing;
 
 use Illuminate\Database\Eloquent\Collection;
 use Mockery;
@@ -10,7 +12,6 @@ use Test\AdminTestCase;
 
 class BelongsToManyTest extends AdminTestCase
 {
-
     public function testAttachingOneInstanceUsingIdMethod()
     {
         $product = $this->product();
@@ -220,7 +221,7 @@ class BelongsToManyTest extends AdminTestCase
         $this->expectDetached($mock, $product, $category2);
         $mock->shouldNotHaveReceived('fire', [
             'illuminate.attached: test_relation',
-            [['product_id' => $product->id, 'category_id' => $category1->id]]
+            [['product_id' => $product->id, 'category_id' => $category1->id]],
         ]);
 
         $this->app->instance('events', $mock);
@@ -273,11 +274,11 @@ class BelongsToManyTest extends AdminTestCase
 
                 $check = $value[0];
 
-                if (!array_key_exists('product_id', $check) || $check['product_id'] != $product->id) {
+                if (! array_key_exists('product_id', $check) || $check['product_id'] != $product->id) {
                     return false;
                 }
 
-                if (!array_key_exists('product_id', $check) || $check['product_id'] != $product->id) {
+                if (! array_key_exists('product_id', $check) || $check['product_id'] != $product->id) {
                     return false;
                 }
 
@@ -292,5 +293,4 @@ class BelongsToManyTest extends AdminTestCase
     {
         return Mockery::spy('Illuminate\Contracts\Events\Dispatcher');
     }
-
 }

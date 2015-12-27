@@ -4,7 +4,6 @@ namespace Modules\Marketing\Newsletter;
 
 class CampaignBuilder
 {
-
     protected $widgets = [
 
         ['name' => 'regular/2col', 'items' => 2],

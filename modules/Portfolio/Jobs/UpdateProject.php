@@ -7,7 +7,6 @@ use Modules\Portfolio\Project;
 
 class UpdateProject extends Job
 {
-
     /**
      * @var Project
      */

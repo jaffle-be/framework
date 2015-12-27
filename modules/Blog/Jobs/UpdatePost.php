@@ -7,7 +7,6 @@ use Modules\Blog\Post;
 
 class UpdatePost extends Job
 {
-
     /**
      * @var Post
      */

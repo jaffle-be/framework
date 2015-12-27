@@ -9,7 +9,6 @@ use Modules\Account\AccountManager;
  */
 class ThemeActivator
 {
-
     /**
      * @var Theme
      */
