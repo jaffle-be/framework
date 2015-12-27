@@ -1,4 +1,4 @@
-<div ng-controller="MenuController as vm" ng-init="vm.options = {{ system_options() }}">
+<div ng-controller="MenuController as vm">
     <div class="row">
 
         <div class="col-md-6">

@@ -2,7 +2,8 @@
     'use strict';
 
     angular.module('menu')
-        .controller('MenuController', function (MenuService, MenuItem) {
+        .controller('MenuController', function (MenuService, MenuItem, System) {
+            this.options = System.options;
             this.menus = [];
             //active menu
             this.menu = {};
