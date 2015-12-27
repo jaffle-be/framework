@@ -1,15 +1,15 @@
 {
-  "name": "pingpong-modules/marketing",
-  "description": "",
-  "authors": [
-    {
-      "name": "Pingpong Labs",
-      "email": "pingpong.labs@gmail.com"
+    "name": "pingpong-modules/marketing",
+    "description": "",
+    "authors": [
+        {
+            "name": "Pingpong Labs",
+            "email": "pingpong.labs@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Modules\\Marketing\\": ""
+        }
     }
-  ],
-  "autoload": {
-    "psr-4": {
-      "Modules\\Marketing\\": ""
-    }
-  }
 }

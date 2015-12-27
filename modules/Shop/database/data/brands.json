@@ -1,2316 +1,2316 @@
 {
-  "brands": [
-    {
-      "name": "&tradition",
-      "brands": "http://shoponsite.be/images/merken/4933/foto1/res75x56/tradition-logo.jpg"
-    },
-    {
-      "name": "100% Light",
-      "brands": "http://shoponsite.be/images/merken/3931/foto1/orig/100light_klein.gif"
-    },
-    {
-      "name": "500° by Cosy & Trendy",
-      "brands": "http://shoponsite.be/images/merken/4502/foto1/res75x56/500.jpg"
-    },
-    {
-      "name": "A di Alessi",
-      "brands": "http://shoponsite.be/images/merken/4751/foto1/res75x56/adialessi.jpg"
-    },
-    {
-      "name": "Abitana",
-      "brands": "http://shoponsite.be/images/merken/3197/foto1/orig/abitana.gif"
-    },
-    {
-      "name": "Accuphase",
-      "brands": "http://shoponsite.be/images/merken/3107/foto1/orig/accuphase.gif"
-    },
-    {
-      "name": "Accustic Arts",
-      "brands": "http://shoponsite.be/images/merken/4330/foto1/orig/accustic-arts-klein.gif"
-    },
-    {
-      "name": "Acer",
-      "brands": "http://shoponsite.be/images/merken/2760/foto1/res75x56/acer-logo.jpg"
-    },
-    {
-      "name": "Acme Made",
-      "brands": "http://shoponsite.be/images/merken/4321/foto1/orig/acme-made-klein.gif"
-    },
-    {
-      "name": "Action",
-      "brands": "http://shoponsite.be/images/merken/4638/foto1/orig/actionklein1.gif"
-    },
-    {
-      "name": "Ad Hoc",
-      "brands": "http://shoponsite.be/images/merken/4271/foto1/orig/adhoc-logokl.gif"
-    },
-    {
-      "name": "ADE",
-      "brands": "http://shoponsite.be/images/merken/3765/foto1/orig/ade-logokl.gif"
-    },
-    {
-      "name": "Aduro",
-      "brands": "http://shoponsite.be/images/merken/4101/foto1/orig/klein.gif"
-    },
-    {
-      "name": "Advance Acoustic",
-      "brands": "http://shoponsite.be/images/merken/3471/foto1/orig/advance_acoustic.gif"
-    },
-    {
-      "name": "AEG",
-      "brands": "http://shoponsite.be/images/merken/2755/foto1/res75x56/aeg-logo.jpg"
-    },
-    {
-      "name": "AEG Home Comfort",
-      "brands": "http://shoponsite.be/images/merken/3121/foto1/orig/aeg_stiebel.gif"
-    },
-    {
-      "name": "Afer",
-      "brands": "http://shoponsite.be/images/merken/4516/foto1/orig/afer-klein.gif"
-    },
-    {
-      "name": "AGA",
-      "brands": "http://shoponsite.be/images/merken/3187/foto1/orig/agaklein.gif"
-    },
-    {
-      "name": "Air-O-Swiss",
-      "brands": "http://shoponsite.be/images/merken/3236/foto1/orig/air_o_swiss.gif"
-    },
-    {
-      "name": "Airbutler",
-      "brands": "http://shoponsite.be/images/merken/2895/foto1/orig/airbutler.gif"
-    },
-    {
-      "name": "Airwell",
-      "brands": "http://shoponsite.be/images/merken/2782/foto1/orig/airwell.gif"
-    },
-    {
-      "name": "Akai",
-      "brands": "http://shoponsite.be/images/merken/3307/foto1/orig/akai.gif"
-    },
-    {
-      "name": "AKG",
-      "brands": "http://shoponsite.be/images/merken/3515/foto1/orig/akg.gif"
-    },
-    {
-      "name": "Aladdin",
-      "brands": "http://shoponsite.be/images/merken/3668/foto1/orig/aladdin.gif"
-    },
-    {
-      "name": "Album",
-      "brands": "http://shoponsite.be/images/merken/3933/foto1/orig/album_klein.gif"
-    },
-    {
-      "name": "Aldabra",
-      "brands": "http://shoponsite.be/images/merken/3934/foto1/orig/aldabra_klein.gif"
-    },
-    {
-      "name": "Aldenkamp",
-      "brands": "http://shoponsite.be/images/merken/2832/foto1/orig/aldenkamp.gif"
-    },
-    {
-      "name": "Aldo Bernardi",
-      "brands": "http://shoponsite.be/images/merken/3863/foto1/orig/aldo_bernardi.gif"
-    },
-    {
-      "name": "Alessi",
-      "brands": "http://shoponsite.be/images/merken/2665/foto1/orig/alessi.gif"
-    },
-    {
-      "name": "Alfi",
-      "brands": "http://shoponsite.be/images/merken/3772/foto1/orig/alfi-logogr.gif"
-    },
-    {
-      "name": "Almotech",
-      "brands": "http://shoponsite.be/images/merken/3977/foto1/orig/almotech-logo-klein.gif"
-    },
-    {
-      "name": "Alpes Inox",
-      "brands": "http://shoponsite.be/images/merken/2860/foto1/res75x56/Alpes-marchio-1.jpg"
-    },
-    {
-      "name": "ALR Jordan",
-      "brands": "http://shoponsite.be/images/merken/4331/foto1/orig/alr-jordan-klein.gif"
-    },
-    {
-      "name": "Altec Lansing",
-      "brands": "http://shoponsite.be/images/merken/3468/foto1/orig/altec_lansing.gif"
-    },
-    {
-      "name": "Aluci",
-      "brands": "http://shoponsite.be/images/merken/3188/foto1/orig/aluci.gif"
-    },
-    {
-      "name": "Amana",
-      "brands": "http://shoponsite.be/images/merken/3067/foto1/orig/amana.gif"
-    },
-    {
-      "name": "Amefa",
-      "brands": "http://shoponsite.be/images/merken/3773/foto1/orig/amefa-logokl2.gif"
-    },
-    {
-      "name": "Amphion",
-      "brands": "http://shoponsite.be/images/merken/3059/foto1/orig/amphion.gif"
-    },
-    {
-      "name": "Andersen Shopper",
-      "brands": "http://shoponsite.be/images/merken/4569/foto1/res75x56/andersen-shopper-logo.jpg"
-    },
-    {
-      "name": "Andromeda",
-      "brands": "http://shoponsite.be/images/merken/3936/foto1/orig/andromeda_klein.gif"
-    },
-    {
-      "name": "Animo",
-      "brands": "http://shoponsite.be/images/merken/4633/foto1/orig/animoklein.gif"
-    },
-    {
-      "name": "Antares",
-      "brands": "http://shoponsite.be/images/merken/3937/foto1/orig/antares_klein.gif"
-    },
-    {
-      "name": "Antoine Van Loocke",
-      "brands": "http://shoponsite.be/images/merken/4461/foto1/orig/antoinevanloocke-logokl.gif"
-    },
-    {
-      "name": "APart",
-      "brands": "http://shoponsite.be/images/merken/2882/foto1/orig/apart-klein.gif"
-    },
-    {
-      "name": "Apple",
-      "brands": "http://shoponsite.be/images/merken/2750/foto1/orig/apple_75.gif"
-    },
-    {
-      "name": "APW",
-      "brands": "http://shoponsite.be/images/merken/3621/foto1/orig/apw.gif"
-    },
-    {
-      "name": "Aquanova",
-      "brands": "http://shoponsite.be/images/merken/3638/foto1/orig/aquanova.gif"
-    },
-    {
-      "name": "Araven",
-      "brands": "http://shoponsite.be/images/merken/4518/foto1/orig/logo-aravenklein.gif"
-    },
-    {
-      "name": "Arc Luce",
-      "brands": "http://shoponsite.be/images/merken/3939/foto1/orig/arcluce_klein.gif"
-    },
-    {
-      "name": "Arcam",
-      "brands": "http://shoponsite.be/images/merken/3369/foto1/orig/arcam-klein.gif"
-    },
-    {
-      "name": "Arcoroc",
-      "brands": "http://shoponsite.be/images/merken/4510/foto1/orig/arcoroc_logo.gif"
-    },
-    {
-      "name": "Arealite",
-      "brands": "http://shoponsite.be/images/merken/2723/foto1/orig/arealite.gif"
-    },
-    {
-      "name": "Art Sound",
-      "brands": "http://shoponsite.be/images/merken/2800/foto1/orig/art_sound.gif"
-    },
-    {
-      "name": "Artcoustic",
-      "brands": "http://shoponsite.be/images/merken/3360/foto1/orig/artcoustic-klein.gif"
-    },
-    {
-      "name": "Artek",
-      "brands": "http://shoponsite.be/images/merken/3942/foto1/orig/artek_klein.gif"
-    },
-    {
-      "name": "Artemide",
-      "brands": "http://shoponsite.be/images/merken/3150/foto1/orig/artemide_klein.gif"
-    },
-    {
-      "name": "Artex",
-      "brands": "http://shoponsite.be/images/merken/4519/foto1/orig/artexlittle.gif"
-    },
-    {
-      "name": "Artson Hidden",
-      "brands": "http://shoponsite.be/images/merken/4374/foto1/orig/artson-klein.gif"
-    },
-    {
-      "name": "Arzberg",
-      "brands": "http://shoponsite.be/images/merken/3792/foto1/orig/made_in_germany_rot_small.gif"
-    },
-    {
-      "name": "Asa",
-      "brands": "http://shoponsite.be/images/merken/3643/foto1/orig/asa.gif"
-    },
-    {
-      "name": "Asko",
-      "brands": "http://shoponsite.be/images/merken/3068/foto1/orig/asko.gif"
-    },
-    {
-      "name": "Assenmaker",
-      "brands": "http://shoponsite.be/images/merken/4552/foto1/orig/assenmakerklein.gif"
-    },
-    {
-      "name": "Asus",
-      "brands": "http://shoponsite.be/images/merken/3018/foto1/orig/asus-logo-klein.gif"
-    },
-    {
-      "name": "Atag",
-      "brands": "http://shoponsite.be/images/merken/3192/foto1/orig/atag.gif"
-    },
-    {
-      "name": "Ateca",
-      "brands": "http://shoponsite.be/images/merken/4326/foto1/orig/ateca-logo-klein.gif"
-    },
-    {
-      "name": "Atelier",
-      "brands": "http://shoponsite.be/images/merken/4594/foto1/orig/atelierklein.gif"
-    },
-    {
-      "name": "Atelier du Vin",
-      "brands": "http://shoponsite.be/images/merken/3680/foto1/orig/atelierkl.gif"
-    },
-    {
-      "name": "Atelier Sedap",
-      "brands": "http://shoponsite.be/images/merken/3943/foto1/orig/sedap_klein.gif"
-    },
-    {
-      "name": "Atelier tete",
-      "brands": "http://shoponsite.be/images/merken/4573/foto1/orig/atelierteteklein.gif"
-    },
-    {
-      "name": "Atika",
-      "brands": "http://shoponsite.be/images/merken/3601/foto1/orig/atika.gif"
-    },
-    {
-      "name": "Atomis",
-      "brands": "http://shoponsite.be/images/merken/2728/foto1/orig/atomis.gif"
-    },
-    {
-      "name": "Aubecq",
-      "brands": "http://shoponsite.be/images/merken/4511/foto1/orig/aubecqlogoklein.gif"
-    },
-    {
-      "name": "Audio Analogue",
-      "brands": "http://shoponsite.be/images/merken/4613/foto1/orig/audio-analogue-klein.gif"
-    },
-    {
-      "name": "Audio Physic",
-      "brands": "http://shoponsite.be/images/merken/3700/foto1/orig/audio_physic.gif"
-    },
-    {
-      "name": "Audioplan",
-      "brands": "http://shoponsite.be/images/merken/3062/foto1/orig/audioplan.gif"
-    },
-    {
-      "name": "Audioquest",
-      "brands": "http://shoponsite.be/images/merken/3717/foto1/orig/audioquest.gif"
-    },
-    {
-      "name": "Audioscape",
-      "brands": "http://shoponsite.be/images/merken/4640/foto1/orig/logo_audioscape_hq-klein.gif"
-    },
-    {
-      "name": "Auerhahn",
-      "brands": "http://shoponsite.be/images/merken/3795/foto1/orig/auerhahn-small.gif"
-    },
-    {
-      "name": "Auerswald",
-      "brands": "http://shoponsite.be/images/merken/3220/foto1/orig/auerswald.gif"
-    },
-    {
-      "name": "Austroflam",
-      "brands": "http://shoponsite.be/images/merken/3554/foto1/orig/austroflam-klein.gif"
-    },
-    {
-      "name": "Authentage",
-      "brands": "http://shoponsite.be/images/merken/4634/foto1/orig/logo-klein.gif"
-    },
-    {
-      "name": "Autographe",
-      "brands": "http://shoponsite.be/images/merken/3414/foto1/orig/auto_klein.gif"
-    },
-    {
-      "name": "Avinity",
-      "brands": "http://shoponsite.be/images/merken/4392/foto1/orig/avinity-klein.gif"
-    },
-    {
-      "name": "Avintage",
-      "brands": "http://shoponsite.be/images/merken/4459/foto1/orig/avintage-logokl.gif"
-    },
-    {
-      "name": "Axel Meise Licht",
-      "brands": "http://shoponsite.be/images/merken/3944/foto1/orig/axelmeiselicht_klein.gif"
-    },
-    {
-      "name": "Axis71",
-      "brands": "http://shoponsite.be/images/merken/3945/foto1/orig/axis_klein.gif"
-    },
-    {
-      "name": "Axo Light",
-      "brands": "http://shoponsite.be/images/merken/3946/foto1/orig/axo_klein.gif"
-    },
-    {
-      "name": "B&W",
-      "brands": "http://shoponsite.be/images/merken/3094/foto1/orig/bw-klein.gif"
-    },
-    {
-      "name": "B+W",
-      "brands": "http://shoponsite.be/images/merken/3097/foto1/orig/b_w.gif"
-    },
-    {
-      "name": "B-tech",
-      "brands": "http://shoponsite.be/images/merken/3874/foto1/orig/b_tech.gif"
-    },
-    {
-      "name": "B-Tech AV Mounts",
-      "brands": "http://shoponsite.be/images/merken/4336/foto1/orig/btech-av-mounts-klein.gif"
-    },
-    {
-      "name": "B.lux",
-      "brands": "http://shoponsite.be/images/merken/3947/foto1/orig/blux_klein.gif"
-    },
-    {
-      "name": "Babyliss",
-      "brands": "http://shoponsite.be/images/merken/2663/foto1/orig/babyliss.gif"
-    },
-    {
-      "name": "Baccarat",
-      "brands": "http://shoponsite.be/images/merken/4147/foto1/orig/baccarat-logokl.gif"
-    },
-    {
-      "name": "Baci",
-      "brands": "http://shoponsite.be/images/merken/4132/foto1/orig/baci-logokl.gif"
-    },
-    {
-      "name": "Balance Meteo",
-      "brands": "http://shoponsite.be/images/merken/4312/foto1/orig/balanceklein_copy.gif"
-    },
-    {
-      "name": "Baleno",
-      "brands": "http://shoponsite.be/images/merken/3833/foto1/orig/baleno.gif"
-    },
-    {
-      "name": "Ballarini",
-      "brands": "http://shoponsite.be/images/merken/4264/foto1/orig/ballarini-logokl.gif"
-    },
-    {
-      "name": "Bamix",
-      "brands": "http://shoponsite.be/images/merken/3461/foto1/orig/bamix.gif"
-    },
-    {
-      "name": "Bandridge",
-      "brands": "http://shoponsite.be/images/merken/3452/foto1/orig/bandridge_75.gif"
-    },
-    {
-      "name": "Bang & Olufsen",
-      "brands": "http://shoponsite.be/images/merken/2667/foto1/orig/b_o.gif"
-    },
-    {
-      "name": "Baobab",
-      "brands": "http://shoponsite.be/images/merken/4533/foto1/res75x56/baobab-collection-logo.jpg"
-    },
-    {
-      "name": "Barbas",
-      "brands": "http://shoponsite.be/images/merken/3274/foto1/orig/barbas.gif"
-    },
-    {
-      "name": "Basalte",
-      "brands": "http://shoponsite.be/images/merken/3647/foto1/res75x56/basalte-logo.jpg"
-    },
-    {
-      "name": "Base",
-      "brands": "http://shoponsite.be/images/merken/3073/foto1/orig/base.gif"
-    },
-    {
-      "name": "Basic XL",
-      "brands": "http://shoponsite.be/images/merken/4412/foto1/orig/basicxl-klein.gif"
-    },
-    {
-      "name": "Bauknecht",
-      "brands": "http://shoponsite.be/images/merken/2672/foto1/res75x56/Bauknecht.jpg"
-    },
-    {
-      "name": "Baulmann",
-      "brands": "http://shoponsite.be/images/merken/3949/foto1/orig/baulmann_klein.gif"
-    },
-    {
-      "name": "Baumatic",
-      "brands": "http://shoponsite.be/images/merken/4231/foto1/orig/baukl.gif"
-    },
-    {
-      "name": "Beafon",
-      "brands": "http://shoponsite.be/images/merken/4305/foto1/orig/beafon-75.gif"
-    },
-    {
-      "name": "Beam Electrolux",
-      "brands": "http://shoponsite.be/images/merken/4495/foto1/orig/electrolux-beam-klein.gif"
-    },
-    {
-      "name": "Beamax",
-      "brands": "http://shoponsite.be/images/merken/3065/foto1/orig/beamax.gif"
-    },
-    {
-      "name": "Beats",
-      "brands": "http://shoponsite.be/images/merken/4508/foto1/res75x56/Beats.jpg"
-    },
-    {
-      "name": "Bega",
-      "brands": "http://shoponsite.be/images/merken/3416/foto1/orig/bega_klein.gif"
-    },
-    {
-      "name": "Beghelli",
-      "brands": "http://shoponsite.be/images/merken/3950/foto1/orig/beghelli_klein.gif"
-    },
-    {
-      "name": "Behringer",
-      "brands": "http://shoponsite.be/images/merken/3342/foto1/orig/behringer-klein.gif"
-    },
-    {
-      "name": "Beka",
-      "brands": "http://shoponsite.be/images/merken/3755/foto1/orig/beka.gif"
-    },
-    {
-      "name": "Beko",
-      "brands": "http://shoponsite.be/images/merken/2985/foto1/res75x56/beko-logo.jpg"
-    },
-    {
-      "name": "Bel Lighting",
-      "brands": "http://shoponsite.be/images/merken/3706/foto1/orig/bel_lighting.gif"
-    },
-    {
-      "name": "Belkin",
-      "brands": "http://shoponsite.be/images/merken/2761/foto1/orig/belkin.gif"
-    },
-    {
-      "name": "Bellfires",
-      "brands": "http://shoponsite.be/images/merken/3929/foto1/orig/bellfires_klein.gif"
-    },
-    {
-      "name": "Belux",
-      "brands": "http://shoponsite.be/images/merken/3951/foto1/orig/belux_klein.gif"
-    },
-    {
-      "name": "BenQ",
-      "brands": "http://shoponsite.be/images/merken/2892/foto1/orig/benq.gif"
-    },
-    {
-      "name": "Berghoff",
-      "brands": "http://shoponsite.be/images/merken/3557/foto1/orig/berghoff-logokl.gif"
-    },
-    {
-      "name": "Besser Vacuum",
-      "brands": "http://shoponsite.be/images/merken/3705/foto1/orig/besser_vacuum.gif"
-    },
-    {
-      "name": "BeWare",
-      "brands": "http://shoponsite.be/images/merken/4591/foto1/orig/bewareklein.gif"
-    },
-    {
-      "name": "Beyer Dynamic",
-      "brands": "http://shoponsite.be/images/merken/3337/foto1/orig/beyerdynamic-logo-klein.gif"
-    },
-    {
-      "name": "Bialetti",
-      "brands": "http://shoponsite.be/images/merken/4124/foto1/orig/bialetti-logokl.gif"
-    },
-    {
-      "name": "Big Green Egg",
-      "brands": "http://shoponsite.be/images/merken/4327/foto1/orig/biggreenegg-klein.gif"
-    },
-    {
-      "name": "Bionaire",
-      "brands": "http://shoponsite.be/images/merken/4458/foto1/orig/bionaire-logokl.gif"
-    },
-    {
-      "name": "Bis Lighting",
-      "brands": "http://shoponsite.be/images/merken/3954/foto1/orig/bis_klein.gif"
-    },
-    {
-      "name": "Bisbell",
-      "brands": "http://shoponsite.be/images/merken/4389/foto1/orig/bisbell-logokl.gif"
-    },
-    {
-      "name": "Bisetti",
-      "brands": "http://shoponsite.be/images/merken/4120/foto1/orig/bisetti-logokl.gif"
-    },
-    {
-      "name": "BK",
-      "brands": "http://shoponsite.be/images/merken/3636/foto1/orig/bk.gif"
-    },
-    {
-      "name": "Black & Decker",
-      "brands": "http://shoponsite.be/images/merken/3127/foto1/orig/blacken-logogkl.gif"
-    },
-    {
-      "name": "Blackberry",
-      "brands": "http://shoponsite.be/images/merken/3400/foto1/orig/blackberry.gif"
-    },
-    {
-      "name": "Blaklader",
-      "brands": "http://shoponsite.be/images/merken/3614/foto1/orig/blaklader.gif"
-    },
-    {
-      "name": "Blanco",
-      "brands": "http://shoponsite.be/images/merken/3103/foto1/orig/blanco.gif"
-    },
-    {
-      "name": "Blauet",
-      "brands": "http://shoponsite.be/images/merken/3284/foto1/orig/blauet.gif"
-    },
-    {
-      "name": "Blomberg",
-      "brands": "http://shoponsite.be/images/merken/3774/foto1/orig/blomberg.gif"
-    },
-    {
-      "name": "Blomus",
-      "brands": "http://shoponsite.be/images/merken/3476/foto1/orig/blomus_logoklein.gif"
-    },
-    {
-      "name": "Bloom",
-      "brands": "http://shoponsite.be/images/merken/3955/foto1/res75x56/bloom.jpg"
-    },
-    {
-      "name": "Bluesound",
-      "brands": "http://shoponsite.be/images/merken/4600/foto1/orig/bluesound-logo-klein.gif"
-    },
-    {
-      "name": "Bodart&Gonay",
-      "brands": "http://shoponsite.be/images/merken/3278/foto1/orig/bodart_gonay.gif"
-    },
-    {
-      "name": "Bodum",
-      "brands": "http://shoponsite.be/images/merken/3776/foto1/orig/bodum_logo_small.gif"
-    },
-    {
-      "name": "Bohemia Cristal",
-      "brands": "http://shoponsite.be/images/merken/4554/foto1/orig/bohemia-crystalklein.gif"
-    },
-    {
-      "name": "bonApart",
-      "brands": "http://shoponsite.be/images/merken/4379/foto1/orig/bonapart-logokl.gif"
-    },
-    {
-      "name": "Boneco",
-      "brands": "http://shoponsite.be/images/merken/2776/foto1/orig/bonecoklein.gif"
-    },
-    {
-      "name": "Boom",
-      "brands": "http://shoponsite.be/images/merken/3507/foto1/orig/boom_klein.gif"
-    },
-    {
-      "name": "Bora",
-      "brands": "http://shoponsite.be/images/merken/4450/foto1/orig/boraklein.gif"
-    },
-    {
-      "name": "Boretti",
-      "brands": "http://shoponsite.be/images/merken/2812/foto1/orig/boretti.gif"
-    },
-    {
-      "name": "Borgonovo",
-      "brands": "http://shoponsite.be/images/merken/4555/foto1/orig/borgonovologoklein.gif"
-    },
-    {
-      "name": "Bosch",
-      "brands": "http://shoponsite.be/images/merken/2651/foto1/orig/bosch.gif"
-    },
-    {
-      "name": "Bosch Gereedschap",
-      "brands": "http://shoponsite.be/images/merken/3207/foto1/orig/bosch_gereedschap.gif"
-    },
-    {
-      "name": "Bosch Security",
-      "brands": "http://shoponsite.be/images/merken/3178/foto1/orig/bosch_security.gif"
-    },
-    {
-      "name": "Boska",
-      "brands": "http://shoponsite.be/images/merken/4366/foto1/res75x56/Boska_Explore-cheese_wit_grijs.jpg"
-    },
-    {
-      "name": "Bostitch",
-      "brands": "http://shoponsite.be/images/merken/3610/foto1/orig/bostitch.gif"
-    },
-    {
-      "name": "Boston Acoustics",
-      "brands": "http://shoponsite.be/images/merken/3745/foto1/orig/boston-klein.gif"
-    },
-    {
-      "name": "Bover",
-      "brands": "http://shoponsite.be/images/merken/3956/foto1/orig/bover_klein.gif"
-    },
-    {
-      "name": "BP Solar",
-      "brands": "http://shoponsite.be/images/merken/4347/foto1/orig/bp-solar-klein.gif"
-    },
-    {
-      "name": "BPT",
-      "brands": "http://shoponsite.be/images/merken/3200/foto1/orig/bpt-logo-klein.gif"
-    },
-    {
-      "name": "Brabantia",
-      "brands": "http://shoponsite.be/images/merken/3125/foto1/orig/brabantia.gif"
-    },
-    {
-      "name": "Brandt",
-      "brands": "http://shoponsite.be/images/merken/2982/foto1/orig/brandt.gif"
-    },
-    {
-      "name": "Braun Body Care",
-      "brands": "http://shoponsite.be/images/merken/3005/foto1/orig/braun.gif"
-    },
-    {
-      "name": "Braun Household",
-      "brands": "http://shoponsite.be/images/merken/4708/foto1/res75x56/braun.jpg"
-    },
-    {
-      "name": "Braun Photo Technik",
-      "brands": "http://shoponsite.be/images/merken/3575/foto1/orig/braun_photo_technik.gif"
-    },
-    {
-      "name": "Bravilor",
-      "brands": "http://shoponsite.be/images/merken/4630/foto1/orig/bravilorklein.gif"
-    },
-    {
-      "name": "Brick in the wall",
-      "brands": "http://shoponsite.be/images/merken/3678/foto1/orig/brick_in_the_wall.gif"
-    },
-    {
-      "name": "Brita",
-      "brands": "http://shoponsite.be/images/merken/3441/foto1/orig/brita.gif"
-    },
-    {
-      "name": "Briteq",
-      "brands": "http://shoponsite.be/images/merken/4620/foto1/orig/briteq-klein.gif"
-    },
-    {
-      "name": "Brother",
-      "brands": "http://shoponsite.be/images/merken/2709/foto1/orig/brother.gif"
-    },
-    {
-      "name": "Bruck",
-      "brands": "http://shoponsite.be/images/merken/3957/foto1/orig/bruck_klein.gif"
-    },
-    {
-      "name": "Brune",
-      "brands": "http://shoponsite.be/images/merken/4338/foto1/orig/airsain_brune.gif"
-    },
-    {
-      "name": "BT",
-      "brands": "http://shoponsite.be/images/merken/3948/foto1/orig/bt_klein.gif"
-    },
-    {
-      "name": "BTicino",
-      "brands": "http://shoponsite.be/images/merken/2791/foto1/orig/bticino.gif"
-    },
-    {
-      "name": "Buderus",
-      "brands": "http://shoponsite.be/images/merken/4217/foto1/res75x56/buderus-logo.jpg"
-    },
-    {
-      "name": "Buffalo",
-      "brands": "http://shoponsite.be/images/merken/4609/foto1/orig/bufffalo-klein.gif"
-    },
-    {
-      "name": "Bugatti",
-      "brands": "http://shoponsite.be/images/merken/4131/foto1/orig/bugatti-small.gif"
-    },
-    {
-      "name": "Bullguard",
-      "brands": "http://shoponsite.be/images/merken/4087/foto1/orig/logo_klein.gif"
-    },
-    {
-      "name": "Buschfeld",
-      "brands": "http://shoponsite.be/images/merken/3958/foto1/orig/buschfeld_klein.gif"
-    },
-    {
-      "name": "Bush",
-      "brands": "http://shoponsite.be/images/merken/3323/foto1/orig/bush.gif"
-    },
-    {
-      "name": "Butler",
-      "brands": "http://shoponsite.be/images/merken/4556/foto1/orig/butlerklein.gif"
-    },
-    {
-      "name": "Cabasse",
-      "brands": "http://shoponsite.be/images/merken/3387/foto1/res75x56/cabasse.jpg"
-    },
-    {
-      "name": "CaffèDuzio",
-      "brands": "http://shoponsite.be/images/merken/4477/foto1/orig/caffeduzioklein.gif"
-    },
-    {
-      "name": "Calor",
-      "brands": "http://shoponsite.be/images/merken/2831/foto1/orig/calor.gif"
-    },
-    {
-      "name": "Cambridge Audio",
-      "brands": "http://shoponsite.be/images/merken/3085/foto1/orig/cambridge_audio.gif"
-    },
-    {
-      "name": "Came",
-      "brands": "http://shoponsite.be/images/merken/4060/foto1/orig/came_klein.gif"
-    },
-    {
-      "name": "Camerons",
-      "brands": "http://shoponsite.be/images/merken/4557/foto1/orig/cameronsklein.gif"
-    },
-    {
-      "name": "Camlink",
-      "brands": "http://shoponsite.be/images/merken/4530/foto1/orig/camlink-blackbg_75.gif"
-    },
-    {
-      "name": "Candy",
-      "brands": "http://shoponsite.be/images/merken/2719/foto1/orig/candy.gif"
-    },
-    {
-      "name": "Canon",
-      "brands": "http://shoponsite.be/images/merken/2816/foto1/orig/canon.gif"
-    },
-    {
-      "name": "Canton",
-      "brands": "http://shoponsite.be/images/merken/2801/foto1/orig/canton.gif"
-    },
-    {
-      "name": "Carat",
-      "brands": "http://shoponsite.be/images/merken/3592/foto1/orig/carat.gif"
-    },
-    {
-      "name": "Carpyen",
-      "brands": "http://shoponsite.be/images/merken/3960/foto1/orig/carpyen_klein.gif"
-    },
-    {
-      "name": "Case Logic",
-      "brands": "http://shoponsite.be/images/merken/3144/foto1/orig/caselogic-logo-klein.gif"
-    },
-    {
-      "name": "Casio",
-      "brands": "http://shoponsite.be/images/merken/3020/foto1/orig/klein.gif"
-    },
-    {
-      "name": "Castaldi",
-      "brands": "http://shoponsite.be/images/merken/3961/foto1/orig/castaldi_klein.gif"
-    },
-    {
-      "name": "Catellani & Smith",
-      "brands": "http://shoponsite.be/images/merken/3502/foto1/orig/catellani___smith.gif"
-    },
-    {
-      "name": "CCI",
-      "brands": "http://shoponsite.be/images/merken/3867/foto1/orig/cci.gif"
-    },
-    {
-      "name": "CDN",
-      "brands": "http://shoponsite.be/images/merken/4586/foto1/orig/cdn_logoklein.gif"
-    },
-    {
-      "name": "CET",
-      "brands": "http://shoponsite.be/images/merken/3875/foto1/orig/cetkl.gif"
-    },
-    {
-      "name": "Charlotte Marie C",
-      "brands": "http://shoponsite.be/images/merken/4130/foto1/orig/charlotte-marie-c-small.gif"
-    },
-    {
-      "name": "Chaud Devant",
-      "brands": "http://shoponsite.be/images/merken/4605/foto1/orig/chaud-devantklein.gif"
-    },
-    {
-      "name": "Chef & Sommelier",
-      "brands": "http://shoponsite.be/images/merken/4265/foto1/orig/chefensommelier-logokl.gif"
-    },
-    {
-      "name": "Chef's Choice",
-      "brands": "http://shoponsite.be/images/merken/3562/foto1/orig/logo_small.gif"
-    },
-    {
-      "name": "Chiayo",
-      "brands": "http://shoponsite.be/images/merken/2888/foto1/orig/chiayo.gif"
-    },
-    {
-      "name": "Chilewich",
-      "brands": "http://shoponsite.be/images/merken/4531/foto1/orig/chilewich-logo-klein.gif"
-    },
-    {
-      "name": "Chroma",
-      "brands": "http://shoponsite.be/images/merken/3713/foto1/orig/chroma.gif"
-    },
-    {
-      "name": "Cilio",
-      "brands": "http://shoponsite.be/images/merken/4293/foto1/orig/cilio-logokl.gif"
-    },
-    {
-      "name": "Cini & Nils",
-      "brands": "http://shoponsite.be/images/merken/3503/foto1/orig/cini_klein.gif"
-    },
-    {
-      "name": "CJC Systems",
-      "brands": "http://shoponsite.be/images/merken/3868/foto1/orig/cjc_systems.gif"
-    },
-    {
-      "name": "Clearaudio",
-      "brands": "http://shoponsite.be/images/merken/3113/foto1/orig/clearaudio.gif"
-    },
-    {
-      "name": "Climadiff",
-      "brands": "http://shoponsite.be/images/merken/2694/foto1/orig/climadiff.gif"
-    },
-    {
-      "name": "Cobb",
-      "brands": "http://shoponsite.be/images/merken/3708/foto1/orig/cobb.gif"
-    },
-    {
-      "name": "Cobra",
-      "brands": "http://shoponsite.be/images/merken/2764/foto1/res75x56/cobra-logo-groot.jpg"
-    },
-    {
-      "name": "Codume",
-      "brands": "http://shoponsite.be/images/merken/3864/foto1/orig/codume.gif"
-    },
-    {
-      "name": "Cokin",
-      "brands": "http://shoponsite.be/images/merken/3098/foto1/orig/cokin.gif"
-    },
-    {
-      "name": "Cole & Mason",
-      "brands": "http://shoponsite.be/images/merken/3777/foto1/orig/logo_small.gif"
-    },
-    {
-      "name": "Color Kinetics",
-      "brands": "http://shoponsite.be/images/merken/2697/foto1/orig/color_klein.gif"
-    },
-    {
-      "name": "Comelit",
-      "brands": "http://shoponsite.be/images/merken/3733/foto1/orig/comelit.gif"
-    },
-    {
-      "name": "Concord",
-      "brands": "http://shoponsite.be/images/merken/2821/foto1/orig/concord.gif"
-    },
-    {
-      "name": "Conex",
-      "brands": "http://shoponsite.be/images/merken/3876/foto1/orig/conex.gif"
-    },
-    {
-      "name": "Conson",
-      "brands": "http://shoponsite.be/images/merken/3877/foto1/orig/conson.gif"
-    },
-    {
-      "name": "Constructa",
-      "brands": "http://shoponsite.be/images/merken/3865/foto1/orig/constructa.gif"
-    },
-    {
-      "name": "Contimac",
-      "brands": "http://shoponsite.be/images/merken/3625/foto1/orig/contimac.gif"
-    },
-    {
-      "name": "Continenta",
-      "brands": "http://shoponsite.be/images/merken/4583/foto1/orig/continentaklein.gif"
-    },
-    {
-      "name": "Control4",
-      "brands": "http://shoponsite.be/images/merken/4538/foto1/orig/control4klein.gif"
-    },
-    {
-      "name": "Cooper Menvier",
-      "brands": "http://shoponsite.be/images/merken/3962/foto1/orig/cooper_klein.gif"
-    },
-    {
-      "name": "Cores da Terra",
-      "brands": "http://shoponsite.be/images/merken/4574/foto1/res75x56/cores-da-terra-logo.jpg"
-    },
-    {
-      "name": "Corradi",
-      "brands": "http://shoponsite.be/images/merken/3228/foto1/orig/corradi.gif"
-    },
-    {
-      "name": "Costaverde",
-      "brands": "http://shoponsite.be/images/merken/4520/foto1/orig/costaverdeklein.gif"
-    },
-    {
-      "name": "Cosy & Trendy",
-      "brands": "http://shoponsite.be/images/merken/4112/foto1/res75x56/cosytrendy.jpg"
-    },
-    {
-      "name": "Cosy & Trendy for kids",
-      "brands": "http://shoponsite.be/images/merken/4500/foto1/orig/logo-c_t-for-kids_klein.gif"
-    },
-    {
-      "name": "Cosy & Trendy for Professionals",
-      "brands": "http://shoponsite.be/images/merken/4498/foto1/orig/cosy_trendy_for_professionals_klein.gif"
-    },
-    {
-      "name": "Cosy @ Home",
-      "brands": "http://shoponsite.be/images/merken/4499/foto1/orig/cosy@home_klein.gif"
-    },
-    {
-      "name": "Coway",
-      "brands": "http://shoponsite.be/images/merken/4097/foto1/orig/klein.gif"
-    },
-    {
-      "name": "Coyote",
-      "brands": "http://shoponsite.be/images/merken/4294/foto1/orig/coyote-logo-kl.gif"
-    },
-    {
-      "name": "Crafond",
-      "brands": "http://shoponsite.be/images/merken/3651/foto1/orig/crafond.gif"
-    },
-    {
-      "name": "Crestron",
-      "brands": "http://shoponsite.be/images/merken/3389/foto1/orig/crestron.gif"
-    },
-    {
-      "name": "Cristal d'Arques",
-      "brands": "http://shoponsite.be/images/merken/4122/foto1/orig/cristaldarques-logokl.gif"
-    },
-    {
-      "name": "Cristal Sévres",
-      "brands": "http://shoponsite.be/images/merken/4142/foto1/orig/cristaldesevres-logokl.gif"
-    },
-    {
-      "name": "Cristel",
-      "brands": "http://shoponsite.be/images/merken/5099/foto1/res75x56/Logo-cristel.jpg"
-    },
-    {
-      "name": "Crock-Pot",
-      "brands": "http://shoponsite.be/images/merken/4368/foto1/orig/crockpot-logokl.gif"
-    },
-    {
-      "name": "Crown Linea",
-      "brands": "http://shoponsite.be/images/merken/3963/foto1/orig/crown_klein.gif"
-    },
-    {
-      "name": "Cuisinart",
-      "brands": "http://shoponsite.be/images/merken/3403/foto1/orig/cuisinart.gif"
-    },
-    {
-      "name": "Cuisipro",
-      "brands": "http://shoponsite.be/images/merken/3698/foto1/orig/cuisipro-logokl.gif"
-    },
-    {
-      "name": "Culinare",
-      "brands": "http://shoponsite.be/images/merken/4316/foto1/orig/culinare-logokl.gif"
-    },
-    {
-      "name": "Curver",
-      "brands": "http://shoponsite.be/images/merken/4111/foto1/orig/logo_klein.gif"
-    },
-    {
-      "name": "D-Link",
-      "brands": "http://shoponsite.be/images/merken/2941/foto1/orig/d_link.gif"
-    },
-    {
-      "name": "DAB",
-      "brands": "http://shoponsite.be/images/merken/3964/foto1/orig/dab_klein.gif"
-    },
-    {
-      "name": "Daewoo",
-      "brands": "http://shoponsite.be/images/merken/2998/foto1/orig/daewoo-logo-klein.gif"
-    },
-    {
-      "name": "Daff",
-      "brands": "http://shoponsite.be/images/merken/4578/foto1/orig/dafflogoklein.gif"
-    },
-    {
-      "name": "Dagetti",
-      "brands": "http://shoponsite.be/images/merken/3028/foto1/orig/dagetti.gif"
-    },
-    {
-      "name": "Daikin",
-      "brands": "http://shoponsite.be/images/merken/2781/foto1/orig/daikin.gif"
-    },
-    {
-      "name": "Dali",
-      "brands": "http://shoponsite.be/images/merken/3473/foto1/orig/dali.gif"
-    },
-    {
-      "name": "DAP",
-      "brands": "http://shoponsite.be/images/merken/4627/foto1/orig/dap-klein.gif"
-    },
-    {
-      "name": "Dark",
-      "brands": "http://shoponsite.be/images/merken/3255/foto1/orig/dark_klein.gif"
-    },
-    {
-      "name": "Davidts Lighting",
-      "brands": "http://shoponsite.be/images/merken/3878/foto1/orig/davidts_lighting.gif"
-    },
-    {
-      "name": "de Buyer",
-      "brands": "http://shoponsite.be/images/merken/3699/foto1/orig/de_buyer.gif"
-    },
-    {
-      "name": "De Dietrich",
-      "brands": "http://shoponsite.be/images/merken/3158/foto1/orig/de_dietrich.gif"
-    },
-    {
-      "name": "De La Terra",
-      "brands": "http://shoponsite.be/images/merken/4357/foto1/orig/delaterra.gif"
-    },
-    {
-      "name": "De'Longhi",
-      "brands": "http://shoponsite.be/images/merken/2653/foto1/orig/delonghi-logo-klein.gif"
-    },
-    {
-      "name": "Dehn",
-      "brands": "http://shoponsite.be/images/merken/3879/foto1/orig/dehn.gif"
-    },
-    {
-      "name": "Delaubrac",
-      "brands": "http://shoponsite.be/images/merken/2878/foto1/orig/delaubrac.gif"
-    },
-    {
-      "name": "Delsey",
-      "brands": "http://shoponsite.be/images/merken/3576/foto1/orig/delsey.gif"
-    },
-    {
-      "name": "Delta Dore",
-      "brands": "http://shoponsite.be/images/merken/4442/foto1/orig/delta_dore_klein.gif"
-    },
-    {
-      "name": "Delta Light",
-      "brands": "http://shoponsite.be/images/merken/2907/foto1/orig/delta_light.gif"
-    },
-    {
-      "name": "Demeyere",
-      "brands": "http://shoponsite.be/images/merken/3105/foto1/orig/demeyereklein.gif"
-    },
-    {
-      "name": "Den Braven",
-      "brands": "http://shoponsite.be/images/merken/3622/foto1/orig/den_braven.gif"
-    },
-    {
-      "name": "Denon",
-      "brands": "http://shoponsite.be/images/merken/3086/foto1/orig/denon.gif"
-    },
-    {
-      "name": "Densen",
-      "brands": "http://shoponsite.be/images/merken/3719/foto1/orig/densen.gif"
-    },
-    {
-      "name": "Dethlefsen & Balk",
-      "brands": "http://shoponsite.be/images/merken/4558/foto1/orig/logo-db-freiklein.gif"
-    },
-    {
-      "name": "Devolo",
-      "brands": "http://shoponsite.be/images/merken/4479/foto1/orig/devoloklein.gif"
-    },
-    {
-      "name": "Dewalt",
-      "brands": "http://shoponsite.be/images/merken/3573/foto1/orig/dewalt.gif"
-    },
-    {
-      "name": "Diamant Sabatier",
-      "brands": "http://shoponsite.be/images/merken/4391/foto1/orig/sabatier-logokl.gif"
-    },
-    {
-      "name": "Dibbern",
-      "brands": "http://shoponsite.be/images/merken/4105/foto1/res75x56/Dibbern-Logo.jpg"
-    },
-    {
-      "name": "Dik Geurts",
-      "brands": "http://shoponsite.be/images/merken/3930/foto1/orig/dik_geurts_klein.gif"
-    },
-    {
-      "name": "Dimplex",
-      "brands": "http://shoponsite.be/images/merken/3120/foto1/orig/dimplex-klein.gif"
-    },
-    {
-      "name": "Disano",
-      "brands": "http://shoponsite.be/images/merken/3965/foto1/orig/disano_klein.gif"
-    },
-    {
-      "name": "Disegnoluce",
-      "brands": "http://shoponsite.be/images/merken/3504/foto1/orig/disegno_klein.gif"
-    },
-    {
-      "name": "DM Creation",
-      "brands": "http://shoponsite.be/images/merken/4146/foto1/orig/dmcreation-logokl.gif"
-    },
-    {
-      "name": "Dobiss",
-      "brands": "http://shoponsite.be/images/merken/2780/foto1/orig/dobiss_domotics.gif"
-    },
-    {
-      "name": "Domestia",
-      "brands": "http://shoponsite.be/images/merken/4061/foto1/orig/domestia_klein.gif"
-    },
-    {
-      "name": "Domintell",
-      "brands": "http://shoponsite.be/images/merken/3160/foto1/orig/domintell-logo-klein.gif"
-    },
-    {
-      "name": "Domo",
-      "brands": "http://shoponsite.be/images/merken/2683/foto1/orig/domoklein.gif"
-    },
-    {
-      "name": "Doro",
-      "brands": "http://shoponsite.be/images/merken/3181/foto1/orig/doro.gif"
-    },
-    {
-      "name": "Dovre",
-      "brands": "http://shoponsite.be/images/merken/3048/foto1/orig/dovre.gif"
-    },
-    {
-      "name": "Doxis",
-      "brands": "http://shoponsite.be/images/merken/3880/foto1/orig/doxis.gif"
-    },
-    {
-      "name": "Dr. Oetker",
-      "brands": "http://shoponsite.be/images/merken/4114/foto1/orig/logo_klein.gif"
-    },
-    {
-      "name": "Draflex",
-      "brands": "http://shoponsite.be/images/merken/3881/foto1/orig/draflex.gif"
-    },
-    {
-      "name": "Dreamland",
-      "brands": "http://shoponsite.be/images/merken/3316/foto1/orig/dreamland.gif"
-    },
-    {
-      "name": "Dremel",
-      "brands": "http://shoponsite.be/images/merken/3210/foto1/orig/dremel-logo-klein.gif"
-    },
-    {
-      "name": "Dru",
-      "brands": "http://shoponsite.be/images/merken/3050/foto1/orig/dru.gif"
-    },
-    {
-      "name": "Dualit",
-      "brands": "http://shoponsite.be/images/merken/3462/foto1/orig/dualit.gif"
-    },
-    {
-      "name": "DuoTecno",
-      "brands": "http://shoponsite.be/images/merken/2928/foto1/orig/duotecno.gif"
-    },
-    {
-      "name": "Duracell",
-      "brands": "http://shoponsite.be/images/merken/3029/foto1/orig/duracell.gif"
-    },
-    {
-      "name": "Durobor",
-      "brands": "http://shoponsite.be/images/merken/3568/foto1/orig/logo_small.gif"
-    },
-    {
-      "name": "Dynaudio",
-      "brands": "http://shoponsite.be/images/merken/3470/foto1/orig/dynaudio-klein.gif"
-    },
-    {
-      "name": "Dyson",
-      "brands": "http://shoponsite.be/images/merken/2857/foto1/orig/dyson.gif"
-    },
-    {
-      "name": "Edifier",
-      "brands": "http://shoponsite.be/images/merken/4535/foto1/orig/edifier-klein.gif"
-    },
-    {
-      "name": "Edy",
-      "brands": "http://shoponsite.be/images/merken/3069/foto1/orig/edy.gif"
-    },
-    {
-      "name": "Electrabel",
-      "brands": "http://shoponsite.be/images/merken/3074/foto1/orig/electrabel.gif"
-    },
-    {
-      "name": "Electrolux",
-      "brands": "http://shoponsite.be/images/merken/2835/foto1/orig/electrolux.gif"
-    },
-    {
-      "name": "Emsa",
-      "brands": "http://shoponsite.be/images/merken/3644/foto1/orig/emsa.gif"
-    },
-    {
-      "name": "Engels Kerzen",
-      "brands": "http://shoponsite.be/images/merken/4304/foto1/orig/engelskerzen-logoklcorrect.gif"
-    },
-    {
-      "name": "Eni",
-      "brands": "http://shoponsite.be/images/merken/3075/foto1/orig/eni-logo-klein.gif"
-    },
-    {
-      "name": "Epson",
-      "brands": "http://shoponsite.be/images/merken/2774/foto1/orig/epson.gif"
-    },
-    {
-      "name": "Espressions",
-      "brands": "http://shoponsite.be/images/merken/4369/foto1/orig/logo_espressions_copy.gif"
-    },
-    {
-      "name": "Espressocap",
-      "brands": "http://shoponsite.be/images/merken/3321/foto1/orig/espressocap.gif"
-    },
-    {
-      "name": "Eton",
-      "brands": "http://shoponsite.be/images/merken/3070/foto1/orig/eton.gif"
-    },
-    {
-      "name": "Eva Solo",
-      "brands": "http://shoponsite.be/images/merken/3697/foto1/orig/evasolo-logokl.gif"
-    },
-    {
-      "name": "Faber",
-      "brands": "http://shoponsite.be/images/merken/3046/foto1/orig/faber.gif"
-    },
-    {
-      "name": "Falcon",
-      "brands": "http://shoponsite.be/images/merken/3314/foto1/orig/falcon.gif"
-    },
-    {
-      "name": "Fhiaba",
-      "brands": "http://shoponsite.be/images/merken/3572/foto1/orig/fhiaba.gif"
-    },
-    {
-      "name": "Finnmart",
-      "brands": "http://shoponsite.be/images/merken/4521/foto1/orig/finnmartklein.gif"
-    },
-    {
-      "name": "Fisher&Paykel",
-      "brands": "http://shoponsite.be/images/merken/3137/foto1/orig/fisher_paykel.gif"
-    },
-    {
-      "name": "Fissler",
-      "brands": "http://shoponsite.be/images/merken/3480/foto1/orig/fissler.gif"
-    },
-    {
-      "name": "Flam",
-      "brands": "http://shoponsite.be/images/merken/3052/foto1/orig/flam-klein.gif"
-    },
-    {
-      "name": "Flandria",
-      "brands": "http://shoponsite.be/images/merken/3054/foto1/orig/flandria.gif"
-    },
-    {
-      "name": "Flatline",
-      "brands": "http://shoponsite.be/images/merken/3325/foto1/orig/flatline.gif"
-    },
-    {
-      "name": "Foodsaver",
-      "brands": "http://shoponsite.be/images/merken/4367/foto1/orig/foodsaver-logokl.gif"
-    },
-    {
-      "name": "Fortessa",
-      "brands": "http://shoponsite.be/images/merken/4143/foto1/orig/fortessa-logokl.gif"
-    },
-    {
-      "name": "Frifri",
-      "brands": "http://shoponsite.be/images/merken/3008/foto1/orig/frifri.gif"
-    },
-    {
-      "name": "Fritel",
-      "brands": "http://shoponsite.be/images/merken/2777/foto1/orig/fritel.gif"
-    },
-    {
-      "name": "Fujifilm",
-      "brands": "http://shoponsite.be/images/merken/2874/foto1/orig/fujifilm.gif"
-    },
-    {
-      "name": "G&BL",
-      "brands": "http://shoponsite.be/images/merken/4482/foto1/orig/gbl-klein.gif"
-    },
-    {
-      "name": "G-rail",
-      "brands": "http://shoponsite.be/images/merken/3556/foto1/orig/g_rail.gif"
-    },
-    {
-      "name": "G-Tech",
-      "brands": "http://shoponsite.be/images/merken/3322/foto1/orig/g_tech.gif"
-    },
-    {
-      "name": "Gaggenau",
-      "brands": "http://shoponsite.be/images/merken/3287/foto1/orig/gagkl.gif"
-    },
-    {
-      "name": "Gardena",
-      "brands": "http://shoponsite.be/images/merken/3212/foto1/orig/gardena.gif"
-    },
-    {
-      "name": "Garmin",
-      "brands": "http://shoponsite.be/images/merken/2658/foto1/orig/garmin.gif"
-    },
-    {
-      "name": "GEFU",
-      "brands": "http://shoponsite.be/images/merken/3559/foto1/orig/gefu.gif"
-    },
-    {
-      "name": "Geneva",
-      "brands": "http://shoponsite.be/images/merken/3331/foto1/orig/geneva.gif"
-    },
-    {
-      "name": "Giesswein",
-      "brands": "http://shoponsite.be/images/merken/4248/foto1/orig/giesswein-logokl.gif"
-    },
-    {
-      "name": "Gobel",
-      "brands": "http://shoponsite.be/images/merken/3858/foto1/orig/gobel.gif"
-    },
-    {
-      "name": "Gorenje",
-      "brands": "http://shoponsite.be/images/merken/3033/foto1/orig/gorenje.gif"
-    },
-    {
-      "name": "GP Batteries",
-      "brands": "http://shoponsite.be/images/merken/2843/foto1/orig/gp_batteries.gif"
-    },
-    {
-      "name": "Grado",
-      "brands": "http://shoponsite.be/images/merken/3111/foto1/orig/grado.gif"
-    },
-    {
-      "name": "Graef",
-      "brands": "http://shoponsite.be/images/merken/2778/foto1/orig/graef.gif"
-    },
-    {
-      "name": "Gree",
-      "brands": "http://shoponsite.be/images/merken/2898/foto1/orig/gree.gif"
-    },
-    {
-      "name": "GreenPan",
-      "brands": "http://shoponsite.be/images/merken/3566/foto1/orig/greenpan.gif"
-    },
-    {
-      "name": "Grundig",
-      "brands": "http://shoponsite.be/images/merken/2995/foto1/orig/grundig.gif"
-    },
-    {
-      "name": "Guardini",
-      "brands": "http://shoponsite.be/images/merken/4137/foto1/orig/guardini-small.gif"
-    },
-    {
-      "name": "Hama",
-      "brands": "http://shoponsite.be/images/merken/3034/foto1/orig/hama.gif"
-    },
-    {
-      "name": "Hantarex",
-      "brands": "http://shoponsite.be/images/merken/3106/foto1/orig/hantarex75.gif"
-    },
-    {
-      "name": "Harman Kardon",
-      "brands": "http://shoponsite.be/images/merken/3308/foto1/orig/harman_kardon_75.gif"
-    },
-    {
-      "name": "HEAT",
-      "brands": "http://shoponsite.be/images/merken/4401/foto1/orig/heat-logo-klein.gif"
-    },
-    {
-      "name": "hi-Fun",
-      "brands": "http://shoponsite.be/images/merken/3748/foto1/orig/hi_fun.gif"
-    },
-    {
-      "name": "Hitachi",
-      "brands": "http://shoponsite.be/images/merken/2752/foto1/orig/hitachi.gif"
-    },
-    {
-      "name": "Home Cinema Modules",
-      "brands": "http://shoponsite.be/images/merken/3524/foto1/orig/home_cinema_modules.gif"
-    },
-    {
-      "name": "Hoover",
-      "brands": "http://shoponsite.be/images/merken/2720/foto1/orig/hoover.gif"
-    },
-    {
-      "name": "Hotpoint-Ariston",
-      "brands": "http://shoponsite.be/images/merken/2696/foto1/orig/ariston.gif"
-    },
-    {
-      "name": "HP",
-      "brands": "http://shoponsite.be/images/merken/2705/foto1/orig/hp.gif"
-    },
-    {
-      "name": "HQ",
-      "brands": "http://shoponsite.be/images/merken/2660/foto1/orig/hq.gif"
-    },
-    {
-      "name": "HTC",
-      "brands": "http://shoponsite.be/images/merken/3138/foto1/orig/htc.gif"
-    },
-    {
-      "name": "Ihr",
-      "brands": "http://shoponsite.be/images/merken/4151/foto1/orig/ihr-logokl.gif"
-    },
-    {
-      "name": "Iittala",
-      "brands": "http://shoponsite.be/images/merken/3828/foto1/orig/iittala-logokl.gif"
-    },
-    {
-      "name": "Illy",
-      "brands": "http://shoponsite.be/images/merken/3746/foto1/orig/logo52x52.gif"
-    },
-    {
-      "name": "ImagiLights",
-      "brands": "http://shoponsite.be/images/merken/4493/foto1/orig/untitled-1.gif"
-    },
-    {
-      "name": "Imperia",
-      "brands": "http://shoponsite.be/images/merken/3652/foto1/orig/imperia.gif"
-    },
-    {
-      "name": "Indesit",
-      "brands": "http://shoponsite.be/images/merken/2804/foto1/orig/indesit.gif"
-    },
-    {
-      "name": "Inventum",
-      "brands": "http://shoponsite.be/images/merken/2989/foto1/orig/inventum.gif"
-    },
-    {
-      "name": "Iomega",
-      "brands": "http://shoponsite.be/images/merken/2838/foto1/orig/iomega.gif"
-    },
-    {
-      "name": "iRobot",
-      "brands": "http://shoponsite.be/images/merken/3632/foto1/orig/irobot.gif"
-    },
-    {
-      "name": "Italesse",
-      "brands": "http://shoponsite.be/images/merken/3683/foto1/orig/italesse-logokl.gif"
-    },
-    {
-      "name": "Jamie Oliver",
-      "brands": "http://shoponsite.be/images/merken/3691/foto1/orig/jamie_oliver.gif"
-    },
-    {
-      "name": "Jamo",
-      "brands": "http://shoponsite.be/images/merken/2716/foto1/orig/jamo.gif"
-    },
-    {
-      "name": "Jarre",
-      "brands": "http://shoponsite.be/images/merken/4125/foto1/orig/jarre_techno_registered.gif"
-    },
-    {
-      "name": "JBL",
-      "brands": "http://shoponsite.be/images/merken/2999/foto1/orig/jbl.gif"
-    },
-    {
-      "name": "Jean Louis David",
-      "brands": "http://shoponsite.be/images/merken/3845/foto1/orig/jean_louis_david.gif"
-    },
-    {
-      "name": "Jenaer",
-      "brands": "http://shoponsite.be/images/merken/4134/foto1/orig/jenaer-small.gif"
-    },
-    {
-      "name": "Jia",
-      "brands": "http://shoponsite.be/images/merken/4242/foto1/orig/jia-logokl.gif"
-    },
-    {
-      "name": "JL Coquet",
-      "brands": "http://shoponsite.be/images/merken/4104/foto1/res75x56/jlcoquet.jpg"
-    },
-    {
-      "name": "Jo!e",
-      "brands": "http://shoponsite.be/images/merken/3653/foto1/orig/jo_e.gif"
-    },
-    {
-      "name": "Jura",
-      "brands": "http://shoponsite.be/images/merken/3460/foto1/orig/jura.gif"
-    },
-    {
-      "name": "JVC",
-      "brands": "http://shoponsite.be/images/merken/2657/foto1/orig/jvc.gif"
-    },
-    {
-      "name": "Kai",
-      "brands": "http://shoponsite.be/images/merken/3561/foto1/orig/kai-logokl.gif"
-    },
-    {
-      "name": "Kaiser",
-      "brands": "http://shoponsite.be/images/merken/3862/foto1/orig/kaiser.gif"
-    },
-    {
-      "name": "KEF",
-      "brands": "http://shoponsite.be/images/merken/3090/foto1/orig/kef-klein.gif"
-    },
-    {
-      "name": "Ken Hom",
-      "brands": "http://shoponsite.be/images/merken/3715/foto1/orig/kenhomlogokl.gif"
-    },
-    {
-      "name": "Kenwood",
-      "brands": "http://shoponsite.be/images/merken/2990/foto1/orig/kenwood.gif"
-    },
-    {
-      "name": "Kenwood Electronics",
-      "brands": "http://shoponsite.be/images/merken/3324/foto1/orig/logo_klein.gif"
-    },
-    {
-      "name": "Kinto",
-      "brands": "http://shoponsite.be/images/merken/4380/foto1/orig/kinto-logokl.gif"
-    },
-    {
-      "name": "Kisag",
-      "brands": "http://shoponsite.be/images/merken/3320/foto1/orig/kisag.gif"
-    },
-    {
-      "name": "KitchenAid",
-      "brands": "http://shoponsite.be/images/merken/2992/foto1/orig/kitchenaid.gif"
-    },
-    {
-      "name": "Koala",
-      "brands": "http://shoponsite.be/images/merken/3751/foto1/orig/kih.gif"
-    },
-    {
-      "name": "Kodak",
-      "brands": "http://shoponsite.be/images/merken/2815/foto1/orig/kodak.gif"
-    },
-    {
-      "name": "Konig",
-      "brands": "http://shoponsite.be/images/merken/2751/foto1/orig/koenig_electronic_logo_75.gif"
-    },
-    {
-      "name": "Koozzzi",
-      "brands": "http://shoponsite.be/images/merken/4431/foto1/orig/koozzzi-logokl.gif"
-    },
-    {
-      "name": "Koss",
-      "brands": "http://shoponsite.be/images/merken/3516/foto1/orig/koss.gif"
-    },
-    {
-      "name": "Krups",
-      "brands": "http://shoponsite.be/images/merken/2828/foto1/orig/krups.gif"
-    },
-    {
-      "name": "Küppersbusch",
-      "brands": "http://shoponsite.be/images/merken/3199/foto1/orig/kup_klein.gif"
-    },
-    {
-      "name": "La Rochère",
-      "brands": "http://shoponsite.be/images/merken/4523/foto1/orig/larochklein.gif"
-    },
-    {
-      "name": "LaBoul",
-      "brands": "http://shoponsite.be/images/merken/4589/foto1/orig/logo_laboulklein.gif"
-    },
-    {
-      "name": "Lagostina",
-      "brands": "http://shoponsite.be/images/merken/3570/foto1/orig/lagostina.gif"
-    },
-    {
-      "name": "Laguiole-Dubost",
-      "brands": "http://shoponsite.be/images/merken/3673/foto1/orig/laguiole_dubost.gif"
-    },
-    {
-      "name": "Laurastar",
-      "brands": "http://shoponsite.be/images/merken/2758/foto1/orig/laurastar.gif"
-    },
-    {
-      "name": "Le Creuset",
-      "brands": "http://shoponsite.be/images/merken/3123/foto1/orig/le_creuset.gif"
-    },
-    {
-      "name": "Legnoart",
-      "brands": "http://shoponsite.be/images/merken/3681/foto1/orig/legnoart-small.gif"
-    },
-    {
-      "name": "Leica",
-      "brands": "http://shoponsite.be/images/merken/2930/foto1/orig/leica.gif"
-    },
-    {
-      "name": "Lékué",
-      "brands": "http://shoponsite.be/images/merken/3655/foto1/orig/lekue.gif"
-    },
-    {
-      "name": "Leopold Vienna",
-      "brands": "http://shoponsite.be/images/merken/4144/foto1/orig/leopoldvienna-logokl.gif"
-    },
-    {
-      "name": "LG",
-      "brands": "http://shoponsite.be/images/merken/2673/foto1/orig/lg.gif"
-    },
-    {
-      "name": "Liebherr",
-      "brands": "http://shoponsite.be/images/merken/2773/foto1/orig/liebherrklein.gif"
-    },
-    {
-      "name": "Linksys by Cisco",
-      "brands": "http://shoponsite.be/images/merken/4437/foto1/orig/cisco_klein.gif"
-    },
-    {
-      "name": "Loewe",
-      "brands": "http://shoponsite.be/images/merken/2984/foto1/orig/loewe.gif"
-    },
-    {
-      "name": "Logitech",
-      "brands": "http://shoponsite.be/images/merken/2688/foto1/res75x56/image001.jpg"
-    },
-    {
-      "name": "Lowepro",
-      "brands": "http://shoponsite.be/images/merken/3099/foto1/orig/lowepro.gif"
-    },
-    {
-      "name": "Luke",
-      "brands": "http://shoponsite.be/images/merken/3327/foto1/orig/luke.gif"
-    },
-    {
-      "name": "Luminarc",
-      "brands": "http://shoponsite.be/images/merken/4121/foto1/orig/luminarc-logokl.gif"
-    },
-    {
-      "name": "Luminus",
-      "brands": "http://shoponsite.be/images/merken/3079/foto1/orig/luminus.gif"
-    },
-    {
-      "name": "Lurch",
-      "brands": "http://shoponsite.be/images/merken/3736/foto1/orig/lurch.gif"
-    },
-    {
-      "name": "Magimix",
-      "brands": "http://shoponsite.be/images/merken/2991/foto1/orig/magimix.gif"
-    },
-    {
-      "name": "Make My Day",
-      "brands": "http://shoponsite.be/images/merken/4494/foto1/orig/makemyday_kopie.gif"
-    },
-    {
-      "name": "Manfrotto",
-      "brands": "http://shoponsite.be/images/merken/3096/foto1/orig/manfrotto.gif"
-    },
-    {
-      "name": "Marcato",
-      "brands": "http://shoponsite.be/images/merken/4514/foto1/orig/marcatoklein.gif"
-    },
-    {
-      "name": "Marmitek",
-      "brands": "http://shoponsite.be/images/merken/2706/foto1/orig/marmitekklein.gif"
-    },
-    {
-      "name": "Mastrad",
-      "brands": "http://shoponsite.be/images/merken/3790/foto1/orig/mastrad-logokl.gif"
-    },
-    {
-      "name": "MCZ",
-      "brands": "http://shoponsite.be/images/merken/3281/foto1/orig/mcz.gif"
-    },
-    {
-      "name": "Menu",
-      "brands": "http://shoponsite.be/images/merken/3782/foto1/orig/menu_logo_black_copy_2_small.gif"
-    },
-    {
-      "name": "Mepra",
-      "brands": "http://shoponsite.be/images/merken/4127/foto1/orig/mepra-logokl.gif"
-    },
-    {
-      "name": "Miele",
-      "brands": "http://shoponsite.be/images/merken/2987/foto1/orig/miele.gif"
-    },
-    {
-      "name": "Millecroquettes",
-      "brands": "http://shoponsite.be/images/merken/4365/foto1/orig/mileecroquettes-echtklein.gif"
-    },
-    {
-      "name": "Mingle",
-      "brands": "http://shoponsite.be/images/merken/3861/foto1/orig/mingle.gif"
-    },
-    {
-      "name": "Minox",
-      "brands": "http://shoponsite.be/images/merken/3134/foto1/orig/minox.gif"
-    },
-    {
-      "name": "Mio",
-      "brands": "http://shoponsite.be/images/merken/2931/foto1/orig/mio.gif"
-    },
-    {
-      "name": "Miyabi",
-      "brands": "http://shoponsite.be/images/merken/4644/foto1/orig/miyabilogoklein.gif"
-    },
-    {
-      "name": "Modular",
-      "brands": "http://shoponsite.be/images/merken/3151/foto1/orig/modular.gif"
-    },
-    {
-      "name": "Moha",
-      "brands": "http://shoponsite.be/images/merken/3662/foto1/orig/moha.gif"
-    },
-    {
-      "name": "Molécule-R",
-      "brands": "http://shoponsite.be/images/merken/4636/foto1/orig/moleculerklein.gif"
-    },
-    {
-      "name": "Monitor Audio",
-      "brands": "http://shoponsite.be/images/merken/3115/foto1/res75x56/monitor-audio-logo.jpg"
-    },
-    {
-      "name": "Monster",
-      "brands": "http://shoponsite.be/images/merken/3317/foto1/orig/monster.gif"
-    },
-    {
-      "name": "Mor.",
-      "brands": "http://shoponsite.be/images/merken/3696/foto1/orig/mor_.gif"
-    },
-    {
-      "name": "Moulinex",
-      "brands": "http://shoponsite.be/images/merken/2656/foto1/orig/moulinex-logo-klein.gif"
-    },
-    {
-      "name": "Music Hall",
-      "brands": "http://shoponsite.be/images/merken/3119/foto1/orig/mh-klein.gif"
-    },
-    {
-      "name": "NAD",
-      "brands": "http://shoponsite.be/images/merken/3271/foto1/orig/nad.gif"
-    },
-    {
-      "name": "Naf Naf",
-      "brands": "http://shoponsite.be/images/merken/3132/foto1/orig/naf_naf.gif"
-    },
-    {
-      "name": "Navigon",
-      "brands": "http://shoponsite.be/images/merken/3714/foto1/orig/navigon.gif"
-    },
-    {
-      "name": "Neff",
-      "brands": "http://shoponsite.be/images/merken/3003/foto1/orig/neff.gif"
-    },
-    {
-      "name": "Nespresso",
-      "brands": "http://shoponsite.be/images/merken/2986/foto1/orig/nespresso.gif"
-    },
-    {
-      "name": "Nestor Martin",
-      "brands": "http://shoponsite.be/images/merken/3051/foto1/orig/nestor-martin-klein.gif"
-    },
-    {
-      "name": "Niko",
-      "brands": "http://shoponsite.be/images/merken/2671/foto1/orig/niko.gif"
-    },
-    {
-      "name": "Nikon",
-      "brands": "http://shoponsite.be/images/merken/2679/foto1/orig/nikon.gif"
-    },
-    {
-      "name": "Nilfisk",
-      "brands": "http://shoponsite.be/images/merken/3011/foto1/orig/nilfisk.gif"
-    },
-    {
-      "name": "Nogent",
-      "brands": "http://shoponsite.be/images/merken/3860/foto1/orig/nogent.gif"
-    },
-    {
-      "name": "Nokia",
-      "brands": "http://shoponsite.be/images/merken/2680/foto1/orig/nokia.gif"
-    },
-    {
-      "name": "Nova",
-      "brands": "http://shoponsite.be/images/merken/2756/foto1/orig/nova.gif"
-    },
-    {
-      "name": "Novy",
-      "brands": "http://shoponsite.be/images/merken/2771/foto1/orig/novy.gif"
-    },
-    {
-      "name": "Nuance",
-      "brands": "http://shoponsite.be/images/merken/4383/foto1/orig/nuance-logokl.gif"
-    },
-    {
-      "name": "Nude",
-      "brands": "http://shoponsite.be/images/merken/4877/foto1/res75x56/Schermafbeelding-2014-09-16-om-09.41.57-kopie.jpg"
-    },
-    {
-      "name": "Olympus",
-      "brands": "http://shoponsite.be/images/merken/2853/foto1/orig/olympus.gif"
-    },
-    {
-      "name": "Omami",
-      "brands": "http://shoponsite.be/images/merken/4356/foto1/orig/omamiklein.gif"
-    },
-    {
-      "name": "OmniMount",
-      "brands": "http://shoponsite.be/images/merken/3133/foto1/orig/omnimount_75.gif"
-    },
-    {
-      "name": "One For All",
-      "brands": "http://shoponsite.be/images/merken/2732/foto1/orig/one_for_all.gif"
-    },
-    {
-      "name": "Onkyo",
-      "brands": "http://shoponsite.be/images/merken/3146/foto1/orig/onkyo.gif"
-    },
-    {
-      "name": "Opinel",
-      "brands": "http://shoponsite.be/images/merken/3672/foto1/orig/opinel_logoklein.gif"
-    },
-    {
-      "name": "Osram",
-      "brands": "http://shoponsite.be/images/merken/2809/foto1/orig/osram-klein.gif"
-    },
-    {
-      "name": "Packard Bell",
-      "brands": "http://shoponsite.be/images/merken/2814/foto1/orig/packard_bell.gif"
-    },
-    {
-      "name": "Panasonic",
-      "brands": "http://shoponsite.be/images/merken/2650/foto1/orig/panasonic.gif"
-    },
-    {
-      "name": "Panda",
-      "brands": "http://shoponsite.be/images/merken/4086/foto1/orig/logo_klein.gif"
-    },
-    {
-      "name": "Patisse",
-      "brands": "http://shoponsite.be/images/merken/3788/foto1/orig/patisse.gif"
-    },
-    {
-      "name": "Paul Frank",
-      "brands": "http://shoponsite.be/images/merken/4497/foto1/orig/lr_61-kl.gif"
-    },
-    {
-      "name": "Peugeot",
-      "brands": "http://shoponsite.be/images/merken/3124/foto1/orig/peugeot-logokl.gif"
-    },
-    {
-      "name": "Philips",
-      "brands": "http://shoponsite.be/images/merken/2649/foto1/orig/philips.gif"
-    },
-    {
-      "name": "Philips TV",
-      "brands": "http://shoponsite.be/images/merken/4595/foto1/orig/philips-2.gif"
-    },
-    {
-      "name": "Philips-Saeco",
-      "brands": "http://shoponsite.be/images/merken/2855/foto1/orig/logo-philipssaecokl.gif"
-    },
-    {
-      "name": "Piazetta",
-      "brands": "http://shoponsite.be/images/merken/3282/foto1/orig/piazetta.gif"
-    },
-    {
-      "name": "Piazza",
-      "brands": "http://shoponsite.be/images/merken/3676/foto1/orig/piazza.gif"
-    },
-    {
-      "name": "Pioneer",
-      "brands": "http://shoponsite.be/images/merken/2661/foto1/orig/pioneer.gif"
-    },
-    {
-      "name": "Plate Spacers",
-      "brands": "http://shoponsite.be/images/merken/3839/foto1/orig/plate_spacers.gif"
-    },
-    {
-      "name": "Point Rose",
-      "brands": "http://shoponsite.be/images/merken/4737/foto1/res75x56/PointRose.jpg"
-    },
-    {
-      "name": "Point-Virgule",
-      "brands": "http://shoponsite.be/images/merken/3711/foto1/res75x56/Logo_PointVirgule_Q_pos_HR.jpg"
-    },
-    {
-      "name": "Polet",
-      "brands": "http://shoponsite.be/images/merken/3612/foto1/orig/polet.gif"
-    },
-    {
-      "name": "Princess",
-      "brands": "http://shoponsite.be/images/merken/2757/foto1/orig/princess.gif"
-    },
-    {
-      "name": "Projecta",
-      "brands": "http://shoponsite.be/images/merken/2730/foto1/orig/projecta.gif"
-    },
-    {
-      "name": "Proximus",
-      "brands": "http://shoponsite.be/images/merken/3071/foto1/res75x56/proximus-logo.jpg"
-    },
-    {
-      "name": "Quadra Fire",
-      "brands": "http://shoponsite.be/images/merken/4092/foto1/orig/logo_klein.gif"
-    },
-    {
-      "name": "Rasteli",
-      "brands": "http://shoponsite.be/images/merken/4927/foto1/res75x56/Schermafbeelding-2015-03-05-om-10.44.19-kopie.jpg"
-    },
-    {
-      "name": "Reisenthel",
-      "brands": "http://shoponsite.be/images/merken/3642/foto1/orig/reisenthel.gif"
-    },
-    {
-      "name": "Remington",
-      "brands": "http://shoponsite.be/images/merken/2785/foto1/orig/remington.gif"
-    },
-    {
-      "name": "Revol",
-      "brands": "http://shoponsite.be/images/merken/3786/foto1/orig/logo_haut_small.gif"
-    },
-    {
-      "name": "Ricatech",
-      "brands": "http://shoponsite.be/images/merken/3512/foto1/orig/ricatech.gif"
-    },
-    {
-      "name": "Ricoh",
-      "brands": "http://shoponsite.be/images/merken/3025/foto1/orig/ricoh-klein.gif"
-    },
-    {
-      "name": "Riedel",
-      "brands": "http://shoponsite.be/images/merken/4107/foto1/orig/riedel-logokl.gif"
-    },
-    {
-      "name": "Robert Welch",
-      "brands": "http://shoponsite.be/images/merken/4313/foto1/orig/robertwelch-logokl.gif"
-    },
-    {
-      "name": "Rosti Mepal",
-      "brands": "http://shoponsite.be/images/merken/4355/foto1/orig/rostimepal-logokl.gif"
-    },
-    {
-      "name": "Rowenta",
-      "brands": "http://shoponsite.be/images/merken/2829/foto1/orig/rowenta.gif"
-    },
-    {
-      "name": "Royal Zilverstad",
-      "brands": "http://shoponsite.be/images/merken/4150/foto1/orig/royalzilverstadt-logokl.gif"
-    },
-    {
-      "name": "Ruark Audio",
-      "brands": "http://shoponsite.be/images/merken/3511/foto1/res75x56/ruark-audio-logo.jpg"
-    },
-    {
-      "name": "Römertopf",
-      "brands": "http://shoponsite.be/images/merken/3656/foto1/orig/romertopf.gif"
-    },
-    {
-      "name": "Saey",
-      "brands": "http://shoponsite.be/images/merken/3049/foto1/orig/saey-klein.gif"
-    },
-    {
-      "name": "Saleen",
-      "brands": "http://shoponsite.be/images/merken/3674/foto1/orig/saleen.gif"
-    },
-    {
-      "name": "Salt & Pepper",
-      "brands": "http://shoponsite.be/images/merken/3478/foto1/orig/salt___pepper.gif"
-    },
-    {
-      "name": "Samsung",
-      "brands": "http://shoponsite.be/images/merken/2669/foto1/res75x56/Samsung-logo-Lettermark-Blue.jpg"
-    },
-    {
-      "name": "Sanyo",
-      "brands": "http://shoponsite.be/images/merken/2877/foto1/orig/sanyo.gif"
-    },
-    {
-      "name": "Scholl",
-      "brands": "http://shoponsite.be/images/merken/3847/foto1/orig/scholl.gif"
-    },
-    {
-      "name": "Schott Zwiesel",
-      "brands": "http://shoponsite.be/images/merken/3740/foto1/res75x56/SZ_Logo_2012_4c.jpg"
-    },
-    {
-      "name": "Schroers & Schroers",
-      "brands": "http://shoponsite.be/images/merken/3118/foto1/orig/schroers___schroers.gif"
-    },
-    {
-      "name": "Screwpull",
-      "brands": "http://shoponsite.be/images/merken/3483/foto1/orig/screwpull.gif"
-    },
-    {
-      "name": "Seb",
-      "brands": "http://shoponsite.be/images/merken/2830/foto1/orig/seb.gif"
-    },
-    {
-      "name": "Seltmann Weiden",
-      "brands": "http://shoponsite.be/images/merken/3743/foto1/orig/seltmann-small.gif"
-    },
-    {
-      "name": "Sharp",
-      "brands": "http://shoponsite.be/images/merken/2717/foto1/orig/sharp.gif"
-    },
-    {
-      "name": "Siemens",
-      "brands": "http://shoponsite.be/images/merken/2654/foto1/orig/siemens.gif"
-    },
-    {
-      "name": "Silikomart",
-      "brands": "http://shoponsite.be/images/merken/4135/foto1/orig/silikomart-small.gif"
-    },
-    {
-      "name": "Silit",
-      "brands": "http://shoponsite.be/images/merken/3122/foto1/orig/silit.gif"
-    },
-    {
-      "name": "Singer",
-      "brands": "http://shoponsite.be/images/merken/3126/foto1/orig/singer.gif"
-    },
-    {
-      "name": "Sitecom",
-      "brands": "http://shoponsite.be/images/merken/3410/foto1/orig/logo_klein.gif"
-    },
-    {
-      "name": "Smart Café",
-      "brands": "http://shoponsite.be/images/merken/4098/foto1/orig/smartcafelogkl.gif"
-    },
-    {
-      "name": "Smeg",
-      "brands": "http://shoponsite.be/images/merken/3043/foto1/orig/smeg.gif"
-    },
-    {
-      "name": "SodaStream",
-      "brands": "http://shoponsite.be/images/merken/3670/foto1/res75x56/sodastream.jpg"
-    },
-    {
-      "name": "Sonos",
-      "brands": "http://shoponsite.be/images/merken/3157/foto1/res75x56/sonos-logo.jpg"
-    },
-    {
-      "name": "Sony",
-      "brands": "http://shoponsite.be/images/merken/2662/foto1/orig/sony.gif"
-    },
-    {
-      "name": "SonyEricsson",
-      "brands": "http://shoponsite.be/images/merken/2681/foto1/orig/sonyericsson.gif"
-    },
-    {
-      "name": "Sorrells",
-      "brands": "http://shoponsite.be/images/merken/4541/foto1/orig/sorrellsklein.gif"
-    },
-    {
-      "name": "SoundCast",
-      "brands": "http://shoponsite.be/images/merken/3129/foto1/orig/soundckl.gif"
-    },
-    {
-      "name": "Spectral",
-      "brands": "http://shoponsite.be/images/merken/3383/foto1/orig/spectral.gif"
-    },
-    {
-      "name": "Spirit",
-      "brands": "http://shoponsite.be/images/merken/4439/foto1/orig/spirit-logokl.gif"
-    },
-    {
-      "name": "Staub",
-      "brands": "http://shoponsite.be/images/merken/3567/foto1/orig/staub-logokl.gif"
-    },
-    {
-      "name": "Surdiac",
-      "brands": "http://shoponsite.be/images/merken/3275/foto1/orig/surdiac.gif"
-    },
-    {
-      "name": "Sweex",
-      "brands": "http://shoponsite.be/images/merken/2940/foto1/orig/klein.gif"
-    },
-    {
-      "name": "Swiss Diamond",
-      "brands": "http://shoponsite.be/images/merken/3735/foto1/orig/swiss_diamond.gif"
-    },
-    {
-      "name": "T & G Woodware",
-      "brands": "http://shoponsite.be/images/merken/3658/foto1/orig/t___g_woodware.gif"
-    },
-    {
-      "name": "Tala",
-      "brands": "http://shoponsite.be/images/merken/4506/foto1/orig/talaklein.gif"
-    },
-    {
-      "name": "Tamron",
-      "brands": "http://shoponsite.be/images/merken/3095/foto1/orig/tamron.gif"
-    },
-    {
-      "name": "Tangent",
-      "brands": "http://shoponsite.be/images/merken/3130/foto1/orig/tangent.gif"
-    },
-    {
-      "name": "Targus",
-      "brands": "http://shoponsite.be/images/merken/3186/foto1/orig/logo_klein.gif"
-    },
-    {
-      "name": "Tarrerias Bonjean",
-      "brands": "http://shoponsite.be/images/merken/4145/foto1/orig/tarrerias-bonjean-logokl.gif"
-    },
-    {
-      "name": "Tefal",
-      "brands": "http://shoponsite.be/images/merken/2827/foto1/orig/tefal.gif"
-    },
-    {
-      "name": "Telenet",
-      "brands": "http://shoponsite.be/images/merken/3076/foto1/res75x56/telenet-logo.jpg"
-    },
-    {
-      "name": "Termozeta",
-      "brands": "http://shoponsite.be/images/merken/3319/foto1/orig/termozeta.gif"
-    },
-    {
-      "name": "Test Merk",
-      "brands": "http://shoponsite.be/images/merken/4902/foto1/res75x56/yamaha-groot.jpg"
-    },
-    {
-      "name": "Tettau",
-      "brands": "http://shoponsite.be/images/merken/4251/foto1/orig/tettau-logokl.gif"
-    },
-    {
-      "name": "Thermos",
-      "brands": "http://shoponsite.be/images/merken/4113/foto1/orig/logo_klein.gif"
-    },
-    {
-      "name": "Tint",
-      "brands": "http://shoponsite.be/images/merken/4253/foto1/orig/tint-logokl.gif"
-    },
-    {
-      "name": "Tivoli",
-      "brands": "http://shoponsite.be/images/merken/2742/foto1/orig/tivoli.gif"
-    },
-    {
-      "name": "Tojiro",
-      "brands": "http://shoponsite.be/images/merken/4307/foto1/orig/tojiro-logokl.gif"
-    },
-    {
-      "name": "TomTom",
-      "brands": "http://shoponsite.be/images/merken/3053/foto1/orig/tomtom.gif"
-    },
-    {
-      "name": "Top & Trendy",
-      "brands": "http://shoponsite.be/images/merken/4501/foto1/orig/top_trendy_klein.gif"
-    },
-    {
-      "name": "Toshiba",
-      "brands": "http://shoponsite.be/images/merken/2881/foto1/orig/toshiba.gif"
-    },
-    {
-      "name": "Toshiba AV",
-      "brands": "http://shoponsite.be/images/merken/4364/foto1/orig/toshiba_75.gif"
-    },
-    {
-      "name": "Trilux",
-      "brands": "http://shoponsite.be/images/merken/3128/foto1/orig/trilux.gif"
-    },
-    {
-      "name": "Trudeau",
-      "brands": "http://shoponsite.be/images/merken/3671/foto1/orig/trudeau.gif"
-    },
-    {
-      "name": "Trust",
-      "brands": "http://shoponsite.be/images/merken/2692/foto1/orig/logo_klein.gif"
-    },
-    {
-      "name": "Turmix",
-      "brands": "http://shoponsite.be/images/merken/4546/foto1/orig/turmixklein.gif"
-    },
-    {
-      "name": "TV VLAANDEREN",
-      "brands": "http://shoponsite.be/images/merken/3077/foto1/orig/tvvlaanderenklein.gif"
-    },
-    {
-      "name": "Typhoon",
-      "brands": "http://shoponsite.be/images/merken/3738/foto1/orig/typhoon.gif"
-    },
-    {
-      "name": "Tyrolit",
-      "brands": "http://shoponsite.be/images/merken/3594/foto1/orig/tyrolit.gif"
-    },
-    {
-      "name": "Ulster Weavers",
-      "brands": "http://shoponsite.be/images/merken/3758/foto1/orig/ulsterweavers-logokl.gif"
-    },
-    {
-      "name": "V-ZUG",
-      "brands": "http://shoponsite.be/images/merken/3752/foto1/orig/vzug-logokl.gif"
-    },
-    {
-      "name": "Valera",
-      "brands": "http://shoponsite.be/images/merken/2779/foto1/orig/valera.gif"
-    },
-    {
-      "name": "Vanguard",
-      "brands": "http://shoponsite.be/images/merken/3849/foto1/orig/vanguard.gif"
-    },
-    {
-      "name": "Velbon",
-      "brands": "http://shoponsite.be/images/merken/3101/foto1/orig/velbon.gif"
-    },
-    {
-      "name": "Vibe",
-      "brands": "http://shoponsite.be/images/merken/4526/foto1/orig/vibelogoklein.gif"
-    },
-    {
-      "name": "Viessmann",
-      "brands": "http://shoponsite.be/images/merken/4218/foto1/orig/viessmann_klein.gif"
-    },
-    {
-      "name": "Villeroy & Boch",
-      "brands": "http://shoponsite.be/images/merken/3484/foto1/orig/villeroy___boch.gif"
-    },
-    {
-      "name": "Vitlab",
-      "brands": "http://shoponsite.be/images/merken/4735/foto1/res75x56/VITLAB-Logo_neu_korrigiert.jpg"
-    },
-    {
-      "name": "Vivanco",
-      "brands": "http://shoponsite.be/images/merken/2737/foto1/orig/vivanco.gif"
-    },
-    {
-      "name": "Vivo",
-      "brands": "http://shoponsite.be/images/merken/3844/foto1/orig/vivo.gif"
-    },
-    {
-      "name": "Vogels",
-      "brands": "http://shoponsite.be/images/merken/2731/foto1/orig/vogels.gif"
-    },
-    {
-      "name": "Waterfall",
-      "brands": "http://shoponsite.be/images/merken/3131/foto1/orig/waterfall.gif"
-    },
-    {
-      "name": "Weck",
-      "brands": "http://shoponsite.be/images/merken/3831/foto1/orig/weck.gif"
-    },
-    {
-      "name": "Wedgwood",
-      "brands": "http://shoponsite.be/images/merken/4108/foto1/res75x56/WEDGWOOD_LOGO_1.jpg"
-    },
-    {
-      "name": "WellStraler",
-      "brands": "http://shoponsite.be/images/merken/3047/foto1/orig/wellstraler.gif"
-    },
-    {
-      "name": "Wesco",
-      "brands": "http://shoponsite.be/images/merken/3798/foto1/orig/logo_wesco_small.gif"
-    },
-    {
-      "name": "Westmark",
-      "brands": "http://shoponsite.be/images/merken/3659/foto1/orig/westmark.gif"
-    },
-    {
-      "name": "Whirlpool",
-      "brands": "http://shoponsite.be/images/merken/2652/foto1/orig/whirlpool-klein.gif"
-    },
-    {
-      "name": "Wigo",
-      "brands": "http://shoponsite.be/images/merken/3467/foto1/orig/wigo.gif"
-    },
-    {
-      "name": "Wiha",
-      "brands": "http://shoponsite.be/images/merken/3617/foto1/orig/wiha.gif"
-    },
-    {
-      "name": "Wilkens",
-      "brands": "http://shoponsite.be/images/merken/4148/foto1/orig/wilkens-logokl.gif"
-    },
-    {
-      "name": "WMF",
-      "brands": "http://shoponsite.be/images/merken/3475/foto1/orig/wmf-logokl.gif"
-    },
-    {
-      "name": "WMF ce",
-      "brands": "http://shoponsite.be/images/merken/4441/foto1/orig/wmf-logokl.gif"
-    },
-    {
-      "name": "Wüsthof",
-      "brands": "http://shoponsite.be/images/merken/3762/foto1/orig/wusthof-logokl.gif"
-    },
-    {
-      "name": "XL Boom",
-      "brands": "http://shoponsite.be/images/merken/4693/foto1/res75x56/xl-boom-logo.jpg"
-    },
-    {
-      "name": "Zanussi",
-      "brands": "http://shoponsite.be/images/merken/2736/foto1/orig/zanussi.gif"
-    },
-    {
-      "name": "Zojirushi",
-      "brands": "http://shoponsite.be/images/merken/3650/foto1/orig/zojirushi.gif"
-    },
-    {
-      "name": "Zoku",
-      "brands": "http://shoponsite.be/images/merken/4517/foto1/orig/zokulogoklein.gif"
-    },
-    {
-      "name": "Zwiesel",
-      "brands": "http://shoponsite.be/images/merken/4126/foto1/orig/zwiesel-logokl.gif"
-    },
-    {
-      "name": "Zwilling",
-      "brands": "http://shoponsite.be/images/merken/3563/foto1/orig/zwilling-logokl.gif"
-    }
-  ]
+    "brands": [
+        {
+            "name": "&tradition",
+            "brands": "http://shoponsite.be/images/merken/4933/foto1/res75x56/tradition-logo.jpg"
+        },
+        {
+            "name": "100% Light",
+            "brands": "http://shoponsite.be/images/merken/3931/foto1/orig/100light_klein.gif"
+        },
+        {
+            "name": "500° by Cosy & Trendy",
+            "brands": "http://shoponsite.be/images/merken/4502/foto1/res75x56/500.jpg"
+        },
+        {
+            "name": "A di Alessi",
+            "brands": "http://shoponsite.be/images/merken/4751/foto1/res75x56/adialessi.jpg"
+        },
+        {
+            "name": "Abitana",
+            "brands": "http://shoponsite.be/images/merken/3197/foto1/orig/abitana.gif"
+        },
+        {
+            "name": "Accuphase",
+            "brands": "http://shoponsite.be/images/merken/3107/foto1/orig/accuphase.gif"
+        },
+        {
+            "name": "Accustic Arts",
+            "brands": "http://shoponsite.be/images/merken/4330/foto1/orig/accustic-arts-klein.gif"
+        },
+        {
+            "name": "Acer",
+            "brands": "http://shoponsite.be/images/merken/2760/foto1/res75x56/acer-logo.jpg"
+        },
+        {
+            "name": "Acme Made",
+            "brands": "http://shoponsite.be/images/merken/4321/foto1/orig/acme-made-klein.gif"
+        },
+        {
+            "name": "Action",
+            "brands": "http://shoponsite.be/images/merken/4638/foto1/orig/actionklein1.gif"
+        },
+        {
+            "name": "Ad Hoc",
+            "brands": "http://shoponsite.be/images/merken/4271/foto1/orig/adhoc-logokl.gif"
+        },
+        {
+            "name": "ADE",
+            "brands": "http://shoponsite.be/images/merken/3765/foto1/orig/ade-logokl.gif"
+        },
+        {
+            "name": "Aduro",
+            "brands": "http://shoponsite.be/images/merken/4101/foto1/orig/klein.gif"
+        },
+        {
+            "name": "Advance Acoustic",
+            "brands": "http://shoponsite.be/images/merken/3471/foto1/orig/advance_acoustic.gif"
+        },
+        {
+            "name": "AEG",
+            "brands": "http://shoponsite.be/images/merken/2755/foto1/res75x56/aeg-logo.jpg"
+        },
+        {
+            "name": "AEG Home Comfort",
+            "brands": "http://shoponsite.be/images/merken/3121/foto1/orig/aeg_stiebel.gif"
+        },
+        {
+            "name": "Afer",
+            "brands": "http://shoponsite.be/images/merken/4516/foto1/orig/afer-klein.gif"
+        },
+        {
+            "name": "AGA",
+            "brands": "http://shoponsite.be/images/merken/3187/foto1/orig/agaklein.gif"
+        },
+        {
+            "name": "Air-O-Swiss",
+            "brands": "http://shoponsite.be/images/merken/3236/foto1/orig/air_o_swiss.gif"
+        },
+        {
+            "name": "Airbutler",
+            "brands": "http://shoponsite.be/images/merken/2895/foto1/orig/airbutler.gif"
+        },
+        {
+            "name": "Airwell",
+            "brands": "http://shoponsite.be/images/merken/2782/foto1/orig/airwell.gif"
+        },
+        {
+            "name": "Akai",
+            "brands": "http://shoponsite.be/images/merken/3307/foto1/orig/akai.gif"
+        },
+        {
+            "name": "AKG",
+            "brands": "http://shoponsite.be/images/merken/3515/foto1/orig/akg.gif"
+        },
+        {
+            "name": "Aladdin",
+            "brands": "http://shoponsite.be/images/merken/3668/foto1/orig/aladdin.gif"
+        },
+        {
+            "name": "Album",
+            "brands": "http://shoponsite.be/images/merken/3933/foto1/orig/album_klein.gif"
+        },
+        {
+            "name": "Aldabra",
+            "brands": "http://shoponsite.be/images/merken/3934/foto1/orig/aldabra_klein.gif"
+        },
+        {
+            "name": "Aldenkamp",
+            "brands": "http://shoponsite.be/images/merken/2832/foto1/orig/aldenkamp.gif"
+        },
+        {
+            "name": "Aldo Bernardi",
+            "brands": "http://shoponsite.be/images/merken/3863/foto1/orig/aldo_bernardi.gif"
+        },
+        {
+            "name": "Alessi",
+            "brands": "http://shoponsite.be/images/merken/2665/foto1/orig/alessi.gif"
+        },
+        {
+            "name": "Alfi",
+            "brands": "http://shoponsite.be/images/merken/3772/foto1/orig/alfi-logogr.gif"
+        },
+        {
+            "name": "Almotech",
+            "brands": "http://shoponsite.be/images/merken/3977/foto1/orig/almotech-logo-klein.gif"
+        },
+        {
+            "name": "Alpes Inox",
+            "brands": "http://shoponsite.be/images/merken/2860/foto1/res75x56/Alpes-marchio-1.jpg"
+        },
+        {
+            "name": "ALR Jordan",
+            "brands": "http://shoponsite.be/images/merken/4331/foto1/orig/alr-jordan-klein.gif"
+        },
+        {
+            "name": "Altec Lansing",
+            "brands": "http://shoponsite.be/images/merken/3468/foto1/orig/altec_lansing.gif"
+        },
+        {
+            "name": "Aluci",
+            "brands": "http://shoponsite.be/images/merken/3188/foto1/orig/aluci.gif"
+        },
+        {
+            "name": "Amana",
+            "brands": "http://shoponsite.be/images/merken/3067/foto1/orig/amana.gif"
+        },
+        {
+            "name": "Amefa",
+            "brands": "http://shoponsite.be/images/merken/3773/foto1/orig/amefa-logokl2.gif"
+        },
+        {
+            "name": "Amphion",
+            "brands": "http://shoponsite.be/images/merken/3059/foto1/orig/amphion.gif"
+        },
+        {
+            "name": "Andersen Shopper",
+            "brands": "http://shoponsite.be/images/merken/4569/foto1/res75x56/andersen-shopper-logo.jpg"
+        },
+        {
+            "name": "Andromeda",
+            "brands": "http://shoponsite.be/images/merken/3936/foto1/orig/andromeda_klein.gif"
+        },
+        {
+            "name": "Animo",
+            "brands": "http://shoponsite.be/images/merken/4633/foto1/orig/animoklein.gif"
+        },
+        {
+            "name": "Antares",
+            "brands": "http://shoponsite.be/images/merken/3937/foto1/orig/antares_klein.gif"
+        },
+        {
+            "name": "Antoine Van Loocke",
+            "brands": "http://shoponsite.be/images/merken/4461/foto1/orig/antoinevanloocke-logokl.gif"
+        },
+        {
+            "name": "APart",
+            "brands": "http://shoponsite.be/images/merken/2882/foto1/orig/apart-klein.gif"
+        },
+        {
+            "name": "Apple",
+            "brands": "http://shoponsite.be/images/merken/2750/foto1/orig/apple_75.gif"
+        },
+        {
+            "name": "APW",
+            "brands": "http://shoponsite.be/images/merken/3621/foto1/orig/apw.gif"
+        },
+        {
+            "name": "Aquanova",
+            "brands": "http://shoponsite.be/images/merken/3638/foto1/orig/aquanova.gif"
+        },
+        {
+            "name": "Araven",
+            "brands": "http://shoponsite.be/images/merken/4518/foto1/orig/logo-aravenklein.gif"
+        },
+        {
+            "name": "Arc Luce",
+            "brands": "http://shoponsite.be/images/merken/3939/foto1/orig/arcluce_klein.gif"
+        },
+        {
+            "name": "Arcam",
+            "brands": "http://shoponsite.be/images/merken/3369/foto1/orig/arcam-klein.gif"
+        },
+        {
+            "name": "Arcoroc",
+            "brands": "http://shoponsite.be/images/merken/4510/foto1/orig/arcoroc_logo.gif"
+        },
+        {
+            "name": "Arealite",
+            "brands": "http://shoponsite.be/images/merken/2723/foto1/orig/arealite.gif"
+        },
+        {
+            "name": "Art Sound",
+            "brands": "http://shoponsite.be/images/merken/2800/foto1/orig/art_sound.gif"
+        },
+        {
+            "name": "Artcoustic",
+            "brands": "http://shoponsite.be/images/merken/3360/foto1/orig/artcoustic-klein.gif"
+        },
+        {
+            "name": "Artek",
+            "brands": "http://shoponsite.be/images/merken/3942/foto1/orig/artek_klein.gif"
+        },
+        {
+            "name": "Artemide",
+            "brands": "http://shoponsite.be/images/merken/3150/foto1/orig/artemide_klein.gif"
+        },
+        {
+            "name": "Artex",
+            "brands": "http://shoponsite.be/images/merken/4519/foto1/orig/artexlittle.gif"
+        },
+        {
+            "name": "Artson Hidden",
+            "brands": "http://shoponsite.be/images/merken/4374/foto1/orig/artson-klein.gif"
+        },
+        {
+            "name": "Arzberg",
+            "brands": "http://shoponsite.be/images/merken/3792/foto1/orig/made_in_germany_rot_small.gif"
+        },
+        {
+            "name": "Asa",
+            "brands": "http://shoponsite.be/images/merken/3643/foto1/orig/asa.gif"
+        },
+        {
+            "name": "Asko",
+            "brands": "http://shoponsite.be/images/merken/3068/foto1/orig/asko.gif"
+        },
+        {
+            "name": "Assenmaker",
+            "brands": "http://shoponsite.be/images/merken/4552/foto1/orig/assenmakerklein.gif"
+        },
+        {
+            "name": "Asus",
+            "brands": "http://shoponsite.be/images/merken/3018/foto1/orig/asus-logo-klein.gif"
+        },
+        {
+            "name": "Atag",
+            "brands": "http://shoponsite.be/images/merken/3192/foto1/orig/atag.gif"
+        },
+        {
+            "name": "Ateca",
+            "brands": "http://shoponsite.be/images/merken/4326/foto1/orig/ateca-logo-klein.gif"
+        },
+        {
+            "name": "Atelier",
+            "brands": "http://shoponsite.be/images/merken/4594/foto1/orig/atelierklein.gif"
+        },
+        {
+            "name": "Atelier du Vin",
+            "brands": "http://shoponsite.be/images/merken/3680/foto1/orig/atelierkl.gif"
+        },
+        {
+            "name": "Atelier Sedap",
+            "brands": "http://shoponsite.be/images/merken/3943/foto1/orig/sedap_klein.gif"
+        },
+        {
+            "name": "Atelier tete",
+            "brands": "http://shoponsite.be/images/merken/4573/foto1/orig/atelierteteklein.gif"
+        },
+        {
+            "name": "Atika",
+            "brands": "http://shoponsite.be/images/merken/3601/foto1/orig/atika.gif"
+        },
+        {
+            "name": "Atomis",
+            "brands": "http://shoponsite.be/images/merken/2728/foto1/orig/atomis.gif"
+        },
+        {
+            "name": "Aubecq",
+            "brands": "http://shoponsite.be/images/merken/4511/foto1/orig/aubecqlogoklein.gif"
+        },
+        {
+            "name": "Audio Analogue",
+            "brands": "http://shoponsite.be/images/merken/4613/foto1/orig/audio-analogue-klein.gif"
+        },
+        {
+            "name": "Audio Physic",
+            "brands": "http://shoponsite.be/images/merken/3700/foto1/orig/audio_physic.gif"
+        },
+        {
+            "name": "Audioplan",
+            "brands": "http://shoponsite.be/images/merken/3062/foto1/orig/audioplan.gif"
+        },
+        {
+            "name": "Audioquest",
+            "brands": "http://shoponsite.be/images/merken/3717/foto1/orig/audioquest.gif"
+        },
+        {
+            "name": "Audioscape",
+            "brands": "http://shoponsite.be/images/merken/4640/foto1/orig/logo_audioscape_hq-klein.gif"
+        },
+        {
+            "name": "Auerhahn",
+            "brands": "http://shoponsite.be/images/merken/3795/foto1/orig/auerhahn-small.gif"
+        },
+        {
+            "name": "Auerswald",
+            "brands": "http://shoponsite.be/images/merken/3220/foto1/orig/auerswald.gif"
+        },
+        {
+            "name": "Austroflam",
+            "brands": "http://shoponsite.be/images/merken/3554/foto1/orig/austroflam-klein.gif"
+        },
+        {
+            "name": "Authentage",
+            "brands": "http://shoponsite.be/images/merken/4634/foto1/orig/logo-klein.gif"
+        },
+        {
+            "name": "Autographe",
+            "brands": "http://shoponsite.be/images/merken/3414/foto1/orig/auto_klein.gif"
+        },
+        {
+            "name": "Avinity",
+            "brands": "http://shoponsite.be/images/merken/4392/foto1/orig/avinity-klein.gif"
+        },
+        {
+            "name": "Avintage",
+            "brands": "http://shoponsite.be/images/merken/4459/foto1/orig/avintage-logokl.gif"
+        },
+        {
+            "name": "Axel Meise Licht",
+            "brands": "http://shoponsite.be/images/merken/3944/foto1/orig/axelmeiselicht_klein.gif"
+        },
+        {
+            "name": "Axis71",
+            "brands": "http://shoponsite.be/images/merken/3945/foto1/orig/axis_klein.gif"
+        },
+        {
+            "name": "Axo Light",
+            "brands": "http://shoponsite.be/images/merken/3946/foto1/orig/axo_klein.gif"
+        },
+        {
+            "name": "B&W",
+            "brands": "http://shoponsite.be/images/merken/3094/foto1/orig/bw-klein.gif"
+        },
+        {
+            "name": "B+W",
+            "brands": "http://shoponsite.be/images/merken/3097/foto1/orig/b_w.gif"
+        },
+        {
+            "name": "B-tech",
+            "brands": "http://shoponsite.be/images/merken/3874/foto1/orig/b_tech.gif"
+        },
+        {
+            "name": "B-Tech AV Mounts",
+            "brands": "http://shoponsite.be/images/merken/4336/foto1/orig/btech-av-mounts-klein.gif"
+        },
+        {
+            "name": "B.lux",
+            "brands": "http://shoponsite.be/images/merken/3947/foto1/orig/blux_klein.gif"
+        },
+        {
+            "name": "Babyliss",
+            "brands": "http://shoponsite.be/images/merken/2663/foto1/orig/babyliss.gif"
+        },
+        {
+            "name": "Baccarat",
+            "brands": "http://shoponsite.be/images/merken/4147/foto1/orig/baccarat-logokl.gif"
+        },
+        {
+            "name": "Baci",
+            "brands": "http://shoponsite.be/images/merken/4132/foto1/orig/baci-logokl.gif"
+        },
+        {
+            "name": "Balance Meteo",
+            "brands": "http://shoponsite.be/images/merken/4312/foto1/orig/balanceklein_copy.gif"
+        },
+        {
+            "name": "Baleno",
+            "brands": "http://shoponsite.be/images/merken/3833/foto1/orig/baleno.gif"
+        },
+        {
+            "name": "Ballarini",
+            "brands": "http://shoponsite.be/images/merken/4264/foto1/orig/ballarini-logokl.gif"
+        },
+        {
+            "name": "Bamix",
+            "brands": "http://shoponsite.be/images/merken/3461/foto1/orig/bamix.gif"
+        },
+        {
+            "name": "Bandridge",
+            "brands": "http://shoponsite.be/images/merken/3452/foto1/orig/bandridge_75.gif"
+        },
+        {
+            "name": "Bang & Olufsen",
+            "brands": "http://shoponsite.be/images/merken/2667/foto1/orig/b_o.gif"
+        },
+        {
+            "name": "Baobab",
+            "brands": "http://shoponsite.be/images/merken/4533/foto1/res75x56/baobab-collection-logo.jpg"
+        },
+        {
+            "name": "Barbas",
+            "brands": "http://shoponsite.be/images/merken/3274/foto1/orig/barbas.gif"
+        },
+        {
+            "name": "Basalte",
+            "brands": "http://shoponsite.be/images/merken/3647/foto1/res75x56/basalte-logo.jpg"
+        },
+        {
+            "name": "Base",
+            "brands": "http://shoponsite.be/images/merken/3073/foto1/orig/base.gif"
+        },
+        {
+            "name": "Basic XL",
+            "brands": "http://shoponsite.be/images/merken/4412/foto1/orig/basicxl-klein.gif"
+        },
+        {
+            "name": "Bauknecht",
+            "brands": "http://shoponsite.be/images/merken/2672/foto1/res75x56/Bauknecht.jpg"
+        },
+        {
+            "name": "Baulmann",
+            "brands": "http://shoponsite.be/images/merken/3949/foto1/orig/baulmann_klein.gif"
+        },
+        {
+            "name": "Baumatic",
+            "brands": "http://shoponsite.be/images/merken/4231/foto1/orig/baukl.gif"
+        },
+        {
+            "name": "Beafon",
+            "brands": "http://shoponsite.be/images/merken/4305/foto1/orig/beafon-75.gif"
+        },
+        {
+            "name": "Beam Electrolux",
+            "brands": "http://shoponsite.be/images/merken/4495/foto1/orig/electrolux-beam-klein.gif"
+        },
+        {
+            "name": "Beamax",
+            "brands": "http://shoponsite.be/images/merken/3065/foto1/orig/beamax.gif"
+        },
+        {
+            "name": "Beats",
+            "brands": "http://shoponsite.be/images/merken/4508/foto1/res75x56/Beats.jpg"
+        },
+        {
+            "name": "Bega",
+            "brands": "http://shoponsite.be/images/merken/3416/foto1/orig/bega_klein.gif"
+        },
+        {
+            "name": "Beghelli",
+            "brands": "http://shoponsite.be/images/merken/3950/foto1/orig/beghelli_klein.gif"
+        },
+        {
+            "name": "Behringer",
+            "brands": "http://shoponsite.be/images/merken/3342/foto1/orig/behringer-klein.gif"
+        },
+        {
+            "name": "Beka",
+            "brands": "http://shoponsite.be/images/merken/3755/foto1/orig/beka.gif"
+        },
+        {
+            "name": "Beko",
+            "brands": "http://shoponsite.be/images/merken/2985/foto1/res75x56/beko-logo.jpg"
+        },
+        {
+            "name": "Bel Lighting",
+            "brands": "http://shoponsite.be/images/merken/3706/foto1/orig/bel_lighting.gif"
+        },
+        {
+            "name": "Belkin",
+            "brands": "http://shoponsite.be/images/merken/2761/foto1/orig/belkin.gif"
+        },
+        {
+            "name": "Bellfires",
+            "brands": "http://shoponsite.be/images/merken/3929/foto1/orig/bellfires_klein.gif"
+        },
+        {
+            "name": "Belux",
+            "brands": "http://shoponsite.be/images/merken/3951/foto1/orig/belux_klein.gif"
+        },
+        {
+            "name": "BenQ",
+            "brands": "http://shoponsite.be/images/merken/2892/foto1/orig/benq.gif"
+        },
+        {
+            "name": "Berghoff",
+            "brands": "http://shoponsite.be/images/merken/3557/foto1/orig/berghoff-logokl.gif"
+        },
+        {
+            "name": "Besser Vacuum",
+            "brands": "http://shoponsite.be/images/merken/3705/foto1/orig/besser_vacuum.gif"
+        },
+        {
+            "name": "BeWare",
+            "brands": "http://shoponsite.be/images/merken/4591/foto1/orig/bewareklein.gif"
+        },
+        {
+            "name": "Beyer Dynamic",
+            "brands": "http://shoponsite.be/images/merken/3337/foto1/orig/beyerdynamic-logo-klein.gif"
+        },
+        {
+            "name": "Bialetti",
+            "brands": "http://shoponsite.be/images/merken/4124/foto1/orig/bialetti-logokl.gif"
+        },
+        {
+            "name": "Big Green Egg",
+            "brands": "http://shoponsite.be/images/merken/4327/foto1/orig/biggreenegg-klein.gif"
+        },
+        {
+            "name": "Bionaire",
+            "brands": "http://shoponsite.be/images/merken/4458/foto1/orig/bionaire-logokl.gif"
+        },
+        {
+            "name": "Bis Lighting",
+            "brands": "http://shoponsite.be/images/merken/3954/foto1/orig/bis_klein.gif"
+        },
+        {
+            "name": "Bisbell",
+            "brands": "http://shoponsite.be/images/merken/4389/foto1/orig/bisbell-logokl.gif"
+        },
+        {
+            "name": "Bisetti",
+            "brands": "http://shoponsite.be/images/merken/4120/foto1/orig/bisetti-logokl.gif"
+        },
+        {
+            "name": "BK",
+            "brands": "http://shoponsite.be/images/merken/3636/foto1/orig/bk.gif"
+        },
+        {
+            "name": "Black & Decker",
+            "brands": "http://shoponsite.be/images/merken/3127/foto1/orig/blacken-logogkl.gif"
+        },
+        {
+            "name": "Blackberry",
+            "brands": "http://shoponsite.be/images/merken/3400/foto1/orig/blackberry.gif"
+        },
+        {
+            "name": "Blaklader",
+            "brands": "http://shoponsite.be/images/merken/3614/foto1/orig/blaklader.gif"
+        },
+        {
+            "name": "Blanco",
+            "brands": "http://shoponsite.be/images/merken/3103/foto1/orig/blanco.gif"
+        },
+        {
+            "name": "Blauet",
+            "brands": "http://shoponsite.be/images/merken/3284/foto1/orig/blauet.gif"
+        },
+        {
+            "name": "Blomberg",
+            "brands": "http://shoponsite.be/images/merken/3774/foto1/orig/blomberg.gif"
+        },
+        {
+            "name": "Blomus",
+            "brands": "http://shoponsite.be/images/merken/3476/foto1/orig/blomus_logoklein.gif"
+        },
+        {
+            "name": "Bloom",
+            "brands": "http://shoponsite.be/images/merken/3955/foto1/res75x56/bloom.jpg"
+        },
+        {
+            "name": "Bluesound",
+            "brands": "http://shoponsite.be/images/merken/4600/foto1/orig/bluesound-logo-klein.gif"
+        },
+        {
+            "name": "Bodart&Gonay",
+            "brands": "http://shoponsite.be/images/merken/3278/foto1/orig/bodart_gonay.gif"
+        },
+        {
+            "name": "Bodum",
+            "brands": "http://shoponsite.be/images/merken/3776/foto1/orig/bodum_logo_small.gif"
+        },
+        {
+            "name": "Bohemia Cristal",
+            "brands": "http://shoponsite.be/images/merken/4554/foto1/orig/bohemia-crystalklein.gif"
+        },
+        {
+            "name": "bonApart",
+            "brands": "http://shoponsite.be/images/merken/4379/foto1/orig/bonapart-logokl.gif"
+        },
+        {
+            "name": "Boneco",
+            "brands": "http://shoponsite.be/images/merken/2776/foto1/orig/bonecoklein.gif"
+        },
+        {
+            "name": "Boom",
+            "brands": "http://shoponsite.be/images/merken/3507/foto1/orig/boom_klein.gif"
+        },
+        {
+            "name": "Bora",
+            "brands": "http://shoponsite.be/images/merken/4450/foto1/orig/boraklein.gif"
+        },
+        {
+            "name": "Boretti",
+            "brands": "http://shoponsite.be/images/merken/2812/foto1/orig/boretti.gif"
+        },
+        {
+            "name": "Borgonovo",
+            "brands": "http://shoponsite.be/images/merken/4555/foto1/orig/borgonovologoklein.gif"
+        },
+        {
+            "name": "Bosch",
+            "brands": "http://shoponsite.be/images/merken/2651/foto1/orig/bosch.gif"
+        },
+        {
+            "name": "Bosch Gereedschap",
+            "brands": "http://shoponsite.be/images/merken/3207/foto1/orig/bosch_gereedschap.gif"
+        },
+        {
+            "name": "Bosch Security",
+            "brands": "http://shoponsite.be/images/merken/3178/foto1/orig/bosch_security.gif"
+        },
+        {
+            "name": "Boska",
+            "brands": "http://shoponsite.be/images/merken/4366/foto1/res75x56/Boska_Explore-cheese_wit_grijs.jpg"
+        },
+        {
+            "name": "Bostitch",
+            "brands": "http://shoponsite.be/images/merken/3610/foto1/orig/bostitch.gif"
+        },
+        {
+            "name": "Boston Acoustics",
+            "brands": "http://shoponsite.be/images/merken/3745/foto1/orig/boston-klein.gif"
+        },
+        {
+            "name": "Bover",
+            "brands": "http://shoponsite.be/images/merken/3956/foto1/orig/bover_klein.gif"
+        },
+        {
+            "name": "BP Solar",
+            "brands": "http://shoponsite.be/images/merken/4347/foto1/orig/bp-solar-klein.gif"
+        },
+        {
+            "name": "BPT",
+            "brands": "http://shoponsite.be/images/merken/3200/foto1/orig/bpt-logo-klein.gif"
+        },
+        {
+            "name": "Brabantia",
+            "brands": "http://shoponsite.be/images/merken/3125/foto1/orig/brabantia.gif"
+        },
+        {
+            "name": "Brandt",
+            "brands": "http://shoponsite.be/images/merken/2982/foto1/orig/brandt.gif"
+        },
+        {
+            "name": "Braun Body Care",
+            "brands": "http://shoponsite.be/images/merken/3005/foto1/orig/braun.gif"
+        },
+        {
+            "name": "Braun Household",
+            "brands": "http://shoponsite.be/images/merken/4708/foto1/res75x56/braun.jpg"
+        },
+        {
+            "name": "Braun Photo Technik",
+            "brands": "http://shoponsite.be/images/merken/3575/foto1/orig/braun_photo_technik.gif"
+        },
+        {
+            "name": "Bravilor",
+            "brands": "http://shoponsite.be/images/merken/4630/foto1/orig/bravilorklein.gif"
+        },
+        {
+            "name": "Brick in the wall",
+            "brands": "http://shoponsite.be/images/merken/3678/foto1/orig/brick_in_the_wall.gif"
+        },
+        {
+            "name": "Brita",
+            "brands": "http://shoponsite.be/images/merken/3441/foto1/orig/brita.gif"
+        },
+        {
+            "name": "Briteq",
+            "brands": "http://shoponsite.be/images/merken/4620/foto1/orig/briteq-klein.gif"
+        },
+        {
+            "name": "Brother",
+            "brands": "http://shoponsite.be/images/merken/2709/foto1/orig/brother.gif"
+        },
+        {
+            "name": "Bruck",
+            "brands": "http://shoponsite.be/images/merken/3957/foto1/orig/bruck_klein.gif"
+        },
+        {
+            "name": "Brune",
+            "brands": "http://shoponsite.be/images/merken/4338/foto1/orig/airsain_brune.gif"
+        },
+        {
+            "name": "BT",
+            "brands": "http://shoponsite.be/images/merken/3948/foto1/orig/bt_klein.gif"
+        },
+        {
+            "name": "BTicino",
+            "brands": "http://shoponsite.be/images/merken/2791/foto1/orig/bticino.gif"
+        },
+        {
+            "name": "Buderus",
+            "brands": "http://shoponsite.be/images/merken/4217/foto1/res75x56/buderus-logo.jpg"
+        },
+        {
+            "name": "Buffalo",
+            "brands": "http://shoponsite.be/images/merken/4609/foto1/orig/bufffalo-klein.gif"
+        },
+        {
+            "name": "Bugatti",
+            "brands": "http://shoponsite.be/images/merken/4131/foto1/orig/bugatti-small.gif"
+        },
+        {
+            "name": "Bullguard",
+            "brands": "http://shoponsite.be/images/merken/4087/foto1/orig/logo_klein.gif"
+        },
+        {
+            "name": "Buschfeld",
+            "brands": "http://shoponsite.be/images/merken/3958/foto1/orig/buschfeld_klein.gif"
+        },
+        {
+            "name": "Bush",
+            "brands": "http://shoponsite.be/images/merken/3323/foto1/orig/bush.gif"
+        },
+        {
+            "name": "Butler",
+            "brands": "http://shoponsite.be/images/merken/4556/foto1/orig/butlerklein.gif"
+        },
+        {
+            "name": "Cabasse",
+            "brands": "http://shoponsite.be/images/merken/3387/foto1/res75x56/cabasse.jpg"
+        },
+        {
+            "name": "CaffèDuzio",
+            "brands": "http://shoponsite.be/images/merken/4477/foto1/orig/caffeduzioklein.gif"
+        },
+        {
+            "name": "Calor",
+            "brands": "http://shoponsite.be/images/merken/2831/foto1/orig/calor.gif"
+        },
+        {
+            "name": "Cambridge Audio",
+            "brands": "http://shoponsite.be/images/merken/3085/foto1/orig/cambridge_audio.gif"
+        },
+        {
+            "name": "Came",
+            "brands": "http://shoponsite.be/images/merken/4060/foto1/orig/came_klein.gif"
+        },
+        {
+            "name": "Camerons",
+            "brands": "http://shoponsite.be/images/merken/4557/foto1/orig/cameronsklein.gif"
+        },
+        {
+            "name": "Camlink",
+            "brands": "http://shoponsite.be/images/merken/4530/foto1/orig/camlink-blackbg_75.gif"
+        },
+        {
+            "name": "Candy",
+            "brands": "http://shoponsite.be/images/merken/2719/foto1/orig/candy.gif"
+        },
+        {
+            "name": "Canon",
+            "brands": "http://shoponsite.be/images/merken/2816/foto1/orig/canon.gif"
+        },
+        {
+            "name": "Canton",
+            "brands": "http://shoponsite.be/images/merken/2801/foto1/orig/canton.gif"
+        },
+        {
+            "name": "Carat",
+            "brands": "http://shoponsite.be/images/merken/3592/foto1/orig/carat.gif"
+        },
+        {
+            "name": "Carpyen",
+            "brands": "http://shoponsite.be/images/merken/3960/foto1/orig/carpyen_klein.gif"
+        },
+        {
+            "name": "Case Logic",
+            "brands": "http://shoponsite.be/images/merken/3144/foto1/orig/caselogic-logo-klein.gif"
+        },
+        {
+            "name": "Casio",
+            "brands": "http://shoponsite.be/images/merken/3020/foto1/orig/klein.gif"
+        },
+        {
+            "name": "Castaldi",
+            "brands": "http://shoponsite.be/images/merken/3961/foto1/orig/castaldi_klein.gif"
+        },
+        {
+            "name": "Catellani & Smith",
+            "brands": "http://shoponsite.be/images/merken/3502/foto1/orig/catellani___smith.gif"
+        },
+        {
+            "name": "CCI",
+            "brands": "http://shoponsite.be/images/merken/3867/foto1/orig/cci.gif"
+        },
+        {
+            "name": "CDN",
+            "brands": "http://shoponsite.be/images/merken/4586/foto1/orig/cdn_logoklein.gif"
+        },
+        {
+            "name": "CET",
+            "brands": "http://shoponsite.be/images/merken/3875/foto1/orig/cetkl.gif"
+        },
+        {
+            "name": "Charlotte Marie C",
+            "brands": "http://shoponsite.be/images/merken/4130/foto1/orig/charlotte-marie-c-small.gif"
+        },
+        {
+            "name": "Chaud Devant",
+            "brands": "http://shoponsite.be/images/merken/4605/foto1/orig/chaud-devantklein.gif"
+        },
+        {
+            "name": "Chef & Sommelier",
+            "brands": "http://shoponsite.be/images/merken/4265/foto1/orig/chefensommelier-logokl.gif"
+        },
+        {
+            "name": "Chef's Choice",
+            "brands": "http://shoponsite.be/images/merken/3562/foto1/orig/logo_small.gif"
+        },
+        {
+            "name": "Chiayo",
+            "brands": "http://shoponsite.be/images/merken/2888/foto1/orig/chiayo.gif"
+        },
+        {
+            "name": "Chilewich",
+            "brands": "http://shoponsite.be/images/merken/4531/foto1/orig/chilewich-logo-klein.gif"
+        },
+        {
+            "name": "Chroma",
+            "brands": "http://shoponsite.be/images/merken/3713/foto1/orig/chroma.gif"
+        },
+        {
+            "name": "Cilio",
+            "brands": "http://shoponsite.be/images/merken/4293/foto1/orig/cilio-logokl.gif"
+        },
+        {
+            "name": "Cini & Nils",
+            "brands": "http://shoponsite.be/images/merken/3503/foto1/orig/cini_klein.gif"
+        },
+        {
+            "name": "CJC Systems",
+            "brands": "http://shoponsite.be/images/merken/3868/foto1/orig/cjc_systems.gif"
+        },
+        {
+            "name": "Clearaudio",
+            "brands": "http://shoponsite.be/images/merken/3113/foto1/orig/clearaudio.gif"
+        },
+        {
+            "name": "Climadiff",
+            "brands": "http://shoponsite.be/images/merken/2694/foto1/orig/climadiff.gif"
+        },
+        {
+            "name": "Cobb",
+            "brands": "http://shoponsite.be/images/merken/3708/foto1/orig/cobb.gif"
+        },
+        {
+            "name": "Cobra",
+            "brands": "http://shoponsite.be/images/merken/2764/foto1/res75x56/cobra-logo-groot.jpg"
+        },
+        {
+            "name": "Codume",
+            "brands": "http://shoponsite.be/images/merken/3864/foto1/orig/codume.gif"
+        },
+        {
+            "name": "Cokin",
+            "brands": "http://shoponsite.be/images/merken/3098/foto1/orig/cokin.gif"
+        },
+        {
+            "name": "Cole & Mason",
+            "brands": "http://shoponsite.be/images/merken/3777/foto1/orig/logo_small.gif"
+        },
+        {
+            "name": "Color Kinetics",
+            "brands": "http://shoponsite.be/images/merken/2697/foto1/orig/color_klein.gif"
+        },
+        {
+            "name": "Comelit",
+            "brands": "http://shoponsite.be/images/merken/3733/foto1/orig/comelit.gif"
+        },
+        {
+            "name": "Concord",
+            "brands": "http://shoponsite.be/images/merken/2821/foto1/orig/concord.gif"
+        },
+        {
+            "name": "Conex",
+            "brands": "http://shoponsite.be/images/merken/3876/foto1/orig/conex.gif"
+        },
+        {
+            "name": "Conson",
+            "brands": "http://shoponsite.be/images/merken/3877/foto1/orig/conson.gif"
+        },
+        {
+            "name": "Constructa",
+            "brands": "http://shoponsite.be/images/merken/3865/foto1/orig/constructa.gif"
+        },
+        {
+            "name": "Contimac",
+            "brands": "http://shoponsite.be/images/merken/3625/foto1/orig/contimac.gif"
+        },
+        {
+            "name": "Continenta",
+            "brands": "http://shoponsite.be/images/merken/4583/foto1/orig/continentaklein.gif"
+        },
+        {
+            "name": "Control4",
+            "brands": "http://shoponsite.be/images/merken/4538/foto1/orig/control4klein.gif"
+        },
+        {
+            "name": "Cooper Menvier",
+            "brands": "http://shoponsite.be/images/merken/3962/foto1/orig/cooper_klein.gif"
+        },
+        {
+            "name": "Cores da Terra",
+            "brands": "http://shoponsite.be/images/merken/4574/foto1/res75x56/cores-da-terra-logo.jpg"
+        },
+        {
+            "name": "Corradi",
+            "brands": "http://shoponsite.be/images/merken/3228/foto1/orig/corradi.gif"
+        },
+        {
+            "name": "Costaverde",
+            "brands": "http://shoponsite.be/images/merken/4520/foto1/orig/costaverdeklein.gif"
+        },
+        {
+            "name": "Cosy & Trendy",
+            "brands": "http://shoponsite.be/images/merken/4112/foto1/res75x56/cosytrendy.jpg"
+        },
+        {
+            "name": "Cosy & Trendy for kids",
+            "brands": "http://shoponsite.be/images/merken/4500/foto1/orig/logo-c_t-for-kids_klein.gif"
+        },
+        {
+            "name": "Cosy & Trendy for Professionals",
+            "brands": "http://shoponsite.be/images/merken/4498/foto1/orig/cosy_trendy_for_professionals_klein.gif"
+        },
+        {
+            "name": "Cosy @ Home",
+            "brands": "http://shoponsite.be/images/merken/4499/foto1/orig/cosy@home_klein.gif"
+        },
+        {
+            "name": "Coway",
+            "brands": "http://shoponsite.be/images/merken/4097/foto1/orig/klein.gif"
+        },
+        {
+            "name": "Coyote",
+            "brands": "http://shoponsite.be/images/merken/4294/foto1/orig/coyote-logo-kl.gif"
+        },
+        {
+            "name": "Crafond",
+            "brands": "http://shoponsite.be/images/merken/3651/foto1/orig/crafond.gif"
+        },
+        {
+            "name": "Crestron",
+            "brands": "http://shoponsite.be/images/merken/3389/foto1/orig/crestron.gif"
+        },
+        {
+            "name": "Cristal d'Arques",
+            "brands": "http://shoponsite.be/images/merken/4122/foto1/orig/cristaldarques-logokl.gif"
+        },
+        {
+            "name": "Cristal Sévres",
+            "brands": "http://shoponsite.be/images/merken/4142/foto1/orig/cristaldesevres-logokl.gif"
+        },
+        {
+            "name": "Cristel",
+            "brands": "http://shoponsite.be/images/merken/5099/foto1/res75x56/Logo-cristel.jpg"
+        },
+        {
+            "name": "Crock-Pot",
+            "brands": "http://shoponsite.be/images/merken/4368/foto1/orig/crockpot-logokl.gif"
+        },
+        {
+            "name": "Crown Linea",
+            "brands": "http://shoponsite.be/images/merken/3963/foto1/orig/crown_klein.gif"
+        },
+        {
+            "name": "Cuisinart",
+            "brands": "http://shoponsite.be/images/merken/3403/foto1/orig/cuisinart.gif"
+        },
+        {
+            "name": "Cuisipro",
+            "brands": "http://shoponsite.be/images/merken/3698/foto1/orig/cuisipro-logokl.gif"
+        },
+        {
+            "name": "Culinare",
+            "brands": "http://shoponsite.be/images/merken/4316/foto1/orig/culinare-logokl.gif"
+        },
+        {
+            "name": "Curver",
+            "brands": "http://shoponsite.be/images/merken/4111/foto1/orig/logo_klein.gif"
+        },
+        {
+            "name": "D-Link",
+            "brands": "http://shoponsite.be/images/merken/2941/foto1/orig/d_link.gif"
+        },
+        {
+            "name": "DAB",
+            "brands": "http://shoponsite.be/images/merken/3964/foto1/orig/dab_klein.gif"
+        },
+        {
+            "name": "Daewoo",
+            "brands": "http://shoponsite.be/images/merken/2998/foto1/orig/daewoo-logo-klein.gif"
+        },
+        {
+            "name": "Daff",
+            "brands": "http://shoponsite.be/images/merken/4578/foto1/orig/dafflogoklein.gif"
+        },
+        {
+            "name": "Dagetti",
+            "brands": "http://shoponsite.be/images/merken/3028/foto1/orig/dagetti.gif"
+        },
+        {
+            "name": "Daikin",
+            "brands": "http://shoponsite.be/images/merken/2781/foto1/orig/daikin.gif"
+        },
+        {
+            "name": "Dali",
+            "brands": "http://shoponsite.be/images/merken/3473/foto1/orig/dali.gif"
+        },
+        {
+            "name": "DAP",
+            "brands": "http://shoponsite.be/images/merken/4627/foto1/orig/dap-klein.gif"
+        },
+        {
+            "name": "Dark",
+            "brands": "http://shoponsite.be/images/merken/3255/foto1/orig/dark_klein.gif"
+        },
+        {
+            "name": "Davidts Lighting",
+            "brands": "http://shoponsite.be/images/merken/3878/foto1/orig/davidts_lighting.gif"
+        },
+        {
+            "name": "de Buyer",
+            "brands": "http://shoponsite.be/images/merken/3699/foto1/orig/de_buyer.gif"
+        },
+        {
+            "name": "De Dietrich",
+            "brands": "http://shoponsite.be/images/merken/3158/foto1/orig/de_dietrich.gif"
+        },
+        {
+            "name": "De La Terra",
+            "brands": "http://shoponsite.be/images/merken/4357/foto1/orig/delaterra.gif"
+        },
+        {
+            "name": "De'Longhi",
+            "brands": "http://shoponsite.be/images/merken/2653/foto1/orig/delonghi-logo-klein.gif"
+        },
+        {
+            "name": "Dehn",
+            "brands": "http://shoponsite.be/images/merken/3879/foto1/orig/dehn.gif"
+        },
+        {
+            "name": "Delaubrac",
+            "brands": "http://shoponsite.be/images/merken/2878/foto1/orig/delaubrac.gif"
+        },
+        {
+            "name": "Delsey",
+            "brands": "http://shoponsite.be/images/merken/3576/foto1/orig/delsey.gif"
+        },
+        {
+            "name": "Delta Dore",
+            "brands": "http://shoponsite.be/images/merken/4442/foto1/orig/delta_dore_klein.gif"
+        },
+        {
+            "name": "Delta Light",
+            "brands": "http://shoponsite.be/images/merken/2907/foto1/orig/delta_light.gif"
+        },
+        {
+            "name": "Demeyere",
+            "brands": "http://shoponsite.be/images/merken/3105/foto1/orig/demeyereklein.gif"
+        },
+        {
+            "name": "Den Braven",
+            "brands": "http://shoponsite.be/images/merken/3622/foto1/orig/den_braven.gif"
+        },
+        {
+            "name": "Denon",
+            "brands": "http://shoponsite.be/images/merken/3086/foto1/orig/denon.gif"
+        },
+        {
+            "name": "Densen",
+            "brands": "http://shoponsite.be/images/merken/3719/foto1/orig/densen.gif"
+        },
+        {
+            "name": "Dethlefsen & Balk",
+            "brands": "http://shoponsite.be/images/merken/4558/foto1/orig/logo-db-freiklein.gif"
+        },
+        {
+            "name": "Devolo",
+            "brands": "http://shoponsite.be/images/merken/4479/foto1/orig/devoloklein.gif"
+        },
+        {
+            "name": "Dewalt",
+            "brands": "http://shoponsite.be/images/merken/3573/foto1/orig/dewalt.gif"
+        },
+        {
+            "name": "Diamant Sabatier",
+            "brands": "http://shoponsite.be/images/merken/4391/foto1/orig/sabatier-logokl.gif"
+        },
+        {
+            "name": "Dibbern",
+            "brands": "http://shoponsite.be/images/merken/4105/foto1/res75x56/Dibbern-Logo.jpg"
+        },
+        {
+            "name": "Dik Geurts",
+            "brands": "http://shoponsite.be/images/merken/3930/foto1/orig/dik_geurts_klein.gif"
+        },
+        {
+            "name": "Dimplex",
+            "brands": "http://shoponsite.be/images/merken/3120/foto1/orig/dimplex-klein.gif"
+        },
+        {
+            "name": "Disano",
+            "brands": "http://shoponsite.be/images/merken/3965/foto1/orig/disano_klein.gif"
+        },
+        {
+            "name": "Disegnoluce",
+            "brands": "http://shoponsite.be/images/merken/3504/foto1/orig/disegno_klein.gif"
+        },
+        {
+            "name": "DM Creation",
+            "brands": "http://shoponsite.be/images/merken/4146/foto1/orig/dmcreation-logokl.gif"
+        },
+        {
+            "name": "Dobiss",
+            "brands": "http://shoponsite.be/images/merken/2780/foto1/orig/dobiss_domotics.gif"
+        },
+        {
+            "name": "Domestia",
+            "brands": "http://shoponsite.be/images/merken/4061/foto1/orig/domestia_klein.gif"
+        },
+        {
+            "name": "Domintell",
+            "brands": "http://shoponsite.be/images/merken/3160/foto1/orig/domintell-logo-klein.gif"
+        },
+        {
+            "name": "Domo",
+            "brands": "http://shoponsite.be/images/merken/2683/foto1/orig/domoklein.gif"
+        },
+        {
+            "name": "Doro",
+            "brands": "http://shoponsite.be/images/merken/3181/foto1/orig/doro.gif"
+        },
+        {
+            "name": "Dovre",
+            "brands": "http://shoponsite.be/images/merken/3048/foto1/orig/dovre.gif"
+        },
+        {
+            "name": "Doxis",
+            "brands": "http://shoponsite.be/images/merken/3880/foto1/orig/doxis.gif"
+        },
+        {
+            "name": "Dr. Oetker",
+            "brands": "http://shoponsite.be/images/merken/4114/foto1/orig/logo_klein.gif"
+        },
+        {
+            "name": "Draflex",
+            "brands": "http://shoponsite.be/images/merken/3881/foto1/orig/draflex.gif"
+        },
+        {
+            "name": "Dreamland",
+            "brands": "http://shoponsite.be/images/merken/3316/foto1/orig/dreamland.gif"
+        },
+        {
+            "name": "Dremel",
+            "brands": "http://shoponsite.be/images/merken/3210/foto1/orig/dremel-logo-klein.gif"
+        },
+        {
+            "name": "Dru",
+            "brands": "http://shoponsite.be/images/merken/3050/foto1/orig/dru.gif"
+        },
+        {
+            "name": "Dualit",
+            "brands": "http://shoponsite.be/images/merken/3462/foto1/orig/dualit.gif"
+        },
+        {
+            "name": "DuoTecno",
+            "brands": "http://shoponsite.be/images/merken/2928/foto1/orig/duotecno.gif"
+        },
+        {
+            "name": "Duracell",
+            "brands": "http://shoponsite.be/images/merken/3029/foto1/orig/duracell.gif"
+        },
+        {
+            "name": "Durobor",
+            "brands": "http://shoponsite.be/images/merken/3568/foto1/orig/logo_small.gif"
+        },
+        {
+            "name": "Dynaudio",
+            "brands": "http://shoponsite.be/images/merken/3470/foto1/orig/dynaudio-klein.gif"
+        },
+        {
+            "name": "Dyson",
+            "brands": "http://shoponsite.be/images/merken/2857/foto1/orig/dyson.gif"
+        },
+        {
+            "name": "Edifier",
+            "brands": "http://shoponsite.be/images/merken/4535/foto1/orig/edifier-klein.gif"
+        },
+        {
+            "name": "Edy",
+            "brands": "http://shoponsite.be/images/merken/3069/foto1/orig/edy.gif"
+        },
+        {
+            "name": "Electrabel",
+            "brands": "http://shoponsite.be/images/merken/3074/foto1/orig/electrabel.gif"
+        },
+        {
+            "name": "Electrolux",
+            "brands": "http://shoponsite.be/images/merken/2835/foto1/orig/electrolux.gif"
+        },
+        {
+            "name": "Emsa",
+            "brands": "http://shoponsite.be/images/merken/3644/foto1/orig/emsa.gif"
+        },
+        {
+            "name": "Engels Kerzen",
+            "brands": "http://shoponsite.be/images/merken/4304/foto1/orig/engelskerzen-logoklcorrect.gif"
+        },
+        {
+            "name": "Eni",
+            "brands": "http://shoponsite.be/images/merken/3075/foto1/orig/eni-logo-klein.gif"
+        },
+        {
+            "name": "Epson",
+            "brands": "http://shoponsite.be/images/merken/2774/foto1/orig/epson.gif"
+        },
+        {
+            "name": "Espressions",
+            "brands": "http://shoponsite.be/images/merken/4369/foto1/orig/logo_espressions_copy.gif"
+        },
+        {
+            "name": "Espressocap",
+            "brands": "http://shoponsite.be/images/merken/3321/foto1/orig/espressocap.gif"
+        },
+        {
+            "name": "Eton",
+            "brands": "http://shoponsite.be/images/merken/3070/foto1/orig/eton.gif"
+        },
+        {
+            "name": "Eva Solo",
+            "brands": "http://shoponsite.be/images/merken/3697/foto1/orig/evasolo-logokl.gif"
+        },
+        {
+            "name": "Faber",
+            "brands": "http://shoponsite.be/images/merken/3046/foto1/orig/faber.gif"
+        },
+        {
+            "name": "Falcon",
+            "brands": "http://shoponsite.be/images/merken/3314/foto1/orig/falcon.gif"
+        },
+        {
+            "name": "Fhiaba",
+            "brands": "http://shoponsite.be/images/merken/3572/foto1/orig/fhiaba.gif"
+        },
+        {
+            "name": "Finnmart",
+            "brands": "http://shoponsite.be/images/merken/4521/foto1/orig/finnmartklein.gif"
+        },
+        {
+            "name": "Fisher&Paykel",
+            "brands": "http://shoponsite.be/images/merken/3137/foto1/orig/fisher_paykel.gif"
+        },
+        {
+            "name": "Fissler",
+            "brands": "http://shoponsite.be/images/merken/3480/foto1/orig/fissler.gif"
+        },
+        {
+            "name": "Flam",
+            "brands": "http://shoponsite.be/images/merken/3052/foto1/orig/flam-klein.gif"
+        },
+        {
+            "name": "Flandria",
+            "brands": "http://shoponsite.be/images/merken/3054/foto1/orig/flandria.gif"
+        },
+        {
+            "name": "Flatline",
+            "brands": "http://shoponsite.be/images/merken/3325/foto1/orig/flatline.gif"
+        },
+        {
+            "name": "Foodsaver",
+            "brands": "http://shoponsite.be/images/merken/4367/foto1/orig/foodsaver-logokl.gif"
+        },
+        {
+            "name": "Fortessa",
+            "brands": "http://shoponsite.be/images/merken/4143/foto1/orig/fortessa-logokl.gif"
+        },
+        {
+            "name": "Frifri",
+            "brands": "http://shoponsite.be/images/merken/3008/foto1/orig/frifri.gif"
+        },
+        {
+            "name": "Fritel",
+            "brands": "http://shoponsite.be/images/merken/2777/foto1/orig/fritel.gif"
+        },
+        {
+            "name": "Fujifilm",
+            "brands": "http://shoponsite.be/images/merken/2874/foto1/orig/fujifilm.gif"
+        },
+        {
+            "name": "G&BL",
+            "brands": "http://shoponsite.be/images/merken/4482/foto1/orig/gbl-klein.gif"
+        },
+        {
+            "name": "G-rail",
+            "brands": "http://shoponsite.be/images/merken/3556/foto1/orig/g_rail.gif"
+        },
+        {
+            "name": "G-Tech",
+            "brands": "http://shoponsite.be/images/merken/3322/foto1/orig/g_tech.gif"
+        },
+        {
+            "name": "Gaggenau",
+            "brands": "http://shoponsite.be/images/merken/3287/foto1/orig/gagkl.gif"
+        },
+        {
+            "name": "Gardena",
+            "brands": "http://shoponsite.be/images/merken/3212/foto1/orig/gardena.gif"
+        },
+        {
+            "name": "Garmin",
+            "brands": "http://shoponsite.be/images/merken/2658/foto1/orig/garmin.gif"
+        },
+        {
+            "name": "GEFU",
+            "brands": "http://shoponsite.be/images/merken/3559/foto1/orig/gefu.gif"
+        },
+        {
+            "name": "Geneva",
+            "brands": "http://shoponsite.be/images/merken/3331/foto1/orig/geneva.gif"
+        },
+        {
+            "name": "Giesswein",
+            "brands": "http://shoponsite.be/images/merken/4248/foto1/orig/giesswein-logokl.gif"
+        },
+        {
+            "name": "Gobel",
+            "brands": "http://shoponsite.be/images/merken/3858/foto1/orig/gobel.gif"
+        },
+        {
+            "name": "Gorenje",
+            "brands": "http://shoponsite.be/images/merken/3033/foto1/orig/gorenje.gif"
+        },
+        {
+            "name": "GP Batteries",
+            "brands": "http://shoponsite.be/images/merken/2843/foto1/orig/gp_batteries.gif"
+        },
+        {
+            "name": "Grado",
+            "brands": "http://shoponsite.be/images/merken/3111/foto1/orig/grado.gif"
+        },
+        {
+            "name": "Graef",
+            "brands": "http://shoponsite.be/images/merken/2778/foto1/orig/graef.gif"
+        },
+        {
+            "name": "Gree",
+            "brands": "http://shoponsite.be/images/merken/2898/foto1/orig/gree.gif"
+        },
+        {
+            "name": "GreenPan",
+            "brands": "http://shoponsite.be/images/merken/3566/foto1/orig/greenpan.gif"
+        },
+        {
+            "name": "Grundig",
+            "brands": "http://shoponsite.be/images/merken/2995/foto1/orig/grundig.gif"
+        },
+        {
+            "name": "Guardini",
+            "brands": "http://shoponsite.be/images/merken/4137/foto1/orig/guardini-small.gif"
+        },
+        {
+            "name": "Hama",
+            "brands": "http://shoponsite.be/images/merken/3034/foto1/orig/hama.gif"
+        },
+        {
+            "name": "Hantarex",
+            "brands": "http://shoponsite.be/images/merken/3106/foto1/orig/hantarex75.gif"
+        },
+        {
+            "name": "Harman Kardon",
+            "brands": "http://shoponsite.be/images/merken/3308/foto1/orig/harman_kardon_75.gif"
+        },
+        {
+            "name": "HEAT",
+            "brands": "http://shoponsite.be/images/merken/4401/foto1/orig/heat-logo-klein.gif"
+        },
+        {
+            "name": "hi-Fun",
+            "brands": "http://shoponsite.be/images/merken/3748/foto1/orig/hi_fun.gif"
+        },
+        {
+            "name": "Hitachi",
+            "brands": "http://shoponsite.be/images/merken/2752/foto1/orig/hitachi.gif"
+        },
+        {
+            "name": "Home Cinema Modules",
+            "brands": "http://shoponsite.be/images/merken/3524/foto1/orig/home_cinema_modules.gif"
+        },
+        {
+            "name": "Hoover",
+            "brands": "http://shoponsite.be/images/merken/2720/foto1/orig/hoover.gif"
+        },
+        {
+            "name": "Hotpoint-Ariston",
+            "brands": "http://shoponsite.be/images/merken/2696/foto1/orig/ariston.gif"
+        },
+        {
+            "name": "HP",
+            "brands": "http://shoponsite.be/images/merken/2705/foto1/orig/hp.gif"
+        },
+        {
+            "name": "HQ",
+            "brands": "http://shoponsite.be/images/merken/2660/foto1/orig/hq.gif"
+        },
+        {
+            "name": "HTC",
+            "brands": "http://shoponsite.be/images/merken/3138/foto1/orig/htc.gif"
+        },
+        {
+            "name": "Ihr",
+            "brands": "http://shoponsite.be/images/merken/4151/foto1/orig/ihr-logokl.gif"
+        },
+        {
+            "name": "Iittala",
+            "brands": "http://shoponsite.be/images/merken/3828/foto1/orig/iittala-logokl.gif"
+        },
+        {
+            "name": "Illy",
+            "brands": "http://shoponsite.be/images/merken/3746/foto1/orig/logo52x52.gif"
+        },
+        {
+            "name": "ImagiLights",
+            "brands": "http://shoponsite.be/images/merken/4493/foto1/orig/untitled-1.gif"
+        },
+        {
+            "name": "Imperia",
+            "brands": "http://shoponsite.be/images/merken/3652/foto1/orig/imperia.gif"
+        },
+        {
+            "name": "Indesit",
+            "brands": "http://shoponsite.be/images/merken/2804/foto1/orig/indesit.gif"
+        },
+        {
+            "name": "Inventum",
+            "brands": "http://shoponsite.be/images/merken/2989/foto1/orig/inventum.gif"
+        },
+        {
+            "name": "Iomega",
+            "brands": "http://shoponsite.be/images/merken/2838/foto1/orig/iomega.gif"
+        },
+        {
+            "name": "iRobot",
+            "brands": "http://shoponsite.be/images/merken/3632/foto1/orig/irobot.gif"
+        },
+        {
+            "name": "Italesse",
+            "brands": "http://shoponsite.be/images/merken/3683/foto1/orig/italesse-logokl.gif"
+        },
+        {
+            "name": "Jamie Oliver",
+            "brands": "http://shoponsite.be/images/merken/3691/foto1/orig/jamie_oliver.gif"
+        },
+        {
+            "name": "Jamo",
+            "brands": "http://shoponsite.be/images/merken/2716/foto1/orig/jamo.gif"
+        },
+        {
+            "name": "Jarre",
+            "brands": "http://shoponsite.be/images/merken/4125/foto1/orig/jarre_techno_registered.gif"
+        },
+        {
+            "name": "JBL",
+            "brands": "http://shoponsite.be/images/merken/2999/foto1/orig/jbl.gif"
+        },
+        {
+            "name": "Jean Louis David",
+            "brands": "http://shoponsite.be/images/merken/3845/foto1/orig/jean_louis_david.gif"
+        },
+        {
+            "name": "Jenaer",
+            "brands": "http://shoponsite.be/images/merken/4134/foto1/orig/jenaer-small.gif"
+        },
+        {
+            "name": "Jia",
+            "brands": "http://shoponsite.be/images/merken/4242/foto1/orig/jia-logokl.gif"
+        },
+        {
+            "name": "JL Coquet",
+            "brands": "http://shoponsite.be/images/merken/4104/foto1/res75x56/jlcoquet.jpg"
+        },
+        {
+            "name": "Jo!e",
+            "brands": "http://shoponsite.be/images/merken/3653/foto1/orig/jo_e.gif"
+        },
+        {
+            "name": "Jura",
+            "brands": "http://shoponsite.be/images/merken/3460/foto1/orig/jura.gif"
+        },
+        {
+            "name": "JVC",
+            "brands": "http://shoponsite.be/images/merken/2657/foto1/orig/jvc.gif"
+        },
+        {
+            "name": "Kai",
+            "brands": "http://shoponsite.be/images/merken/3561/foto1/orig/kai-logokl.gif"
+        },
+        {
+            "name": "Kaiser",
+            "brands": "http://shoponsite.be/images/merken/3862/foto1/orig/kaiser.gif"
+        },
+        {
+            "name": "KEF",
+            "brands": "http://shoponsite.be/images/merken/3090/foto1/orig/kef-klein.gif"
+        },
+        {
+            "name": "Ken Hom",
+            "brands": "http://shoponsite.be/images/merken/3715/foto1/orig/kenhomlogokl.gif"
+        },
+        {
+            "name": "Kenwood",
+            "brands": "http://shoponsite.be/images/merken/2990/foto1/orig/kenwood.gif"
+        },
+        {
+            "name": "Kenwood Electronics",
+            "brands": "http://shoponsite.be/images/merken/3324/foto1/orig/logo_klein.gif"
+        },
+        {
+            "name": "Kinto",
+            "brands": "http://shoponsite.be/images/merken/4380/foto1/orig/kinto-logokl.gif"
+        },
+        {
+            "name": "Kisag",
+            "brands": "http://shoponsite.be/images/merken/3320/foto1/orig/kisag.gif"
+        },
+        {
+            "name": "KitchenAid",
+            "brands": "http://shoponsite.be/images/merken/2992/foto1/orig/kitchenaid.gif"
+        },
+        {
+            "name": "Koala",
+            "brands": "http://shoponsite.be/images/merken/3751/foto1/orig/kih.gif"
+        },
+        {
+            "name": "Kodak",
+            "brands": "http://shoponsite.be/images/merken/2815/foto1/orig/kodak.gif"
+        },
+        {
+            "name": "Konig",
+            "brands": "http://shoponsite.be/images/merken/2751/foto1/orig/koenig_electronic_logo_75.gif"
+        },
+        {
+            "name": "Koozzzi",
+            "brands": "http://shoponsite.be/images/merken/4431/foto1/orig/koozzzi-logokl.gif"
+        },
+        {
+            "name": "Koss",
+            "brands": "http://shoponsite.be/images/merken/3516/foto1/orig/koss.gif"
+        },
+        {
+            "name": "Krups",
+            "brands": "http://shoponsite.be/images/merken/2828/foto1/orig/krups.gif"
+        },
+        {
+            "name": "Küppersbusch",
+            "brands": "http://shoponsite.be/images/merken/3199/foto1/orig/kup_klein.gif"
+        },
+        {
+            "name": "La Rochère",
+            "brands": "http://shoponsite.be/images/merken/4523/foto1/orig/larochklein.gif"
+        },
+        {
+            "name": "LaBoul",
+            "brands": "http://shoponsite.be/images/merken/4589/foto1/orig/logo_laboulklein.gif"
+        },
+        {
+            "name": "Lagostina",
+            "brands": "http://shoponsite.be/images/merken/3570/foto1/orig/lagostina.gif"
+        },
+        {
+            "name": "Laguiole-Dubost",
+            "brands": "http://shoponsite.be/images/merken/3673/foto1/orig/laguiole_dubost.gif"
+        },
+        {
+            "name": "Laurastar",
+            "brands": "http://shoponsite.be/images/merken/2758/foto1/orig/laurastar.gif"
+        },
+        {
+            "name": "Le Creuset",
+            "brands": "http://shoponsite.be/images/merken/3123/foto1/orig/le_creuset.gif"
+        },
+        {
+            "name": "Legnoart",
+            "brands": "http://shoponsite.be/images/merken/3681/foto1/orig/legnoart-small.gif"
+        },
+        {
+            "name": "Leica",
+            "brands": "http://shoponsite.be/images/merken/2930/foto1/orig/leica.gif"
+        },
+        {
+            "name": "Lékué",
+            "brands": "http://shoponsite.be/images/merken/3655/foto1/orig/lekue.gif"
+        },
+        {
+            "name": "Leopold Vienna",
+            "brands": "http://shoponsite.be/images/merken/4144/foto1/orig/leopoldvienna-logokl.gif"
+        },
+        {
+            "name": "LG",
+            "brands": "http://shoponsite.be/images/merken/2673/foto1/orig/lg.gif"
+        },
+        {
+            "name": "Liebherr",
+            "brands": "http://shoponsite.be/images/merken/2773/foto1/orig/liebherrklein.gif"
+        },
+        {
+            "name": "Linksys by Cisco",
+            "brands": "http://shoponsite.be/images/merken/4437/foto1/orig/cisco_klein.gif"
+        },
+        {
+            "name": "Loewe",
+            "brands": "http://shoponsite.be/images/merken/2984/foto1/orig/loewe.gif"
+        },
+        {
+            "name": "Logitech",
+            "brands": "http://shoponsite.be/images/merken/2688/foto1/res75x56/image001.jpg"
+        },
+        {
+            "name": "Lowepro",
+            "brands": "http://shoponsite.be/images/merken/3099/foto1/orig/lowepro.gif"
+        },
+        {
+            "name": "Luke",
+            "brands": "http://shoponsite.be/images/merken/3327/foto1/orig/luke.gif"
+        },
+        {
+            "name": "Luminarc",
+            "brands": "http://shoponsite.be/images/merken/4121/foto1/orig/luminarc-logokl.gif"
+        },
+        {
+            "name": "Luminus",
+            "brands": "http://shoponsite.be/images/merken/3079/foto1/orig/luminus.gif"
+        },
+        {
+            "name": "Lurch",
+            "brands": "http://shoponsite.be/images/merken/3736/foto1/orig/lurch.gif"
+        },
+        {
+            "name": "Magimix",
+            "brands": "http://shoponsite.be/images/merken/2991/foto1/orig/magimix.gif"
+        },
+        {
+            "name": "Make My Day",
+            "brands": "http://shoponsite.be/images/merken/4494/foto1/orig/makemyday_kopie.gif"
+        },
+        {
+            "name": "Manfrotto",
+            "brands": "http://shoponsite.be/images/merken/3096/foto1/orig/manfrotto.gif"
+        },
+        {
+            "name": "Marcato",
+            "brands": "http://shoponsite.be/images/merken/4514/foto1/orig/marcatoklein.gif"
+        },
+        {
+            "name": "Marmitek",
+            "brands": "http://shoponsite.be/images/merken/2706/foto1/orig/marmitekklein.gif"
+        },
+        {
+            "name": "Mastrad",
+            "brands": "http://shoponsite.be/images/merken/3790/foto1/orig/mastrad-logokl.gif"
+        },
+        {
+            "name": "MCZ",
+            "brands": "http://shoponsite.be/images/merken/3281/foto1/orig/mcz.gif"
+        },
+        {
+            "name": "Menu",
+            "brands": "http://shoponsite.be/images/merken/3782/foto1/orig/menu_logo_black_copy_2_small.gif"
+        },
+        {
+            "name": "Mepra",
+            "brands": "http://shoponsite.be/images/merken/4127/foto1/orig/mepra-logokl.gif"
+        },
+        {
+            "name": "Miele",
+            "brands": "http://shoponsite.be/images/merken/2987/foto1/orig/miele.gif"
+        },
+        {
+            "name": "Millecroquettes",
+            "brands": "http://shoponsite.be/images/merken/4365/foto1/orig/mileecroquettes-echtklein.gif"
+        },
+        {
+            "name": "Mingle",
+            "brands": "http://shoponsite.be/images/merken/3861/foto1/orig/mingle.gif"
+        },
+        {
+            "name": "Minox",
+            "brands": "http://shoponsite.be/images/merken/3134/foto1/orig/minox.gif"
+        },
+        {
+            "name": "Mio",
+            "brands": "http://shoponsite.be/images/merken/2931/foto1/orig/mio.gif"
+        },
+        {
+            "name": "Miyabi",
+            "brands": "http://shoponsite.be/images/merken/4644/foto1/orig/miyabilogoklein.gif"
+        },
+        {
+            "name": "Modular",
+            "brands": "http://shoponsite.be/images/merken/3151/foto1/orig/modular.gif"
+        },
+        {
+            "name": "Moha",
+            "brands": "http://shoponsite.be/images/merken/3662/foto1/orig/moha.gif"
+        },
+        {
+            "name": "Molécule-R",
+            "brands": "http://shoponsite.be/images/merken/4636/foto1/orig/moleculerklein.gif"
+        },
+        {
+            "name": "Monitor Audio",
+            "brands": "http://shoponsite.be/images/merken/3115/foto1/res75x56/monitor-audio-logo.jpg"
+        },
+        {
+            "name": "Monster",
+            "brands": "http://shoponsite.be/images/merken/3317/foto1/orig/monster.gif"
+        },
+        {
+            "name": "Mor.",
+            "brands": "http://shoponsite.be/images/merken/3696/foto1/orig/mor_.gif"
+        },
+        {
+            "name": "Moulinex",
+            "brands": "http://shoponsite.be/images/merken/2656/foto1/orig/moulinex-logo-klein.gif"
+        },
+        {
+            "name": "Music Hall",
+            "brands": "http://shoponsite.be/images/merken/3119/foto1/orig/mh-klein.gif"
+        },
+        {
+            "name": "NAD",
+            "brands": "http://shoponsite.be/images/merken/3271/foto1/orig/nad.gif"
+        },
+        {
+            "name": "Naf Naf",
+            "brands": "http://shoponsite.be/images/merken/3132/foto1/orig/naf_naf.gif"
+        },
+        {
+            "name": "Navigon",
+            "brands": "http://shoponsite.be/images/merken/3714/foto1/orig/navigon.gif"
+        },
+        {
+            "name": "Neff",
+            "brands": "http://shoponsite.be/images/merken/3003/foto1/orig/neff.gif"
+        },
+        {
+            "name": "Nespresso",
+            "brands": "http://shoponsite.be/images/merken/2986/foto1/orig/nespresso.gif"
+        },
+        {
+            "name": "Nestor Martin",
+            "brands": "http://shoponsite.be/images/merken/3051/foto1/orig/nestor-martin-klein.gif"
+        },
+        {
+            "name": "Niko",
+            "brands": "http://shoponsite.be/images/merken/2671/foto1/orig/niko.gif"
+        },
+        {
+            "name": "Nikon",
+            "brands": "http://shoponsite.be/images/merken/2679/foto1/orig/nikon.gif"
+        },
+        {
+            "name": "Nilfisk",
+            "brands": "http://shoponsite.be/images/merken/3011/foto1/orig/nilfisk.gif"
+        },
+        {
+            "name": "Nogent",
+            "brands": "http://shoponsite.be/images/merken/3860/foto1/orig/nogent.gif"
+        },
+        {
+            "name": "Nokia",
+            "brands": "http://shoponsite.be/images/merken/2680/foto1/orig/nokia.gif"
+        },
+        {
+            "name": "Nova",
+            "brands": "http://shoponsite.be/images/merken/2756/foto1/orig/nova.gif"
+        },
+        {
+            "name": "Novy",
+            "brands": "http://shoponsite.be/images/merken/2771/foto1/orig/novy.gif"
+        },
+        {
+            "name": "Nuance",
+            "brands": "http://shoponsite.be/images/merken/4383/foto1/orig/nuance-logokl.gif"
+        },
+        {
+            "name": "Nude",
+            "brands": "http://shoponsite.be/images/merken/4877/foto1/res75x56/Schermafbeelding-2014-09-16-om-09.41.57-kopie.jpg"
+        },
+        {
+            "name": "Olympus",
+            "brands": "http://shoponsite.be/images/merken/2853/foto1/orig/olympus.gif"
+        },
+        {
+            "name": "Omami",
+            "brands": "http://shoponsite.be/images/merken/4356/foto1/orig/omamiklein.gif"
+        },
+        {
+            "name": "OmniMount",
+            "brands": "http://shoponsite.be/images/merken/3133/foto1/orig/omnimount_75.gif"
+        },
+        {
+            "name": "One For All",
+            "brands": "http://shoponsite.be/images/merken/2732/foto1/orig/one_for_all.gif"
+        },
+        {
+            "name": "Onkyo",
+            "brands": "http://shoponsite.be/images/merken/3146/foto1/orig/onkyo.gif"
+        },
+        {
+            "name": "Opinel",
+            "brands": "http://shoponsite.be/images/merken/3672/foto1/orig/opinel_logoklein.gif"
+        },
+        {
+            "name": "Osram",
+            "brands": "http://shoponsite.be/images/merken/2809/foto1/orig/osram-klein.gif"
+        },
+        {
+            "name": "Packard Bell",
+            "brands": "http://shoponsite.be/images/merken/2814/foto1/orig/packard_bell.gif"
+        },
+        {
+            "name": "Panasonic",
+            "brands": "http://shoponsite.be/images/merken/2650/foto1/orig/panasonic.gif"
+        },
+        {
+            "name": "Panda",
+            "brands": "http://shoponsite.be/images/merken/4086/foto1/orig/logo_klein.gif"
+        },
+        {
+            "name": "Patisse",
+            "brands": "http://shoponsite.be/images/merken/3788/foto1/orig/patisse.gif"
+        },
+        {
+            "name": "Paul Frank",
+            "brands": "http://shoponsite.be/images/merken/4497/foto1/orig/lr_61-kl.gif"
+        },
+        {
+            "name": "Peugeot",
+            "brands": "http://shoponsite.be/images/merken/3124/foto1/orig/peugeot-logokl.gif"
+        },
+        {
+            "name": "Philips",
+            "brands": "http://shoponsite.be/images/merken/2649/foto1/orig/philips.gif"
+        },
+        {
+            "name": "Philips TV",
+            "brands": "http://shoponsite.be/images/merken/4595/foto1/orig/philips-2.gif"
+        },
+        {
+            "name": "Philips-Saeco",
+            "brands": "http://shoponsite.be/images/merken/2855/foto1/orig/logo-philipssaecokl.gif"
+        },
+        {
+            "name": "Piazetta",
+            "brands": "http://shoponsite.be/images/merken/3282/foto1/orig/piazetta.gif"
+        },
+        {
+            "name": "Piazza",
+            "brands": "http://shoponsite.be/images/merken/3676/foto1/orig/piazza.gif"
+        },
+        {
+            "name": "Pioneer",
+            "brands": "http://shoponsite.be/images/merken/2661/foto1/orig/pioneer.gif"
+        },
+        {
+            "name": "Plate Spacers",
+            "brands": "http://shoponsite.be/images/merken/3839/foto1/orig/plate_spacers.gif"
+        },
+        {
+            "name": "Point Rose",
+            "brands": "http://shoponsite.be/images/merken/4737/foto1/res75x56/PointRose.jpg"
+        },
+        {
+            "name": "Point-Virgule",
+            "brands": "http://shoponsite.be/images/merken/3711/foto1/res75x56/Logo_PointVirgule_Q_pos_HR.jpg"
+        },
+        {
+            "name": "Polet",
+            "brands": "http://shoponsite.be/images/merken/3612/foto1/orig/polet.gif"
+        },
+        {
+            "name": "Princess",
+            "brands": "http://shoponsite.be/images/merken/2757/foto1/orig/princess.gif"
+        },
+        {
+            "name": "Projecta",
+            "brands": "http://shoponsite.be/images/merken/2730/foto1/orig/projecta.gif"
+        },
+        {
+            "name": "Proximus",
+            "brands": "http://shoponsite.be/images/merken/3071/foto1/res75x56/proximus-logo.jpg"
+        },
+        {
+            "name": "Quadra Fire",
+            "brands": "http://shoponsite.be/images/merken/4092/foto1/orig/logo_klein.gif"
+        },
+        {
+            "name": "Rasteli",
+            "brands": "http://shoponsite.be/images/merken/4927/foto1/res75x56/Schermafbeelding-2015-03-05-om-10.44.19-kopie.jpg"
+        },
+        {
+            "name": "Reisenthel",
+            "brands": "http://shoponsite.be/images/merken/3642/foto1/orig/reisenthel.gif"
+        },
+        {
+            "name": "Remington",
+            "brands": "http://shoponsite.be/images/merken/2785/foto1/orig/remington.gif"
+        },
+        {
+            "name": "Revol",
+            "brands": "http://shoponsite.be/images/merken/3786/foto1/orig/logo_haut_small.gif"
+        },
+        {
+            "name": "Ricatech",
+            "brands": "http://shoponsite.be/images/merken/3512/foto1/orig/ricatech.gif"
+        },
+        {
+            "name": "Ricoh",
+            "brands": "http://shoponsite.be/images/merken/3025/foto1/orig/ricoh-klein.gif"
+        },
+        {
+            "name": "Riedel",
+            "brands": "http://shoponsite.be/images/merken/4107/foto1/orig/riedel-logokl.gif"
+        },
+        {
+            "name": "Robert Welch",
+            "brands": "http://shoponsite.be/images/merken/4313/foto1/orig/robertwelch-logokl.gif"
+        },
+        {
+            "name": "Rosti Mepal",
+            "brands": "http://shoponsite.be/images/merken/4355/foto1/orig/rostimepal-logokl.gif"
+        },
+        {
+            "name": "Rowenta",
+            "brands": "http://shoponsite.be/images/merken/2829/foto1/orig/rowenta.gif"
+        },
+        {
+            "name": "Royal Zilverstad",
+            "brands": "http://shoponsite.be/images/merken/4150/foto1/orig/royalzilverstadt-logokl.gif"
+        },
+        {
+            "name": "Ruark Audio",
+            "brands": "http://shoponsite.be/images/merken/3511/foto1/res75x56/ruark-audio-logo.jpg"
+        },
+        {
+            "name": "Römertopf",
+            "brands": "http://shoponsite.be/images/merken/3656/foto1/orig/romertopf.gif"
+        },
+        {
+            "name": "Saey",
+            "brands": "http://shoponsite.be/images/merken/3049/foto1/orig/saey-klein.gif"
+        },
+        {
+            "name": "Saleen",
+            "brands": "http://shoponsite.be/images/merken/3674/foto1/orig/saleen.gif"
+        },
+        {
+            "name": "Salt & Pepper",
+            "brands": "http://shoponsite.be/images/merken/3478/foto1/orig/salt___pepper.gif"
+        },
+        {
+            "name": "Samsung",
+            "brands": "http://shoponsite.be/images/merken/2669/foto1/res75x56/Samsung-logo-Lettermark-Blue.jpg"
+        },
+        {
+            "name": "Sanyo",
+            "brands": "http://shoponsite.be/images/merken/2877/foto1/orig/sanyo.gif"
+        },
+        {
+            "name": "Scholl",
+            "brands": "http://shoponsite.be/images/merken/3847/foto1/orig/scholl.gif"
+        },
+        {
+            "name": "Schott Zwiesel",
+            "brands": "http://shoponsite.be/images/merken/3740/foto1/res75x56/SZ_Logo_2012_4c.jpg"
+        },
+        {
+            "name": "Schroers & Schroers",
+            "brands": "http://shoponsite.be/images/merken/3118/foto1/orig/schroers___schroers.gif"
+        },
+        {
+            "name": "Screwpull",
+            "brands": "http://shoponsite.be/images/merken/3483/foto1/orig/screwpull.gif"
+        },
+        {
+            "name": "Seb",
+            "brands": "http://shoponsite.be/images/merken/2830/foto1/orig/seb.gif"
+        },
+        {
+            "name": "Seltmann Weiden",
+            "brands": "http://shoponsite.be/images/merken/3743/foto1/orig/seltmann-small.gif"
+        },
+        {
+            "name": "Sharp",
+            "brands": "http://shoponsite.be/images/merken/2717/foto1/orig/sharp.gif"
+        },
+        {
+            "name": "Siemens",
+            "brands": "http://shoponsite.be/images/merken/2654/foto1/orig/siemens.gif"
+        },
+        {
+            "name": "Silikomart",
+            "brands": "http://shoponsite.be/images/merken/4135/foto1/orig/silikomart-small.gif"
+        },
+        {
+            "name": "Silit",
+            "brands": "http://shoponsite.be/images/merken/3122/foto1/orig/silit.gif"
+        },
+        {
+            "name": "Singer",
+            "brands": "http://shoponsite.be/images/merken/3126/foto1/orig/singer.gif"
+        },
+        {
+            "name": "Sitecom",
+            "brands": "http://shoponsite.be/images/merken/3410/foto1/orig/logo_klein.gif"
+        },
+        {
+            "name": "Smart Café",
+            "brands": "http://shoponsite.be/images/merken/4098/foto1/orig/smartcafelogkl.gif"
+        },
+        {
+            "name": "Smeg",
+            "brands": "http://shoponsite.be/images/merken/3043/foto1/orig/smeg.gif"
+        },
+        {
+            "name": "SodaStream",
+            "brands": "http://shoponsite.be/images/merken/3670/foto1/res75x56/sodastream.jpg"
+        },
+        {
+            "name": "Sonos",
+            "brands": "http://shoponsite.be/images/merken/3157/foto1/res75x56/sonos-logo.jpg"
+        },
+        {
+            "name": "Sony",
+            "brands": "http://shoponsite.be/images/merken/2662/foto1/orig/sony.gif"
+        },
+        {
+            "name": "SonyEricsson",
+            "brands": "http://shoponsite.be/images/merken/2681/foto1/orig/sonyericsson.gif"
+        },
+        {
+            "name": "Sorrells",
+            "brands": "http://shoponsite.be/images/merken/4541/foto1/orig/sorrellsklein.gif"
+        },
+        {
+            "name": "SoundCast",
+            "brands": "http://shoponsite.be/images/merken/3129/foto1/orig/soundckl.gif"
+        },
+        {
+            "name": "Spectral",
+            "brands": "http://shoponsite.be/images/merken/3383/foto1/orig/spectral.gif"
+        },
+        {
+            "name": "Spirit",
+            "brands": "http://shoponsite.be/images/merken/4439/foto1/orig/spirit-logokl.gif"
+        },
+        {
+            "name": "Staub",
+            "brands": "http://shoponsite.be/images/merken/3567/foto1/orig/staub-logokl.gif"
+        },
+        {
+            "name": "Surdiac",
+            "brands": "http://shoponsite.be/images/merken/3275/foto1/orig/surdiac.gif"
+        },
+        {
+            "name": "Sweex",
+            "brands": "http://shoponsite.be/images/merken/2940/foto1/orig/klein.gif"
+        },
+        {
+            "name": "Swiss Diamond",
+            "brands": "http://shoponsite.be/images/merken/3735/foto1/orig/swiss_diamond.gif"
+        },
+        {
+            "name": "T & G Woodware",
+            "brands": "http://shoponsite.be/images/merken/3658/foto1/orig/t___g_woodware.gif"
+        },
+        {
+            "name": "Tala",
+            "brands": "http://shoponsite.be/images/merken/4506/foto1/orig/talaklein.gif"
+        },
+        {
+            "name": "Tamron",
+            "brands": "http://shoponsite.be/images/merken/3095/foto1/orig/tamron.gif"
+        },
+        {
+            "name": "Tangent",
+            "brands": "http://shoponsite.be/images/merken/3130/foto1/orig/tangent.gif"
+        },
+        {
+            "name": "Targus",
+            "brands": "http://shoponsite.be/images/merken/3186/foto1/orig/logo_klein.gif"
+        },
+        {
+            "name": "Tarrerias Bonjean",
+            "brands": "http://shoponsite.be/images/merken/4145/foto1/orig/tarrerias-bonjean-logokl.gif"
+        },
+        {
+            "name": "Tefal",
+            "brands": "http://shoponsite.be/images/merken/2827/foto1/orig/tefal.gif"
+        },
+        {
+            "name": "Telenet",
+            "brands": "http://shoponsite.be/images/merken/3076/foto1/res75x56/telenet-logo.jpg"
+        },
+        {
+            "name": "Termozeta",
+            "brands": "http://shoponsite.be/images/merken/3319/foto1/orig/termozeta.gif"
+        },
+        {
+            "name": "Test Merk",
+            "brands": "http://shoponsite.be/images/merken/4902/foto1/res75x56/yamaha-groot.jpg"
+        },
+        {
+            "name": "Tettau",
+            "brands": "http://shoponsite.be/images/merken/4251/foto1/orig/tettau-logokl.gif"
+        },
+        {
+            "name": "Thermos",
+            "brands": "http://shoponsite.be/images/merken/4113/foto1/orig/logo_klein.gif"
+        },
+        {
+            "name": "Tint",
+            "brands": "http://shoponsite.be/images/merken/4253/foto1/orig/tint-logokl.gif"
+        },
+        {
+            "name": "Tivoli",
+            "brands": "http://shoponsite.be/images/merken/2742/foto1/orig/tivoli.gif"
+        },
+        {
+            "name": "Tojiro",
+            "brands": "http://shoponsite.be/images/merken/4307/foto1/orig/tojiro-logokl.gif"
+        },
+        {
+            "name": "TomTom",
+            "brands": "http://shoponsite.be/images/merken/3053/foto1/orig/tomtom.gif"
+        },
+        {
+            "name": "Top & Trendy",
+            "brands": "http://shoponsite.be/images/merken/4501/foto1/orig/top_trendy_klein.gif"
+        },
+        {
+            "name": "Toshiba",
+            "brands": "http://shoponsite.be/images/merken/2881/foto1/orig/toshiba.gif"
+        },
+        {
+            "name": "Toshiba AV",
+            "brands": "http://shoponsite.be/images/merken/4364/foto1/orig/toshiba_75.gif"
+        },
+        {
+            "name": "Trilux",
+            "brands": "http://shoponsite.be/images/merken/3128/foto1/orig/trilux.gif"
+        },
+        {
+            "name": "Trudeau",
+            "brands": "http://shoponsite.be/images/merken/3671/foto1/orig/trudeau.gif"
+        },
+        {
+            "name": "Trust",
+            "brands": "http://shoponsite.be/images/merken/2692/foto1/orig/logo_klein.gif"
+        },
+        {
+            "name": "Turmix",
+            "brands": "http://shoponsite.be/images/merken/4546/foto1/orig/turmixklein.gif"
+        },
+        {
+            "name": "TV VLAANDEREN",
+            "brands": "http://shoponsite.be/images/merken/3077/foto1/orig/tvvlaanderenklein.gif"
+        },
+        {
+            "name": "Typhoon",
+            "brands": "http://shoponsite.be/images/merken/3738/foto1/orig/typhoon.gif"
+        },
+        {
+            "name": "Tyrolit",
+            "brands": "http://shoponsite.be/images/merken/3594/foto1/orig/tyrolit.gif"
+        },
+        {
+            "name": "Ulster Weavers",
+            "brands": "http://shoponsite.be/images/merken/3758/foto1/orig/ulsterweavers-logokl.gif"
+        },
+        {
+            "name": "V-ZUG",
+            "brands": "http://shoponsite.be/images/merken/3752/foto1/orig/vzug-logokl.gif"
+        },
+        {
+            "name": "Valera",
+            "brands": "http://shoponsite.be/images/merken/2779/foto1/orig/valera.gif"
+        },
+        {
+            "name": "Vanguard",
+            "brands": "http://shoponsite.be/images/merken/3849/foto1/orig/vanguard.gif"
+        },
+        {
+            "name": "Velbon",
+            "brands": "http://shoponsite.be/images/merken/3101/foto1/orig/velbon.gif"
+        },
+        {
+            "name": "Vibe",
+            "brands": "http://shoponsite.be/images/merken/4526/foto1/orig/vibelogoklein.gif"
+        },
+        {
+            "name": "Viessmann",
+            "brands": "http://shoponsite.be/images/merken/4218/foto1/orig/viessmann_klein.gif"
+        },
+        {
+            "name": "Villeroy & Boch",
+            "brands": "http://shoponsite.be/images/merken/3484/foto1/orig/villeroy___boch.gif"
+        },
+        {
+            "name": "Vitlab",
+            "brands": "http://shoponsite.be/images/merken/4735/foto1/res75x56/VITLAB-Logo_neu_korrigiert.jpg"
+        },
+        {
+            "name": "Vivanco",
+            "brands": "http://shoponsite.be/images/merken/2737/foto1/orig/vivanco.gif"
+        },
+        {
+            "name": "Vivo",
+            "brands": "http://shoponsite.be/images/merken/3844/foto1/orig/vivo.gif"
+        },
+        {
+            "name": "Vogels",
+            "brands": "http://shoponsite.be/images/merken/2731/foto1/orig/vogels.gif"
+        },
+        {
+            "name": "Waterfall",
+            "brands": "http://shoponsite.be/images/merken/3131/foto1/orig/waterfall.gif"
+        },
+        {
+            "name": "Weck",
+            "brands": "http://shoponsite.be/images/merken/3831/foto1/orig/weck.gif"
+        },
+        {
+            "name": "Wedgwood",
+            "brands": "http://shoponsite.be/images/merken/4108/foto1/res75x56/WEDGWOOD_LOGO_1.jpg"
+        },
+        {
+            "name": "WellStraler",
+            "brands": "http://shoponsite.be/images/merken/3047/foto1/orig/wellstraler.gif"
+        },
+        {
+            "name": "Wesco",
+            "brands": "http://shoponsite.be/images/merken/3798/foto1/orig/logo_wesco_small.gif"
+        },
+        {
+            "name": "Westmark",
+            "brands": "http://shoponsite.be/images/merken/3659/foto1/orig/westmark.gif"
+        },
+        {
+            "name": "Whirlpool",
+            "brands": "http://shoponsite.be/images/merken/2652/foto1/orig/whirlpool-klein.gif"
+        },
+        {
+            "name": "Wigo",
+            "brands": "http://shoponsite.be/images/merken/3467/foto1/orig/wigo.gif"
+        },
+        {
+            "name": "Wiha",
+            "brands": "http://shoponsite.be/images/merken/3617/foto1/orig/wiha.gif"
+        },
+        {
+            "name": "Wilkens",
+            "brands": "http://shoponsite.be/images/merken/4148/foto1/orig/wilkens-logokl.gif"
+        },
+        {
+            "name": "WMF",
+            "brands": "http://shoponsite.be/images/merken/3475/foto1/orig/wmf-logokl.gif"
+        },
+        {
+            "name": "WMF ce",
+            "brands": "http://shoponsite.be/images/merken/4441/foto1/orig/wmf-logokl.gif"
+        },
+        {
+            "name": "Wüsthof",
+            "brands": "http://shoponsite.be/images/merken/3762/foto1/orig/wusthof-logokl.gif"
+        },
+        {
+            "name": "XL Boom",
+            "brands": "http://shoponsite.be/images/merken/4693/foto1/res75x56/xl-boom-logo.jpg"
+        },
+        {
+            "name": "Zanussi",
+            "brands": "http://shoponsite.be/images/merken/2736/foto1/orig/zanussi.gif"
+        },
+        {
+            "name": "Zojirushi",
+            "brands": "http://shoponsite.be/images/merken/3650/foto1/orig/zojirushi.gif"
+        },
+        {
+            "name": "Zoku",
+            "brands": "http://shoponsite.be/images/merken/4517/foto1/orig/zokulogoklein.gif"
+        },
+        {
+            "name": "Zwiesel",
+            "brands": "http://shoponsite.be/images/merken/4126/foto1/orig/zwiesel-logokl.gif"
+        },
+        {
+            "name": "Zwilling",
+            "brands": "http://shoponsite.be/images/merken/3563/foto1/orig/zwilling-logokl.gif"
+        }
+    ]
 }

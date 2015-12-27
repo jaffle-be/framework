@@ -1,15 +1,15 @@
 {
-  "name": "Theme",
-  "alias": "theme",
-  "description": "",
-  "keywords": [],
-  "active": 1,
-  "order": 4,
-  "providers": [
-    "Modules\\Theme\\Providers\\ThemeServiceProvider"
-  ],
-  "aliases": {},
-  "files": [
-    "helpers.php"
-  ]
+    "name": "Theme",
+    "alias": "theme",
+    "description": "",
+    "keywords": [],
+    "active": 1,
+    "order": 4,
+    "providers": [
+        "Modules\\Theme\\Providers\\ThemeServiceProvider"
+    ],
+    "aliases": {},
+    "files": [
+        "helpers.php"
+    ]
 }

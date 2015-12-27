@@ -1,15 +1,15 @@
 {
-  "name": "Shop",
-  "alias": "shop",
-  "description": "",
-  "keywords": [],
-  "active": 1,
-  "order": 10,
-  "providers": [
-    "Modules\\Shop\\Providers\\ShopServiceProvider"
-  ],
-  "aliases": {},
-  "files": [
-    "helpers.php"
-  ]
+    "name": "Shop",
+    "alias": "shop",
+    "description": "",
+    "keywords": [],
+    "active": 1,
+    "order": 10,
+    "providers": [
+        "Modules\\Shop\\Providers\\ShopServiceProvider"
+    ],
+    "aliases": {},
+    "files": [
+        "helpers.php"
+    ]
 }
