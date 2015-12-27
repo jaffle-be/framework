@@ -29,10 +29,10 @@ class ShopTableSeeder extends Seeder
     public function run($count = 15)
     {
         if (Brand::count() == 0) {
-            $this->brands();
+            $this->call(BrandTableSeeder::class);
         }
         if (Category::count() == 0) {
-            $this->categories();
+            $this->call(CategoryTableSeeder::class);
         }
 
         if (Property::count() == 0)
@@ -169,56 +169,6 @@ class ShopTableSeeder extends Seeder
         }
 
         $product->properties()->saveMany($values);
-    }
-
-    protected function brands()
-    {
-        $names = ['Philips', 'Samsung', 'Liebherr', 'Sony', 'Panasonic', 'Loewe', 'LG', 'Apple', 'HTC', 'AEG'];
-
-        for ($i = 0; $i < 10; $i++) {
-            factory(Brand::class)->create([
-                'nl' => ['name' => $names[$i]],
-                'fr' => ['name' => $names[$i]],
-                'en' => ['name' => $names[$i]],
-                'de' => ['name' => $names[$i]],
-            ]);
-        }
-    }
-
-    protected function categories()
-    {
-        $names = [
-            'Droogkast', 'Wasmachine', 'Koelkast', 'Diepvriezer', 'Microgolfoven', 'Gsm', 'Tv', 'Gps', 'Haardroger', 'Haartrimmer',
-        ];
-
-        for ($i = 0; $i < 10; $i++) {
-
-            $name = $names[$i];
-
-            $category = factory(Category::class)->create([
-                'nl' => ['name' => $name],
-                'fr' => ['name' => $name],
-                'en' => ['name' => $name],
-                'de' => ['name' => $name],
-            ]);
-
-            if(rand(0,1))
-            {
-                $count = rand(1,3);
-
-                for($j = 0; $j < $count; $j++)
-                {
-                    $synonym = factory(Category::class)->make([
-                        'nl' => ['name' => $name . ' syn ' . ($j + 1)],
-                        'fr' => ['name' => $name . ' syn ' . ($j + 1)],
-                        'en' => ['name' => $name . ' syn ' . ($j + 1)],
-                        'de' => ['name' => $name . ' syn ' . ($j + 1)],
-                    ]);
-
-                    $category->synonyms()->save($synonym);
-                }
-            }
-        }
     }
 
     protected function baseProperties()
