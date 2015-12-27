@@ -20,7 +20,8 @@ class MembershipInvitationController extends FrontController
         //do we have an invitation for a user with a registered account?
         //if so, we simply accept it instead of asking for credentials.
         if ($user = User::where('email', $invitation->email)->limit(1)->first()) {
-            $user = $this->dispatchFromArray(Signup::class, ['email' => false, 'password' => false, 'user' => $user, 'invitation' => $invitation]);
+
+            $user = $this->dispatch(new Signup(false, false, $invitation));
 
             if ($user->confirmed) {
                 //user can be logged in too

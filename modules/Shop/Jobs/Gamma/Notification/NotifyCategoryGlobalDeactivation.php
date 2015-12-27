@@ -1,13 +1,13 @@
 <?php namespace Modules\Shop\Jobs\Gamma\Notification;
 
 use App\Jobs\Job;
-use Illuminate\Contracts\Bus\SelfHandling;
+
 use Modules\Account\Account;
 use Modules\Shop\Gamma\CategorySelection;
 use Modules\Shop\Gamma\GammaNotification;
 use Modules\Shop\Product\Category;
 
-class NotifyCategoryDeactivation extends Job implements SelfHandling
+class NotifyCategoryDeactivation extends Job
 {
 
     use GammaNotificationHelpers;

@@ -1,6 +1,6 @@
 <?php namespace Modules\Contact\Providers;
 
-use Pingpong\Modules\ServiceProvider;
+use Modules\System\ServiceProvider;
 
 class ContactServiceProvider extends ServiceProvider
 {

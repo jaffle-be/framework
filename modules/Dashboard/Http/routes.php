@@ -6,6 +6,7 @@
 Route::group([
     'namespace' => 'Modules\Dashboard\Http',
     'as'        => 'store.',
+    'middleware' => ['web'],
 ], function () {
 
     /**

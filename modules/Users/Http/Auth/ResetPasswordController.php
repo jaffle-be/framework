@@ -27,7 +27,7 @@ class ResetPasswordController extends FrontController
         $token = $tokens->findTokenByValue($token);
 
         if ($token) {
-            $user = $this->dispatchFrom(ResetPassword::class, $request, ['token' => $token]);
+            $user = $this->dispatch(new ResetPassword($request->get('email'), $token, $request->get('password'), $request->get('password_confirmation')));
 
             if ($user) {
                 $guard->loginUsingId($user->id);

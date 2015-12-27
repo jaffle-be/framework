@@ -2,9 +2,9 @@
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\ScopeInterface;
+use Illuminate\Database\Eloquent\Scope;
 
-class ProductTranslationScopeFront implements ScopeInterface
+class ProductTranslationScopeFront implements Scope
 {
 
     /**
@@ -19,18 +19,6 @@ class ProductTranslationScopeFront implements ScopeInterface
     {
         $builder->where('locale', app()->getLocale())
             ->where('published', 1);
-    }
-
-    /**
-     * Remove the scope from the given Eloquent query builder.
-     *
-     * @param  \Illuminate\Database\Eloquent\Builder $builder
-     * @param  \Illuminate\Database\Eloquent\Model   $model
-     *
-     * @return void
-     */
-    public function remove(Builder $builder, Model $model)
-    {
     }
 
 }

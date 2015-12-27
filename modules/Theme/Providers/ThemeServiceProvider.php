@@ -6,7 +6,7 @@ use Modules\Theme\Theme;
 use Modules\Theme\ThemeManager;
 use Modules\Theme\ThemeRepository;
 use Modules\Theme\ThemeSelection;
-use Pingpong\Modules\ServiceProvider;
+use Modules\System\ServiceProvider;
 
 class ThemeServiceProvider extends ServiceProvider
 {

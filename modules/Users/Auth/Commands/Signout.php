@@ -2,9 +2,9 @@
 
 use App\Jobs\Job;
 use Illuminate\Contracts\Auth\Guard;
-use Illuminate\Contracts\Bus\SelfHandling;
 
-class Signout extends Job implements SelfHandling
+
+class Signout extends Job
 {
 
     public function handle(Guard $guard)

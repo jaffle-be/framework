@@ -3,6 +3,7 @@
 Route::group([
     'namespace' => 'Modules\Shop\Http',
     'as'        => 'store.',
+    'middleware' => ['web'],
 ], function () {
 
     //admin routes

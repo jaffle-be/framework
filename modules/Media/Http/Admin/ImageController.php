@@ -50,10 +50,7 @@ class ImageController extends AdminController
 
         $file = $request->file('file');
 
-        $image = $this->dispatchFromArray(UploadNewImage::class, [
-            'owner' => $owner,
-            'image' => $file,
-        ]);
+        $image = $this->dispatch(new UploadNewImage($owner, $file));
 
         $image->load($this->mediaImageRelations());
 
@@ -70,10 +67,7 @@ class ImageController extends AdminController
 
             $input = translation_input($request, ['_token', 'title']);
 
-            return $this->dispatchFromArray(UpdateImage::class, [
-                'image' => $image,
-                'input' => $input
-            ]);
+            return $this->dispatch(new UpdateImage($image, $input));
         }
     }
 

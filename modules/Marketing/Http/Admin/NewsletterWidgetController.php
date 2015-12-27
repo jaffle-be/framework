@@ -29,15 +29,6 @@ class NewsletterWidgetController extends AdminController
 
             $widget->save();
 
-//            \DB::listen(function($query){
-//                if(strpos($query, 'and 0 = 1'))
-//                {
-//                    echo '<pre>';
-//                    debug_print_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS);
-//                    echo '</pre>';
-//                }
-//            });
-
             $widget->load(['resource', 'otherResource']);
 
             //this is a hack to load the extra resources onto the widget.

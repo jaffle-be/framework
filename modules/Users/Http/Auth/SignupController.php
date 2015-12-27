@@ -31,9 +31,7 @@ class SignupController extends FrontController
             }
         }
 
-        $data = array_merge($data, ['invitation' => $invitation]);
-
-        if ($user = $this->dispatchFromArray(Signup::class, $data)) {
+        if ($user = $this->dispatch(new Signup($request->get('email'), $request->get('password'), $invitation))) {
 
             if ($user->confirmed) {
                 //user can be logged in too

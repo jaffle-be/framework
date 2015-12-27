@@ -1,7 +1,7 @@
 <?php namespace Modules\Users\Jobs;
 
 use App\Jobs\Job;
-use Illuminate\Contracts\Bus\SelfHandling;
+
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Modules\Account\AccountManager;
@@ -9,7 +9,7 @@ use Modules\Media\Commands\StoreNewImage;
 use Modules\Users\User;
 use Thomaswelton\LaravelGravatar\Gravatar;
 
-class CheckGravatarImage extends Job implements SelfHandling
+class CheckGravatarImage extends Job
 {
 
     use DispatchesJobs;

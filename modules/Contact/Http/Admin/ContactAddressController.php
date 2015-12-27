@@ -31,9 +31,7 @@ class ContactAddressController extends AdminController
 
     public function store(NewAddressRequest $request)
     {
-        $address = $this->dispatchFromArray(NewAddress::class, [
-            'input' => $request->except('_token')
-        ]);
+        $address = $this->dispatch(new NewAddress($request->except('_token')));
 
         return $address;
     }
@@ -42,10 +40,7 @@ class ContactAddressController extends AdminController
     {
         $address->load('country');
 
-        if ($this->dispatchFromArray(UpdateAddress::class, [
-            'input'   => $request->except(['_token', 'owner_id', 'owner_type']),
-            'address' => $address,
-        ])
+        if ($this->dispatch(new UpdateAddress($address, $request->except(['_token', 'owner_id', 'owner_type'])))
         ) {
             return $address;
         }

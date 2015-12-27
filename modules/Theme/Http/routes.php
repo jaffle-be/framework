@@ -6,6 +6,7 @@
 Route::group([
     'namespace' => 'Modules\Theme\Http',
     'as'        => 'store.',
+    'middleware' => ['web'],
 ], function () {
 
     Route::group([

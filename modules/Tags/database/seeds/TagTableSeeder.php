@@ -1,13 +1,11 @@
 <?php
 
-use Illuminate\Foundation\Bus\DispatchesCommands;
 use Modules\System\Seeder;
 use Modules\Tags\Tag;
 
 class TagTableSeeder extends Seeder
 {
 
-    use DispatchesCommands;
 
     public function run()
     {

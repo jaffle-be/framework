@@ -12,6 +12,7 @@
 Route::group([
     'namespace' => 'Modules\Users\Http',
     'as'        => 'store.',
+    'middleware' => ['web'],
 ], function () {
 
     if (env('APP_MULTIPLE_LOCALES')) {

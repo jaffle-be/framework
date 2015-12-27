@@ -1,18 +1,17 @@
 <?php namespace Modules\Media\Commands;
 
 use App\Jobs\Job;
-use Illuminate\Contracts\Bus\SelfHandling;
 use Illuminate\Filesystem\Filesystem;
-use Illuminate\Foundation\Bus\DispatchesCommands;
+use Illuminate\Foundation\Bus\DispatchesJobs;
 use Modules\Account\AccountManager;
 use Modules\Media\StoresMedia;
 use Modules\System\Locale;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
-class UploadNewFile extends Job implements SelfHandling
+class UploadNewFile extends Job
 {
 
-    use DispatchesCommands;
+    use DispatchesJobs;
 
     /**
      * @var StoresMedia
@@ -57,12 +56,7 @@ class UploadNewFile extends Job implements SelfHandling
 
         $files->move($temp_file, $final_path);
 
-        $image = $this->dispatchFromArray(StoreNewFile::class, [
-            'account' => $manager->account(),
-            'owner'   => $this->owner,
-            'path'    => $final_path,
-            'locale'  => $this->locale
-        ]);
+        $this->dispatch(new StoreNewFile($manager->account(), $this->owner, $final_path, $this->locale));
 
         $files->delete($final_path);
 

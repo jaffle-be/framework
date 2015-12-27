@@ -5,7 +5,7 @@ namespace Modules\Search\Providers;
 use Elasticsearch\ClientBuilder;
 use Modules\Search\Config;
 use Modules\Search\SearchService;
-use Pingpong\Modules\ServiceProvider;
+use Modules\System\ServiceProvider;
 
 class SearchServiceProvider extends ServiceProvider
 {

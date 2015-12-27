@@ -104,12 +104,7 @@ class ProductController extends AdminController
     {
         $product->load($this->relations());
 
-        $payload = [
-            'product' => $product,
-            'input'   => translation_input($request, ['name', 'title', 'content', 'published'])
-        ];
-
-        if (!$this->dispatchFromArray(UpdateProduct::class, $payload)) {
+        if (!$this->dispatch(new UpdateProduct($product, translation_input($request, ['name', 'title', 'content', 'published'])))) {
             return response('500', 'something bad happened');
         }
 

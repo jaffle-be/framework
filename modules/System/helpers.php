@@ -169,6 +169,7 @@ if (!function_exists('latest_tweets')) {
         $cache = app('cache');
 
         $tweets = $cache->sear('tweets', function () {
+            return [];
             return json_decode(app('ttwitter')->getUserTimeline(['screen_name' => 'twarlop', 'count' => 20, 'format' => 'json']));
         });
 

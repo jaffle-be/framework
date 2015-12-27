@@ -2,14 +2,14 @@
 
 use App\Jobs\Job;
 use Exception;
-use Illuminate\Contracts\Bus\SelfHandling;
+
 use Illuminate\Filesystem\Filesystem;
 use Intervention\Image\ImageManager;
 use Modules\Media\ImageDimensionHelpers;
 use Modules\Media\Infographics\Infographic;
 use Modules\Media\MediaRepositoryInterface;
 
-class ResizeInfographic extends Job implements SelfHandling
+class ResizeInfographic extends Job
 {
 
     use ImageDimensionHelpers;

@@ -2,9 +2,9 @@
 
 use App\Jobs\Job;
 use Exception;
-use Illuminate\Contracts\Bus\SelfHandling;
+
 use Illuminate\Filesystem\Filesystem;
-use Illuminate\Foundation\Bus\DispatchesCommands;
+use Illuminate\Foundation\Bus\DispatchesJobs;
 use Intervention\Image\ImageManager;
 use Modules\Account\Account;
 use Modules\Media\Configurator;
@@ -13,10 +13,10 @@ use Modules\Media\MediaRepositoryInterface;
 use Modules\Media\StoresMedia;
 use Modules\System\Locale;
 
-class StoreNewInfographic extends Job implements SelfHandling
+class StoreNewInfographic extends Job
 {
 
-    use DispatchesCommands;
+    use DispatchesJobs;
 
     protected $account;
 
@@ -112,11 +112,8 @@ class StoreNewInfographic extends Job implements SelfHandling
         if ($image) {
 
             foreach ($config->getImageSizes($this->owner) as $size) {
-                $this->dispatchFromArray(ResizeInfographic::class, [
-                    'graphic'    => $image,
-                    'size'       => $size,
-                    'cachedPath' => $this->currentPath,
-                ]);
+
+                $this->dispatch(new ResizeInfographic($image, $size, $this->currentPath));
             }
 
             return $image;

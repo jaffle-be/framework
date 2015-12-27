@@ -48,10 +48,7 @@ class VideoController extends AdminController
 
         $input = $request->except(['_token']);
 
-        $video = $this->dispatchFromArray(AddNewVideo::class, [
-            'input' => $input,
-            'owner' => $owner,
-        ]);
+        $video = $this->dispatch(new AddNewVideo($owner, $input));
 
         if (!$video) {
             return new JsonResponse('Dit not match any movie', 422);

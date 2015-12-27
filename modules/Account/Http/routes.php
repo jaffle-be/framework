@@ -1,7 +1,8 @@
 <?php
 
 Route::group([
-    'as' => 'store.'
+    'as' => 'store.',
+    'middleware' => ['web'],
 ], function () {
 
     Route::group(['namespace' => 'Modules\Account\Http\Admin'], function () {

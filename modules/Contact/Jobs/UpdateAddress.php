@@ -3,11 +3,11 @@
 namespace Modules\Contact\Jobs;
 
 use App\Jobs\Job;
-use Illuminate\Contracts\Bus\SelfHandling;
+
 use Modules\Contact\Address;
 use Modules\System\Country\CountryRepository;
 
-class UpdateAddress extends Job implements SelfHandling
+class UpdateAddress extends Job
 {
 
     /**

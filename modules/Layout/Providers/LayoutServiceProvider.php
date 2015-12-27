@@ -1,6 +1,6 @@
 <?php namespace Modules\Layout\Providers;
 
-use Pingpong\Modules\ServiceProvider;
+use Modules\System\ServiceProvider;
 
 class LayoutServiceProvider extends ServiceProvider
 {

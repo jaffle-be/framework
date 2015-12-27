@@ -17,13 +17,20 @@ class UriServiceProvider extends ServiceProvider
         //if we didn't do this, this smart route would overwrite about any route we had defined elsewhere.
 
         if (env('APP_MULTIPLE_LOCALES')) {
+
             foreach (config('system.locales') as $locale) {
-                app('router')->group(['as' => 'store.'], function ($router) use ($locale) {
+                app('router')->group([
+                    'as' => 'store.',
+                    'middleware' => ['web']
+                ], function ($router) use ($locale) {
                     $router->get("$locale/{uri}/{suburi?}/{subesturi?}", ['uses' => 'Modules\System\Http\UriController@handle', 'as' => "$locale.uri.show"]);
                 });
             }
         } else {
-            app('router')->group(['as' => 'store.'], function ($router) {
+            app('router')->group([
+                'as' => 'store.',
+                'middleware' => ['web']
+            ], function ($router) {
                 $router->get('{uri}/{suburi?}/{subesturi?}', ['uses' => 'Modules\System\Http\UriController@handle', 'as' => 'uri.show']);
             });
         }

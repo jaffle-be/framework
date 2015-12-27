@@ -1,6 +1,6 @@
 <?php namespace Modules\Tags\Providers;
 
-use Pingpong\Modules\ServiceProvider;
+use Modules\System\ServiceProvider;
 
 class TagsServiceProvider extends ServiceProvider
 {

@@ -1,7 +1,7 @@
 <?php namespace Modules\Shop\Jobs\Gamma\Notification\Handlers;
 
 use App\Jobs\Job;
-use Illuminate\Contracts\Bus\SelfHandling;
+
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Modules\Account\Account;
 use Modules\Shop\Gamma\GammaSelection;
@@ -10,7 +10,7 @@ use Modules\Shop\Product\Brand;
 use Modules\Shop\Product\CatalogRepositoryInterface;
 use Modules\Shop\Product\Category;
 
-class BatchGammaActivation extends Job implements SelfHandling
+class BatchGammaActivation extends Job
 {
     use DispatchesJobs;
 

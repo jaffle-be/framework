@@ -2,11 +2,11 @@
 
 use App\Jobs\Job;
 use Illuminate\Contracts\Auth\Guard;
-use Illuminate\Contracts\Bus\SelfHandling;
+
 use Modules\Users\Auth\Tokens\Token;
 use Modules\Users\Contracts\UserRepositoryInterface;
 
-class ConfirmEmail extends Job implements SelfHandling
+class ConfirmEmail extends Job
 {
 
     protected $token;

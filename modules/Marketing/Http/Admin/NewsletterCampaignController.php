@@ -87,12 +87,7 @@ class NewsletterCampaignController extends AdminController
     {
         $newsletter->load($this->relations());
 
-        $payload = [
-            'newsletter' => $newsletter,
-            'input'      => translation_input($request, ['title', 'content', 'publish_at'])
-        ];
-
-        if (!$this->dispatchFromArray(UpdateCampaign::class, $payload)) {
+        if (!$this->dispatch(new UpdateCampaign($newsletter, translation_input($request, ['title', 'content', 'publish_at'])))) {
             return response('500', 'something bad happened');
         }
 

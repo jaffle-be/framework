@@ -38,8 +38,9 @@ class ModelAccountResourceScopeTest extends TestCase
 
         $builder = m::mock(Builder::class);
         $model = m::mock(Model::class);
+        $model->shouldReceive('getTable')->once()->andReturn('test');
 
-        $builder->shouldReceive('where')->once()->with('account_id', 1000)->andReturnSelf();
+        $builder->shouldReceive('where')->once()->with('test.account_id', 1000)->andReturnSelf();
 
         $scope->apply($builder, $model);
     }
@@ -48,7 +49,7 @@ class ModelAccountResourceScopeTest extends TestCase
     {
         $query = new ModelAccountResourceScopeSql();
         $query = $query->newQuery()->toSql();
-        $this->assertSame("select * from `test` where `account_id` = ?", $query);
+        $this->assertSame("select * from `test` where `test`.`account_id` = ?", $query);
     }
 
     /**

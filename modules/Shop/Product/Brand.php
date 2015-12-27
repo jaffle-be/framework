@@ -1,18 +1,25 @@
 <?php namespace Modules\Shop\Product;
 
 use Illuminate\Database\Eloquent\Model;
+use Modules\Media\StoringMedia;
 use Modules\Search\Model\Searchable;
 use Modules\Search\Model\SearchableTrait;
 use Modules\System\Pushable\CanPush;
 use Modules\System\Pushable\Pushable;
 use Modules\System\Translatable\Translatable;
+use Modules\Media\StoresMedia;
 
-class Brand extends Model implements Pushable, Searchable
+class Brand extends Model implements Pushable, Searchable, StoresMedia
 {
 
     use Translatable;
     use CanPush;
     use SearchableTrait;
+    use StoringMedia;
+
+    protected $media = 'brands';
+
+    protected $mediaMultiple = false;
 
     protected $table = 'product_brands';
 

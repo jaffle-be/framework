@@ -28,7 +28,7 @@ if (env('APP_MULTIPLE_LOCALES')) {
 
         Breadcrumbs::register("store.$locale.auth.confirm-email.show", function ($breadcrumbs) use ($locale) {
             $breadcrumbs->parent("store.$locale.home");
-            $breadcrumbs->push(Lang::get('users::front.confirm-email'), store_route('store.auth.confirm-email.show'));
+            $breadcrumbs->push(Lang::get('users::front.confirm-email'));
         });
 
         //FORGOT PASSWORD
@@ -40,14 +40,14 @@ if (env('APP_MULTIPLE_LOCALES')) {
 
         Breadcrumbs::register("store.$locale.auth.reset-password.show", function ($breadcrumbs) use ($locale) {
             $breadcrumbs->parent("store.$locale.home");
-            $breadcrumbs->push(Lang::get('users::front.reset-password'), store_route('store.auth.reset-password.show'));
+            $breadcrumbs->push(Lang::get('users::front.reset-password'));
         });
 
         //INVITATION
 
         Breadcrumbs::register("store.$locale.auth.invitation.show", function ($breadcrumbs) use ($locale) {
             $breadcrumbs->parent("store.$locale.home");
-            $breadcrumbs->push(Lang::get('users::front.invitation'), store_route('store.auth.invitation.show'));
+            $breadcrumbs->push(Lang::get('users::front.invitation'));
         });
     }
 } else {
@@ -77,7 +77,7 @@ if (env('APP_MULTIPLE_LOCALES')) {
 
     Breadcrumbs::register('store.auth.confirm-email.show', function ($breadcrumbs) {
         $breadcrumbs->parent('store.home');
-        $breadcrumbs->push(Lang::get('users::front.confirm-email'), store_route('store.auth.confirm-email.show'));
+        $breadcrumbs->push(Lang::get('users::front.confirm-email'));
     });
 
     //FORGOT PASSWORD
@@ -89,13 +89,13 @@ if (env('APP_MULTIPLE_LOCALES')) {
 
     Breadcrumbs::register('store.auth.reset-password.show', function ($breadcrumbs) {
         $breadcrumbs->parent('store.home');
-        $breadcrumbs->push(Lang::get('users::front.reset-password'), store_route('store.auth.reset-password.show'));
+        $breadcrumbs->push(Lang::get('users::front.reset-password'));
     });
 
     //INVITATION
 
     Breadcrumbs::register('store.auth.invitation.show', function ($breadcrumbs) {
         $breadcrumbs->parent('store.home');
-        $breadcrumbs->push(Lang::get('users::front.invitation'), store_route('store.auth.invitation.show'));
+        $breadcrumbs->push(Lang::get('users::front.invitation'));
     });
 }

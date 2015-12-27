@@ -1,7 +1,6 @@
 <?php namespace Modules\Dashboard\Http;
 
 use Cookie;
-use Illuminate\Foundation\Bus\DispatchesCommands;
 use Illuminate\Http\Request;
 use Illuminate\Session\Store;
 use Modules\Account\AccountManager;
@@ -13,8 +12,6 @@ use Modules\Theme\Theme;
 class WelcomeController extends FrontController
 {
 
-    use DispatchesCommands;
-
     /**
      * This route is only valid for multi locale applications.
      *
@@ -25,12 +22,12 @@ class WelcomeController extends FrontController
      */
     public function landing(Request $request, AccountManager $manager)
     {
-        if ($request->hasCookie('locale')) {
-            return redirect()->to(store_route('store.home', [], [], $request->cookie('locale')));
-        }
-
         if ($manager->account()->locales->count() == 1) {
             return redirect()->to(store_route('store.home'));
+        }
+
+        if ($request->hasCookie('locale')) {
+            return redirect()->to(store_route('store.home', [], [], $request->cookie('locale')));
         }
 
         return $this->theme->render('home.landing');

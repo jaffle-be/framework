@@ -1,7 +1,11 @@
 <?php namespace App\Exceptions;
 
 use Exception;
+use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Contracts\Validation\ValidationException;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class Handler extends ExceptionHandler
 {
@@ -12,7 +16,11 @@ class Handler extends ExceptionHandler
      * @var array
      */
     protected $dontReport = [
-        'Symfony\Component\HttpKernel\Exception\HttpException'
+        'Symfony\Component\HttpKernel\Exception\HttpException',
+        AuthorizationException::class,
+        HttpException::class,
+        ModelNotFoundException::class,
+        ValidationException::class,
     ];
 
     /**
@@ -36,9 +44,9 @@ class Handler extends ExceptionHandler
                 }
             }
 
-            if ($report) {
-                app('newrelic')->noticeError($e);
-            }
+//            if ($report) {
+//                app('newrelic')->noticeError($e);
+//            }
         }
 
         return parent::report($e);

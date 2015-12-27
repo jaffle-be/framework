@@ -1,7 +1,7 @@
 <?php namespace Modules\Menu\Providers;
 
 use Modules\Menu\MenuManager;
-use Pingpong\Modules\ServiceProvider;
+use Modules\System\ServiceProvider;
 
 class MenuServiceProvider extends ServiceProvider
 {

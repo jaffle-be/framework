@@ -72,12 +72,7 @@ class PortfolioController extends AdminController
     {
         $project->load('translations');
 
-        $payload = [
-            'project' => $project,
-            'input'   => translation_input($request, ['published', 'title', 'content'])
-        ];
-
-        if (!$this->dispatchFromArray(UpdateProject::class, $payload)) {
+        if (!$this->dispatch(new UpdateProject($project, translation_input($request, ['published', 'title', 'content'])))) {
             return response('500', 'something bad happened');
         }
 

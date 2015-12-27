@@ -4,14 +4,14 @@ namespace Modules;
 use Exception;
 use Faker\Factory as Faker;
 use Illuminate\Database\Seeder as BaseSeeder;
-use Illuminate\Foundation\Bus\DispatchesCommands;
+use Illuminate\Foundation\Bus\DispatchesJobs;
 use Modules\Media\Commands\StoreNewImage;
-use Modules\Media\ImageDimensionHelpers;
+use Modules\Media\ImageDimensionHelpers;use Symfony\Component\HttpKernel\HttpCache\Store;
 
 abstract class Seeder extends BaseSeeder
 {
 
-    use DispatchesCommands;
+    use DispatchesJobs;
     use ImageDimensionHelpers;
 
     /**
@@ -93,11 +93,8 @@ abstract class Seeder extends BaseSeeder
         $this->validateSeederModel();
         $image = rand(0, count($this->image_names) - 1);
 
-        $this->dispatchFromArray(StoreNewImage::class, [
-            'account' => $account,
-            'owner'   => $owner,
-            'path'    => $this->prefix . $this->image_names[$image],
-        ]);
+        $this->dispatch(new StoreNewImage($account, $owner,$this->prefix . $this->image_names[$image]));
+
     }
 
 }

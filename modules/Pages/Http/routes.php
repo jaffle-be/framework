@@ -5,7 +5,8 @@
  */
 Route::group([
     'namespace' => 'Modules\Pages\Http\Admin',
-    'as'        => 'store.'
+    'as'        => 'store.',
+    'middleware' => ['web'],
 ], function () {
 
     Route::group(['prefix' => 'templates/admin'], function () {

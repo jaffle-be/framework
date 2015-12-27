@@ -1,7 +1,7 @@
 <?php namespace Modules\Blog\Providers;
 
 use Modules\Blog\Post;
-use Pingpong\Modules\ServiceProvider;
+use Modules\System\ServiceProvider;
 
 class BlogServiceProvider extends ServiceProvider
 {

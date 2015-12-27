@@ -43,11 +43,7 @@ class InfographicController extends AdminController
 
         $file = $request->file('file');
 
-        $infographic = $this->dispatchFromArray(UploadNewInfographic::class, [
-            'owner'   => $owner,
-            'graphic' => $file,
-            'locale'  => $locale->whereSlug($request->get('locale'))->firstOrFail(),
-        ]);
+        $infographic = $this->dispatch(new UploadNewInfographic($owner, $file, $locale->whereSlug($request->get('locale'))->firstOrFail()));
 
         $infographic->load('sizes');
 

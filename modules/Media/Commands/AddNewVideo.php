@@ -2,14 +2,14 @@
 
 use Alaouy\Youtube\Youtube;
 use App\Jobs\Job;
-use Illuminate\Contracts\Bus\SelfHandling;
+
 use Modules\Account\AccountManager;
 use Modules\Media\MediaRepositoryInterface;
 use Modules\Media\StoresMedia;
 use Modules\Media\Video\VideoGenericFormatter;
 use Modules\System\Locale;
 
-class AddNewVideo extends Job implements SelfHandling
+class AddNewVideo extends Job
 {
 
     use VideoGenericFormatter;

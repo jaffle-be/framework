@@ -63,9 +63,7 @@ class MembershipController extends AdminController
         /**
          * cannot destroy a final membership or the owner of an account
          */
-        if ($this->dispatchFromArray(RevokeMembership::class, [
-            'membership' => $membership
-        ])
+        if ($this->dispatch(new RevokeMembership($membership))
         ) {
             $membership->id = false;
         }

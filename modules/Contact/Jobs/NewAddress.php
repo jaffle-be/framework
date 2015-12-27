@@ -2,13 +2,13 @@
 
 use App\Jobs\Job;
 use Exception;
-use Illuminate\Contracts\Bus\SelfHandling;
+
 use Illuminate\Contracts\Config\Repository;
 use Modules\Contact\Address;
 use Modules\Contact\AddressOwner;
 use Modules\System\Country\CountryRepository;
 
-class NewAddress extends Job implements SelfHandling
+class NewAddress extends Job
 {
 
     protected $input;

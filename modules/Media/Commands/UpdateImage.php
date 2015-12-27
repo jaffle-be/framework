@@ -1,7 +1,7 @@
 <?php namespace Modules\Media\Commands;
 
 use App\Jobs\Job;
-use Illuminate\Contracts\Bus\SelfHandling;
+
 use Modules\Media\Image;
 
 /**
@@ -9,7 +9,7 @@ use Modules\Media\Image;
  *
  * @package Modules\Media\Commands
  */
-class UpdateImage extends Job implements SelfHandling
+class UpdateImage extends Job
 {
 
     /**

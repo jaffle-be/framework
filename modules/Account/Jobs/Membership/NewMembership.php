@@ -1,12 +1,12 @@
 <?php namespace Modules\Account\Jobs\Membership;
 
 use App\Jobs\Job;
-use Illuminate\Contracts\Bus\SelfHandling;
+
 use Modules\Account\Account;
 use Modules\Account\Membership;
 use Modules\Account\MembershipOwner;
 
-class NewMembership extends Job implements SelfHandling
+class NewMembership extends Job
 {
 
     /**

@@ -2,11 +2,11 @@
 
 use App\Jobs\Job;
 use Illuminate\Contracts\Auth\Guard;
-use Illuminate\Contracts\Bus\SelfHandling;
+
 use Modules\Users\Contracts\Throttler;
 use Modules\Users\Contracts\UserRepositoryInterface;
 
-class Signin extends Job implements SelfHandling
+class Signin extends Job
 {
 
     protected $credentials;

@@ -4,7 +4,6 @@ namespace Modules\System;
 use Faker\Factory as Faker;
 use Illuminate\Database\Seeder as BaseSeeder;
 use Illuminate\Filesystem\Filesystem;
-use Illuminate\Foundation\Bus\DispatchesCommands;
 use Modules\Media\Configurator;
 use Modules\Media\Image;
 use Modules\Media\ImageDimensionHelpers;
@@ -13,7 +12,6 @@ use Modules\Media\MediaRepository;
 abstract class Seeder extends BaseSeeder
 {
 
-    use DispatchesCommands;
     use ImageDimensionHelpers;
 
     /**

@@ -3,13 +3,13 @@
 use App\Jobs\Job;
 use Drewm\MailChimp;
 use Exception;
-use Illuminate\Contracts\Bus\SelfHandling;
+
 use Modules\Marketing\Newsletter\Campaign;
 use Modules\Marketing\Newsletter\CampaignBuilder;
 use Modules\Marketing\Newsletter\CampaignConfig;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
-class StartNewsletterCampaign extends Job implements SelfHandling
+class StartNewsletterCampaign extends Job
 {
 
     protected $campaign;

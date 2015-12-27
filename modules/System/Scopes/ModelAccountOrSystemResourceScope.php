@@ -2,10 +2,10 @@
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\ScopeInterface;
+use Illuminate\Database\Eloquent\Scope;
 use Modules\Account\AccountManager;
 
-class ModelAccountOrSystemResourceScope implements ScopeInterface
+class ModelAccountOrSystemResourceScope implements Scope
 {
 
     public function __construct(AccountManager $manager)
@@ -21,10 +21,6 @@ class ModelAccountOrSystemResourceScope implements ScopeInterface
                     ->orWhereNull('account_id');
             });
         }
-    }
-
-    public function remove(Builder $builder, Model $model)
-    {
     }
 
 }

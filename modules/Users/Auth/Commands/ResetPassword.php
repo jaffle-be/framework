@@ -1,13 +1,13 @@
 <?php namespace Modules\Users\Auth\Commands;
 
 use App\Jobs\Job;
-use Illuminate\Contracts\Bus\SelfHandling;
+
 use Illuminate\Contracts\Hashing\Hasher;
 use Modules\Users\Auth\Tokens\Token;
 use Modules\Users\Contracts\UserRepositoryInterface;
 use Modules\Users\User;
 
-class ResetPassword extends Job implements SelfHandling
+class ResetPassword extends Job
 {
 
     /**

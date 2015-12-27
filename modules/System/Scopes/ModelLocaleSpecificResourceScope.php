@@ -2,10 +2,10 @@
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\ScopeInterface;
+use Illuminate\Database\Eloquent\Scope;
 use Modules\System\Locale;
 
-class ModelLocaleSpecificResourceScope implements ScopeInterface
+class ModelLocaleSpecificResourceScope implements Scope
 {
 
     protected $locale;
@@ -24,10 +24,6 @@ class ModelLocaleSpecificResourceScope implements ScopeInterface
         if ($locale) {
             $builder->where('locale_id', $locale->getKey());
         }
-    }
-
-    public function remove(Builder $builder, Model $model)
-    {
     }
 
 }

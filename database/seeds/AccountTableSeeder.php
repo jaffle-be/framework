@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Foundation\Bus\DispatchesCommands;
 use Modules\Account\Account;
 use Modules\Account\AccountContactInformation;
 use Modules\Account\Role;
@@ -10,8 +9,6 @@ use Modules\System\Seeder;
 
 class AccountTableSeeder extends Seeder
 {
-
-    use DispatchesCommands;
 
     public function run()
     {

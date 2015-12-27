@@ -17,11 +17,6 @@ class TestCase extends \Illuminate\Foundation\Testing\TestCase
     {
         $this->stopMockingFront();
 
-        $reflection = new \ReflectionClass(Model::class);
-        $prop = $reflection->getProperty('globalScopes');
-        $prop->setAccessible(true);
-        $prop->setValue(null, []);
-
         $app = require __DIR__ . '/../bootstrap/app.php';
 
         $app->make(Kernel::class)->bootstrap();

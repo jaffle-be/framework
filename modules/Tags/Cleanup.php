@@ -12,10 +12,7 @@ class Cleanup
     {
         if ($owner instanceof StoresTags) {
             foreach ($owner->tags as $tag) {
-                $this->dispatchFromArray(UntagSomething::class, [
-                    'owner' => $owner,
-                    'tag'   => $tag
-                ]);
+                $this->dispatch(new UntagSomething($owner, $tag));
             }
         }
     }

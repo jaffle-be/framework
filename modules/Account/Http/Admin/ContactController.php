@@ -38,10 +38,7 @@ class ContactController extends AdminController
 
     public function update(AccountContactInformation $accountContactInformation, UpdateInformationRequest $request, AccountManager $manager)
     {
-        $response = $this->dispatchFromArray(UpdateInformation::class, [
-            'info'  => $accountContactInformation,
-            'input' => translation_input($request, [])
-        ]);
+        $response = $this->dispatch(new UpdateInformation($accountContactInformation, translation_input($request)));
 
         $manager->updated();
     }

@@ -1,10 +1,9 @@
 <?php namespace Modules\Users\Auth\Throttler;
 
 use App\Jobs\Job;
-use Illuminate\Contracts\Bus\SelfHandling;
-use Illuminate\Contracts\Queue\ShouldBeQueued;
+use Illuminate\Contracts\Queue\ShouldQueue;
 
-class Cooldown extends Job implements ShouldBeQueued, SelfHandling
+class Cooldown extends Job implements ShouldQueue
 {
 
     protected $ip;

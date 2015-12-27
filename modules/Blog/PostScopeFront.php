@@ -3,24 +3,20 @@
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\ScopeInterface;
+use Illuminate\Database\Eloquent\Scope;
 
-class PostScopeFront implements ScopeInterface
+class PostScopeFront implements Scope
 {
 
-    public function apply(Builder $query, Model $model)
+    public function apply(Builder $builder, Model $model)
     {
-        $query->join('post_translations', function ($join) {
+        $builder->join('post_translations', function ($join) {
             $join->on('posts.id', '=', 'post_translations.post_id')
                 ->where('post_translations.locale', '=', app()->getLocale())
                 ->where('post_translations.publish_at', '<', Carbon::now()->format('Y-m-d H:i:s'));
         });
 
-        $query->select(['posts.*']);
-    }
-
-    public function remove(Builder $query, Model $model)
-    {
+        $builder->select(['posts.*']);
     }
 
 }

@@ -2,7 +2,7 @@
 
 use Drewm\MailChimp;
 use Modules\Marketing\Newsletter\CampaignWidget;
-use Pingpong\Modules\ServiceProvider;
+use Modules\System\ServiceProvider;
 
 class MarketingServiceProvider extends ServiceProvider
 {

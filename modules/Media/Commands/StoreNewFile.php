@@ -2,9 +2,8 @@
 
 use App\Jobs\Job;
 use Exception;
-use Illuminate\Contracts\Bus\SelfHandling;
+
 use Illuminate\Filesystem\Filesystem;
-use Illuminate\Foundation\Bus\DispatchesCommands;
 use Modules\Account\Account;
 use Modules\Media\Configurator;
 use Modules\Media\Media;
@@ -12,10 +11,8 @@ use Modules\Media\MediaRepositoryInterface;
 use Modules\Media\StoresMedia;
 use Modules\System\Locale;
 
-class StoreNewFile extends Job implements SelfHandling
+class StoreNewFile extends Job
 {
-
-    use DispatchesCommands;
 
     protected $account;
 

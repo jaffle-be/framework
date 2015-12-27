@@ -48,11 +48,7 @@ class FileController extends AdminController
 
         $file = $request->file('file');
 
-        $file = $this->dispatchFromArray(UploadNewFile::class, [
-            'owner'  => $owner,
-            'file'   => $file,
-            'locale' => $locale->whereSlug($request->get('locale'))->firstOrFail(),
-        ]);
+        $file = $this->dispatch(new UploadNewFile($owner, $file, $locale->whereSlug($request->get('locale'))->firstOrFail()));
 
         if (!$file) {
             return new JsonResponse('Something went wrong, check for duplicate filename', 400);

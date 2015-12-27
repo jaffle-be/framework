@@ -62,16 +62,10 @@ class TagController extends AdminController
 
         if ($owner) {
 
-            $tag = $this->dispatchFromArray(CreateNewTag::class, [
-                'locale' => $locale,
-                'name'   => $name
-            ]);
+            $tag = $this->dispatch(new CreateNewTag($locale, $name));
 
             if ($tag) {
-                $this->dispatchFromArray(TagSomething::class, [
-                    'owner' => $owner,
-                    'tag'   => $tag
-                ]);
+                $this->dispatch(new TagSomething($tag, $owner));
             }
         }
 
@@ -87,16 +81,10 @@ class TagController extends AdminController
         //if the owner didn't contain the tag, we wanted to add it.
         if (!$owner->tags->contains($tag->id)) {
 
-            $this->dispatchFromArray(TagSomething::class, [
-                'owner' => $owner,
-                'tag'   => $tag
-            ]);
+            $this->dispatch(new TagSomething($tag, $owner));
         }
 
-        $this->dispatchFromArray(UpdateTag::class, [
-            'tag'   => $tag,
-            'input' => translation_input($request, ['name'])
-        ]);
+        $this->dispatch(new UpdateTag($tag, translation_input($request, ['name'])));
 
         return $tag;
     }
@@ -105,10 +93,7 @@ class TagController extends AdminController
     {
         $owner = $this->owner($request);
 
-        return $this->dispatchFromArray(UntagSomething::class, [
-            'owner' => $owner,
-            'tag'   => $tag
-        ]);
+        return $this->dispatch(new UntagSomething($owner, $tag));
     }
 
     public function all(Request $request)

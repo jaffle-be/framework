@@ -1,13 +1,10 @@
 <?php
 
-use Illuminate\Foundation\Bus\DispatchesCommands;
 use Modules\System\Country\Country;
 use Modules\System\Seeder;
 
 class CountryTableSeeder extends Seeder
 {
-
-    use DispatchesCommands;
 
     public function run()
     {

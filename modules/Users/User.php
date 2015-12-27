@@ -151,4 +151,9 @@ class User extends Model implements Authenticatable, MembershipOwner, AddressOwn
         return $this->password;
     }
 
+    public function getAuthIdentifierName()
+    {
+        return $this->getKeyName();
+    }
+
 }

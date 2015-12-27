@@ -2,7 +2,8 @@
 
 Route::group([
     'namespace' => 'Modules\Contact\Http',
-    'as'        => 'store.'
+    'as'        => 'store.',
+    'middleware' => ['web'],
 ], function () {
 
     Route::group(['namespace' => 'Admin'], function () {

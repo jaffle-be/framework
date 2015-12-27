@@ -4,7 +4,7 @@ use Modules\Shop\Product\Category;
 use Modules\Shop\Product\CategoryTranslation;
 use Modules\Shop\Product\Property;
 use Modules\Shop\Product\PropertyGroup;
-use Pingpong\Modules\ServiceProvider;
+use Modules\System\ServiceProvider;
 
 class ShopServiceProvider extends ServiceProvider
 {

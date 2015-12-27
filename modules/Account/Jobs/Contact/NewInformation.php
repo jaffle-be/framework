@@ -1,11 +1,11 @@
 <?php namespace Modules\Account\Jobs\Contact;
 
 use App\Jobs\Job;
-use Illuminate\Contracts\Bus\SelfHandling;
+
 use Modules\Account\Account;
 use Modules\Account\AccountContactInformation;
 
-class NewInformation extends Job implements SelfHandling
+class NewInformation extends Job
 {
 
     /**

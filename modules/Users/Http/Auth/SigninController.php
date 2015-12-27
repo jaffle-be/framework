@@ -20,7 +20,7 @@ class SigninController extends FrontController
 
         $remember_me = $request->has('remember_me') ? true : false;
 
-        $response = $this->dispatchFromArray(Signin::class, compact('credentials', 'remember_me'));
+        $response = $this->dispatch(new Signin($credentials, $remember_me));
 
         if ($response instanceof User) {
             return redirect('admin/start');

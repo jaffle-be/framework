@@ -1,10 +1,10 @@
 <?php namespace Modules\Tags\Commands;
 
 use App\Jobs\Job;
-use Illuminate\Contracts\Bus\SelfHandling;
+
 use Modules\Tags\Tag;
 
-class TagSomething extends Job implements SelfHandling
+class TagSomething extends Job
 {
 
     protected $owner;

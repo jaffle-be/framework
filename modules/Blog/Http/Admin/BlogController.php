@@ -68,12 +68,9 @@ class BlogController extends AdminController
     {
         $post->load($this->relations());
 
-        $payload = [
-            'post'  => $post,
-            'input' => translation_input($request, ['title', 'content', 'publish_at'])
-        ];
+        $input = translation_input($request, ['title', 'content', 'publish_at']);
 
-        if (!$this->dispatchFromArray(UpdatePost::class, $payload)) {
+        if (!$this->dispatch(new UpdatePost($post, $input))) {
             return response('500', 'something bad happened');
         }
 

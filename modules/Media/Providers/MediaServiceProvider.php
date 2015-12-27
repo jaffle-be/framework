@@ -3,7 +3,7 @@
 use Modules\Media\Files\File;
 use Modules\Media\Image;
 use Modules\Media\Infographics\Infographic;
-use Pingpong\Modules\ServiceProvider;
+use Modules\System\ServiceProvider;
 
 class MediaServiceProvider extends ServiceProvider
 {

@@ -2,7 +2,7 @@
 
 use Modules\Portfolio\Project;
 use Modules\Portfolio\ProjectObserver;
-use Pingpong\Modules\ServiceProvider;
+use Modules\System\ServiceProvider;
 
 class PortfolioServiceProvider extends ServiceProvider
 {

@@ -13,10 +13,7 @@ class ProjectObserver
         $project->collaborators()->sync([]);
 
         foreach ($project->tags as $tag) {
-            $this->dispatchFromArray(UntagSomething::class, [
-                'owner' => $project,
-                'tag'   => $tag,
-            ]);
+            $this->dispatch(new UntagSomething($project, $tag));
         }
 
         $project->translations()->delete();

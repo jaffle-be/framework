@@ -2,14 +2,14 @@
 
 use App\Jobs\Job;
 use Exception;
-use Illuminate\Contracts\Bus\SelfHandling;
+
 use Illuminate\Contracts\Hashing\Hasher;
 use Illuminate\Events\Dispatcher;
 use Modules\Account\MembershipInvitation;
 use Modules\Users\Auth\Events\UserRegistered;
 use Modules\Users\User;
 
-class Signup extends Job implements SelfHandling
+class Signup extends Job
 {
 
     protected $email;

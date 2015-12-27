@@ -40,7 +40,7 @@ class ConfirmEmailController extends FrontController
         $user = $users->findUserByEmail($request->get('email'));
 
         if ($user) {
-            $this->dispatchFromArray(SendConfirmationEmail::class, ['user' => $user, 'manager' => $manager]);
+            $this->dispatch(new SendConfirmationEmail($user));
         }
 
         return redirect()->to(store_route('store.auth.signin.index'))->withSuccess(Lang::get('users::front.request-handled'));
@@ -59,7 +59,7 @@ class ConfirmEmailController extends FrontController
         $token = $tokens->findTokenByValue($token);
 
         if ($token) {
-            $user = $this->dispatchFromArray(ConfirmEmail::class, ['token' => $token]);
+            $user = $this->dispatch(new ConfirmEmail($token));
 
             if ($user) {
                 return redirect('admin/start');

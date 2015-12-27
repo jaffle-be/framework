@@ -1,7 +1,6 @@
 <?php namespace Modules\Shop\Jobs\Gamma\Notification\Handlers;
 
 use App\Jobs\Job;
-use Illuminate\Contracts\Bus\SelfHandling;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Modules\Shop\Gamma\GammaNotification;
@@ -10,7 +9,7 @@ use Modules\Shop\Jobs\Gamma\CleanupDetail;
 use Modules\Shop\Jobs\Gamma\DeactivateProduct;
 use Pusher;
 
-class DenyGammaNotification extends Job implements ShouldQueue, SelfHandling
+class DenyGammaNotification extends Job implements ShouldQueue
 {
 
     use DispatchesJobs;

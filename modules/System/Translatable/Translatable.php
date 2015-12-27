@@ -289,9 +289,9 @@ trait Translatable
         });
     }
 
-    public function scopeTranslated(Builder $query)
+    public function scopeTranslated(Builder $builder)
     {
-        return $query->has('translations');
+        return $builder->has('translations');
     }
 
     /**

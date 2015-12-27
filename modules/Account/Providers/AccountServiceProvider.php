@@ -3,7 +3,7 @@
 use Modules\Account\Account;
 use Modules\Account\AccountContactInformation;
 use Modules\Account\AccountLogo;
-use Pingpong\Modules\ServiceProvider;
+use Modules\System\ServiceProvider;
 
 class AccountServiceProvider extends ServiceProvider
 {

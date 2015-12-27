@@ -8,7 +8,7 @@ use Illuminate\View\Factory;
 use Modules\System\Cache\CacheManager;
 use Modules\System\Queue\RedisConnector;
 use Modules\System\Seo\SeoManager;
-use Pingpong\Modules\ServiceProvider;
+use Modules\System\ServiceProvider;
 use Webuni\CommonMark\AttributesExtension\AttributesExtension;
 
 class SystemServiceProvider extends ServiceProvider
@@ -46,9 +46,9 @@ class SystemServiceProvider extends ServiceProvider
 
         $this->app->bind('Modules\System\Seo\SeoManager', 'seo');
 
-        $this->app->booted(function ($app) {
-            $app['newrelic']->setAppName(env('APP_NAME'));
-        });
+//        $this->app->booted(function ($app) {
+//            $app['newrelic']->setAppName(env('APP_NAME'));
+//        });
 
         $this->app->booted(function ($app) {
             $app['markdown.environment']->addExtension(new AttributesExtension());

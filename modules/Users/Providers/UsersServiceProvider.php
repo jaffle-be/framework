@@ -4,7 +4,7 @@ use Carbon\Carbon;
 use Illuminate\Cache\Repository;
 use Illuminate\Redis\Database;
 use Modules\Users\Auth\Throttler\ThrottleManager;
-use Pingpong\Modules\ServiceProvider;
+use Modules\System\ServiceProvider;
 
 class UsersServiceProvider extends ServiceProvider
 {

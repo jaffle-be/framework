@@ -92,12 +92,7 @@ class PagesController extends AdminController
     {
         $page->load($this->relations());
 
-        $payload = [
-            'page'  => $page,
-            'input' => translation_input($request, ['title', 'content', 'publish_at'])
-        ];
-
-        if (!$this->dispatchFromArray(UpdatePage::class, $payload)) {
+        if (!$this->dispatch(new UpdatePage($page, translation_input($request, ['title', 'content', 'publish_at'])))) {
             return response('500', 'something bad happened');
         }
 

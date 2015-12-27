@@ -1,5 +1,6 @@
 <?php namespace Test\Auth;
 
+use Modules\Users\Auth\Tokens\Token;
 use Test\FrontTestCase;
 use Test\Routes\RouteTests;
 
@@ -36,7 +37,9 @@ class AuthTest extends FrontTestCase
 
     public function testResetPassword()
     {
-        $this->tryRoute('store.auth.reset-password.show');
+        $token = factory(Token::class, 'reset')->create();
+
+        $this->tryRoute('store.auth.reset-password.show', [$token]);
     }
 
 }

@@ -1,14 +1,14 @@
 <?php namespace Modules\Shop\Jobs\Gamma;
 
 use App\Jobs\Job;
-use Illuminate\Contracts\Bus\SelfHandling;
+
 use Modules\Account\Account;
 use Modules\Shop\Gamma\ProductCategorySelection;
 use Modules\Shop\Gamma\ProductSelection;
 use Modules\Shop\Product\Category;
 use Modules\Shop\Product\Product;
 
-class DeactivateProduct extends Job implements SelfHandling
+class DeactivateProduct extends Job
 {
 
     protected $product;

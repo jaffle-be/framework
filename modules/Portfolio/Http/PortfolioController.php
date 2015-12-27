@@ -42,18 +42,16 @@ class PortfolioController extends FrontController
         $tags = $project->tags;
 
         $relatedProjects = $project->with($relations)
-            ->whereHas('tags', function ($query) use ($tags) {
-                $query->whereIn('id', $tags->lists('id')->toArray());
-            })
-            ->where('id', '<>', $project->id)
-            ->orderBy('date', 'desc')
+            ->taggedWith($tags)
+            ->where($project->getTable() . '.' . $project->getKeyName(), '<>', $project->id)
+            ->orderBy($project->getTable() . '.date', 'desc')
             ->take(4)
             ->get();
 
         if ($relatedProjects->count() < 4) {
             $extra = $project->with($relations)
-                ->where('id', '<>', $project->id)
-                ->orderBy('date', 'desc')
+                ->where($project->getTable() . '.' . $project->getKeyName(), '<>', $project->id)
+                ->orderBy($project->getTable() . '.date', 'desc')
                 ->take(4)
                 ->get();
 

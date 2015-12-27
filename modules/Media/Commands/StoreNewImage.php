@@ -2,9 +2,9 @@
 
 use App\Jobs\Job;
 use Exception;
-use Illuminate\Contracts\Bus\SelfHandling;
+
 use Illuminate\Filesystem\Filesystem;
-use Illuminate\Foundation\Bus\DispatchesCommands;
+use Illuminate\Foundation\Bus\DispatchesJobs;
 use Intervention\Image\ImageManager;
 use Modules\Account\Account;
 use Modules\Media\Configurator;
@@ -12,10 +12,10 @@ use Modules\Media\Media;
 use Modules\Media\MediaRepositoryInterface;
 use Modules\Media\StoresMedia;
 
-class StoreNewImage extends Job implements SelfHandling
+class StoreNewImage extends Job
 {
 
-    use DispatchesCommands;
+    use DispatchesJobs;
 
     protected $account;
 
@@ -105,11 +105,7 @@ class StoreNewImage extends Job implements SelfHandling
         if ($image) {
 
             foreach ($config->getImageSizes($this->owner) as $size) {
-                $this->dispatchFromArray(ResizeImage::class, [
-                    'image'      => $image,
-                    'size'       => $size,
-                    'cachedPath' => $this->currentPath,
-                ]);
+                $this->dispatch(new ResizeImage($image, $size, $this->currentPath));
             }
 
             return $image;
