@@ -15,7 +15,7 @@ class ShopController extends FrontController
     /**
      * Shop home.
      *
-     * @return \Illuminate\Contracts\View\View
+     *
      */
     public function index()
     {
@@ -45,7 +45,7 @@ class ShopController extends FrontController
 
     /**
      * @todo     remove brand from this route, it's not usefull
-     * @return \Illuminate\Contracts\View\View
+     *
      * @internal param SearchServiceInterface $search
      */
     public function category(CategoryTranslation $category, BrandTranslation $brand = null, Request $request, GammaQueryResolver $resolver)

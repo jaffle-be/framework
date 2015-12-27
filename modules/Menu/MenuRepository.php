@@ -34,7 +34,7 @@ class MenuRepository implements MenuRepositoryInterface
     }
 
     /**
-     * @return array
+     *
      */
     protected function relations()
     {

@@ -40,7 +40,7 @@ class ThemeRepository implements ThemeRepositoryInterface
     }
 
     /**
-     * @return mixed
+     *
      */
     protected function selection()
     {
@@ -78,7 +78,7 @@ class ThemeRepository implements ThemeRepositoryInterface
     }
 
     /**
-     * @return ThemeSelection|bool
+     *
      */
     public function activate($theme)
     {
@@ -106,7 +106,7 @@ class ThemeRepository implements ThemeRepositoryInterface
     }
 
     /**
-     * @return ThemeSelection
+     *
      */
     protected function createSelection(Theme $theme)
     {
@@ -174,7 +174,7 @@ class ThemeRepository implements ThemeRepositoryInterface
     }
 
     /**
-     * @return array
+     *
      */
     protected function relations()
     {

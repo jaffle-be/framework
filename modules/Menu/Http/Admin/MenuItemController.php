@@ -33,7 +33,7 @@ class MenuItemController extends AdminController
     }
 
     /**
-     * @return mixed
+     *
      */
     public function store(Menu $menu, MenuItem $item, Request $request, Page $page, Locale $locale, ModuleRoute $route)
     {
@@ -79,7 +79,7 @@ class MenuItemController extends AdminController
     }
 
     /**
-     * @return mixed
+     *
      */
     public function update(Menu $menu, MenuItem $item, Request $request)
     {
@@ -89,7 +89,7 @@ class MenuItemController extends AdminController
     }
 
     /**
-     * @return mixed
+     *
      */
     public function destroy(Menu $menu, MenuItem $item)
     {

@@ -39,7 +39,7 @@ class GammaSubscriptionManager
     }
 
     /**
-     * @return bool|Account
+     *
      */
     protected function defaultAccount($account)
     {

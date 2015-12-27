@@ -63,7 +63,7 @@ abstract class MetaTagProvider
     /**
      * Add or update property.
      *
-     * @return $this
+     *
      */
     public function addProperty($key, $value)
     {
@@ -113,7 +113,7 @@ abstract class MetaTagProvider
     }
 
     /**
-     * @return string
+     *
      */
     protected function nameForTypeSpecificProperty($type, $key)
     {
@@ -125,7 +125,7 @@ abstract class MetaTagProvider
     /**
      * Make list of open graph tags.
      *
-     * @return string
+     *
      */
     protected function eachProperties(array $properties, $prefix = null)
     {
@@ -155,7 +155,7 @@ abstract class MetaTagProvider
     }
 
     /**
-     * @return array
+     *
      */
     protected function handleMultipleProperties($prefix, $property, $value, $html)
     {
@@ -168,7 +168,7 @@ abstract class MetaTagProvider
     }
 
     /**
-     * @return string
+     *
      */
     protected function getPropertyKey($prefix, $property)
     {
@@ -195,7 +195,7 @@ abstract class MetaTagProvider
     }
 
     /**
-     * @return string
+     *
      */
     protected function customRenderMethodName($key)
     {
@@ -223,7 +223,7 @@ abstract class MetaTagProvider
     /**
      * Remove property.
      *
-     * @return $this
+     *
      */
     public function removeProperty($key)
     {
@@ -235,7 +235,7 @@ abstract class MetaTagProvider
     /**
      * Add image to properties.
      *
-     * @return $this
+     *
      */
     public function addImage($url)
     {
@@ -247,7 +247,7 @@ abstract class MetaTagProvider
     /**
      * Add images to properties.
      *
-     * @return $this
+     *
      */
     public function addImages(array $urls)
     {

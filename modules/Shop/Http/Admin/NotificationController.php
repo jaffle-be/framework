@@ -85,7 +85,7 @@ class NotificationController extends AdminController
     }
 
     /**
-     * @return GammaNotification
+     *
      */
     protected function requestedNotifications(GammaNotification $notifications, Request $request)
     {

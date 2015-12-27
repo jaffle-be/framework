@@ -65,7 +65,7 @@ class PortfolioController extends FrontController
     }
 
     /**
-     * @return array
+     *
      */
     protected function relations()
     {

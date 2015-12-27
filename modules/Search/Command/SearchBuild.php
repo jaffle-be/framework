@@ -43,7 +43,7 @@ class SearchBuild extends Command
     /**
      * Execute the console command.
      *
-     * @return mixed
+     *
      */
     public function fire()
     {
@@ -73,7 +73,7 @@ class SearchBuild extends Command
     /**
      * Get the console command arguments.
      *
-     * @return array
+     *
      */
     protected function getArguments()
     {

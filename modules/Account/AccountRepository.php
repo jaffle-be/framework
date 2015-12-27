@@ -25,7 +25,7 @@ class AccountRepository implements AccountRepositoryInterface
     }
 
     /**
-     * @return Account
+     *
      */
     public function newAccount(array $payload)
     {
@@ -65,7 +65,7 @@ class AccountRepository implements AccountRepositoryInterface
     /**
      * Find the base account that's being used as the 'system' account.
      *
-     * @return mixed
+     *
      * @throws \Exception
      */
     public function baseAccount()

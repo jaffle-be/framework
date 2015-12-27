@@ -150,7 +150,7 @@ class StoreNewInfographic extends Job
     }
 
     /**
-     * @return array
+     *
      */
     protected function getPayload()
     {

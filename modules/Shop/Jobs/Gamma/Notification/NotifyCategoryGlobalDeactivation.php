@@ -51,7 +51,7 @@ class NotifyCategoryGlobalDeactivation extends Job
     }
 
     /**
-     * @return mixed
+     *
      */
     protected function findExistingCombination(GammaNotification $notification, $brand, $category)
     {

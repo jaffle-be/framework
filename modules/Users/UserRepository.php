@@ -17,7 +17,7 @@ class UserRepository implements UserRepositoryInterface
     }
 
     /**
-     * @return User|null
+     *
      */
     public function findUserByConfirmationToken($token)
     {

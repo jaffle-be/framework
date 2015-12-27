@@ -43,7 +43,7 @@ class CampaignWidgetCollection extends Collection
      * aren't being loaded onto our data array.
      * so we need to set them manually at the end.
      *
-     * @return array
+     *
      */
     public function toArray()
     {
@@ -78,7 +78,7 @@ class CampaignWidgetCollection extends Collection
     }
 
     /**
-     * @return array
+     *
      * @internal param Campaign $newsletter
      */
     protected function getMaps()

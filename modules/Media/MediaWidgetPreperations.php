@@ -26,7 +26,7 @@ trait MediaWidgetPreperations
     }
 
     /**
-     * @return Collection
+     *
      */
     protected function prepareImages($owner)
     {
@@ -44,7 +44,7 @@ trait MediaWidgetPreperations
     }
 
     /**
-     * @return array
+     *
      */
     protected function mediaImageRelations()
     {
@@ -57,7 +57,7 @@ trait MediaWidgetPreperations
     }
 
     /**
-     * @return mixed
+     *
      */
     protected function prepareInfographics($owner)
     {

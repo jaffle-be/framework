@@ -61,7 +61,7 @@ class Post extends Model implements StoresMedia, Searchable, StoresTags, Present
     /**
      * Create a new Eloquent Collection instance.
      *
-     * @return \Illuminate\Database\Eloquent\Collection
+     *
      */
     public function newCollection(array $models = [])
     {

@@ -274,7 +274,7 @@ class ProductController extends AdminController
     }
 
     /**
-     * @return Product
+     *
      * @throws \Exception
      */
     protected function deleteProduct(Product $product)
@@ -291,7 +291,7 @@ class ProductController extends AdminController
     }
 
     /**
-     * @return mixed
+     *
      */
     protected function indexesToUse(GammaSubscriptionManager $subscriptions)
     {

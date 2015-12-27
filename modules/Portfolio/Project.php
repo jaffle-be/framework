@@ -80,7 +80,7 @@ class Project extends Model implements StoresMedia, Searchable, StoresTags, Pres
     /**
      * Return the type this model uses in Elasticsearch.
      *
-     * @return mixed
+     *
      */
     public function getSearchableType()
     {

@@ -30,7 +30,7 @@ class ThemeMailer implements MailContract
     /**
      * Send a new message when only a raw text part.
      *
-     * @return int
+     *
      */
     public function raw($text, $callback)
     {
@@ -39,7 +39,7 @@ class ThemeMailer implements MailContract
 
     /**
      * @throws \Exception
-     * @return bool
+     *
      */
     public function send($view, array $data, $callback)
     {
@@ -94,7 +94,7 @@ class ThemeMailer implements MailContract
     }
 
     /**
-     * @return \Closure
+     *
      */
     protected function stringClosure(array $data, $callback)
     {
@@ -108,7 +108,7 @@ class ThemeMailer implements MailContract
     }
 
     /**
-     * @return \Closure
+     *
      */
     protected function closureClosure(array $data, $callback)
     {
@@ -127,7 +127,7 @@ class ThemeMailer implements MailContract
     /**
      * Get the array of failed recipients.
      *
-     * @return array
+     *
      */
     public function failures()
     {

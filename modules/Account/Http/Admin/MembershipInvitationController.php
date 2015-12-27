@@ -55,7 +55,7 @@ class MembershipInvitationController extends AdminController
     }
 
     /**
-     * @return array
+     *
      */
     protected function getNewHash(Request $request, Hasher $hasher)
     {

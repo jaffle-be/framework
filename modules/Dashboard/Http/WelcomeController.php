@@ -15,7 +15,7 @@ class WelcomeController extends FrontController
     /**
      * This route is only valid for multi locale applications.
      *
-     * @return \Illuminate\Contracts\View\View|\Illuminate\Http\RedirectResponse
+     *
      */
     public function landing(Request $request, AccountManager $manager)
     {

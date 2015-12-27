@@ -67,7 +67,7 @@ class DeactivateProduct extends Job
     }
 
     /**
-     * @return ProductCategorySelection
+     *
      */
     protected function attachCategory($record)
     {
@@ -83,7 +83,7 @@ class DeactivateProduct extends Job
      * if this ever get's called in a global system context,
      * it will now still work.
      *
-     * @return \Illuminate\Database\Eloquent\Model|null|static
+     *
      */
     protected function getExisting(ProductSelection $selection)
     {

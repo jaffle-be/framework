@@ -85,7 +85,7 @@ class GammaQueryResolver
     }
 
     /**
-     * @return array|\Illuminate\Pagination\LengthAwarePaginator
+     *
      */
     protected function products($result)
     {
@@ -133,7 +133,7 @@ class GammaQueryResolver
     }
 
     /**
-     * @return array
+     *
      */
     protected function bucketizeBrands($result)
     {
@@ -173,7 +173,7 @@ class GammaQueryResolver
     }
 
     /**
-     * @return array
+     *
      */
     protected function propertyValueAggregation(Property $property)
     {
@@ -202,7 +202,7 @@ class GammaQueryResolver
     }
 
     /**
-     * @return array
+     *
      */
     protected function propertyFilterAggregation($property)
     {

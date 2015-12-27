@@ -60,7 +60,7 @@ class TokenRepository implements TokenRepositoryInterface
     /**
      * Return a hash that has no / in it suited for url generated.
      *
-     * @return string
+     *
      */
     protected function hash($value)
     {

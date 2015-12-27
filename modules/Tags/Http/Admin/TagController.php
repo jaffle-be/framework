@@ -108,7 +108,7 @@ class TagController extends AdminController
     }
 
     /**
-     * @return array
+     *
      * @throws \Exception
      */
     protected function owner(Request $request)

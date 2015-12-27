@@ -75,7 +75,7 @@ class CleanupDetail extends Job
     }
 
     /**
-     * @return bool
+     *
      */
     protected function shouldNotRun(ProductSelection $products, GammaNotification $notifications)
     {

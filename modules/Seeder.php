@@ -46,7 +46,7 @@ abstract class Seeder extends BaseSeeder
     }
 
     /**
-     * @return mixed
+     *
      * @throws Exception
      * @internal param $images
      * @internal param $sizes

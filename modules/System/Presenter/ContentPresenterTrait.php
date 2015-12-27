@@ -10,7 +10,7 @@ trait ContentPresenterTrait
      * Returns the entire post, fully loaded with shortcodes
      * Ready to be displayed onto your website.
      *
-     * @return mixed
+     *
      */
     public function content()
     {
@@ -32,7 +32,7 @@ trait ContentPresenterTrait
     }
 
     /**
-     * @return bool
+     *
      */
     public function usePresentableCache()
     {
@@ -40,7 +40,7 @@ trait ContentPresenterTrait
     }
 
     /**
-     * @return mixed
+     *
      */
     public function contentToPresent()
     {
@@ -54,7 +54,7 @@ trait ContentPresenterTrait
      * We also strip out any shortcodes, which would only
      * inject either media or custom marked up content.
      *
-     * @return string
+     *
      */
     public function extract($chars = null)
     {
@@ -71,7 +71,7 @@ trait ContentPresenterTrait
      * There's some funny things going on with the spaces in the text
      * due to parsing it as markdown and then stripping the tags.
      *
-     * @return string
+     *
      */
     public function freshlyBuiltExtract()
     {

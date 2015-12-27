@@ -37,7 +37,7 @@ trait SearchableTrait
     }
 
     /**
-     * @return SearchServiceInterface
+     *
      */
     public function getSearchableService()
     {
@@ -53,7 +53,7 @@ trait SearchableTrait
     }
 
     /**
-     * @return string
+     *
      */
     public function getSearchableIndex()
     {
@@ -66,7 +66,7 @@ trait SearchableTrait
     }
 
     /**
-     * @return string
+     *
      */
     public function getSearchableRouting()
     {
@@ -76,7 +76,7 @@ trait SearchableTrait
     /**
      * Return the type this model uses in Elasticsearch.
      *
-     * @return mixed
+     *
      */
     public function getSearchableType()
     {
@@ -84,7 +84,7 @@ trait SearchableTrait
     }
 
     /**
-     * @return mixed
+     *
      */
     public function getSearchableId()
     {
@@ -94,7 +94,7 @@ trait SearchableTrait
     }
 
     /**
-     * @return mixed
+     *
      */
     public function getSearchableDocument()
     {
@@ -102,7 +102,7 @@ trait SearchableTrait
     }
 
     /**
-     * @return string
+     *
      */
     public function getSearchableEventname($event)
     {
@@ -110,7 +110,7 @@ trait SearchableTrait
     }
 
     /**
-     * @return SearchServiceInterface
+     *
      */
     public function search()
     {
@@ -218,7 +218,7 @@ trait SearchableTrait
     }
 
     /**
-     * @return array
+     *
      */
     protected function getRelationType($relation, $model)
     {
@@ -231,7 +231,7 @@ trait SearchableTrait
     }
 
     /**
-     * @return array|bool
+     *
      */
     protected function relationNeedsLooping($type)
     {
@@ -247,7 +247,7 @@ trait SearchableTrait
     }
 
     /**
-     * @return Collection
+     *
      */
     protected function getLoopedRelationData($build, $relation_data)
     {
@@ -265,7 +265,7 @@ trait SearchableTrait
     }
 
     /**
-     * @return mixed
+     *
      */
     protected function getSimpleRelationData($build, $relation_data)
     {
@@ -303,7 +303,7 @@ trait SearchableTrait
     /**
      * keep this public, this allows for easy searching inheriting.
      *
-     * @return array
+     *
      */
     public function getSearchableSuggestData(Searchable $inheritFrom = null)
     {
@@ -326,7 +326,7 @@ trait SearchableTrait
     }
 
     /**
-     * @return string
+     *
      */
     protected function getSearchableSuggestName($locale, Searchable $inheritFrom = null)
     {
@@ -340,7 +340,7 @@ trait SearchableTrait
     }
 
     /**
-     * @return array
+     *
      */
     protected function getSearchableSuggestPayload($translation)
     {

@@ -86,7 +86,7 @@ class BrandCategoryManager
     }
 
     /**
-     * @return \Illuminate\Database\Query\Builder
+     *
      */
     protected function bareProducts()
     {
@@ -96,7 +96,7 @@ class BrandCategoryManager
     }
 
     /**
-     * @return \Illuminate\Database\Query\Builder
+     *
      */
     protected function brandCombinations()
     {
@@ -106,7 +106,7 @@ class BrandCategoryManager
     }
 
     /**
-     * @return mixed
+     *
      * @internal param $brands
      */
     protected function combinationIsKnown($product, $category)
@@ -124,7 +124,7 @@ class BrandCategoryManager
     }
 
     /**
-     * @return array
+     *
      */
     protected function findProduct($attached)
     {
@@ -148,7 +148,7 @@ class BrandCategoryManager
     }
 
     /**
-     * @return array
+     *
      */
     protected function response($payload)
     {

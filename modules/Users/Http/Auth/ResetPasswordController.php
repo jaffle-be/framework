@@ -14,7 +14,7 @@ class ResetPasswordController extends FrontController
     /**
      * Show the form for resetting the password.
      *
-     * @return \Illuminate\View\View
+     *
      */
     public function show($token)
     {

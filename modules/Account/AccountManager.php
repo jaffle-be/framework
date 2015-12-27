@@ -46,7 +46,7 @@ class AccountManager
     }
 
     /**
-     * @return Account|bool
+     *
      */
     public function account()
     {

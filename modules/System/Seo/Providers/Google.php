@@ -37,7 +37,7 @@ class Google extends MetaTagProvider
     }
 
     /**
-     * @return string
+     *
      */
     protected function nameForTypeSpecificProperty($type, $key)
     {

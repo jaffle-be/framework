@@ -24,7 +24,7 @@ class MembershipController extends AdminController
     }
 
     /**
-     * @return mixed
+     *
      */
     public function index(AccountManager $manager)
     {

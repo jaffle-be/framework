@@ -50,7 +50,7 @@ class BrandTableSeeder extends Seeder
     }
 
     /**
-     * @return mixed|string
+     *
      */
     protected function data($file)
     {

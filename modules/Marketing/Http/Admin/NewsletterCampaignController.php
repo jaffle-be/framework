@@ -228,7 +228,7 @@ class NewsletterCampaignController extends AdminController
     }
 
     /**
-     * @return array
+     *
      */
     protected function detailedResponse(Campaign $newsletter, CampaignBuilder $builder, MailChimp $mailChimp)
     {
@@ -248,7 +248,7 @@ class NewsletterCampaignController extends AdminController
     }
 
     /**
-     * @return array
+     *
      */
     protected function getReportSummary(MailChimp $mailChimp, $translation)
     {

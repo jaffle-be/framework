@@ -16,7 +16,7 @@ class LocaleMiddleware
     /**
      * Handle an incoming request.
      *
-     * @return mixed
+     *
      */
     public function handle($request, Closure $next)
     {

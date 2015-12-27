@@ -43,7 +43,7 @@ abstract class ServiceProvider extends Provider
     }
 
     /**
-     * @return string
+     *
      */
     protected function dir()
     {

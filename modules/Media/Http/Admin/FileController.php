@@ -31,7 +31,7 @@ class FileController extends AdminController
     }
 
     /**
-     * @return mixed
+     *
      */
     public function index(Request $request, Locale $locale)
     {

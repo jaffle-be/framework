@@ -50,7 +50,7 @@ class SeoManager
     }
 
     /**
-     * @return MetaTagProvider
+     *
      */
     protected function buildProvider($provider)
     {

@@ -135,7 +135,7 @@ class ImportResults extends Command
     }
 
     /**
-     * @return mixed
+     *
      */
     protected function brand()
     {
@@ -162,7 +162,7 @@ class ImportResults extends Command
     }
 
     /**
-     * @return mixed
+     *
      */
     protected function account()
     {
@@ -172,7 +172,7 @@ class ImportResults extends Command
     }
 
     /**
-     * @return static
+     *
      */
     protected function category($sub)
     {
@@ -199,7 +199,7 @@ class ImportResults extends Command
     }
 
     /**
-     * @return mixed
+     *
      */
     protected function propertyGroup(Category $category)
     {
@@ -216,7 +216,7 @@ class ImportResults extends Command
     }
 
     /**
-     * @return static
+     *
      */
     protected function productBase($account, $brand, $data, $category)
     {

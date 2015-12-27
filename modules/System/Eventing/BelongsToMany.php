@@ -32,7 +32,7 @@ class BelongsToMany extends \Illuminate\Database\Eloquent\Relations\BelongsToMan
     /**
      * Sync the intermediate tables with a list of IDs or collection of models.
      *
-     * @return array
+     *
      */
     public function sync($ids, $detaching = true)
     {
@@ -83,7 +83,7 @@ class BelongsToMany extends \Illuminate\Database\Eloquent\Relations\BelongsToMan
     /**
      * Detach models from the relationship.
      *
-     * @return int
+     *
      */
     public function detach($ids = [], $touch = true)
     {

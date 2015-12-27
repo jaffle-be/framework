@@ -46,7 +46,7 @@ class MenuManager
     }
 
     /**
-     * @return mixed
+     *
      */
     public function __call($name, $arguments)
     {
@@ -73,7 +73,7 @@ class MenuManager
     }
 
     /**
-     * @return mixed
+     *
      */
     public function get($menu)
     {

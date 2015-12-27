@@ -79,7 +79,7 @@ class ProductCategoryManager
      * therefor -> we should use the table to query,
      * not the eloquent instance.
      *
-     * @return \Illuminate\Database\Query\Builder
+     *
      */
     protected function records($product, $category)
     {
@@ -103,7 +103,7 @@ class ProductCategoryManager
     }
 
     /**
-     * @return bool
+     *
      */
     protected function otherCategories(ProductSelection $instance)
     {

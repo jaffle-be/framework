@@ -8,7 +8,7 @@ use Modules\Blog\PostTranslation;
 trait BlogFrontControlling
 {
     /**
-     * @return \Illuminate\Contracts\View\View
+     *
      */
     protected function renderPostDetail(PostTranslation $post, PostRepositoryInterface $posts)
     {

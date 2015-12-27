@@ -8,7 +8,7 @@ trait EventedRelations
      * EXACT COPY FROM SOURCE, BUT THE OBJECT CREATED IS IN OUR NAMESPACE.
      * Define a many-to-many relationship.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     *
      */
     public function eventedBelongsToMany($related, $table = null, $foreignKey = null, $otherKey = null, $relation = null)
     {

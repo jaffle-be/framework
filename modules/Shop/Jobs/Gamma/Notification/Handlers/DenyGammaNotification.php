@@ -40,7 +40,7 @@ class DenyGammaNotification extends Job implements ShouldQueue
     }
 
     /**
-     * @return bool
+     *
      */
     protected function isProductActivation()
     {
@@ -67,7 +67,7 @@ class DenyGammaNotification extends Job implements ShouldQueue
     }
 
     /**
-     * @return bool
+     *
      */
     protected function isProductDeactivation()
     {

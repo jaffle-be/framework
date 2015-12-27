@@ -23,7 +23,7 @@ class SystemController extends FrontController
     }
 
     /**
-     * @return mixed
+     *
      */
     protected function is_account_locale(Account $account, $locale)
     {

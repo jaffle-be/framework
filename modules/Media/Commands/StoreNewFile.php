@@ -126,7 +126,7 @@ class StoreNewFile extends Job
     }
 
     /**
-     * @return array
+     *
      */
     protected function getPayload()
     {

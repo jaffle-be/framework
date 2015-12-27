@@ -42,7 +42,7 @@ class ResetPassword extends Job
     }
 
     /**
-     * @return string
+     *
      */
     public function handle(UserRepositoryInterface $users, hasher $hasher)
     {
@@ -68,7 +68,7 @@ class ResetPassword extends Job
     }
 
     /**
-     * @return bool
+     *
      */
     protected function validToken(User $user)
     {
@@ -76,7 +76,7 @@ class ResetPassword extends Job
     }
 
     /**
-     * @return string
+     *
      */
     protected function equalPasswords()
     {

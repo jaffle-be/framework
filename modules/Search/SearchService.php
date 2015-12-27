@@ -276,7 +276,7 @@ class SearchService implements SearchServiceInterface
     /**
      * Search the index.
      *
-     * @return mixed
+     *
      */
     public function search($type, array $params, $with = [], $paginated = 15, \Closure $highlighter = null)
     {
@@ -331,7 +331,7 @@ class SearchService implements SearchServiceInterface
     /**
      * Update the settings for the elasticsearch instance.
      *
-     * @return bool
+     *
      */
     public function updateSettings(array $settings)
     {
@@ -373,7 +373,7 @@ class SearchService implements SearchServiceInterface
      * Return the actual type.
      * People could have passed in a simple classname.
      *
-     * @return array|mixed
+     *
      * @throws Exception
      */
     protected function getSearchable($type)
@@ -396,7 +396,7 @@ class SearchService implements SearchServiceInterface
     }
 
     /**
-     * @return array
+     *
      */
     protected function getBaseParams(Searchable $type)
     {
@@ -419,7 +419,7 @@ class SearchService implements SearchServiceInterface
     }
 
     /**
-     * @return array
+     *
      */
     protected function data(Searchable $type)
     {

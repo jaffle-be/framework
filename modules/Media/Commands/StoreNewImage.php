@@ -144,7 +144,7 @@ class StoreNewImage extends Job
     }
 
     /**
-     * @return array
+     *
      */
     protected function getPayload()
     {

@@ -35,7 +35,7 @@ trait Translatable
     }
 
     /**
-     * @return Model|null
+     *
      */
     public function getTranslation($locale = null, $withFallback = null)
     {
@@ -205,7 +205,7 @@ trait Translatable
     }
 
     /**
-     * @return bool|null
+     *
      */
     private function useFallback()
     {

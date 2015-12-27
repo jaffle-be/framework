@@ -27,7 +27,7 @@ class CachedAccountRepository implements AccountRepositoryInterface
     }
 
     /**
-     * @return Account
+     *
      */
     public function newAccount(array $payload)
     {
@@ -51,7 +51,7 @@ class CachedAccountRepository implements AccountRepositoryInterface
     /**
      * Find the base account that's being used as the 'system' account.
      *
-     * @return mixed
+     *
      */
     public function baseAccount()
     {

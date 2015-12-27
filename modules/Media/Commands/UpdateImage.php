@@ -30,7 +30,7 @@ class UpdateImage extends Job
     }
 
     /**
-     * @return Image|bool
+     *
      */
     public function handle()
     {

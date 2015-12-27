@@ -60,7 +60,7 @@ class BatchGammaDeactivation extends Job
     }
 
     /**
-     * @return mixed
+     *
      */
     protected function loadSelections(ProductSelection $productGamma)
     {

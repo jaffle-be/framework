@@ -57,7 +57,7 @@ class ThrottleManager implements Throttler
     /**
      * Is the current user allowed to do another attempt.
      *
-     * @return bool
+     *
      */
     public function allows($email)
     {
@@ -65,7 +65,7 @@ class ThrottleManager implements Throttler
     }
 
     /**
-     * @return bool
+     *
      */
     public function throttle($email)
     {
@@ -93,7 +93,7 @@ class ThrottleManager implements Throttler
     }
 
     /**
-     * @return bool
+     *
      */
     protected function allowsIp()
     {
@@ -101,7 +101,7 @@ class ThrottleManager implements Throttler
     }
 
     /**
-     * @return bool
+     *
      */
     protected function allowsEmail($email)
     {
@@ -109,7 +109,7 @@ class ThrottleManager implements Throttler
     }
 
     /**
-     * @return string
+     *
      */
     protected function key($field)
     {
@@ -117,7 +117,7 @@ class ThrottleManager implements Throttler
     }
 
     /**
-     * @return int
+     *
      */
     protected function getIpCount()
     {
@@ -127,7 +127,7 @@ class ThrottleManager implements Throttler
     }
 
     /**
-     * @return int
+     *
      */
     protected function getEmailCount($email)
     {
@@ -137,7 +137,7 @@ class ThrottleManager implements Throttler
     }
 
     /**
-     * @return mixed
+     *
      */
     protected function throttleIp($increment, $ip = null)
     {
@@ -149,7 +149,7 @@ class ThrottleManager implements Throttler
     }
 
     /**
-     * @return mixed
+     *
      */
     protected function throttleEmail($increment, $email)
     {

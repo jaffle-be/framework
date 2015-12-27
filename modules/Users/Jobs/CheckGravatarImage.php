@@ -54,7 +54,7 @@ class CheckGravatarImage extends Job
     }
 
     /**
-     * @return string
+     *
      */
     protected function pathWithExtension($path)
     {

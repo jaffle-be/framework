@@ -103,7 +103,7 @@ class User extends Model implements Authenticatable, MembershipOwner, AddressOwn
     /**
      * Get the token value for the "remember me" session.
      *
-     * @return string
+     *
      */
     public function getRememberToken()
     {
@@ -121,7 +121,7 @@ class User extends Model implements Authenticatable, MembershipOwner, AddressOwn
     /**
      * Get the column name for the "remember me" token.
      *
-     * @return string
+     *
      */
     public function getRememberTokenName()
     {
@@ -131,7 +131,7 @@ class User extends Model implements Authenticatable, MembershipOwner, AddressOwn
     /**
      * Get the unique identifier for the user.
      *
-     * @return mixed
+     *
      */
     public function getAuthIdentifier()
     {
@@ -141,7 +141,7 @@ class User extends Model implements Authenticatable, MembershipOwner, AddressOwn
     /**
      * Get the password for the user.
      *
-     * @return string
+     *
      */
     public function getAuthPassword()
     {

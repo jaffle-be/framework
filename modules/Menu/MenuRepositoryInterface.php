@@ -15,12 +15,12 @@ interface MenuRepositoryInterface
     public function sortMenu($menu, $order);
 
     /**
-     * @return MenuItem
+     *
      */
     public function createItem(array $payload);
 
     /**
-     * @return MenuItem
+     *
      */
     public function updateItem(MenuItem $item, array $payload);
 }

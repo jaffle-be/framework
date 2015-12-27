@@ -27,7 +27,7 @@ class UpdateTag extends Job
     }
 
     /**
-     * @return Tag|bool
+     *
      */
     public function handle()
     {

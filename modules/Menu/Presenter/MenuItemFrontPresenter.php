@@ -37,7 +37,7 @@ class MenuItemFrontPresenter extends BasePresenter
     }
 
     /**
-     * @return bool
+     *
      */
     protected function manualItem()
     {
@@ -45,7 +45,7 @@ class MenuItemFrontPresenter extends BasePresenter
     }
 
     /**
-     * @return bool
+     *
      */
     protected function validPage()
     {

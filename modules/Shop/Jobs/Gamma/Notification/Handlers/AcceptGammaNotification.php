@@ -46,7 +46,7 @@ class AcceptGammaNotification extends Job implements ShouldQueue
     }
 
     /**
-     * @return mixed
+     *
      */
     protected function isProductSpecific()
     {

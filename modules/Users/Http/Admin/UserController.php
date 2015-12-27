@@ -15,7 +15,7 @@ class UserController extends AdminController
     /**
      * the actual page.
      *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     *
      */
     public function profile(Guard $guard)
     {

@@ -131,7 +131,7 @@ class Rebatch extends Command
     }
 
     /**
-     * @return mixed
+     *
      */
     protected function imageHasSize(Image $image, $path)
     {

@@ -12,7 +12,7 @@ class TagCollection extends Collection
      *
      *
      *
-     * @return array|string
+     *
      */
     public function format($format = '<a href=":url">:name</a>', $glue = ' / ')
     {

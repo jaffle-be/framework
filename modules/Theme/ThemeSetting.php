@@ -52,7 +52,7 @@ class ThemeSetting extends Model
     /**
      * Currently only used in the angular part, to return them through an /api/admin call.
      *
-     * @return array
+     *
      */
     public function toArray()
     {
@@ -82,7 +82,7 @@ class ThemeSetting extends Model
     /**
      * Used when actually getting the value to decide what to do for the given setting.
      *
-     * @return bool|mixed
+     *
      */
     public function getValue()
     {

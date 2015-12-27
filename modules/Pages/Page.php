@@ -72,7 +72,7 @@ class Page extends Model implements StoresMedia, SeoEntity, PresentableEntity, M
     }
 
     /**
-     * @return array
+     *
      */
     public function getMenuLocalisedNames()
     {

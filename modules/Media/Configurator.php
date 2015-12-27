@@ -64,7 +64,7 @@ class Configurator
      * Need to watch out with this, it could cause problems for content that will be
      * created by our own team.
      *
-     * @return array
+     *
      */
     public function getImageSizes(StoresMedia $owner, $requested = 'all')
     {
@@ -100,7 +100,7 @@ class Configurator
     /**
      * Return the alias used for the given media owner type.
      *
-     * @return mixed
+     *
      */
     public function alias(StoresMedia $owner)
     {
@@ -126,7 +126,7 @@ class Configurator
     }
 
     /**
-     * @return array
+     *
      */
     public function getSupportedMediaTypes()
     {
@@ -134,7 +134,7 @@ class Configurator
     }
 
     /**
-     * @return bool
+     *
      */
     public function isSupportedMediaType($type)
     {

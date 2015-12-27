@@ -5,7 +5,7 @@ use Modules\Module\Module;
 
 if (! function_exists('uses_trait')) {
     /**
-     * @return bool
+     *
      */
     function uses_trait($class, $trait)
     {
@@ -20,7 +20,7 @@ if (! function_exists('uses_trait')) {
  * Found in the actual views, will most likely be at the same html element
  * where the angular page specific controller is assigned
  *
- * @return string
+ *
  */
 
 if (! function_exists('system_options')) {
@@ -47,7 +47,7 @@ if (! function_exists('system_options')) {
  * This helps us use that information in the admin in angular using the ng-init approach.
  * ng-init is not ideal, but it should do for now.
  *
- * @return \Illuminate\Database\Eloquent\Collection|static[]
+ *
  */
 
 if (! function_exists('system_locales')) {
@@ -69,7 +69,7 @@ if (! function_exists('system_locales')) {
 /*
  * Return all supported modules
  *
- * @return \Illuminate\Database\Eloquent\Collection|static[]
+ *
  */
 if (! function_exists('system_modules')) {
     function system_modules()

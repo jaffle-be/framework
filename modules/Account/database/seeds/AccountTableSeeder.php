@@ -80,7 +80,7 @@ class AccountTableSeeder extends Seeder
     }
 
     /**
-     * @return static
+     *
      */
     protected function account($name)
     {
@@ -105,7 +105,7 @@ class AccountTableSeeder extends Seeder
     }
 
     /**
-     * @return AccountContactInformation
+     *
      */
     protected function contactInformation($account)
     {

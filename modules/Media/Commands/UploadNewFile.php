@@ -66,7 +66,7 @@ class UploadNewFile extends Job
      * For files, we won't generate a very random name,
      * so we can easily.
      *
-     * @return mixed|null|string
+     *
      */
     protected function uniqueName()
     {

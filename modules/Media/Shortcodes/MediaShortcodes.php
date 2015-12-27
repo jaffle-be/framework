@@ -33,7 +33,7 @@ trait MediaShortcodes
     /**
      * Return a sorted array with all requested images.
      *
-     * @return array
+     *
      */
     protected function getWantedImages($content)
     {
@@ -64,7 +64,7 @@ trait MediaShortcodes
      * other customisations through html/css. We want our content to adhere to the
      * styles provided per account. No need to allow a client to mess around.
      *
-     * @return mixed
+     *
      */
     protected function addImage(&$content, $image)
     {
@@ -108,7 +108,7 @@ trait MediaShortcodes
      * in most cases this simply means: don't add padding to the element containing the entire post
      * you should instead add the padding or margin to the content related tags within that container.
      *
-     * @return string
+     *
      */
     protected function handleFullWidth($title, $link)
     {
@@ -116,7 +116,7 @@ trait MediaShortcodes
     }
 
     /**
-     * @return string
+     *
      */
     protected function imageLink(Image $img, $big)
     {
@@ -131,7 +131,7 @@ trait MediaShortcodes
      * is a path that references an image which is smaller then the viewport.
      * If not, it would simply just take up the full width due to .img-responsive.
      *
-     * @return string
+     *
      */
     protected function handleFloat($title, $link, $float)
     {
@@ -195,7 +195,7 @@ trait MediaShortcodes
     /**
      * Return a sorted array with all requested images.
      *
-     * @return int
+     *
      */
     protected function getWantedInfographics($content)
     {
@@ -228,7 +228,7 @@ trait MediaShortcodes
     /**
      * Return a sorted array with all requested images.
      *
-     * @return int
+     *
      */
     protected function getWantedFiles($content)
     {

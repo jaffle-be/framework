@@ -126,7 +126,7 @@ trait SiteSluggable
     /**
      * Get all existing slugs that are similar to the given slug.
      *
-     * @return array
+     *
      */
     protected function getExistingSlugs($slug)
     {

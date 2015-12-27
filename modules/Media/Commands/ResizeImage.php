@@ -80,7 +80,7 @@ class ResizeImage extends Job
     }
 
     /**
-     * @return string
+     *
      */
     protected function getFolder(Filesystem $files, $public = false)
     {
@@ -100,7 +100,7 @@ class ResizeImage extends Job
     }
 
     /**
-     * @return string
+     *
      */
     protected function getPath(Filesystem $files, $public = false)
     {
@@ -112,7 +112,7 @@ class ResizeImage extends Job
     }
 
     /**
-     * @return array
+     *
      */
     protected function getPayload($width, $height, $path)
     {

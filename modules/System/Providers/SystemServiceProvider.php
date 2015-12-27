@@ -71,7 +71,7 @@ class SystemServiceProvider extends ServiceProvider
     }
 
     /**
-     * @return \Illuminate\Contracts\Foundation\Application
+     *
      */
     protected function viewGlobals()
     {
