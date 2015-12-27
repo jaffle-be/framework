@@ -2,13 +2,14 @@
     'use strict';
 
     angular.module('pages')
-        .controller('PagesController', function ($scope, Page, PageService, $sce) {
+        .controller('PagesController', function ($scope, Page, PageService, $sce, System) {
 
             $scope.renderHtml = function (html_code) {
                 return $sce.trustAsHtml(html_code);
             };
 
             //start with true so we don't see the layout flash
+            this.options = System.options;
             this.loading = true;
             this.rpp = 15;
             this.total = 0;

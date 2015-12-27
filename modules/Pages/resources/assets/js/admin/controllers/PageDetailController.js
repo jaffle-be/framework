@@ -2,8 +2,8 @@
     'use strict';
 
     angular.module('pages')
-        .controller('PageDetailController', function ($scope, $state, Page, PageService) {
-
+        .controller('PageDetailController', function ($scope, $state, Page, PageService, System) {
+            this.options = System.options;
             this.pages = PageService;
             $scope.status = {
                 datepickerStatus: false

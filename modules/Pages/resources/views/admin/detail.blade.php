@@ -1,5 +1,4 @@
-<div class="row wrapper-content" ng-controller="PageDetailController as vm"
-     ng-init="vm.options = {{ system_options() }}">
+<div class="row wrapper-content" ng-controller="PageDetailController as vm">
 
     @include('system::admin.locale-tabs')
 
