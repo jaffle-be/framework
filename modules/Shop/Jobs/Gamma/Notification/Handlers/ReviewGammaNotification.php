@@ -64,6 +64,7 @@ class ReviewGammaNotification extends Job implements ShouldQueue
 
     /**
      * @param CatalogRepositoryInterface $catalog
+     * @param ProductSelection           $selections
      * @param                            $status
      */
     protected function notifyWithinScope(CatalogRepositoryInterface $catalog, ProductSelection $selections, $status)

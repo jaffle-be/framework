@@ -65,6 +65,7 @@ class Configurator
      * created by our own team.
      *
      * @param StoresMedia $owner
+     * @param string      $requested
      *
      * @return array
      */

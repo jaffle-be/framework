@@ -250,7 +250,10 @@ class ImportResults extends Command
     /**
      * @param $account
      * @param $product
-     * @param $data
+     * @param $url
+     * @param $counter
+     *
+     * @internal param $data
      */
     protected function addImage($account, $product, $url, $counter)
     {

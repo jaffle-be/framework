@@ -34,6 +34,8 @@ trait MediaShortcodes
      * Return a sorted array with all requested images.
      *
      * @param $content
+     *
+     * @return array
      */
     protected function getWantedImages($content)
     {
@@ -66,6 +68,8 @@ trait MediaShortcodes
      *
      * @param $content
      * @param $image
+     *
+     * @return mixed
      */
     protected function addImage(&$content, $image)
     {

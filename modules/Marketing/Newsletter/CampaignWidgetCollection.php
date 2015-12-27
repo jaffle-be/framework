@@ -78,9 +78,9 @@ class CampaignWidgetCollection extends Collection
     }
 
     /**
-     * @param Campaign $newsletter
-     *
      * @return array
+     *
+     * @internal param Campaign $newsletter
      */
     protected function getMaps()
     {

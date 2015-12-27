@@ -120,6 +120,8 @@ class StoreNewInfographic extends Job
 
     /**
      * set the filename, extension and the size.
+     *
+     * @param ImageManager $image
      */
     protected function dimensions(ImageManager $image)
     {

@@ -68,7 +68,8 @@ class StoreNewImage extends Job
      * @param StoresMedia $owner
      * @param string      $path
      * @param null        $rename
-     * @param array       $sizes
+     *
+     * @internal param array $sizes
      */
     public function __construct(Account $account = null, StoresMedia $owner, $path, $rename = null)
     {
@@ -113,6 +114,8 @@ class StoreNewImage extends Job
 
     /**
      * set the filename, extension and the size.
+     *
+     * @param ImageManager $image
      */
     protected function dimensions(ImageManager $image)
     {

@@ -22,7 +22,7 @@ class PageRepository implements PageRepositoryInterface
     }
 
     /**
-     * @return []
+     * @return array []
      */
     public function relations()
     {

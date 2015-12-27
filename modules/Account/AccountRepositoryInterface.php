@@ -16,7 +16,11 @@ interface AccountRepositoryInterface
     /**
      * The alias represents the subdomain for the main app url an account is running under.
      *
-     * @param $domain
+     * @param $alias
+     *
+     * @return
+     *
+     * @internal param $domain
      */
     public function findByAlias($alias);
 

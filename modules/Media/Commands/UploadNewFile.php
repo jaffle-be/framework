@@ -31,8 +31,10 @@ class UploadNewFile extends Job
 
     /**
      * @param StoresMedia  $owner
-     * @param UploadedFile $image
+     * @param UploadedFile $file
      * @param Locale       $locale
+     *
+     * @internal param UploadedFile $image
      */
     public function __construct(StoresMedia $owner, UploadedFile $file, Locale $locale)
     {

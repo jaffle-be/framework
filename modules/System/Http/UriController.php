@@ -36,6 +36,8 @@ class UriController extends FrontController
      * @param Uri $uri
      * @param Uri $suburi
      * @param Uri $subesturi
+     *
+     * @return Uri
      */
     protected function resourceToDisplay(Uri $uri, Uri $suburi = null, Uri $subesturi = null)
     {

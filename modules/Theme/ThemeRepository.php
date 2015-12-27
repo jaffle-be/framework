@@ -128,7 +128,8 @@ class ThemeRepository implements ThemeRepositoryInterface
     }
 
     /**
-     * @param Theme $theme
+     * @param Theme          $theme
+     * @param ThemeSelection $selection
      */
     protected function addDefaults(Theme $theme, ThemeSelection $selection)
     {

@@ -33,6 +33,7 @@ class ConfirmEmailController extends FrontController
      *
      * @param Request                 $request
      * @param UserRepositoryInterface $users
+     * @param AccountManager          $manager
      *
      * @return \Illuminate\Http\RedirectResponse
      */
@@ -52,6 +53,7 @@ class ConfirmEmailController extends FrontController
      *
      * @param                          $token
      * @param TokenRepositoryInterface $tokens
+     * @param Guard                    $guard
      *
      * @return \Illuminate\Http\RedirectResponse
      */

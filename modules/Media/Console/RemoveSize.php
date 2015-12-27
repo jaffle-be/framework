@@ -23,6 +23,9 @@ class RemoveSize extends Command
 
     /**
      * Create a new console command instance.
+     *
+     * @param Configurator $config
+     * @param Filesystem   $files
      */
     public function __construct(Configurator $config, Filesystem $files)
     {
@@ -67,8 +70,10 @@ class RemoveSize extends Command
     }
 
     /**
-     * @param $owner
-     * @param $this
+     * @param StoresMedia $owner
+     * @param             $size
+     *
+     * @internal param $this
      */
     public function handleOwner(StoresMedia $owner, $size)
     {
@@ -84,7 +89,9 @@ class RemoveSize extends Command
     }
 
     /**
-     * @param $owner
+     * @param $image
+     *
+     * @internal param $owner
      */
     public function handleImage($image)
     {

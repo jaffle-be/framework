@@ -19,6 +19,8 @@ class SendResetEmail extends EmailJob
 
     /**
      * Create a new command instance.
+     *
+     * @param $email
      */
     public function __construct($email)
     {
@@ -32,6 +34,8 @@ class SendResetEmail extends EmailJob
      * @param TokenRepositoryInterface $tokens
      * @param Translator               $lang
      * @param UserRepositoryInterface  $users
+     *
+     * @throws Exception
      */
     public function handle(ThemeMailer $mail, TokenRepositoryInterface $tokens, Translator $lang, UserRepositoryInterface $users)
     {

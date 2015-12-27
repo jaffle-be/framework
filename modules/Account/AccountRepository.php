@@ -37,7 +37,9 @@ class AccountRepository implements AccountRepositoryInterface
     /**
      * The alias represents the subdomain for the main app url an account is running under.
      *
-     * @param $domain
+     * @param $alias
+     *
+     * @internal param $domain
      */
     public function findByAlias($alias)
     {
@@ -68,6 +70,8 @@ class AccountRepository implements AccountRepositoryInterface
      * Find the base account that's being used as the 'system' account.
      *
      * @return mixed
+     *
+     * @throws \Exception
      */
     public function baseAccount()
     {

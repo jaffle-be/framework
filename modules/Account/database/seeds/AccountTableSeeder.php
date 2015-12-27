@@ -80,6 +80,8 @@ class AccountTableSeeder extends Seeder
     }
 
     /**
+     * @param $name
+     *
      * @return static
      */
     protected function account($name)

@@ -45,14 +45,16 @@ class ShopController extends FrontController
     }
 
     /**
-     * @todo remove brand from this route, it's not usefull
+     * @todo     remove brand from this route, it's not usefull
      *
-     * @param CategoryTranslation    $category
-     * @param BrandTranslation|null  $brand
-     * @param Request                $request
-     * @param SearchServiceInterface $search
+     * @param CategoryTranslation   $category
+     * @param BrandTranslation|null $brand
+     * @param Request               $request
+     * @param GammaQueryResolver    $resolver
      *
      * @return \Illuminate\Contracts\View\View
+     *
+     * @internal param SearchServiceInterface $search
      */
     public function category(CategoryTranslation $category, BrandTranslation $brand = null, Request $request, GammaQueryResolver $resolver)
     {

@@ -79,6 +79,9 @@ class ProductCategoryManager
      * therefor -> we should use the table to query,
      * not the eloquent instance.
      *
+     * @param $product
+     * @param $category
+     *
      * @return \Illuminate\Database\Query\Builder
      */
     protected function records($product, $category)

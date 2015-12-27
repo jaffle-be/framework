@@ -177,6 +177,8 @@ class GammaQueryResolver
     }
 
     /**
+     * @param Property $property
+     *
      * @return array
      */
     protected function propertyValueAggregation(Property $property)

@@ -151,7 +151,8 @@ class ThrottleManager implements Throttler
     }
 
     /**
-     * @param $increment
+     * @param      $increment
+     * @param null $ip
      *
      * @return mixed
      */

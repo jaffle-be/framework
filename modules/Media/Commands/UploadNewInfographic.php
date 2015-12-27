@@ -31,8 +31,10 @@ class UploadNewInfographic extends Job
 
     /**
      * @param StoresMedia  $owner
-     * @param UploadedFile $image
+     * @param UploadedFile $graphic
      * @param Locale       $locale
+     *
+     * @internal param UploadedFile $image
      */
     public function __construct(StoresMedia $owner, UploadedFile $graphic, Locale $locale)
     {

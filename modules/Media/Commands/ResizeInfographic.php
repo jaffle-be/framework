@@ -104,6 +104,7 @@ class ResizeInfographic extends Job
 
     /**
      * @param Filesystem $files
+     * @param bool       $public
      *
      * @return string
      */

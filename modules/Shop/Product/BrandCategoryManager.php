@@ -106,10 +106,12 @@ class BrandCategoryManager
     }
 
     /**
-     * @param $brands
      * @param $product
+     * @param $category
      *
      * @return mixed
+     *
+     * @internal param $brands
      */
     protected function combinationIsKnown($product, $category)
     {

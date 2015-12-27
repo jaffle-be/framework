@@ -10,10 +10,11 @@ use Modules\Shop\Product\Category;
 interface GammaRepositoryInterface
 {
     /**
-     * @param Account $account
-     * @param Brand   $brand
+     * @param Brand $brand
      *
      * @return Collection
+     *
+     * @internal param Account $account
      */
     public function categoriesForBrand(Brand $brand);
 
