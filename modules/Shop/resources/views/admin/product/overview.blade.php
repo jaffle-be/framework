@@ -1,5 +1,4 @@
-<div class="row wrapper wrapper-content" ng-controller="ProductController as vm"
-     ng-init="vm.options = {{ system_options() }}" ng-cloak>
+<div class="row wrapper wrapper-content" ng-controller="ProductOverviewController as vm" ng-cloak>
 
     <div class="ibox" st-table="vm.products" st-pipe="vm.list">
 

@@ -1,5 +1,4 @@
-<div class="wrapper wrapper-content" ng-controller="GammaBrandController as vm"
-     ng-init="vm.options = {{ system_options() }}">
+<div class="wrapper wrapper-content" ng-controller="GammaBrandController as vm">
 
     <div class="row search-navigation">
 

@@ -1,5 +1,4 @@
-<div class="row wrapper wrapper-content" ng-controller="SelectionOverviewController as vm"
-     ng-init="vm.options = {{ system_options() }}" ng-cloak>
+<div class="row wrapper wrapper-content" ng-controller="SelectionOverviewController as vm" ng-cloak>
 
     <div class="ibox" st-table="vm.selections" st-pipe="vm.list">
 

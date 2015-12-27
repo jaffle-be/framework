@@ -2,13 +2,14 @@
     'use strict';
 
     angular.module('shop')
-        .controller('ProductController', function (Product, ProductService, GammaService, $state, $scope, $sce, toaster) {
+        .controller('ProductOverviewController', function (Product, ProductService, GammaService, $state, $scope, $sce, toaster, System) {
 
             $scope.renderHtml = function (html_code) {
                 return $sce.trustAsHtml(html_code);
             };
 
             //start with true so we don't see the layout flash
+            this.options = System.options;
             this.loading = true;
             this.creating = false;
             this.creatingProduct = {};

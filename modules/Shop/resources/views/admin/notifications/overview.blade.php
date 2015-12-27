@@ -1,5 +1,4 @@
-<div class="wrapper wrapper-content gamma-notifications" ng-controller="GammaNotificationsController as vm"
-     ng-init="vm.options = {{ system_options() }}">
+<div class="wrapper wrapper-content gamma-notifications" ng-controller="GammaNotificationsController as vm">
 
     <div class="ibox">
 
