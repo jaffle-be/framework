@@ -19,15 +19,22 @@
                                                     <td valign="top" class="textContent">
                                                         <h3>Callout</h3>
                                                         <br>
-                                                        A kitten or kitty is a juvenile domesticated cat. A feline litter usually consists of two to five kittens. To survive, kittens need the care of their mother for the first several weeks
-                                                        of their life. Kittens are highly social animals and spend most of their waking hours playing and interacting with available companions.
+                                                        A kitten or kitty is a juvenile domesticated cat. A feline
+                                                        litter usually consists of two to five kittens. To survive,
+                                                        kittens need the care of their mother for the first several
+                                                        weeks
+                                                        of their life. Kittens are highly social animals and spend most
+                                                        of their waking hours playing and interacting with available
+                                                        companions.
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td align="center" valign="top" class="bottomShim">
-                                                        <table border="0" cellpadding="0" cellspacing="0" width="260" class="emailButton">
+                                                        <table border="0" cellpadding="0" cellspacing="0" width="260"
+                                                               class="emailButton">
                                                             <tr>
-                                                                <td align="center" valign="middle" class="buttonContent">
+                                                                <td align="center" valign="middle"
+                                                                    class="buttonContent">
                                                                     <a href="#" target="_blank">Purchase Now</a>
                                                                 </td>
                                                             </tr>

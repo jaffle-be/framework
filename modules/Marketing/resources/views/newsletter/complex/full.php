@@ -17,7 +17,8 @@
                                             <table border="0" cellpadding="0" cellspacing="0" width="100%">
                                                 <tr>
                                                     <td valign="top" class="imageContent">
-                                                        <img src="<?php echo asset($widget->present()->image) ?>" width="520" class="flexibleImage" style="max-width:520px;">
+                                                        <img src="<?php echo asset($widget->present()->image) ?>"
+                                                             width="520" class="flexibleImage" style="max-width:520px;">
                                                     </td>
                                                 </tr>
                                                 <tr>

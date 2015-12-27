@@ -1,4 +1,5 @@
-<div class="wrapper wrapper-content gamma-notifications" ng-controller="GammaNotificationsController as vm" ng-init="vm.options = {{ system_options() }}">
+<div class="wrapper wrapper-content gamma-notifications" ng-controller="GammaNotificationsController as vm"
+     ng-init="vm.options = {{ system_options() }}">
 
     <div class="ibox">
 
@@ -15,7 +16,9 @@
             <div ng-show="vm.totalItems">
 
                 <div class="text-center">
-                    <uib-pagination total-items="vm.totalItems" items-per-page="50" ng-model="vm.page" ng-change="vm.load()" max-size="10" class="pagination-sm" boundary-links="true"></uib-pagination>
+                    <uib-pagination total-items="vm.totalItems" items-per-page="50" ng-model="vm.page"
+                                    ng-change="vm.load()" max-size="10" class="pagination-sm"
+                                    boundary-links="true"></uib-pagination>
                 </div>
 
                 <table class="table table-hover table-striped table-responsive vertical">
@@ -24,23 +27,29 @@
                         <th colspan="6">
 
                             <div class="dropdown" data-api="dropdown">
-                                <a class="btn btn-default dropdown-toggle" data-toggle="dropdown" href="#">{{ Lang::get('shop::admin.actions.actions') }}&nbsp;<span class="caret">&nbsp;</span></a>
+                                <a class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+                                   href="#">{{ Lang::get('shop::admin.actions.actions') }}&nbsp;<span class="caret">&nbsp;</span></a>
                                 <ul class="dropdown-menu">
                                     <li>
-                                        <a select-all="vm.notifications" href="">{{ Lang::get('shop::admin.actions.select-all') }}</a>
+                                        <a select-all="vm.notifications"
+                                           href="">{{ Lang::get('shop::admin.actions.select-all') }}</a>
                                     </li>
                                     <li>
-                                        <a select-none="vm.notifications" href="">{{ Lang::get('shop::admin.actions.select-none') }}</a>
+                                        <a select-none="vm.notifications"
+                                           href="">{{ Lang::get('shop::admin.actions.select-none') }}</a>
                                     </li>
                                     <li class="divider"></li>
                                     <li>
-                                        <a ng-confirm="vm.batchAccept()" href="">{{ Lang::get('shop::admin.actions.accept') }}</a>
+                                        <a ng-confirm="vm.batchAccept()"
+                                           href="">{{ Lang::get('shop::admin.actions.accept') }}</a>
                                     </li>
                                     <li>
-                                        <a ng-confirm="vm.batchReview()" href="">{{ Lang::get('shop::admin.actions.review') }}</a>
+                                        <a ng-confirm="vm.batchReview()"
+                                           href="">{{ Lang::get('shop::admin.actions.review') }}</a>
                                     </li>
                                     <li>
-                                        <a ng-really="vm.batchDeny()" href="">{{ Lang::get('shop::admin.actions.deny') }}</a>
+                                        <a ng-really="vm.batchDeny()"
+                                           href="">{{ Lang::get('shop::admin.actions.deny') }}</a>
                                     </li>
                                 </ul>
                             </div>
@@ -51,7 +60,8 @@
                     <tbody>
                     <tr ng-repeat="notification in vm.notifications">
                         <td width="10%" ng-click="$event.stopPropagation()">
-                            <input type="checkbox" class="filled-in" id="row@{{ $index + 1 }}" ng-model="notification.isSelected"/>
+                            <input type="checkbox" class="filled-in" id="row@{{ $index + 1 }}"
+                                   ng-model="notification.isSelected"/>
                             <label for="row@{{ $index + 1 }}">@{{ $index + 1 }}</label>
                         </td>
                         <td width="0%">&nbsp;</td>
@@ -63,12 +73,15 @@
                                 <div ng-switch="" on="notification.type">
 
                                     <div ng-switch-when="activate">
-                                        product @{{ notification.product.translations[vm.options.locale].name }} in @{{ notification.category.translations[vm.options.locale].name }}
+                                        product @{{ notification.product.translations[vm.options.locale].name }}
+                                        in @{{ notification.category.translations[vm.options.locale].name }}
                                         from @{{ notification.brand.translations[vm.options.locale].name }}
                                     </div>
 
                                     <div ng-switch-when="deactivate">
-                                        <strong>removing</strong> product @{{ notification.product.translations[vm.options.locale].name }} in @{{ notification.category.translations[vm.options.locale].name }}
+                                        <strong>removing</strong>
+                                        product @{{ notification.product.translations[vm.options.locale].name }}
+                                        in @{{ notification.category.translations[vm.options.locale].name }}
                                         from @{{ notification.brand.translations[vm.options.locale].name }}
                                     </div>
 
@@ -81,11 +94,14 @@
                                 <div ng-switch="" on="notification.type">
 
                                     <div ng-switch-when="activate">
-                                        products from @{{ notification.brand.translations[vm.options.locale].name }} in @{{ notification.category.translations[vm.options.locale].name }}
+                                        products from @{{ notification.brand.translations[vm.options.locale].name }}
+                                        in @{{ notification.category.translations[vm.options.locale].name }}
                                     </div>
 
                                     <div ng-switch-when="deactivate">
-                                        <strong>removing</strong> products from @{{ notification.brand.translations[vm.options.locale].name }} in @{{ notification.category.translations[vm.options.locale].name }}
+                                        <strong>removing</strong> products
+                                        from @{{ notification.brand.translations[vm.options.locale].name }}
+                                        in @{{ notification.category.translations[vm.options.locale].name }}
                                     </div>
 
                                 </div>
@@ -115,7 +131,9 @@
                 </table>
 
                 <div class="text-center">
-                    <uib-pagination total-items="vm.totalItems" items-per-page="50" ng-model="vm.page" ng-change="vm.load()" max-size="10" class="pagination-sm" boundary-links="true"></uib-pagination>
+                    <uib-pagination total-items="vm.totalItems" items-per-page="50" ng-model="vm.page"
+                                    ng-change="vm.load()" max-size="10" class="pagination-sm"
+                                    boundary-links="true"></uib-pagination>
                 </div>
             </div>
 

@@ -11,10 +11,12 @@
 
 
                                 <!-- CONTENT TABLE // -->
-                                <table align="Left" border="0" cellpadding="0" cellspacing="0" width="260" class="flexibleContainer">
+                                <table align="Left" border="0" cellpadding="0" cellspacing="0" width="260"
+                                       class="flexibleContainer">
                                     <tr>
                                         <td align="Left" valign="top" class="imageContent">
-                                            <img src="<?php echo asset($widget->present()->image_left) ?>" width="260" class="flexibleImage" style="max-width:260px;">
+                                            <img src="<?php echo asset($widget->present()->image_left) ?>" width="260"
+                                                 class="flexibleImage" style="max-width:260px;">
                                         </td>
                                     </tr>
                                 </table>
@@ -22,10 +24,12 @@
 
 
                                 <!-- CONTENT TABLE // -->
-                                <table align="Right" border="0" cellpadding="0" cellspacing="0" width="260" class="flexibleContainer">
+                                <table align="Right" border="0" cellpadding="0" cellspacing="0" width="260"
+                                       class="flexibleContainer">
                                     <tr>
                                         <td align="Left" valign="top" class="imageContentLast">
-                                            <img src="<?php echo asset($widget->present()->image_right) ?>" width="260" class="flexibleImage" style="max-width:260px;">
+                                            <img src="<?php echo asset($widget->present()->image_right) ?>" width="260"
+                                                 class="flexibleImage" style="max-width:260px;">
                                         </td>
                                     </tr>
                                 </table>

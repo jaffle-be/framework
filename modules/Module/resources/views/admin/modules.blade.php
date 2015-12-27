@@ -7,7 +7,8 @@
     <div class="ibox-content">
 
         <div class="form-group col-md-3" ng-repeat="module in vm.options.systemModules">
-            <input type="checkbox" name="modules" id="module@{{ module.id }}" class="filled-in" ng-model="module.activated" ng-change="vm.save(module)">
+            <input type="checkbox" name="modules" id="module@{{ module.id }}" class="filled-in"
+                   ng-model="module.activated" ng-change="vm.save(module)">
             <label for="module@{{ module.id }}">@{{ module.translations[vm.options.locale].name }}</label>
         </div>
 

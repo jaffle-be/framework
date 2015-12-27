@@ -14,10 +14,12 @@
 
 
                                             <!-- CONTENT TABLE // -->
-                                            <table align="Left" border="0" cellpadding="0" cellspacing="0" width="200" class="flexibleContainer">
+                                            <table align="Left" border="0" cellpadding="0" cellspacing="0" width="200"
+                                                   class="flexibleContainer">
                                                 <tr>
                                                     <td align="Left" valign="top" class="imageContent">
-                                                        <img src="<?php echo asset($widget->present()->image) ?>" width="200" class="flexibleImage" style="max-width:200px;">
+                                                        <img src="<?php echo asset($widget->present()->image) ?>"
+                                                             width="200" class="flexibleImage" style="max-width:200px;">
                                                     </td>
                                                 </tr>
                                             </table>
@@ -25,7 +27,8 @@
 
 
                                             <!-- CONTENT TABLE // -->
-                                            <table align="Right" border="0" cellpadding="0" cellspacing="0" width="280" class="flexibleContainer">
+                                            <table align="Right" border="0" cellpadding="0" cellspacing="0" width="280"
+                                                   class="flexibleContainer">
                                                 <tr>
                                                     <td valign="top" class="textContent">
                                                         <h3><?php echo $widget->present()->title($locale) ?></h3>

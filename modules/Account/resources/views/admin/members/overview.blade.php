@@ -1,4 +1,5 @@
-<div class="row wrapper-content" ng-controller="MembershipsController as vm" ng-init="vm.options = {{ system_options() }}">
+<div class="row wrapper-content" ng-controller="MembershipsController as vm"
+     ng-init="vm.options = {{ system_options() }}">
 
     <div class="row">
 
@@ -16,7 +17,8 @@
 
                         <ul class="invitations">
                             <li ng-repeat="invitation in vm.invitations">
-                                <a class="pull-right btn btn-danger" ng-really="vm.revokeInvitation(invitation)"><i class="fa fa-trash"></i></a>
+                                <a class="pull-right btn btn-danger" ng-really="vm.revokeInvitation(invitation)"><i
+                                        class="fa fa-trash"></i></a>
                                 @{{ invitation.email }} <br>
                                 {{ Lang::get('account::admin.users.since') }}: @{{ invitation.created_at | fromNow }}
                             </li>
@@ -25,14 +27,16 @@
                         <br>
 
                         <form name="invitationForm">
-                            <input autocomplete="off" class="form-control" type="text" name="email" id="email" placeholder="{{ Lang::get('account::admin.users.email') }}"/>
+                            <input autocomplete="off" class="form-control" type="text" name="email" id="email"
+                                   placeholder="{{ Lang::get('account::admin.users.email') }}"/>
 
                         </form>
 
                     </div>
 
                     <div class="text-center">
-                        <button class="btn btn-primary btn-lg" ng-click="vm.sendInvitation()">{{ Lang::get('account::admin.users.send') }}</button>
+                        <button class="btn btn-primary btn-lg"
+                                ng-click="vm.sendInvitation()">{{ Lang::get('account::admin.users.send') }}</button>
                     </div>
 
                     <input-errors errors="vm.invitationErrors"></input-errors>
@@ -68,14 +72,18 @@
                                     <div>@{{ membership.member.firstname + ' ' + membership.member.lastname }}</div>
                                     <div><a>@{{ membership.member.email }}</a></div>
                                     <div>
-                                        <i ng-show="membership.member.id == {{$account->owner->id}}" class="fa fa-key owner" title="{{ Lang::get('account::admin.members.owner') }}"></i>&nbsp;{{ Lang::get('account::admin.members.owner') }}
+                                        <i ng-show="membership.member.id == {{$account->owner->id}}"
+                                           class="fa fa-key owner"
+                                           title="{{ Lang::get('account::admin.members.owner') }}"></i>&nbsp;{{ Lang::get('account::admin.members.owner') }}
                                     </div>
 
                                     <div class="clearfix"></div>
 
                                     @if($account->owner->id == $user->id)
                                         <p>
-                                            <a class="btn btn-danger btn-lg" ng-really="vm.revokeMembership(membership)"><i class="fa fa-trash"></i></a>
+                                            <a class="btn btn-danger btn-lg"
+                                               ng-really="vm.revokeMembership(membership)"><i
+                                                    class="fa fa-trash"></i></a>
                                         </p>
                                     @endif
 
@@ -91,8 +99,12 @@
                                     <ul class="nav teams">
 
                                         <li ng-repeat="team in vm.teams">
-                                            <input type="checkbox" id="team@{{team.id}}forMembership@{{ membership.id }}" class="filled-in" ng-model="membership.teams[team.id].selected" ng-change="vm.toggleTeamMembership(team, membership)">
-                                            <label for="team@{{team.id}}forMembership@{{membership.id}}">@{{ team.translations[vm.options.locale].name }}</label>
+                                            <input type="checkbox"
+                                                   id="team@{{team.id}}forMembership@{{ membership.id }}"
+                                                   class="filled-in" ng-model="membership.teams[team.id].selected"
+                                                   ng-change="vm.toggleTeamMembership(team, membership)">
+                                            <label
+                                                for="team@{{team.id}}forMembership@{{membership.id}}">@{{ team.translations[vm.options.locale].name }}</label>
                                         </li>
 
                                     </ul>

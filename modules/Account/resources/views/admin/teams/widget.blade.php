@@ -17,7 +17,8 @@
 
                 <div class="input-group">
 
-                    <input type="text" class="form-control" autocomplete="off" placeholder="{{ Lang::get('account::admin.team.new-team') }}" ng-model="vm.newTeamName">
+                    <input type="text" class="form-control" autocomplete="off"
+                           placeholder="{{ Lang::get('account::admin.team.new-team') }}" ng-model="vm.newTeamName">
 
                     <div class="input-group-btn">
                         <button type="submit" class="btn btn-success"><i class="fa fa-plus"></i></button>
@@ -38,7 +39,8 @@
                 <div class="form-group">
 
                     <div class="input-group">
-                        <input type="text" class="form-control" ng-model="team.translations[vm.options.locale].name" ng-change="vm.updateTeam(team)">
+                        <input type="text" class="form-control" ng-model="team.translations[vm.options.locale].name"
+                               ng-change="vm.updateTeam(team)">
 
                         <div class="input-group-btn">
                             <button type="submit" class="btn btn-danger" ng-really="vm.deleteTeam(team)">
@@ -48,7 +50,9 @@
                     </div>
                 </div>
 
-                <textarea class="form-control autosize-lg" auto-size ng-model="team.translations[vm.options.locale].content" ng-change="vm.updateTeam(team)"></textarea>
+                <textarea class="form-control autosize-lg" auto-size
+                          ng-model="team.translations[vm.options.locale].content"
+                          ng-change="vm.updateTeam(team)"></textarea>
             </li>
 
         </ul>

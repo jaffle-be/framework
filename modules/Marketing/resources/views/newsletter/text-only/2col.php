@@ -16,7 +16,8 @@
                                     content tables are given set widths
                                     and the flexibleContainer class.
                                 -->
-                                <table align="Left" border="0" cellpadding="0" cellspacing="0" width="260" class="flexibleContainer">
+                                <table align="Left" border="0" cellpadding="0" cellspacing="0" width="260"
+                                       class="flexibleContainer">
                                     <tr>
                                         <td valign="top" class="textContent">
                                             <h3><?php echo $widget->present()->title_left($locale) ?></h3>
@@ -29,7 +30,8 @@
 
 
                                 <!-- CONTENT TABLE // -->
-                                <table align="Right" border="0" cellpadding="0" cellspacing="0" width="260" class="flexibleContainer">
+                                <table align="Right" border="0" cellpadding="0" cellspacing="0" width="260"
+                                       class="flexibleContainer">
                                     <tr>
                                         <td valign="top" class="textContentLast">
                                             <h3><?php echo $widget->present()->title_right($locale) ?></h3>

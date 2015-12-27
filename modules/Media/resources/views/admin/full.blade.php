@@ -8,7 +8,8 @@
                 </uib-tab-heading>
                 <div class="ibox-content">
 
-                    <image-input owner-type="'{{ $type }}'" owner-id="$state.params.id" locale="vm.options.locale" images="vm.{{ $model }}.images"></image-input>
+                    <image-input owner-type="'{{ $type }}'" owner-id="$state.params.id" locale="vm.options.locale"
+                                 images="vm.{{ $model }}.images"></image-input>
 
                 </div>
             </uib-tab>
@@ -18,7 +19,8 @@
                 </uib-tab-heading>
                 <div class="ibox-content">
 
-                    <video-input owner-type="'{{ $type }}'" owner-id="$state.params.id" locale="vm.options.locale" videos="vm.{{ $model }}.videos"></video-input>
+                    <video-input owner-type="'{{ $type }}'" owner-id="$state.params.id" locale="vm.options.locale"
+                                 videos="vm.{{ $model }}.videos"></video-input>
 
                 </div>
             </uib-tab>
@@ -29,7 +31,8 @@
 
                 <div class="ibox-content">
 
-                    <infographic-input owner-type="'{{ $type }}'" owner-id="$state.params.id" locale="vm.options.locale" infographics="vm.{{ $model }}.infographics"></infographic-input>
+                    <infographic-input owner-type="'{{ $type }}'" owner-id="$state.params.id" locale="vm.options.locale"
+                                       infographics="vm.{{ $model }}.infographics"></infographic-input>
 
                 </div>
             </uib-tab>
@@ -40,7 +43,8 @@
                 </uib-tab-heading>
                 <div class="ibox-content">
 
-                    <file-input owner-type="'{{ $type }}'" owner-id="$state.params.id" locale="vm.options.locale" files="vm.{{ $model }}.files"></file-input>
+                    <file-input owner-type="'{{ $type }}'" owner-id="$state.params.id" locale="vm.options.locale"
+                                files="vm.{{ $model }}.files"></file-input>
 
                 </div>
             </uib-tab>

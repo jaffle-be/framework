@@ -12,7 +12,8 @@
 
                 <div class="ibox-content">
 
-                    <tag-input locale="vm.options.locale" owner-type="'product'" owner-id="$state.params.id"></tag-input>
+                    <tag-input locale="vm.options.locale" owner-type="'product'"
+                               owner-id="$state.params.id"></tag-input>
 
                 </div>
 
@@ -25,7 +26,8 @@
 
                 <div class="ibox-content">
 
-                    <seo-input locale="vm.options.locale" owner-type="'product'" owner-id="$state.params.id"></seo-input>
+                    <seo-input locale="vm.options.locale" owner-type="'product'"
+                               owner-id="$state.params.id"></seo-input>
 
                 </div>
 
