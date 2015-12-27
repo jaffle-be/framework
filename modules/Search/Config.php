@@ -4,6 +4,10 @@ namespace Modules\Search;
 
 use Modules\System\Translatable\Translatable;
 
+/**
+ * Class Config
+ * @package Modules\Search
+ */
 class Config
 {
     protected $config;
@@ -14,6 +18,9 @@ class Config
 
     protected $inverted = [];
 
+    /**
+     * @param array $config
+     */
     public function __construct(array $config)
     {
         $this->config = $config;
@@ -50,6 +57,10 @@ class Config
         }
     }
 
+    /**
+     * @param $type
+     * @return array
+     */
     public function getWith($type)
     {
         $with = isset($this->types[$type]['with']) ? $this->types[$type]['with'] : [];
@@ -69,20 +80,26 @@ class Config
     }
 
     /**
-     *
+     * @param $type
+     * @return bool
      */
     protected function usesTranslations($type)
     {
         return uses_trait($this->getClass($type), Translatable::class);
     }
 
+    /**
+     * @param $type
+     * @return mixed
+     */
     public function getClass($type)
     {
         return $this->types[$type]['class'];
     }
 
     /**
-     *
+     * @param $type
+     * @return
      */
     protected function getInstance($type)
     {
@@ -98,6 +115,10 @@ class Config
      * $inverted
      * $config
      * $class
+     * @param $nested
+     * @param $parent
+     * @param $key
+     * @param $relation
      */
     protected function invert($nested, $parent, $key, $relation)
     {
@@ -117,16 +138,26 @@ class Config
         return $this->index;
     }
 
+    /**
+     * @return array
+     */
     public function getTypes()
     {
         return array_keys($this->types);
     }
 
+    /**
+     * @param $type
+     * @return mixed
+     */
     public function getType($type)
     {
         return $this->types[$type];
     }
 
+    /**
+     * @return array
+     */
     public function getInvertedTypes()
     {
         return $this->inverted;

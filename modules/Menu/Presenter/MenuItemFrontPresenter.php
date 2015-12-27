@@ -4,8 +4,15 @@ namespace Modules\Menu\Presenter;
 
 use Modules\System\Presenter\BasePresenter;
 
+/**
+ * Class MenuItemFrontPresenter
+ * @package Modules\Menu\Presenter
+ */
 class MenuItemFrontPresenter extends BasePresenter
 {
+    /**
+     * @return string
+     */
     public function url()
     {
         if ($this->entity->page) {
@@ -19,6 +26,9 @@ class MenuItemFrontPresenter extends BasePresenter
         return $this->entity->url;
     }
 
+    /**
+     * @return string
+     */
     protected function pageUrl()
     {
         $page = $this->entity->page;
@@ -28,6 +38,9 @@ class MenuItemFrontPresenter extends BasePresenter
         return '/'.$translation->slug->uri;
     }
 
+    /**
+     * @return bool
+     */
     public function shouldPresent()
     {
         //item should not relate to a page,
@@ -58,6 +71,9 @@ class MenuItemFrontPresenter extends BasePresenter
         return $activated && $this->entity->page_id && $this->entity->page->translate();
     }
 
+    /**
+     * @return bool
+     */
     protected function validRoute()
     {
         $modules = app('Modules\Account\AccountManager')->account()->modules;

@@ -4,8 +4,15 @@ namespace Modules\Contact\Requests;
 
 use App\Http\Requests\Request;
 
+/**
+ * Class NewAddressRequest
+ * @package Modules\Contact\Requests
+ */
 class NewAddressRequest extends Request
 {
+    /**
+     * @return array
+     */
     public function rules()
     {
         return [
@@ -20,6 +27,9 @@ class NewAddressRequest extends Request
         ];
     }
 
+    /**
+     * @return bool
+     */
     public function authorize()
     {
         return true;

@@ -9,6 +9,10 @@ use Illuminate\Http\Request;
 use Modules\Users\Contracts\Throttler;
 use Predis\Client;
 
+/**
+ * Class ThrottleManager
+ * @package Modules\Users\Auth\Throttler
+ */
 class ThrottleManager implements Throttler
 {
     const BASE_CACHE_KEY = 'users:auth:throttlers:';
@@ -39,7 +43,11 @@ class ThrottleManager implements Throttler
     protected $ip;
 
     /**
-     *
+     * @param Client $redis
+     * @param Repository $config
+     * @param Queue $queue
+     * @param Carbon $carbon
+     * @param Request $request
      */
     public function __construct(Client $redis, Repository $config, Queue $queue, Carbon $carbon, Request $request)
     {
@@ -57,7 +65,8 @@ class ThrottleManager implements Throttler
     /**
      * Is the current user allowed to do another attempt.
      *
-     *
+     * @param $email
+     * @return bool|mixed
      */
     public function allows($email)
     {
@@ -65,7 +74,8 @@ class ThrottleManager implements Throttler
     }
 
     /**
-     *
+     * @param $email
+     * @return mixed|void
      */
     public function throttle($email)
     {
@@ -75,7 +85,7 @@ class ThrottleManager implements Throttler
     }
 
     /**
-     *
+     * @param $email
      */
     protected function startCooldown($email)
     {
@@ -86,6 +96,10 @@ class ThrottleManager implements Throttler
         $this->queue->later($delay, new Cooldown($this->ip, $email));
     }
 
+    /**
+     * @param $ip
+     * @param $email
+     */
     public function cooldown($ip, $email)
     {
         $this->throttleIp(false, $ip);
@@ -101,7 +115,8 @@ class ThrottleManager implements Throttler
     }
 
     /**
-     *
+     * @param $email
+     * @return bool
      */
     protected function allowsEmail($email)
     {
@@ -109,7 +124,8 @@ class ThrottleManager implements Throttler
     }
 
     /**
-     *
+     * @param $field
+     * @return string
      */
     protected function key($field)
     {
@@ -127,7 +143,8 @@ class ThrottleManager implements Throttler
     }
 
     /**
-     *
+     * @param $email
+     * @return int
      */
     protected function getEmailCount($email)
     {
@@ -137,7 +154,9 @@ class ThrottleManager implements Throttler
     }
 
     /**
-     *
+     * @param $increment
+     * @param null $ip
+     * @return int
      */
     protected function throttleIp($increment, $ip = null)
     {
@@ -149,7 +168,9 @@ class ThrottleManager implements Throttler
     }
 
     /**
-     *
+     * @param $increment
+     * @param $email
+     * @return int
      */
     protected function throttleEmail($increment, $email)
     {

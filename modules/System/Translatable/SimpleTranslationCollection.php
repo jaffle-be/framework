@@ -4,6 +4,10 @@ namespace Modules\System\Translatable;
 
 use Illuminate\Database\Eloquent\Collection;
 
+/**
+ * Class SimpleTranslationCollection
+ * @package Modules\System\Translatable
+ */
 class SimpleTranslationCollection extends Collection
 {
     /**

@@ -29,7 +29,7 @@ trait SearchableTrait
     protected static $searchableRouting = false;
 
     /**
-     *
+     * @param SearchServiceInterface $client
      */
     public function setSearchableService(SearchServiceInterface $client)
     {
@@ -45,7 +45,7 @@ trait SearchableTrait
     }
 
     /**
-     *
+     * @param $index
      */
     public function setSearchableIndex($index)
     {
@@ -60,6 +60,9 @@ trait SearchableTrait
         return static::$searchableIndex;
     }
 
+    /**
+     * @return mixed
+     */
     public function useSearchableRouting()
     {
         return config('search.types.'.$this->getSearchableType().'.routing', false);
@@ -102,7 +105,8 @@ trait SearchableTrait
     }
 
     /**
-     *
+     * @param $event
+     * @return string
      */
     public function getSearchableEventname($event)
     {
@@ -157,6 +161,11 @@ trait SearchableTrait
         return $model;
     }
 
+    /**
+     * @param $relations
+     * @param $relation
+     * @return mixed
+     */
     protected function getSearchableNestedDocument($relations, $relation)
     {
         if (isset($relations[$relation]) && ! empty($relations[$relation])) {
@@ -164,6 +173,11 @@ trait SearchableTrait
         }
     }
 
+    /**
+     * @param array $with
+     * @return array
+     * @throws \Exception
+     */
     public function getSearchableMapping(array $with)
     {
         $mapping = [];
@@ -218,7 +232,9 @@ trait SearchableTrait
     }
 
     /**
-     *
+     * @param $relation
+     * @param $model
+     * @return string
      */
     protected function getRelationType($relation, $model)
     {
@@ -231,7 +247,8 @@ trait SearchableTrait
     }
 
     /**
-     *
+     * @param $type
+     * @return bool
      */
     protected function relationNeedsLooping($type)
     {
@@ -247,7 +264,9 @@ trait SearchableTrait
     }
 
     /**
-     *
+     * @param $build
+     * @param $relation_data
+     * @return
      */
     protected function getLoopedRelationData($build, $relation_data)
     {
@@ -265,7 +284,9 @@ trait SearchableTrait
     }
 
     /**
-     *
+     * @param $build
+     * @param $relation_data
+     * @return
      */
     protected function getSimpleRelationData($build, $relation_data)
     {
@@ -284,6 +305,10 @@ trait SearchableTrait
         return $instance;
     }
 
+    /**
+     * @param array $data
+     * @return array
+     */
     protected function searchableShiftTranslations(array $data)
     {
         foreach ($data as $key => &$value) {
@@ -303,7 +328,8 @@ trait SearchableTrait
     /**
      * keep this public, this allows for easy searching inheriting.
      *
-     *
+     * @param Searchable $inheritFrom
+     * @return array
      */
     public function getSearchableSuggestData(Searchable $inheritFrom = null)
     {
@@ -326,7 +352,9 @@ trait SearchableTrait
     }
 
     /**
-     *
+     * @param $locale
+     * @param Searchable $inheritFrom
+     * @return string
      */
     protected function getSearchableSuggestName($locale, Searchable $inheritFrom = null)
     {
@@ -340,7 +368,8 @@ trait SearchableTrait
     }
 
     /**
-     *
+     * @param $translation
+     * @return array
      */
     protected function getSearchableSuggestPayload($translation)
     {

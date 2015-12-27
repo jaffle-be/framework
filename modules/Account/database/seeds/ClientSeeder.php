@@ -3,6 +3,9 @@
 use Modules\Account\Client;
 use Modules\System\Seeder;
 
+/**
+ * Class ClientSeeder
+ */
 class ClientSeeder extends Seeder
 {
     public function run()

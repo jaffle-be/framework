@@ -8,23 +8,43 @@ use Modules\System\Locale;
 use Modules\System\Seo\SeoProperty;
 use Modules\Theme\ThemeManager;
 
+/**
+ * Class SeoController
+ * @package Modules\System\Http\Admin
+ */
 class SeoController extends AdminController
 {
+    /**
+     * @param ThemeManager $theme
+     */
     public function __construct(ThemeManager $theme)
     {
         parent::__construct($theme);
     }
 
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function widget()
     {
         return view('system::admin.seo');
     }
 
+    /**
+     * @param Request $request
+     * @return mixed
+     * @throws \Exception
+     */
     public function index(Request $request)
     {
         return $this->owner($request)->seo;
     }
 
+    /**
+     * @param Request $request
+     * @param Locale $locale
+     * @throws \Exception
+     */
     public function store(Request $request, Locale $locale)
     {
         $owner = $this->owner($request);
@@ -62,6 +82,10 @@ class SeoController extends AdminController
         }
     }
 
+    /**
+     * @param Request $request
+     * @return bool
+     */
     protected function hasData(Request $request)
     {
         foreach (['title', 'description', 'keywords'] as $key) {
@@ -73,6 +97,11 @@ class SeoController extends AdminController
         return false;
     }
 
+    /**
+     * @param Request $request
+     * @return mixed
+     * @throws \Exception
+     */
     protected function owner(Request $request)
     {
         $ownerType = $request->get('ownerType');

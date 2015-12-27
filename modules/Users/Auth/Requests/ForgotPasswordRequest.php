@@ -4,6 +4,10 @@ namespace Modules\Users\Auth\Requests;
 
 use App\Http\Requests\Request;
 
+/**
+ * Class ForgotPasswordRequest
+ * @package Modules\Users\Auth\Requests
+ */
 class ForgotPasswordRequest extends Request
 {
     /**

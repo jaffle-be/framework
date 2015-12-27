@@ -7,6 +7,10 @@ use Modules\Shop\Product\Property;
 use Modules\Shop\Product\PropertyGroup;
 use Modules\System\ServiceProvider;
 
+/**
+ * Class ShopServiceProvider
+ * @package Modules\Shop\Providers
+ */
 class ShopServiceProvider extends ServiceProvider
 {
     protected $namespace = 'shop';

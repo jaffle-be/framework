@@ -8,6 +8,10 @@ use Modules\Shop\Gamma\CategorySelection;
 use Modules\Shop\Gamma\GammaNotification;
 use Modules\Shop\Product\Category;
 
+/**
+ * Class NotifyCategoryGlobalDeactivation
+ * @package Modules\Shop\Jobs\Gamma\Notification
+ */
 class NotifyCategoryGlobalDeactivation extends Job
 {
     use GammaNotificationHelpers;
@@ -22,12 +26,19 @@ class NotifyCategoryGlobalDeactivation extends Job
      */
     protected $category;
 
+    /**
+     * @param Category $category
+     * @param Account $account
+     */
     public function __construct(Category $category, Account $account)
     {
         $this->account = $account;
         $this->category = $category;
     }
 
+    /**
+     * @param GammaNotification $notification
+     */
     public function handle(GammaNotification $notification)
     {
         $this->category->selection->delete();
@@ -51,7 +62,10 @@ class NotifyCategoryGlobalDeactivation extends Job
     }
 
     /**
-     *
+     * @param GammaNotification $notification
+     * @param $brand
+     * @param $category
+     * @return
      */
     protected function findExistingCombination(GammaNotification $notification, $brand, $category)
     {

@@ -4,8 +4,15 @@ namespace Modules\Tags;
 
 use Illuminate\Support\Collection;
 
+/**
+ * Class CollectionWithTaggables
+ * @package Modules\Tags
+ */
 trait CollectionWithTaggables
 {
+    /**
+     * @return Collection
+     */
     public function getUniqueTags()
     {
         $tags = new Collection();

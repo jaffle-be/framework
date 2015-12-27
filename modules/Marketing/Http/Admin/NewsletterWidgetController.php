@@ -8,8 +8,17 @@ use Modules\Marketing\Newsletter\CampaignWidget;
 use Modules\Marketing\Newsletter\CampaignWidgetCollection;
 use Modules\System\Http\AdminController;
 
+/**
+ * Class NewsletterWidgetController
+ * @package Modules\Marketing\Http\Admin
+ */
 class NewsletterWidgetController extends AdminController
 {
+    /**
+     * @param Campaign $campaign
+     * @param Request $request
+     * @return CampaignWidget|void
+     */
     public function store(Campaign $campaign, Request $request)
     {
         $this->validate($request, ['name' => 'required']);
@@ -23,6 +32,12 @@ class NewsletterWidgetController extends AdminController
         return $widget->save() ? $widget : abort(500);
     }
 
+    /**
+     * @param Campaign $campaign
+     * @param CampaignWidget $widget
+     * @param Request $request
+     * @return mixed
+     */
     public function update(Campaign $campaign, CampaignWidget $widget, Request $request)
     {
         if ($campaign->widgets->contains($widget->id)) {
@@ -41,6 +56,13 @@ class NewsletterWidgetController extends AdminController
         }
     }
 
+    /**
+     * @param Campaign $campaign
+     * @param CampaignWidget $widget
+     * @param Request $request
+     * @return CampaignWidget
+     * @throws \Exception
+     */
     public function destroy(Campaign $campaign, CampaignWidget $widget, Request $request)
     {
         if ($campaign->widgets->contains($widget->id)) {

@@ -14,6 +14,10 @@ use Modules\Search\Model\Searchable;
 use Modules\Search\Model\SearchableTrait;
 use Modules\System\Translatable\Translatable;
 
+/**
+ * Class User
+ * @package Modules\Users
+ */
 class User extends Model implements Authenticatable, MembershipOwner, AddressOwner, StoresMedia, Searchable
 {
     use OwnsAddress;
@@ -63,31 +67,49 @@ class User extends Model implements Authenticatable, MembershipOwner, AddressOwn
         ],
     ];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function resetToken()
     {
         return $this->belongsTo('Modules\Users\Auth\Tokens\Token', 'reset_token_id');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function confirmationToken()
     {
         return $this->belongsTo('Modules\Users\Auth\Tokens\Token', 'confirmation_token_id');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
     public function projects()
     {
         return $this->belongsToMany('Modules\Portfolio\Project', 'portfolio_project_collaborators', 'user_id', 'project_id');
     }
 
+    /**
+     * @return $this
+     */
     public function skills()
     {
         return $this->belongsToMany('Modules\Users\Skill', 'user_skills_selection', 'user_id', 'skill_id')->withPivot(['level']);
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function posts()
     {
         return $this->hasMany('Modules\Blog\Post', 'user_id');
     }
 
+    /**
+     * @return string
+     */
     public function getNameAttribute()
     {
         $fullname = trim($this->firstname.' '.$this->lastname);
@@ -95,6 +117,9 @@ class User extends Model implements Authenticatable, MembershipOwner, AddressOwn
         return $fullname ?: 'John Doe';
     }
 
+    /**
+     * @return string
+     */
     public function getFunctionAttribute()
     {
         return isset($this->attributes['function']) ? $this->attributes['function'] : 'Happy teammember';
@@ -112,6 +137,7 @@ class User extends Model implements Authenticatable, MembershipOwner, AddressOwn
 
     /**
      * Set the token value for the "remember me" session.
+     * @param string $value
      */
     public function setRememberToken($value)
     {
@@ -148,6 +174,9 @@ class User extends Model implements Authenticatable, MembershipOwner, AddressOwn
         return $this->password;
     }
 
+    /**
+     * @return string
+     */
     public function getAuthIdentifierName()
     {
         return $this->getKeyName();

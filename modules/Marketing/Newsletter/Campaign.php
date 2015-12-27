@@ -8,6 +8,10 @@ use Modules\Media\StoringMedia;
 use Modules\System\Scopes\ModelAccountResource;
 use Modules\System\Translatable\Translatable;
 
+/**
+ * Class Campaign
+ * @package Modules\Marketing\Newsletter
+ */
 class Campaign extends Model implements StoresMedia
 {
     protected $media = '{account}/newsletters';
@@ -28,11 +32,17 @@ class Campaign extends Model implements StoresMedia
         'use_intro' => 'boolean',
     ];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function user()
     {
         return $this->belongsTo('Modules\Users\User');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function widgets()
     {
         return $this->hasMany('Modules\Marketing\Newsletter\CampaignWidget', 'campaign_id');

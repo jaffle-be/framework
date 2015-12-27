@@ -5,6 +5,10 @@ namespace Modules\Theme;
 use Illuminate\Contracts\Mail\Mailer as MailContract;
 use Illuminate\Mail\Mailer;
 
+/**
+ * Class ThemeMailer
+ * @package Modules\Theme
+ */
 class ThemeMailer implements MailContract
 {
     /**
@@ -18,7 +22,8 @@ class ThemeMailer implements MailContract
     protected $mailer;
 
     /**
-     *
+     * @param Theme $theme
+     * @param Mailer $mailer
      */
     public function __construct(Theme $theme, Mailer $mailer)
     {
@@ -30,7 +35,9 @@ class ThemeMailer implements MailContract
     /**
      * Send a new message when only a raw text part.
      *
-     *
+     * @param string $text
+     * @param \Closure|string $callback
+     * @return int
      */
     public function raw($text, $callback)
     {
@@ -38,8 +45,10 @@ class ThemeMailer implements MailContract
     }
 
     /**
+     * @param array|string $view
+     * @param array $data
+     * @param \Closure|string $callback
      * @throws \Exception
-     *
      */
     public function send($view, array $data, $callback)
     {
@@ -70,6 +79,10 @@ class ThemeMailer implements MailContract
         return $result;
     }
 
+    /**
+     * @param $data
+     * @throws \Exception
+     */
     protected function validateData($data)
     {
         if (! isset($data['email_from'], $data['email_from_name'], $data['email_to'], $data['root_url'])) {
@@ -77,11 +90,18 @@ class ThemeMailer implements MailContract
         }
     }
 
+    /**
+     * @return mixed
+     */
     protected function resolveThemeTemplate()
     {
         return config('theme.email_template');
     }
 
+    /**
+     * @param $new
+     * @return mixed
+     */
     protected function setRootUrl($new)
     {
         $old = config('app.url');
@@ -94,7 +114,9 @@ class ThemeMailer implements MailContract
     }
 
     /**
-     *
+     * @param array $data
+     * @param $callback
+     * @return \Closure
      */
     protected function stringClosure(array $data, $callback)
     {
@@ -108,7 +130,9 @@ class ThemeMailer implements MailContract
     }
 
     /**
-     *
+     * @param array $data
+     * @param $callback
+     * @return \Closure
      */
     protected function closureClosure(array $data, $callback)
     {

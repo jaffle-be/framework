@@ -10,6 +10,10 @@ use Modules\System\Presenter\PresentableTrait;
 use Modules\System\Sluggable\Sluggable;
 use Modules\System\Translatable\TranslationModel;
 
+/**
+ * Class BrandTranslation
+ * @package Modules\Shop\Product
+ */
 class BrandTranslation extends TranslationModel implements SluggableInterface, PresentableEntity, Searchable
 {
     use Sluggable, PresentableTrait;
@@ -35,6 +39,9 @@ class BrandTranslation extends TranslationModel implements SluggableInterface, P
         ],
     ];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function brand()
     {
         return $this->belongsTo('Modules\Shop\Product\Brand');

@@ -11,14 +11,30 @@ use Modules\Account\AccountRepositoryInterface;
 use Modules\System\Http\AdminController;
 use Pusher;
 
+/**
+ * Class SystemController
+ * @package Modules\System\Http\Admin
+ */
 class SystemController extends AdminController
 {
+    /**
+     * @param Repository $config
+     * @param Application $app
+     * @return string
+     */
     public function index(Repository $config, Application $app)
     {
         //this should return all settings needed for our angular app to work. It might be that this isn't even being called yet.
         return system_options();
     }
 
+    /**
+     * @param Request $request
+     * @param Guard $guard
+     * @param AccountManager $manager
+     * @param Pusher $pusher
+     * @return string
+     */
     public function pusher(Request $request, Guard $guard, AccountManager $manager, Pusher $pusher)
     {
         $user = $guard->user();
@@ -35,6 +51,12 @@ class SystemController extends AdminController
         }
     }
 
+    /**
+     * @param Request $request
+     * @param AccountManager $accounts
+     * @param AccountRepositoryInterface $repository
+     * @param Pusher $pusher
+     */
     public function locale(Request $request, AccountManager $accounts, AccountRepositoryInterface $repository, Pusher $pusher)
     {
         $account = $accounts->account();

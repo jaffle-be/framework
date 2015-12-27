@@ -4,6 +4,10 @@ namespace Modules\Marketing\Newsletter;
 
 use Illuminate\Support\Collection;
 
+/**
+ * Class ReportFormatter
+ * @package Modules\Marketing\Newsletter
+ */
 class ReportFormatter
 {
     protected $fields = [
@@ -49,6 +53,10 @@ class ReportFormatter
         'abuse_reports',
     ];
 
+    /**
+     * @param $result
+     * @return Collection
+     */
     public function format($result)
     {
         $showing = array_only($result, $this->fields);

@@ -5,6 +5,10 @@ namespace Modules\Menu\Providers;
 use Modules\Menu\MenuManager;
 use Modules\System\ServiceProvider;
 
+/**
+ * Class MenuServiceProvider
+ * @package Modules\Menu\Providers
+ */
 class MenuServiceProvider extends ServiceProvider
 {
     protected $namespace = 'menu';

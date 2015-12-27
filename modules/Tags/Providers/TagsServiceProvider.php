@@ -4,6 +4,10 @@ namespace Modules\Tags\Providers;
 
 use Modules\System\ServiceProvider;
 
+/**
+ * Class TagsServiceProvider
+ * @package Modules\Tags\Providers
+ */
 class TagsServiceProvider extends ServiceProvider
 {
     protected $namespace = 'tags';

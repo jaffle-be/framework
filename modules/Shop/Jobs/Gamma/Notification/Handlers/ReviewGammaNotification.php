@@ -10,15 +10,30 @@ use Modules\Shop\Gamma\ProductSelection;
 use Modules\Shop\Product\CatalogRepositoryInterface;
 use Pusher;
 
+/**
+ * Class ReviewGammaNotification
+ * @package Modules\Shop\Jobs\Gamma\Notification\Handlers
+ */
 class ReviewGammaNotification extends Job implements ShouldQueue
 {
     protected $notification;
 
+    /**
+     * @param GammaNotification $notification
+     */
     public function __construct(GammaNotification $notification)
     {
         $this->notification = $notification;
     }
 
+    /**
+     * @param GammaSelection $gamma
+     * @param Pusher $pusher
+     * @param CatalogRepositoryInterface $catalog
+     * @param ProductSelection $productGamma
+     * @param GammaNotification $notifications
+     * @throws \Exception
+     */
     public function handle(GammaSelection $gamma, Pusher $pusher, CatalogRepositoryInterface $catalog, ProductSelection $productGamma, GammaNotification $notifications)
     {
         //we should put all products online within this scope.
@@ -47,7 +62,8 @@ class ReviewGammaNotification extends Job implements ShouldQueue
     }
 
     /**
-     *
+     * @param GammaSelection $gamma
+     * @param $notification
      */
     protected function insertNewGammaSelection(GammaSelection $gamma, $notification)
     {
@@ -62,7 +78,9 @@ class ReviewGammaNotification extends Job implements ShouldQueue
     }
 
     /**
-     *
+     * @param CatalogRepositoryInterface $catalog
+     * @param ProductSelection $selections
+     * @param $status
      */
     protected function notifyWithinScope(CatalogRepositoryInterface $catalog, ProductSelection $selections, $status)
     {
@@ -99,7 +117,8 @@ class ReviewGammaNotification extends Job implements ShouldQueue
     }
 
     /**
-     *
+     * @param GammaSelection $gamma
+     * @param $notification
      */
     protected function deleteExistingGammaSelection(GammaSelection $gamma, $notification)
     {
@@ -110,6 +129,10 @@ class ReviewGammaNotification extends Job implements ShouldQueue
         }
     }
 
+    /**
+     * @param GammaNotification $notifications
+     * @param $status
+     */
     protected function cancelNotifications(GammaNotification $notifications, $status)
     {
         $existing = $notifications->whereNotNull('product_id')

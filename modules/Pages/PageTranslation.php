@@ -13,6 +13,10 @@ use Modules\System\Sluggable\OwnsSlug;
 use Modules\System\Sluggable\SiteSluggable;
 use Modules\System\Translatable\TranslationModel;
 
+/**
+ * Class PageTranslation
+ * @package Modules\Pages
+ */
 class PageTranslation extends TranslationModel implements Searchable, SluggableInterface, OwnsSlug, PresentableEntity, PresentableCache
 {
     use SearchableTrait, SiteSluggable, PresentableTrait, FrontScoping;
@@ -31,11 +35,17 @@ class PageTranslation extends TranslationModel implements Searchable, SluggableI
         'published' => 'boolean',
     ];
 
+    /**
+     * @return mixed
+     */
     public function getAccount()
     {
         return $this->page->account;
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function page()
     {
         return $this->belongsTo('Modules\Pages\Page');

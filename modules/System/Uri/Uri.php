@@ -6,6 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 use Modules\System\Scopes\ModelLocaleSpecificResource;
 use Modules\System\Sluggable\Sluggable;
 
+/**
+ * Class Uri
+ * @package Modules\System\Uri
+ */
 class Uri extends Model
 {
     use Sluggable;
@@ -20,6 +24,9 @@ class Uri extends Model
         'save_to' => 'uri',
     ];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\MorphTo
+     */
     public function owner()
     {
         return $this->morphTo();

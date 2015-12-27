@@ -8,10 +8,22 @@ use Modules\Shop\Jobs\Gamma\DeactivateProduct;
 use Modules\Shop\Product\Category;
 use Modules\Shop\Product\Product;
 
+/**
+ * Class ProductCategoryManager
+ * @package Modules\Shop\Gamma
+ */
 class ProductCategoryManager
 {
     use DispatchesJobs;
 
+    /**
+     * @param GammaSelection $gamma
+     * @param ProductSelection $selections
+     * @param Product $product
+     * @param Category $category
+     * @param Account $account
+     * @param GammaNotification $notifications
+     */
     public function __construct(GammaSelection $gamma, ProductSelection $selections, Product $product, Category $category, Account $account, GammaNotification $notifications)
     {
         $this->gamma = $gamma;
@@ -22,6 +34,9 @@ class ProductCategoryManager
         $this->notifications = $notifications;
     }
 
+    /**
+     * @param $payload
+     */
     public function attach($payload)
     {
         //when attaching a category, need to make sure people with this selected are notified
@@ -35,6 +50,9 @@ class ProductCategoryManager
         }
     }
 
+    /**
+     * @param $payload
+     */
     public function detach($payload)
     {
         $category_id = $payload['category_id'];
@@ -79,7 +97,9 @@ class ProductCategoryManager
      * therefor -> we should use the table to query,
      * not the eloquent instance.
      *
-     *
+     * @param $product
+     * @param $category
+     * @return \Illuminate\Database\Eloquent\Collection|static[]
      */
     protected function records($product, $category)
     {
@@ -91,6 +111,12 @@ class ProductCategoryManager
             ->get();
     }
 
+    /**
+     * @param $accountid
+     * @param $product
+     * @param $category_id
+     * @param $status
+     */
     protected function notify($accountid, $product, $category_id, $status)
     {
         $this->notifications->create([
@@ -103,7 +129,8 @@ class ProductCategoryManager
     }
 
     /**
-     *
+     * @param ProductSelection $instance
+     * @return bool
      */
     protected function otherCategories(ProductSelection $instance)
     {

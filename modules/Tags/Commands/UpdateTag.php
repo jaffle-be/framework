@@ -5,6 +5,10 @@ namespace Modules\Tags\Commands;
 use App\Jobs\Job;
 use Modules\Tags\Tag;
 
+/**
+ * Class UpdateTag
+ * @package Modules\Tags\Commands
+ */
 class UpdateTag extends Job
 {
     /**
@@ -18,7 +22,8 @@ class UpdateTag extends Job
     protected $input;
 
     /**
-     *
+     * @param Tag $tag
+     * @param array $input
      */
     public function __construct(Tag $tag, array $input)
     {

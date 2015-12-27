@@ -7,6 +7,10 @@ use Illuminate\Contracts\Auth\Guard;
 use Modules\Users\Contracts\Throttler;
 use Modules\Users\Contracts\UserRepositoryInterface;
 
+/**
+ * Class Signin
+ * @package Modules\Users\Auth\Commands
+ */
 class Signin extends Job
 {
     protected $credentials;
@@ -22,12 +26,22 @@ class Signin extends Job
 
     protected $attemptingOptions = ['confirmed' => 1];
 
+    /**
+     * @param $credentials
+     * @param $remember_me
+     */
     public function __construct($credentials, $remember_me)
     {
         $this->credentials = $credentials;
         $this->remember_me = $remember_me;
     }
 
+    /**
+     * @param Guard $auth
+     * @param Throttler $throttler
+     * @param UserRepositoryInterface $users
+     * @return bool|\Illuminate\Contracts\Auth\Authenticatable|null|string
+     */
     public function handle(Guard $auth, Throttler $throttler, UserRepositoryInterface $users)
     {
         $credentials = $this->getCredentialsForAttempt();
@@ -53,6 +67,9 @@ class Signin extends Job
         return false;
     }
 
+    /**
+     * @return array
+     */
     protected function getCredentialsForAttempt()
     {
         return array_merge($this->attemptingOptions, $this->credentials);

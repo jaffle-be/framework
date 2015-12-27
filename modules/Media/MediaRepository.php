@@ -7,6 +7,10 @@ use Modules\Media\Files\File;
 use Modules\Media\Infographics\Infographic;
 use Modules\Media\Video\Video;
 
+/**
+ * Class MediaRepository
+ * @package Modules\Media
+ */
 class MediaRepository implements MediaRepositoryInterface
 {
     protected $images;
@@ -19,6 +23,13 @@ class MediaRepository implements MediaRepositoryInterface
 
     protected $files;
 
+    /**
+     * @param Configurator $config
+     * @param Image $images
+     * @param Video $videos
+     * @param Infographic $infographics
+     * @param File $files
+     */
     public function __construct(Configurator $config, Image $images, Video $videos, Infographic $infographics, File $files)
     {
         $this->config = $config;
@@ -32,6 +43,11 @@ class MediaRepository implements MediaRepositoryInterface
         $this->files = $files;
     }
 
+    /**
+     * @param $type
+     * @param $id
+     * @return mixed
+     */
     public function findOwner($type, $id)
     {
         if ($this->config->isSupportedMediaOwner($type)) {
@@ -46,7 +62,9 @@ class MediaRepository implements MediaRepositoryInterface
     }
 
     /**
-     *
+     * @param StoresMedia $owner
+     * @param array $payload
+     * @return bool|static
      */
     public function createImage(StoresMedia $owner, array $payload)
     {
@@ -63,6 +81,11 @@ class MediaRepository implements MediaRepositoryInterface
         return $image->save() ? $image : false;
     }
 
+    /**
+     * @param StoresMedia $owner
+     * @param array $payload
+     * @return bool|static
+     */
     public function createVideo(StoresMedia $owner, array $payload)
     {
         $video = $this->videos->newInstance($payload);
@@ -75,7 +98,9 @@ class MediaRepository implements MediaRepositoryInterface
     }
 
     /**
-     *
+     * @param array $payload
+     * @param Image $original
+     * @return bool|static
      */
     public function createThumbnailImage(array $payload, Image $original)
     {
@@ -94,7 +119,9 @@ class MediaRepository implements MediaRepositoryInterface
     }
 
     /**
-     *
+     * @param StoresMedia $owner
+     * @param array $payload
+     * @return bool|static
      */
     public function createInfographic(StoresMedia $owner, array $payload)
     {
@@ -113,7 +140,9 @@ class MediaRepository implements MediaRepositoryInterface
     }
 
     /**
-     *
+     * @param array $payload
+     * @param Infographic $original
+     * @return bool|static
      */
     public function createThumbnailInfographic(array $payload, Infographic $original)
     {
@@ -134,7 +163,9 @@ class MediaRepository implements MediaRepositoryInterface
     }
 
     /**
-     *
+     * @param StoresMedia $owner
+     * @param array $payload
+     * @return bool|static
      */
     public function createFile(StoresMedia $owner, array $payload)
     {

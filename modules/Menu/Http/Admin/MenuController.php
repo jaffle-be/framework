@@ -12,6 +12,10 @@ use Modules\Pages\PageRepository;
 use Modules\System\Http\AdminController;
 use Modules\Theme\ThemeManager;
 
+/**
+ * Class MenuController
+ * @package Modules\Menu\Http\Admin
+ */
 class MenuController extends AdminController
 {
     /**
@@ -20,7 +24,8 @@ class MenuController extends AdminController
     protected $menu;
 
     /**
-     *
+     * @param ThemeManager $theme
+     * @param MenuManager $menu
      */
     public function __construct(ThemeManager $theme, MenuManager $menu)
     {
@@ -29,6 +34,12 @@ class MenuController extends AdminController
         parent::__construct($theme);
     }
 
+    /**
+     * @param PageRepository $pages
+     * @param ModuleRoute $route
+     * @param AccountManager $manager
+     * @return mixed
+     */
     public function index(PageRepository $pages, ModuleRoute $route, AccountManager $manager)
     {
         $menus = $this->menu->getMenus();
@@ -59,6 +70,10 @@ class MenuController extends AdminController
         return $menus;
     }
 
+    /**
+     * @param Request $request
+     * @return mixed
+     */
     public function store(Request $request)
     {
         $this->validate($request, ['name' => 'required']);
@@ -68,6 +83,10 @@ class MenuController extends AdminController
         ]);
     }
 
+    /**
+     * @param Menu $menu
+     * @return mixed
+     */
     public function destroy(Menu $menu)
     {
         $this->menu->cleanMenu($menu);
@@ -75,6 +94,10 @@ class MenuController extends AdminController
         return $this->menu->findMenu($menu->id);
     }
 
+    /**
+     * @param Menu $menu
+     * @param Request $request
+     */
     public function sort(Menu $menu, Request $request)
     {
         $order = $request->get('order');

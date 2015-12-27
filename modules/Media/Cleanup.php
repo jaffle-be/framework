@@ -12,6 +12,10 @@ class Cleanup
 {
     protected $files;
 
+    /**
+     * @param Filesystem $files
+     * @param Configurator $configurator
+     */
     public function __construct(Filesystem $files, Configurator $configurator)
     {
         $this->files = $files;
@@ -19,6 +23,9 @@ class Cleanup
         $this->configurator = $configurator;
     }
 
+    /**
+     * @param $owner
+     */
     public function handle($owner)
     {
         if ($owner instanceof StoresMedia) {

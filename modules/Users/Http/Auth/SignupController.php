@@ -9,8 +9,15 @@ use Modules\Users\Auth\Commands\Signup;
 use Modules\Users\Auth\Requests\SignupRequest;
 use Modules\Users\User;
 
+/**
+ * Class SignupController
+ * @package Modules\Users\Http\Auth
+ */
 class SignupController extends FrontController
 {
+    /**
+     * @return \Illuminate\Contracts\View\View
+     */
     public function index()
     {
         $user = new User();
@@ -18,6 +25,11 @@ class SignupController extends FrontController
         return $this->theme->render('auth.register', compact('user'));
     }
 
+    /**
+     * @param SignupRequest $request
+     * @param Guard $guard
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function store(SignupRequest $request, Guard $guard)
     {
         $data = $request->only(['email', 'password']);

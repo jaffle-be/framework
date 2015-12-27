@@ -4,6 +4,10 @@ namespace Modules\System\Presenter;
 
 use Exception;
 
+/**
+ * Class PresentableTrait
+ * @package Modules\System\Presenter
+ */
 trait PresentableTrait
 {
     /**
@@ -11,6 +15,10 @@ trait PresentableTrait
      */
     protected $presenterInstance;
 
+    /**
+     * @return \Illuminate\Foundation\Application|mixed|BasePresenter
+     * @throws Exception
+     */
     public function present()
     {
         if (! property_exists($this, 'presenter')) {

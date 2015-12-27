@@ -5,10 +5,17 @@ namespace Modules\System\Eventing;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * Class BelongsToMany
+ * @package Modules\System\Eventing
+ */
 class BelongsToMany extends \Illuminate\Database\Eloquent\Relations\BelongsToMany
 {
     /**
      * Attach a model to the parent.
+     * @param mixed $id
+     * @param array $attributes
+     * @param bool $touch
      */
     public function attach($id, array $attributes = [], $touch = true)
     {
@@ -32,7 +39,9 @@ class BelongsToMany extends \Illuminate\Database\Eloquent\Relations\BelongsToMan
     /**
      * Sync the intermediate tables with a list of IDs or collection of models.
      *
-     *
+     * @param array|Collection $ids
+     * @param bool $detaching
+     * @return array
      */
     public function sync($ids, $detaching = true)
     {
@@ -83,7 +92,9 @@ class BelongsToMany extends \Illuminate\Database\Eloquent\Relations\BelongsToMan
     /**
      * Detach models from the relationship.
      *
-     *
+     * @param array $ids
+     * @param bool $touch
+     * @return int|void
      */
     public function detach($ids = [], $touch = true)
     {

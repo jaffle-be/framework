@@ -12,6 +12,10 @@ use Modules\System\Scopes\FrontScoping;
 use Modules\System\Sluggable\Sluggable;
 use Modules\System\Translatable\TranslationModel;
 
+/**
+ * Class ProjectTranslation
+ * @package Modules\Portfolio
+ */
 class ProjectTranslation extends TranslationModel implements Searchable, SluggableInterface, PresentableEntity, PresentableCache
 {
     use SearchableTrait, Sluggable, PresentableTrait, FrontScoping;
@@ -39,6 +43,9 @@ class ProjectTranslation extends TranslationModel implements Searchable, Sluggab
         ],
     ];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function project()
     {
         return $this->belongsTo('Modules\Portfolio\Project');

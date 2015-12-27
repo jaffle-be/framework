@@ -10,6 +10,10 @@ use Modules\Media\StoresMedia;
 use Modules\System\Locale;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
+/**
+ * Class UploadNewFile
+ * @package Modules\Media\Commands
+ */
 class UploadNewFile extends Job
 {
     use DispatchesJobs;
@@ -31,6 +35,9 @@ class UploadNewFile extends Job
 
     /**
      * $image
+     * @param StoresMedia $owner
+     * @param UploadedFile $file
+     * @param Locale $locale
      */
     public function __construct(StoresMedia $owner, UploadedFile $file, Locale $locale)
     {
@@ -39,6 +46,11 @@ class UploadNewFile extends Job
         $this->locale = $locale;
     }
 
+    /**
+     * @param Filesystem $files
+     * @param AccountManager $manager
+     * @return mixed
+     */
     public function handle(Filesystem $files, AccountManager $manager)
     {
         $temp_dir = storage_path('media').'/'.$this->owner->getMediaFolder('files');
@@ -81,6 +93,10 @@ class UploadNewFile extends Job
         return implode('.', $pieces);
     }
 
+    /**
+     * @param $path
+     * @return string
+     */
     private function extension($path)
     {
         $info = getimagesize($path);

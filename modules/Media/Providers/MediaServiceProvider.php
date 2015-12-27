@@ -7,6 +7,10 @@ use Modules\Media\Image;
 use Modules\Media\Infographics\Infographic;
 use Modules\System\ServiceProvider;
 
+/**
+ * Class MediaServiceProvider
+ * @package Modules\Media\Providers
+ */
 class MediaServiceProvider extends ServiceProvider
 {
     protected $namespace = 'media';

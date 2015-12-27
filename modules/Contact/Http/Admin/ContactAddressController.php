@@ -10,8 +10,16 @@ use Modules\Contact\Requests\UpdateAddressRequest;
 use Modules\System\Country\CountryRepository;
 use Modules\System\Http\AdminController;
 
+/**
+ * Class ContactAddressController
+ * @package Modules\Contact\Http\Admin
+ */
 class ContactAddressController extends AdminController
 {
+    /**
+     * @param CountryRepository $countries
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function widget(CountryRepository $countries)
     {
         $countries = $countries->select();
@@ -19,6 +27,10 @@ class ContactAddressController extends AdminController
         return view('contact::admin.widgets.address', ['countries' => $countries]);
     }
 
+    /**
+     * @param Address $address
+     * @return Address
+     */
     public function show(Address $address)
     {
         $address->load([
@@ -30,6 +42,10 @@ class ContactAddressController extends AdminController
         return $address;
     }
 
+    /**
+     * @param NewAddressRequest $request
+     * @return mixed
+     */
     public function store(NewAddressRequest $request)
     {
         $address = $this->dispatch(new NewAddress($request->except('_token')));
@@ -37,6 +53,11 @@ class ContactAddressController extends AdminController
         return $address;
     }
 
+    /**
+     * @param Address $address
+     * @param UpdateAddressRequest $request
+     * @return Address
+     */
     public function update(Address $address, UpdateAddressRequest $request)
     {
         $address->load('country');

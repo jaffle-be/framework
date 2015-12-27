@@ -7,6 +7,10 @@ use Modules\Account\IndexManager;
 use Modules\Search\SearchServiceInterface;
 use Symfony\Component\Console\Input\InputArgument;
 
+/**
+ * Class SearchBuild
+ * @package Modules\Search\Command
+ */
 class SearchBuild extends Command
 {
     /**
@@ -30,6 +34,8 @@ class SearchBuild extends Command
 
     /**
      * Create a new command instance.
+     * @param SearchServiceInterface $service
+     * @param IndexManager $indexManager
      */
     public function __construct(SearchServiceInterface $service, IndexManager $indexManager)
     {

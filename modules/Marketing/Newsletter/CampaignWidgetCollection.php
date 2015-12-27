@@ -6,6 +6,10 @@ use Illuminate\Database\Eloquent\Collection;
 use Modules\Blog\Post;
 use Modules\Portfolio\Project;
 
+/**
+ * Class CampaignWidgetCollection
+ * @package Modules\Marketing\Newsletter
+ */
 class CampaignWidgetCollection extends Collection
 {
     public function setData()

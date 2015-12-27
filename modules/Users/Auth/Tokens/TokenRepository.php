@@ -6,6 +6,10 @@ use Carbon\Carbon;
 use Illuminate\Contracts\Hashing\Hasher;
 use Modules\Users\Contracts\TokenRepositoryInterface;
 
+/**
+ * Class TokenRepository
+ * @package Modules\Users\Auth\Tokens
+ */
 class TokenRepository implements TokenRepositoryInterface
 {
     /**
@@ -23,6 +27,11 @@ class TokenRepository implements TokenRepositoryInterface
      */
     protected $carbon;
 
+    /**
+     * @param Token $token
+     * @param Hasher $hasher
+     * @param Carbon $carbon
+     */
     public function __construct(Token $token, Hasher $hasher, Carbon $carbon)
     {
         $this->token = $token;
@@ -30,6 +39,12 @@ class TokenRepository implements TokenRepositoryInterface
         $this->carbon = $carbon;
     }
 
+    /**
+     * @param $type
+     * @param $value
+     * @param int $expires
+     * @return bool|Token
+     */
     public function createNewToken($type, $value, $expires = 2)
     {
         if ($this->validate($type)) {
@@ -44,11 +59,19 @@ class TokenRepository implements TokenRepositoryInterface
         return false;
     }
 
+    /**
+     * @param $value
+     * @return \Illuminate\Database\Eloquent\Model|null|static
+     */
     public function findTokenByValue($value)
     {
         return $this->token->newQuery()->where('value', $value)->first();
     }
 
+    /**
+     * @param $type
+     * @return bool
+     */
     protected function validate($type)
     {
         return in_array($type, [
@@ -60,7 +83,8 @@ class TokenRepository implements TokenRepositoryInterface
     /**
      * Return a hash that has no / in it suited for url generated.
      *
-     *
+     * @param $value
+     * @return string
      */
     protected function hash($value)
     {

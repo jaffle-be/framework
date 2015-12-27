@@ -13,20 +13,34 @@ use Modules\Pages\Page;
 use Modules\Pages\PageRepositoryInterface;
 use Modules\System\Http\AdminController;
 
+/**
+ * Class PagesController
+ * @package Modules\Pages\Http\Admin
+ */
 class PagesController extends AdminController
 {
     use MediaWidgetPreperations;
 
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function overview()
     {
         return view('pages::admin.overview');
     }
 
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function detail()
     {
         return view('pages::admin.detail');
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
+     */
     public function index(Request $request)
     {
         $query = Page::with([
@@ -54,6 +68,13 @@ class PagesController extends AdminController
         return $query->paginate();
     }
 
+    /**
+     * @param Request $request
+     * @param Page $page
+     * @param Guard $guard
+     * @param AccountManager $accounts
+     * @return Page|string|static
+     */
     public function store(Request $request, Page $page, Guard $guard, AccountManager $accounts)
     {
         $input = translation_input($request);
@@ -73,6 +94,11 @@ class PagesController extends AdminController
         ]);
     }
 
+    /**
+     * @param Page $page
+     * @param PageRepositoryInterface $pages
+     * @return Page
+     */
     public function show(Page $page, PageRepositoryInterface $pages)
     {
         $page->load($this->relations());
@@ -94,6 +120,11 @@ class PagesController extends AdminController
         return $page;
     }
 
+    /**
+     * @param Page $page
+     * @param Request $request
+     * @return \Illuminate\Contracts\Routing\ResponseFactory|Page|\Symfony\Component\HttpFoundation\Response
+     */
     public function update(Page $page, Request $request)
     {
         $page->load($this->relations());
@@ -107,6 +138,10 @@ class PagesController extends AdminController
         return $page;
     }
 
+    /**
+     * @param Request $request
+     * @param Page $page
+     */
     public function batchDestroy(Request $request, Page $page)
     {
         $ids = $request->get('pages', []);
@@ -121,6 +156,11 @@ class PagesController extends AdminController
         }
     }
 
+    /**
+     * @param Page $page
+     * @return Page
+     * @throws Exception
+     */
     public function destroy(Page $page)
     {
         //make sure to load the relations, in order to delete morphing relations.
@@ -131,6 +171,10 @@ class PagesController extends AdminController
         return $page;
     }
 
+    /**
+     * @param Request $request
+     * @param Page $page
+     */
     public function linkSubpage(Request $request, Page $page)
     {
         $parent = $page->findOrFail($request->get('parent'));
@@ -146,6 +190,10 @@ class PagesController extends AdminController
         }
     }
 
+    /**
+     * @param Request $request
+     * @param Page $page
+     */
     public function unlinkSubpage(Request $request, Page $page)
     {
         $parent = $page->findOrFail($request->get('parent'));
@@ -158,6 +206,11 @@ class PagesController extends AdminController
         }
     }
 
+    /**
+     * @param Request $request
+     * @param Page $page
+     * @throws Exception
+     */
     public function sortSubpages(Request $request, Page $page)
     {
         $parent = $request->get('page');
@@ -180,6 +233,10 @@ class PagesController extends AdminController
         }
     }
 
+    /**
+     * @param Request $request
+     * @param Page $page
+     */
     public function batchPublish(Request $request, Page $page)
     {
         $ids = $request->get('pages', []);
@@ -200,6 +257,10 @@ class PagesController extends AdminController
         }
     }
 
+    /**
+     * @param Request $request
+     * @param Page $page
+     */
     public function batchUnpublish(Request $request, Page $page)
     {
         $ids = $request->get('pages', []);
@@ -220,6 +281,9 @@ class PagesController extends AdminController
         }
     }
 
+    /**
+     * @return array
+     */
     protected function relations()
     {
         return ['translations', 'translations.slug', 'children', 'children.translations'];

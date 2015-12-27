@@ -9,6 +9,10 @@ use Modules\Theme\ThemeMailer;
 
 //this should probably move to the account module. as its sending a contact mail for the account
 //has nothing to do with address info or anything.
+/**
+ * Class SendContactEmail
+ * @package Modules\Contact\Jobs
+ */
 class SendContactEmail extends EmailJob
 {
     /**
@@ -42,7 +46,12 @@ class SendContactEmail extends EmailJob
     protected $copy;
 
     /**
-     *
+     * @param AccountContactInformation $contact
+     * @param $name
+     * @param $email
+     * @param $message
+     * @param null $subject
+     * @param null $copy
      */
     public function __construct(AccountContactInformation $contact, $name, $email, $message, $subject = null, $copy = null)
     {
@@ -55,6 +64,9 @@ class SendContactEmail extends EmailJob
         parent::__construct();
     }
 
+    /**
+     * @param ThemeMailer $mailer
+     */
     public function handle(ThemeMailer $mailer)
     {
         //can't use the key 'message', it's being overridden probably by the mailer

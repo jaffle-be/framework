@@ -18,6 +18,10 @@ use Modules\Shop\Product\PropertyOptionTranslation;
 use Modules\Shop\Product\PropertyTranslation;
 use Modules\Shop\Product\PropertyValue;
 
+/**
+ * Class ImportResults
+ * @package Modules\Shop\Console
+ */
 class ImportResults extends Command
 {
     /**
@@ -63,6 +67,12 @@ class ImportResults extends Command
         }
     }
 
+    /**
+     * @param $product
+     * @param $data
+     * @param $category
+     * @param $group
+     */
     protected function productProperties($product, $data, $category, $group)
     {
         foreach ($data->specs as $spec) {
@@ -115,6 +125,11 @@ class ImportResults extends Command
         }
     }
 
+    /**
+     * @param $account
+     * @param $product
+     * @param $data
+     */
     protected function productImages($account, $product, $data)
     {
         $counter = 1;
@@ -172,7 +187,8 @@ class ImportResults extends Command
     }
 
     /**
-     *
+     * @param $sub
+     * @return static
      */
     protected function category($sub)
     {
@@ -199,7 +215,8 @@ class ImportResults extends Command
     }
 
     /**
-     *
+     * @param Category $category
+     * @return \Illuminate\Database\Eloquent\Model
      */
     protected function propertyGroup(Category $category)
     {
@@ -216,7 +233,11 @@ class ImportResults extends Command
     }
 
     /**
-     *
+     * @param $account
+     * @param $brand
+     * @param $data
+     * @param $category
+     * @return static
      */
     protected function productBase($account, $brand, $data, $category)
     {
@@ -240,6 +261,10 @@ class ImportResults extends Command
 
     /**
      * $data
+     * @param $account
+     * @param $product
+     * @param $url
+     * @param $counter
      */
     protected function addImage($account, $product, $url, $counter)
     {

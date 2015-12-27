@@ -4,12 +4,20 @@ namespace Modules\Tags\Commands;
 
 use App\Jobs\Job;
 
+/**
+ * Class UntagSomething
+ * @package Modules\Tags\Commands
+ */
 class UntagSomething extends Job
 {
     protected $owner;
 
     protected $tag;
 
+    /**
+     * @param $owner
+     * @param $tag
+     */
     public function __construct($owner, $tag)
     {
         $this->owner = $owner;

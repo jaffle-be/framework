@@ -6,6 +6,10 @@ use Drewm\MailChimp;
 use Modules\Marketing\Newsletter\CampaignWidget;
 use Modules\System\ServiceProvider;
 
+/**
+ * Class MarketingServiceProvider
+ * @package Modules\Marketing\Providers
+ */
 class MarketingServiceProvider extends ServiceProvider
 {
     protected $namespace = 'marketing';

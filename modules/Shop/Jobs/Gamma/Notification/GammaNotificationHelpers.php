@@ -8,8 +8,19 @@ use Modules\Shop\Product\Brand;
 use Modules\Shop\Product\Category;
 use Pusher;
 
+/**
+ * Class GammaNotificationHelpers
+ * @package Modules\Shop\Jobs\Gamma\Notification
+ */
 trait GammaNotificationHelpers
 {
+    /**
+     * @param GammaNotification $notification
+     * @param Account $account
+     * @param Brand $brand
+     * @param Category $category
+     * @return bool
+     */
     protected function beingProcessed(GammaNotification $notification, Account $account, Brand $brand, Category $category)
     {
         return $notification->newQueryWithoutScopes()
@@ -20,6 +31,14 @@ trait GammaNotificationHelpers
             ->count() > 0;
     }
 
+    /**
+     * @param GammaNotification $notification
+     * @param Account $account
+     * @param Brand $brand
+     * @param Category $category
+     * @param Pusher $pusher
+     * @return int
+     */
     protected function cancelInverseNotifications(GammaNotification $notification, Account $account, Brand $brand, Category $category, Pusher $pusher)
     {
         $notifications = $notification
@@ -44,7 +63,11 @@ trait GammaNotificationHelpers
     }
 
     /**
-     *
+     * @param GammaNotification $notification
+     * @param Account $account
+     * @param Brand $brand
+     * @param Category $category
+     * @return
      */
     protected function findExistingCombination(GammaNotification $notification, Account $account, Brand $brand, Category $category)
     {

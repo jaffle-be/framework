@@ -3,6 +3,9 @@
 use Modules\System\Country\Country;
 use Modules\System\Seeder;
 
+/**
+ * Class CountryTableSeeder
+ */
 class CountryTableSeeder extends Seeder
 {
     public function run()

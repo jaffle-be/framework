@@ -6,12 +6,19 @@ use Closure;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken as BaseVerifier;
 use Illuminate\Session\TokenMismatchException;
 
+/**
+ * Class VerifyCsrfToken
+ * @package Modules\System\Http\Middleware
+ */
 class VerifyCsrfToken extends BaseVerifier
 {
     /**
      * Handle an incoming request.
      *
      *
+     * @param \Illuminate\Http\Request $request
+     * @param Closure $next
+     * @return \Illuminate\Contracts\Routing\ResponseFactory|mixed|\Symfony\Component\HttpFoundation\Response
      * @throws TokenMismatchException
      * @throws \Exception
      */

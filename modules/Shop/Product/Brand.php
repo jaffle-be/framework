@@ -11,6 +11,10 @@ use Modules\System\Pushable\CanPush;
 use Modules\System\Pushable\Pushable;
 use Modules\System\Translatable\Translatable;
 
+/**
+ * Class Brand
+ * @package Modules\Shop\Product
+ */
 class Brand extends Model implements Pushable, Searchable, StoresMedia
 {
     use Translatable;
@@ -40,16 +44,25 @@ class Brand extends Model implements Pushable, Searchable, StoresMedia
         ],
     ];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function products()
     {
         return $this->hasMany('Modules\Shop\Product\Product');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
     public function categories()
     {
         return $this->belongsToMany('Modules\Shop\Product\Category', 'product_brands_pivot', null, null, 'brand_categories');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
     public function selection()
     {
         //this is meant to be used in an account context.

@@ -4,6 +4,10 @@ namespace Modules\Users;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * Class Skill
+ * @package Modules\Users
+ */
 class Skill extends Model
 {
     use \Modules\System\Translatable\Translatable;
@@ -14,6 +18,9 @@ class Skill extends Model
 
     protected $translatedAttributes = ['name', 'description'];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
     public function users()
     {
         return $this->belongsToMany('Modules\Users\User', 'user_skills_selection', 'user_id', 'skill_id');

@@ -2,13 +2,22 @@
 
 namespace Modules\System\Eventing;
 
+/**
+ * Class EventedRelations
+ * @package Modules\System\Eventing
+ */
 trait EventedRelations
 {
     /**
      * EXACT COPY FROM SOURCE, BUT THE OBJECT CREATED IS IN OUR NAMESPACE.
      * Define a many-to-many relationship.
      *
-     *
+     * @param $related
+     * @param null $table
+     * @param null $foreignKey
+     * @param null $otherKey
+     * @param null $relation
+     * @return BelongsToMany
      */
     public function eventedBelongsToMany($related, $table = null, $foreignKey = null, $otherKey = null, $relation = null)
     {

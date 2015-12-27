@@ -15,7 +15,7 @@ class FileObserver
     protected $files;
 
     /**
-     *
+     * @param Filesystem $files
      */
     public function __construct(Filesystem $files)
     {
@@ -23,7 +23,7 @@ class FileObserver
     }
 
     /**
-     *
+     * @param File $file
      */
     public function deleted(File $file)
     {

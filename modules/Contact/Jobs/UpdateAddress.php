@@ -6,6 +6,10 @@ use App\Jobs\Job;
 use Modules\Contact\Address;
 use Modules\System\Country\CountryRepository;
 
+/**
+ * Class UpdateAddress
+ * @package Modules\Contact\Jobs
+ */
 class UpdateAddress extends Job
 {
     /**
@@ -18,12 +22,20 @@ class UpdateAddress extends Job
      */
     protected $input;
 
+    /**
+     * @param Address $address
+     * @param array $input
+     */
     public function __construct(Address $address, array $input)
     {
         $this->address = $address;
         $this->input = $input;
     }
 
+    /**
+     * @param CountryRepository $countries
+     * @return bool
+     */
     public function handle(CountryRepository $countries)
     {
         //the interface changes the iso_code_2 when we update a country

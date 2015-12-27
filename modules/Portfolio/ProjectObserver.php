@@ -5,10 +5,17 @@ namespace Modules\Portfolio;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Modules\Tags\Commands\UntagSomething;
 
+/**
+ * Class ProjectObserver
+ * @package Modules\Portfolio
+ */
 class ProjectObserver
 {
     use DispatchesJobs;
 
+    /**
+     * @param Project $project
+     */
     public function deleting(Project $project)
     {
         $project->collaborators()->sync([]);

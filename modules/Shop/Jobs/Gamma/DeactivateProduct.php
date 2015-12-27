@@ -9,7 +9,10 @@ use Modules\Shop\Gamma\ProductSelection;
 use Modules\Shop\Product\Category;
 use Modules\Shop\Product\Product;
 
-class DeactivateProduct extends Job
+/**
+ * Class DeactivateProduct
+ * @package Modules\Shop\Jobs\Gamma
+ */class DeactivateProduct extends Job
 {
     protected $product;
 
@@ -17,14 +20,21 @@ class DeactivateProduct extends Job
 
     protected $account;
 
-    public function __construct(Product $product, Category $category, Account $account)
+    /**
+* @param Product $product
+* @param Category $category
+* @param Account $account
+ */public function __construct(Product $product, Category $category, Account $account)
     {
         $this->product = $product;
         $this->category = $category;
         $this->account = $account;
     }
 
-    public function handle(ProductSelection $selection)
+    /**
+* @param ProductSelection $selection
+* @throws \Exception
+*/public function handle(ProductSelection $selection)
     {
         //when no record exists, insert and delete (or do it manually)
         //when a record exists trash it.
@@ -67,9 +77,9 @@ class DeactivateProduct extends Job
     }
 
     /**
-     *
-     */
-    protected function attachCategory($record)
+* @param $record
+* @return ProductCategorySelection
+*/    protected function attachCategory($record)
     {
         $category = new ProductCategorySelection(['category_id' => $this->category->id]);
 
@@ -78,14 +88,15 @@ class DeactivateProduct extends Job
         return $category;
     }
 
+
     /**
      * do the query manually, so we won't depend on account manager.
      * if this ever get's called in a global system context,
      * it will now still work.
      *
-     *
-     */
-    protected function getExisting(ProductSelection $selection)
+* @param ProductSelection $selection
+* @return \Illuminate\Database\Eloquent\Model|null|static
+*/   protected function getExisting(ProductSelection $selection)
     {
         return $selection->newQueryWithoutScopes()
             ->where('account_id', $this->account->id)

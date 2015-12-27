@@ -9,6 +9,10 @@ use Modules\Users\Auth\Tokens\Token;
 use Modules\Users\Contracts\TokenRepositoryInterface;
 use Modules\Users\User;
 
+/**
+ * Class SendConfirmationEmail
+ * @package Modules\Users\Auth\Commands
+ */
 class SendConfirmationEmail extends EmailJob
 {
     /**
@@ -17,7 +21,7 @@ class SendConfirmationEmail extends EmailJob
     protected $user;
 
     /**
-     *
+     * @param User $user
      */
     public function __construct(User $user)
     {
@@ -25,6 +29,12 @@ class SendConfirmationEmail extends EmailJob
         parent::__construct();
     }
 
+    /**
+     * @param ThemeMailer $mail
+     * @param Translator $lang
+     * @param TokenRepositoryInterface $tokens
+     * @throws \Exception
+     */
     public function handle(ThemeMailer $mail, Translator $lang, TokenRepositoryInterface $tokens)
     {
         try {

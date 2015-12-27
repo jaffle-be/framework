@@ -4,6 +4,10 @@ namespace Modules\System\Seo;
 
 use Illuminate\Contracts\Config\Repository;
 
+/**
+ * Class SeoManager
+ * @package Modules\System\Seo
+ */
 class SeoManager
 {
     protected $config;
@@ -14,6 +18,9 @@ class SeoManager
 
     protected $defaults;
 
+    /**
+     * @param Repository $config
+     */
     public function __construct(Repository $config)
     {
         $this->config = $config;
@@ -23,11 +30,17 @@ class SeoManager
         $this->defaults = $config->get('system.seo.defaults');
     }
 
+    /**
+     * @param SeoEntity $entity
+     */
     public function setEntity(SeoEntity $entity)
     {
         $this->entity = $entity;
     }
 
+    /**
+     * @return string
+     */
     public function generate()
     {
         $result = '';
@@ -50,7 +63,8 @@ class SeoManager
     }
 
     /**
-     *
+     * @param $provider
+     * @return
      */
     protected function buildProvider($provider)
     {

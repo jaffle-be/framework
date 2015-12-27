@@ -8,8 +8,18 @@ use Modules\System\Http\FrontController;
 use Modules\Users\Auth\Commands\Signup;
 use Modules\Users\User;
 
+/**
+ * Class MembershipInvitationController
+ * @package Modules\Account\Http
+ */
 class MembershipInvitationController extends FrontController
 {
+    /**
+     * @param MembershipRepository $repository
+     * @param $invitation
+     * @param Guard $guard
+     * @return \Illuminate\Contracts\View\View|\Illuminate\Http\RedirectResponse
+     */
     public function show(MembershipRepository $repository, $invitation, Guard $guard)
     {
         $invitation = $repository->findInvitationByToken($invitation);

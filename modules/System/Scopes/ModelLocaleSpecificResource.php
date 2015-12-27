@@ -4,6 +4,10 @@ namespace Modules\System\Scopes;
 
 use Illuminate\Http\Request;
 
+/**
+ * Class ModelLocaleSpecificResource
+ * @package Modules\System\Scopes
+ */
 trait ModelLocaleSpecificResource
 {
     public static function bootModelLocaleSpecificResource()
@@ -20,11 +24,18 @@ trait ModelLocaleSpecificResource
         }
     }
 
+    /**
+     * @return mixed
+     */
     public function locale()
     {
         return $this->belongsTo('Modules\System\Locale');
     }
 
+    /**
+     * @param array $items
+     * @return LocalisedResourceCollection
+     */
     public function newCollection(array $items = [])
     {
         return new LocalisedResourceCollection($items);

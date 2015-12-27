@@ -7,16 +7,27 @@ use Illuminate\Translation\Translator;
 use Modules\Account\MembershipInvitation;
 use Modules\Theme\ThemeMailer;
 
+/**
+ * Class SendInvitationEmail
+ * @package Modules\Account\Jobs\Membership
+ */
 class SendInvitationEmail extends EmailJob
 {
     protected $invitation;
 
+    /**
+     * @param MembershipInvitation $invitation
+     */
     public function __construct(MembershipInvitation $invitation)
     {
         $this->invitation = $invitation;
         parent::__construct();
     }
 
+    /**
+     * @param ThemeMailer $mailer
+     * @param Translator $lang
+     */
     public function handle(ThemeMailer $mailer, Translator $lang)
     {
         $data = array_merge($this->baseData(), [

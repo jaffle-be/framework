@@ -4,8 +4,15 @@ namespace Modules\System\Pushable;
 
 use Modules\System\Scopes\ModelAccountResource;
 
+/**
+ * Class CanPush
+ * @package Modules\System\Pushable
+ */
 trait CanPush
 {
+    /**
+     * @return string
+     */
     public function getPushableChannel()
     {
         if (property_exists(get_class($this), 'pushableChannel')) {
@@ -19,6 +26,9 @@ trait CanPush
         return pusher_system_channel();
     }
 
+    /**
+     * @return mixed
+     */
     public function getPushableEventType()
     {
         if (property_exists(get_class($this), 'pushableEventName')) {

@@ -7,6 +7,10 @@ use Modules\System\Scopes\ModelAccountResource;
 use Modules\System\Scopes\ModelAutoSort;
 use Modules\System\Scopes\ModelLocaleSpecificResource;
 
+/**
+ * Class Video
+ * @package Modules\Media\Video
+ */
 class Video extends Model
 {
     use ModelAccountResource;
@@ -17,6 +21,9 @@ class Video extends Model
 
     protected $fillable = ['account_id', 'locale_id', 'title', 'description', 'provider', 'provider_id', 'provider_thumbnail', 'width', 'height'];
 
+    /**
+     * @return string
+     */
     public function getEmbedAttribute()
     {
         if ($this->provider == 'youtube') {
@@ -30,6 +37,9 @@ class Video extends Model
         }
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\MorphTo
+     */
     public function owner()
     {
         return $this->morphTo();

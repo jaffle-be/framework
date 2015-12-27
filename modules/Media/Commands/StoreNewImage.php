@@ -12,6 +12,10 @@ use Modules\Media\Configurator;
 use Modules\Media\MediaRepositoryInterface;
 use Modules\Media\StoresMedia;
 
+/**
+ * Class StoreNewImage
+ * @package Modules\Media\Commands
+ */
 class StoreNewImage extends Job
 {
     use DispatchesJobs;
@@ -65,6 +69,10 @@ class StoreNewImage extends Job
 
     /**
      * $sizes
+     * @param Account $account
+     * @param StoresMedia $owner
+     * @param $path
+     * @param null $rename
      */
     public function __construct(Account $account = null, StoresMedia $owner, $path, $rename = null)
     {
@@ -78,6 +86,13 @@ class StoreNewImage extends Job
         $this->rename = $rename;
     }
 
+    /**
+     * @param MediaRepositoryInterface $repo
+     * @param ImageManager $images
+     * @param Filesystem $files
+     * @param Configurator $config
+     * @return bool
+     */
     public function handle(MediaRepositoryInterface $repo, ImageManager $images, Filesystem $files, Configurator $config)
     {
         if (! $files->exists($this->currentPath)) {
@@ -109,6 +124,7 @@ class StoreNewImage extends Job
 
     /**
      * set the filename, extension and the size.
+     * @param ImageManager $image
      */
     protected function dimensions(ImageManager $image)
     {
@@ -118,6 +134,10 @@ class StoreNewImage extends Job
         unset($resource);
     }
 
+    /**
+     * @param Filesystem $files
+     * @param Configurator $config
+     */
     protected function handleFile(Filesystem $files, Configurator $config)
     {
         $abstract = $config->getAbstractPath($this->owner, 'images');

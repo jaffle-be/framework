@@ -12,12 +12,17 @@ use Modules\Users\Auth\Commands\SendConfirmationEmail;
 use Modules\Users\Contracts\TokenRepositoryInterface;
 use Modules\Users\Contracts\UserRepositoryInterface;
 
+/**
+ * Class ConfirmEmailController
+ * @package Modules\Users\Http\Auth
+ */
 class ConfirmEmailController extends FrontController
 {
     /**
      * Form for sending new confirmation email.
      *
-     *
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\View
      */
     public function create(Request $request)
     {
@@ -29,7 +34,10 @@ class ConfirmEmailController extends FrontController
     /**
      * Trigger the actual sending of the email.
      *
-     *
+     * @param Request $request
+     * @param UserRepositoryInterface $users
+     * @param AccountManager $manager
+     * @return
      */
     public function store(Request $request, UserRepositoryInterface $users, AccountManager $manager)
     {
@@ -45,7 +53,10 @@ class ConfirmEmailController extends FrontController
     /**
      * The method which actually triggers the confirmation.
      *
-     *
+     * @param $token
+     * @param TokenRepositoryInterface $tokens
+     * @param Guard $guard
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function show($token, TokenRepositoryInterface $tokens, Guard $guard)
     {

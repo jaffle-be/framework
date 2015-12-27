@@ -4,8 +4,16 @@ namespace Modules\Media\Video;
 
 use Illuminate\Http\JsonResponse;
 
+/**
+ * Class VideoGenericFormatter
+ * @package Modules\Media\Video
+ */
 trait VideoGenericFormatter
 {
+    /**
+     * @param $response
+     * @return array|JsonResponse
+     */
     protected function vimeoReponse($response)
     {
         $me = $this;
@@ -20,6 +28,10 @@ trait VideoGenericFormatter
         return new JsonResponse($response->body, $response->status);
     }
 
+    /**
+     * @param $video
+     * @return array
+     */
     protected function vimeoVideoResponse($video)
     {
         if (! is_object($video)) {
@@ -41,6 +53,10 @@ trait VideoGenericFormatter
         ];
     }
 
+    /**
+     * @param $response
+     * @return array
+     */
     protected function youtubeResponse($response)
     {
         $me = $this;
@@ -51,6 +67,10 @@ trait VideoGenericFormatter
         }, $response);
     }
 
+    /**
+     * @param $video
+     * @return array
+     */
     protected function youtubeVideoResponse($video)
     {
         list($width, $height) = $this->parseYoutubeVideoDimensions($video);
@@ -68,6 +88,10 @@ trait VideoGenericFormatter
         ];
     }
 
+    /**
+     * @param $video
+     * @return array
+     */
     protected function parseYoutubeVideoDimensions($video)
     {
         if (isset($video->player)) {

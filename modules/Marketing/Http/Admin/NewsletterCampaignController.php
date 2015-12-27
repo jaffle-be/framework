@@ -19,11 +19,19 @@ use Modules\Portfolio\Project;
 use Modules\Search\SearchServiceInterface;
 use Modules\System\Http\AdminController;
 
+/**
+ * Class NewsletterCampaignController
+ * @package Modules\Marketing\Http\Admin
+ */
 class NewsletterCampaignController extends AdminController
 {
     use BlogSearch;
     use PortfolioSearch;
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
+     */
     public function index(Request $request)
     {
         $query = Campaign::with(['translations']);
@@ -41,6 +49,11 @@ class NewsletterCampaignController extends AdminController
         return $query->paginate();
     }
 
+    /**
+     * @param MailChimp $mailChimp
+     * @param Request $request
+     * @return array
+     */
     public function subscriptions(MailChimp $mailChimp, Request $request)
     {
         try {
@@ -59,6 +72,13 @@ class NewsletterCampaignController extends AdminController
         }
     }
 
+    /**
+     * @param Request $request
+     * @param Campaign $newsletter
+     * @param Guard $guard
+     * @param AccountManager $accounts
+     * @return Campaign|string|static
+     */
     public function store(Request $request, Campaign $newsletter, Guard $guard, AccountManager $accounts)
     {
         $input = translation_input($request);
@@ -78,11 +98,22 @@ class NewsletterCampaignController extends AdminController
         ]);
     }
 
+    /**
+     * @param Campaign $newsletter
+     * @param CampaignBuilder $builder
+     * @param MailChimp $mailChimp
+     * @return array
+     */
     public function show(Campaign $newsletter, CampaignBuilder $builder, MailChimp $mailChimp)
     {
         return $this->detailedResponse($newsletter, $builder, $mailChimp);
     }
 
+    /**
+     * @param Campaign $newsletter
+     * @param Request $request
+     * @return \Illuminate\Contracts\Routing\ResponseFactory|Campaign|\Symfony\Component\HttpFoundation\Response
+     */
     public function update(Campaign $newsletter, Request $request)
     {
         $newsletter->load($this->relations());
@@ -94,6 +125,11 @@ class NewsletterCampaignController extends AdminController
         return $newsletter;
     }
 
+    /**
+     * @param Campaign $newsletter
+     * @return Campaign
+     * @throws \Exception
+     */
     public function destroy(Campaign $newsletter)
     {
         if ($newsletter->delete()) {
@@ -103,6 +139,10 @@ class NewsletterCampaignController extends AdminController
         return $newsletter;
     }
 
+    /**
+     * @param Request $request
+     * @param Campaign $newsletter
+     */
     public function batchDestroy(Request $request, Campaign $newsletter)
     {
         $ids = $request->get('campaigns', []);
@@ -117,6 +157,12 @@ class NewsletterCampaignController extends AdminController
         }
     }
 
+    /**
+     * @param Request $request
+     * @param AccountManager $manager
+     * @param SearchServiceInterface $search
+     * @return Collection
+     */
     public function search(Request $request, AccountManager $manager, SearchServiceInterface $search)
     {
         $this->validate($request, [
@@ -159,16 +205,26 @@ class NewsletterCampaignController extends AdminController
         return $result;
     }
 
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function overview()
     {
         return view('marketing::admin.newsletter.overview');
     }
 
+    /**
+     * @param CampaignBuilder $builder
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function detail(CampaignBuilder $builder)
     {
         return view('marketing::admin.newsletter.detail', ['widgets' => $builder->getAvailableWidgets()]);
     }
 
+    /**
+     * @return array
+     */
     protected function relations()
     {
         return [
@@ -185,6 +241,13 @@ class NewsletterCampaignController extends AdminController
         ];
     }
 
+    /**
+     * @param Request $request
+     * @param Campaign $campaign
+     * @param CampaignBuilder $builder
+     * @param MailChimp $mailchimp
+     * @return array
+     */
     public function prepare(Request $request, Campaign $campaign, CampaignBuilder $builder, MailChimp $mailchimp)
     {
         $this->validate($request, [
@@ -196,6 +259,12 @@ class NewsletterCampaignController extends AdminController
         return $this->detailedResponse($campaign, $builder, $mailchimp);
     }
 
+    /**
+     * @param Request $request
+     * @param Campaign $campaign
+     * @param MailChimp $mailChimp
+     * @return Collection
+     */
     public function send(Request $request, Campaign $campaign, MailChimp $mailChimp)
     {
         $this->validate($request, [
@@ -212,7 +281,8 @@ class NewsletterCampaignController extends AdminController
     }
 
     /**
-     *
+     * @param MailChimp $mailChimp
+     * @param $translation
      */
     protected function loadMailchimpDataForCampaign(MailChimp $mailChimp, $translation)
     {
@@ -228,7 +298,10 @@ class NewsletterCampaignController extends AdminController
     }
 
     /**
-     *
+     * @param Campaign $newsletter
+     * @param CampaignBuilder $builder
+     * @param MailChimp $mailChimp
+     * @return array
      */
     protected function detailedResponse(Campaign $newsletter, CampaignBuilder $builder, MailChimp $mailChimp)
     {
@@ -248,7 +321,9 @@ class NewsletterCampaignController extends AdminController
     }
 
     /**
-     *
+     * @param MailChimp $mailChimp
+     * @param $translation
+     * @return Collection
      */
     protected function getReportSummary(MailChimp $mailChimp, $translation)
     {

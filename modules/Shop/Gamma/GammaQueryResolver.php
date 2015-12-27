@@ -10,6 +10,10 @@ use Modules\Shop\Product\Brand;
 use Modules\Shop\Product\Category;
 use Modules\Shop\Product\Property;
 
+/**
+ * Class GammaQueryResolver
+ * @package Modules\Shop\Gamma
+ */
 class GammaQueryResolver
 {
     use SearchResponder;
@@ -22,6 +26,12 @@ class GammaQueryResolver
 
     protected $brands;
 
+    /**
+     * @param Request $request
+     * @param SearchServiceInterface $search
+     * @param AccountManager $account
+     * @param Brand $brands
+     */
     public function __construct(Request $request, SearchServiceInterface $search, AccountManager $account, Brand $brands)
     {
         $this->request = $request;
@@ -30,6 +40,10 @@ class GammaQueryResolver
         $this->brands = $brands;
     }
 
+    /**
+     * @param Category $category
+     * @return array
+     */
     public function resolve(Category $category)
     {
         $index = $this->account->account()->alias;
@@ -52,6 +66,10 @@ class GammaQueryResolver
         ];
     }
 
+    /**
+     * @param Category $category
+     * @return array
+     */
     protected function getQuery(Category $category)
     {
         return [
@@ -85,7 +103,8 @@ class GammaQueryResolver
     }
 
     /**
-     *
+     * @param $result
+     * @return array|\Illuminate\Pagination\LengthAwarePaginator
      */
     protected function products($result)
     {
@@ -95,6 +114,10 @@ class GammaQueryResolver
         ], 15, new ProductSelection());
     }
 
+    /**
+     * @param $result
+     * @return mixed
+     */
     protected function brands($result)
     {
         $buckets = $this->bucketizeBrands($result);
@@ -110,6 +133,10 @@ class GammaQueryResolver
         return $brands;
     }
 
+    /**
+     * @param $result
+     * @return array
+     */
     protected function properties($result)
     {
         $properties = $result['aggregations']['properties'];
@@ -133,7 +160,8 @@ class GammaQueryResolver
     }
 
     /**
-     *
+     * @param $result
+     * @return array
      */
     protected function bucketizeBrands($result)
     {
@@ -150,6 +178,10 @@ class GammaQueryResolver
         return $tmp;
     }
 
+    /**
+     * @param $category
+     * @return array
+     */
     protected function propertyAggregations($category)
     {
         $original = $category->original_id ? $category->original : $category;
@@ -173,7 +205,8 @@ class GammaQueryResolver
     }
 
     /**
-     *
+     * @param Property $property
+     * @return array
      */
     protected function propertyValueAggregation(Property $property)
     {
@@ -202,7 +235,8 @@ class GammaQueryResolver
     }
 
     /**
-     *
+     * @param $property
+     * @return array
      */
     protected function propertyFilterAggregation($property)
     {
@@ -218,6 +252,10 @@ class GammaQueryResolver
         ];
     }
 
+    /**
+     * @param $category
+     * @param $properties
+     */
     protected function values($category, $properties)
     {
         //need to load all the values for this property

@@ -9,16 +9,28 @@ use Modules\Account\Jobs\Membership\AcceptMembership;
 use Modules\Users\Auth\Commands\SendConfirmationEmail;
 use Modules\Users\Auth\Events\UserRegistered;
 
+/**
+ * Class UserRegisteredHandler
+ * @package Modules\Users\Auth\Handlers
+ */
 class UserRegisteredHandler
 {
     use DispatchesJobs;
 
+    /**
+     * @param Mailer $mail
+     * @param Repository $config
+     */
     public function __construct(Mailer $mail, Repository $config)
     {
         $this->mail = $mail;
         $this->config = $config;
     }
 
+    /**
+     * @param UserRegistered $event
+     * @return bool|mixed
+     */
     public function handle(UserRegistered $event)
     {
         $auto_confirm = $this->config->get('users.auth.auto_confirmation');

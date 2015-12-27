@@ -4,6 +4,10 @@ namespace Modules\Contact;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * Class Address
+ * @package Modules\Contact
+ */
 class Address extends Model
 {
     protected $table = 'contact_address';
@@ -17,11 +21,18 @@ class Address extends Model
 
     protected $hidden = ['owner_id', 'owner_type', 'created_at', 'updated_at', 'country_id'];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\MorphTo
+     */
     public function owner()
     {
         return $this->morphTo();
     }
 
+    /**
+     * @param bool|true $microtags
+     * @return string
+     */
     public function format($microtags = true)
     {
         if ($microtags) {
@@ -51,6 +62,12 @@ class Address extends Model
         }
     }
 
+    /**
+     * @param $type
+     * @param $value
+     * @param bool|false $hidden
+     * @return string
+     */
     protected function microtag($type, $value, $hidden = false)
     {
         if ($hidden) {
@@ -60,6 +77,9 @@ class Address extends Model
         return sprintf('<span itemprop="%s" %s>%s</span>', $type, $hidden, $value);
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function country()
     {
         return $this->belongsTo('Modules\System\Country\Country', 'country_id');

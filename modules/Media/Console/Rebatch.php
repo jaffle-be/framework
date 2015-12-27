@@ -10,6 +10,10 @@ use Modules\Media\Configurator;
 use Modules\Media\Image;
 use Modules\Media\StoresMedia;
 
+/**
+ * Class Rebatch
+ * @package Modules\Media\Console
+ */
 class Rebatch extends Command
 {
     use DispatchesJobs;
@@ -18,6 +22,10 @@ class Rebatch extends Command
 
     protected $files;
 
+    /**
+     * @param Configurator $config
+     * @param Filesystem $files
+     */
     public function __construct(Configurator $config, Filesystem $files)
     {
         $this->config = $config;
@@ -43,6 +51,11 @@ class Rebatch extends Command
         }
     }
 
+    /**
+     * @param $type
+     * @param $requested
+     * @return array
+     */
     protected function sizesForType($type, $requested)
     {
         if (class_exists($type)) {
@@ -53,7 +66,9 @@ class Rebatch extends Command
     }
 
     /**
-     *
+     * @param StoresMedia $type
+     * @param array $sizes
+     * @param $force
      */
     protected function handleType(StoresMedia $type, array $sizes, $force)
     {
@@ -78,7 +93,9 @@ class Rebatch extends Command
     }
 
     /**
-     *
+     * @param StoresMedia $owner
+     * @param array $sizes
+     * @param $force
      */
     protected function handleOwner(StoresMedia $owner, array $sizes, $force)
     {
@@ -94,7 +111,9 @@ class Rebatch extends Command
     }
 
     /**
-     *
+     * @param array $sizes
+     * @param Image $image
+     * @param $force
      */
     protected function handleImage(array $sizes, Image $image, $force)
     {
@@ -111,6 +130,11 @@ class Rebatch extends Command
         }
     }
 
+    /**
+     * @param Image $image
+     * @param $sizes
+     * @return array
+     */
     protected function sizesToResize(Image $image, $sizes)
     {
         $resizing = [];
@@ -131,7 +155,9 @@ class Rebatch extends Command
     }
 
     /**
-     *
+     * @param Image $image
+     * @param $path
+     * @return
      */
     protected function imageHasSize(Image $image, $path)
     {

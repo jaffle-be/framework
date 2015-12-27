@@ -6,8 +6,15 @@ use Lang;
 use Modules\System\Http\FrontController;
 use Modules\Users\Auth\Commands\Signout;
 
+/**
+ * Class SignoutController
+ * @package Modules\Users\Http\Auth
+ */
 class SignoutController extends FrontController
 {
+    /**
+     * @return mixed
+     */
     public function index()
     {
         $command = new Signout();

@@ -5,6 +5,10 @@ namespace Modules\Account;
 use Illuminate\Database\Eloquent\Model;
 use Modules\Contact\HasSocialLinks;
 
+/**
+ * Class Account
+ * @package Modules\Account
+ */
 class Account extends Model
 {
     use HasSocialLinks;
@@ -13,51 +17,81 @@ class Account extends Model
 
     protected $fillable = ['alias', 'domain'];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
     public function locales()
     {
         return $this->belongsToMany('Modules\System\Locale', 'account_locales');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
     public function modules()
     {
         return $this->belongsToMany('Modules\Module\Module', 'account_modules', 'account_id', 'module_id');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function memberships()
     {
         return $this->hasMany('Modules\Account\Membership');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
     public function members()
     {
         return $this->belongsToMany('Modules\Users\User', 'account_memberships');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function membershipInvitations()
     {
         return $this->hasMany('Modules\Account\MembershipInvitation');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function contactInformation()
     {
         return $this->hasMany('Modules\Account\AccountContactInformation');
     }
 
+    /**
+     * @return mixed
+     */
     public function getOwnerAttribute()
     {
         return $this->ownership->member;
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function brandSelection()
     {
         return $this->hasMany('Modules\Shop\Gamma\BrandSelection');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function categorySelection()
     {
         return $this->hasMany('Modules\Shop\Gamma\CategorySelection');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
     public function ownership()
     {
         $relation = $this->hasOne('Modules\Account\Membership');
@@ -67,11 +101,19 @@ class Account extends Model
         return $relation;
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function teams()
     {
         return $this->hasMany('Modules\Account\Team');
     }
 
+    /**
+     * @param null $width
+     * @param null $height
+     * @return mixed
+     */
     public function logo($width = null, $height = null)
     {
         $cached = $this->cachedLogo();

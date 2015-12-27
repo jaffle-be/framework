@@ -5,12 +5,20 @@ namespace Modules\Menu;
 use Modules\Account\AccountManager;
 use Modules\Pages\Page;
 
+/**
+ * Class SavedMenuHookable
+ * @package Modules\Menu
+ */
 class SavedMenuHookable
 {
     protected $account;
 
     protected $menu;
 
+    /**
+     * @param AccountManager $accountManager
+     * @param MenuRepositoryInterface $menu
+     */
     public function __construct(AccountManager $accountManager, MenuRepositoryInterface $menu)
     {
         $this->account = $accountManager->account();
@@ -18,6 +26,9 @@ class SavedMenuHookable
         $this->menu = $menu;
     }
 
+    /**
+     * @param $model
+     */
     public function handle($model)
     {
         if ($model instanceof MenuHookable) {

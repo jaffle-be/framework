@@ -6,6 +6,10 @@ use Illuminate\Console\Command;
 use Modules\Search\Config;
 use Modules\Search\SearchServiceInterface;
 
+/**
+ * Class SearchSpeed
+ * @package Modules\Search\Command
+ */
 class SearchSpeed extends Command
 {
     protected $signature = 'search:speed {speed?}';
@@ -22,6 +26,10 @@ class SearchSpeed extends Command
      */
     protected $config;
 
+    /**
+     * @param SearchServiceInterface $search
+     * @param Config $config
+     */
     public function __construct(SearchServiceInterface $search, Config $config)
     {
         parent::__construct();

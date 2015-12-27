@@ -4,6 +4,9 @@ use Modules\System\Seeder;
 use Modules\Users\Skill;
 use Modules\Users\User;
 
+/**
+ * Class ProfileSeeder
+ */
 class ProfileSeeder extends Seeder
 {
     public function run()

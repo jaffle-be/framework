@@ -4,6 +4,10 @@ namespace Modules\System\Scopes;
 
 use Illuminate\Database\Eloquent\Collection;
 
+/**
+ * Class LocalisedResourceCollection
+ * @package Modules\System\Scopes
+ */
 class LocalisedResourceCollection extends Collection
 {
     /**
@@ -28,6 +32,9 @@ class LocalisedResourceCollection extends Collection
         return $response;
     }
 
+    /**
+     * @return Collection
+     */
     public function byLocale()
     {
         $collection = $this->groupBy('locale_id');

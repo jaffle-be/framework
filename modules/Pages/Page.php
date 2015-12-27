@@ -17,6 +17,10 @@ use Modules\System\Seo\SeoEntity;
 use Modules\System\Seo\SeoTrait;
 use Modules\System\Translatable\Translatable;
 
+/**
+ * Class Page
+ * @package Modules\Pages
+ */
 class Page extends Model implements StoresMedia, SeoEntity, PresentableEntity, MenuHookable
 {
     use PresentableTrait;
@@ -39,26 +43,42 @@ class Page extends Model implements StoresMedia, SeoEntity, PresentableEntity, M
 
     protected $presenter = 'Modules\Pages\Presenter\PageFrontPresenter';
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function user()
     {
         return $this->belongsTo('Modules\Users\User');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function parent()
     {
         return $this->belongsTo('Modules\Pages\Page', 'parent_id');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function children()
     {
         return $this->hasMany('Modules\Pages\Page', 'parent_id');
     }
 
+    /**
+     * @param Builder $builder
+     */
     public function scopeMainPages(Builder $builder)
     {
         $builder->whereNull('parent_id');
     }
 
+    /**
+     * @param Builder $builder
+     * @param Collection $pages
+     */
     public function scopeBut(Builder $builder, Collection $pages)
     {
         if ($pages->count() > 0) {
@@ -66,6 +86,9 @@ class Page extends Model implements StoresMedia, SeoEntity, PresentableEntity, M
         }
     }
 
+    /**
+     * @param Builder $builder
+     */
     public function scopeOrphans(Builder $builder)
     {
         $builder->whereNull('parent_id');

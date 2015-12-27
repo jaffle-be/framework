@@ -7,8 +7,18 @@ use Modules\Portfolio\ProjectTranslation;
 use Modules\System\Http\FrontController;
 use Modules\Tags\Tag;
 
+/**
+ * Class PortfolioController
+ * @package Modules\Portfolio\Http
+ */
 class PortfolioController extends FrontController
 {
+    /**
+     * @param Project $project
+     * @param Tag $tags
+     * @return \Illuminate\Contracts\View\View
+     * @throws \Exception
+     */
     public function index(Project $project, Tag $tags)
     {
         $projects = $project->with($this->relations())->orderBy('date', 'desc')->get();
@@ -26,6 +36,10 @@ class PortfolioController extends FrontController
         return $this->theme->render('portfolio.index', ['projects' => $projects, 'options' => $options, 'tags' => $tags]);
     }
 
+    /**
+     * @param ProjectTranslation $portfolio
+     * @return \Illuminate\Contracts\View\View
+     */
     public function show(ProjectTranslation $portfolio)
     {
         $relations = $this->relations();

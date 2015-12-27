@@ -4,6 +4,10 @@ namespace Modules\Menu;
 
 use Modules\Account\AccountManager;
 
+/**
+ * Class MenuRepository
+ * @package Modules\Menu
+ */
 class MenuRepository implements MenuRepositoryInterface
 {
     /**
@@ -21,6 +25,11 @@ class MenuRepository implements MenuRepositoryInterface
      */
     protected $item;
 
+    /**
+     * @param AccountManager $account
+     * @param Menu $menu
+     * @param MenuItem $item
+     */
     public function __construct(AccountManager $account, Menu $menu, MenuItem $item)
     {
         $this->account = $account;
@@ -28,6 +37,10 @@ class MenuRepository implements MenuRepositoryInterface
         $this->item = $item;
     }
 
+    /**
+     * @param $id
+     * @return \Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Eloquent\Model|null
+     */
     public function findMenu($id)
     {
         return $this->menu->with($this->relations())->find($id);
@@ -41,11 +54,18 @@ class MenuRepository implements MenuRepositoryInterface
         return ['items', 'items.children', 'items.translations', 'items.children.translations', 'items.page'/*'items.routable'*/];
     }
 
+    /**
+     * @return mixed
+     */
     public function getMenus()
     {
         return $this->menu->with($this->relations())->orderBy('id')->get();
     }
 
+    /**
+     * @param array $payload
+     * @return bool
+     */
     public function createMenu(array $payload)
     {
         $menu = $this->menu->newInstance($payload);
@@ -55,6 +75,10 @@ class MenuRepository implements MenuRepositoryInterface
         return $menu->save();
     }
 
+    /**
+     * @param Menu $menu
+     * @return bool
+     */
     public function cleanMenu(Menu $menu)
     {
         //it should never actually delete the menu itself, as it's provided by the current theme.
@@ -65,6 +89,11 @@ class MenuRepository implements MenuRepositoryInterface
         return true;
     }
 
+    /**
+     * @param $menu
+     * @param $order
+     * @return bool
+     */
     public function sortMenu($menu, $order)
     {
         //this should be a transaction
@@ -77,6 +106,10 @@ class MenuRepository implements MenuRepositoryInterface
         return true;
     }
 
+    /**
+     * @param array $payload
+     * @return static
+     */
     public function createItem(array $payload)
     {
         $item = $this->item->newInstance($payload);
@@ -92,11 +125,19 @@ class MenuRepository implements MenuRepositoryInterface
         }
     }
 
+    /**
+     * @return array
+     */
     protected function itemRelations()
     {
         return ['children', 'translations', 'children.translations'];
     }
 
+    /**
+     * @param MenuItem $item
+     * @param array $payload
+     * @return MenuItem
+     */
     public function updateItem(MenuItem $item, array $payload)
     {
         $item->load('translations');
@@ -108,6 +149,11 @@ class MenuRepository implements MenuRepositoryInterface
         return $item;
     }
 
+    /**
+     * @param MenuItem $item
+     * @return MenuItem
+     * @throws \Exception
+     */
     public function deleteItem(MenuItem $item)
     {
         if ($item->delete()) {

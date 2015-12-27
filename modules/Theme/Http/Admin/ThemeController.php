@@ -7,8 +7,15 @@ use Modules\Account\AccountManager;
 use Modules\System\Http\AdminController;
 use Modules\Theme\ThemeSettingOption;
 
+/**
+ * Class ThemeController
+ * @package Modules\Theme\Http\Admin
+ */
 class ThemeController extends AdminController
 {
+    /**
+     * @return mixed
+     */
     public function index()
     {
         $themes = $this->theme->supported();
@@ -26,6 +33,10 @@ class ThemeController extends AdminController
         return $themes;
     }
 
+    /**
+     * @param AccountManager $manager
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function settings(AccountManager $manager)
     {
         $themes = $this->theme->supported();
@@ -37,6 +48,12 @@ class ThemeController extends AdminController
         ]);
     }
 
+    /**
+     * @param $theme
+     * @param $setting
+     * @param Request $request
+     * @param ThemeSettingOption $option
+     */
     public function setting($theme, $setting, Request $request, ThemeSettingOption $option)
     {
         $current = $this->theme->current();
@@ -64,6 +81,10 @@ class ThemeController extends AdminController
         }
     }
 
+    /**
+     * @param $theme
+     * @return string
+     */
     public function activate($theme)
     {
         if ($this->theme->activate($theme)) {
@@ -77,6 +98,9 @@ class ThemeController extends AdminController
         ]);
     }
 
+    /**
+     * @return bool
+     */
     public function current()
     {
         return $this->theme->current();

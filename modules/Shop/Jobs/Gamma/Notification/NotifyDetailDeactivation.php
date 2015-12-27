@@ -9,6 +9,10 @@ use Modules\Shop\Product\Brand;
 use Modules\Shop\Product\Category;
 use Pusher;
 
+/**
+ * Class NotifyDetailDeactivation
+ * @package Modules\Shop\Jobs\Gamma\Notification
+ */
 class NotifyDetailDeactivation extends Job
 {
     use GammaNotificationHelpers;
@@ -19,6 +23,11 @@ class NotifyDetailDeactivation extends Job
 
     protected $account;
 
+    /**
+     * @param Brand $brand
+     * @param Category $category
+     * @param Account $account
+     */
     public function __construct(Brand $brand, Category $category, Account $account)
     {
         $this->brand = $brand;
@@ -26,6 +35,10 @@ class NotifyDetailDeactivation extends Job
         $this->account = $account;
     }
 
+    /**
+     * @param GammaNotification $notification
+     * @param Pusher $pusher
+     */
     public function handle(GammaNotification $notification, Pusher $pusher)
     {
         if ($this->beingProcessed($notification, $this->account, $this->brand, $this->category)) {

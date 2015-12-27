@@ -8,13 +8,25 @@ use Modules\Users\Auth\Commands\Signin;
 use Modules\Users\Auth\Requests\SigninRequest;
 use Modules\Users\User;
 
+/**
+ * Class SigninController
+ * @package Modules\Users\Http\Auth
+ */
 class SigninController extends FrontController
 {
+    /**
+     * @return \Illuminate\Contracts\View\View
+     */
     public function index()
     {
         return $this->theme->render('auth.login');
     }
 
+    /**
+     * @param SigninRequest $request
+     * @param Translator $lang
+     * @return $this|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
     public function store(SignInRequest $request, Translator $lang)
     {
         $credentials = $request->except('_token', 'remember_me');

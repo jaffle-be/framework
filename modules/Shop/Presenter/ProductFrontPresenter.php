@@ -7,6 +7,10 @@ use Modules\System\Presenter\BasePresenter;
 use Modules\System\Presenter\ContentPresenterTrait;
 use Modules\System\Presenter\ShortCodeCompiler;
 
+/**
+ * Class ProductFrontPresenter
+ * @package Modules\Shop\Presenter
+ */
 class ProductFrontPresenter extends BasePresenter
 {
     protected $shortcodes = ['media'];
@@ -15,6 +19,9 @@ class ProductFrontPresenter extends BasePresenter
     use ShortCodeCompiler;
     use MediaShortcodes;
 
+    /**
+     * @return string
+     */
     public function categories()
     {
         $string = '';

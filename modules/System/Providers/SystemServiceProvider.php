@@ -10,6 +10,10 @@ use Modules\System\Seo\SeoManager;
 use Modules\System\ServiceProvider;
 use Webuni\CommonMark\AttributesExtension\AttributesExtension;
 
+/**
+ * Class SystemServiceProvider
+ * @package Modules\System\Providers
+ */
 class SystemServiceProvider extends ServiceProvider
 {
     protected $namespace = 'system';

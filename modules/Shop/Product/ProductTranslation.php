@@ -12,6 +12,10 @@ use Modules\System\Scopes\FrontScoping;
 use Modules\System\Sluggable\Sluggable;
 use Modules\System\Translatable\TranslationModel;
 
+/**
+ * Class ProductTranslation
+ * @package Modules\Shop\Product
+ */
 class ProductTranslation extends TranslationModel implements PresentableEntity, SluggableInterface, PresentableCache, Searchable
 {
     use Sluggable, PresentableTrait, FrontScoping, SearchableTrait;
@@ -42,6 +46,9 @@ class ProductTranslation extends TranslationModel implements PresentableEntity, 
         ],
     ];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function product()
     {
         return $this->belongsTo('Modules\Shop\Product\Product');

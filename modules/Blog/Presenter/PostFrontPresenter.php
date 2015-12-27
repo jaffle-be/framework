@@ -7,6 +7,10 @@ use Modules\System\Presenter\BasePresenter;
 use Modules\System\Presenter\ContentPresenterTrait;
 use Modules\System\Presenter\ShortCodeCompiler;
 
+/**
+ * Class PostFrontPresenter
+ * @package Modules\Blog\Presenter
+ */
 class PostFrontPresenter extends BasePresenter
 {
     protected $shortcodes = ['media'];

@@ -4,6 +4,10 @@ namespace Modules\System\Country;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * Class Country
+ * @package Modules\System\Country
+ */
 class Country extends Model
 {
     use \Modules\System\Translatable\Translatable;

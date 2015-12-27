@@ -10,13 +10,29 @@ use Modules\Shop\Jobs\UpdateProduct;
 use Modules\Shop\Product\Product;
 use Modules\System\Http\AdminController;
 
+/**
+ * Class ProductSelectionController
+ * @package Modules\Shop\Http\Admin
+ */
 class ProductSelectionController extends AdminController
 {
+    /**
+     * @param Request $request
+     * @return array
+     */
     public function suggest(Request $request)
     {
         return suggest_completion('product_gamma', $request->get('query'), $request->get('locale'));
     }
 
+    /**
+     * @param Request $request
+     * @param ProductSelection $selections
+     * @param SearchServiceInterface $search
+     * @param Product $products
+     * @param AccountManager $account
+     * @return mixed
+     */
     public function index(Request $request, ProductSelection $selections, SearchServiceInterface $search, Product $products, AccountManager $account)
     {
         $account = $account->account();
@@ -59,6 +75,10 @@ class ProductSelectionController extends AdminController
         return $result;
     }
 
+    /**
+     * @param Product $product
+     * @return Product
+     */
     public function show(Product $product)
     {
         $product->load($this->relations());
@@ -66,6 +86,11 @@ class ProductSelectionController extends AdminController
         return $product;
     }
 
+    /**
+     * @param Product $product
+     * @param Request $request
+     * @return \Illuminate\Contracts\Routing\ResponseFactory|Product|\Symfony\Component\HttpFoundation\Response
+     */
     public function update(Product $product, Request $request)
     {
         $product->load($this->relations());
@@ -77,6 +102,10 @@ class ProductSelectionController extends AdminController
         return $product;
     }
 
+    /**
+     * @param Request $request
+     * @param Product $product
+     */
     public function batchPublish(Request $request, Product $product)
     {
         $ids = $request->get('products', []);
@@ -97,6 +126,10 @@ class ProductSelectionController extends AdminController
         }
     }
 
+    /**
+     * @param Request $request
+     * @param Product $product
+     */
     public function batchUnpublish(Request $request, Product $product)
     {
         $ids = $request->get('products', []);
@@ -117,11 +150,17 @@ class ProductSelectionController extends AdminController
         }
     }
 
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function overview()
     {
         return view('shop::admin.selections.overview');
     }
 
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View|string
+     */
     public function detail()
     {
         return 'selection detail';
@@ -129,6 +168,9 @@ class ProductSelectionController extends AdminController
         return view('shop::admin.selections.detail');
     }
 
+    /**
+     * @return array
+     */
     protected function relations()
     {
         return ['translations', 'translations'];

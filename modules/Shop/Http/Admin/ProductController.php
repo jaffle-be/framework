@@ -18,15 +18,30 @@ use Modules\Shop\Product\PropertyUnit;
 use Modules\System\Http\AdminController;
 use Modules\System\Locale;
 
+/**
+ * Class ProductController
+ * @package Modules\Shop\Http\Admin
+ */
 class ProductController extends AdminController
 {
     use MediaWidgetPreperations;
 
+    /**
+     * @param Request $request
+     * @return array
+     */
     public function suggest(Request $request)
     {
         return suggest_completion('products', $request->get('query'), $request->get('locale'));
     }
 
+    /**
+     * @param Request $request
+     * @param Product $products
+     * @param SearchServiceInterface $search
+     * @param GammaSubscriptionManager $subscriptions
+     * @return mixed
+     */
     public function index(Request $request, Product $products, SearchServiceInterface $search, GammaSubscriptionManager $subscriptions)
     {
         $thumbnailRequirements = function ($query) {
@@ -59,6 +74,13 @@ class ProductController extends AdminController
         ]);
     }
 
+    /**
+     * @param Request $request
+     * @param Product $product
+     * @param Guard $guard
+     * @param AccountManager $accounts
+     * @return Product|string|static
+     */
     public function store(Request $request, Product $product, Guard $guard, AccountManager $accounts)
     {
         $this->validate($request, [
@@ -89,6 +111,11 @@ class ProductController extends AdminController
         ]);
     }
 
+    /**
+     * @param Product $product
+     * @param PropertyUnit $unit
+     * @return Product
+     */
     public function show(Product $product, PropertyUnit $unit)
     {
         $product->load($this->relations());
@@ -100,6 +127,11 @@ class ProductController extends AdminController
         return $product;
     }
 
+    /**
+     * @param Product $product
+     * @param Request $request
+     * @return \Illuminate\Contracts\Routing\ResponseFactory|Product|\Symfony\Component\HttpFoundation\Response
+     */
     public function update(Product $product, Request $request)
     {
         $product->load($this->relations());
@@ -111,11 +143,19 @@ class ProductController extends AdminController
         return $product;
     }
 
+    /**
+     * @param Product $product
+     * @return Product
+     */
     public function destroy(Product $product)
     {
         return $this->deleteProduct($product);
     }
 
+    /**
+     * @param Request $request
+     * @param Product $product
+     */
     public function batchDestroy(Request $request, Product $product)
     {
         $ids = $request->get('products', []);
@@ -130,6 +170,10 @@ class ProductController extends AdminController
         }
     }
 
+    /**
+     * @param Request $request
+     * @param Product $product
+     */
     public function batchPublish(Request $request, Product $product)
     {
         $ids = $request->get('products', []);
@@ -150,6 +194,10 @@ class ProductController extends AdminController
         }
     }
 
+    /**
+     * @param Request $request
+     * @param Product $product
+     */
     public function batchUnpublish(Request $request, Product $product)
     {
         $ids = $request->get('products', []);
@@ -170,6 +218,11 @@ class ProductController extends AdminController
         }
     }
 
+    /**
+     * @param Request $request
+     * @param PropertyUnit $unit
+     * @return Collection
+     */
     public function addCategory(Request $request, PropertyUnit $unit)
     {
         $this->validate($request, [
@@ -217,6 +270,10 @@ class ProductController extends AdminController
         ]);
     }
 
+    /**
+     * @param Request $request
+     * @return string
+     */
     public function removeCategory(Request $request)
     {
         $this->validate($request, [
@@ -250,16 +307,25 @@ class ProductController extends AdminController
         ]);
     }
 
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function overview()
     {
         return view('shop::admin.product.overview');
     }
 
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function detail()
     {
         return view('shop::admin.product.detail');
     }
 
+    /**
+     * @return array
+     */
     protected function relations()
     {
         return [
@@ -275,6 +341,8 @@ class ProductController extends AdminController
 
     /**
      *
+     * @param Product $product
+     * @return Product
      * @throws \Exception
      */
     protected function deleteProduct(Product $product)
@@ -291,7 +359,8 @@ class ProductController extends AdminController
     }
 
     /**
-     *
+     * @param GammaSubscriptionManager $subscriptions
+     * @return string
      */
     protected function indexesToUse(GammaSubscriptionManager $subscriptions)
     {
@@ -303,7 +372,9 @@ class ProductController extends AdminController
     }
 
     /**
-     *
+     * @param $product
+     * @param $category
+     * @param $added
      */
     protected function doCategoryAttach($product, $category, $added)
     {
@@ -313,6 +384,10 @@ class ProductController extends AdminController
         }
     }
 
+    /**
+     * @param Product $product
+     * @param PropertyUnit $unit
+     */
     protected function prepareProperties(Product $product, PropertyUnit $unit)
     {
         $category = $product->mainCategory();
@@ -350,6 +425,10 @@ class ProductController extends AdminController
         }
     }
 
+    /**
+     * @param Category $category
+     * @return mixed
+     */
     protected function propertyGroups(Category $category)
     {
         return PropertyGroup::where('category_id', $category->id)->with('translations')->get();

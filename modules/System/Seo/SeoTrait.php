@@ -7,6 +7,10 @@ use Modules\System\Locale;
 use Modules\System\Presenter\PresentableEntity;
 use Modules\Users\User;
 
+/**
+ * Class SeoTrait
+ * @package Modules\System\Seo
+ */
 trait SeoTrait
 {
     public function seo()
@@ -14,6 +18,10 @@ trait SeoTrait
         return $this->morphMany('Modules\System\Seo\SeoProperty', 'owner');
     }
 
+    /**
+     * @param $field
+     * @return bool
+     */
     protected function getSeoCustomisation($field)
     {
         static $locale;
@@ -37,6 +45,9 @@ trait SeoTrait
         return false;
     }
 
+    /**
+     * @return bool
+     */
     public function getSeoTitle()
     {
         if ($seo = $this->getSeoCustomisation('title')) {
@@ -50,6 +61,9 @@ trait SeoTrait
         return $this->title;
     }
 
+    /**
+     * @return bool
+     */
     public function getSeoDescription()
     {
         if ($seo = $this->getSeoCustomisation('description')) {
@@ -77,6 +91,9 @@ trait SeoTrait
         return $this->extract;
     }
 
+    /**
+     * @return bool
+     */
     public function getSeoKeywords()
     {
         if ($seo = $this->getSeoCustomisation('keywords')) {
@@ -111,21 +128,33 @@ trait SeoTrait
         return app('url')->current();
     }
 
+    /**
+     * @return string
+     */
     public function getSeoTypeFacebook()
     {
         return 'article';
     }
 
+    /**
+     * @return string
+     */
     public function getSeoTypeGoogle()
     {
         return 'article';
     }
 
+    /**
+     * @return string
+     */
     public function getSeoTypeTwitter()
     {
         return 'summary_image_large';
     }
 
+    /**
+     * @return mixed
+     */
     public function getSeoAuthor()
     {
         if ($this->user instanceof User) {

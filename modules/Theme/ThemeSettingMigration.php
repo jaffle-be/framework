@@ -4,6 +4,10 @@ namespace Modules\Theme;
 
 use Illuminate\Database\Migrations\Migration;
 
+/**
+ * Class ThemeSettingMigration
+ * @package Modules\Theme
+ */
 class ThemeSettingMigration extends Migration
 {
     use MigrateThemeSettings;

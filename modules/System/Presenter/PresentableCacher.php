@@ -4,8 +4,15 @@ namespace Modules\System\Presenter;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * Class PresentableCacher
+ * @package Modules\System\Presenter
+ */
 class PresentableCacher
 {
+    /**
+     * @param $model
+     */
     public function handle($model)
     {
         if ($model instanceof PresentableEntity && $model instanceof PresentableCache) {

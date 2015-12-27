@@ -6,6 +6,10 @@ use Modules\Search\Model\Searchable;
 use Modules\Search\Model\SearchableTrait;
 use Modules\System\Translatable\TranslationModel;
 
+/**
+ * Class PropertyValueTranslation
+ * @package Modules\Shop\Product
+ */
 class PropertyValueTranslation extends TranslationModel implements Searchable
 {
     use SearchableTrait;
@@ -28,6 +32,9 @@ class PropertyValueTranslation extends TranslationModel implements Searchable
         ],
     ];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function value()
     {
         return $this->belongsTo('Modules\Shop\Product\PropertyValue', 'value_id');

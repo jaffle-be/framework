@@ -6,6 +6,10 @@ use Illuminate\Contracts\Events\Dispatcher;
 use Illuminate\Database\Connection;
 use Illuminate\Database\DatabaseManager;
 
+/**
+ * Class BrandCategoryManager
+ * @package Modules\Shop\Product
+ */
 class BrandCategoryManager
 {
     /**
@@ -27,6 +31,13 @@ class BrandCategoryManager
 
     protected $category;
 
+    /**
+     * @param DatabaseManager $database
+     * @param Dispatcher $events
+     * @param Product $product
+     * @param Brand $brand
+     * @param Category $category
+     */
     public function __construct(DatabaseManager $database, Dispatcher $events, Product $product, Brand $brand, Category $category)
     {
         //this needs to run on the very basic level, therefor we need the database connection.
@@ -108,6 +119,9 @@ class BrandCategoryManager
     /**
      *
      * $brands
+     * @param $product
+     * @param $category
+     * @return mixed|static
      */
     protected function combinationIsKnown($product, $category)
     {
@@ -124,7 +138,8 @@ class BrandCategoryManager
     }
 
     /**
-     *
+     * @param $attached
+     * @return array
      */
     protected function findProduct($attached)
     {
@@ -136,6 +151,11 @@ class BrandCategoryManager
         return $product;
     }
 
+    /**
+     * @param $product
+     * @param $category_id
+     * @return bool
+     */
     protected function combinationStillExists($product, $category_id)
     {
         $count = $this->product->newQueryWithoutScopes()
@@ -148,7 +168,8 @@ class BrandCategoryManager
     }
 
     /**
-     *
+     * @param $payload
+     * @return array
      */
     protected function response($payload)
     {

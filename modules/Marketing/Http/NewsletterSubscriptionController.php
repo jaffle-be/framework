@@ -6,8 +6,17 @@ use Drewm\MailChimp;
 use Illuminate\Http\Request;
 use Modules\System\Http\FrontController;
 
+/**
+ * Class NewsletterSubscriptionController
+ * @package Modules\Marketing\Http
+ */
 class NewsletterSubscriptionController extends FrontController
 {
+    /**
+     * @param Request $request
+     * @param MailChimp $mailChimp
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function store(Request $request, MailChimp $mailChimp)
     {
         $this->validate($request, ['email' => 'required|email']);

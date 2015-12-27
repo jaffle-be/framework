@@ -5,8 +5,18 @@ namespace Modules\Blog;
 use Illuminate\Http\Request;
 use Modules\Account\AccountManager;
 
+/**
+ * Class BlogSearch
+ * @package Modules\Blog
+ */
 trait BlogSearch
 {
+    /**
+     * @param Request $request
+     * @param AccountManager $manager
+     * @param $locale
+     * @return array
+     */
     protected function postsQuery(Request $request, AccountManager $manager, $locale)
     {
         return [

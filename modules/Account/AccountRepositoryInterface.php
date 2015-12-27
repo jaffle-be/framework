@@ -2,12 +2,21 @@
 
 namespace Modules\Account;
 
+/**
+ * Interface AccountRepositoryInterface
+ * @package Modules\Account
+ */
 interface AccountRepositoryInterface
 {
+    /**
+     * @param $domain
+     * @return mixed
+     */
     public function findByDomain($domain);
 
     /**
-     *
+     * @param array $payload
+     * @return
      */
     public function newAccount(array $payload);
 
@@ -16,6 +25,8 @@ interface AccountRepositoryInterface
      *
      *
      * $domain
+     * @param $alias
+     * @return
      */
     public function findByAlias($alias);
 

@@ -3,6 +3,9 @@
 use Modules\System\Seeder;
 use Modules\Tags\Tag;
 
+/**
+ * Class TagTableSeeder
+ */
 class TagTableSeeder extends Seeder
 {
     public function run()

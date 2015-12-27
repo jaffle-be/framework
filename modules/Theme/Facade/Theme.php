@@ -4,6 +4,10 @@ namespace Modules\Theme\Facade;
 
 use Illuminate\Support\Facades\Facade;
 
+/**
+ * Class Theme
+ * @package Modules\Theme\Facade
+ */
 class Theme extends Facade
 {
     /**

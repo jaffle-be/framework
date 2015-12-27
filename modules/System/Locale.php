@@ -5,6 +5,10 @@ namespace Modules\System;
 use Illuminate\Database\Eloquent\Model;
 use Modules\System\Translatable\Translatable;
 
+/**
+ * Class Locale
+ * @package Modules\System
+ */
 class Locale extends Model
 {
     use Translatable;

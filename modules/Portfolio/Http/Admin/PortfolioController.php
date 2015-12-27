@@ -9,20 +9,35 @@ use Modules\Portfolio\Jobs\UpdateProject;
 use Modules\Portfolio\Project;
 use Modules\System\Http\AdminController;
 
+/**
+ * Class PortfolioController
+ * @package Modules\Portfolio\Http\Admin
+ */
 class PortfolioController extends AdminController
 {
     use MediaWidgetPreperations;
 
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function overview()
     {
         return view('portfolio::admin.overview');
     }
 
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function detail()
     {
         return view('portfolio::admin.detail');
     }
 
+    /**
+     * @param Project $project
+     * @param Request $request
+     * @return mixed
+     */
     public function index(Project $project, Request $request)
     {
         $query = $project->with([
@@ -51,6 +66,10 @@ class PortfolioController extends AdminController
         return $query->paginate();
     }
 
+    /**
+     * @param Project $project
+     * @return Project
+     */
     public function show(Project $project)
     {
         $project->load(['translations']);
@@ -60,6 +79,11 @@ class PortfolioController extends AdminController
         return $project;
     }
 
+    /**
+     * @param Project $project
+     * @param AccountManager $accounts
+     * @return Project|string
+     */
     public function store(Project $project, AccountManager $accounts)
     {
         $project->newInstance();
@@ -69,6 +93,11 @@ class PortfolioController extends AdminController
         return $project->save() ? $project : json_encode(['status' => 'noke']);
     }
 
+    /**
+     * @param Request $request
+     * @param Project $project
+     * @return \Illuminate\Contracts\Routing\ResponseFactory|Project|\Symfony\Component\HttpFoundation\Response
+     */
     public function update(Request $request, Project $project)
     {
         $project->load('translations');
@@ -80,6 +109,11 @@ class PortfolioController extends AdminController
         return $project;
     }
 
+    /**
+     * @param Project $project
+     * @return Project
+     * @throws \Exception
+     */
     public function destroy(Project $project)
     {
         if ($project->delete()) {
@@ -89,6 +123,10 @@ class PortfolioController extends AdminController
         return $project;
     }
 
+    /**
+     * @param Request $request
+     * @param Project $project
+     */
     public function batchDestroy(Request $request, Project $project)
     {
         $projectids = $request->get('projects', []);
@@ -102,6 +140,10 @@ class PortfolioController extends AdminController
         }
     }
 
+    /**
+     * @param Request $request
+     * @param Project $project
+     */
     public function batchPublish(Request $request, Project $project)
     {
         $ids = $request->get('projects', []);
@@ -122,6 +164,10 @@ class PortfolioController extends AdminController
         }
     }
 
+    /**
+     * @param Request $request
+     * @param Project $project
+     */
     public function batchUnpublish(Request $request, Project $project)
     {
         $ids = $request->get('projects', []);

@@ -5,8 +5,16 @@ namespace Modules\Tags\Http;
 use Modules\System\Http\FrontController;
 use Modules\Tags\Tag;
 
+/**
+ * Class TagsController
+ * @package Modules\Tags\Http
+ */
 class TagsController extends FrontController
 {
+    /**
+     * @param Tag $tag
+     * @return \Illuminate\Contracts\View\View
+     */
     public function show(Tag $tag)
     {
         $content = $tag->content;

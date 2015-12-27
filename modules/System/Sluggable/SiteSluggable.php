@@ -6,15 +6,25 @@ use Modules\System\Locale;
 use Modules\System\Scopes\SiteSluggableScope;
 use Modules\System\Uri\Uri;
 
+/**
+ * Class SiteSluggable
+ * @package Modules\System\Sluggable
+ */
 trait SiteSluggable
 {
     use Sluggable;
 
+    /**
+     * @return mixed
+     */
     protected function needsSlugging()
     {
         return $this->exists;
     }
 
+    /**
+     * @return string
+     */
     public function getRouteKeyName()
     {
         if (! starts_with(app('request')->getRequestUri(), ['/admin', '/api'])) {
@@ -24,6 +34,9 @@ trait SiteSluggable
         return $this->getKeyName();
     }
 
+    /**
+     * @return mixed
+     */
     public function getRouteKey()
     {
         return $this->slug->uri;
@@ -48,6 +61,9 @@ trait SiteSluggable
         return $this->morphOne('Modules\System\Uri\Uri', 'owner');
     }
 
+    /**
+     * @return null
+     */
     public function getSlug()
     {
         return $this->slug ? $this->slug->uri : null;
@@ -59,6 +75,7 @@ trait SiteSluggable
      * Set the slug manually.
      *
      * $slug
+     * @param $uri
      */
     protected function setSlug($uri)
     {
@@ -126,7 +143,8 @@ trait SiteSluggable
     /**
      * Get all existing slugs that are similar to the given slug.
      *
-     *
+     * @param $slug
+     * @return
      */
     protected function getExistingSlugs($slug)
     {

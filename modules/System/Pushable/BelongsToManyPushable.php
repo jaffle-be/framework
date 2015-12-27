@@ -2,6 +2,10 @@
 
 namespace Modules\System\Pushable;
 
+/**
+ * Class BelongsToManyPushable
+ * @package Modules\System\Pushable
+ */
 class BelongsToManyPushable implements Pushable
 {
     protected $data;
@@ -12,6 +16,8 @@ class BelongsToManyPushable implements Pushable
 
     /**
      * BelongsToManyPushable constructor.
+     * @param array $data
+     * @param $relation
      */
     public function __construct(array $data, $relation)
     {
@@ -24,6 +30,9 @@ class BelongsToManyPushable implements Pushable
         return $this->relation;
     }
 
+    /**
+     * @return array
+     */
     public function getPushableData()
     {
         return $this->data;

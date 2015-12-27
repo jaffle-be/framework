@@ -6,6 +6,9 @@ use Illuminate\Support\Facades\Schema;
 use Modules\Module\Module;
 use Modules\Module\ModuleRoute;
 
+/**
+ * Class CreateTeamsTable
+ */
 class CreateTeamsTable extends Migration
 {
     /**

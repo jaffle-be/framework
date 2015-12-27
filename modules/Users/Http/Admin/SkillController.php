@@ -10,13 +10,27 @@ use Modules\Account\AccountManager;
 use Modules\System\Http\AdminController;
 use Modules\Users\Skill;
 
+/**
+ * Class SkillController
+ * @package Modules\Users\Http\Admin
+ */
 class SkillController extends AdminController
 {
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function widget()
     {
         return view('tags::admin.widget');
     }
 
+    /**
+     * @param Skill $skill
+     * @param Request $request
+     * @param AccountManager $manager
+     * @param Guard $guard
+     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator|Paginator
+     */
     public function index(Skill $skill, Request $request, AccountManager $manager, Guard $guard)
     {
         $value = $request->get('value');
@@ -52,6 +66,12 @@ class SkillController extends AdminController
         return $skills;
     }
 
+    /**
+     * @param Request $request
+     * @param Skill $skill
+     * @param Guard $guard
+     * @return Skill|static
+     */
     public function store(Request $request, Skill $skill, Guard $guard)
     {
         $name = $request->get('name');
@@ -70,6 +90,12 @@ class SkillController extends AdminController
         return $skill;
     }
 
+    /**
+     * @param Skill $skill
+     * @param Request $request
+     * @param Guard $guard
+     * @return mixed
+     */
     public function update(Skill $skill, Request $request, Guard $guard)
     {
         //save base data for the skill
@@ -102,6 +128,12 @@ class SkillController extends AdminController
         return $userSkill;
     }
 
+    /**
+     * @param Skill $skill
+     * @param Request $request
+     * @param Guard $guard
+     * @throws \Exception
+     */
     public function destroy(Skill $skill, Request $request, Guard $guard)
     {
         $user = $guard->user();

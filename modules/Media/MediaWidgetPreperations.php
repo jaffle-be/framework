@@ -5,8 +5,16 @@ namespace Modules\Media;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 
+/**
+ * Class MediaWidgetPreperations
+ * @package Modules\Media
+ */
 trait MediaWidgetPreperations
 {
+    /**
+     * @param Request $request
+     * @return mixed
+     */
     protected function owner(Request $request)
     {
         $id = $request->get('ownerId');
@@ -15,6 +23,10 @@ trait MediaWidgetPreperations
         return $this->media->findOwner($type, $id);
     }
 
+    /**
+     * @param $owner
+     * @param array $media
+     */
     protected function prepareMedia($owner, array $media = ['images', 'infographics', 'videos', 'files'])
     {
         $valid = ['images', 'infographics', 'videos', 'files'];
@@ -26,7 +38,7 @@ trait MediaWidgetPreperations
     }
 
     /**
-     *
+     * @param $owner
      */
     protected function prepareImages($owner)
     {
@@ -57,18 +69,24 @@ trait MediaWidgetPreperations
     }
 
     /**
-     *
+     * @param $owner
      */
     protected function prepareInfographics($owner)
     {
         $owner->infographics;
     }
 
+    /**
+     * @param $owner
+     */
     protected function prepareVideos($owner)
     {
         $owner->load('videos');
     }
 
+    /**
+     * @param $owner
+     */
     protected function prepareFiles($owner)
     {
         $owner->load('files');

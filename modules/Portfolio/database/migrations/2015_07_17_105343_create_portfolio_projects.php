@@ -5,6 +5,9 @@ use Illuminate\Database\Schema\Blueprint;
 use Modules\Module\Module;
 use Modules\Module\ModuleRoute;
 
+/**
+ * Class CreatePortfolioProjects
+ */
 class CreatePortfolioProjects extends Migration
 {
     /**

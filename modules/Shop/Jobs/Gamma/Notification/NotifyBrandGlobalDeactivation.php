@@ -7,6 +7,10 @@ use Modules\Account\Account;
 use Modules\Shop\Gamma\GammaNotification;
 use Modules\Shop\Product\Brand;
 
+/**
+ * Class NotifyBrandGlobalDeactivation
+ * @package Modules\Shop\Jobs\Gamma\Notification
+ */
 class NotifyBrandGlobalDeactivation extends Job
 {
     use GammaNotificationHelpers;
@@ -21,12 +25,19 @@ class NotifyBrandGlobalDeactivation extends Job
      */
     protected $brand;
 
+    /**
+     * @param Brand $brand
+     * @param Account $account
+     */
     public function __construct(Brand $brand, Account $account)
     {
         $this->account = $account;
         $this->brand = $brand;
     }
 
+    /**
+     * @param GammaNotification $notification
+     */
     public function handle(GammaNotification $notification)
     {
         $this->brand->selection->delete();

@@ -4,8 +4,15 @@ namespace Modules\Theme;
 
 use Illuminate\Database\Eloquent\Collection;
 
+/**
+ * Class ThemeSettingCollection
+ * @package Modules\Theme
+ */
 class ThemeSettingCollection extends Collection
 {
+    /**
+     * @return static
+     */
     public function byModule()
     {
         return $this->groupBy(function ($item) {

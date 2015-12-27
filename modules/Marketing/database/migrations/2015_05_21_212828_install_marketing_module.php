@@ -3,6 +3,9 @@
 use Illuminate\Database\Migrations\Migration;
 use Modules\Module\Module;
 
+/**
+ * Class InstallMarketingModule
+ */
 class InstallMarketingModule extends Migration
 {
     /**

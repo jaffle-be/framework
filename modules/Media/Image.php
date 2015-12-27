@@ -8,6 +8,10 @@ use Modules\System\Scopes\ModelAccountOrSystemResource;
 use Modules\System\Scopes\ModelAutoSort;
 use Modules\System\Translatable\Translatable;
 
+/**
+ * Class Image
+ * @package Modules\Media
+ */
 class Image extends Model
 {
     use Translatable;
@@ -23,6 +27,9 @@ class Image extends Model
 
     protected $hidden = ['account_id', 'filename', 'extension', 'width', 'height', 'owner_id', 'owner_type', 'created_at', 'updated_at', 'original_id'];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\MorphTo
+     */
     public function owner()
     {
         return $this->morphTo();

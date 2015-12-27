@@ -4,18 +4,29 @@ namespace Modules\Account;
 
 use Modules\Search\SearchService;
 
+/**
+ * Class IndexManager
+ * @package Modules\Account
+ */
 class IndexManager
 {
     protected $search;
 
     protected $account;
 
+    /**
+     * @param SearchService $search
+     * @param Account $account
+     */
     public function __construct(SearchService $search, Account $account)
     {
         $this->search = $search;
         $this->account = $account;
     }
 
+    /**
+     * @param Account $account
+     */
     public function remove(Account $account)
     {
         $client = $this->search->getClient();
@@ -41,6 +52,9 @@ class IndexManager
         }
     }
 
+    /**
+     * @param Account $account
+     */
     public function add(Account $account)
     {
         $client = $this->search->getClient();
@@ -67,6 +81,9 @@ class IndexManager
         ]);
     }
 
+    /**
+     * @param $events
+     */
     public function subscribe($events)
     {
         $events->listen('eloquent.created: '.Account::class, __CLASS__.'@add');

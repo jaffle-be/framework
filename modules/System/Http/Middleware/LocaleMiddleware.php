@@ -6,8 +6,15 @@ use Closure;
 use Illuminate\Cookie\CookieJar;
 use Illuminate\Session\Store;
 
+/**
+ * Class LocaleMiddleware
+ * @package Modules\System\Http\Middleware
+ */
 class LocaleMiddleware
 {
+    /**
+     * @param Store $session
+     */
     public function __construct(Store $session)
     {
         $this->session = $session;
@@ -16,7 +23,9 @@ class LocaleMiddleware
     /**
      * Handle an incoming request.
      *
-     *
+     * @param $request
+     * @param Closure $next
+     * @return
      */
     public function handle($request, Closure $next)
     {

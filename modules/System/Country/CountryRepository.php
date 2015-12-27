@@ -4,10 +4,19 @@ namespace Modules\System\Country;
 
 use Illuminate\Foundation\Application;
 
+/**
+ * Class CountryRepository
+ * @package Modules\System\Country
+ */
 class CountryRepository
 {
     protected $country;
 
+    /**
+     * @param Application $application
+     * @param Country $country
+     * @param CountryTranslation $translation
+     */
     public function __construct(Application $application, Country $country, CountryTranslation $translation)
     {
         $this->application = $application;
@@ -27,6 +36,10 @@ class CountryRepository
             ->lists('name', 'iso_code_2');
     }
 
+    /**
+     * @param $iso_code_2
+     * @return mixed
+     */
     public function findByIsoCode2($iso_code_2)
     {
         return $this->country->where('iso_code_2', $iso_code_2)

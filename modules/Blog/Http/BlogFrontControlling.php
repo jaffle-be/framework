@@ -5,10 +5,16 @@ namespace Modules\Blog\Http;
 use Modules\Blog\PostRepositoryInterface;
 use Modules\Blog\PostTranslation;
 
+/**
+ * Class BlogFrontControlling
+ * @package Modules\Blog\Http
+ */
 trait BlogFrontControlling
 {
     /**
-     *
+     * @param PostTranslation $post
+     * @param PostRepositoryInterface $posts
+     * @return
      */
     protected function renderPostDetail(PostTranslation $post, PostRepositoryInterface $posts)
     {

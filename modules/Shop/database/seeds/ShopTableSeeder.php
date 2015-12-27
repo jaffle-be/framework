@@ -16,6 +16,9 @@ use Modules\Shop\Product\PropertyUnit;
 use Modules\Shop\Product\PropertyValue;
 use Modules\System\Seeder;
 
+/**
+ * Class ShopTableSeeder
+ */
 class ShopTableSeeder extends Seeder
 {
     /**
@@ -28,6 +31,9 @@ class ShopTableSeeder extends Seeder
         parent::__construct();
     }
 
+    /**
+     * @param int $count
+     */
     public function run($count = 15)
     {
         $this->call(BrandTableSeeder::class);
@@ -40,6 +46,9 @@ class ShopTableSeeder extends Seeder
         $this->productBases($count);
     }
 
+    /**
+     * @param $amount
+     */
     protected function productBases($amount)
     {
         $brands = Brand::all();
@@ -75,6 +84,10 @@ class ShopTableSeeder extends Seeder
         }
     }
 
+    /**
+     * @param Product $product
+     * @param $account
+     */
     protected function prices(Product $product, $account)
     {
         $count = rand(1, 2);
@@ -101,6 +114,10 @@ class ShopTableSeeder extends Seeder
         }
     }
 
+    /**
+     * @param Product $product
+     * @param $account
+     */
     protected function promotions(Product $product, $account)
     {
         $count = rand(1, 2);
@@ -139,6 +156,10 @@ class ShopTableSeeder extends Seeder
         }
     }
 
+    /**
+     * @param Product $product
+     * @param Category $category
+     */
     protected function properties(Product $product, Category $category)
     {
         $properties = Property::where('category_id', $category->id)->get();

@@ -11,17 +11,28 @@ use Modules\Shop\Jobs\Gamma\CleanupDetail;
 use Modules\Shop\Jobs\Gamma\DeactivateProduct;
 use Pusher;
 
+/**
+ * Class DenyGammaNotification
+ * @package Modules\Shop\Jobs\Gamma\Notification\Handlers
+ */
 class DenyGammaNotification extends Job implements ShouldQueue
 {
     use DispatchesJobs;
 
     protected $notification;
 
+    /**
+     * @param GammaNotification $notification
+     */
     public function __construct(GammaNotification $notification)
     {
         $this->notification = $notification;
     }
 
+    /**
+     * @param Pusher $pusher
+     * @param GammaSelection $gamma
+     */
     public function handle(Pusher $pusher, GammaSelection $gamma)
     {
         if ($this->isProductDeactivation()) {
@@ -48,7 +59,7 @@ class DenyGammaNotification extends Job implements ShouldQueue
     }
 
     /**
-     *
+     * @param GammaSelection $gamma
      */
     protected function denyDeactivation(GammaSelection $gamma)
     {
@@ -80,6 +91,7 @@ class DenyGammaNotification extends Job implements ShouldQueue
     }
 
     /**
+     * @param Pusher $pusher
      * @throws \Exception
      */
     protected function finish(Pusher $pusher)

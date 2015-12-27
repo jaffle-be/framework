@@ -10,6 +10,10 @@ use Modules\Media\StoresMedia;
 use Modules\Media\Video\VideoGenericFormatter;
 use Modules\System\Locale;
 
+/**
+ * Class AddNewVideo
+ * @package Modules\Media\Commands
+ */
 class AddNewVideo extends Job
 {
     use VideoGenericFormatter;
@@ -29,6 +33,10 @@ class AddNewVideo extends Job
      */
     protected $input;
 
+    /**
+     * @param StoresMedia $owner
+     * @param $input
+     */
     public function __construct(StoresMedia $owner, $input)
     {
         $this->owner = $owner;
@@ -38,6 +46,12 @@ class AddNewVideo extends Job
         $this->input = $input;
     }
 
+    /**
+     * @param AccountManager $accounts
+     * @param MediaRepositoryInterface $media
+     * @param Locale $locale
+     * @return bool
+     */
     public function handle(AccountManager $accounts, MediaRepositoryInterface $media, Locale $locale)
     {
         if ($this->input['mode'] == 'youtube') {
@@ -67,6 +81,9 @@ class AddNewVideo extends Job
         return $media->createVideo($this->owner, $input);
     }
 
+    /**
+     * @return array|bool
+     */
     protected function handleYoutube()
     {
         /** @var Youtube $youtube */
@@ -93,6 +110,9 @@ class AddNewVideo extends Job
         }
     }
 
+    /**
+     * @return array
+     */
     protected function handleVimeo()
     {
         $vimeo = app('Vinkla\Vimeo\VimeoManager');

@@ -4,8 +4,18 @@ namespace Modules\System;
 
 use Exception;
 
+/**
+ * Class ConfigWriter
+ * @package Modules\System
+ */
 trait ConfigWriter
 {
+    /**
+     * @param $path
+     * @param $key
+     * @param $value
+     * @throws Exception
+     */
     protected function replaceConfigValue($path, $key, $value)
     {
         if (strpos($value, "'") !== false) {

@@ -8,6 +8,10 @@ use Modules\Media\StoringMedia;
 use Modules\System\Scopes\ModelAccountResource;
 use Modules\System\Translatable\Translatable;
 
+/**
+ * Class Client
+ * @package Modules\Account
+ */
 class Client extends Model implements StoresMedia
 {
     use Translatable;

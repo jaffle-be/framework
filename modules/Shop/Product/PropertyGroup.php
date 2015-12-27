@@ -6,6 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 use Modules\System\Scopes\ModelAutoSort;
 use Modules\System\Translatable\Translatable;
 
+/**
+ * Class PropertyGroup
+ * @package Modules\Shop\Product
+ */
 class PropertyGroup extends Model
 {
     use Translatable;
@@ -19,11 +23,17 @@ class PropertyGroup extends Model
 
     protected $translationForeignKey = 'group_id';
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function category()
     {
         return $this->belongsTo('Modules\Shop\Product\Category');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function properties()
     {
         return $this->hasMany('Modules\Shop\Product\Property', 'group_id');

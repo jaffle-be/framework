@@ -8,8 +8,17 @@ use Modules\Blog\PostRepositoryInterface;
 use Modules\System\Http\FrontController;
 use Modules\Users\User;
 
+/**
+ * Class TeamController
+ * @package Modules\Account\Http
+ */
 class TeamController extends FrontController
 {
+    /**
+     * @param AccountManager $accountManager
+     * @param Team $team
+     * @return \Illuminate\Contracts\View\View
+     */
     public function index(AccountManager $accountManager, Team $team)
     {
         $account = $accountManager->account();
@@ -27,6 +36,12 @@ class TeamController extends FrontController
         return $this->theme->render('team.index', ['memberships' => $memberships, 'teams' => $teams]);
     }
 
+    /**
+     * @param User $user
+     * @param $team
+     * @param PostRepositoryInterface $posts
+     * @return \Illuminate\Contracts\View\View
+     */
     public function show(User $user, $team, PostRepositoryInterface $posts)
     {
         $user = $user->find($team);
@@ -38,6 +53,10 @@ class TeamController extends FrontController
         return $this->theme->render('team.detail', ['member' => $user, 'posts' => $posts]);
     }
 
+    /**
+     * @param null $prefix
+     * @return array
+     */
     protected function memberRelations($prefix = null)
     {
         $relations = ['member.socialLinks', 'member.skills', 'member.skills.translations'];

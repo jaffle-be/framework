@@ -7,8 +7,15 @@ use Modules\Account\Jobs\Membership\RevokeMembership;
 use Modules\Account\Membership;
 use Modules\System\Http\AdminController;
 
+/**
+ * Class MembershipController
+ * @package Modules\Account\Http\Admin
+ */
 class MembershipController extends AdminController
 {
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function page()
     {
         return view('account::admin.members.overview');
@@ -24,7 +31,8 @@ class MembershipController extends AdminController
     }
 
     /**
-     *
+     * @param AccountManager $manager
+     * @return
      */
     public function index(AccountManager $manager)
     {
@@ -55,6 +63,10 @@ class MembershipController extends AdminController
         return $account->memberships;
     }
 
+    /**
+     * @param Membership $membership
+     * @return Membership
+     */
     public function destroy(Membership $membership)
     {
         /*

@@ -11,11 +11,22 @@ use Modules\Portfolio\PortfolioSearch;
 use Modules\Search\SearchServiceInterface;
 use Modules\System\Http\FrontController;
 
+/**
+ * Class SearchController
+ * @package Modules\Search\Http
+ */
 class SearchController extends FrontController
 {
     use BlogSearch;
     use PortfolioSearch;
 
+    /**
+     * @param Request $request
+     * @param Post $post
+     * @param SearchServiceInterface $search
+     * @param AccountManager $account
+     * @return \Illuminate\Contracts\View\View
+     */
     public function index(Request $request, Post $post, SearchServiceInterface $search, AccountManager $account)
     {
         $locale = app()->getLocale();

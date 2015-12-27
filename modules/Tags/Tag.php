@@ -8,6 +8,10 @@ use Modules\Search\Model\SearchableTrait;
 use Modules\System\Scopes\ModelAccountResource;
 use Modules\System\Translatable\Translatable;
 
+/**
+ * Class Tag
+ * @package Modules\Tags
+ */
 class Tag extends Model implements Searchable
 {
     use Translatable;
@@ -35,21 +39,33 @@ class Tag extends Model implements Searchable
         ],
     ];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\MorphToMany
+     */
     public function posts()
     {
         return $this->morphedByMany('Modules\Blog\Post', 'taggable');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\MorphToMany
+     */
     public function projects()
     {
         return $this->morphedByMany('Modules\Portfolio\Project', 'taggable');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function content()
     {
         return $this->hasMany('Modules\Tags\TaggedContent');
     }
 
+    /**
+     * @return string
+     */
     public function getCubeportfolioAttribute()
     {
         return 'cube'.str_slug(ucfirst($this->name));

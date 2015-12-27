@@ -18,13 +18,27 @@ use Modules\Shop\Product\Brand;
 use Modules\Shop\Product\Category;
 use Modules\System\Http\AdminController;
 
+/**
+ * Class GammaController
+ * @package Modules\Shop\Http\Admin
+ */
 class GammaController extends AdminController
 {
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function templateCategories()
     {
         return view('shop::admin.categories.overview');
     }
 
+    /**
+     * @param GammaSelection $gamma
+     * @param GammaNotification $notification
+     * @param GammaSubscriptionManager $subscriptions
+     * @param Request $request
+     * @return Collection
+     */
     public function categories(GammaSelection $gamma, GammaNotification $notification, GammaSubscriptionManager $subscriptions, Request $request)
     {
         $productRequirements = function ($query) use ($subscriptions) {
@@ -110,6 +124,11 @@ class GammaController extends AdminController
         return $categories;
     }
 
+    /**
+     * @param Request $request
+     * @param AccountManager $manager
+     * @param Category $categories
+     */
     public function category(Request $request, AccountManager $manager, Category $categories)
     {
         $activate = $request->get('status');
@@ -122,11 +141,21 @@ class GammaController extends AdminController
         }
     }
 
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function templateBrands()
     {
         return view('shop::admin.brands.overview');
     }
 
+    /**
+     * @param GammaSelection $gamma
+     * @param GammaNotification $notification
+     * @param GammaSubscriptionManager $subscriptions
+     * @param Request $request
+     * @return Collection
+     */
     public function brands(GammaSelection $gamma, GammaNotification $notification, GammaSubscriptionManager $subscriptions, Request $request)
     {
         $productRequirements = function ($query) use ($subscriptions) {
@@ -211,6 +240,11 @@ class GammaController extends AdminController
         return $brands;
     }
 
+    /**
+     * @param Request $request
+     * @param AccountManager $manager
+     * @param Brand $brands
+     */
     public function brand(Request $request, AccountManager $manager, Brand $brands)
     {
         $activate = $request->get('status');
@@ -223,6 +257,12 @@ class GammaController extends AdminController
         }
     }
 
+    /**
+     * @param Request $request
+     * @param Category $category
+     * @param Brand $brand
+     * @param AccountManager $manager
+     */
     public function detail(Request $request, Category $category, Brand $brand, AccountManager $manager)
     {
         $status = $request->get('status');
@@ -236,6 +276,12 @@ class GammaController extends AdminController
         }
     }
 
+    /**
+     * @param GammaSelection $gamma
+     * @param $field
+     * @param $ids
+     * @return mixed
+     */
     protected function selections(GammaSelection $gamma, $field, $ids)
     {
         $selections = $gamma->whereIn($field, $ids)
@@ -245,6 +291,12 @@ class GammaController extends AdminController
         return $selections;
     }
 
+    /**
+     * @param GammaNotification $notification
+     * @param $field
+     * @param $ids
+     * @return mixed
+     */
     protected function reviews(GammaNotification $notification, $field, $ids)
     {
         $reviews = $notification->whereIn($field, $ids)

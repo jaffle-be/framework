@@ -4,16 +4,27 @@ namespace Modules\Account;
 
 use Illuminate\Contracts\Cache\Repository;
 
+/**
+ * Class AccountRepository
+ * @package Modules\Account
+ */
 class AccountRepository implements AccountRepositoryInterface
 {
     protected $account;
 
+    /**
+     * @param Account $account
+     * @param Repository $cache
+     */
     public function __construct(Account $account, Repository $cache)
     {
         $this->account = $account;
         $this->cache = $cache;
     }
 
+    /**
+     * @param $domain
+     */
     public function findByDomain($domain)
     {
         if (empty($domain)) {
@@ -25,7 +36,8 @@ class AccountRepository implements AccountRepositoryInterface
     }
 
     /**
-     *
+     * @param array $payload
+     * @return static
      */
     public function newAccount(array $payload)
     {
@@ -36,6 +48,7 @@ class AccountRepository implements AccountRepositoryInterface
      * The alias represents the subdomain for the main app url an account is running under.
      *
      * $domain
+     * @param $alias
      */
     public function findByAlias($alias)
     {

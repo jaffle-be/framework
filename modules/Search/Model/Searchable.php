@@ -5,12 +5,17 @@ namespace Modules\Search\Model;
 use Modules\Search\Query\Queryable;
 use Modules\Search\SearchServiceInterface;
 
+/**
+ * Interface Searchable
+ * @package Modules\Search\Model
+ */
 interface Searchable
 {
     /**
      * Set the client for searching.
      *
-     *
+     * @param SearchServiceInterface $service
+     * @return
      */
     public function setSearchableService(SearchServiceInterface $service);
 
@@ -23,6 +28,8 @@ interface Searchable
 
     /**
      * Set the index for searching.
+     * @param $index
+     * @return
      */
     public function setSearchableIndex($index);
 
@@ -76,7 +83,8 @@ interface Searchable
     /**
      * Get the corresponding model event to listen for when auto indexing.
      *
-     *
+     * @param $event
+     * @return
      */
     public function getSearchableEventname($event);
 
@@ -84,14 +92,17 @@ interface Searchable
      * This is a 'hook' to a new model creation.
      * if it ever changes in eloquent, you only need to adjust this part.
      *
-     *
+     * @param $data
+     * @param array $with
+     * @return
      */
     public function getSearchableNewModel($data, array $with);
 
     /**
      * Return the mappings to use to index our data.
      *
-     *
+     * @param array $config
+     * @return
      */
     public function getSearchableMapping(array $config);
 
@@ -99,7 +110,8 @@ interface Searchable
      * Return the data for elastic suggestions
      * if $inheritFrom is passed, it will use that to name the suggest.
      *
-     *
+     * @param Searchable $inheritFrom
+     * @return
      */
     public function getSearchableSuggestData(Searchable $inheritFrom = null);
 }

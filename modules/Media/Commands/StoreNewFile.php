@@ -11,6 +11,10 @@ use Modules\Media\MediaRepositoryInterface;
 use Modules\Media\StoresMedia;
 use Modules\System\Locale;
 
+/**
+ * Class StoreNewFile
+ * @package Modules\Media\Commands
+ */
 class StoreNewFile extends Job
 {
     protected $account;
@@ -66,7 +70,11 @@ class StoreNewFile extends Job
     protected $path;
 
     /**
-     *
+     * @param Account $account
+     * @param StoresMedia $owner
+     * @param Locale $locale
+     * @param $path
+     * @param null $rename
      */
     public function __construct(Account $account, StoresMedia $owner, Locale $locale, $path, $rename = null)
     {
@@ -81,6 +89,12 @@ class StoreNewFile extends Job
         $this->rename = $rename;
     }
 
+    /**
+     * @param MediaRepositoryInterface $repo
+     * @param Filesystem $files
+     * @param Configurator $config
+     * @return bool
+     */
     public function handle(MediaRepositoryInterface $repo, Filesystem $files, Configurator $config)
     {
         if (! $files->exists($this->currentPath)) {
@@ -100,6 +114,10 @@ class StoreNewFile extends Job
         }
     }
 
+    /**
+     * @param Filesystem $files
+     * @param Configurator $config
+     */
     protected function handleFile(Filesystem $files, Configurator $config)
     {
         $abstract = $config->getAbstractPath($this->owner, 'files');

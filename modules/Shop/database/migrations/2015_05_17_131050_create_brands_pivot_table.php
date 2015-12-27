@@ -3,6 +3,9 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
+/**
+ * Class CreateBrandsPivotTable
+ */
 class CreateBrandsPivotTable extends Migration
 {
     /**

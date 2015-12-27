@@ -5,6 +5,9 @@ use Modules\Account\Account;
 use Modules\Account\Team;
 use Modules\System\Seeder;
 
+/**
+ * Class TeamSeeder
+ */
 class TeamSeeder extends Seeder
 {
     public function run()

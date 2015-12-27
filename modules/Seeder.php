@@ -9,6 +9,10 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
 use Modules\Media\Commands\StoreNewImage;
 use Modules\Media\ImageDimensionHelpers;
 
+/**
+ * Class Seeder
+ * @package Modules
+ */
 abstract class Seeder extends BaseSeeder
 {
     use DispatchesJobs;
@@ -86,6 +90,11 @@ abstract class Seeder extends BaseSeeder
         }
     }
 
+    /**
+     * @param $owner
+     * @param $account
+     * @throws Exception
+     */
     protected function newImage($owner, $account)
     {
         $this->validateSeederModel();

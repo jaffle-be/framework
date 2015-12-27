@@ -6,10 +6,19 @@ use Modules\Blog\Post;
 use Modules\Blog\PostRepositoryInterface;
 use Modules\System\Http\FrontController;
 
+/**
+ * Class BlogController
+ * @package Modules\Blog\Http
+ */
 class BlogController extends FrontController
 {
     use BlogFrontControlling;
 
+    /**
+     * @param Post $post
+     * @param PostRepositoryInterface $posts
+     * @return string
+     */
     public function index(Post $post, PostRepositoryInterface $posts)
     {
         /*

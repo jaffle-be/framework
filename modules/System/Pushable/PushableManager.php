@@ -4,17 +4,28 @@ namespace Modules\System\Pushable;
 
 use Illuminate\Contracts\Events\Dispatcher;
 
+/**
+ * Class PushableManager
+ * @package Modules\System\Pushable
+ */
 class PushableManager
 {
     protected $events;
 
     protected $supporting = ['created', 'deleted', 'updated', 'attached', 'detached'];
 
+    /**
+     * @param Dispatcher $events
+     */
     public function __construct(Dispatcher $events)
     {
         $this->events = $events;
     }
 
+    /**
+     * @param $method
+     * @param $arguments
+     */
     public function __call($method, $arguments)
     {
         if (! $this->supported($method)) {
@@ -35,6 +46,10 @@ class PushableManager
         }
     }
 
+    /**
+     * @param $method
+     * @return bool
+     */
     protected function supported($method)
     {
         return in_array($method, $this->supporting);
@@ -46,6 +61,8 @@ class PushableManager
      *
      *
      * $model
+     * @param $payload
+     * @return BelongsToManyPushable
      */
     public function belongsToManyPushable($payload)
     {

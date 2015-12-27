@@ -21,7 +21,8 @@ class UpdateImage extends Job
     protected $input;
 
     /**
-     *
+     * @param Image $image
+     * @param array $input
      */
     public function __construct(Image $image, array $input)
     {

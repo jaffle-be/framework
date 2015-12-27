@@ -10,15 +10,29 @@ use Modules\Account\Jobs\Membership\SendInvitationEmail;
 use Modules\Account\MembershipInvitation;
 use Modules\System\Http\AdminController;
 
+/**
+ * Class MembershipInvitationController
+ * @package Modules\Account\Http\Admin
+ */
 class MembershipInvitationController extends AdminController
 {
     use DispatchesJobs;
 
+    /**
+     * @param MembershipInvitation $invitation
+     * @return mixed
+     */
     public function index(MembershipInvitation $invitation)
     {
         return MembershipInvitation::orderBy('created_at', 'asc')->get();
     }
 
+    /**
+     * @param Request $request
+     * @param AccountManager $manager
+     * @param Hasher $hasher
+     * @return MembershipInvitation
+     */
     public function store(Request $request, AccountManager $manager, Hasher $hasher)
     {
         $this->validate($request, ['email' => 'required|email']);
@@ -39,6 +53,12 @@ class MembershipInvitationController extends AdminController
         return $invitation;
     }
 
+    /**
+     * @param $invitation
+     * @param Request $request
+     * @param AccountManager $manager
+     * @return mixed
+     */
     public function destroy($invitation, Request $request, AccountManager $manager)
     {
         $account = $manager->account();
@@ -55,7 +75,9 @@ class MembershipInvitationController extends AdminController
     }
 
     /**
-     *
+     * @param Request $request
+     * @param Hasher $hasher
+     * @return mixed|string
      */
     protected function getNewHash(Request $request, Hasher $hasher)
     {

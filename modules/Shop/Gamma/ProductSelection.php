@@ -8,6 +8,10 @@ use Modules\Search\Model\SearchableTrait;
 use Modules\System\MySoftDeletes;
 use Modules\System\Scopes\ModelAccountResource;
 
+/**
+ * Class ProductSelection
+ * @package Modules\Shop\Gamma
+ */
 class ProductSelection extends Model implements Searchable
 {
     use MySoftDeletes;
@@ -48,45 +52,67 @@ class ProductSelection extends Model implements Searchable
      * so it will always automatically inheret the same search options as the products,
      * but it will only search selections.
      *
-     *
+     * @param Searchable $inheritFrom
+     * @return
      */
     public function getSearchableSuggestData(Searchable $inheritFrom = null)
     {
         return $this->product->getSearchableSuggestData($this);
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function product()
     {
         return $this->belongsTo('Modules\Shop\Product\Product');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function brand()
     {
         return $this->belongsTo('Modules\Shop\Product\Brand');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function categories()
     {
         return $this->hasMany('Modules\Shop\Gamma\ProductCategorySelection', 'selection_id');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function activePrice()
     {
         return $this->belongsTo('Modules\Shop\Product\ActivePrice');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function activePromotion()
     {
         return $this->belongsTo('Modules\Shop\Product\ActivePromotion');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function properties()
     {
         return $this->hasMany('Modules\Shop\Product\PropertyValue', 'product_id', 'product_id');
     }
 
     /**
-     *
+     * @param $brand_id
+     * @param $category_id
+     * @param $account_id
+     * @return
      */
     public function countActiveProducts($brand_id, $category_id, $account_id)
     {
@@ -100,6 +126,12 @@ class ProductSelection extends Model implements Searchable
             ->count();
     }
 
+    /**
+     * @param $brand_id
+     * @param $category_id
+     * @param $account_id
+     * @return mixed
+     */
     public function chunkActiveProducts($brand_id, $category_id, $account_id)
     {
         return $this->newQueryWithoutScopes()

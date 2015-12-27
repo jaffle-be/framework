@@ -5,8 +5,15 @@ namespace Modules\Contact\Requests;
 use App\Http\Requests\Request;
 use Modules\Account\AccountManager;
 
+/**
+ * Class ContactRequest
+ * @package Modules\Contact\Requests
+ */
 class ContactRequest extends Request
 {
+    /**
+     * @return array
+     */
     public function rules()
     {
         return [
@@ -17,6 +24,10 @@ class ContactRequest extends Request
         ];
     }
 
+    /**
+     * @param AccountManager $account
+     * @return mixed
+     */
     public function authorize(AccountManager $account)
     {
         $account = $account->account();

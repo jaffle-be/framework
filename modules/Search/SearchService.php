@@ -10,6 +10,10 @@ use Illuminate\Events\Dispatcher;
 use Modules\Search\Model\Searchable;
 use Modules\System\MySoftDeletes;
 
+/**
+ * Class SearchService
+ * @package Modules\Search
+ */
 class SearchService implements SearchServiceInterface
 {
     use SearchResponder;
@@ -51,7 +55,9 @@ class SearchService implements SearchServiceInterface
     protected $invertedTypes = [];
 
     /**
-     *
+     * @param Container $container
+     * @param Client $client
+     * @param Config $config
      */
     public function __construct(Container $container, Client $client, Config $config)
     {
@@ -92,6 +98,8 @@ class SearchService implements SearchServiceInterface
      * This method will bind all events to the eloquent model created, updated or deleted events.
      * Note the events are not the creating, updating or deleting events, as these would possibly
      * index data that might change due to a model observer adjusting data.
+     * @param Searchable $type
+     * @param array $with
      */
     public function regularAutoIndex(Searchable $type, array $with)
     {
@@ -116,6 +124,10 @@ class SearchService implements SearchServiceInterface
         }
     }
 
+    /**
+     * @param $updated
+     * @param $inverted
+     */
     protected function invertedAutoIndex($updated, $inverted)
     {
         foreach ($inverted as $invert) {
@@ -131,6 +143,13 @@ class SearchService implements SearchServiceInterface
         }
     }
 
+    /**
+     * @param Searchable $parent
+     * @param $updated
+     * @param $relation
+     * @param $key
+     * @param array $with
+     */
     protected function addInvertedListener(Searchable $parent, $updated, $relation, $key, array $with)
     {
         $dispatcher = $this->container->make('events');
@@ -151,6 +170,10 @@ class SearchService implements SearchServiceInterface
         });
     }
 
+    /**
+     * @param $parent
+     * @return array
+     */
     protected function getRelationsToLoad($parent)
     {
         $class = new $parent();
@@ -204,6 +227,10 @@ class SearchService implements SearchServiceInterface
         $this->client->indices()->delete($params);
     }
 
+    /**
+     * @param Searchable $type
+     * @param bool|true $needsLoading
+     */
     public function add(Searchable $type, $needsLoading = true)
     {
         //clone object so we do not touch original one.
@@ -224,6 +251,9 @@ class SearchService implements SearchServiceInterface
         $this->client->index($data);
     }
 
+    /**
+     * @param Searchable $type
+     */
     public function delete(Searchable $type)
     {
         if (uses_trait($type, MySoftDeletes::class)) {
@@ -247,6 +277,9 @@ class SearchService implements SearchServiceInterface
         }
     }
 
+    /**
+     * @param Searchable $type
+     */
     public function update(Searchable $type)
     {
         //clone object so we do not touch original one.
@@ -276,7 +309,12 @@ class SearchService implements SearchServiceInterface
     /**
      * Search the index.
      *
-     *
+     * @param $type
+     * @param array $params
+     * @param array $with
+     * @param int $paginated
+     * @param \Closure $highlighter
+     * @return array|\Illuminate\Pagination\LengthAwarePaginator
      */
     public function search($type, array $params, $with = [], $paginated = 15, \Closure $highlighter = null)
     {
@@ -305,6 +343,10 @@ class SearchService implements SearchServiceInterface
         return $this->response($result, $with, $paginated, $this->container->make($this->config->getClass($type)));
     }
 
+    /**
+     * @param array $params
+     * @return mixed
+     */
     public function aggregate(array $params)
     {
         $result = $this->client->search($params);
@@ -318,11 +360,18 @@ class SearchService implements SearchServiceInterface
         return $aggregations;
     }
 
+    /**
+     * @return mixed
+     */
     public function getPaginator()
     {
         return $this->container->make('Illuminate\Contracts\Pagination\Paginator');
     }
 
+    /**
+     * @param Searchable $type
+     * @return mixed
+     */
     public function getConfig(Searchable $type)
     {
         return $this->config->getType($type->getSearchableType());
@@ -331,7 +380,7 @@ class SearchService implements SearchServiceInterface
     /**
      * Update the settings for the elasticsearch instance.
      *
-     *
+     * @param array $settings
      */
     public function updateSettings(array $settings)
     {
@@ -374,6 +423,8 @@ class SearchService implements SearchServiceInterface
      * People could have passed in a simple classname.
      *
      *
+     * @param $type
+     * @return array|mixed
      * @throws Exception
      */
     protected function getSearchable($type)
@@ -396,7 +447,8 @@ class SearchService implements SearchServiceInterface
     }
 
     /**
-     *
+     * @param Searchable $type
+     * @return array
      */
     protected function getBaseParams(Searchable $type)
     {
@@ -419,7 +471,8 @@ class SearchService implements SearchServiceInterface
     }
 
     /**
-     *
+     * @param Searchable $type
+     * @return array
      */
     protected function data(Searchable $type)
     {
@@ -437,11 +490,18 @@ class SearchService implements SearchServiceInterface
         return $params;
     }
 
+    /**
+     * @return Client
+     */
     public function getClient()
     {
         return $this->client;
     }
 
+    /**
+     * @param $params
+     * @return mixed
+     */
     protected function cleanSort($params)
     {
         //sorts best have a unmapped_type parameter, so queries won't fail for empty document sets.

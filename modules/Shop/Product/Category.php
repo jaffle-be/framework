@@ -11,6 +11,10 @@ use Modules\System\Pushable\Pushable;
 use Modules\System\Translatable\Translatable;
 use Modules\System\Translatable\TranslationModel;
 
+/**
+ * Class Category
+ * @package Modules\Shop\Product
+ */
 class Category extends Model implements Pushable, Searchable
 {
     use Translatable;
@@ -36,41 +40,66 @@ class Category extends Model implements Pushable, Searchable
         ],
     ];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
     public function selection()
     {
         return $this->hasOne('Modules\Shop\Gamma\CategorySelection');
     }
 
+    /**
+     * @return \Modules\System\Eventing\BelongsToMany
+     */
     public function products()
     {
         return $this->eventedBelongsToMany('Modules\Shop\Product\Product', 'product_categories_pivot', null, null, 'product_categories');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
     public function brands()
     {
         return $this->belongsToMany('Modules\Shop\Product\Brand', 'product_brands_pivot', null, null, 'brand_categories');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function synonyms()
     {
         return $this->hasMany('Modules\Shop\Product\Category', 'original_id');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function originalCategory()
     {
         return $this->belongsTo('Modules\Shop\Product\Category', 'original_id');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function propertyGroups()
     {
         return $this->hasMany('Modules\Shop\Product\PropertyGroup', 'category_id');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function properties()
     {
         return $this->hasMany('Modules\Shop\Product\Property', 'category_id');
     }
 
+    /**
+     * @param $translation
+     * @return array
+     */
     protected function getSearchableSuggestPayload($translation)
     {
         //for a category, we use all synonyms as possible input

@@ -4,6 +4,10 @@ namespace Modules\Media;
 
 use Exception;
 
+/**
+ * Class ImageDimensionHelpers
+ * @package Modules\Media
+ */
 trait ImageDimensionHelpers
 {
     /**
@@ -13,6 +17,8 @@ trait ImageDimensionHelpers
      * x150 to have a auto resize with a max height of.
      *
      *
+     * @param $size
+     * @return array
      * @throws Exception
      */
     protected function dimensions($size)
@@ -30,16 +36,31 @@ trait ImageDimensionHelpers
         return [$width, $height];
     }
 
+    /**
+     * @param $width
+     * @param $height
+     * @return bool
+     */
     protected function bothAreNull($width, $height)
     {
         return empty($width) && empty($height);
     }
 
+    /**
+     * @param $width
+     * @param $height
+     * @return bool
+     */
     protected function hasNonNumeric($width, $height)
     {
         return (! empty($width) && ! is_numeric($width)) || (! empty($height) && ! is_numeric($height));
     }
 
+    /**
+     * @param $width
+     * @param $height
+     * @return \Closure|void
+     */
     protected function constraint($width, $height)
     {
         if (empty($width) || empty($height)) {

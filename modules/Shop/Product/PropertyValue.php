@@ -7,6 +7,10 @@ use Modules\Search\Model\Searchable;
 use Modules\Search\Model\SearchableTrait;
 use Modules\System\Translatable\Translatable;
 
+/**
+ * Class PropertyValue
+ * @package Modules\Shop\Product
+ */
 class PropertyValue extends Model implements Searchable
 {
     use Translatable;
@@ -48,16 +52,25 @@ class PropertyValue extends Model implements Searchable
         ],
     ];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function product()
     {
         return $this->belongsTo('Modules\Shop\Product\Product', 'product_id');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function property()
     {
         return $this->belongsTo('Modules\Shop\Product\Property', 'property_id');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function option()
     {
         return $this->belongsTo('Modules\Shop\Product\PropertyOption', 'option_id');

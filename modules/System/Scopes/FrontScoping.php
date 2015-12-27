@@ -2,6 +2,10 @@
 
 namespace Modules\System\Scopes;
 
+/**
+ * Class FrontScoping
+ * @package Modules\System\Scopes
+ */
 trait FrontScoping
 {
     public static function bootFrontScoping()

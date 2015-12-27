@@ -7,6 +7,10 @@ use Modules\Account\AccountContactInformation;
 use Modules\Account\AccountLogo;
 use Modules\System\ServiceProvider;
 
+/**
+ * Class AccountServiceProvider
+ * @package Modules\Account\Providers
+ */
 class AccountServiceProvider extends ServiceProvider
 {
     protected $defer = false;

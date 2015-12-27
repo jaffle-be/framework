@@ -11,6 +11,10 @@ use Modules\Media\MediaWidgetPreperations;
 use Modules\System\Http\AdminController;
 use Modules\Theme\ThemeManager;
 
+/**
+ * Class ImageController
+ * @package Modules\Media\Http\Admin
+ */
 class ImageController extends AdminController
 {
     use MediaWidgetPreperations;
@@ -21,7 +25,8 @@ class ImageController extends AdminController
     protected $media;
 
     /**
-     *
+     * @param ThemeManager $theme
+     * @param MediaRepositoryInterface $media
      */
     public function __construct(ThemeManager $theme, MediaRepositoryInterface $media)
     {
@@ -30,11 +35,18 @@ class ImageController extends AdminController
         parent::__construct($theme);
     }
 
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function widget()
     {
         return view('media::admin.image');
     }
 
+    /**
+     * @param Request $request
+     * @return mixed
+     */
     public function index(Request $request)
     {
         $owner = $this->owner($request);
@@ -44,6 +56,10 @@ class ImageController extends AdminController
         return $owner->images;
     }
 
+    /**
+     * @param Request $request
+     * @return mixed
+     */
     public function store(Request $request)
     {
         $owner = $this->owner($request);
@@ -57,6 +73,11 @@ class ImageController extends AdminController
         return $image;
     }
 
+    /**
+     * @param Image $image
+     * @param Request $request
+     * @return mixed
+     */
     public function update(Image $image, Request $request)
     {
         $image->load($this->mediaImageRelations());
@@ -70,6 +91,11 @@ class ImageController extends AdminController
         }
     }
 
+    /**
+     * @param Request $request
+     * @param Image $image
+     * @throws \Exception
+     */
     public function destroy(Request $request, Image $image)
     {
         $image->load('owner');
@@ -81,6 +107,9 @@ class ImageController extends AdminController
         }
     }
 
+    /**
+     * @param Request $request
+     */
     public function sort(Request $request)
     {
         $owner = $this->owner($request);

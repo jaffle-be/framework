@@ -38,7 +38,7 @@ class MenuManager
     protected $repository;
 
     /**
-     *
+     * @param MenuRepositoryInterface $repository
      */
     public function __construct(MenuRepositoryInterface $repository)
     {
@@ -46,7 +46,9 @@ class MenuManager
     }
 
     /**
-     *
+     * @param $name
+     * @param $arguments
+     * @return mixed
      */
     public function __call($name, $arguments)
     {
@@ -54,7 +56,8 @@ class MenuManager
     }
 
     /**
-     *
+     * @param $menu
+     * @param array $options
      */
     public function register($menu, array $options = [])
     {
@@ -62,6 +65,10 @@ class MenuManager
         $this->options[$menu] = $options;
     }
 
+    /**
+     * @param $menu
+     * @return array
+     */
     public function crumbs($menu)
     {
         $menu = $this->get($menu);
@@ -73,7 +80,8 @@ class MenuManager
     }
 
     /**
-     *
+     * @param $menu
+     * @return
      */
     public function get($menu)
     {
@@ -101,6 +109,10 @@ class MenuManager
         $this->hasBeenLoaded = true;
     }
 
+    /**
+     * @param $menu
+     * @return bool
+     */
     protected function menu($menu)
     {
         return isset($this->loaded[$menu]) ? $this->loaded[$menu] : false;

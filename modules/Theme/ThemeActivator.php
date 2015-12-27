@@ -25,7 +25,9 @@ class ThemeActivator
     protected $selector;
 
     /**
-     *
+     * @param Theme $theme
+     * @param AccountManager $manager
+     * @param ThemeSelection $selection
      */
     public function __construct(Theme $theme, AccountManager $manager, ThemeSelection $selection)
     {

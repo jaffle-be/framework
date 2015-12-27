@@ -7,6 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
 use Modules\System\Translatable\Translatable;
 
+/**
+ * Class ModuleRoute
+ * @package Modules\Module
+ */
 class ModuleRoute extends Model
 {
     use Translatable;
@@ -17,11 +21,18 @@ class ModuleRoute extends Model
 
     protected $translatedAttributes = ['title'];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function module()
     {
         return $this->belongsTo('Modules\Module\Module');
     }
 
+    /**
+     * @param Builder $builder
+     * @param Collection $pages
+     */
     public function scopeBut(Builder $builder, Collection $pages)
     {
         if ($pages->count() > 0) {

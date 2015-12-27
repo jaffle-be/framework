@@ -4,8 +4,16 @@ namespace Modules\Media\Shortcodes;
 
 use Modules\Media\Image;
 
+/**
+ * Class MediaShortcodes
+ * @package Modules\Media\Shortcodes
+ */
 trait MediaShortcodes
 {
+    /**
+     * @param $content
+     * @return mixed
+     */
     protected function compileMediaShortcodes($content)
     {
         $content = $this->compileImageShortcode($content);
@@ -19,6 +27,10 @@ trait MediaShortcodes
         return $content;
     }
 
+    /**
+     * @param $content
+     * @return mixed
+     */
     protected function compileImageShortcode($content)
     {
         $images = $this->getWantedImages($content);
@@ -33,7 +45,8 @@ trait MediaShortcodes
     /**
      * Return a sorted array with all requested images.
      *
-     *
+     * @param $content
+     * @return array
      */
     protected function getWantedImages($content)
     {
@@ -64,7 +77,9 @@ trait MediaShortcodes
      * other customisations through html/css. We want our content to adhere to the
      * styles provided per account. No need to allow a client to mess around.
      *
-     *
+     * @param $content
+     * @param $image
+     * @return mixed
      */
     protected function addImage(&$content, $image)
     {
@@ -82,6 +97,11 @@ trait MediaShortcodes
         return $content;
     }
 
+    /**
+     * @param Image|null $img
+     * @param array $placement
+     * @return bool|string
+     */
     protected function getMarkdownForImage(Image $img = null, array $placement)
     {
         //we want to support the following image inclusions:
@@ -108,7 +128,9 @@ trait MediaShortcodes
      * in most cases this simply means: don't add padding to the element containing the entire post
      * you should instead add the padding or margin to the content related tags within that container.
      *
-     *
+     * @param $title
+     * @param $link
+     * @return string
      */
     protected function handleFullWidth($title, $link)
     {
@@ -116,7 +138,9 @@ trait MediaShortcodes
     }
 
     /**
-     *
+     * @param Image $img
+     * @param $big
+     * @return string
      */
     protected function imageLink(Image $img, $big)
     {
@@ -131,7 +155,10 @@ trait MediaShortcodes
      * is a path that references an image which is smaller then the viewport.
      * If not, it would simply just take up the full width due to .img-responsive.
      *
-     *
+     * @param $title
+     * @param $link
+     * @param $float
+     * @return string
      */
     protected function handleFloat($title, $link, $float)
     {
@@ -143,6 +170,10 @@ trait MediaShortcodes
         return sprintf('{.clearfix}'.PHP_EOL.'![%s](%s){.img-responsive%s}', $title, $link, $float);
     }
 
+    /**
+     * @param $content
+     * @return mixed
+     */
     protected function compileVideoShortcode($content)
     {
         $count = $this->getWantedVideos($content);
@@ -164,6 +195,10 @@ trait MediaShortcodes
         return $content;
     }
 
+    /**
+     * @param $content
+     * @return int
+     */
     protected function getWantedVideos($content)
     {
         preg_match_all('/#video#/', $content, $matches);
@@ -171,6 +206,10 @@ trait MediaShortcodes
         return count($matches[0]);
     }
 
+    /**
+     * @param $content
+     * @return mixed
+     */
     protected function compileInfographicShortcode($content)
     {
         $count = $this->getWantedInfographics($content);
@@ -195,7 +234,8 @@ trait MediaShortcodes
     /**
      * Return a sorted array with all requested images.
      *
-     *
+     * @param $content
+     * @return int
      */
     protected function getWantedInfographics($content)
     {
@@ -204,6 +244,10 @@ trait MediaShortcodes
         return count($matches[0]);
     }
 
+    /**
+     * @param $content
+     * @return mixed
+     */
     protected function compileFileShortcode($content)
     {
         $count = $this->getWantedFiles($content);
@@ -228,7 +272,8 @@ trait MediaShortcodes
     /**
      * Return a sorted array with all requested images.
      *
-     *
+     * @param $content
+     * @return int
      */
     protected function getWantedFiles($content)
     {
@@ -237,6 +282,10 @@ trait MediaShortcodes
         return count($matches[0]);
     }
 
+    /**
+     * @param $content
+     * @return mixed
+     */
     protected function stripMediaShortcodes($content)
     {
         $content = preg_replace('/#image(:left|:right)?#/', '', $content);
@@ -250,6 +299,10 @@ trait MediaShortcodes
         return $content;
     }
 
+    /**
+     * @param $content
+     * @return mixed
+     */
     protected function formatMediaShortcodes($content)
     {
         $content = preg_replace('/(.*)(#image(:left|:right)?#)(.*)/', "$1\n$2\n$4", $content);

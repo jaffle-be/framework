@@ -3,6 +3,9 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
+/**
+ * Class CreateThemesTable
+ */
 class CreateThemesTable extends Migration
 {
     use \Modules\System\ConfigWriter;

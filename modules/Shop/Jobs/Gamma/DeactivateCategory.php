@@ -7,6 +7,10 @@ use Modules\Account\Account;
 use Modules\Shop\Gamma\GammaNotification;
 use Modules\Shop\Product\Category;
 
+/**
+ * Class DeactivateCategory
+ * @package Modules\Shop\Jobs\Gamma
+ */
 class DeactivateCategory extends Job
 {
     /**
@@ -19,12 +23,19 @@ class DeactivateCategory extends Job
      */
     protected $account;
 
+    /**
+     * @param Category $category
+     * @param Account $account
+     */
     public function __construct(Category $category, Account $account)
     {
         $this->category = $category;
         $this->account = $account;
     }
 
+    /**
+     * @param GammaNotification $notifications
+     */
     public function handle(GammaNotification $notifications)
     {
         $processingOrExisting = $notifications->where('category_id', $this->category->id)

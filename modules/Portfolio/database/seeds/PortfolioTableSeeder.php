@@ -7,6 +7,9 @@ use Modules\System\Seeder;
 use Modules\Tags\Tag;
 use Modules\Users\User;
 
+/**
+ * Class PortfolioTableSeeder
+ */
 class PortfolioTableSeeder extends Seeder
 {
     /**
@@ -19,6 +22,9 @@ class PortfolioTableSeeder extends Seeder
         parent::__construct();
     }
 
+    /**
+     * @param int $creating
+     */
     public function run($creating = 15)
     {
         foreach ([1, 2] as $accountid) {

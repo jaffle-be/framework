@@ -13,6 +13,10 @@ use Modules\System\Sluggable\OwnsSlug;
 use Modules\System\Sluggable\SiteSluggable;
 use Modules\System\Translatable\TranslationModel;
 
+/**
+ * Class PostTranslation
+ * @package Modules\Blog
+ */
 class PostTranslation extends TranslationModel implements Searchable, SluggableInterface, OwnsSlug, PresentableEntity, PresentableCache
 {
     use SearchableTrait, SiteSluggable, PresentableTrait, FrontScoping;
@@ -29,11 +33,17 @@ class PostTranslation extends TranslationModel implements Searchable, SluggableI
 
     protected $dates = ['publish_at'];
 
+    /**
+     * @return mixed
+     */
     public function getAccount()
     {
         return $this->post->account;
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function post()
     {
         return $this->belongsTo('Modules\Blog\Post');
@@ -70,6 +80,10 @@ class PostTranslation extends TranslationModel implements Searchable, SluggableI
         return $data;
     }
 
+    /**
+     * @param $query
+     * @param null $locale
+     */
     public function scopeLastPublished($query, $locale = null)
     {
         if (empty($locale)) {

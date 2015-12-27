@@ -7,6 +7,9 @@ use Modules\Contact\Address;
 use Modules\System\Locale;
 use Modules\System\Seeder;
 
+/**
+ * Class AccountTableSeeder
+ */
 class AccountTableSeeder extends Seeder
 {
     public function run()
@@ -32,6 +35,9 @@ class AccountTableSeeder extends Seeder
         $this->membershipInvitations($account);
     }
 
+    /**
+     * @param $account
+     */
     protected function roles($account)
     {
         Role::create([
@@ -68,7 +74,7 @@ class AccountTableSeeder extends Seeder
     }
 
     /**
-     *
+     * @param $account
      */
     protected function membershipInvitations($account)
     {
@@ -80,7 +86,8 @@ class AccountTableSeeder extends Seeder
     }
 
     /**
-     *
+     * @param $name
+     * @return static
      */
     protected function account($name)
     {
@@ -105,7 +112,7 @@ class AccountTableSeeder extends Seeder
     }
 
     /**
-     *
+     * @param $account
      */
     protected function contactInformation($account)
     {

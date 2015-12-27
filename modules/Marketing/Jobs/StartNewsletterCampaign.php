@@ -10,18 +10,32 @@ use Modules\Marketing\Newsletter\CampaignBuilder;
 use Modules\Marketing\Newsletter\CampaignConfig;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
+/**
+ * Class StartNewsletterCampaign
+ * @package Modules\Marketing\Jobs
+ */
 class StartNewsletterCampaign extends Job
 {
     protected $campaign;
 
     protected $locale;
 
+    /**
+     * @param Campaign $campaign
+     * @param $locale
+     */
     public function __construct(Campaign $campaign, $locale)
     {
         $this->campaign = $campaign;
         $this->locale = $locale;
     }
 
+    /**
+     * @param MailChimp $mailChimp
+     * @param CampaignConfig $config
+     * @param CampaignBuilder $builder
+     * @return bool|null|void
+     */
     public function handle(MailChimp $mailChimp, CampaignConfig $config, CampaignBuilder $builder)
     {
         $campaign = $this->campaign->translate($this->locale);

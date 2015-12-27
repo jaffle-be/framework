@@ -10,6 +10,10 @@ use Modules\Media\Commands\StoreNewImage;
 use Modules\Users\User;
 use Thomaswelton\LaravelGravatar\Gravatar;
 
+/**
+ * Class CheckGravatarImage
+ * @package Modules\Users\Jobs
+ */
 class CheckGravatarImage extends Job
 {
     use DispatchesJobs;
@@ -19,11 +23,20 @@ class CheckGravatarImage extends Job
      */
     protected $user;
 
+    /**
+     * @param User $user
+     */
     public function __construct(User $user)
     {
         $this->user = $user;
     }
 
+    /**
+     * @param Gravatar $gravatar
+     * @param Filesystem $files
+     * @param AccountManager $manager
+     * @throws \Exception
+     */
     public function handle(Gravatar $gravatar, Filesystem $files, AccountManager $manager)
     {
         if ($gravatar->exists($this->user->email)) {
@@ -54,7 +67,8 @@ class CheckGravatarImage extends Job
     }
 
     /**
-     *
+     * @param $path
+     * @return string
      */
     protected function pathWithExtension($path)
     {

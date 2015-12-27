@@ -5,6 +5,10 @@ namespace Modules\Pages\Jobs;
 use App\Jobs\Job;
 use Modules\Pages\Page;
 
+/**
+ * Class UpdatePage
+ * @package Modules\Pages\Jobs
+ */
 class UpdatePage extends Job
 {
     /**
@@ -17,12 +21,19 @@ class UpdatePage extends Job
      */
     protected $input;
 
+    /**
+     * @param Page $page
+     * @param array $input
+     */
     public function __construct(Page $page, array $input)
     {
         $this->page = $page;
         $this->input = $input;
     }
 
+    /**
+     * @return bool|Page
+     */
     public function handle()
     {
         $this->page->fill($this->input);

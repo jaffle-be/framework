@@ -4,10 +4,18 @@ namespace Modules\Search;
 
 use Illuminate\Support\Collection;
 
+/**
+ * Class AggregationResult
+ * @package Modules\Search
+ */
 class AggregationResult extends Collection
 {
     protected $document_count;
 
+    /**
+     * @param array $items
+     * @param $document_count
+     */
     public function __construct($items = [], $document_count)
     {
         $this->document_count = $document_count;

@@ -8,6 +8,10 @@ use Modules\Theme\ThemeManager;
 use Modules\Theme\ThemeRepository;
 use Modules\Theme\ThemeSelection;
 
+/**
+ * Class ThemeServiceProvider
+ * @package Modules\Theme\Providers
+ */
 class ThemeServiceProvider extends ServiceProvider
 {
     protected $namespace = 'theme';

@@ -8,6 +8,10 @@ use Modules\Shop\Gamma\ProductSelection;
 use Modules\Shop\Product\Brand;
 use Modules\Shop\Product\Category;
 
+/**
+ * Class BatchGammaDeactivation
+ * @package Modules\Shop\Jobs\Gamma\Notification\Handlers
+ */
 class BatchGammaDeactivation extends Job
 {
     /**
@@ -26,7 +30,9 @@ class BatchGammaDeactivation extends Job
     protected $brand;
 
     /**
-     *
+     * @param Category $category
+     * @param Account $account
+     * @param Brand $brand
      */
     public function __construct(Category $category, Account $account, Brand $brand)
     {
@@ -35,6 +41,9 @@ class BatchGammaDeactivation extends Job
         $this->brand = $brand;
     }
 
+    /**
+     * @param ProductSelection $productGamma
+     */
     public function handle(ProductSelection $productGamma)
     {
         //chunk alike thinking here
@@ -60,7 +69,8 @@ class BatchGammaDeactivation extends Job
     }
 
     /**
-     *
+     * @param ProductSelection $productGamma
+     * @return mixed
      */
     protected function loadSelections(ProductSelection $productGamma)
     {

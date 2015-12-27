@@ -8,8 +8,18 @@ use Modules\Module\Module;
 use Modules\System\Http\AdminController;
 use Pusher;
 
+/**
+ * Class ModuleController
+ * @package Modules\Module\Http\Admin
+ */
 class ModuleController extends AdminController
 {
+    /**
+     * @param Request $request
+     * @param Module $module
+     * @param AccountManager $manager
+     * @param Pusher $pusher
+     */
     public function toggle(Request $request, Module $module, AccountManager $manager, Pusher $pusher)
     {
         $module = $module->findOrFail($request->get('id'));

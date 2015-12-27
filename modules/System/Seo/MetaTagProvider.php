@@ -4,6 +4,10 @@ namespace Modules\System\Seo;
 
 use Illuminate\Http\Request;
 
+/**
+ * Class MetaTagProvider
+ * @package Modules\System\Seo
+ */
 abstract class MetaTagProvider
 {
     protected $prefix;
@@ -16,6 +20,10 @@ abstract class MetaTagProvider
 
     protected $properties = [];
 
+    /**
+     * @param array $config
+     * @param array $defaults
+     */
     public function __construct(array $config, array $defaults = [])
     {
         $this->config = $config;
@@ -23,6 +31,10 @@ abstract class MetaTagProvider
         $this->defaults = $defaults;
     }
 
+    /**
+     * @param SeoEntity|null $seo
+     * @return string
+     */
     public function generate(SeoEntity $seo = null)
     {
 
@@ -63,7 +75,9 @@ abstract class MetaTagProvider
     /**
      * Add or update property.
      *
-     *
+     * @param $key
+     * @param $value
+     * @return $this
      */
     public function addProperty($key, $value)
     {
@@ -72,6 +86,9 @@ abstract class MetaTagProvider
         return $this;
     }
 
+    /**
+     * @param SeoEntity|null $seo
+     */
     protected function addLocale(SeoEntity $seo = null)
     {
         $cases = [
@@ -91,8 +108,15 @@ abstract class MetaTagProvider
         //duh :(
     }
 
+    /**
+     * @param SeoEntity $seo
+     * @return mixed
+     */
     abstract protected function handle(SeoEntity $seo);
 
+    /**
+     * @param $seo
+     */
     protected function addTypeDefaults($seo)
     {
         if (isset($this->properties['type'])) {
@@ -113,7 +137,9 @@ abstract class MetaTagProvider
     }
 
     /**
-     *
+     * @param $type
+     * @param $key
+     * @return string
      */
     protected function nameForTypeSpecificProperty($type, $key)
     {
@@ -125,7 +151,10 @@ abstract class MetaTagProvider
     /**
      * Make list of open graph tags.
      *
-     *
+     * @param array $properties
+     * @param null $prefix
+     * @return string
+     * @throws \Exception
      */
     protected function eachProperties(array $properties, $prefix = null)
     {
@@ -155,7 +184,11 @@ abstract class MetaTagProvider
     }
 
     /**
-     *
+     * @param $prefix
+     * @param $property
+     * @param $value
+     * @param $html
+     * @return array
      */
     protected function handleMultipleProperties($prefix, $property, $value, $html)
     {
@@ -168,7 +201,9 @@ abstract class MetaTagProvider
     }
 
     /**
-     *
+     * @param $prefix
+     * @param $property
+     * @return string
      */
     protected function getPropertyKey($prefix, $property)
     {
@@ -187,6 +222,10 @@ abstract class MetaTagProvider
         }
     }
 
+    /**
+     * @param $key
+     * @return bool
+     */
     protected function hasCustomRenderMethod($key)
     {
         $method = $this->customRenderMethodName($key);
@@ -195,7 +234,8 @@ abstract class MetaTagProvider
     }
 
     /**
-     *
+     * @param $key
+     * @return string
      */
     protected function customRenderMethodName($key)
     {
@@ -204,6 +244,11 @@ abstract class MetaTagProvider
         return $method;
     }
 
+    /**
+     * @param $key
+     * @param $value
+     * @return mixed
+     */
     protected function customRenderMethod($key, $value)
     {
         $method = $this->customRenderMethodName($key);
@@ -211,6 +256,12 @@ abstract class MetaTagProvider
         return call_user_func([$this, $method], $key, $value);
     }
 
+    /**
+     * @param $key
+     * @param $value
+     * @return string
+     * @throws \Exception
+     */
     protected function tag($key, $value)
     {
         if (! property_exists($this, 'prefix')) {
@@ -223,7 +274,8 @@ abstract class MetaTagProvider
     /**
      * Remove property.
      *
-     *
+     * @param $key
+     * @return $this
      */
     public function removeProperty($key)
     {
@@ -235,7 +287,8 @@ abstract class MetaTagProvider
     /**
      * Add image to properties.
      *
-     *
+     * @param $url
+     * @return $this
      */
     public function addImage($url)
     {
@@ -247,7 +300,8 @@ abstract class MetaTagProvider
     /**
      * Add images to properties.
      *
-     *
+     * @param array $urls
+     * @return $this
      */
     public function addImages(array $urls)
     {

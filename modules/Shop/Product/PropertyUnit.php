@@ -5,6 +5,10 @@ namespace Modules\Shop\Product;
 use Illuminate\Database\Eloquent\Model;
 use Modules\System\Translatable\Translatable;
 
+/**
+ * Class PropertyUnit
+ * @package Modules\Shop\Product
+ */
 class PropertyUnit extends Model
 {
     use Translatable;

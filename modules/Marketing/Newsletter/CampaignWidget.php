@@ -8,6 +8,10 @@ use Modules\System\Presenter\PresentableTrait;
 use Modules\System\Scopes\ModelAutoSort;
 use Modules\System\Translatable\Translatable;
 
+/**
+ * Class CampaignWidget
+ * @package Modules\Marketing\Newsletter
+ */
 class CampaignWidget extends Model implements PresentableEntity
 {
     use Translatable;
@@ -58,16 +62,25 @@ class CampaignWidget extends Model implements PresentableEntity
         'manual' => 'boolean',
     ];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function image()
     {
         return $this->belongsTo('Modules\Media\Image');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function imageLeft()
     {
         return $this->belongsTo('Modules\Media\Image');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function imageRight()
     {
         return $this->belongsTo('Modules\Media\Image');
@@ -76,11 +89,17 @@ class CampaignWidget extends Model implements PresentableEntity
     //for now, we will not implement these relations in the 'other' classes
     //so try to fix all your problems by using this relation starting from campaign widget.
     //i do not see any requirement to be able to show that a product was included in a widget
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\MorphTo
+     */
     public function resource()
     {
         return $this->morphTo();
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\MorphTo
+     */
     public function otherResource()
     {
         return $this->morphTo();

@@ -4,8 +4,16 @@ namespace Modules\Module;
 
 use Illuminate\Database\Eloquent\Collection;
 
+/**
+ * Class ModuleCollection
+ * @package Modules\Module
+ */
 class ModuleCollection extends Collection
 {
+    /**
+     * @param $module
+     * @return bool
+     */
     public function active($module)
     {
         return $this->first(function ($key, $item) use ($module) {
@@ -13,6 +21,9 @@ class ModuleCollection extends Collection
         }) ? true : false;
     }
 
+    /**
+     * @return Collection
+     */
     public function routes()
     {
         $routes = new Collection();

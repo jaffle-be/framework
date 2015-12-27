@@ -8,6 +8,10 @@ use Modules\Account\AccountRepository;
 use Modules\Account\Jobs\Membership\NewMembership;
 use Modules\Account\MembershipOwner;
 
+/**
+ * Class NewAccount
+ * @package Modules\Account\Jobs
+ */
 class NewAccount extends Job
 {
     use DispatchesJobs;
@@ -27,6 +31,11 @@ class NewAccount extends Job
      */
     protected $alias;
 
+    /**
+     * @param $domain
+     * @param $alias
+     * @param MembershipOwner $owner
+     */
     public function __construct($domain, $alias, MembershipOwner $owner)
     {
         $this->domain = $domain;
@@ -34,6 +43,10 @@ class NewAccount extends Job
         $this->owner = $owner;
     }
 
+    /**
+     * @param AccountRepository $repo
+     * @return bool
+     */
     public function handle(AccountRepository $repo)
     {
         //create the new account

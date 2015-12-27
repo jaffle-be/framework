@@ -15,7 +15,7 @@ class ImageObserver
     protected $files;
 
     /**
-     *
+     * @param Filesystem $files
      */
     public function __construct(Filesystem $files)
     {
@@ -23,7 +23,7 @@ class ImageObserver
     }
 
     /**
-     *
+     * @param Image $image
      */
     public function deleting(Image $image)
     {
@@ -38,7 +38,7 @@ class ImageObserver
     }
 
     /**
-     *
+     * @param Image $image
      */
     public function deleted(Image $image)
     {

@@ -8,10 +8,20 @@ use Modules\Pages\Http\PagesFrontControlling;
 use Modules\Pages\PageTranslation;
 use Modules\System\Uri\Uri;
 
+/**
+ * Class UriController
+ * @package Modules\System\Http
+ */
 class UriController extends FrontController
 {
     use BlogFrontControlling, PagesFrontControlling;
 
+    /**
+     * @param Uri $uri
+     * @param Uri|null $suburi
+     * @param Uri|null $subesturi
+     * @return mixed
+     */
     public function handle(Uri $uri, Uri $suburi = null, Uri $subesturi = null)
     {
         //use the last argument that is set to display
@@ -33,7 +43,10 @@ class UriController extends FrontController
     }
 
     /**
-     *
+     * @param Uri $uri
+     * @param Uri $suburi
+     * @param Uri $subesturi
+     * @return Uri
      */
     protected function resourceToDisplay(Uri $uri, Uri $suburi = null, Uri $subesturi = null)
     {

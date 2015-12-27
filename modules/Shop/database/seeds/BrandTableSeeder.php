@@ -8,6 +8,9 @@ use Modules\Media\Commands\StoreNewImage;
 use Modules\Shop\Product\Brand;
 use Modules\System\Seeder;
 
+/**
+ * Class BrandTableSeeder
+ */
 class BrandTableSeeder extends Seeder
 {
     use DispatchesJobs;
@@ -22,6 +25,10 @@ class BrandTableSeeder extends Seeder
      */
     protected $files;
 
+    /**
+     * @param Hasher $hasher
+     * @param Filesystem $files
+     */
     public function __construct(Hasher $hasher, Filesystem $files)
     {
         parent::__construct();
@@ -50,7 +57,8 @@ class BrandTableSeeder extends Seeder
     }
 
     /**
-     *
+     * @param $file
+     * @return mixed|string
      */
     protected function data($file)
     {
@@ -61,6 +69,9 @@ class BrandTableSeeder extends Seeder
         return $data;
     }
 
+    /**
+     * @param $brands
+     */
     protected function brands($brands)
     {
         foreach ($brands as $brand) {
@@ -85,6 +96,9 @@ class BrandTableSeeder extends Seeder
         }
     }
 
+    /**
+     * @param $categories
+     */
     protected function categories($categories)
     {
         foreach ($categories as $category) {
@@ -92,6 +106,11 @@ class BrandTableSeeder extends Seeder
         }
     }
 
+    /**
+     * @param $name
+     * @param $url
+     * @return string
+     */
     protected function image($name, $url)
     {
         $extension = last(explode('.', $url));

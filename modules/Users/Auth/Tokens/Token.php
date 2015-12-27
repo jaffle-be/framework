@@ -4,6 +4,10 @@ namespace Modules\Users\Auth\Tokens;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * Class Token
+ * @package Modules\Users\Auth\Tokens
+ */
 class Token extends Model
 {
     const TYPE_RESET = 0;

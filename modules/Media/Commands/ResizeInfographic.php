@@ -10,6 +10,10 @@ use Modules\Media\ImageDimensionHelpers;
 use Modules\Media\Infographics\Infographic;
 use Modules\Media\MediaRepositoryInterface;
 
+/**
+ * Class ResizeInfographic
+ * @package Modules\Media\Commands
+ */
 class ResizeInfographic extends Job
 {
     use ImageDimensionHelpers;
@@ -26,6 +30,11 @@ class ResizeInfographic extends Job
 
     protected $extension;
 
+    /**
+     * @param Infographic $graphic
+     * @param $size
+     * @param bool|false $cachedPath
+     */
     public function __construct(Infographic $graphic, $size, $cachedPath = false)
     {
         $this->graphic = $graphic;
@@ -37,6 +46,13 @@ class ResizeInfographic extends Job
         $this->extension = pathinfo($graphic->path, PATHINFO_EXTENSION);
     }
 
+    /**
+     * @param MediaRepositoryInterface $media
+     * @param ImageManager $images
+     * @param Filesystem $files
+     * @return bool
+     * @throws Exception
+     */
     public function handle(MediaRepositoryInterface $media, ImageManager $images, Filesystem $files)
     {
         list($width, $height) = $this->dimensions($this->size);
@@ -80,7 +96,9 @@ class ResizeInfographic extends Job
     }
 
     /**
-     *
+     * @param Filesystem $files
+     * @param bool $public
+     * @return string
      */
     protected function getFolder(Filesystem $files, $public = false)
     {
@@ -100,7 +118,9 @@ class ResizeInfographic extends Job
     }
 
     /**
-     *
+     * @param Filesystem $files
+     * @param bool $public
+     * @return string
      */
     protected function getPath(Filesystem $files, $public = false)
     {
@@ -112,7 +132,10 @@ class ResizeInfographic extends Job
     }
 
     /**
-     *
+     * @param $width
+     * @param $height
+     * @param $path
+     * @return array
      */
     protected function getPayload($width, $height, $path)
     {

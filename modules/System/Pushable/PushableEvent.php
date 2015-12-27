@@ -5,6 +5,10 @@ namespace Modules\System\Pushable;
 use App\Events\Event;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
+/**
+ * Class PushableEvent
+ * @package Modules\System\Pushable
+ */
 class PushableEvent extends Event implements ShouldBroadcast
 {
     public $data;
@@ -13,6 +17,10 @@ class PushableEvent extends Event implements ShouldBroadcast
 
     protected $type;
 
+    /**
+     * @param Pushable $pushable
+     * @param $event
+     */
     public function __construct(Pushable $pushable, $event)
     {
         $this->data = $pushable;
@@ -32,11 +40,17 @@ class PushableEvent extends Event implements ShouldBroadcast
         ];
     }
 
+    /**
+     * @return string
+     */
     public function broadcastAs()
     {
         return $this->data->getPushableEventType().'.'.$this->event;
     }
 
+    /**
+     * @return mixed
+     */
     public function broadcastWith()
     {
         return $this->data->getPushableData();

@@ -2,6 +2,10 @@
 
 namespace Modules\Media\Image;
 
+/**
+ * Class ImageModelTrait
+ * @package Modules\Media\Image
+ */
 trait ImageModelTrait
 {
     public function original()
@@ -14,6 +18,11 @@ trait ImageModelTrait
         return $this->hasMany(get_class($this), 'original_id');
     }
 
+    /**
+     * @param null $width
+     * @param null $height
+     * @return mixed
+     */
     public function thumbnail($width = null, $height = null)
     {
         if (! $this->relationLoaded('sizes')) {
@@ -45,6 +54,12 @@ trait ImageModelTrait
         }
     }
 
+    /**
+     * @param $query
+     * @param null $width
+     * @param null $height
+     * @param string $boolean
+     */
     public function scopeDimension($query, $width = null, $height = null, $boolean = 'and')
     {
         $clause = function ($query) use ($width, $height) {
@@ -64,6 +79,10 @@ trait ImageModelTrait
         }
     }
 
+    /**
+     * @param $query
+     * @param array $sizes
+     */
     public function scopeDimensions($query, array $sizes)
     {
         $query->where(function ($query) use ($sizes) {

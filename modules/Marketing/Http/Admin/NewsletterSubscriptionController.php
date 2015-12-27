@@ -6,8 +6,17 @@ use Drewm\MailChimp;
 use Illuminate\Http\Request;
 use Modules\System\Http\FrontController;
 
+/**
+ * Class NewsletterSubscriptionController
+ * @package Modules\Marketing\Http\Admin
+ */
 class NewsletterSubscriptionController extends FrontController
 {
+    /**
+     * @param MailChimp $mailChimp
+     * @param Request $request
+     * @return array
+     */
     public function index(MailChimp $mailChimp, Request $request)
     {
         try {

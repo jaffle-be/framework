@@ -5,6 +5,10 @@ namespace Modules\Blog\Jobs;
 use App\Jobs\Job;
 use Modules\Blog\Post;
 
+/**
+ * Class UpdatePost
+ * @package Modules\Blog\Jobs
+ */
 class UpdatePost extends Job
 {
     /**
@@ -17,12 +21,19 @@ class UpdatePost extends Job
      */
     protected $input;
 
+    /**
+     * @param Post $post
+     * @param array $input
+     */
     public function __construct(Post $post, array $input)
     {
         $this->post = $post;
         $this->input = $input;
     }
 
+    /**
+     * @return bool|Post
+     */
     public function handle()
     {
         $this->post->fill($this->input);

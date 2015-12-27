@@ -10,6 +10,10 @@ use Modules\Media\StoresMedia;
 use Modules\System\Locale;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
+/**
+ * Class UploadNewInfographic
+ * @package Modules\Media\Commands
+ */
 class UploadNewInfographic extends Job
 {
     use DispatchesJobs;
@@ -31,6 +35,9 @@ class UploadNewInfographic extends Job
 
     /**
      * $image
+     * @param StoresMedia $owner
+     * @param UploadedFile $graphic
+     * @param Locale $locale
      */
     public function __construct(StoresMedia $owner, UploadedFile $graphic, Locale $locale)
     {
@@ -39,6 +46,11 @@ class UploadNewInfographic extends Job
         $this->locale = $locale;
     }
 
+    /**
+     * @param Filesystem $files
+     * @param AccountManager $manager
+     * @return mixed
+     */
     public function handle(Filesystem $files, AccountManager $manager)
     {
         $temp_dir = storage_path('media').'/'.$this->owner->getMediaFolder('infographics');
@@ -62,11 +74,18 @@ class UploadNewInfographic extends Job
         return $image;
     }
 
+    /**
+     * @return string
+     */
     protected function uniqueName()
     {
         return sha1(md5($this->graphic->getClientOriginalName()).time());
     }
 
+    /**
+     * @param $path
+     * @return string
+     */
     private function extension($path)
     {
         $info = getimagesize($path);

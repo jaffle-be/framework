@@ -12,13 +12,26 @@ use Modules\Tags\Commands\UntagSomething;
 use Modules\Tags\Commands\UpdateTag;
 use Modules\Tags\Tag;
 
+/**
+ * Class TagController
+ * @package Modules\Tags\Http\Admin
+ */
 class TagController extends AdminController
 {
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function widget()
     {
         return view('tags::admin.widget');
     }
 
+    /**
+     * @param Tag $tag
+     * @param Request $request
+     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator|Paginator
+     * @throws \Exception
+     */
     public function index(Tag $tag, Request $request)
     {
         $value = $request->get('value');
@@ -54,6 +67,11 @@ class TagController extends AdminController
         return $tags;
     }
 
+    /**
+     * @param Request $request
+     * @return mixed
+     * @throws \Exception
+     */
     public function store(Request $request)
     {
         $name = $request->get('name');
@@ -72,6 +90,12 @@ class TagController extends AdminController
         return $tag;
     }
 
+    /**
+     * @param Tag $tag
+     * @param Request $request
+     * @return Tag
+     * @throws \Exception
+     */
     public function update(Tag $tag, Request $request)
     {
         $owner = $this->owner($request);
@@ -88,6 +112,12 @@ class TagController extends AdminController
         return $tag;
     }
 
+    /**
+     * @param Tag $tag
+     * @param Request $request
+     * @return mixed
+     * @throws \Exception
+     */
     public function destroy(Tag $tag, Request $request)
     {
         $owner = $this->owner($request);
@@ -95,6 +125,11 @@ class TagController extends AdminController
         return $this->dispatch(new UntagSomething($owner, $tag));
     }
 
+    /**
+     * @param Request $request
+     * @return mixed
+     * @throws \Exception
+     */
     public function all(Request $request)
     {
         $owner = $this->owner($request);
@@ -109,6 +144,8 @@ class TagController extends AdminController
 
     /**
      *
+     * @param Request $request
+     * @return
      * @throws \Exception
      */
     protected function owner(Request $request)

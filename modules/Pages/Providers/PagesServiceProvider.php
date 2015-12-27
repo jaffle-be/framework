@@ -4,6 +4,10 @@ namespace Modules\Pages\Providers;
 
 use Modules\System\ServiceProvider;
 
+/**
+ * Class PagesServiceProvider
+ * @package Modules\Pages\Providers
+ */
 class PagesServiceProvider extends ServiceProvider
 {
     protected $namespace = 'pages';

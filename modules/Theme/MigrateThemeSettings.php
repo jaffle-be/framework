@@ -5,6 +5,10 @@ namespace Modules\Theme;
 use Exception;
 use Illuminate\Database\Eloquent\Collection;
 
+/**
+ * Class MigrateThemeSettings
+ * @package Modules\Theme
+ */
 trait MigrateThemeSettings
 {
     /**
@@ -12,6 +16,10 @@ trait MigrateThemeSettings
      */
     protected static $types = false;
 
+    /**
+     * @param Theme $theme
+     * @throws Exception
+     */
     protected function settings(Theme $theme)
     {
         foreach ($this->settings as $setting) {
@@ -31,6 +39,11 @@ trait MigrateThemeSettings
         }
     }
 
+    /**
+     * @param array $setting
+     * @return mixed
+     * @throws Exception
+     */
     protected function settingGetType(array $setting)
     {
         if (! static::$types) {
@@ -44,11 +57,17 @@ trait MigrateThemeSettings
         return static::$types->get($setting['type']);
     }
 
+    /**
+     * @return array
+     */
     protected function settingKeys()
     {
         return array_pluck($this->settings, 'key');
     }
 
+    /**
+     * @param ThemeSetting $setting
+     */
     protected function settingsHandleSelect(ThemeSetting $setting)
     {
         $options = $this->options[$setting->key];
@@ -64,11 +83,17 @@ trait MigrateThemeSettings
         }
     }
 
+    /**
+     * @param ThemeSetting $setting
+     */
     protected function settingsHandleString(ThemeSetting $setting)
     {
         $this->settingJsonHandle($setting);
     }
 
+    /**
+     * @param ThemeSetting $setting
+     */
     protected function settingJsonHandle(ThemeSetting $setting)
     {
         if (isset($this->defaults[$setting->key])) {
@@ -76,6 +101,9 @@ trait MigrateThemeSettings
         }
     }
 
+    /**
+     * @param ThemeSetting $setting
+     */
     protected function settingsHandleText(ThemeSetting $setting)
     {
         $this->settingJsonHandle($setting);

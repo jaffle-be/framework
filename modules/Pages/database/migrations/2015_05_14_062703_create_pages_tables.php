@@ -4,6 +4,9 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Modules\Module\Module;
 
+/**
+ * Class CreatePagesTables
+ */
 class CreatePagesTables extends Migration
 {
     /**

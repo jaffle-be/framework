@@ -17,6 +17,10 @@ use Modules\System\Translatable\Translatable;
 use Modules\Tags\StoresTags;
 use Modules\Tags\Taggable;
 
+/**
+ * Class Project
+ * @package Modules\Portfolio
+ */
 class Project extends Model implements StoresMedia, Searchable, StoresTags, PresentableEntity, SeoEntity
 {
     use Translatable;
@@ -62,11 +66,17 @@ class Project extends Model implements StoresMedia, Searchable, StoresTags, Pres
         return new ProjectCollection($models);
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
     public function collaborators()
     {
         return $this->belongsToMany('Modules\Users\User', 'portfolio_project_collaborators', 'project_id', 'user_id');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function client()
     {
         return $this->belongsTo('Modules\Account\Client', 'client_id');

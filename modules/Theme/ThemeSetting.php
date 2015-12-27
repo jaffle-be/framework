@@ -5,6 +5,10 @@ namespace Modules\Theme;
 use Illuminate\Database\Eloquent\Model;
 use Modules\System\Translatable\Translatable;
 
+/**
+ * Class ThemeSetting
+ * @package Modules\Theme
+ */
 class ThemeSetting extends Model
 {
     use Translatable;
@@ -22,16 +26,25 @@ class ThemeSetting extends Model
         'key' => 'string',
     ];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function options()
     {
         return $this->hasMany('Modules\Theme\ThemeSettingOption', 'key_id');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function type()
     {
         return $this->belongsTo('Modules\Theme\ThemeSettingType', 'type_id');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
     public function value()
     {
         return $this->hasOne('Modules\Theme\ThemeSettingValue', 'key_id');
@@ -40,8 +53,9 @@ class ThemeSetting extends Model
     /**
      * Create a new Eloquent Collection instance.
      *
-     * @param  array  $models
+     * @param array $items
      * @return \Illuminate\Database\Eloquent\Collection
+     * @internal param array $models
      */
     public function newCollection(array $items = [])
     {
@@ -50,6 +64,9 @@ class ThemeSetting extends Model
         return $collection->keyBy('key');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
     public function defaults()
     {
         return $this->hasOne('Modules\Theme\ThemeSettingDefault', 'key_id');

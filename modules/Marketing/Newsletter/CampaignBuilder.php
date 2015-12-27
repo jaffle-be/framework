@@ -2,6 +2,10 @@
 
 namespace Modules\Marketing\Newsletter;
 
+/**
+ * Class CampaignBuilder
+ * @package Modules\Marketing\Newsletter
+ */
 class CampaignBuilder
 {
     protected $widgets = [
@@ -22,6 +26,11 @@ class CampaignBuilder
         ['name' => 'img-only/full', 'items' => 1],
     ];
 
+    /**
+     * @param Campaign $campaign
+     * @param $locale
+     * @return string
+     */
     public function build(Campaign $campaign, $locale)
     {
         //it's simple, just load all the shit! :-)
@@ -48,6 +57,9 @@ class CampaignBuilder
         ])->render();
     }
 
+    /**
+     * @return array
+     */
     public function getAvailableWidgets()
     {
         return $this->widgets;

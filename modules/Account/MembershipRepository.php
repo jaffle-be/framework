@@ -2,6 +2,10 @@
 
 namespace Modules\Account;
 
+/**
+ * Class MembershipRepository
+ * @package Modules\Account
+ */
 class MembershipRepository
 {
     /**
@@ -19,6 +23,11 @@ class MembershipRepository
      */
     protected $manager;
 
+    /**
+     * @param Membership $membership
+     * @param MembershipInvitation $invitation
+     * @param AccountManager $manager
+     */
     public function __construct(Membership $membership, MembershipInvitation $invitation, AccountManager $manager)
     {
         $this->membership = $membership;
@@ -26,6 +35,10 @@ class MembershipRepository
         $this->manager = $manager;
     }
 
+    /**
+     * @param $token
+     * @return mixed
+     */
     public function findInvitationByToken($token)
     {
         $account = $this->manager->account();

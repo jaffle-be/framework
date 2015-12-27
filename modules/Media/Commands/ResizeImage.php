@@ -10,6 +10,10 @@ use Modules\Media\Image;
 use Modules\Media\ImageDimensionHelpers;
 use Modules\Media\MediaRepositoryInterface;
 
+/**
+ * Class ResizeImage
+ * @package Modules\Media\Commands
+ */
 class ResizeImage extends Job
 {
     use ImageDimensionHelpers;
@@ -26,6 +30,11 @@ class ResizeImage extends Job
 
     protected $extension;
 
+    /**
+     * @param Image $image
+     * @param $size
+     * @param bool|false $cachedPath
+     */
     public function __construct(Image $image, $size, $cachedPath = false)
     {
         $this->image = $image;
@@ -37,6 +46,13 @@ class ResizeImage extends Job
         $this->extension = pathinfo($image->path, PATHINFO_EXTENSION);
     }
 
+    /**
+     * @param MediaRepositoryInterface $media
+     * @param ImageManager $images
+     * @param Filesystem $files
+     * @return bool
+     * @throws Exception
+     */
     public function handle(MediaRepositoryInterface $media, ImageManager $images, Filesystem $files)
     {
         list($width, $height) = $this->dimensions($this->size);
@@ -80,7 +96,9 @@ class ResizeImage extends Job
     }
 
     /**
-     *
+     * @param Filesystem $files
+     * @param bool $public
+     * @return string
      */
     protected function getFolder(Filesystem $files, $public = false)
     {
@@ -100,7 +118,9 @@ class ResizeImage extends Job
     }
 
     /**
-     *
+     * @param Filesystem $files
+     * @param bool $public
+     * @return string
      */
     protected function getPath(Filesystem $files, $public = false)
     {
@@ -112,7 +132,10 @@ class ResizeImage extends Job
     }
 
     /**
-     *
+     * @param $width
+     * @param $height
+     * @param $path
+     * @return array
      */
     protected function getPayload($width, $height, $path)
     {

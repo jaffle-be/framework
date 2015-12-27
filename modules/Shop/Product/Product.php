@@ -17,6 +17,10 @@ use Modules\System\Seo\SeoTrait;
 use Modules\System\Translatable\Translatable;
 use Modules\Tags\Taggable;
 
+/**
+ * Class Product
+ * @package Modules\Shop\Product
+ */
 class Product extends Model implements StoresMedia, PresentableEntity, SeoEntity, Searchable
 {
     use Translatable, StoringMedia, PresentableTrait, FrontScoping, SeoTrait, Taggable, EventedRelations, SearchableTrait;
@@ -49,6 +53,11 @@ class Product extends Model implements StoresMedia, PresentableEntity, SeoEntity
         ],
     ];
 
+    /**
+     * @param null $type
+     * @param null $size
+     * @return string
+     */
     public function getMediaFolder($type = null, $size = null)
     {
         if (! empty($type) && ! in_array($type, ['files', 'images', 'videos', 'infographics'])) {
@@ -62,11 +71,17 @@ class Product extends Model implements StoresMedia, PresentableEntity, SeoEntity
         return sprintf('products/%d/%d/%s/', $this->attributes['brand_id'], $this->attributes['id'], $size);
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function brand()
     {
         return $this->belongsTo('Modules\Shop\Product\Brand');
     }
 
+    /**
+     * @return \Modules\System\Eventing\BelongsToMany
+     */
     public function categories()
     {
         return $this->eventedBelongsToMany('Modules\Shop\Product\Category', 'product_categories_pivot', null, null, 'product_categories');
@@ -79,26 +94,41 @@ class Product extends Model implements StoresMedia, PresentableEntity, SeoEntity
         });
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
     public function price()
     {
         return $this->hasOne('Modules\Shop\Product\ActivePrice');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function priceHistory()
     {
         return $this->hasMany('Modules\Shop\Product\Price');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
     public function promotion()
     {
         return $this->hasOne('Modules\Shop\Product\ActivePromotion');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function promotionHistory()
     {
         return $this->hasMany('Modules\Shop\Product\Promotion');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function properties()
     {
         return $this->hasMany('Modules\Shop\Product\PropertyValue');

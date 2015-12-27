@@ -13,6 +13,10 @@ use Modules\Media\Video\VideoGenericFormatter;
 use Modules\System\Http\AdminController;
 use Modules\Theme\ThemeManager;
 
+/**
+ * Class VideoController
+ * @package Modules\Media\Http\Admin
+ */
 class VideoController extends AdminController
 {
     use VideoGenericFormatter;
@@ -20,6 +24,10 @@ class VideoController extends AdminController
 
     protected $media;
 
+    /**
+     * @param ThemeManager $theme
+     * @param MediaRepositoryInterface $media
+     */
     public function __construct(ThemeManager $theme, MediaRepositoryInterface $media)
     {
         $this->media = $media;
@@ -27,11 +35,18 @@ class VideoController extends AdminController
         parent::__construct($theme);
     }
 
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function widget()
     {
         return view('media::admin.video');
     }
 
+    /**
+     * @param Request $request
+     * @return mixed
+     */
     public function index(Request $request)
     {
         $owner = $this->owner($request);
@@ -39,6 +54,10 @@ class VideoController extends AdminController
         return $owner->videos;
     }
 
+    /**
+     * @param Request $request
+     * @return JsonResponse|mixed
+     */
     public function store(Request $request)
     {
         $this->validate($request, [
@@ -58,6 +77,10 @@ class VideoController extends AdminController
         return $video;
     }
 
+    /**
+     * @param Video $video
+     * @param Request $request
+     */
     public function update(Video $video, Request $request)
     {
         $owner = $this->owner($request);
@@ -71,6 +94,11 @@ class VideoController extends AdminController
         }
     }
 
+    /**
+     * @param Request $request
+     * @param Video $video
+     * @throws \Exception
+     */
     public function destroy(Request $request, Video $video)
     {
         $video->load('owner');
@@ -82,6 +110,9 @@ class VideoController extends AdminController
         }
     }
 
+    /**
+     * @param Request $request
+     */
     public function sort(Request $request)
     {
         $owner = $this->owner($request);
@@ -95,6 +126,10 @@ class VideoController extends AdminController
         }
     }
 
+    /**
+     * @param Request $request
+     * @return array|JsonResponse
+     */
     public function search(Request $request)
     {
         $this->validate($request, [

@@ -5,6 +5,10 @@ namespace Modules\Account\Jobs\Membership;
 use App\Jobs\Job;
 use Modules\Account\Membership;
 
+/**
+ * Class RevokeMembership
+ * @package Modules\Account\Jobs\Membership
+ */
 class RevokeMembership extends Job
 {
     /**
@@ -12,11 +16,18 @@ class RevokeMembership extends Job
      */
     protected $membership;
 
+    /**
+     * @param Membership $membership
+     */
     public function __construct(Membership $membership)
     {
         $this->membership = $membership;
     }
 
+    /**
+     * @return bool|null
+     * @throws \Exception
+     */
     public function handle()
     {
         $account = $this->membership->account;

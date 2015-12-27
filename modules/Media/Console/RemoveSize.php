@@ -7,6 +7,10 @@ use Illuminate\Filesystem\Filesystem;
 use Modules\Media\Configurator;
 use Modules\Media\StoresMedia;
 
+/**
+ * Class RemoveSize
+ * @package Modules\Media\Console
+ */
 class RemoveSize extends Command
 {
     protected $signature = 'media:remove-size {size} {type=all}';
@@ -23,6 +27,8 @@ class RemoveSize extends Command
 
     /**
      * Create a new console command instance.
+     * @param Configurator $config
+     * @param Filesystem $files
      */
     public function __construct(Configurator $config, Filesystem $files)
     {
@@ -43,7 +49,7 @@ class RemoveSize extends Command
     }
 
     /**
-     *
+     * @param $type
      */
     protected function handleType($type)
     {
@@ -71,6 +77,8 @@ class RemoveSize extends Command
 
     /**
      * $this
+     * @param StoresMedia $owner
+     * @param $size
      */
     public function handleOwner(StoresMedia $owner, $size)
     {
@@ -87,6 +95,7 @@ class RemoveSize extends Command
 
     /**
      * $owner
+     * @param $image
      */
     public function handleImage($image)
     {

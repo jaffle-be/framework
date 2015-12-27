@@ -5,6 +5,10 @@ namespace Modules\System\Console;
 use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
 
+/**
+ * Class FreshApplication
+ * @package Modules\System\Console
+ */
 class FreshApplication extends Command
 {
     protected $signature = 'system:fresh {--seed}';
@@ -16,6 +20,9 @@ class FreshApplication extends Command
      */
     protected $files;
 
+    /**
+     * @param Filesystem $files
+     */
     public function __construct(Filesystem $files)
     {
         parent::__construct();

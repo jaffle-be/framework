@@ -4,6 +4,9 @@ use Modules\Account\Account;
 use Modules\Blog\Post;
 use Modules\System\Seeder;
 
+/**
+ * Class BlogTableSeeder
+ */
 class BlogTableSeeder extends Seeder
 {
     /**
@@ -16,6 +19,9 @@ class BlogTableSeeder extends Seeder
         parent::__construct();
     }
 
+    /**
+     * @param int $amount
+     */
     public function run($amount = 15)
     {
         foreach ([1, 2] as $accountid) {
@@ -43,6 +49,10 @@ class BlogTableSeeder extends Seeder
         }
     }
 
+    /**
+     * @param $run
+     * @return array
+     */
     protected function texts($run)
     {
         return [

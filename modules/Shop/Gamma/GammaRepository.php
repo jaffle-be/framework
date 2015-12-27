@@ -7,6 +7,10 @@ use Modules\Shop\Product\Brand;
 use Modules\Shop\Product\CatalogRepositoryInterface;
 use Modules\Shop\Product\Category;
 
+/**
+ * Class GammaRepository
+ * @package Modules\Shop\Gamma
+ */
 class GammaRepository implements GammaRepositoryInterface
 {
     protected $brands;
@@ -15,6 +19,11 @@ class GammaRepository implements GammaRepositoryInterface
 
     protected $catalog;
 
+    /**
+     * @param BrandSelection $brands
+     * @param CategorySelection $categories
+     * @param CatalogRepositoryInterface $catalog
+     */
     public function __construct(BrandSelection $brands, CategorySelection $categories, CatalogRepositoryInterface $catalog)
     {
         $this->brands = $brands;
@@ -22,6 +31,10 @@ class GammaRepository implements GammaRepositoryInterface
         $this->catalog = $catalog;
     }
 
+    /**
+     * @param Brand $brand
+     * @return Collection
+     */
     public function categoriesForBrand(Brand $brand)
     {
         $categories = $brand->categories;
@@ -38,6 +51,10 @@ class GammaRepository implements GammaRepositoryInterface
         return $this->catalog->findCategories($ids);
     }
 
+    /**
+     * @param Category $category
+     * @return Collection
+     */
     public function brandsForCategory(Category $category)
     {
         $brands = $category->brands;

@@ -11,12 +11,20 @@ use Modules\System\Http\AdminController;
 use Modules\System\Locale;
 use Modules\Theme\ThemeManager;
 
+/**
+ * Class InfographicController
+ * @package Modules\Media\Http\Admin
+ */
 class InfographicController extends AdminController
 {
     use MediaWidgetPreperations;
 
     protected $media;
 
+    /**
+     * @param ThemeManager $theme
+     * @param MediaRepositoryInterface $media
+     */
     public function __construct(ThemeManager $theme, MediaRepositoryInterface $media)
     {
         $this->media = $media;
@@ -24,11 +32,19 @@ class InfographicController extends AdminController
         parent::__construct($theme);
     }
 
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function widget()
     {
         return view('media::admin.infographic');
     }
 
+    /**
+     * @param Request $request
+     * @param Locale $locale
+     * @return mixed
+     */
     public function index(Request $request, Locale $locale)
     {
         $owner = $this->owner($request);
@@ -38,6 +54,11 @@ class InfographicController extends AdminController
         return $owner->infographics;
     }
 
+    /**
+     * @param Request $request
+     * @param Locale $locale
+     * @return mixed
+     */
     public function store(Request $request, Locale $locale)
     {
         $owner = $this->owner($request);
@@ -51,6 +72,10 @@ class InfographicController extends AdminController
         return $infographic;
     }
 
+    /**
+     * @param Infographic $infographic
+     * @param Request $request
+     */
     public function update(Infographic $infographic, Request $request)
     {
         $owner = $this->owner($request);
@@ -64,6 +89,11 @@ class InfographicController extends AdminController
         }
     }
 
+    /**
+     * @param Infographic $infographic
+     * @param Request $request
+     * @throws \Exception
+     */
     public function destroy(Infographic $infographic, Request $request)
     {
         $infographic->load('owner');
@@ -75,6 +105,10 @@ class InfographicController extends AdminController
         }
     }
 
+    /**
+     * @param Request $request
+     * @param Locale $locale
+     */
     public function sort(Request $request, Locale $locale)
     {
         $owner = $this->owner($request);

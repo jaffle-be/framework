@@ -5,6 +5,10 @@ namespace Modules\Module;
 use Illuminate\Database\Eloquent\Model;
 use Modules\System\Translatable\Translatable;
 
+/**
+ * Class Module
+ * @package Modules\Module
+ */
 class Module extends Model
 {
     use Translatable;
@@ -15,6 +19,9 @@ class Module extends Model
 
     protected $translatedAttributes = ['name'];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function routes()
     {
         return $this->hasMany('Modules\Module\ModuleRoute', 'module_id');

@@ -7,6 +7,10 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
 use Modules\Account\MembershipInvitation;
 use Modules\Account\MembershipOwner;
 
+/**
+ * Class AcceptMembership
+ * @package Modules\Account\Jobs\Membership
+ */
 class AcceptMembership extends Job
 {
     use DispatchesJobs;
@@ -15,12 +19,20 @@ class AcceptMembership extends Job
 
     protected $member;
 
+    /**
+     * @param MembershipInvitation $invitation
+     * @param MembershipOwner $member
+     */
     public function __construct(MembershipInvitation $invitation, MembershipOwner $member)
     {
         $this->invitation = $invitation;
         $this->member = $member;
     }
 
+    /**
+     * @return bool|null
+     * @throws \Exception
+     */
     public function handle()
     {
         $account = $this->invitation->account;

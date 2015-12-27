@@ -9,6 +9,10 @@ use Modules\Account\AccountManager;
 use Modules\Media\StoresMedia;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
+/**
+ * Class UploadNewImage
+ * @package Modules\Media\Commands
+ */
 class UploadNewImage extends Job
 {
     use DispatchesJobs;
@@ -24,7 +28,8 @@ class UploadNewImage extends Job
     protected $image;
 
     /**
-     *
+     * @param StoresMedia $owner
+     * @param UploadedFile $image
      */
     public function __construct(StoresMedia $owner, UploadedFile $image)
     {
@@ -32,6 +37,11 @@ class UploadNewImage extends Job
         $this->image = $image;
     }
 
+    /**
+     * @param Filesystem $files
+     * @param AccountManager $manager
+     * @return mixed
+     */
     public function handle(Filesystem $files, AccountManager $manager)
     {
         $temp_dir = storage_path('media').'/'.$this->owner->getMediaFolder('images');
@@ -55,11 +65,18 @@ class UploadNewImage extends Job
         return $image;
     }
 
+    /**
+     * @return string
+     */
     protected function uniqueName()
     {
         return sha1(md5($this->image->getClientOriginalName()).time());
     }
 
+    /**
+     * @param $path
+     * @return string
+     */
     private function extension($path)
     {
         $info = getimagesize($path);

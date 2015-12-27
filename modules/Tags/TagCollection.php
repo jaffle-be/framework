@@ -4,6 +4,10 @@ namespace Modules\Tags;
 
 use Illuminate\Database\Eloquent\Collection;
 
+/**
+ * Class TagCollection
+ * @package Modules\Tags
+ */
 class TagCollection extends Collection
 {
     /**
@@ -12,7 +16,9 @@ class TagCollection extends Collection
      *
      *
      *
-     *
+     * @param string $format
+     * @param string $glue
+     * @return array|string
      */
     public function format($format = '<a href=":url">:name</a>', $glue = ' / ')
     {

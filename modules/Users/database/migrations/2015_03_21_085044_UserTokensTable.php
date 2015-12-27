@@ -3,6 +3,9 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
+/**
+ * Class UserTokensTable
+ */
 class UserTokensTable extends Migration
 {
     /**

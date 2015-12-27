@@ -4,8 +4,15 @@ namespace Modules\Shop\Product;
 
 use Modules\Search\SearchServiceInterface;
 
+/**
+ * Class CategorySuggestSyncer
+ * @package Modules\Shop\Product
+ */
 class CategorySuggestSyncer
 {
+    /**
+     * @param CategoryTranslation $translation
+     */
     public function handle(CategoryTranslation $translation)
     {
         $model = $translation->category;

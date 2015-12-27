@@ -8,10 +8,17 @@ use Illuminate\Database\Eloquent\Relations\MorphOne;
 use InvalidArgumentException;
 use Modules\System\Scopes\ModelAccountResource;
 
+/**
+ * Class StoringMedia
+ * @package Modules\Media
+ */
 trait StoringMedia
 {
     use ImageDimensionHelpers;
 
+    /**
+     * @return bool
+     */
     public function mediaStoresMultiple()
     {
         static $multiple;
@@ -55,6 +62,11 @@ trait StoringMedia
         return $this->morphMany('Modules\Media\Files\File', 'owner');
     }
 
+    /**
+     * @param null $width
+     * @param null $height
+     * @return mixed
+     */
     public function sizes($width = null, $height = null)
     {
         $this->images()->dimension($width, $height);
@@ -63,6 +75,11 @@ trait StoringMedia
     }
 
     //this is a shortcut method to get the thumbnail source.
+    /**
+     * @param null $width
+     * @param null $height
+     * @return mixed
+     */
     public function thumbnail($width = null, $height = null)
     {
         if ($this->mediaStoresMultiple()) {
@@ -76,6 +93,12 @@ trait StoringMedia
         }
     }
 
+    /**
+     * @param null $type
+     * @param null $size
+     * @return string
+     * @throws Exception
+     */
     public function getMediaFolder($type = null, $size = null)
     {
         if (uses_trait(get_class($this), ModelAccountResource::class)) {
@@ -108,6 +131,10 @@ trait StoringMedia
         return sprintf('%s/%d/%s/%s/', $media, $this->attributes['id'], $type, $size);
     }
 
+    /**
+     * @param Builder $builder
+     * @return Builder
+     */
     public function scopeHasImages(Builder $builder)
     {
         /** @var MorphOne $relation */

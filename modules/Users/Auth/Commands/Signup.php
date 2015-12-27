@@ -10,6 +10,10 @@ use Modules\Account\MembershipInvitation;
 use Modules\Users\Auth\Events\UserRegistered;
 use Modules\Users\User;
 
+/**
+ * Class Signup
+ * @package Modules\Users\Auth\Commands
+ */
 class Signup extends Job
 {
     protected $email;
@@ -20,6 +24,12 @@ class Signup extends Job
 
     protected $user;
 
+    /**
+     * @param $email
+     * @param $password
+     * @param MembershipInvitation|null $invitation
+     * @param User|null $user
+     */
     public function __construct($email, $password, MembershipInvitation $invitation = null, User $user = null)
     {
         $this->email = $email;
@@ -28,6 +38,13 @@ class Signup extends Job
         $this->user = $user;
     }
 
+    /**
+     * @param User $user
+     * @param Hasher $hash
+     * @param Dispatcher $events
+     * @return User
+     * @throws Exception
+     */
     public function handle(User $user, Hasher $hash, Dispatcher $events)
     {
         $connection = $user->getConnection();

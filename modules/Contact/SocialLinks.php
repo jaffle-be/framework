@@ -5,6 +5,10 @@ namespace Modules\Contact;
 use Illuminate\Database\Eloquent\Model;
 use Modules\System\Scopes\ModelAccountResource;
 
+/**
+ * Class SocialLinks
+ * @package Modules\Contact
+ */
 class SocialLinks extends Model
 {
     use ModelAccountResource;
@@ -28,6 +32,9 @@ class SocialLinks extends Model
         'instagram',
     ];
 
+    /**
+     * @return array
+     */
     public function available()
     {
         $data = $this->toArray();

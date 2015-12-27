@@ -2,6 +2,10 @@
 
 namespace Modules\System\Seo;
 
+/**
+ * Interface SeoEntity
+ * @package Modules\System\Seo
+ */
 interface SeoEntity
 {
     public function getSeoTitle();

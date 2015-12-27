@@ -10,6 +10,10 @@ use Modules\Shop\Gamma\ProductSelection;
 use Modules\Shop\Product\Brand;
 use Modules\Shop\Product\Category;
 
+/**
+ * Class CleanupDetail
+ * @package Modules\Shop\Jobs\Gamma
+ */
 class CleanupDetail extends Job
 {
     /**
@@ -27,6 +31,11 @@ class CleanupDetail extends Job
      */
     protected $account;
 
+    /**
+     * @param Brand $brand
+     * @param Category $category
+     * @param Account $account
+     */
     public function __construct(Brand $brand, Category $category, Account $account)
     {
         $this->brand = $brand;
@@ -34,6 +43,11 @@ class CleanupDetail extends Job
         $this->account = $account;
     }
 
+    /**
+     * @param GammaSelection $gamma
+     * @param ProductSelection $products
+     * @param GammaNotification $notifications
+     */
     public function handle(GammaSelection $gamma, ProductSelection $products, GammaNotification $notifications)
     {
         if ($this->shouldNotRun($products, $notifications)) {
@@ -75,7 +89,9 @@ class CleanupDetail extends Job
     }
 
     /**
-     *
+     * @param ProductSelection $products
+     * @param GammaNotification $notifications
+     * @return bool
      */
     protected function shouldNotRun(ProductSelection $products, GammaNotification $notifications)
     {

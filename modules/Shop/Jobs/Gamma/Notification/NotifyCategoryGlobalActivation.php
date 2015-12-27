@@ -10,6 +10,10 @@ use Modules\Shop\Gamma\GammaRepositoryInterface;
 use Modules\Shop\Product\Category;
 use Pusher;
 
+/**
+ * Class NotifyCategoryGlobalActivation
+ * @package Modules\Shop\Jobs\Gamma\Notification
+ */
 class NotifyCategoryGlobalActivation extends Job
 {
     use GammaNotificationHelpers;
@@ -24,12 +28,21 @@ class NotifyCategoryGlobalActivation extends Job
      */
     protected $category;
 
+    /**
+     * @param Account $account
+     * @param Category $category
+     */
     public function __construct(Account $account, Category $category)
     {
         $this->account = $account;
         $this->category = $category;
     }
 
+    /**
+     * @param GammaRepositoryInterface $gamma
+     * @param GammaNotification $notification
+     * @param Pusher $pusher
+     */
     public function handle(GammaRepositoryInterface $gamma, GammaNotification $notification, Pusher $pusher)
     {
         $brands = $gamma->brandsForCategory($this->category);

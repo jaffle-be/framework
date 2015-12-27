@@ -7,15 +7,28 @@ use Illuminate\Contracts\Auth\Guard;
 use Modules\Users\Auth\Tokens\Token;
 use Modules\Users\Contracts\UserRepositoryInterface;
 
+/**
+ * Class ConfirmEmail
+ * @package Modules\Users\Auth\Commands
+ */
 class ConfirmEmail extends Job
 {
     protected $token;
 
+    /**
+     * @param Token $token
+     */
     public function __construct(Token $token)
     {
         $this->token = $token;
     }
 
+    /**
+     * @param UserRepositoryInterface $users
+     * @param Guard $guard
+     * @return mixed
+     * @throws \Exception
+     */
     public function handle(UserRepositoryInterface $users, Guard $guard)
     {
         $user = $users->findUserByConfirmationToken($this->token->id);

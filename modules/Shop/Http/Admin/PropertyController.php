@@ -7,8 +7,18 @@ use Modules\Shop\Product\Property;
 use Modules\Shop\Product\PropertyGroup;
 use Modules\System\Http\AdminController;
 
+/**
+ * Class PropertyController
+ * @package Modules\Shop\Http\Admin
+ */
 class PropertyController extends AdminController
 {
+    /**
+     * @param Property $properties
+     * @param Request $request
+     * @param PropertyGroup $groups
+     * @return static
+     */
     public function store(Property $properties, Request $request, PropertyGroup $groups)
     {
         $group = $request->get('group_id');
@@ -17,6 +27,11 @@ class PropertyController extends AdminController
         return $properties->create(array_merge(translation_input($request), ['category_id' => $group->category_id]));
     }
 
+    /**
+     * @param Property $properties
+     * @param Request $request
+     * @return bool|Property
+     */
     public function update(Property $properties, Request $request)
     {
         $properties->fill(translation_input($request));
@@ -24,6 +39,11 @@ class PropertyController extends AdminController
         return $properties->save() ? $properties : false;
     }
 
+    /**
+     * @param Property $properties
+     * @return Property|string
+     * @throws \Exception
+     */
     public function destroy(Property $properties)
     {
         if ($properties->id) {
@@ -39,6 +59,10 @@ class PropertyController extends AdminController
         ]);
     }
 
+    /**
+     * @param Request $request
+     * @param Property $properties
+     */
     public function sortProperties(Request $request, Property $properties)
     {
         $order = $request->get('order');
@@ -56,6 +80,9 @@ class PropertyController extends AdminController
 
     /**
      * Move from one group to another.
+     * @param Request $request
+     * @param PropertyGroup $groups
+     * @param Property $properties
      */
     public function moveProperty(Request $request, PropertyGroup $groups, Property $properties)
     {

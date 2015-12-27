@@ -7,6 +7,10 @@ use Illuminate\Redis\Database;
 use Modules\System\ServiceProvider;
 use Modules\Users\Auth\Throttler\ThrottleManager;
 
+/**
+ * Class UsersServiceProvider
+ * @package Modules\Users\Providers
+ */
 class UsersServiceProvider extends ServiceProvider
 {
     protected $namespace = 'users';

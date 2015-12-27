@@ -7,9 +7,17 @@ use Illuminate\Session\Store;
 use Modules\Account\Account;
 use Modules\Account\AccountManager;
 
-class SystemController extends FrontController
+/**
+ * Class SystemController
+ * @package Modules\System\Http
+ */class SystemController extends FrontController
 {
-    public function locale(Store $session, Request $request, AccountManager $accounts)
+    /**
+* @param Store $session
+* @param Request $request
+* @param AccountManager $accounts
+ * @return \Illuminate\Http\RedirectResponse
+*/public function locale(Store $session, Request $request, AccountManager $accounts)
     {
         $account = $accounts->account();
 
@@ -23,9 +31,10 @@ class SystemController extends FrontController
     }
 
     /**
-     *
-     */
-    protected function is_account_locale(Account $account, $locale)
+* @param Account $account
+* @param $locale
+* @return
+*/    protected function is_account_locale(Account $account, $locale)
     {
         return $account->locales->filter(function ($item) use ($locale) {
             return $item->slug == $locale;

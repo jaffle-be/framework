@@ -2,6 +2,10 @@
 
 namespace Modules\Contact;
 
+/**
+ * Class OwnsAddress
+ * @package Modules\Contact
+ */
 trait OwnsAddress
 {
     public function address()

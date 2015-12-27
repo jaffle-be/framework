@@ -6,8 +6,15 @@ use Illuminate\Database\Eloquent\Relations\Relation;
 use Modules\System\Sluggable\OwnsSlug;
 use Modules\System\Translatable\TranslationModel;
 
+/**
+ * Class Cleanup
+ * @package Modules\System\Uri
+ */
 class Cleanup
 {
+    /**
+     * @param $object
+     */
     public function handle($object)
     {
         //we need to check for owns slug on the model itself,
@@ -26,6 +33,10 @@ class Cleanup
         }
     }
 
+    /**
+     * @param $object
+     * @return bool
+     */
     protected function translationOwnsSlug($object)
     {
         if (! method_exists($object, 'translations')) {

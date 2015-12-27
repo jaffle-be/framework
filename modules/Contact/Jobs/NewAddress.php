@@ -9,15 +9,29 @@ use Modules\Contact\Address;
 use Modules\Contact\AddressOwner;
 use Modules\System\Country\CountryRepository;
 
+/**
+ * Class NewAddress
+ * @package Modules\Contact\Jobs
+ */
 class NewAddress extends Job
 {
     protected $input;
 
+    /**
+     * @param array $input
+     */
     public function __construct(array $input)
     {
         $this->input = $input;
     }
 
+    /**
+     * @param Address $address
+     * @param CountryRepository $countries
+     * @param Repository $config
+     * @return bool|Address
+     * @throws Exception
+     */
     public function handle(Address $address, CountryRepository $countries, Repository $config)
     {
         $owners = $config->get('contact.address_owners');
@@ -45,6 +59,13 @@ class NewAddress extends Job
         return false;
     }
 
+    /**
+     * @param $owners
+     * @param $owner_id
+     * @param $owner_type
+     * @return mixed
+     * @throws Exception
+     */
     protected function resolveOwner($owners, $owner_id, $owner_type)
     {
         if (! isset($owners[$owner_type])) {

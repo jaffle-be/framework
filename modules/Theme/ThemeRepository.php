@@ -4,6 +4,10 @@ namespace Modules\Theme;
 
 use Modules\Account\AccountManager;
 
+/**
+ * Class ThemeRepository
+ * @package Modules\Theme
+ */
 class ThemeRepository implements ThemeRepositoryInterface
 {
     protected $theme;
@@ -14,6 +18,11 @@ class ThemeRepository implements ThemeRepositoryInterface
 
     protected $supported;
 
+    /**
+     * @param ThemeSelection $selector
+     * @param Theme $theme
+     * @param AccountManager $account
+     */
     public function __construct(ThemeSelection $selector, Theme $theme, AccountManager $account)
     {
         $this->selector = $selector;
@@ -23,6 +32,9 @@ class ThemeRepository implements ThemeRepositoryInterface
         $this->account = $account;
     }
 
+    /**
+     * @return bool|ThemeRepository|static
+     */
     public function current()
     {
         $selected = $this->selection();
@@ -51,6 +63,9 @@ class ThemeRepository implements ThemeRepositoryInterface
         return $selected;
     }
 
+    /**
+     * @return bool|static
+     */
     protected function setupDefaultTheme()
     {
         $themes = $this->supported();
@@ -78,7 +93,8 @@ class ThemeRepository implements ThemeRepositoryInterface
     }
 
     /**
-     *
+     * @param $theme
+     * @return bool|mixed|ThemeRepository
      */
     public function activate($theme)
     {
@@ -106,7 +122,8 @@ class ThemeRepository implements ThemeRepositoryInterface
     }
 
     /**
-     *
+     * @param Theme $theme
+     * @return static
      */
     protected function createSelection(Theme $theme)
     {
@@ -124,7 +141,8 @@ class ThemeRepository implements ThemeRepositoryInterface
     }
 
     /**
-     *
+     * @param Theme $theme
+     * @param ThemeSelection $selection
      */
     protected function addDefaults(Theme $theme, ThemeSelection $selection)
     {
@@ -146,7 +164,10 @@ class ThemeRepository implements ThemeRepositoryInterface
     }
 
     /**
-     *
+     * @param $selection
+     * @param ThemeSettingDefault $default
+     * @param $account
+     * @param ThemeSetting $setting
      */
     protected function setupSelectDefault($selection, ThemeSettingDefault $default, $account, ThemeSetting $setting)
     {
@@ -159,6 +180,12 @@ class ThemeRepository implements ThemeRepositoryInterface
         $setting->value()->create($payload);
     }
 
+    /**
+     * @param $selection
+     * @param ThemeSettingDefault $default
+     * @param $account
+     * @param ThemeSetting $setting
+     */
     protected function setupJsonDefault($selection, ThemeSettingDefault $default, $account, ThemeSetting $setting)
     {
         $json = json_decode($default->value);
@@ -181,6 +208,10 @@ class ThemeRepository implements ThemeRepositoryInterface
         return ['theme', 'theme.settings', 'theme.settings.value', 'theme.settings.value.translations', 'theme.settings.value.option', 'theme.settings.type', 'theme.settings.options', 'theme.settings.defaults'];
     }
 
+    /**
+     * @param $setting
+     * @param $checked
+     */
     public function updateBoolean($setting, $checked)
     {
         $setting->value()->delete();
@@ -194,6 +225,11 @@ class ThemeRepository implements ThemeRepositoryInterface
         }
     }
 
+    /**
+     * @param $setting
+     * @param $selected
+     * @param ThemeSettingOption $option
+     */
     public function updateSelect($setting, $selected, ThemeSettingOption $option)
     {
         $option = $option->find($selected);
@@ -207,6 +243,11 @@ class ThemeRepository implements ThemeRepositoryInterface
         ]);
     }
 
+    /**
+     * @param $setting
+     * @param $input
+     * @return mixed
+     */
     public function updateString($setting, $input)
     {
         $value = $setting->value;
@@ -222,6 +263,11 @@ class ThemeRepository implements ThemeRepositoryInterface
         $value->save();
     }
 
+    /**
+     * @param $setting
+     * @param $value
+     * @return mixed
+     */
     public function updateNumeric($setting, $value)
     {
         //if no original

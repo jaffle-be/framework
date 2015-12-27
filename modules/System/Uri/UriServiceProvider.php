@@ -4,6 +4,10 @@ namespace Modules\System\Uri;
 
 use Illuminate\Support\ServiceProvider;
 
+/**
+ * Class UriServiceProvider
+ * @package Modules\System\Uri
+ */
 class UriServiceProvider extends ServiceProvider
 {
     /**

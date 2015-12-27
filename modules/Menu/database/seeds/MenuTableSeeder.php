@@ -4,6 +4,9 @@ use Modules\Menu\Menu;
 use Modules\Menu\MenuItem;
 use Modules\System\Seeder;
 
+/**
+ * Class MenuTableSeeder
+ */
 class MenuTableSeeder extends Seeder
 {
     public function run()

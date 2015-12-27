@@ -5,15 +5,30 @@ namespace Modules\System\Seo\Providers;
 use Modules\System\Seo\MetaTagProvider;
 use Modules\System\Seo\SeoEntity;
 
+/**
+ * Class Facebook
+ * @package Modules\System\Seo\Providers
+ */
 class Facebook extends MetaTagProvider
 {
     protected $prefix = 'og:';
 
+    /**
+     * @param $key
+     * @param $value
+     * @return string
+     */
     public function renderAppId($key, $value)
     {
         return sprintf('<meta property="fb:app_id" content="%s">', $value);
     }
 
+    /**
+     * @param $key
+     * @param $value
+     * @return string
+     * @throws \Exception
+     */
     protected function tag($key, $value)
     {
         if (! property_exists($this, 'prefix')) {
@@ -27,6 +42,9 @@ class Facebook extends MetaTagProvider
         }
     }
 
+    /**
+     * @param SeoEntity $seo
+     */
     protected function handle(SeoEntity $seo)
     {
         //add the facebook app id to enable insights.

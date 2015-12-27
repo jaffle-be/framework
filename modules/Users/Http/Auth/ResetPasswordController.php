@@ -9,18 +9,30 @@ use Modules\Users\Auth\Commands\ResetPassword;
 use Modules\Users\Auth\Requests\ResetPasswordRequest;
 use Modules\Users\Auth\Tokens\TokenRepository;
 
+/**
+ * Class ResetPasswordController
+ * @package Modules\Users\Http\Auth
+ */
 class ResetPasswordController extends FrontController
 {
     /**
      * Show the form for resetting the password.
      *
-     *
+     * @param $token
+     * @return \Illuminate\Contracts\View\View
      */
     public function show($token)
     {
         return $this->theme->render('auth.reset-password', compact('token'));
     }
 
+    /**
+     * @param $token
+     * @param TokenRepository $tokens
+     * @param ResetPasswordRequest $request
+     * @param Guard $guard
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
     public function update($token, TokenRepository $tokens, ResetPasswordRequest $request, Guard $guard)
     {
         $token = $tokens->findTokenByValue($token);

@@ -7,6 +7,10 @@ use Modules\Search\Config;
 use Modules\Search\SearchService;
 use Modules\System\ServiceProvider;
 
+/**
+ * Class SearchServiceProvider
+ * @package Modules\Search\Providers
+ */
 class SearchServiceProvider extends ServiceProvider
 {
     protected $namespace = 'search';

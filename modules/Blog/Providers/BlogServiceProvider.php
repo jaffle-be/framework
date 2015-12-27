@@ -5,6 +5,10 @@ namespace Modules\Blog\Providers;
 use Modules\Blog\Post;
 use Modules\System\ServiceProvider;
 
+/**
+ * Class BlogServiceProvider
+ * @package Modules\Blog\Providers
+ */
 class BlogServiceProvider extends ServiceProvider
 {
     protected $namespace = 'blog';

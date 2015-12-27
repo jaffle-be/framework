@@ -4,6 +4,10 @@ namespace Modules\Theme;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * Class ThemeSettingOption
+ * @package Modules\Theme
+ */
 class ThemeSettingOption extends Model
 {
     use \Modules\System\Translatable\translatable;

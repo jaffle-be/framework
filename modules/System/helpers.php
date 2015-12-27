@@ -5,7 +5,9 @@ use Modules\Module\Module;
 
 if (! function_exists('uses_trait')) {
     /**
-     *
+     * @param $class
+     * @param $trait
+     * @return bool
      */
     function uses_trait($class, $trait)
     {
@@ -24,6 +26,9 @@ if (! function_exists('uses_trait')) {
  */
 
 if (! function_exists('system_options')) {
+    /**
+     * @return string
+     */
     function system_options()
     {
         $options['locale'] = app()->getLocale();
@@ -51,6 +56,9 @@ if (! function_exists('system_options')) {
  */
 
 if (! function_exists('system_locales')) {
+    /**
+     * @return static
+     */
     function system_locales()
     {
         $accountLocales = app('Modules\Account\AccountManager')->account()->locales;
@@ -72,6 +80,9 @@ if (! function_exists('system_locales')) {
  *
  */
 if (! function_exists('system_modules')) {
+    /**
+     * @return \Illuminate\Database\Eloquent\Collection|static[]
+     */
     function system_modules()
     {
         $accountModules = app('Modules\Account\AccountManager')->account()->modules;
@@ -87,6 +98,13 @@ if (! function_exists('system_modules')) {
 }
 
 if (! function_exists('store_route')) {
+    /**
+     * @param $name
+     * @param array $arguments
+     * @param array $parameters
+     * @param null $force
+     * @return string
+     */
     function store_route($name, array $arguments = [], $parameters = [], $force = null)
     {
         if (env('APP_MULTIPLE_LOCALES')) {
@@ -106,6 +124,9 @@ if (! function_exists('store_route')) {
 }
 
 if (! function_exists('pusher_account_channel')) {
+    /**
+     * @return string
+     */
     function pusher_account_channel()
     {
         $accounts = app('Modules\Account\AccountManager');
@@ -115,6 +136,9 @@ if (! function_exists('pusher_account_channel')) {
 }
 
 if (! function_exists('pusher_system_channel')) {
+    /**
+     * @return string
+     */
     function pusher_system_channel()
     {
         //        return 'private-system';
@@ -123,6 +147,9 @@ if (! function_exists('pusher_system_channel')) {
 }
 
 if (! function_exists('on_front')) {
+    /**
+     * @return bool|mixed
+     */
     function on_front()
     {
         //this use to be implemented with app()->runningUnitTests()
@@ -145,6 +172,11 @@ if (! function_exists('on_front')) {
 }
 
 if (! function_exists('translation_input')) {
+    /**
+     * @param Request $request
+     * @param array $except
+     * @return array
+     */
     function translation_input(Request $request, array $except = [])
     {
         $input = $request->except($except);
@@ -162,6 +194,10 @@ if (! function_exists('translation_input')) {
 }
 
 if (! function_exists('latest_tweets')) {
+    /**
+     * @param int $count
+     * @return array
+     */
     function latest_tweets($count = 3)
     {
         $cache = app('cache');
@@ -175,6 +211,10 @@ if (! function_exists('latest_tweets')) {
         return array_slice($tweets, 0, $count);
     }
 
+    /**
+     * @param int $count
+     * @return array
+     */
     function latest_tweets_about($count = 3)
     {
         $cache = app('cache');
@@ -188,6 +228,10 @@ if (! function_exists('latest_tweets')) {
 }
 
 if (! function_exists('ago')) {
+    /**
+     * @param $timestamp
+     * @return mixed
+     */
     function ago($timestamp)
     {
         $carbon = app(Laravelrus\LocalizedCarbon\LocalizedCarbon::class);

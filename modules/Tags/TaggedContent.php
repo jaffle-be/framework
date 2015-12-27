@@ -15,6 +15,9 @@ class TaggedContent extends Model
 {
     protected $table = 'taggables';
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\MorphTo
+     */
     public function taggable()
     {
         return $this->morphTo();

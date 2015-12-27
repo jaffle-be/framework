@@ -6,6 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 use Modules\Media\StoresMedia;
 use Modules\Media\StoringMedia;
 
+/**
+ * Class Theme
+ * @package Modules\Theme
+ */
 class Theme extends Model implements StoresMedia
 {
     use StoringMedia;
@@ -21,7 +25,8 @@ class Theme extends Model implements StoresMedia
     /**
      * Return an asset from a theme.
      *
-     *
+     * @param $asset
+     * @return string
      */
     public function asset($asset)
     {
@@ -30,11 +35,17 @@ class Theme extends Model implements StoresMedia
         return asset($asset);
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function settings()
     {
         return $this->hasMany('Modules\Theme\ThemeSetting', 'theme_id');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
     public function selection()
     {
         return $this->hasOne('Modules\Theme\ThemeSelection');

@@ -3,6 +3,9 @@
 use Modules\System\Seeder;
 use Modules\Users\User;
 
+/**
+ * Class UsersTableSeeder
+ */
 class UsersTableSeeder extends Seeder
 {
     public function run()

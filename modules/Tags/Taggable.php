@@ -6,6 +6,10 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
+/**
+ * Class Taggable
+ * @package Modules\Tags
+ */
 trait Taggable
 {
     public function tags()
@@ -13,6 +17,11 @@ trait Taggable
         return $this->morphToMany('Modules\Tags\Tag', 'taggable');
     }
 
+    /**
+     * @param Builder $builder
+     * @param Collection $tags
+     * @return Builder
+     */
     public function scopeTaggedWith(Builder $builder, Collection $tags)
     {
         /** @var MorphToMany $relation */

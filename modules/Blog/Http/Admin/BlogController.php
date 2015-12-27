@@ -11,10 +11,18 @@ use Modules\Blog\Post;
 use Modules\Media\MediaWidgetPreperations;
 use Modules\System\Http\AdminController;
 
+/**
+ * Class BlogController
+ * @package Modules\Blog\Http\Admin
+ */
 class BlogController extends AdminController
 {
     use MediaWidgetPreperations;
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
+     */
     public function index(Request $request)
     {
         $query = Post::with([
@@ -43,6 +51,13 @@ class BlogController extends AdminController
         return $query->paginate();
     }
 
+    /**
+     * @param Request $request
+     * @param Post $post
+     * @param Guard $guard
+     * @param AccountManager $accounts
+     * @return Post|string|static
+     */
     public function store(Request $request, Post $post, Guard $guard, AccountManager $accounts)
     {
         $input = translation_input($request);
@@ -62,6 +77,10 @@ class BlogController extends AdminController
         ]);
     }
 
+    /**
+     * @param Post $post
+     * @return Post
+     */
     public function show(Post $post)
     {
         $post->load($this->relations());
@@ -71,6 +90,11 @@ class BlogController extends AdminController
         return $post;
     }
 
+    /**
+     * @param Post $post
+     * @param Request $request
+     * @return \Illuminate\Contracts\Routing\ResponseFactory|Post|\Symfony\Component\HttpFoundation\Response
+     */
     public function update(Post $post, Request $request)
     {
         $post->load($this->relations());
@@ -84,6 +108,11 @@ class BlogController extends AdminController
         return $post;
     }
 
+    /**
+     * @param Post $post
+     * @return Post
+     * @throws \Exception
+     */
     public function destroy(Post $post)
     {
         if ($post->delete()) {
@@ -93,6 +122,10 @@ class BlogController extends AdminController
         return $post;
     }
 
+    /**
+     * @param Request $request
+     * @param Post $post
+     */
     public function batchDestroy(Request $request, Post $post)
     {
         $ids = $request->get('posts', []);
@@ -107,6 +140,10 @@ class BlogController extends AdminController
         }
     }
 
+    /**
+     * @param Request $request
+     * @param Post $post
+     */
     public function batchPublish(Request $request, Post $post)
     {
         $ids = $request->get('posts', []);
@@ -127,6 +164,10 @@ class BlogController extends AdminController
         }
     }
 
+    /**
+     * @param Request $request
+     * @param Post $post
+     */
     public function batchUnpublish(Request $request, Post $post)
     {
         $ids = $request->get('posts', []);
@@ -147,16 +188,25 @@ class BlogController extends AdminController
         }
     }
 
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function overview()
     {
         return view('blog::admin.overview');
     }
 
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function detail()
     {
         return view('blog::admin.detail');
     }
 
+    /**
+     * @return array
+     */
     protected function relations()
     {
         return ['translations', 'translations.slug'];

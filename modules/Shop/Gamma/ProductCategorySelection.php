@@ -7,6 +7,10 @@ use Modules\Search\Model\Searchable;
 use Modules\Search\Model\SearchableTrait;
 use Modules\System\MySoftDeletes;
 
+/**
+ * Class ProductCategorySelection
+ * @package Modules\Shop\Gamma
+ */
 class ProductCategorySelection extends Model implements Searchable
 {
     use MySoftDeletes;
@@ -31,11 +35,17 @@ class ProductCategorySelection extends Model implements Searchable
         ],
     ];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function category()
     {
         return $this->belongsTo('Modules\Shop\Product\Category');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function productSelection()
     {
         return $this->belongsTo('Modules\Shop\Gamma\ProductSelection');

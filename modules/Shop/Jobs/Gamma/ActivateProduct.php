@@ -9,6 +9,10 @@ use Modules\Shop\Gamma\ProductSelection;
 use Modules\Shop\Product\Category;
 use Modules\Shop\Product\Product;
 
+/**
+ * Class ActivateProduct
+ * @package Modules\Shop\Jobs\Gamma
+ */
 class ActivateProduct extends Job
 {
     protected $product;
@@ -17,6 +21,11 @@ class ActivateProduct extends Job
 
     protected $account;
 
+    /**
+     * @param Product $product
+     * @param Category $category
+     * @param Account $account
+     */
     public function __construct(Product $product, Category $category, Account $account)
     {
         $this->product = $product;
@@ -24,6 +33,9 @@ class ActivateProduct extends Job
         $this->account = $account;
     }
 
+    /**
+     * @param ProductSelection $products
+     */
     public function handle(ProductSelection $products)
     {
         $base = $this->baseSelectionExists($products);
@@ -49,7 +61,8 @@ class ActivateProduct extends Job
     }
 
     /**
-     *
+     * @param ProductSelection $selection
+     * @return
      */
     protected function baseSelectionExists(ProductSelection $selection)
     {
@@ -60,7 +73,7 @@ class ActivateProduct extends Job
     }
 
     /**
-     *
+     * @param ProductSelection $base
      */
     protected function attachCategory(ProductSelection $base)
     {
@@ -70,7 +83,7 @@ class ActivateProduct extends Job
     }
 
     /**
-     *
+     * @param ProductSelection $products
      */
     protected function handleFullNewRecord(ProductSelection $products)
     {
@@ -84,7 +97,8 @@ class ActivateProduct extends Job
     }
 
     /**
-     *
+     * @param ProductSelection $base
+     * @return
      */
     protected function existingCategorySelection(ProductSelection $base)
     {

@@ -5,7 +5,10 @@ namespace Modules\System;
 use Illuminate\Support\ServiceProvider as Provider;
 use ReflectionClass;
 
-abstract class ServiceProvider extends Provider
+/**
+ * Class ServiceProvider
+ * @package Modules\System
+ */abstract class ServiceProvider extends Provider
 {
     protected $namespace = false;
 
@@ -55,7 +58,10 @@ abstract class ServiceProvider extends Provider
 
     abstract protected function listeners();
 
-    public function helpers($dir)
+
+    /**
+* @param $dir
+*/ublic function helpers($dir)
     {
         $file = $dir.'helpers.php';
 
@@ -64,10 +70,10 @@ abstract class ServiceProvider extends Provider
         }
     }
 
+
     /**
-     *
-     */
-    protected function routes($dir)
+* @param $dir
+*/    protected function routes($dir)
     {
         if (! $this->app->routesAreCached()) {
             $routes = $dir.'/Http/routes.php';
@@ -90,10 +96,10 @@ abstract class ServiceProvider extends Provider
         });
     }
 
+
     /**
-     *
-     */
-    protected function publish($dir)
+* @param $dir
+*/    protected function publish($dir)
     {
         $publish = [];
 
@@ -110,10 +116,10 @@ abstract class ServiceProvider extends Provider
         $this->publishes($publish, $this->namespace);
     }
 
+
     /**
-     *
-     */
-    protected function views($dir)
+* @param $dir
+*/    protected function views($dir)
     {
         $views = $dir.'/resources/views/';
         if (file_exists($views)) {
@@ -121,10 +127,10 @@ abstract class ServiceProvider extends Provider
         }
     }
 
+
     /**
-     *
-     */
-    protected function lang($dir)
+* @param $dir
+*/    protected function lang($dir)
     {
         $lang = $dir.'/resources/lang';
         if (file_exists($lang)) {
@@ -132,10 +138,10 @@ abstract class ServiceProvider extends Provider
         }
     }
 
+
     /**
-     *
-     */
-    protected function config($dir)
+* @param $dir
+*/    protected function config($dir)
     {
         $config = $dir.'/config/'.$this->namespace.'.php';
 

@@ -10,6 +10,10 @@ use Modules\Shop\Product\Product;
 use Modules\Shop\Product\ProductTranslation;
 use Modules\System\Http\FrontController;
 
+/**
+ * Class ShopController
+ * @package Modules\Shop\Http
+ */
 class ShopController extends FrontController
 {
     /**
@@ -47,6 +51,11 @@ class ShopController extends FrontController
      * @todo     remove brand from this route, it's not usefull
      *
      * $search
+     * @param CategoryTranslation $category
+     * @param BrandTranslation $brand
+     * @param Request $request
+     * @param GammaQueryResolver $resolver
+     * @return \Illuminate\Contracts\View\View
      */
     public function category(CategoryTranslation $category, BrandTranslation $brand = null, Request $request, GammaQueryResolver $resolver)
     {
@@ -88,6 +97,10 @@ class ShopController extends FrontController
         ]);
     }
 
+    /**
+     * @param ProductTranslation $product
+     * @return \Illuminate\Contracts\View\View
+     */
     public function product(ProductTranslation $product)
     {
         $product = $product->product;
@@ -101,6 +114,11 @@ class ShopController extends FrontController
         return $this->theme->render('shop.product', ['product' => $product]);
     }
 
+    /**
+     * @param $products
+     * @param $int
+     * @return mixed
+     */
     protected function section($products, $int)
     {
         $result = $products->take($int);

@@ -9,10 +9,20 @@ use Modules\Contact\Jobs\SendContactEmail;
 use Modules\Contact\Requests\ContactRequest;
 use Modules\System\Http\FrontController;
 
+/**
+ * Class ContactController
+ * @package Modules\Contact\Http
+ */
 class ContactController extends FrontController
 {
     use DispatchesJobs;
 
+    /**
+     * @param AccountManager $manager
+     * @param Store $session
+     * @return \Illuminate\Contracts\View\View
+     * @throws \Exception
+     */
     public function index(AccountManager $manager, Store $session)
     {
         $account = $manager->account();
@@ -24,6 +34,11 @@ class ContactController extends FrontController
         return $this->theme->render('contact.'.$this->theme->setting('contactLayout'), ['contact' => $contact, 'success' => $success]);
     }
 
+    /**
+     * @param ContactRequest $request
+     * @param AccountManager $account
+     * @return mixed
+     */
     public function store(ContactRequest $request, AccountManager $account)
     {
         $account = $account->account();

@@ -6,8 +6,16 @@ use Illuminate\Http\Request;
 use Modules\Shop\Product\PropertyGroup;
 use Modules\System\Http\AdminController;
 
+/**
+ * Class PropertyGroupController
+ * @package Modules\Shop\Http\Admin
+ */
 class PropertyGroupController extends AdminController
 {
+    /**
+     * @param Request $request
+     * @return bool|PropertyGroup
+     */
     public function store(Request $request)
     {
         $group = new PropertyGroup(translation_input($request));
@@ -15,6 +23,11 @@ class PropertyGroupController extends AdminController
         return $group->save() ? $group : false;
     }
 
+    /**
+     * @param PropertyGroup $groups
+     * @param Request $request
+     * @return bool|PropertyGroup
+     */
     public function update(PropertyGroup $groups, Request $request)
     {
         $groups->fill(translation_input($request));
@@ -22,6 +35,11 @@ class PropertyGroupController extends AdminController
         return $groups->save() ? $groups : false;
     }
 
+    /**
+     * @param PropertyGroup $groups
+     * @return string
+     * @throws \Exception
+     */
     public function destroy(PropertyGroup $groups)
     {
         if ($groups->properties()->count() == 0) {
@@ -37,6 +55,10 @@ class PropertyGroupController extends AdminController
         ]);
     }
 
+    /**
+     * @param Request $request
+     * @param PropertyGroup $groups
+     */
     public function sortGroups(Request $request, PropertyGroup $groups)
     {
         $order = $request->get('order');

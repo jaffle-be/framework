@@ -4,6 +4,10 @@ namespace Modules\System\Presenter;
 
 use Markdown;
 
+/**
+ * Class ContentPresenterTrait
+ * @package Modules\System\Presenter
+ */
 trait ContentPresenterTrait
 {
     /**
@@ -54,7 +58,8 @@ trait ContentPresenterTrait
      * We also strip out any shortcodes, which would only
      * inject either media or custom marked up content.
      *
-     *
+     * @param null $chars
+     * @return null|string
      */
     public function extract($chars = null)
     {
@@ -90,6 +95,10 @@ trait ContentPresenterTrait
         return rtrim($content);
     }
 
+    /**
+     * @param $content
+     * @return mixed
+     */
     public function removeCodeSamples($content)
     {
         $content = preg_replace('/````(.|\s)*?````/', "\n", $content);
@@ -97,6 +106,12 @@ trait ContentPresenterTrait
         return $content;
     }
 
+    /**
+     * @param $str
+     * @param int $wordCount
+     * @param null $chars
+     * @return null|string
+     */
     public function snippet($str, $wordCount = 60, $chars = null)
     {
         $string = implode(

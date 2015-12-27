@@ -4,6 +4,9 @@ use Modules\Account\Account;
 use Modules\Pages\Page;
 use Modules\System\Seeder;
 
+/**
+ * Class PagesTableSeeder
+ */
 class PagesTableSeeder extends Seeder
 {
     /**
@@ -16,6 +19,9 @@ class PagesTableSeeder extends Seeder
         parent::__construct();
     }
 
+    /**
+     * @param int $amount
+     */
     public function run($amount = 15)
     {
         foreach ([1, 2] as $accountid) {
@@ -37,6 +43,10 @@ class PagesTableSeeder extends Seeder
         }
     }
 
+    /**
+     * @param $page
+     * @param $accountid
+     */
     protected function subPages($page, $accountid)
     {
         for ($i = 0; $i < 3; ++$i) {
@@ -53,6 +63,9 @@ class PagesTableSeeder extends Seeder
         }
     }
 
+    /**
+     * @return array
+     */
     protected function texts()
     {
         return [

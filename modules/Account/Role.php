@@ -5,6 +5,10 @@ namespace Modules\Account;
 use Illuminate\Database\Eloquent\Model;
 use Modules\System\Scopes\ModelAccountResource;
 
+/**
+ * Class Role
+ * @package Modules\Account
+ */
 class Role extends Model
 {
     use ModelAccountResource;

@@ -3,6 +3,9 @@
 use Modules\Shop\Product\Category;
 use Modules\System\Seeder;
 
+/**
+ * Class CategoryTableSeeder
+ */
 class CategoryTableSeeder extends Seeder
 {
     /**
@@ -23,6 +26,10 @@ class CategoryTableSeeder extends Seeder
         }
     }
 
+    /**
+     * @param $file
+     * @return mixed|string
+     */
     protected function data($file)
     {
         $data = file_get_contents($file);
@@ -32,6 +39,9 @@ class CategoryTableSeeder extends Seeder
         return $data;
     }
 
+    /**
+     * @param $data
+     */
     protected function categories($data)
     {
         foreach ($data as $category) {

@@ -9,6 +9,10 @@ use Modules\Media\Configurator;
 use Modules\Media\ImageDimensionHelpers;
 use Modules\Media\MediaRepository;
 
+/**
+ * Class Seeder
+ * @package Modules\System
+ */
 abstract class Seeder extends BaseSeeder
 {
     use ImageDimensionHelpers;
@@ -58,6 +62,7 @@ abstract class Seeder extends BaseSeeder
 
     /**
      * Seed the given connection from the given path.
+     * @param string $class
      */
     public function call($class)
     {
@@ -74,6 +79,9 @@ abstract class Seeder extends BaseSeeder
         }
     }
 
+    /**
+     * @param $model
+     */
     protected function addImages($model)
     {
         $options = ['one_image' => ['PORTFOLIO_O14A0464.jpg'], 'two_images' => ['PORTFOLIO_O14A0464.jpg', 'PORTFOLIO_IMG_0331.jpg'], 'three_images' => ['PORTFOLIO_IMG_0324.jpg', 'PORTFOLIO_IMG_0331.jpg', 'PORTFOLIO_O14A0464.jpg']];
@@ -104,6 +112,12 @@ abstract class Seeder extends BaseSeeder
         }
     }
 
+    /**
+     * @param $model
+     * @param $destination
+     * @param $name
+     * @return mixed
+     */
     protected function addMain($model, $destination, $name)
     {
         $path = $destination.$name;
@@ -118,6 +132,13 @@ abstract class Seeder extends BaseSeeder
         ]);
     }
 
+    /**
+     * @param $model
+     * @param array $sizes
+     * @param $original
+     * @param $destination
+     * @param $name
+     */
     protected function addSizes($model, array $sizes, $original, $destination, $name)
     {
         foreach ($sizes as $size) {

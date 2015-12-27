@@ -6,6 +6,10 @@ use Modules\Search\Model\Searchable;
 use Modules\Search\Model\SearchableTrait;
 use Modules\System\Translatable\TranslationModel;
 
+/**
+ * Class UserTranslation
+ * @package Modules\Users
+ */
 class UserTranslation extends TranslationModel implements Searchable
 {
     use SearchableTrait;

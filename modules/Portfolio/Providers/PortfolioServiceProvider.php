@@ -6,6 +6,10 @@ use Modules\Portfolio\Project;
 use Modules\Portfolio\ProjectObserver;
 use Modules\System\ServiceProvider;
 
+/**
+ * Class PortfolioServiceProvider
+ * @package Modules\Portfolio\Providers
+ */
 class PortfolioServiceProvider extends ServiceProvider
 {
     protected $namespace = 'portfolio';

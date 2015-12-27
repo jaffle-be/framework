@@ -7,6 +7,10 @@ use Modules\System\Scopes\ModelAccountResource;
 use Modules\System\Scopes\ModelAutoSort;
 use Modules\System\Scopes\ModelLocaleSpecificResource;
 
+/**
+ * Class File
+ * @package Modules\Media\Files
+ */
 class File extends Model
 {
     use ModelAccountResource;
@@ -17,6 +21,9 @@ class File extends Model
 
     protected $fillable = ['account_id', 'locale_id', 'path', 'filename', 'extension', 'title'];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\MorphTo
+     */
     public function owner()
     {
         return $this->morphTo();

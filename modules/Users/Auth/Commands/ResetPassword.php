@@ -8,7 +8,10 @@ use Modules\Users\Auth\Tokens\Token;
 use Modules\Users\Contracts\UserRepositoryInterface;
 use Modules\Users\User;
 
-class ResetPassword extends Job
+/**
+ * Class ResetPassword
+ * @package Modules\Users\Auth\Commands
+ */class ResetPassword extends Job
 {
     /**
      * @var string
@@ -32,7 +35,11 @@ class ResetPassword extends Job
 
     /**
      * Create a new command instance.
-     */
+* @param $email
+* @param Token $token
+* @param $password
+* @param $password_confirmation
+*/
     public function __construct($email, Token $token, $password, $password_confirmation)
     {
         $this->email = $email;
@@ -42,9 +49,12 @@ class ResetPassword extends Job
     }
 
     /**
-     *
-     */
-    public function handle(UserRepositoryInterface $users, hasher $hasher)
+* @param UserRepositoryInterface $users
+* @param Hasher $hasher
+* @return mixed|string
+
+* @throws \Exception
+*/    public function handle(UserRepositoryInterface $users, hasher $hasher)
     {
         $user = $users->findUserByEmail($this->email);
 
@@ -67,10 +77,11 @@ class ResetPassword extends Job
         }
     }
 
+
     /**
-     *
-     */
-    protected function validToken(User $user)
+* @param User $user
+* @return bool
+*/   protected function validToken(User $user)
     {
         return $this->token->value == $user->resetToken->value;
     }

@@ -5,13 +5,26 @@ namespace Modules\System\Validators;
 use Illuminate\Http\Request;
 use SoapClient;
 
+/**
+ * Class Vat
+ * @package Modules\System\Validators
+ */
 class Vat
 {
+    /**
+     * @param Request $request
+     */
     public function __construct(Request $request)
     {
         $this->request = $request;
     }
 
+    /**
+     * @param $attribute
+     * @param $value
+     * @param array $parameters
+     * @return bool
+     */
     public function validate($attribute, $value, $parameters = [])
     {
         $client = new SoapClient('http://ec.europa.eu/taxation_customs/vies/checkVatService.wsdl');

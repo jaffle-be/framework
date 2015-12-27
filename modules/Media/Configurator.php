@@ -6,6 +6,10 @@ use Illuminate\Contracts\Config\Repository;
 use InvalidArgumentException;
 use Modules\Theme\ThemeManager;
 
+/**
+ * Class Configurator
+ * @package Modules\Media
+ */
 class Configurator
 {
     protected $config;
@@ -14,6 +18,10 @@ class Configurator
 
     protected $theme;
 
+    /**
+     * @param Repository $config
+     * @param ThemeManager $theme
+     */
     public function __construct(Repository $config, ThemeManager $theme)
     {
         $this->config = $config;
@@ -26,6 +34,10 @@ class Configurator
         $this->theme = $theme;
     }
 
+    /**
+     * @param string $type
+     * @return array
+     */
     public function getTypes($type = 'all')
     {
         if ($type == 'all' || $type === null) {
@@ -38,11 +50,21 @@ class Configurator
         return array_values(array_intersect_key($this->owners, array_flip([$type])));
     }
 
+    /**
+     * @param StoresMedia $owner
+     * @return string
+     */
     public function getPublicBasePath(StoresMedia $owner)
     {
         return public_path($this->config->get('media.path').'/'.$owner->getMediaFolder());
     }
 
+    /**
+     * @param StoresMedia $owner
+     * @param $type
+     * @param null $size
+     * @return string
+     */
     public function getPublicPath(StoresMedia $owner, $type, $size = null)
     {
         $path = $this->config->get('media.path').'/'.$owner->getMediaFolder($type, $size);
@@ -50,6 +72,12 @@ class Configurator
         return public_path($path);
     }
 
+    /**
+     * @param StoresMedia $owner
+     * @param $type
+     * @param null $size
+     * @return string
+     */
     public function getAbstractPath(StoresMedia $owner, $type, $size = null)
     {
         if (! $this->isSupportedMediaType($type)) {
@@ -64,7 +92,9 @@ class Configurator
      * Need to watch out with this, it could cause problems for content that will be
      * created by our own team.
      *
-     *
+     * @param StoresMedia $owner
+     * @param string $requested
+     * @return array
      */
     public function getImageSizes(StoresMedia $owner, $requested = 'all')
     {
@@ -100,7 +130,8 @@ class Configurator
     /**
      * Return the alias used for the given media owner type.
      *
-     *
+     * @param StoresMedia $owner
+     * @return mixed
      */
     public function alias(StoresMedia $owner)
     {
@@ -115,6 +146,8 @@ class Configurator
 
     /**
      * Return the full classname for the media owner type for the given alias.
+     * @param $alias
+     * @return
      */
     public function classname($alias)
     {
@@ -134,13 +167,18 @@ class Configurator
     }
 
     /**
-     *
+     * @param $type
+     * @return bool
      */
     public function isSupportedMediaType($type)
     {
         return in_array($type, $this->getSupportedMediaTypes());
     }
 
+    /**
+     * @param $type
+     * @return bool
+     */
     public function isSupportedMediaOwner($type)
     {
         return count($this->getTypes($type)) > 0;

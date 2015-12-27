@@ -6,8 +6,19 @@ use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Pagination\Paginator;
 use Modules\Search\Model\Searchable;
 
+/**
+ * Class SearchResponder
+ * @package Modules\Search
+ */
 trait SearchResponder
 {
+    /**
+     * @param $results
+     * @param $with
+     * @param $paginated
+     * @param Searchable|null $model
+     * @return array|LengthAwarePaginator
+     */
     protected function response($results, $with, $paginated, Searchable $model = null)
     {
         $collection = $this->asModels($results['hits']['hits'], $model);
@@ -53,6 +64,11 @@ trait SearchResponder
         return $results;
     }
 
+    /**
+     * @param array $results
+     * @param Searchable|null $searchable
+     * @return array
+     */
     protected function asModels(array $results, Searchable $searchable = null)
     {
         $items = [];

@@ -10,6 +10,10 @@ use Modules\System\Presenter\PresentableTrait;
 use Modules\System\Sluggable\Sluggable;
 use Modules\System\Translatable\TranslationModel;
 
+/**
+ * Class CategoryTranslation
+ * @package Modules\Shop\Product
+ */
 class CategoryTranslation extends TranslationModel implements PresentableEntity, SluggableInterface, Searchable
 {
     use Sluggable, PresentableTrait, SearchableTrait;
@@ -34,6 +38,9 @@ class CategoryTranslation extends TranslationModel implements PresentableEntity,
         ],
     ];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function category()
     {
         return $this->belongsTo('Modules\Shop\Product\Category');

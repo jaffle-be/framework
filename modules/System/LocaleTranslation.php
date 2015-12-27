@@ -4,6 +4,10 @@ namespace Modules\System;
 
 use Modules\System\Translatable\TranslationModel;
 
+/**
+ * Class LocaleTranslation
+ * @package Modules\System
+ */
 class LocaleTranslation extends TranslationModel
 {
     public $timestamps = false;

@@ -4,6 +4,9 @@ use Illuminate\Database\Migrations\Migration;
 use Modules\Module\Module;
 use Modules\Module\ModuleRoute;
 
+/**
+ * Class CreateShopTable
+ */
 class CreateShopTable extends Migration
 {
     /**

@@ -2,7 +2,10 @@
 
 if (! function_exists('suggest_completion')) {
     /**
-     *
+     * @param $type
+     * @param $query
+     * @param $locale
+     * @return array
      */
     function suggest_completion($type, $query, $locale)
     {

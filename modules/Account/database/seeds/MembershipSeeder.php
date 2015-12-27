@@ -4,6 +4,9 @@ use Modules\Account\Membership;
 use Modules\System\Seeder;
 use Modules\Users\User;
 
+/**
+ * Class MembershipSeeder
+ */
 class MembershipSeeder extends Seeder
 {
     public function run()

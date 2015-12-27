@@ -10,6 +10,10 @@ use Modules\Users\Auth\Tokens\Token;
 use Modules\Users\Contracts\TokenRepositoryInterface;
 use Modules\Users\Contracts\UserRepositoryInterface;
 
+/**
+ * Class SendResetEmail
+ * @package Modules\Users\Auth\Commands
+ */
 class SendResetEmail extends EmailJob
 {
     /**
@@ -19,6 +23,7 @@ class SendResetEmail extends EmailJob
 
     /**
      * Create a new command instance.
+     * @param $email
      */
     public function __construct($email)
     {
@@ -28,6 +33,10 @@ class SendResetEmail extends EmailJob
     }
 
     /**
+     * @param ThemeMailer $mail
+     * @param TokenRepositoryInterface $tokens
+     * @param Translator $lang
+     * @param UserRepositoryInterface $users
      * @throws Exception
      */
     public function handle(ThemeMailer $mail, TokenRepositoryInterface $tokens, Translator $lang, UserRepositoryInterface $users)
