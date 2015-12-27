@@ -7,6 +7,11 @@ use Modules\System\Locale;
 
 class TranslationCollection extends Collection
 {
+    /**
+     * Get the collection of items as a plain array.
+     *
+     * @return array
+     */
     public function toArray()
     {
         $locales = Locale::all();
@@ -24,6 +29,12 @@ class TranslationCollection extends Collection
         return $result;
     }
 
+    /**
+     * Get the collection of items as JSON.
+     *
+     * @param  int  $options
+     * @return string
+     */
     public function toJson($options = 0)
     {
         return parent::toJson(JSON_FORCE_OBJECT);

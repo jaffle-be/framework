@@ -41,6 +41,11 @@ class SocialLinks extends Model
         return $data;
     }
 
+    /**
+     * Get the fillable attributes for the model.
+     *
+     * @return array
+     */
     public function getFillable()
     {
         $fillable = $this->fillable;

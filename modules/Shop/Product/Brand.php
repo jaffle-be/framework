@@ -56,6 +56,11 @@ class Brand extends Model implements Pushable, Searchable, StoresMedia
         return $this->hasOne('Modules\Shop\Gamma\BrandSelection');
     }
 
+    /**
+     * Convert the model instance to an array.
+     *
+     * @return array
+     */
     public function toArray()
     {
         $data = parent::toArray();

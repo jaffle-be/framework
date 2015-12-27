@@ -6,6 +6,9 @@ use Modules\System\Seeder;
 
 class BlogTableSeeder extends Seeder
 {
+    /**
+     * Build a new Seed.
+     */
     public function __construct()
     {
         $this->model = new Post();

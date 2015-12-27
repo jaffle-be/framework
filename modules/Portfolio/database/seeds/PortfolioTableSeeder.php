@@ -9,6 +9,9 @@ use Modules\Users\User;
 
 class PortfolioTableSeeder extends Seeder
 {
+    /**
+     * Build a new Seed.
+     */
     public function __construct()
     {
         $this->model = new Project();

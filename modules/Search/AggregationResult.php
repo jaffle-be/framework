@@ -15,6 +15,11 @@ class AggregationResult extends Collection
         parent::__construct($items);
     }
 
+    /**
+     * Get the collection of items as a plain array.
+     *
+     * @return array
+     */
     public function toArray()
     {
         $items = parent::toArray();
@@ -25,6 +30,12 @@ class AggregationResult extends Collection
         ];
     }
 
+    /**
+     * Run a map over each of the items.
+     *
+     * @param  callable  $callback
+     * @return static
+     */
     public function map(callable $callback)
     {
         $keys = array_keys($this->items);

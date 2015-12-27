@@ -6,6 +6,11 @@ use Illuminate\Database\Eloquent\Collection;
 
 class LocalisedResourceCollection extends Collection
 {
+    /**
+     * Get the collection of items as a plain array.
+     *
+     * @return array
+     */
     public function toArray()
     {
         $byLocales = $this->byLocale();

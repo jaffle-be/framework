@@ -55,6 +55,12 @@ class Tag extends Model implements Searchable
         return 'cube'.str_slug(ucfirst($this->name));
     }
 
+    /**
+     * Create a new Eloquent Collection instance.
+     *
+     * @param  array  $models
+     * @return \Illuminate\Database\Eloquent\Collection
+     */
     public function newCollection(array $models = [])
     {
         return new TagCollection($models);

@@ -37,6 +37,12 @@ class ThemeSetting extends Model
         return $this->hasOne('Modules\Theme\ThemeSettingValue', 'key_id');
     }
 
+    /**
+     * Create a new Eloquent Collection instance.
+     *
+     * @param  array  $models
+     * @return \Illuminate\Database\Eloquent\Collection
+     */
     public function newCollection(array $items = [])
     {
         $collection = new ThemeSettingCollection($items);

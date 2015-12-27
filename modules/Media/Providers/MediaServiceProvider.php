@@ -11,6 +11,11 @@ class MediaServiceProvider extends ServiceProvider
 {
     protected $namespace = 'media';
 
+    /**
+     * Get the services provided by the provider.
+     *
+     * @return array
+     */
     public function provides()
     {
         return ['path.media'];

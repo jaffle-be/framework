@@ -24,6 +24,12 @@ class SeoProperty extends Model
         return $this->belongsTo('Modules\System\Locale');
     }
 
+    /**
+     * Create a new Eloquent Collection instance.
+     *
+     * @param  array  $models
+     * @return \Illuminate\Database\Eloquent\Collection
+     */
     public function newCollection(array $items = [])
     {
         return new TranslationCollection($items);

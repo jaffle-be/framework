@@ -18,6 +18,9 @@ use Modules\System\Seeder;
 
 class ShopTableSeeder extends Seeder
 {
+    /**
+     * Build a new Seed.
+     */
     public function __construct()
     {
         $this->model = new Product();

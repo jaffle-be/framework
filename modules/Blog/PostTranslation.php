@@ -54,6 +54,11 @@ class PostTranslation extends TranslationModel implements Searchable, SluggableI
         ],
     ];
 
+    /**
+     * Convert the model instance to an array.
+     *
+     * @return array
+     */
     public function toArray()
     {
         $data = parent::toArray();

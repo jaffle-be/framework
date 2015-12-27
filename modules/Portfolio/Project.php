@@ -51,6 +51,12 @@ class Project extends Model implements StoresMedia, Searchable, StoresTags, Pres
         ],
     ];
 
+    /**
+     * Create a new Eloquent Collection instance.
+     *
+     * @param  array  $models
+     * @return \Illuminate\Database\Eloquent\Collection
+     */
     public function newCollection(array $models = [])
     {
         return new ProjectCollection($models);
@@ -66,6 +72,11 @@ class Project extends Model implements StoresMedia, Searchable, StoresTags, Pres
         return $this->belongsTo('Modules\Account\Client', 'client_id');
     }
 
+    /**
+     * Convert the model instance to an array.
+     *
+     * @return array
+     */
     public function toArray()
     {
         $data = parent::toArray();
