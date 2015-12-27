@@ -36,8 +36,7 @@
 
                     //move up means lower index
                     this.moveUp = function (video, index) {
-                        if (index - 1 >= 0)
-                        {
+                        if (index - 1 >= 0) {
                             this.videos[$scope.locale][index] = this.videos[$scope.locale][index - 1];
                             this.videos[$scope.locale][index - 1] = video;
                             VideoService.sort($scope.ownerType, $scope.ownerId, this.videos[$scope.locale]);
@@ -46,8 +45,7 @@
 
                     //move down means higher index
                     this.moveDown = function (video, index) {
-                        if (index + 1 <= this.videos[$scope.locale].length - 1)
-                        {
+                        if (index + 1 <= this.videos[$scope.locale].length - 1) {
                             this.videos[$scope.locale][index] = this.videos[$scope.locale][index + 1];
                             this.videos[$scope.locale][index + 1] = video;
                             VideoService.sort($scope.ownerType, $scope.ownerId, this.videos[$scope.locale]);

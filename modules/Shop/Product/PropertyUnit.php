@@ -1,4 +1,6 @@
-<?php namespace Modules\Shop\Product;
+<?php
+
+namespace Modules\Shop\Product;
 
 use Illuminate\Database\Eloquent\Model;
 use Modules\System\Translatable\Translatable;
@@ -14,5 +16,4 @@ class PropertyUnit extends Model
     protected $translatedAttributes = ['name', 'unit'];
 
     protected $translationForeignKey = 'unit_id';
-
 }

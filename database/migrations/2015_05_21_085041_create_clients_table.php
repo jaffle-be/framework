@@ -6,7 +6,6 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateClientsTable extends Migration
 {
-
     /**
      * Run the migrations.
      *

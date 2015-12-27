@@ -3,17 +3,16 @@
 use Modules\System\Seeder;
 use Modules\Users\User;
 
-class UsersTableSeeder extends Seeder{
-
+class UsersTableSeeder extends Seeder
+{
     public function run()
     {
         User::create([
-            'email' => 'thomas@digiredo.be',
-            'password' => \Hash::make('thomasthomas'),
+            'email'     => 'thomas@digiredo.be',
+            'password'  => \Hash::make('thomasthomas'),
             'firstname' => 'Thomas',
-            'lastname' => 'Warlop',
-            'confirmed' => 1
+            'lastname'  => 'Warlop',
+            'confirmed' => 1,
         ]);
     }
-
 }

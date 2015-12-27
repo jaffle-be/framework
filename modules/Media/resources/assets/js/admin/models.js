@@ -24,8 +24,7 @@
                          */
 
                         response = _.each(response, function (item) {
-                            if (item.translations.length == 0)
-                            {
+                            if (item.translations.length == 0) {
                                 item.translations = {};
                             }
                         });
@@ -41,8 +40,7 @@
 
             var behaviours = {
                 thumbnail: function (thumbnail) {
-                    if (this.path)
-                    {
+                    if (this.path) {
                         var pattern = /\/([^\/]+)$/;
                         var replace = '/' + thumbnail + '/$1';
 

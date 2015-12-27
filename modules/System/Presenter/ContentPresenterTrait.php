@@ -1,10 +1,11 @@
-<?php namespace Modules\System\Presenter;
+<?php
+
+namespace Modules\System\Presenter;
 
 use Markdown;
 
 trait ContentPresenterTrait
 {
-
     /**
      * Returns the entire post, fully loaded with shortcodes
      * Ready to be displayed onto your website.
@@ -27,13 +28,13 @@ trait ContentPresenterTrait
             $content = $this->compileShortcodes($content);
         }
 
-        return Markdown::convertToHtml($content);
+        return rtrim(Markdown::convertToHtml($content));
     }
 
     /**
      * @return bool
      */
-    protected function usePresentableCache()
+    public function usePresentableCache()
     {
         return $this instanceof PresentableCache && on_front();
     }
@@ -41,7 +42,7 @@ trait ContentPresenterTrait
     /**
      * @return mixed
      */
-    protected function contentToPresent()
+    public function contentToPresent()
     {
         return $this->entity->content;
     }
@@ -49,7 +50,6 @@ trait ContentPresenterTrait
     /**
      * The extract should not contain any style or media
      * It should simply be a text snippet.
-     *
      * Therefor, at the end, we always strip all tags
      * We also strip out any shortcodes, which would only
      * inject either media or custom marked up content.
@@ -68,9 +68,12 @@ trait ContentPresenterTrait
     }
 
     /**
-     * @return mixed|string
+     * There's some funny things going on with the spaces in the text
+     * due to parsing it as markdown and then stripping the tags.
+     *
+     * @return string
      */
-    protected function freshlyBuiltExtract()
+    public function freshlyBuiltExtract()
     {
         $content = $this->contentToPresent();
 
@@ -84,19 +87,18 @@ trait ContentPresenterTrait
 
         $content = strip_tags($content);
 
+        return rtrim($content);
+    }
+
+    public function removeCodeSamples($content)
+    {
+        $content = preg_replace('/````(.|\s)*?````/', "\n", $content);
+
         return $content;
     }
 
-    protected function removeCodeSamples($content)
+    public function snippet($str, $wordCount = 60, $chars = null)
     {
-        $content = preg_replace('/````(.|\s)*?````/', '', $content);
-
-        return $content;
-    }
-
-    protected function snippet($str, $wordCount = 60, $chars = null)
-    {
-
         $string = implode(
             '',
             array_slice(
@@ -111,7 +113,7 @@ trait ContentPresenterTrait
             )
         );
 
-        if (!empty($chars)) {
+        if (! empty($chars)) {
             //oke, if the difference between chars and strlen is to high. we'd
             //be doing way to many while loops.
             //therefor, we will make sure that we first trim by hand to a reasonable strlen
@@ -138,7 +140,8 @@ trait ContentPresenterTrait
             }
         }
 
-        return $string . '&nbsp;...';
-    }
+        $string = rtrim($string, ' ');
 
+        return empty($string) ? null : $string.'&nbsp;...';
+    }
 }

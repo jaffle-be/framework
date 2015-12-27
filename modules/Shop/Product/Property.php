@@ -1,4 +1,6 @@
-<?php namespace Modules\Shop\Product;
+<?php
+
+namespace Modules\Shop\Product;
 
 use Illuminate\Database\Eloquent\Model;
 use Modules\System\Scopes\ModelAutoSort;
@@ -34,5 +36,4 @@ class Property extends Model
     {
         return $this->belongsTo('Modules\Shop\Product\PropertyUnit', 'unit_id');
     }
-
 }

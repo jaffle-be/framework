@@ -7,7 +7,6 @@ use Illuminate\Foundation\Application;
 
 class AccountManager
 {
-
     protected $repo;
 
     protected $config;
@@ -21,6 +20,20 @@ class AccountManager
         $this->config = $config;
 
         $this->application = $application;
+    }
+
+    /**
+     * Allows to hotswap account.
+     */
+    public function forced($account, \Closure $closure)
+    {
+        $previous = $this->account;
+
+        $this->account = $account;
+
+        $closure();
+
+        $this->account = $previous;
     }
 
     public function boot()
@@ -40,9 +53,8 @@ class AccountManager
         return $this->account;
     }
 
-    function __call($name, $arguments)
+    public function __call($name, $arguments)
     {
         return call_user_func_array([$this->repo, $name], $arguments);
     }
-
 }

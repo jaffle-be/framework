@@ -8,8 +8,7 @@
                     Profile.find(success);
                 },
                 save: function (profile, success, error) {
-                    if (this.timeout)
-                    {
+                    if (this.timeout) {
                         $timeout.cancel(this.timeout);
                     }
 

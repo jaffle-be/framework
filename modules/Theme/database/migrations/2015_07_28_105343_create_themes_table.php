@@ -5,13 +5,10 @@ use Illuminate\Database\Schema\Blueprint;
 
 class CreateThemesTable extends Migration
 {
-
     use \Modules\System\ConfigWriter;
 
     /**
      * Run the migrations.
-     *
-     * @return void
      */
     public function up()
     {
@@ -22,19 +19,16 @@ class CreateThemesTable extends Migration
             $table->timestamps();
         });
 
-        $this->replaceConfigValue(config_path() . '/system.php', 'installed', 'true');
+        $this->replaceConfigValue(config_path().'/system.php', 'installed', 'true');
     }
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
     public function down()
     {
-        $this->replaceConfigValue(config_path() . '/system.php', 'installed', 'false');
+        $this->replaceConfigValue(config_path().'/system.php', 'installed', 'false');
 
         Schema::drop('themes');
     }
-
 }

@@ -11,7 +11,8 @@
             <div class="col-xs-6" ng-repeat="client in vm.clients">
 
                 <div>
-                    <input type="radio" name="client" id="client@{{ client.id }}" ng-model="vm.project.client_id" ng-value="client.id" ng-change="vm.save()">
+                    <input type="radio" name="client" id="client@{{ client.id }}" ng-model="vm.project.client_id"
+                           ng-value="client.id" ng-change="vm.save()">
                     <label for="client@{{ client.id }}">@{{ client.name }}</label>
                 </div>
 

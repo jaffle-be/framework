@@ -1,4 +1,6 @@
-<?php namespace Modules\Users;
+<?php
+
+namespace Modules\Users;
 
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
@@ -14,7 +16,6 @@ use Modules\System\Translatable\Translatable;
 
 class User extends Model implements Authenticatable, MembershipOwner, AddressOwner, StoresMedia, Searchable
 {
-
     use OwnsAddress;
     use StoringMedia;
     use Translatable;
@@ -47,18 +48,18 @@ class User extends Model implements Authenticatable, MembershipOwner, AddressOwn
     protected $hidden = ['password', 'remember_token', 'reset_token_id', 'confirmation_token_id'];
 
     protected $cast = [
-        'confirmed' => 'boolean'
+        'confirmed' => 'boolean',
     ];
 
     protected static $searchableMapping = [
-        'id'         => ['type' => 'integer'],
+        'id' => ['type' => 'integer'],
         'created_at' => [
-            'type'   => 'date',
-            'format' => 'yyyy-MM-dd HH:mm:ss'
+            'type' => 'date',
+            'format' => 'yyyy-MM-dd HH:mm:ss',
         ],
         'updated_at' => [
-            'type'   => 'date',
-            'format' => 'yyyy-MM-dd HH:mm:ss'
+            'type' => 'date',
+            'format' => 'yyyy-MM-dd HH:mm:ss',
         ],
     ];
 
@@ -89,7 +90,7 @@ class User extends Model implements Authenticatable, MembershipOwner, AddressOwn
 
     public function getNameAttribute()
     {
-        $fullname = trim($this->firstname . ' ' . $this->lastname);
+        $fullname = trim($this->firstname.' '.$this->lastname);
 
         return $fullname ?: 'John Doe';
     }
@@ -111,10 +112,6 @@ class User extends Model implements Authenticatable, MembershipOwner, AddressOwn
 
     /**
      * Set the token value for the "remember me" session.
-     *
-     * @param  string $value
-     *
-     * @return void
      */
     public function setRememberToken($value)
     {
@@ -151,4 +148,8 @@ class User extends Model implements Authenticatable, MembershipOwner, AddressOwn
         return $this->password;
     }
 
+    public function getAuthIdentifierName()
+    {
+        return $this->getKeyName();
+    }
 }

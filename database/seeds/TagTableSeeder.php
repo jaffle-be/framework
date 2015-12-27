@@ -1,39 +1,32 @@
 <?php
 
-use Illuminate\Foundation\Bus\DispatchesCommands;
 use Modules\System\Seeder;
 use Modules\Tags\Tag;
 
 class TagTableSeeder extends Seeder
 {
-
-    use DispatchesCommands;
-
     public function run()
     {
-        foreach([1,2] as $account)
-        {
+        foreach ([1, 2] as $account) {
             $tags = ['Design', 'CMS', 'Copy', 'Branding', 'Tutorial', 'Business restructuring', 'Photography', 'Film', 'Analytics'];
 
-            foreach($tags as $tag)
-            {
+            foreach ($tags as $tag) {
                 Tag::create([
                     'account_id' => $account,
-                    'nl' => [
+                    'nl'         => [
                         'name' => $tag,
                     ],
-                    'fr' => [
+                    'fr'         => [
                         'name' => $tag,
                     ],
-                    'en' => [
+                    'en'         => [
                         'name' => $tag,
                     ],
-                    'de' => [
+                    'de'         => [
                         'name' => $tag,
-                    ]
+                    ],
                 ]);
             }
         }
-
     }
 }

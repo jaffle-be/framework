@@ -1,14 +1,14 @@
-<?php namespace Modules\Account\Jobs\Membership;
+<?php
+
+namespace Modules\Account\Jobs\Membership;
 
 use App\Jobs\Job;
-use Illuminate\Contracts\Bus\SelfHandling;
 use Modules\Account\Account;
 use Modules\Account\Membership;
 use Modules\Account\MembershipOwner;
 
-class NewMembership extends Job implements SelfHandling
+class NewMembership extends Job
 {
-
     /**
      * @var Account
      */
@@ -32,5 +32,4 @@ class NewMembership extends Job implements SelfHandling
 
         return $this->account->memberships()->save($membership);
     }
-
 }

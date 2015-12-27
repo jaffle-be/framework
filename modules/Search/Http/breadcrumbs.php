@@ -5,11 +5,10 @@ if (env('APP_MULTIPLE_LOCALES')) {
         Breadcrumbs::register("store.$locale.search.index", function ($breadcrumbs) use ($locale) {
 
             $breadcrumbs->parent("store.$locale.home");
-            $breadcrumbs->push('Find', store_route("store.search.index"));
+            $breadcrumbs->push('Find', store_route('store.search.index'));
         });
     }
 } else {
-
     Breadcrumbs::register('store.search.index', function ($breadcrumbs) {
 
         $breadcrumbs->parent('store.home');

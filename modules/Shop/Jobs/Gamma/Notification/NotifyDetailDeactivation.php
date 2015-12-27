@@ -1,16 +1,16 @@
-<?php namespace Modules\Shop\Jobs\Gamma\Notification;
+<?php
+
+namespace Modules\Shop\Jobs\Gamma\Notification;
 
 use App\Jobs\Job;
-use Illuminate\Contracts\Bus\SelfHandling;
 use Modules\Account\Account;
 use Modules\Shop\Gamma\GammaNotification;
 use Modules\Shop\Product\Brand;
 use Modules\Shop\Product\Category;
 use Pusher;
 
-class NotifyDetailDeactivation extends Job implements SelfHandling
+class NotifyDetailDeactivation extends Job
 {
-
     use GammaNotificationHelpers;
 
     protected $brand;
@@ -44,14 +44,13 @@ class NotifyDetailDeactivation extends Job implements SelfHandling
             $existing->delete();
         } else {
             $instance = $notification->newInstance([
-                'account_id'            => $this->account->id,
-                'category_id'           => $this->category->id,
-                'brand_id'              => $this->brand->id,
-                'type'                  => 'deactivate',
+                'account_id' => $this->account->id,
+                'category_id' => $this->category->id,
+                'brand_id' => $this->brand->id,
+                'type' => 'deactivate',
             ]);
 
             $instance->save();
         }
     }
-
 }

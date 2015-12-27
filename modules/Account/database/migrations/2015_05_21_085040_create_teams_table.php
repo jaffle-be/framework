@@ -8,11 +8,8 @@ use Modules\Module\ModuleRoute;
 
 class CreateTeamsTable extends Migration
 {
-
     /**
      * Run the migrations.
-     *
-     * @return void
      */
     public function up()
     {
@@ -44,33 +41,33 @@ class CreateTeamsTable extends Migration
         //install the module itself.
         $module = Module::create([
             'namespace' => 'team',
-            'nl'        => [
+            'nl' => [
                 'name' => 'Team',
             ],
-            'en'        => [
+            'en' => [
                 'name' => 'Team',
             ],
-            'fr'        => [
+            'fr' => [
                 'name' => 'Team',
             ],
-            'de'        => [
+            'de' => [
                 'name' => 'Team',
-            ]
+            ],
         ]);
 
         $module->routes()->save(new ModuleRoute([
             'name' => 'store.team.index',
-            'nl'   => [
-                'title' => 'team'
+            'nl' => [
+                'title' => 'team',
             ],
-            'en'   => [
-                'title' => 'team'
+            'en' => [
+                'title' => 'team',
             ],
-            'fr'   => [
-                'title' => 'team'
+            'fr' => [
+                'title' => 'team',
             ],
-            'de'   => [
-                'title' => 'team'
+            'de' => [
+                'title' => 'team',
             ],
 
         ]));
@@ -78,8 +75,6 @@ class CreateTeamsTable extends Migration
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
     public function down()
     {

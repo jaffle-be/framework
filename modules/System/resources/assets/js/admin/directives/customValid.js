@@ -16,11 +16,9 @@
 
                     var validText = "Inspinia";
 
-                    if (scope.extras == validText)
-                    {
+                    if (scope.extras == validText) {
                         c.$setValidity('cvalid', true);
-                    } else
-                    {
+                    } else {
                         c.$setValidity('cvalid', false);
                     }
 

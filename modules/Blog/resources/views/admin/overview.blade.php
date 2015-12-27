@@ -1,4 +1,5 @@
-<div class="row wrapper wrapper-content" ng-controller="BlogController as vm" ng-init="vm.options = {{ system_options() }}" ng-cloak>
+<div class="row wrapper wrapper-content" ng-controller="BlogController as vm"
+     ng-init="vm.options = {{ system_options() }}" ng-cloak>
 
     <div class="ibox" st-table="vm.posts" st-pipe="vm.list">
 
@@ -19,24 +20,30 @@
 
                             <div class="col-xs-3">
                                 <div class="dropdown" data-api="dropdown">
-                                    <a class="btn btn-default dropdown-toggle" data-toggle="dropdown" href="#">{{ Lang::get('blog::admin.actions.actions') }}&nbsp;<span class="caret">&nbsp;</span></a>
+                                    <a class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+                                       href="#">{{ Lang::get('blog::admin.actions.actions') }}&nbsp;<span class="caret">&nbsp;</span></a>
                                     <ul class="dropdown-menu">
                                         <li>
-                                            <a select-all="vm.posts" href="">{{ Lang::get('blog::admin.actions.select-all') }}</a>
+                                            <a select-all="vm.posts"
+                                               href="">{{ Lang::get('blog::admin.actions.select-all') }}</a>
                                         </li>
                                         <li>
-                                            <a select-none="vm.posts" href="">{{ Lang::get('blog::admin.actions.select-none') }}</a>
-                                        </li>
-                                        <li class="divider"></li>
-                                        <li>
-                                            <a ng-confirm="vm.batchPublish()" href="">{{ Lang::get('blog::admin.actions.publish') }}</a>
-                                        </li>
-                                        <li>
-                                            <a ng-confirm="vm.batchUnpublish()" href="">{{ Lang::get('blog::admin.actions.unpublish') }}</a>
+                                            <a select-none="vm.posts"
+                                               href="">{{ Lang::get('blog::admin.actions.select-none') }}</a>
                                         </li>
                                         <li class="divider"></li>
                                         <li>
-                                            <a ng-really="vm.batchDelete()" href="">{{ Lang::get('blog::admin.actions.remove') }}</a>
+                                            <a ng-confirm="vm.batchPublish()"
+                                               href="">{{ Lang::get('blog::admin.actions.publish') }}</a>
+                                        </li>
+                                        <li>
+                                            <a ng-confirm="vm.batchUnpublish()"
+                                               href="">{{ Lang::get('blog::admin.actions.unpublish') }}</a>
+                                        </li>
+                                        <li class="divider"></li>
+                                        <li>
+                                            <a ng-really="vm.batchDelete()"
+                                               href="">{{ Lang::get('blog::admin.actions.remove') }}</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -58,11 +65,13 @@
                                             <div class="sk-cube"></div>
                                         </div>
                                     </div>
-                                    <input st-search="query" type="search" ng-change="vm.test()" name="search" ng-model="vm.query" class="form-control"/>
+                                    <input st-search="query" type="search" ng-change="vm.test()" name="search"
+                                           ng-model="vm.query" class="form-control"/>
                                 </div>
                             </div>
                             <div class="col-xs-3">
-                                <a class="btn btn-sm btn-primary pull-right" ng-click="vm.newPost()">{{ Lang::get('blog::admin.post.create') }}</a>
+                                <a class="btn btn-sm btn-primary pull-right"
+                                   ng-click="vm.newPost()">{{ Lang::get('blog::admin.post.create') }}</a>
                             </div>
 
                         </div>
@@ -72,7 +81,8 @@
                 </thead>
                 <tbody ng-hide="vm.loading">
                 <tr>
-                    <td class="text-center" st-pagination st-items-by-page="vm.rpp" colspan="6" st-change="vm.list"></td>
+                    <td class="text-center" st-pagination st-items-by-page="vm.rpp" colspan="6"
+                        st-change="vm.list"></td>
                 </tr>
                 <tr ng-repeat="post in vm.posts" ui-sref="admin.blog.post({id: post.id})" class="blog-post-overview">
                     <td width="10%" ng-click="$event.stopPropagation()">
@@ -82,7 +92,8 @@
                     <td width="0%">&nbsp;</td>
                     <td>
                         <div class="">
-                            <img class="pull-left img-responsive img-rounded" ng-src="@{{ post.images[0].sizes[0].path }}"/>
+                            <img class="pull-left img-responsive img-rounded"
+                                 ng-src="@{{ post.images[0].sizes[0].path }}"/>
                             <h4 ng-bind-html="renderHtml(post.translations[vm.options.locale].title)"></h4>
                             <span ng-bind-html="renderHtml(post.translations[vm.options.locale].cached_extract)"></span>
                         </div>
@@ -92,7 +103,8 @@
                     <td>@{{ post.translations[vm.options.locale] ? post.translations[vm.options.locale].updated_at : post.updated_at | fromNow }}</td>
                 </tr>
                 <tr>
-                    <td class="text-center" st-pagination st-items-by-page="vm.rpp" colspan="6" st-change="vm.list"></td>
+                    <td class="text-center" st-pagination st-items-by-page="vm.rpp" colspan="6"
+                        st-change="vm.list"></td>
                 </tr>
                 </tbody>
                 <tfoot ng-show="vm.loading">

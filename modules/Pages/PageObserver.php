@@ -1,17 +1,18 @@
-<?php namespace Modules\Pages;
+<?php
+
+namespace Modules\Pages;
 
 use Illuminate\Contracts\Auth\Guard;
 
 class PageObserver
 {
-
     /**
      * @var Guard
      */
     protected $auth;
 
     /**
-     * @param Guard $guard
+     *
      */
     public function __construct(Guard $guard)
     {
@@ -20,9 +21,8 @@ class PageObserver
 
     public function creating(Page $post)
     {
-        if (!$post->user_id) {
+        if (! $post->user_id) {
             $post->user()->associate($this->auth->user());
         }
     }
-
 }

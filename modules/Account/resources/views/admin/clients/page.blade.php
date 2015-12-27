@@ -24,9 +24,11 @@
 
                             <div class="row">
                             <span class="col-xs-10">
-                                <img ng-show="client.images && client.images[0]" ng-src="@{{ client.images[0].thumbnail('x90') }}" alt=""> @{{ client.name }}
+                                <img ng-show="client.images && client.images[0]"
+                                     ng-src="@{{ client.images[0].thumbnail('x90') }}" alt=""> @{{ client.name }}
                             </span>
-                            <span class="col-xs-2 text-right"><button class="btn btn-info" ng-click="vm.startEditing(client)">
+                            <span class="col-xs-2 text-right"><button class="btn btn-info"
+                                                                      ng-click="vm.startEditing(client)">
                                     <i class="fa fa-pencil"></i></button>
                             </span>
                             </div>
@@ -39,9 +41,11 @@
                 <div class="col-md-7 col-md-offset-1" ng-hide="!vm.client">
 
                     <div class="text-right">
-                        <button type="button" class="btn btn-primary" ng-hide="vm.client.id || vm.saving" ng-click="vm.createClient()">
+                        <button type="button" class="btn btn-primary" ng-hide="vm.client.id || vm.saving"
+                                ng-click="vm.createClient()">
                             <i class="fa fa-save"></i></button>
-                        <button type="button" class="btn btn-danger" ng-show="vm.client.id" ng-really="vm.deleteClient()">
+                        <button type="button" class="btn btn-danger" ng-show="vm.client.id"
+                                ng-really="vm.deleteClient()">
                             <i class="fa fa-trash"></i></button>
                         <button type="button" class="btn btn-info" ng-click="vm.stopEditing()">
                             <i class="fa fa-remove"></i>
@@ -68,11 +72,15 @@
 
                         <label for="">{{ Lang::get('account::admin.clients.description') }}</label>
 
-                        <textarea class="form-control autosize-lg" auto-size type="text" class="form-control" ng-model="vm.client.translations[vm.options.locale].description" ng-change="vm.save()"></textarea>
+                        <textarea class="form-control autosize-lg" auto-size type="text" class="form-control"
+                                  ng-model="vm.client.translations[vm.options.locale].description"
+                                  ng-change="vm.save()"></textarea>
 
                     </div>
 
-                    <image-input ng-hide="!vm.client.id" locale="vm.options.locale" owner-type="'client'" owner-id="vm.client.id" limit="'1'" images="vm.client.images" handlers="vm.imageHandlers"></image-input>
+                    <image-input ng-hide="!vm.client.id" locale="vm.options.locale" owner-type="'client'"
+                                 owner-id="vm.client.id" limit="'1'" images="vm.client.images"
+                                 handlers="vm.imageHandlers"></image-input>
 
                 </div>
 

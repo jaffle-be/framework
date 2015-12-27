@@ -1,4 +1,6 @@
-<?php namespace Modules\Account;
+<?php
+
+namespace Modules\Account;
 
 use Illuminate\Database\Eloquent\Model;
 use Modules\Media\StoresMedia;
@@ -8,7 +10,6 @@ use Modules\System\Translatable\Translatable;
 
 class Client extends Model implements StoresMedia
 {
-
     use Translatable;
     use StoringMedia;
     use ModelAccountResource;
@@ -22,5 +23,4 @@ class Client extends Model implements StoresMedia
     protected $translatedAttributes = ['description'];
 
     protected $fillable = ['account_id', 'description', 'name', 'website'];
-
 }

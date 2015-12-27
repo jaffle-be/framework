@@ -1,15 +1,15 @@
-<?php namespace Modules\Users\Auth\Commands;
+<?php
+
+namespace Modules\Users\Auth\Commands;
 
 use App\Jobs\Job;
-use Illuminate\Contracts\Bus\SelfHandling;
 use Illuminate\Contracts\Hashing\Hasher;
 use Modules\Users\Auth\Tokens\Token;
 use Modules\Users\Contracts\UserRepositoryInterface;
 use Modules\Users\User;
 
-class ResetPassword extends Job implements SelfHandling
+class ResetPassword extends Job
 {
-
     /**
      * @var string
      */
@@ -32,8 +32,6 @@ class ResetPassword extends Job implements SelfHandling
 
     /**
      * Create a new command instance.
-     *
-     * @return void
      */
     public function __construct($email, Token $token, $password, $password_confirmation)
     {
@@ -44,9 +42,6 @@ class ResetPassword extends Job implements SelfHandling
     }
 
     /**
-     * @param UserRepositoryInterface $users
-     * @param Hasher                  $hasher
-     *
      * @return string
      */
     public function handle(UserRepositoryInterface $users, hasher $hasher)
@@ -54,7 +49,7 @@ class ResetPassword extends Job implements SelfHandling
         $user = $users->findUserByEmail($this->email);
 
         if ($user) {
-            if (!$this->validToken($user)) {
+            if (! $this->validToken($user)) {
                 return 'invalid token';
             }
 
@@ -73,8 +68,6 @@ class ResetPassword extends Job implements SelfHandling
     }
 
     /**
-     * @param $user
-     *
      * @return bool
      */
     protected function validToken(User $user)

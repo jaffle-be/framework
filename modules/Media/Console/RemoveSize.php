@@ -1,4 +1,6 @@
-<?php namespace Modules\Media\Console;
+<?php
+
+namespace Modules\Media\Console;
 
 use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
@@ -7,7 +9,6 @@ use Modules\Media\StoresMedia;
 
 class RemoveSize extends Command
 {
-
     protected $signature = 'media:remove-size {size} {type=all}';
 
     /**
@@ -22,8 +23,6 @@ class RemoveSize extends Command
 
     /**
      * Create a new console command instance.
-     *
-     * @return void
      */
     public function __construct(Configurator $config, Filesystem $files)
     {
@@ -44,7 +43,7 @@ class RemoveSize extends Command
     }
 
     /**
-     * @param $type
+     *
      */
     protected function handleType($type)
     {
@@ -56,9 +55,12 @@ class RemoveSize extends Command
 
             list($width, $height) = explode('x', $size, 2);
 
-            $owners->load(['images', 'images.sizes' => function ($query) use ($width, $height) {
-                $query->dimension($width, $height);
-            }]);
+            $owners->load([
+                'images',
+                'images.sizes' => function ($query) use ($width, $height) {
+                    $query->dimension($width, $height);
+                },
+            ]);
 
             foreach ($owners as $owner) {
                 /* @var StoresMedia $owner */
@@ -68,16 +70,15 @@ class RemoveSize extends Command
     }
 
     /**
-     * @param $owner
-     * @param $this
+     * @internal param $this
      */
-    function handleOwner(StoresMedia $owner, $size)
+    public function handleOwner(StoresMedia $owner, $size)
     {
         if ($owner->mediaStoresMultiple()) {
             foreach ($owner->images as $image) {
                 $this->handleImage($image);
             }
-        } else if ($owner->images) {
+        } elseif ($owner->images) {
             $this->handleImage($owner->images);
         }
 
@@ -85,13 +86,12 @@ class RemoveSize extends Command
     }
 
     /**
-     * @param $owner
+     * @internal param $owner
      */
-    function handleImage($image)
+    public function handleImage($image)
     {
         foreach ($image->sizes as $size) {
             $size->delete();
         }
     }
-
 }

@@ -6,7 +6,6 @@ use Modules\System\Locale;
 
 class CreateLocalesTable extends Migration
 {
-
     /**
      * Run the migrations.
      *
@@ -19,14 +18,13 @@ class CreateLocalesTable extends Migration
             $table->string('slug', 5);
         });
 
-        Schema::create('locales_translations', function(Blueprint $table){
+        Schema::create('locales_translations', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('locale_id', false, true);
             $table->foreign('locale_id', 'translation_to_locale')->references('id')->on('locales')->onDelete('cascade');
             $table->string('locale', 5);
             $table->string('name');
         });
-
 
         Locale::create([
             'slug' => 'nl',
@@ -59,7 +57,6 @@ class CreateLocalesTable extends Migration
             'de' => ['name' => 'deutsch'],
             'en' => ['name' => 'german'],
         ]);
-
     }
 
     /**
@@ -69,12 +66,11 @@ class CreateLocalesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('locales_translations', function (Blueprint $table){
+        Schema::drop('locales_translations', function (Blueprint $table) {
             $table->dropForeign('translation_to_locale');
         });
 
         Schema::drop('locales', function (Blueprint $table) {
         });
-
     }
 }

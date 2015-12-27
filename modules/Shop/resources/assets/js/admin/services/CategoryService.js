@@ -13,8 +13,7 @@
 
                 this.update = function (category) {
 
-                    if (this.timeouts[category.id])
-                    {
+                    if (this.timeouts[category.id]) {
                         $timeout.cancel(this.timeouts[category.id]);
                     }
 
@@ -28,7 +27,7 @@
                 this.create = function (payload) {
                     var category = new Category({
                         original_id: payload.original_id ? payload.original_id : null,
-                        translations : {}
+                        translations: {}
                     });
 
                     category.translations[payload.locale] = {
@@ -42,8 +41,7 @@
                 this.search = function (params) {
                     return $http.get('api/admin/shop/categories', {
                         params: params
-                    }).then(function(response)
-                    {
+                    }).then(function (response) {
                         return response.data;
                     });
                 };

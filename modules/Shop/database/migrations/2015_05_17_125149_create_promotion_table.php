@@ -5,11 +5,8 @@ use Illuminate\Database\Schema\Blueprint;
 
 class CreatePromotionTable extends Migration
 {
-
     /**
      * Run the migrations.
-     *
-     * @return void
      */
     public function up()
     {
@@ -55,8 +52,6 @@ class CreatePromotionTable extends Migration
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
     public function down()
     {
@@ -74,5 +69,4 @@ class CreatePromotionTable extends Migration
             $table->dropForeign('promotion_to_product');
         });
     }
-
 }

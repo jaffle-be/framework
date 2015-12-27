@@ -5,36 +5,31 @@ use Modules\Module\Module;
 
 class InstallMarketingModule extends Migration
 {
-
     /**
      * Run the migrations.
-     *
-     * @return void
      */
     public function up()
     {
         //install the module itself.
         $module = Module::create([
             'namespace' => 'marketing',
-            'nl'        => [
+            'nl' => [
                 'name' => 'Marketing',
             ],
-            'en'        => [
+            'en' => [
                 'name' => 'Marketing',
             ],
-            'fr'        => [
+            'fr' => [
                 'name' => 'Marketing',
             ],
-            'de'        => [
+            'de' => [
                 'name' => 'Marketing',
-            ]
+            ],
         ]);
     }
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
     public function down()
     {

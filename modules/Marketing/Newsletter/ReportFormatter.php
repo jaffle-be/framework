@@ -1,10 +1,11 @@
-<?php namespace Modules\Marketing\Newsletter;
+<?php
+
+namespace Modules\Marketing\Newsletter;
 
 use Illuminate\Support\Collection;
 
 class ReportFormatter
 {
-
     protected $fields = [
         'hard_bounces',
         'soft_bounces',
@@ -62,7 +63,6 @@ class ReportFormatter
         $response = new Collection();
 
         foreach ($showing as $name => $value) {
-
             if (in_array($name, $this->regular)) {
                 $meaning = 'regular';
             } elseif (in_array($name, $this->bad)) {
@@ -72,13 +72,12 @@ class ReportFormatter
             }
 
             $response->push([
-                'name'    => $name,
-                'value'   => $value,
+                'name' => $name,
+                'value' => $value,
                 'meaning' => $meaning,
             ]);
         }
 
         return $response;
     }
-
 }

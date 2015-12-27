@@ -1,4 +1,6 @@
-<?php namespace Modules\Shop\Gamma;
+<?php
+
+namespace Modules\Shop\Gamma;
 
 use Illuminate\Database\Eloquent\Model;
 use Modules\Search\Model\Searchable;
@@ -8,7 +10,6 @@ use Modules\System\Scopes\ModelAccountResource;
 
 class ProductSelection extends Model implements Searchable
 {
-
     use MySoftDeletes;
     use SearchableTrait;
     use ModelAccountResource;
@@ -20,32 +21,32 @@ class ProductSelection extends Model implements Searchable
     protected $dates = ['deleted_at'];
 
     protected $casts = [
-        'id'          => 'integer',
-        'account_id'  => 'integer',
-        'product_id'  => 'integer',
-        'brand_id'    => 'integer',
+        'id' => 'integer',
+        'account_id' => 'integer',
+        'product_id' => 'integer',
+        'brand_id' => 'integer',
         'category_id' => 'integer',
     ];
 
     protected static $searchableMapping = [
-        'id'         => ['type' => 'integer'],
+        'id' => ['type' => 'integer'],
         'account_id' => ['type' => 'integer'],
         'product_id' => ['type' => 'integer'],
-        'brand_id'   => ['type' => 'integer'],
+        'brand_id' => ['type' => 'integer'],
         'created_at' => [
-            'type'   => 'date',
-            'format' => 'yyyy-MM-dd HH:mm:ss'
+            'type' => 'date',
+            'format' => 'yyyy-MM-dd HH:mm:ss',
         ],
         'updated_at' => [
-            'type'   => 'date',
-            'format' => 'yyyy-MM-dd HH:mm:ss'
+            'type' => 'date',
+            'format' => 'yyyy-MM-dd HH:mm:ss',
         ],
     ];
 
     /**
      * we basically want to override the suggest for this one to the one of the products
      * so it will always automatically inheret the same search options as the products,
-     * but it will only search selections
+     * but it will only search selections.
      *
      * @return mixed
      */
@@ -85,9 +86,6 @@ class ProductSelection extends Model implements Searchable
     }
 
     /**
-     * @param $brand_id
-     * @param $category_id
-     *
      * @return int
      */
     public function countActiveProducts($brand_id, $category_id, $account_id)
@@ -112,5 +110,4 @@ class ProductSelection extends Model implements Searchable
             ->whereNull('product_gamma_categories.deleted_at')
             ->take(200)->get(['product_gamma.*']);
     }
-
 }

@@ -39,22 +39,22 @@ class CreatePortfolioProjects extends Migration
             ],
             'de'     => [
                 'name' => 'Portfolio',
-            ]
+            ],
         ]);
 
         $module->routes()->save(new ModuleRoute([
             'name' => 'store.portfolio.index',
             'nl' => [
-                'title' => 'portfolio overview'
+                'title' => 'portfolio overview',
             ],
             'en' => [
-                'title' => 'portfolio overview'
+                'title' => 'portfolio overview',
             ],
             'fr' => [
-                'title' => 'portfolio overview'
+                'title' => 'portfolio overview',
             ],
             'de' => [
-                'title' => 'portfolio overview'
+                'title' => 'portfolio overview',
             ],
 
         ]));
@@ -67,7 +67,7 @@ class CreatePortfolioProjects extends Migration
      */
     public function down()
     {
-        Schema::drop('portfolio_projects', function(Blueprint $table){
+        Schema::drop('portfolio_projects', function (Blueprint $table) {
             $table->dropForeign('project_to_account');
             $table->dropForeign('project_to_client');
         });

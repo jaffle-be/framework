@@ -5,7 +5,6 @@ use Illuminate\Database\Schema\Blueprint;
 
 class CreateCategoriesTable extends Migration
 {
-
     /**
      * Run the migrations.
      *
@@ -42,10 +41,8 @@ class CreateCategoriesTable extends Migration
             $table->dropForeign('translation_to_category');
         });
 
-        Schema::drop('product_categories', function(Blueprint $table)
-        {
+        Schema::drop('product_categories', function (Blueprint $table) {
             $table->dropForeign('synonym_to_category');
         });
     }
-
 }

@@ -5,16 +5,11 @@ namespace Modules\Search\Providers;
 use Elasticsearch\ClientBuilder;
 use Modules\Search\Config;
 use Modules\Search\SearchService;
-use Pingpong\Modules\ServiceProvider;
+use Modules\System\ServiceProvider;
 
 class SearchServiceProvider extends ServiceProvider
 {
-
     protected $namespace = 'search';
-
-    protected function observers()
-    {
-    }
 
     protected function listeners()
     {
@@ -24,8 +19,6 @@ class SearchServiceProvider extends ServiceProvider
 
     /**
      * Register the service provider.
-     *
-     * @return void
      */
     public function register()
     {
@@ -38,9 +31,11 @@ class SearchServiceProvider extends ServiceProvider
 
     protected function registerService()
     {
+        $this->app[Config::class] = new Config(config('search'));
+
         $this->app['Modules\Search\SearchService'] = $this->app->share(function ($app) {
 
-            $config = new Config(config('search'));
+            $config = $app[Config::class];
 
             $client = ClientBuilder::create()
                 ->setHosts(config('search.hosts'))
@@ -54,7 +49,12 @@ class SearchServiceProvider extends ServiceProvider
 
     protected function registerCommands()
     {
-        $this->commands(['Modules\Search\Command\SearchBuild', 'Modules\Search\Command\SearchFlush', 'Modules\Search\Command\SearchSettings', 'Modules\Search\Command\SearchRebuild']);
+        $this->commands([
+            \Modules\Search\Command\SearchBuild::class,
+            \Modules\Search\Command\SearchFlush::class,
+            \Modules\Search\Command\SearchSettings::class,
+            \Modules\Search\Command\SearchRebuild::class,
+            \Modules\Search\Command\SearchSpeed::class,
+        ]);
     }
-
 }

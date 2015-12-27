@@ -1,11 +1,12 @@
-<?php namespace Modules\Theme;
+<?php
+
+namespace Modules\Theme;
 
 use Exception;
 use Illuminate\Database\Eloquent\Collection;
 
 trait MigrateThemeSettings
 {
-
     /**
      * @var Collection
      */
@@ -14,7 +15,6 @@ trait MigrateThemeSettings
     protected function settings(Theme $theme)
     {
         foreach ($this->settings as $setting) {
-
             $type = $this->settingGetType($setting);
 
             $setting['type_id'] = $type->id;
@@ -23,12 +23,25 @@ trait MigrateThemeSettings
 
             $setting = $theme->settings()->create($setting);
 
-            $method = 'settingsHandle' . ucfirst($type->name);
+            $method = 'settingsHandle'.ucfirst($type->name);
 
             if (method_exists($this, $method)) {
                 call_user_func([$this, $method], $setting);
             }
         }
+    }
+
+    protected function settingGetType(array $setting)
+    {
+        if (! static::$types) {
+            static::$types = ThemeSettingType::all()->keyBy('name');
+        }
+
+        if (! static::$types->has($setting['type'])) {
+            throw new Exception('Invalid setting type provided');
+        }
+
+        return static::$types->get($setting['type']);
     }
 
     protected function settingKeys()
@@ -56,24 +69,6 @@ trait MigrateThemeSettings
         $this->settingJsonHandle($setting);
     }
 
-    protected function settingsHandleText(ThemeSetting $setting)
-    {
-        $this->settingJsonHandle($setting);
-    }
-
-    protected function settingGetType(array $setting)
-    {
-        if (!static::$types) {
-            static::$types = ThemeSettingType::all()->keyBy('name');
-        }
-
-        if (!static::$types->has($setting['type'])) {
-            throw new Exception('Invalid setting type provided');
-        }
-
-        return static::$types->get($setting['type']);
-    }
-
     protected function settingJsonHandle(ThemeSetting $setting)
     {
         if (isset($this->defaults[$setting->key])) {
@@ -81,4 +76,8 @@ trait MigrateThemeSettings
         }
     }
 
+    protected function settingsHandleText(ThemeSetting $setting)
+    {
+        $this->settingJsonHandle($setting);
+    }
 }

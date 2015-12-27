@@ -1,4 +1,5 @@
-<div class="row wrapper-content" ng-controller="ProductDetailController as vm" ng-init="vm.options = {{ system_options() }}">
+<div class="row wrapper-content" ng-controller="ProductDetailController as vm"
+     ng-init="vm.options = {{ system_options() }}">
 
     @include('system::admin.locale-tabs')
 
@@ -9,13 +10,13 @@
             <uib-tabset>
 
                 <uib-tab heading="{{ Lang::get('shop::admin.product.base') }}" active="vm.mainTabs[0]"></uib-tab>
-                <uib-tab heading="{{ Lang::get('shop::admin.product.properties') }}" active="vm.mainTabs[1]" ng-show="vm.product.hasMainCategory"></uib-tab>
+                <uib-tab heading="{{ Lang::get('shop::admin.product.properties') }}" active="vm.mainTabs[1]"
+                         ng-show="vm.product.hasMainCategory"></uib-tab>
 
             </uib-tabset>
 
         </div>
     </div>
-
 
 
     <div class="row" ng-show="vm.mainTabs[0]">

@@ -12,14 +12,12 @@
                     transformResponse: function (response) {
                         response = angular.fromJson(response);
 
-                        if (response.translations.length == 0)
-                        {
+                        if (response.translations.length == 0) {
                             response.translations = {};
                         }
 
                         _.each(response.translations, function (translation) {
-                            if (translation.publish_at)
-                            {
+                            if (translation.publish_at) {
                                 translation.publish_at = moment(translation.publish_at, 'YYYY-MM-DD').format('DD/MM/YYYY')
                             }
                         });
@@ -31,14 +29,12 @@
                     method: 'PUT',
                     transformRequest: function (data) {
                         _.each(data.translations, function (item) {
-                            if (typeof item.publish_at == "string")
-                            {
+                            if (typeof item.publish_at == "string") {
                                 var date = moment(item.publish_at, 'DD/MM/YYYY');
                                 item.publish_at = date.format('YYYY-MM-DD');
                             }
 
-                            if (item.publish_at instanceof Date)
-                            {
+                            if (item.publish_at instanceof Date) {
                                 var date = moment(item.publish_at)
                                 item.publish_at = date.format('YYYY-MM-DD');
                             }

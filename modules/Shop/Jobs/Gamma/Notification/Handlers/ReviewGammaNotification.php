@@ -1,7 +1,8 @@
-<?php namespace Modules\Shop\Jobs\Gamma\Notification\Handlers;
+<?php
+
+namespace Modules\Shop\Jobs\Gamma\Notification\Handlers;
 
 use App\Jobs\Job;
-use Illuminate\Contracts\Bus\SelfHandling;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Modules\Shop\Gamma\GammaNotification;
 use Modules\Shop\Gamma\GammaSelection;
@@ -9,9 +10,8 @@ use Modules\Shop\Gamma\ProductSelection;
 use Modules\Shop\Product\CatalogRepositoryInterface;
 use Pusher;
 
-class ReviewGammaNotification extends Job implements SelfHandling, ShouldQueue
+class ReviewGammaNotification extends Job implements ShouldQueue
 {
-
     protected $notification;
 
     public function __construct(GammaNotification $notification)
@@ -47,15 +47,14 @@ class ReviewGammaNotification extends Job implements SelfHandling, ShouldQueue
     }
 
     /**
-     * @param GammaSelection $gamma
-     * @param                $notification
+     *
      */
     protected function insertNewGammaSelection(GammaSelection $gamma, $notification)
     {
         $instancePayload = [
             'category_id' => $notification->category->id,
-            'brand_id'    => $notification->brand->id,
-            'account_id'  => $notification->account->id
+            'brand_id' => $notification->brand->id,
+            'account_id' => $notification->account->id,
         ];
 
         $selection = $gamma->newInstance($instancePayload);
@@ -63,8 +62,7 @@ class ReviewGammaNotification extends Job implements SelfHandling, ShouldQueue
     }
 
     /**
-     * @param CatalogRepositoryInterface $catalog
-     * @param                            $status
+     *
      */
     protected function notifyWithinScope(CatalogRepositoryInterface $catalog, ProductSelection $selections, $status)
     {
@@ -78,21 +76,20 @@ class ReviewGammaNotification extends Job implements SelfHandling, ShouldQueue
                 ->get()->keyBy('product_id');
 
             foreach ($products as $product) {
-
                 $notificationPayload = [
-                    'product_id'  => $product->id,
+                    'product_id' => $product->id,
                     'category_id' => $notification->category->id,
-                    'brand_id'    => $notification->brand->id,
-                    'account_id'  => $notification->account->id,
-                    'type'        => $status,
+                    'brand_id' => $notification->brand->id,
+                    'account_id' => $notification->account->id,
+                    'type' => $status,
                 ];
 
                 $record = $records->get($product->id);
 
                 //when notifying, we do not want to generate a warning for something that's already in that status.
-                if ($status == 'activate' && (!$record || $record->deleted_at)) {
+                if ($status == 'activate' && (! $record || $record->deleted_at)) {
                     $notification->create($notificationPayload);
-                } elseif ($status == 'deactivate' && ($record && !$record->deleted_at)) {
+                } elseif ($status == 'deactivate' && ($record && ! $record->deleted_at)) {
                     $notification->create($notificationPayload);
                 }
             }
@@ -102,8 +99,7 @@ class ReviewGammaNotification extends Job implements SelfHandling, ShouldQueue
     }
 
     /**
-     * @param GammaSelection $gamma
-     * @param                $notification
+     *
      */
     protected function deleteExistingGammaSelection(GammaSelection $gamma, $notification)
     {

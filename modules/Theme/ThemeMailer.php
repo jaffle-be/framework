@@ -7,7 +7,6 @@ use Illuminate\Mail\Mailer;
 
 class ThemeMailer implements MailContract
 {
-
     /**
      * @var Theme
      */
@@ -19,8 +18,7 @@ class ThemeMailer implements MailContract
     protected $mailer;
 
     /**
-     * @param Theme  $theme
-     * @param Mailer $mailer
+     *
      */
     public function __construct(Theme $theme, Mailer $mailer)
     {
@@ -32,9 +30,6 @@ class ThemeMailer implements MailContract
     /**
      * Send a new message when only a raw text part.
      *
-     * @param  string          $text
-     * @param  \Closure|string $callback
-     *
      * @return int
      */
     public function raw($text, $callback)
@@ -43,22 +38,90 @@ class ThemeMailer implements MailContract
     }
 
     /**
-     * Send a new message using a view.
-     *
-     * @param  string|array    $view
-     * @param  array           $data
-     * @param  \Closure|string $callback
-     *
-     * @return void
+     * @throws \Exception
+     * @return bool
      */
     public function send($view, array $data, $callback)
     {
+        $this->validateData($data);
+
         $data = array_merge($data, [
-            'theme'          => $this->theme,
-            'theme_template' => $this->resolveThemeTemplate()
+            'theme' => $this->theme,
+            'theme_template' => $this->resolveThemeTemplate(),
         ]);
 
-        return $this->mailer->send($view, $data, $callback);
+        $previousRootUrl = $this->setRootUrl($data['root_url']);
+
+        //let's wrap our closure to automatically to set email defaults.
+        //when we passed a string, our callback represents the subject line
+        if (is_string($callback)) {
+            $callback = $this->stringClosure($data, $callback);
+        } else {
+            //if we don't have a subject, but a closure, we'll be wrapping it again
+            //and call the closure itself at the bottom of our wrapping closure.
+            //this allows us to override it in the originally passed closure.
+            $this->closureClosure($data, $callback);
+        }
+
+        $result = $this->mailer->send($view, $data, $callback);
+
+        $this->setRootUrl($previousRootUrl);
+
+        return $result;
+    }
+
+    protected function validateData($data)
+    {
+        if (! isset($data['email_from'], $data['email_from_name'], $data['email_to'], $data['root_url'])) {
+            throw new \Exception('need all valid email fields in the data array');
+        }
+    }
+
+    protected function resolveThemeTemplate()
+    {
+        return config('theme.email_template');
+    }
+
+    protected function setRootUrl($new)
+    {
+        $old = config('app.url');
+
+        config()->set('app.url', $new);
+
+        app('url')->forceRootUrl($new);
+
+        return $old;
+    }
+
+    /**
+     * @return \Closure
+     */
+    protected function stringClosure(array $data, $callback)
+    {
+        $callback = function ($message) use ($callback, $data) {
+            $message->from($data['email_from'], $data['email_from_name']);
+            $message->to($data['email_to']);
+            $message->subject($callback);
+        };
+
+        return $callback;
+    }
+
+    /**
+     * @return \Closure
+     */
+    protected function closureClosure(array $data, $callback)
+    {
+        return $callback = function ($message) use ($callback, $data) {
+            $message->from($data['email_from'], $data['email_from_name']);
+            $message->to($data['email_to']);
+
+            $callback($message);
+
+            if (! $message->from) {
+                throw new \Exception('need to set subject line');
+            }
+        };
     }
 
     /**
@@ -70,10 +133,4 @@ class ThemeMailer implements MailContract
     {
         return $this->mailer->failures();
     }
-
-    protected function resolveThemeTemplate()
-    {
-        return config('theme.email_template');
-    }
-
 }

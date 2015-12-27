@@ -53,20 +53,18 @@
     }
 
 
-    function createProperty()
-    {
+    function createProperty() {
         var me = this;
         var property = new me.models.property(this.newProperty);
         property.group_id = me.group.id;
 
-        property.$save().then(function(response){
+        property.$save().then(function (response) {
             me.open = false;
             me.properties[me.group.id].push(property);
         });
     }
 
-    function resetPropertyInput()
-    {
+    function resetPropertyInput() {
         this.newProperty = {
             translations: {}
         };
@@ -76,30 +74,25 @@
         };
     }
 
-    function cancelCreating()
-    {
+    function cancelCreating() {
         this.resetPropertyInput();
         this.open = false;
     }
 
-    function saveUnit()
-    {
+    function saveUnit() {
         var me = this;
 
         //cancel when still creating
-        if (me.creatingUnit)
-        {
+        if (me.creatingUnit) {
             return false;
         }
 
-        if(me.newProperty.unit_id)
-        {
+        if (me.newProperty.unit_id) {
             var unit = me.units[me.newProperty.unit_id];
 
             me.services.properties.updateUnit(unit);
         }
-        else
-        {
+        else {
             //if the select already had something selected,
             //a newly created item will be added to the propertyOptions object
             //under the key null (not as string 'null').

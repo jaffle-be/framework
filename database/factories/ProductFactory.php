@@ -28,6 +28,7 @@ $factory->define(Brand::class, function (Faker\Generator $faker) {
 
 $factory->define(Category::class, function (Faker\Generator $faker) {
     $name = $faker->unique()->userName();
+
     return [
         'nl'         => [
             'name'       => $name,
@@ -48,6 +49,7 @@ $factory->define(Category::class, function (Faker\Generator $faker) {
 $factory->define(Product::class, function (Faker\Generator $faker) {
     $ean = $faker->ean13;
     $name = $faker->unique()->userName();
+
     return [
         'ean' => $ean,
         'upc' => substr($ean, 0, 12),

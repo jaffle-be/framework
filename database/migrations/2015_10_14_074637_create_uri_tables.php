@@ -12,7 +12,7 @@ class CreateUriTables extends Migration
      */
     public function up()
     {
-        Schema::create('uris', function(Blueprint $table){
+        Schema::create('uris', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('account_id', false, true);
             $table->foreign('account_id', 'uri_to_account')->references('id')->on('accounts')->onDelete('cascade');
@@ -36,7 +36,7 @@ class CreateUriTables extends Migration
      */
     public function down()
     {
-        Schema::drop('uris', function(Blueprint $table){
+        Schema::drop('uris', function (Blueprint $table) {
             $table->dropForeign('uri_to_account');
             $table->dropForeign('uri_to_locale');
         });

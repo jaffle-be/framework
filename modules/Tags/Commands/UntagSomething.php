@@ -1,11 +1,11 @@
-<?php namespace Modules\Tags\Commands;
+<?php
+
+namespace Modules\Tags\Commands;
 
 use App\Jobs\Job;
-use Illuminate\Contracts\Bus\SelfHandling;
 
-class UntagSomething extends Job implements SelfHandling
+class UntagSomething extends Job
 {
-
     protected $owner;
 
     protected $tag;
@@ -24,5 +24,4 @@ class UntagSomething extends Job implements SelfHandling
             $this->tag->delete();
         }
     }
-
 }

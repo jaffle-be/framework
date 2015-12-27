@@ -1,4 +1,5 @@
-<div class="row wrapper wrapper-content" ng-controller="NewsletterSubscriptionController as vm" ng-init="vm.options = {{ system_options() }}" ng-cloak>
+<div class="row wrapper wrapper-content" ng-controller="NewsletterSubscriptionController as vm"
+     ng-init="vm.options = {{ system_options() }}" ng-cloak>
 
     <div class="ibox" st-table="vm.subscriptions" st-pipe="vm.list">
 
@@ -27,7 +28,8 @@
             <table class="table table-hover table-striped table-responsive vertical" ng-show="vm.subscriptions">
                 <tbody ng-hide="vm.loading">
                 <tr ng-show="vm.table.pagination.numberOfPages">
-                    <td class="text-center" st-pagination st-items-by-page="vm.rpp" colspan="5" st-change="vm.list"></td>
+                    <td class="text-center" st-pagination st-items-by-page="vm.rpp" colspan="5"
+                        st-change="vm.list"></td>
                 </tr>
                 <tr ng-repeat="subscription in vm.subscriptions" class="marketing-subscription-overview">
                     <td>
@@ -45,7 +47,8 @@
 
                 </tr>
                 <tr ng-show="vm.table.pagination.numberOfPages">
-                    <td class="text-center" st-pagination st-items-by-page="vm.rpp" colspan="5" st-change="vm.list"></td>
+                    <td class="text-center" st-pagination st-items-by-page="vm.rpp" colspan="5"
+                        st-change="vm.list"></td>
                 </tr>
                 </tbody>
                 <tfoot ng-show="vm.loading">

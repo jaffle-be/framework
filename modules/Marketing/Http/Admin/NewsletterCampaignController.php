@@ -1,4 +1,6 @@
-<?php namespace Modules\Marketing\Http\Admin;
+<?php
+
+namespace Modules\Marketing\Http\Admin;
 
 use Drewm\MailChimp;
 use Illuminate\Contracts\Auth\Guard;
@@ -19,7 +21,6 @@ use Modules\System\Http\AdminController;
 
 class NewsletterCampaignController extends AdminController
 {
-
     use BlogSearch;
     use PortfolioSearch;
 
@@ -30,10 +31,10 @@ class NewsletterCampaignController extends AdminController
         $value = $request->get('query');
         $locale = $request->get('locale');
 
-        if (!empty($value)) {
+        if (! empty($value)) {
             $query->whereHas('translations', function ($q) use ($value, $locale) {
                 $q->where('locale', $locale);
-                $q->where('title', 'like', '%' . $value . '%');
+                $q->where('title', 'like', '%'.$value.'%');
             });
         }
 
@@ -44,17 +45,16 @@ class NewsletterCampaignController extends AdminController
     {
         try {
             $result = $mailChimp->call('lists/members', [
-                'id'   => env('MAILCHIMP_DEFAULT_LIST_ID'),
+                'id' => env('MAILCHIMP_DEFAULT_LIST_ID'),
                 'opts' => [
                     'start' => $request->get('page', 1) - 1,
                     //default limit is 25
-                    'limit' => 25
-                ]
+                    'limit' => 25,
+                ],
             ]);
 
             return $result;
-        }
-        catch (\Exception $e) {
+        } catch (\Exception $e) {
             dd($e->getMessage());
         }
     }
@@ -73,9 +73,9 @@ class NewsletterCampaignController extends AdminController
             return $newsletter;
         }
 
-        return json_encode(array(
-            'status' => 'noke'
-        ));
+        return json_encode([
+            'status' => 'noke',
+        ]);
     }
 
     public function show(Campaign $newsletter, CampaignBuilder $builder, MailChimp $mailChimp)
@@ -87,12 +87,7 @@ class NewsletterCampaignController extends AdminController
     {
         $newsletter->load($this->relations());
 
-        $payload = [
-            'newsletter' => $newsletter,
-            'input'      => translation_input($request, ['title', 'content', 'publish_at'])
-        ];
-
-        if (!$this->dispatchFromArray(UpdateCampaign::class, $payload)) {
+        if (! $this->dispatch(new UpdateCampaign($newsletter, translation_input($request, ['title', 'content', 'publish_at'])))) {
             return response('500', 'something bad happened');
         }
 
@@ -125,7 +120,7 @@ class NewsletterCampaignController extends AdminController
     public function search(Request $request, AccountManager $manager, SearchServiceInterface $search)
     {
         $this->validate($request, [
-            'query'  => 'required',
+            'query' => 'required',
             'locale' => 'required',
         ]);
 
@@ -147,17 +142,17 @@ class NewsletterCampaignController extends AdminController
 
         foreach ($posts as $post) {
             $result->push([
-                'label' => 'post: ' . $post->translate($request->get('locale'))->title,
-                'type'  => Post::class,
-                'value' => $post->id
+                'label' => 'post: '.$post->translate($request->get('locale'))->title,
+                'type' => Post::class,
+                'value' => $post->id,
             ]);
         }
 
         foreach ($projects as $project) {
             $result->push([
-                'label' => 'project: ' . $project->translate($request->get('locale'))->title,
-                'type'  => Project::class,
-                'value' => $project->id
+                'label' => 'project: '.$project->translate($request->get('locale'))->title,
+                'type' => Project::class,
+                'value' => $project->id,
             ]);
         }
 
@@ -177,10 +172,16 @@ class NewsletterCampaignController extends AdminController
     protected function relations()
     {
         return [
-            'images', 'images.sizes', 'translations',
-            'widgets', 'widgets.image', 'widgets.imageLeft', 'widgets.imageRight',
-            'widgets.resource', 'widgets.otherResource',
-            'widgets.translations'
+            'images',
+            'images.sizes',
+            'translations',
+            'widgets',
+            'widgets.image',
+            'widgets.imageLeft',
+            'widgets.imageRight',
+            'widgets.resource',
+            'widgets.otherResource',
+            'widgets.translations',
         ];
     }
 
@@ -202,7 +203,7 @@ class NewsletterCampaignController extends AdminController
         ]);
 
         $result = $mailChimp->call('campaigns/send', [
-            'cid' => $campaign->translate($request->get('locale'))->mail_chimp_campaign_id
+            'cid' => $campaign->translate($request->get('locale'))->mail_chimp_campaign_id,
         ]);
 
         $translation = $campaign->translate($request->get('locale'));
@@ -211,27 +212,22 @@ class NewsletterCampaignController extends AdminController
     }
 
     /**
-     * @param MailChimp $mailChimp
-     * @param           $translation
+     *
      */
     protected function loadMailchimpDataForCampaign(MailChimp $mailChimp, $translation)
     {
         $translation->mailchimp = $mailChimp->call('campaigns/ready', [
-            'cid' => $translation->mail_chimp_campaign_id
+            'cid' => $translation->mail_chimp_campaign_id,
         ]);
 
         $translation->preview = $mailChimp->call('campaigns/content', [
-            'cid' => $translation->mail_chimp_campaign_id
+            'cid' => $translation->mail_chimp_campaign_id,
         ]);
 
         $translation->summary = $this->getReportSummary($mailChimp, $translation);
     }
 
     /**
-     * @param Campaign        $newsletter
-     * @param CampaignBuilder $builder
-     * @param MailChimp       $mailChimp
-     *
      * @return array
      */
     protected function detailedResponse(Campaign $newsletter, CampaignBuilder $builder, MailChimp $mailChimp)
@@ -252,20 +248,16 @@ class NewsletterCampaignController extends AdminController
     }
 
     /**
-     * @param MailChimp $mailChimp
-     * @param           $translation
-     *
      * @return array
      */
     protected function getReportSummary(MailChimp $mailChimp, $translation)
     {
         $result = $mailChimp->call('reports/summary', [
-            'cid' => $translation->mail_chimp_campaign_id
+            'cid' => $translation->mail_chimp_campaign_id,
         ]);
 
         $reportFormatter = new ReportFormatter();
 
         return $reportFormatter->format($result);
     }
-
 }

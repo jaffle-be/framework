@@ -7,7 +7,6 @@ use Modules\Module\ModuleRoute;
 
 class CreatePostsTable extends Migration
 {
-
     /**
      * Run the migrations.
      *
@@ -52,22 +51,22 @@ class CreatePostsTable extends Migration
             ],
             'de'     => [
                 'name' => 'Blog',
-            ]
+            ],
         ]);
 
         $module->routes()->save(new ModuleRoute([
             'name' => 'store.blog.index',
             'nl' => [
-                'title' => 'blog overview'
+                'title' => 'blog overview',
             ],
             'en' => [
-                'title' => 'blog overview'
+                'title' => 'blog overview',
             ],
             'fr' => [
-                'title' => 'blog overview'
+                'title' => 'blog overview',
             ],
             'de' => [
-                'title' => 'blog overview'
+                'title' => 'blog overview',
             ],
 
         ]));

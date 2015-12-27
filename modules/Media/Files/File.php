@@ -1,4 +1,6 @@
-<?php namespace Modules\Media\Files;
+<?php
+
+namespace Modules\Media\Files;
 
 use Illuminate\Database\Eloquent\Model;
 use Modules\System\Scopes\ModelAccountResource;
@@ -7,7 +9,6 @@ use Modules\System\Scopes\ModelLocaleSpecificResource;
 
 class File extends Model
 {
-
     use ModelAccountResource;
     use ModelAutoSort;
     use ModelLocaleSpecificResource;
@@ -20,5 +21,4 @@ class File extends Model
     {
         return $this->morphTo();
     }
-
 }

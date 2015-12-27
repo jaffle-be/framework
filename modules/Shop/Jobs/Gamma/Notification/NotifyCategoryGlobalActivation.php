@@ -1,7 +1,8 @@
-<?php namespace Modules\Shop\Jobs\Gamma\Notification;
+<?php
+
+namespace Modules\Shop\Jobs\Gamma\Notification;
 
 use App\Jobs\Job;
-use Illuminate\Contracts\Bus\SelfHandling;
 use Modules\Account\Account;
 use Modules\Shop\Gamma\CategorySelection;
 use Modules\Shop\Gamma\GammaNotification;
@@ -9,9 +10,8 @@ use Modules\Shop\Gamma\GammaRepositoryInterface;
 use Modules\Shop\Product\Category;
 use Pusher;
 
-class NotifyCategoryActivation extends Job implements SelfHandling
+class NotifyCategoryGlobalActivation extends Job
 {
-
     use GammaNotificationHelpers;
 
     /**
@@ -39,15 +39,14 @@ class NotifyCategoryActivation extends Job implements SelfHandling
 
             if ($canceled === 0) {
                 $instance = $notification->newInstance([
-                    'account_id'            => $this->account->id,
-                    'category_id'           => $this->category->id,
-                    'brand_id'              => $brand->id,
-                    'type'                  => CategorySelection::ACTIVATE,
+                    'account_id' => $this->account->id,
+                    'category_id' => $this->category->id,
+                    'brand_id' => $brand->id,
+                    'type' => CategorySelection::ACTIVATE,
                 ]);
 
                 $instance->save();
             }
         }
     }
-
 }

@@ -1,10 +1,11 @@
-<?php namespace Modules\Blog;
+<?php
+
+namespace Modules\Blog;
 
 use Modules\Users\User;
 
 class PostRepository implements PostRepositoryInterface
 {
-
     protected $post;
 
     protected $translation;
@@ -42,5 +43,4 @@ class PostRepository implements PostRepositoryInterface
             ->latest()
             ->get();
     }
-
 }

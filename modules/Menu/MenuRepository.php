@@ -1,10 +1,11 @@
-<?php namespace Modules\Menu;
+<?php
+
+namespace Modules\Menu;
 
 use Modules\Account\AccountManager;
 
 class MenuRepository implements MenuRepositoryInterface
 {
-
     /**
      * @var AccountManager
      */
@@ -37,7 +38,7 @@ class MenuRepository implements MenuRepositoryInterface
      */
     protected function relations()
     {
-        return ['items', 'items.children', 'items.translations', 'items.children.translations', 'items.page', /*'items.routable'*/];
+        return ['items', 'items.children', 'items.translations', 'items.children.translations', 'items.page'/*'items.routable'*/];
     }
 
     public function getMenus()

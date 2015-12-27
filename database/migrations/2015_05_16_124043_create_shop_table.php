@@ -6,7 +6,6 @@ use Modules\Module\ModuleRoute;
 
 class CreateShopTable extends Migration
 {
-
     /**
      * Run the migrations.
      *

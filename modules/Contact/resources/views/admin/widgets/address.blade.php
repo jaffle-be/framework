@@ -68,7 +68,8 @@
                             </div>
 
                             <div class="form-group col-xs-12 text-center">
-                                <button type="button" ng-click="ctrl.save()" class="btn btn-lg btn-primary">{{ Lang::get('contact::admin.save') }}</button>
+                                <button type="button" ng-click="ctrl.save()"
+                                        class="btn btn-lg btn-primary">{{ Lang::get('contact::admin.save') }}</button>
                             </div>
 
                         </div>

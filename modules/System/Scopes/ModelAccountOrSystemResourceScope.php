@@ -1,13 +1,14 @@
-<?php namespace Modules\System\Scopes;
+<?php
+
+namespace Modules\System\Scopes;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\ScopeInterface;
+use Illuminate\Database\Eloquent\Scope;
 use Modules\Account\AccountManager;
 
-class ModelAccountOrSystemResourceScope implements ScopeInterface
+class ModelAccountOrSystemResourceScope implements Scope
 {
-
     public function __construct(AccountManager $manager)
     {
         $this->account = $manager->account();
@@ -22,9 +23,4 @@ class ModelAccountOrSystemResourceScope implements ScopeInterface
             });
         }
     }
-
-    public function remove(Builder $builder, Model $model)
-    {
-    }
-
 }

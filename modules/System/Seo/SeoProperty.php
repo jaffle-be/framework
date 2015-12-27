@@ -1,4 +1,6 @@
-<?php namespace Modules\System\Seo;
+<?php
+
+namespace Modules\System\Seo;
 
 use Illuminate\Database\Eloquent\Model;
 use Modules\System\Scopes\ModelLocaleSpecificResource;
@@ -6,7 +8,6 @@ use Modules\System\Translatable\TranslationCollection;
 
 class SeoProperty extends Model
 {
-
     use ModelLocaleSpecificResource;
 
     protected $table = 'seo_properties';
@@ -27,5 +28,4 @@ class SeoProperty extends Model
     {
         return new TranslationCollection($items);
     }
-
 }

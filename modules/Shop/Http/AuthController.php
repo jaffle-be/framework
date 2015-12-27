@@ -1,10 +1,11 @@
-<?php namespace Modules\Shop\Http;
+<?php
+
+namespace Modules\Shop\Http;
 
 use Modules\System\Http\FrontController;
 
 class AuthController extends FrontController
 {
-
     public function register()
     {
         return $this->theme->render('shop.register');
@@ -14,5 +15,4 @@ class AuthController extends FrontController
     {
         return $this->theme->render('shop.login');
     }
-
 }

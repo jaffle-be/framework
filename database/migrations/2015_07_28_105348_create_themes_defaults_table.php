@@ -31,8 +31,7 @@ class CreateThemesDefaultsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('themes_setting_defaults', function(Blueprint $table)
-        {
+        Schema::drop('themes_setting_defaults', function (Blueprint $table) {
             $table->dropForeign('theme_setting_defaults_to_keys');
             $table->dropForeign('theme_setting_defaults_to_option');
         });

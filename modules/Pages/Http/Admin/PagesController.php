@@ -1,4 +1,6 @@
-<?php namespace Modules\Pages\Http\Admin;
+<?php
+
+namespace Modules\Pages\Http\Admin;
 
 use Exception;
 use Illuminate\Contracts\Auth\Guard;
@@ -13,7 +15,6 @@ use Modules\System\Http\AdminController;
 
 class PagesController extends AdminController
 {
-
     use MediaWidgetPreperations;
 
     public function overview()
@@ -28,19 +29,24 @@ class PagesController extends AdminController
 
     public function index(Request $request)
     {
-        $query = Page::with(['translations', 'images', 'images.sizes' => function ($query) {
-            $query->dimension(150);
-        }, 'images.translations']);
+        $query = Page::with([
+            'translations',
+            'images',
+            'images.sizes' => function ($query) {
+                $query->dimension(150);
+            },
+            'images.translations',
+        ]);
 
         $value = $request->get('query');
         $locale = $request->get('locale');
 
-        if (!empty($value)) {
+        if (! empty($value)) {
             $query->whereHas('translations', function ($q) use ($value, $locale) {
                 $q->where('locale', $locale);
                 $q->where(function ($q) use ($value) {
-                    $q->where('title', 'like', '%' . $value . '%')
-                        ->orWhere('content', 'like', '%' . $value . '%');
+                    $q->where('title', 'like', '%'.$value.'%')
+                        ->orWhere('content', 'like', '%'.$value.'%');
                 });
             });
         }
@@ -62,9 +68,9 @@ class PagesController extends AdminController
             return $page;
         }
 
-        return json_encode(array(
-            'status' => 'noke'
-        ));
+        return json_encode([
+            'status' => 'noke',
+        ]);
     }
 
     public function show(Page $page, PageRepositoryInterface $pages)
@@ -92,12 +98,7 @@ class PagesController extends AdminController
     {
         $page->load($this->relations());
 
-        $payload = [
-            'page'  => $page,
-            'input' => translation_input($request, ['title', 'content', 'publish_at'])
-        ];
-
-        if (!$this->dispatchFromArray(UpdatePage::class, $payload)) {
+        if (! $this->dispatch(new UpdatePage($page, translation_input($request, ['title', 'content', 'publish_at'])))) {
             return response('500', 'something bad happened');
         }
 
@@ -136,7 +137,7 @@ class PagesController extends AdminController
 
         $page = $page->findOrFail($request->get('page'));
 
-        if (!$page->parent_id) {
+        if (! $page->parent_id) {
             $count = $parent->children()->count();
 
             $page->sort = $count;
@@ -170,7 +171,7 @@ class PagesController extends AdminController
         foreach ($request->get('order') as $position => $id) {
             $child = $children->find($id);
 
-            if (!$child) {
+            if (! $child) {
                 throw new Exception('trying to sort a page not belonging to this parent');
             }
 
@@ -223,5 +224,4 @@ class PagesController extends AdminController
     {
         return ['translations', 'translations.slug', 'children', 'children.translations'];
     }
-
 }

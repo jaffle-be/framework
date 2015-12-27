@@ -1,11 +1,12 @@
-<?php namespace Test\Account;
+<?php
+
+namespace Test\Account;
 
 use Test\FrontTestCase;
 use Test\Routes\RouteTests;
 
 class TeamTest extends FrontTestCase
 {
-
     use RouteTests;
 
     public function testIndex()

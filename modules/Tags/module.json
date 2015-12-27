@@ -1,15 +1,15 @@
 {
-  "name": "Tags",
-  "alias": "tags",
-  "description": "",
-  "keywords": [],
-  "active": 1,
-  "order": 10,
-  "providers": [
-    "Modules\\Tags\\Providers\\TagsServiceProvider"
-  ],
-  "aliases": {},
-  "files": [
-    "helpers.php"
-  ]
+    "name": "Tags",
+    "alias": "tags",
+    "description": "",
+    "keywords": [],
+    "active": 1,
+    "order": 10,
+    "providers": [
+        "Modules\\Tags\\Providers\\TagsServiceProvider"
+    ],
+    "aliases": {},
+    "files": [
+        "helpers.php"
+    ]
 }

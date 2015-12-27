@@ -41,8 +41,7 @@
 
             this.revokeInvitation = function (invitation) {
                 MembershipService.revokeInvitation(invitation, function (response) {
-                    if (!response.id)
-                    {
+                    if (!response.id) {
                         _.remove(me.invitations, function (item) {
                             return item.id == invitation.id;
                         });
@@ -52,8 +51,7 @@
 
             this.revokeMembership = function (membership) {
                 MembershipService.revokeMembership(membership, function (response) {
-                    if (!response.id)
-                    {
+                    if (!response.id) {
                         _.remove(me.memberships, function (item) {
                             return item.id == membership.id;
                         });

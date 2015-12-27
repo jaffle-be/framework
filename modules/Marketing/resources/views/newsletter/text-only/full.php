@@ -30,9 +30,9 @@
                                 <table border="0" cellpadding="0" cellspacing="0" width="100%">
                                     <tr>
                                         <td valign="top" class="textContent">
-                                            <h3><?= $widget->present()->title($locale) ?></h3>
+                                            <h3><?php echo $widget->present()->title($locale) ?></h3>
                                             <br>
-                                            <?= $widget->present()->text($locale) ?>
+                                            <?php echo $widget->present()->text($locale) ?>
                                         </td>
                                     </tr>
                                 </table>

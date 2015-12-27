@@ -1,15 +1,16 @@
-<?php namespace Modules\Account\Requests\Contact;
+<?php
+
+namespace Modules\Account\Requests\Contact;
 
 use App\Http\Requests\Request;
 
 class NewInformationRequest extends Request
 {
-
     public function rules()
     {
         return [
-            'email'   => 'email',
-            'vat'     => 'vat',
+            'email' => 'email',
+            'vat' => 'vat',
             'website' => 'url',
         ];
     }
@@ -18,5 +19,4 @@ class NewInformationRequest extends Request
     {
         return true;
     }
-
 }

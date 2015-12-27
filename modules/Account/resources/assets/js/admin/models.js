@@ -66,8 +66,7 @@
                         clients = angular.fromJson(clients);
 
                         _.each(clients, function (client) {
-                            if (client.images)
-                            {
+                            if (client.images) {
                                 client.images = [new Image(client.images)];
                             }
                         });

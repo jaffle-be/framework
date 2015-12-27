@@ -1,4 +1,6 @@
-<?php namespace Modules\Users\Http\Auth;
+<?php
+
+namespace Modules\Users\Http\Auth;
 
 use Illuminate\Contracts\Auth\Guard;
 use Lang;
@@ -9,11 +11,8 @@ use Modules\Users\Auth\Tokens\TokenRepository;
 
 class ResetPasswordController extends FrontController
 {
-
     /**
-     * Show the form for resetting the password
-     *
-     * @param $token
+     * Show the form for resetting the password.
      *
      * @return \Illuminate\View\View
      */
@@ -27,12 +26,12 @@ class ResetPasswordController extends FrontController
         $token = $tokens->findTokenByValue($token);
 
         if ($token) {
-            $user = $this->dispatchFrom(ResetPassword::class, $request, ['token' => $token]);
+            $user = $this->dispatch(new ResetPassword($request->get('email'), $token, $request->get('password'), $request->get('password_confirmation')));
 
             if ($user) {
                 $guard->loginUsingId($user->id);
 
-                return redirect()->to(store_route('store.dash'));
+                return redirect('admin/start');
             }
         }
 

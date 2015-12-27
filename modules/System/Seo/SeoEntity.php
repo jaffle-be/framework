@@ -1,8 +1,9 @@
-<?php namespace Modules\System\Seo;
+<?php
+
+namespace Modules\System\Seo;
 
 interface SeoEntity
 {
-
     public function getSeoTitle();
 
     public function getSeoDescription();
@@ -20,5 +21,4 @@ interface SeoEntity
     public function getSeoTypeTwitter();
 
     public function getSeoAuthor();
-
 }

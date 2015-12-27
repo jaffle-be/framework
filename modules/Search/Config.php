@@ -1,9 +1,12 @@
-<?php namespace Modules\Search;
+<?php
+
+namespace Modules\Search;
 
 use Modules\System\Translatable\Translatable;
 
 class Config
 {
+    protected $config;
 
     protected $index;
 
@@ -29,18 +32,15 @@ class Config
      * This method will save an inverted array of relations.
      * We can then use it to trigger nested document changes.
      *
-     * @param $types
-     *
      * @return array
+     * @internal param $types
      */
     protected function invertTypes()
     {
         foreach ($this->types as $type => $config) {
-
             $parent = $config['class'];
 
             foreach ($this->getWith($type) as $relation => $nestedConfig) {
-
                 $nested = $nestedConfig['class'];
 
                 $key = $nestedConfig['key'];
@@ -57,18 +57,18 @@ class Config
         if ($this->usesTranslations($type)) {
             $instance = $this->getInstance($type);
 
-            $with = array_merge($with, ['translations' => [
-                'class' => $instance->getTranslationModelName(),
-                'key'   => $instance->translations()->getForeignKey(),
-            ]]);
+            $with = array_merge($with, [
+                'translations' => [
+                    'class' => $instance->getTranslationModelName(),
+                    'key' => $instance->translations()->getForeignKey(),
+                ],
+            ]);
         }
 
         return $with;
     }
 
     /**
-     * @param $type
-     *
      * @return array
      */
     protected function usesTranslations($type)
@@ -82,38 +82,33 @@ class Config
     }
 
     /**
-     * @param $type
-     *
      * @return mixed
      */
     protected function getInstance($type)
     {
         $class = $this->getClass($type);
 
-        $object = new $class;
+        $object = new $class();
 
         return $object;
     }
 
     /**
-     * @param $key
-     * @param $inverted
-     * @param $config
-     * @param $class
-     * @param $relation
-     *
      * @return mixed
+     * @internal param $inverted
+     * @internal param $config
+     * @internal param $class
      */
     protected function invert($nested, $parent, $key, $relation)
     {
-        if (!array_key_exists($nested, $this->inverted)) {
+        if (! array_key_exists($nested, $this->inverted)) {
             $this->inverted[$nested] = [];
         }
 
         $this->inverted[$nested][] = [
-            'class'    => $parent,
-            'key'      => $key,
-            'relation' => $relation
+            'class' => $parent,
+            'key' => $key,
+            'relation' => $relation,
         ];
     }
 
@@ -137,4 +132,8 @@ class Config
         return $this->inverted;
     }
 
+    public function getSpeed()
+    {
+        return $this->config['refresh_interval'];
+    }
 }

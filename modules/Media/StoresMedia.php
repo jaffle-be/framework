@@ -1,8 +1,9 @@
-<?php namespace Modules\Media;
+<?php
+
+namespace Modules\Media;
 
 interface StoresMedia
 {
-
     public function images();
 
     public function videos();
@@ -16,5 +17,4 @@ interface StoresMedia
     public function sizes($width = null, $height = null);
 
     public function thumbnail($width = null, $height = null);
-
 }

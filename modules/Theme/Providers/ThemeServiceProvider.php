@@ -2,15 +2,14 @@
 
 namespace Modules\Theme\Providers;
 
+use Modules\System\ServiceProvider;
 use Modules\Theme\Theme;
 use Modules\Theme\ThemeManager;
 use Modules\Theme\ThemeRepository;
 use Modules\Theme\ThemeSelection;
-use Pingpong\Modules\ServiceProvider;
 
 class ThemeServiceProvider extends ServiceProvider
 {
-
     protected $namespace = 'theme';
 
     public function boot()
@@ -24,8 +23,6 @@ class ThemeServiceProvider extends ServiceProvider
 
     /**
      * Register the service provider.
-     *
-     * @return void
      */
     public function register()
     {
@@ -42,10 +39,6 @@ class ThemeServiceProvider extends ServiceProvider
         $this->registerRepositories();
 
         $this->registerThemeServiceProviders();
-    }
-
-    protected function observers()
-    {
     }
 
     protected function listeners()
@@ -65,7 +58,7 @@ class ThemeServiceProvider extends ServiceProvider
 
     protected function registerThemeServiceProviders()
     {
-        /**
+        /*
          * @todo improve registering theme service providers
          *
          *       This should only happen once at the theme selection page.
@@ -75,12 +68,11 @@ class ThemeServiceProvider extends ServiceProvider
         $files = scandir(config('theme.path'));
 
         $files = array_filter($files, function ($file) {
-            return !in_array($file, ['.', '..', '.DS_Store', '.gitignore']);
+            return ! in_array($file, ['.', '..', '.DS_Store', '.gitignore']);
         });
 
         foreach ($files as $theme) {
             $this->app->register(sprintf('Themes\\%s\\Providers\\%sServiceProvider', $theme, $theme));
         }
     }
-
 }

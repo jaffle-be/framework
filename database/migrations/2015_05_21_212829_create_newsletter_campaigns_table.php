@@ -5,7 +5,6 @@ use Illuminate\Database\Schema\Blueprint;
 
 class CreateNewsletterCampaignsTable extends Migration
 {
-
     /**
      * Run the migrations.
      *
@@ -36,8 +35,7 @@ class CreateNewsletterCampaignsTable extends Migration
             $table->timestamps();
         });
 
-
-        Schema::create('newsletter_campaign_widgets', function(Blueprint $table){
+        Schema::create('newsletter_campaign_widgets', function (Blueprint $table) {
             $table->increments('id');
 
             $table->integer('campaign_id', false, true);
@@ -59,8 +57,8 @@ class CreateNewsletterCampaignsTable extends Migration
             $table->integer('sort');
             $table->timestamps();
         });
-        
-        Schema::create('newsletter_campaign_widget_translations', function(Blueprint $table){
+
+        Schema::create('newsletter_campaign_widget_translations', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('campaign_widget_id', false, true);
             $table->foreign('campaign_widget_id', 'translation_to_newsletter_widget')->references('id')->on('newsletter_campaign_widgets')->onDelete('cascade');
@@ -73,7 +71,6 @@ class CreateNewsletterCampaignsTable extends Migration
             $table->string('text_right')->nullable();
             $table->timestamps();
         });
-
     }
 
     /**
@@ -83,7 +80,6 @@ class CreateNewsletterCampaignsTable extends Migration
      */
     public function down()
     {
-
         Schema::drop('newsletter_campaign_widget_translations', function (Blueprint $table) {
             $table->dropForeign('translation_to_newsletter_widget');
         });
@@ -102,7 +98,5 @@ class CreateNewsletterCampaignsTable extends Migration
         Schema::drop('newsletter_campaigns', function (Blueprint $table) {
             $table->dropForeign('newsletter_campaign_to_user');
         });
-
-
     }
 }

@@ -1,22 +1,21 @@
-<?php namespace Modules\Media;
+<?php
+
+namespace Modules\Media;
 
 use Illuminate\Filesystem\Filesystem;
 
 /**
- * Class ImageObserver
- *
- * @package Media
+ * Class ImageObserver.
  */
 class ImageObserver
 {
-
     /**
      * @var Filesystem
      */
     protected $files;
 
     /**
-     * @param Filesystem $files
+     *
      */
     public function __construct(Filesystem $files)
     {
@@ -24,7 +23,7 @@ class ImageObserver
     }
 
     /**
-     * @param Image $image
+     *
      */
     public function deleting(Image $image)
     {
@@ -39,11 +38,10 @@ class ImageObserver
     }
 
     /**
-     * @param Image $image
+     *
      */
     public function deleted(Image $image)
     {
         $this->files->delete(public_path($image->path));
     }
-
 }

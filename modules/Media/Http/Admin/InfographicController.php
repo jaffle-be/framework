@@ -1,4 +1,6 @@
-<?php namespace Modules\Media\Http\Admin;
+<?php
+
+namespace Modules\Media\Http\Admin;
 
 use Illuminate\Http\Request;
 use Modules\Media\Commands\UploadNewInfographic;
@@ -11,7 +13,6 @@ use Modules\Theme\ThemeManager;
 
 class InfographicController extends AdminController
 {
-
     use MediaWidgetPreperations;
 
     protected $media;
@@ -43,11 +44,7 @@ class InfographicController extends AdminController
 
         $file = $request->file('file');
 
-        $infographic = $this->dispatchFromArray(UploadNewInfographic::class, [
-            'owner'   => $owner,
-            'graphic' => $file,
-            'locale'  => $locale->whereSlug($request->get('locale'))->firstOrFail(),
-        ]);
+        $infographic = $this->dispatch(new UploadNewInfographic($owner, $file, $locale->whereSlug($request->get('locale'))->firstOrFail()));
 
         $infographic->load('sizes');
 
@@ -59,7 +56,6 @@ class InfographicController extends AdminController
         $owner = $this->owner($request);
 
         if ($infographic->owner->id == $owner->id) {
-
             $input = $request->except('_token');
 
             $infographic->fill($input);
@@ -91,5 +87,4 @@ class InfographicController extends AdminController
             $infographic->save();
         }
     }
-
 }

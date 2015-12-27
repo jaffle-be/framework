@@ -1,16 +1,15 @@
-<?php namespace Modules\Shop\Jobs\Gamma;
+<?php
+
+namespace Modules\Shop\Jobs\Gamma;
 
 use App\Jobs\Job;
-use Illuminate\Contracts\Bus\SelfHandling;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Modules\Account\Account;
 use Modules\Shop\Gamma\BrandSelection;
-use Modules\Shop\Gamma\GammaManager;
 use Modules\Shop\Product\Brand;
 
-class ActivateBrand extends Job implements SelfHandling
+class ActivateBrand extends Job
 {
-
     use DispatchesJobs;
 
     /**
@@ -36,5 +35,4 @@ class ActivateBrand extends Job implements SelfHandling
         //create the selections
         $this->brand->selection()->save($instance);
     }
-
 }

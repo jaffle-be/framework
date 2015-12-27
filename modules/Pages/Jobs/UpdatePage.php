@@ -1,12 +1,12 @@
-<?php namespace Modules\Pages\Jobs;
+<?php
+
+namespace Modules\Pages\Jobs;
 
 use App\Jobs\Job;
-use Illuminate\Contracts\Bus\SelfHandling;
 use Modules\Pages\Page;
 
-class UpdatePage extends Job implements SelfHandling
+class UpdatePage extends Job
 {
-
     /**
      * @var Page
      */
@@ -29,5 +29,4 @@ class UpdatePage extends Job implements SelfHandling
 
         return $this->page->save() ? $this->page : false;
     }
-
 }

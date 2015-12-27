@@ -12,54 +12,47 @@ use Modules\Users\User;
 
 return [
 
-    /**
+    /*
      * The name of the index
      * Your app name might be a sane default value.
      */
-    'index'    => env('ES_INDEX', 'app'),
-
-    /**
+    'index' => env('ES_INDEX', 'app'),
+    /*
      * All the hosts that are in the cluster.
      */
-    'hosts'    => [
+    'hosts' => [
         env('APP_ENV') == 'testing' ? 'localhost' : env('ES_HOST'),
     ],
-
-    /**
+    /*
      * When adding a new type, add it here. This will allow you to easily rebuild the indexes using the build command.
      * Don't forget to add the new type as an argument when you execute the build command. You do not always want
      * to rebuild all your stored indexes.
      *
      * the key equals your database table. the value is either the class or a complex array :-)
      */
-    'types'    => [
+    'types' => [
 
-        'tags'     => [
+        'tags' => [
             'class' => 'Modules\Tags\Tag',
         ],
-
-        'posts'    => [
+        'posts' => [
             'class' => Post::class,
-            'with'  => [
+            'with' => [
                 'user' => [
                     'class' => User::class,
-                    'key'   => 'user_id'
+                    'key' => 'user_id',
                 ],
-            ]
+            ],
         ],
-
         'projects' => [
             'class' => Project::class,
         ],
-
         'product_brands' => [
             'class' => Brand::class,
         ],
-
         'product_categories' => [
             'class' => Category::class,
         ],
-
         'products' => [
             'routing' => 'account_id',
             'class' => Product::class,
@@ -75,10 +68,9 @@ return [
                 'properties' => [
                     'class' => PropertyValue::class,
                     'key' => 'product_id',
-                ]
-            ]
+                ],
+            ],
         ],
-
         'product_gamma' => [
             'routing' => 'account_id',
             'class' => ProductSelection::class,
@@ -90,77 +82,72 @@ return [
                 'properties' => [
                     'class' => PropertyValue::class,
                     'key' => 'product_id',
-                ]
-
+                ],
             ],
+        ],
+        'product_properties_values' => [
+            'class' => PropertyValue::class,
         ],
 
     ],
-
+    'refresh_interval' => '100ms',
     'settings' => [
         'index' => [
             'analysis' => [
-                'analyzer'  => [
-                    'custom_analyzer'        => [
-                        'type'      => 'custom',
+                'analyzer' => [
+                    'custom_analyzer' => [
+                        'type' => 'custom',
                         'tokenizer' => 'nGram',
-                        'filter'    => ['standard', 'asciifolding', 'lowercase', 'snowball', 'elision']
+                        'filter' => ['standard', 'asciifolding', 'lowercase', 'snowball', 'elision'],
                     ],
-
                     'custom_search_analyzer' => [
-                        'type'      => 'custom',
+                        'type' => 'custom',
                         'tokenizer' => 'standard',
-                        'filter'    => ['standard', 'asciifolding', 'lowercase', 'snowball', 'elision']
+                        'filter' => ['standard', 'asciifolding', 'lowercase', 'snowball', 'elision'],
                     ],
-
-                    'code'                   => [
+                    'code' => [
                         'tokenizer' => 'pattern',
-                        'filter'    => ['standard', 'lowercase', 'code']
+                        'filter' => ['standard', 'lowercase', 'code'],
                     ],
-
-                    'email'                  => [
+                    'email' => [
                         'tokenizer' => 'uax_url_email',
-                        'filter'    => ['email', 'lowercase', 'unique']
-                    ]
+                        'filter' => ['email', 'lowercase', 'unique'],
+                    ],
                 ],
-
                 'tokenizer' => [
                     'nGram' => [
-                        'type'     => 'nGram',
+                        'type' => 'nGram',
                         'min_gram' => '2',
-                        'max_gram' => 20
+                        'max_gram' => 20,
                     ],
                 ],
-
-                'filter'    => [
+                'filter' => [
                     'snowball' => [
-                        'type'     => 'snowball',
+                        'type' => 'snowball',
                         'language' => 'dutch',
                     ],
-
-                    'code'     => [
-                        'type'              => 'pattern_capture',
+                    'code' => [
+                        'type' => 'pattern_capture',
                         'preserve_original' => 1,
-                        'patterns'          => [
-                            "(\\p{Ll}+|\\p{Lu}\\p{Ll}+|\\p{Lu}+)",
-                            "(\\d+)"
-                        ]
+                        'patterns' => [
+                            '(\\p{Ll}+|\\p{Lu}\\p{Ll}+|\\p{Lu}+)',
+                            '(\\d+)',
+                        ],
                     ],
-
-                    'email'    => [
-                        'type'              => 'pattern_capture',
+                    'email' => [
+                        'type' => 'pattern_capture',
                         'preserve_original' => 1,
-                        'patterns'          => [
-                            "(\\w+)",
-                            "(\\p{L}+)",
-                            "(\\d+)",
-                            "@(.+)"
-                        ]
-                    ]
-                ]
-            ]
+                        'patterns' => [
+                            '(\\w+)',
+                            '(\\p{L}+)',
+                            '(\\d+)',
+                            '@(.+)',
+                        ],
+                    ],
+                ],
+            ],
 
         ],
-    ]
+    ],
 
 ];

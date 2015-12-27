@@ -1,4 +1,6 @@
-<?php namespace Modules\Menu;
+<?php
+
+namespace Modules\Menu;
 
 use Illuminate\Database\Eloquent\Model;
 use Modules\System\Presenter\PresentableEntity;
@@ -8,7 +10,6 @@ use Modules\System\Translatable\Translatable;
 
 class MenuItem extends Model implements PresentableEntity
 {
-
     use Translatable;
     use ModelAutoSort;
     use PresentableTrait;
@@ -54,5 +55,4 @@ class MenuItem extends Model implements PresentableEntity
     {
         return $this->attributes['target_blank'] ? '_blank' : null;
     }
-
 }

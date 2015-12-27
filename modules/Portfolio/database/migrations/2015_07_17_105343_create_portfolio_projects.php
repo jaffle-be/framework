@@ -7,11 +7,8 @@ use Modules\Module\ModuleRoute;
 
 class CreatePortfolioProjects extends Migration
 {
-
     /**
      * Run the migrations.
-     *
-     * @return void
      */
     public function up()
     {
@@ -29,33 +26,33 @@ class CreatePortfolioProjects extends Migration
         //install the module itself.
         $module = Module::create([
             'namespace' => 'portfolio',
-            'nl'        => [
+            'nl' => [
                 'name' => 'Portfolio',
             ],
-            'en'        => [
+            'en' => [
                 'name' => 'Portfolio',
             ],
-            'fr'        => [
+            'fr' => [
                 'name' => 'Portfolio',
             ],
-            'de'        => [
+            'de' => [
                 'name' => 'Portfolio',
-            ]
+            ],
         ]);
 
         $module->routes()->save(new ModuleRoute([
             'name' => 'store.portfolio.index',
-            'nl'   => [
-                'title' => 'portfolio overview'
+            'nl' => [
+                'title' => 'portfolio overview',
             ],
-            'en'   => [
-                'title' => 'portfolio overview'
+            'en' => [
+                'title' => 'portfolio overview',
             ],
-            'fr'   => [
-                'title' => 'portfolio overview'
+            'fr' => [
+                'title' => 'portfolio overview',
             ],
-            'de'   => [
-                'title' => 'portfolio overview'
+            'de' => [
+                'title' => 'portfolio overview',
             ],
 
         ]));
@@ -63,8 +60,6 @@ class CreatePortfolioProjects extends Migration
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
     public function down()
     {

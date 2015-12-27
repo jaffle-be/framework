@@ -1,4 +1,6 @@
-<?php namespace Modules\Shop\Gamma;
+<?php
+
+namespace Modules\Shop\Gamma;
 
 use Illuminate\Support\Collection;
 use Modules\Account\Account;
@@ -24,11 +26,9 @@ class GammaSubscriptionManager
         $digiredo = $this->repo->baseAccount();
 
         //for now, shops are hardcoded to subscribe to digiredo and themselves.
-        if($account->alias == $digiredo->alias)
-        {
+        if ($account->alias == $digiredo->alias) {
             return new Collection([$digiredo]);
-        }
-        else{
+        } else {
             return new Collection([$digiredo, $account]);
         }
     }
@@ -39,13 +39,11 @@ class GammaSubscriptionManager
     }
 
     /**
-     * @param Account|null $account
-     *
      * @return bool|Account
      */
     protected function defaultAccount($account)
     {
-        if($account){
+        if ($account) {
             return $account;
         }
 

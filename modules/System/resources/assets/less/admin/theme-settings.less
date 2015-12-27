@@ -1,35 +1,35 @@
 .control-label {
-  margin-bottom: 15px;
+    margin-bottom: 15px;
 }
 
 .menu-items {
 
-  list-style: none;
-  padding: 0;
+    list-style: none;
+    padding: 0;
 
-  .active {
-    background: fade(@brand-primary, 15%);
-  }
-
-  > li {
-
-    font-size: larger;
-    display: block;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    padding-left: 5px;
-
-    &:not(:last-child) {
-      border-bottom: 1px solid @border-color;
+    .active {
+        background: fade(@brand-primary, 15%);
     }
-  }
 
-  .sorter {
+    > li {
 
-    & > i {
-      margin-right: 15px;
+        font-size: larger;
+        display: block;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        padding-left: 5px;
+
+        &:not(:last-child) {
+            border-bottom: 1px solid @border-color;
+        }
     }
-    .pull-right;
-  }
+
+    .sorter {
+
+        & > i {
+            margin-right: 15px;
+        }
+        .pull-right;
+    }
 
 }

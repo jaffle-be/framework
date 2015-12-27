@@ -4,7 +4,6 @@
 @import (inline) "../../../../../../bower_components/dropzone/dist/min/dropzone.min.css";
 @import (inline) '../../../../../../bower_components/angularjs-toaster/toaster.min.css';
 @import "inspinia/style.less";
-
 @import (inline) "../../../../../../bower_components/ng-sortable/dist/ng-sortable.min.css";
 
 //correct bootstrap glyphicons font path
@@ -22,20 +21,20 @@
 @fa-font-path: "/fonts";
 
 .slug {
-  cursor: default;
-  background-color: @gray-lighter;
+    cursor: default;
+    background-color: @gray-lighter;
 }
 
 .autosize {
-  min-height: 150px;
+    min-height: 150px;
 }
 
 .autosize-lg {
-  min-height: 250px;
+    min-height: 250px;
 }
 
 .table.vertical tbody > tr > td {
-  vertical-align: middle;
+    vertical-align: middle;
 }
 
 //this is a port from the materialize css design framework.
@@ -45,26 +44,26 @@
 
 //fix overriding default btn colors
 div.datepicker {
-  .btn-default {
-    color: #333;
-    background-color: #fff;
-  }
-
-  li {
-    padding: 5px;
-
-    &::after {
-      content: ' ';
-      clear: both;
+    .btn-default {
+        color: #333;
+        background-color: #fff;
     }
-  }
 
-  & :focus {
-    //remove ugly focus, specifically for datepicker,
-    //but then we had to outline each element individually,
-    //which is a tiresome thing to do
-    outline: none;
-  }
+    li {
+        padding: 5px;
+
+        &::after {
+            content: ' ';
+            clear: both;
+        }
+    }
+
+    & :focus {
+        //remove ugly focus, specifically for datepicker,
+        //but then we had to outline each element individually,
+        //which is a tiresome thing to do
+        outline: none;
+    }
 
 }
 
@@ -80,20 +79,19 @@ div.datepicker {
 
 table {
 
-  img {
-    margin-right: 10px;
-  }
+    img {
+        margin-right: 10px;
+    }
 
 }
 
-div.search-navigation
-{
-  margin-bottom: 1.5em;
+div.search-navigation {
+    margin-bottom: 1.5em;
 
-  .pagination{
-    margin-top: .4em;
-    margin-bottom: 0;
-  }
+    .pagination {
+        margin-top: .4em;
+        margin-bottom: 0;
+    }
 
 }
 
@@ -104,25 +102,25 @@ div.search-navigation
 /* ******************************************* */
 
 .as-sortable-item, .as-sortable-placeholder {
-  min-height: 20px;
-  margin: 1px 2px 5px 1px;
+    min-height: 20px;
+    margin: 1px 2px 5px 1px;
 }
 
 .as-sortable-item {
-  background-color: #ffffff;
+    background-color: #ffffff;
 }
 
 .as-sortable-item-handle {
 }
 
 .as-sortable-placeholder {
-  border: 1px dashed darkgrey;
-  box-sizing: border-box;
-  background-color: #dbdbdb;
+    border: 1px dashed darkgrey;
+    box-sizing: border-box;
+    background-color: #dbdbdb;
 }
 
 .as-sortable-drag {
-  opacity: .8;
+    opacity: .8;
 }
 
 .as-sortable-hidden {

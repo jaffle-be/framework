@@ -1,9 +1,9 @@
 <div class="row">
 
     <div class="col-xs-12">
-        <h3><?= $title ?></h3>
+        <h3><?php echo $title ?></h3>
         <br>
-        <?= $text ?>
+        <?php echo $text ?>
     </div>
 
 </div>

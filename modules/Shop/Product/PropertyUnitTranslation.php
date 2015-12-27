@@ -1,10 +1,11 @@
-<?php namespace Modules\Shop\Product;
+<?php
+
+namespace Modules\Shop\Product;
 
 use Modules\System\Translatable\TranslationModel;
 
 class PropertyUnitTranslation extends TranslationModel
 {
-
     protected $table = 'product_properties_units_translations';
 
     protected $fillable = ['name', 'unit'];
@@ -13,5 +14,4 @@ class PropertyUnitTranslation extends TranslationModel
     {
         return $this->belongsTo('Modules\Shop\Product\PropertyUnit', 'unit_id');
     }
-
 }

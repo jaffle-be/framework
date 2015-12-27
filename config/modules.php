@@ -48,7 +48,7 @@ return [
             'js/admin/controllers/overview' => 'resources/assets/js/admin/controllers/OverviewController.js',
             'js/admin/controllers/detail' => 'resources/assets/js/admin/controllers/DetailController.js',
             'js/admin/services/service' => 'resources/assets/js/admin/services/Service.js',
-        ]
+        ],
     ],
     'paths' => [
         /*
@@ -160,7 +160,7 @@ return [
     |
     */
     'cache' => [
-        'enabled' => env('APP_ENV') == 'production' ? true :false,
+        'enabled' => env('APP_ENV') == 'production' ? true : false,
         'key' => 'pingpong-modules',
         'lifetime' => 60,
     ],

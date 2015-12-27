@@ -1,11 +1,15 @@
-<?php namespace Modules\Media;
+<?php
+
+namespace Modules\Media;
 
 use Exception;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Relations\MorphOne;
 use InvalidArgumentException;
+use Modules\System\Scopes\ModelAccountResource;
 
 trait StoringMedia
 {
-
     use ImageDimensionHelpers;
 
     public function mediaStoresMultiple()
@@ -74,9 +78,13 @@ trait StoringMedia
 
     public function getMediaFolder($type = null, $size = null)
     {
-        $account = isset($this->attributes['account_id']) ? $this->attributes['account_id'] : app('Modules\Account\AccountManager')->account()->id;
+        if (uses_trait(get_class($this), ModelAccountResource::class)) {
+            $account = isset($this->attributes['account_id']) ? $this->attributes['account_id'] : app('Modules\Account\AccountManager')->account()->id;
 
-        $media = str_replace('{account}', $account, $this->media);
+            $media = str_replace('{account}', $account, $this->media);
+        } else {
+            $media = $this->media;
+        }
 
         /** @var Configurator $config */
         $config = app('Modules\Media\Configurator');
@@ -85,19 +93,35 @@ trait StoringMedia
             return sprintf('%s/%d/', $media, $this->attributes['id']);
         }
 
-        if (!empty($type) && !$config->isSupportedMediaType($type)) {
+        if (! empty($type) && ! $config->isSupportedMediaType($type)) {
             throw new InvalidArgumentException('Need valid media type to return a proper folder');
         }
 
-        if (!property_exists(get_class($this), 'media')) {
+        if (! property_exists(get_class($this), 'media')) {
             throw new Exception('Please define media attribute on your model');
         }
 
-        if (!$size) {
+        if (! $size) {
             return sprintf('%s/%d/%s/', $media, $this->attributes['id'], $type);
         }
 
         return sprintf('%s/%d/%s/%s/', $media, $this->attributes['id'], $type, $size);
     }
 
+    public function scopeHasImages(Builder $builder)
+    {
+        /** @var MorphOne $relation */
+        $relation = $this->images();
+
+        $key = $this->getTable().'.'.$this->getKeyName();
+
+        $from = $relation->getQuery()->getQuery()->from;
+
+        $builder->join($from, function ($join) use ($relation, $key) {
+            $join->where($relation->getMorphType(), '=', $relation->getMorphClass());
+            $join->on($relation->getForeignKey(), '=', $key);
+        });
+
+        return $builder;
+    }
 }

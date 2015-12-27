@@ -1,11 +1,12 @@
-<?php namespace Modules\System\Pushable;
+<?php
+
+namespace Modules\System\Pushable;
 
 use App\Events\Event;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
 class PushableEvent extends Event implements ShouldBroadcast
 {
-
     public $data;
 
     protected $event;
@@ -27,40 +28,17 @@ class PushableEvent extends Event implements ShouldBroadcast
     public function broadcastOn()
     {
         return [
-            $this->data->getPushableChannel()
+            $this->data->getPushableChannel(),
         ];
     }
 
     public function broadcastAs()
     {
-        if ($name = $this->data->getPushableEventType()) {
-            return $name . '.' . $this->event;
-        }
-
-        return $this->cleanedType() . '.' . $this->event;
+        return $this->data->getPushableEventType().'.'.$this->event;
     }
 
     public function broadcastWith()
     {
         return $this->data->getPushableData();
     }
-
-    /**
-     * @return array|mixed|string
-     */
-    protected function cleanedType()
-    {
-        $type = explode('\\', $this->type);
-
-        $type = array_map(function ($item) {
-            return snake_case($item);
-        }, $type);
-
-        $type = implode('.', $type);
-
-        $type = preg_replace('/modules\.(.+?)\./', '', $type, 1);
-
-        return $type;
-    }
-
 }

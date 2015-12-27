@@ -12,8 +12,7 @@
                 //infographic uploader
                 this.uploader = function (type, id, locale, handlers) {
 
-                    if (typeof handlers === 'function')
-                    {
+                    if (typeof handlers === 'function') {
                         //handlers is only a success callback
                         handlers = {
                             success: handlers
@@ -49,8 +48,7 @@
 
                 this.update = function (type, id, graphic) {
 
-                    if (this.timeouts[graphic.id])
-                    {
+                    if (this.timeouts[graphic.id]) {
                         $timeout.cancel(this.timeouts[graphic.id]);
                     }
 

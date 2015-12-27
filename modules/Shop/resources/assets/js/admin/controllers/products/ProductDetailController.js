@@ -17,15 +17,13 @@
 
             this.load = function (id) {
 
-                if (id)
-                {
+                if (id) {
                     this.products.find(id, function (product) {
                         me.product = product;
                         $scope.sorting = PropertySortingService.init(product);
                     });
                 }
-                else
-                {
+                else {
                     me.product = new Product();
                 }
             };
@@ -61,8 +59,7 @@
 
             this.deleteGroup = function (group) {
                 PropertyService.deleteGroup(group).then(function (response) {
-                    if (response.status == 'oke')
-                    {
+                    if (response.status == 'oke') {
                         _.remove(me.product.propertyProperties, function (item, key) {
                             return key == group.id;
                         });
@@ -98,14 +95,12 @@
                 var value = me.product.properties[property.id];
 
                 //if we're creating already for this property, don't do anything
-                if (me.creatingValues[property.id])
-                {
+                if (me.creatingValues[property.id]) {
                     return;
                 }
 
                 //if the value has no id, it will be a new value.
-                if (!value.id)
-                {
+                if (!value.id) {
                     me.creatingValues[property.id] = true;
                     value.product_id = me.product.id;
                     value.property_id = property.id;
@@ -117,8 +112,7 @@
                         PropertyService.updateValue(value);
                     });
                 }
-                else
-                {
+                else {
                     PropertyService.updateValue(value);
                 }
             };
@@ -127,18 +121,15 @@
                 var value = me.product.properties[property.id];
 
                 //cancel when still creating
-                if (me.creatingOptions[property.id])
-                {
+                if (me.creatingOptions[property.id]) {
                     return false;
                 }
 
-                if (typeof value !== 'undefined' && value.option_id)
-                {
+                if (typeof value !== 'undefined' && value.option_id) {
                     var option = me.product.propertyOptions[property.id][value.option_id];
                     PropertyService.updateOption(option);
                 }
-                else
-                {
+                else {
                     //if the select already had something selected,
                     //a newly created item will be added to the propertyOptions object
                     //under the key null (not as string 'null').
@@ -184,8 +175,7 @@
                 me.creatingPropertyForGroup = group;
             };
 
-            this.updateUnit = function(property)
-            {
+            this.updateUnit = function (property) {
                 var unit = me.product.propertyUnits[property.unit_id];
                 PropertyService.updateUnit(unit);
             };

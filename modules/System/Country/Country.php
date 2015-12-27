@@ -6,17 +6,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class Country extends Model
 {
-
     use \Modules\System\Translatable\Translatable;
 
     public $timestamps = false;
 
-    protected $table = "country";
+    protected $table = 'country';
 
     protected $useTranslationFallback = true;
 
     protected $translatedAttributes = [
-        'name'
+        'name',
     ];
 
     protected $fillable = [
@@ -24,5 +23,4 @@ class Country extends Model
         'iso_code_2',
         'iso_code_3',
     ];
-
 }

@@ -21,21 +21,18 @@
                     //but also when something else was added to the menu. or removed.
                     $scope.$watch('menu', function (newValue, oldValue) {
 
-                        if (newValue)
-                        {
+                        if (newValue) {
                             me.initItem();
                         }
                     });
 
                     this.saveItem = function (delayed) {
                         //only save existing
-                        if (!$scope.item.id)
-                        {
+                        if (!$scope.item.id) {
                             return;
                         }
 
-                        if (typeof delayed === 'undefined')
-                        {
+                        if (typeof delayed === 'undefined') {
                             delayed = true;
                         }
 
@@ -51,17 +48,14 @@
 
                     this.deleteItem = function () {
                         MenuService.deleteItem($scope.item, function (response) {
-                            if (!response.id)
-                            {
+                            if (!response.id) {
                                 //when deleting an item that was linked to a page object,
                                 //we need to add the returned page object to the available pages for that menu
-                                if (response.page)
-                                {
+                                if (response.page) {
                                     $scope.menu.availablePages.push(response.page);
                                 }
 
-                                if (response.route)
-                                {
+                                if (response.route) {
                                     $scope.menu.availableRoutes.push(response.route);
                                 }
 

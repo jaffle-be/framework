@@ -1,4 +1,6 @@
-<?php namespace Modules\Media\Http\Admin;
+<?php
+
+namespace Modules\Media\Http\Admin;
 
 use Illuminate\Http\Request;
 use Modules\Media\Commands\UpdateImage;
@@ -11,7 +13,6 @@ use Modules\Theme\ThemeManager;
 
 class ImageController extends AdminController
 {
-
     use MediaWidgetPreperations;
 
     /**
@@ -20,8 +21,7 @@ class ImageController extends AdminController
     protected $media;
 
     /**
-     * @param ThemeManager             $theme
-     * @param MediaRepositoryInterface $media
+     *
      */
     public function __construct(ThemeManager $theme, MediaRepositoryInterface $media)
     {
@@ -50,10 +50,7 @@ class ImageController extends AdminController
 
         $file = $request->file('file');
 
-        $image = $this->dispatchFromArray(UploadNewImage::class, [
-            'owner' => $owner,
-            'image' => $file,
-        ]);
+        $image = $this->dispatch(new UploadNewImage($owner, $file));
 
         $image->load($this->mediaImageRelations());
 
@@ -67,13 +64,9 @@ class ImageController extends AdminController
         $owner = $this->owner($request);
 
         if ($image->owner->id == $owner->id) {
-
             $input = translation_input($request, ['_token', 'title']);
 
-            return $this->dispatchFromArray(UpdateImage::class, [
-                'image' => $image,
-                'input' => $input
-            ]);
+            return $this->dispatch(new UpdateImage($image, $input));
         }
     }
 
@@ -100,5 +93,4 @@ class ImageController extends AdminController
             $image->save();
         }
     }
-
 }

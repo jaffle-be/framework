@@ -1,4 +1,6 @@
-<?php namespace Modules\Shop\Product;
+<?php
+
+namespace Modules\Shop\Product;
 
 use Illuminate\Database\Eloquent\Model;
 use Modules\System\Scopes\ModelAutoSort;
@@ -26,5 +28,4 @@ class PropertyGroup extends Model
     {
         return $this->hasMany('Modules\Shop\Product\Property', 'group_id');
     }
-
 }

@@ -1,12 +1,12 @@
-<?php namespace Modules\Account\Jobs\Membership;
+<?php
+
+namespace Modules\Account\Jobs\Membership;
 
 use App\Jobs\Job;
-use Illuminate\Contracts\Bus\SelfHandling;
 use Modules\Account\Membership;
 
-class RevokeMembership extends Job implements SelfHandling
+class RevokeMembership extends Job
 {
-
     /**
      * @var Membership
      */

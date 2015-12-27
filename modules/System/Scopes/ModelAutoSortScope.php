@@ -1,19 +1,15 @@
-<?php namespace Modules\System\Scopes;
+<?php
+
+namespace Modules\System\Scopes;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\ScopeInterface;
+use Illuminate\Database\Eloquent\Scope;
 
-class ModelAutoSortScope implements ScopeInterface
+class ModelAutoSortScope implements Scope
 {
-
     /**
      * Apply the scope to a given Eloquent query builder.
-     *
-     * @param  \Illuminate\Database\Eloquent\Builder $builder
-     * @param  \Illuminate\Database\Eloquent\Model   $model
-     *
-     * @return void
      */
     public function apply(Builder $builder, Model $model)
     {
@@ -22,7 +18,7 @@ class ModelAutoSortScope implements ScopeInterface
         $order = 'asc';
 
         if (property_exists(get_class($model), 'autosort')) {
-            $autosort = (array)$model->autosort;
+            $autosort = (array) $model->autosort;
 
             $field = $autosort[0];
 
@@ -31,18 +27,4 @@ class ModelAutoSortScope implements ScopeInterface
 
         $builder->orderBy($field, $order);
     }
-
-    /**
-     * Remove the scope from the given Eloquent query builder.
-     *
-     * @param  \Illuminate\Database\Eloquent\Builder $builder
-     * @param  \Illuminate\Database\Eloquent\Model   $model
-     *
-     * @return void
-     */
-    public function remove(Builder $builder, Model $model)
-    {
-        $query = $builder->getQuery();
-    }
-
 }

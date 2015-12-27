@@ -10,7 +10,6 @@ use Modules\System\Http\AdminController;
 
 class ContactController extends AdminController
 {
-
     public function page(AccountManager $manager)
     {
         $account = $manager->account();
@@ -25,8 +24,6 @@ class ContactController extends AdminController
     /**
      * Index is the show method here, but we don't need an id to provide it.
      *
-     * @param AccountManager $manager
-     *
      * @return mixed
      */
     public function index(AccountManager $manager)
@@ -38,12 +35,8 @@ class ContactController extends AdminController
 
     public function update(AccountContactInformation $accountContactInformation, UpdateInformationRequest $request, AccountManager $manager)
     {
-        $response = $this->dispatchFromArray(UpdateInformation::class, [
-            'info'  => $accountContactInformation,
-            'input' => translation_input($request, [])
-        ]);
+        $response = $this->dispatch(new UpdateInformation($accountContactInformation, translation_input($request)));
 
         $manager->updated();
     }
-
 }

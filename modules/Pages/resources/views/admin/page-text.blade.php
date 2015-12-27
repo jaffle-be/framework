@@ -6,7 +6,8 @@
                 <h5>{{ Lang::get('pages::admin.page.details') }}</h5>
             </div>
             <div class="col-xs-4 text-right">
-                <span id="reset" class="btn-sm btn btn-danger" ng-really="vm.delete()"><i class="fa fa-trash"></i></span>
+                <span id="reset" class="btn-sm btn btn-danger" ng-really="vm.delete()"><i
+                        class="fa fa-trash"></i></span>
             </div>
         </div>
     </div>
@@ -24,7 +25,8 @@
                         <label for="title" class="control-label">{{ Lang::get('pages::admin.page.title') }}</label>
 
                         <div>
-                            <input ng-change="vm.save()" autocomplete="off" type="text" name="title" id="title" class="form-control" ng-model="vm.page.translations[vm.options.locale].title"/>
+                            <input ng-change="vm.save()" autocomplete="off" type="text" name="title" id="title"
+                                   class="form-control" ng-model="vm.page.translations[vm.options.locale].title"/>
                         </div>
                     </div>
 
@@ -34,7 +36,8 @@
 
                     <div class="control-label">&nbsp;</div>
 
-                    <input type="checkbox" class="filled-in" id="published" ng-model="vm.page.translations[vm.options.locale].published" ng-change="vm.save()"/>
+                    <input type="checkbox" class="filled-in" id="published"
+                           ng-model="vm.page.translations[vm.options.locale].published" ng-change="vm.save()"/>
                     <label for="published">{{ Lang::get('pages::admin.page.published') }}</label>
 
                 </div>
@@ -53,7 +56,9 @@
                 <label for="content" class="control-label">{{ Lang::get('pages::admin.page.content') }}</label>
 
                 <div>
-                    <textarea auto-size class="form-control autosize-lg" ng-model="vm.page.translations[vm.options.locale].content" ng-change="vm.save()"></textarea>
+                    <textarea auto-size class="form-control autosize-lg"
+                              ng-model="vm.page.translations[vm.options.locale].content"
+                              ng-change="vm.save()"></textarea>
                 </div>
             </div>
 

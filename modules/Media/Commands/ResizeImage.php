@@ -1,17 +1,17 @@
-<?php namespace Modules\Media\Commands;
+<?php
+
+namespace Modules\Media\Commands;
 
 use App\Jobs\Job;
 use Exception;
-use Illuminate\Contracts\Bus\SelfHandling;
 use Illuminate\Filesystem\Filesystem;
 use Intervention\Image\ImageManager;
 use Modules\Media\Image;
 use Modules\Media\ImageDimensionHelpers;
 use Modules\Media\MediaRepositoryInterface;
 
-class ResizeImage extends Job implements SelfHandling
+class ResizeImage extends Job
 {
-
     use ImageDimensionHelpers;
 
     protected $image;
@@ -67,8 +67,7 @@ class ResizeImage extends Job implements SelfHandling
 
             try {
                 $media->createThumbnailImage($this->getPayload($width, $height, $path), $this->image);
-            }
-            catch (Exception $e) {
+            } catch (Exception $e) {
                 $files->delete(public_path($path));
 
                 unset($image);
@@ -81,19 +80,15 @@ class ResizeImage extends Job implements SelfHandling
     }
 
     /**
-     * @param Filesystem $files
-     *
-     * @param bool       $public
-     *
      * @return string
      */
     protected function getFolder(Filesystem $files, $public = false)
     {
-        $base = $this->directory . '/' . $this->size;
+        $base = $this->directory.'/'.$this->size;
 
         $folder = public_path($base);
 
-        if (!$files->isDirectory($folder)) {
+        if (! $files->isDirectory($folder)) {
             $files->makeDirectory($folder);
         }
 
@@ -105,34 +100,28 @@ class ResizeImage extends Job implements SelfHandling
     }
 
     /**
-     * @param Filesystem $files
-     *
      * @return string
      */
     protected function getPath(Filesystem $files, $public = false)
     {
         $folder = $this->getFolder($files, $public);
 
-        $path = $folder . '/' . $this->filename;
+        $path = $folder.'/'.$this->filename;
 
         return $path;
     }
 
     /**
-     * @param $width
-     * @param $height
-     * @param $path
-     *
      * @return array
      */
     protected function getPayload($width, $height, $path)
     {
         return [
-            'filename'  => $this->filename,
-            'width'     => $width,
-            'height'    => $height,
+            'filename' => $this->filename,
+            'width' => $width,
+            'height' => $height,
             'extension' => $this->extension,
-            'path'      => $path,
+            'path' => $path,
         ];
     }
 }

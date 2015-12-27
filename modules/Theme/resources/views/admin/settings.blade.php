@@ -20,12 +20,15 @@
                     <div class="col-lg-offset-1 col-lg-4 text-center" style="padding-top: 40px">
                         <div class="form-group">
 
-                            <label class="control-label" for="theme">{{ Lang::get('theme::admin.active-theme') }}</label>
-                            <select class="form-control" ng-model="vm.theme" ng-options="theme.name for theme in vm.themes"></select>
+                            <label class="control-label"
+                                   for="theme">{{ Lang::get('theme::admin.active-theme') }}</label>
+                            <select class="form-control" ng-model="vm.theme"
+                                    ng-options="theme.name for theme in vm.themes"></select>
                         </div>
 
                         <div class="form-group">
-                            <button class="btn btn-warning" ng-click="vm.activate()">{{ Lang::get('theme::admin.change-theme') }}</button>
+                            <button class="btn btn-warning"
+                                    ng-click="vm.activate()">{{ Lang::get('theme::admin.change-theme') }}</button>
                         </div>
                     </div>
 
@@ -33,7 +36,8 @@
 
                         <label class="control-label">{{ Lang::get('theme::admin.logo') }}</label>
 
-                        <image-input owner-type="'account-logo'" owner-id="{{ $account->id }}" locale="vm.options.locale" limit="1"></image-input>
+                        <image-input owner-type="'account-logo'" owner-id="{{ $account->id }}"
+                                     locale="vm.options.locale" limit="1"></image-input>
                     </div>
 
                 </div>

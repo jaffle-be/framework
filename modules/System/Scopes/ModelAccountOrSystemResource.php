@@ -1,8 +1,9 @@
-<?php namespace Modules\System\Scopes;
+<?php
+
+namespace Modules\System\Scopes;
 
 trait ModelAccountOrSystemResource
 {
-
     public static function bootModelAccountOrSystemResource()
     {
         static::addGlobalScope(app()->make('Modules\System\Scopes\ModelAccountOrSystemResourceScope'));
@@ -12,5 +13,4 @@ trait ModelAccountOrSystemResource
     {
         return $this->belongsTo('Modules\Account\Account');
     }
-
 }

@@ -82,7 +82,7 @@ return [
             'bing'      => null,
             'alexa'     => null,
             'pinterest' => null,
-            'yandex'    => null
+            'yandex'    => null,
         ],
 
         'providers'       => [
@@ -105,20 +105,20 @@ return [
                     'author'    => null,
                     //link to facebook profile or facebook id
                     'publisher' => null,
-                ]
+                ],
             ],
             'google'   => [
                 'article' => [
                     'author'    => 'https://www.facebook.com/thomas.warlop',
                     'publisher' => 'https://www.facebook.com/thomas.warlop',
-                ]
-            ]
+                ],
+            ],
         ],
 
         'generic'         => [
             'title'       => 'Digiredo', // set false to total remove
             'description' => 'A multipurpose platform', // set false to total remove
-            'keywords'    => 'a multipurpose larangular platform'
+            'keywords'    => 'a multipurpose larangular platform',
         ],
 
         'twitter'         => [
@@ -151,7 +151,7 @@ return [
             'blog'      => Modules\Blog\Post::class,
             'portfolio' => Modules\Portfolio\Project::class,
             'product'   => Modules\Shop\Product\Product::class,
-        ]
+        ],
 
     ],
 ];

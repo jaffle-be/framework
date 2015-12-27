@@ -1,15 +1,15 @@
 {
-  "name": "Portfolio",
-  "alias": "portfolio",
-  "description": "",
-  "keywords": [],
-  "active": 1,
-  "order": 10,
-  "providers": [
-    "Modules\\Portfolio\\Providers\\PortfolioServiceProvider"
-  ],
-  "aliases": {},
-  "files": [
-    "helpers.php"
-  ]
+    "name": "Portfolio",
+    "alias": "portfolio",
+    "description": "",
+    "keywords": [],
+    "active": 1,
+    "order": 10,
+    "providers": [
+        "Modules\\Portfolio\\Providers\\PortfolioServiceProvider"
+    ],
+    "aliases": {},
+    "files": [
+        "helpers.php"
+    ]
 }

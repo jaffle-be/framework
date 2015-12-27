@@ -1,10 +1,11 @@
-<?php namespace Modules\Shop\Product;
+<?php
+
+namespace Modules\Shop\Product;
 
 use Modules\System\Translatable\TranslationModel;
 
 class PropertyTranslation extends TranslationModel
 {
-
     protected $table = 'product_properties_translations';
 
     protected $fillable = ['name'];
@@ -13,5 +14,4 @@ class PropertyTranslation extends TranslationModel
     {
         return $this->belongsTo('Modules\Shop\Product\Property', 'property_id');
     }
-
 }

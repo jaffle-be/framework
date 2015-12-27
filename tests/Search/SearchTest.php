@@ -1,11 +1,12 @@
-<?php namespace Test\Search;
+<?php
+
+namespace Test\Search;
 
 use Test\FrontTestCase;
 use Test\Routes\RouteTests;
 
 class SearchTest extends FrontTestCase
 {
-
     use RouteTests;
 
     public function testSearch()

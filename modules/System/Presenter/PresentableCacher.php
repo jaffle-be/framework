@@ -1,10 +1,11 @@
-<?php namespace Modules\System\Presenter;
+<?php
+
+namespace Modules\System\Presenter;
 
 use Illuminate\Database\Eloquent\Model;
 
 class PresentableCacher
 {
-
     public function handle($model)
     {
         if ($model instanceof PresentableEntity && $model instanceof PresentableCache) {
@@ -17,5 +18,4 @@ class PresentableCacher
             }
         }
     }
-
 }

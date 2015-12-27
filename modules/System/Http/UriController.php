@@ -1,4 +1,6 @@
-<?php namespace Modules\System\Http;
+<?php
+
+namespace Modules\System\Http;
 
 use Modules\Blog\Http\BlogFrontControlling;
 use Modules\Blog\PostTranslation;
@@ -8,7 +10,6 @@ use Modules\System\Uri\Uri;
 
 class UriController extends FrontController
 {
-
     use BlogFrontControlling, PagesFrontControlling;
 
     public function handle(Uri $uri, Uri $suburi = null, Uri $subesturi = null)
@@ -22,7 +23,7 @@ class UriController extends FrontController
             $repo = app('Modules\Blog\PostRepositoryInterface');
 
             return $this->renderPostDetail($owner, $repo);
-        } else if ($owner instanceof PageTranslation) {
+        } elseif ($owner instanceof PageTranslation) {
             $repo = app('Modules\Pages\PageRepositoryInterface');
 
             return $this->renderPageDetail($owner, $repo);
@@ -32,23 +33,20 @@ class UriController extends FrontController
     }
 
     /**
-     * @param Uri $uri
-     * @param Uri $suburi
-     * @param Uri $subesturi
+     * @return Uri
      */
     protected function resourceToDisplay(Uri $uri, Uri $suburi = null, Uri $subesturi = null)
     {
         $display = $subesturi;
 
-        if (!$display) {
+        if (! $display) {
             $display = $suburi;
         }
 
-        if (!$display) {
+        if (! $display) {
             $display = $uri;
         }
 
         return $display;
     }
-
 }

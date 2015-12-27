@@ -12,14 +12,12 @@
 
             this.load = function (id) {
 
-                if (id)
-                {
+                if (id) {
                     this.products.find(id, function (product) {
                         me.product = product;
                     });
                 }
-                else
-                {
+                else {
                     me.product = new Product();
                 }
             };

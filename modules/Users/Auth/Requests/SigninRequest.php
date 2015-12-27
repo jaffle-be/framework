@@ -1,10 +1,11 @@
-<?php namespace Modules\Users\Auth\Requests;
+<?php
+
+namespace Modules\Users\Auth\Requests;
 
 use App\Http\Requests\Request;
 
 class SigninRequest extends Request
 {
-
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -23,8 +24,8 @@ class SigninRequest extends Request
     public function rules()
     {
         return [
-            'email'    => 'required|email',
-            'password' => 'required'
+            'email' => 'required|email',
+            'password' => 'required',
         ];
     }
 }

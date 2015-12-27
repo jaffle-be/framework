@@ -1,11 +1,12 @@
-<?php namespace Modules\System\Seo\Providers;
+<?php
+
+namespace Modules\System\Seo\Providers;
 
 use Modules\System\Seo\MetaTagProvider;
 use Modules\System\Seo\SeoEntity;
 
 class Generic extends MetaTagProvider
 {
-
     protected function renderTitle($key, $value)
     {
         return "<title>$value</title>";
@@ -17,5 +18,4 @@ class Generic extends MetaTagProvider
         $this->addProperty('description', $seo->getSeoDescription());
         $this->addProperty('keywords', $seo->getSeoKeywords());
     }
-
 }

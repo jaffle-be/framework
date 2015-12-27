@@ -1,22 +1,21 @@
-<?php namespace Modules\Media\Commands;
+<?php
+
+namespace Modules\Media\Commands;
 
 use App\Jobs\Job;
 use Exception;
-use Illuminate\Contracts\Bus\SelfHandling;
 use Illuminate\Filesystem\Filesystem;
-use Illuminate\Foundation\Bus\DispatchesCommands;
+use Illuminate\Foundation\Bus\DispatchesJobs;
 use Intervention\Image\ImageManager;
 use Modules\Account\Account;
 use Modules\Media\Configurator;
-use Modules\Media\Media;
 use Modules\Media\MediaRepositoryInterface;
 use Modules\Media\StoresMedia;
 use Modules\System\Locale;
 
-class StoreNewInfographic extends Job implements SelfHandling
+class StoreNewInfographic extends Job
 {
-
-    use DispatchesCommands;
+    use DispatchesJobs;
 
     protected $account;
 
@@ -71,11 +70,7 @@ class StoreNewInfographic extends Job implements SelfHandling
     protected $path;
 
     /**
-     * @param Account     $account
-     * @param StoresMedia $owner
-     * @param Locale      $locale
-     * @param string      $path
-     * @param null        $rename
+     *
      */
     public function __construct(Account $account, StoresMedia $owner, Locale $locale, $path, $rename = null)
     {
@@ -92,7 +87,7 @@ class StoreNewInfographic extends Job implements SelfHandling
 
     public function handle(MediaRepositoryInterface $repo, ImageManager $images, Filesystem $files, Configurator $config)
     {
-        if (!$files->exists($this->currentPath)) {
+        if (! $files->exists($this->currentPath)) {
             return false;
         }
 
@@ -102,21 +97,15 @@ class StoreNewInfographic extends Job implements SelfHandling
 
         try {
             $image = $repo->createInfographic($this->owner, $this->getPayload());
-        }
-        catch (Exception $query) {
+        } catch (Exception $query) {
             $files->delete(public_path($this->path));
 
             return false;
         }
 
         if ($image) {
-
             foreach ($config->getImageSizes($this->owner) as $size) {
-                $this->dispatchFromArray(ResizeInfographic::class, [
-                    'graphic'    => $image,
-                    'size'       => $size,
-                    'cachedPath' => $this->currentPath,
-                ]);
+                $this->dispatch(new ResizeInfographic($image, $size, $this->currentPath));
             }
 
             return $image;
@@ -126,7 +115,7 @@ class StoreNewInfographic extends Job implements SelfHandling
     }
 
     /**
-     * set the filename, extension and the size
+     * set the filename, extension and the size.
      */
     protected function dimensions(ImageManager $image)
     {
@@ -140,12 +129,12 @@ class StoreNewInfographic extends Job implements SelfHandling
         $abstract = $config->getAbstractPath($this->owner, 'infographics');
         $public = $config->getPublicPath($this->owner, 'infographics');
 
-        if (!$files->isDirectory($public)) {
+        if (! $files->isDirectory($public)) {
             $files->makeDirectory($public, 0755, true);
         }
 
         //abstract path to actual file
-        $path = $abstract . $this->rename;
+        $path = $abstract.$this->rename;
 
         //always copy the file first
         $files->copy($this->currentPath, public_path($path));
@@ -167,12 +156,12 @@ class StoreNewInfographic extends Job implements SelfHandling
     {
         return [
             'account_id' => $this->account->id,
-            'locale_id'  => $this->locale->id,
-            'path'       => $this->path,
-            'filename'   => $this->rename,
-            'extension'  => $this->extension,
-            'width'      => $this->width,
-            'height'     => $this->height,
+            'locale_id' => $this->locale->id,
+            'path' => $this->path,
+            'filename' => $this->rename,
+            'extension' => $this->extension,
+            'width' => $this->width,
+            'height' => $this->height,
         ];
     }
 }

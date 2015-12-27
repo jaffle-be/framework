@@ -1,12 +1,12 @@
-<?php namespace Modules\Marketing\Jobs\Newsletter;
+<?php
+
+namespace Modules\Marketing\Jobs\Newsletter;
 
 use App\Jobs\Job;
-use Illuminate\Contracts\Bus\SelfHandling;
 use Modules\Marketing\Newsletter\Campaign;
 
-class UpdateCampaign extends Job implements SelfHandling
+class UpdateCampaign extends Job
 {
-
     /**
      * @var Campaign
      */
@@ -29,5 +29,4 @@ class UpdateCampaign extends Job implements SelfHandling
 
         return $this->newsletter->save();
     }
-
 }

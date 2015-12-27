@@ -6,11 +6,8 @@ use Modules\System\Locale;
 
 class CreateLocalesTable extends Migration
 {
-
     /**
      * Run the migrations.
-     *
-     * @return void
      */
     public function up()
     {
@@ -29,41 +26,39 @@ class CreateLocalesTable extends Migration
 
         Locale::create([
             'slug' => 'nl',
-            'nl'   => ['name' => 'nederlands'],
-            'fr'   => ['name' => 'néerlandais'],
-            'de'   => ['name' => 'holländisch'],
-            'en'   => ['name' => 'dutch'],
+            'nl' => ['name' => 'nederlands'],
+            'fr' => ['name' => 'néerlandais'],
+            'de' => ['name' => 'holländisch'],
+            'en' => ['name' => 'dutch'],
         ]);
 
         Locale::create([
             'slug' => 'fr',
-            'nl'   => ['name' => 'frans'],
-            'fr'   => ['name' => 'français'],
-            'de'   => ['name' => 'französisch'],
-            'en'   => ['name' => 'french'],
+            'nl' => ['name' => 'frans'],
+            'fr' => ['name' => 'français'],
+            'de' => ['name' => 'französisch'],
+            'en' => ['name' => 'french'],
         ]);
 
         Locale::create([
             'slug' => 'en',
-            'nl'   => ['name' => 'engels'],
-            'fr'   => ['name' => 'anglais'],
-            'de'   => ['name' => 'englisch'],
-            'en'   => ['name' => 'english'],
+            'nl' => ['name' => 'engels'],
+            'fr' => ['name' => 'anglais'],
+            'de' => ['name' => 'englisch'],
+            'en' => ['name' => 'english'],
         ]);
 
         Locale::create([
             'slug' => 'de',
-            'nl'   => ['name' => 'duits'],
-            'fr'   => ['name' => 'allemand'],
-            'de'   => ['name' => 'deutsch'],
-            'en'   => ['name' => 'german'],
+            'nl' => ['name' => 'duits'],
+            'fr' => ['name' => 'allemand'],
+            'de' => ['name' => 'deutsch'],
+            'en' => ['name' => 'german'],
         ]);
     }
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
     public function down()
     {

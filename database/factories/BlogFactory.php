@@ -6,7 +6,7 @@ $factory->define(Modules\Blog\Post::class, function (Faker\Generator $faker) {
     ];
 });
 
-$factory->define(Modules\Blog\PostTranslation::class, function (Faker\Generator $faker){
+$factory->define(Modules\Blog\PostTranslation::class, function (Faker\Generator $faker) {
     return [
         'locale' => 'en',
         'title' => $faker->title,

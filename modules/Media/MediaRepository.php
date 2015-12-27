@@ -1,4 +1,6 @@
-<?php namespace Modules\Media;
+<?php
+
+namespace Modules\Media;
 
 use InvalidArgumentException;
 use Modules\Media\Files\File;
@@ -7,7 +9,6 @@ use Modules\Media\Video\Video;
 
 class MediaRepository implements MediaRepositoryInterface
 {
-
     protected $images;
 
     protected $config;
@@ -45,9 +46,6 @@ class MediaRepository implements MediaRepositoryInterface
     }
 
     /**
-     * @param StoresMedia $owner
-     * @param array       $payload
-     *
      * @return bool|static
      */
     public function createImage(StoresMedia $owner, array $payload)
@@ -77,9 +75,6 @@ class MediaRepository implements MediaRepositoryInterface
     }
 
     /**
-     * @param array      $payload
-     * @param Image|null $original
-     *
      * @return mixed
      */
     public function createThumbnailImage(array $payload, Image $original)
@@ -99,9 +94,6 @@ class MediaRepository implements MediaRepositoryInterface
     }
 
     /**
-     * @param StoresMedia $owner
-     * @param array       $payload
-     *
      * @return Image|bool
      */
     public function createInfographic(StoresMedia $owner, array $payload)
@@ -121,9 +113,6 @@ class MediaRepository implements MediaRepositoryInterface
     }
 
     /**
-     * @param array            $payload
-     * @param Infographic|null $original
-     *
      * @return Infographic|bool
      */
     public function createThumbnailInfographic(array $payload, Infographic $original)
@@ -145,9 +134,6 @@ class MediaRepository implements MediaRepositoryInterface
     }
 
     /**
-     * @param StoresMedia $owner
-     * @param array       $payload
-     *
      * @return File|bool
      */
     public function createFile(StoresMedia $owner, array $payload)
@@ -164,5 +150,4 @@ class MediaRepository implements MediaRepositoryInterface
 
         return $file->save() ? $file : false;
     }
-
 }

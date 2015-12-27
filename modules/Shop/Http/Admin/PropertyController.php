@@ -1,4 +1,6 @@
-<?php namespace Modules\Shop\Http\Admin;
+<?php
+
+namespace Modules\Shop\Http\Admin;
 
 use Illuminate\Http\Request;
 use Modules\Shop\Product\Property;
@@ -7,7 +9,6 @@ use Modules\System\Http\AdminController;
 
 class PropertyController extends AdminController
 {
-
     public function store(Property $properties, Request $request, PropertyGroup $groups)
     {
         $group = $request->get('group_id');
@@ -25,32 +26,28 @@ class PropertyController extends AdminController
 
     public function destroy(Property $properties)
     {
-        if($properties->id)
-        {
-            if($properties->delete())
-            {
+        if ($properties->id) {
+            if ($properties->delete()) {
                 $properties->id = false;
 
                 return $properties;
             }
         }
 
-        return json_encode(array(
-            'status' => 'noke'
-        ));
+        return json_encode([
+            'status' => 'noke',
+        ]);
     }
 
     public function sortProperties(Request $request, Property $properties)
     {
         $order = $request->get('order');
 
-        if(count($order))
-        {
+        if (count($order)) {
             $properties = $properties->whereIn('id', $order)
                 ->get();
 
-            foreach($properties as $property)
-            {
+            foreach ($properties as $property) {
                 $property->sort = array_search($property->id, $order);
                 $property->save();
             }
@@ -58,7 +55,7 @@ class PropertyController extends AdminController
     }
 
     /**
-     * Move from one group to another
+     * Move from one group to another.
      */
     public function moveProperty(Request $request, PropertyGroup $groups, Property $properties)
     {
@@ -67,14 +64,13 @@ class PropertyController extends AdminController
         $property = $properties->find($request->get('property'));
         $position = $request->get('position');
 
-
         //we move away from a group, meaning, everything that was behind this element
         //will now get a lower sort.
         Property::where('category_id', $property->category_id)
             ->where('group_id', $from->id)
             ->where('sort', '>', $property->sort)
             ->update([
-                'sort' => \DB::raw('sort - 1')
+                'sort' => \DB::raw('sort - 1'),
             ]);
 
         //items that need to come behind our property get a higher sort
@@ -82,7 +78,7 @@ class PropertyController extends AdminController
             ->where('group_id', $to->id)
             ->where('sort', '>=', $position)
             ->update([
-                'sort' => \DB::raw('sort + 1')
+                'sort' => \DB::raw('sort + 1'),
             ]);
 
         //finally we save the property with it's new group and position
@@ -90,5 +86,4 @@ class PropertyController extends AdminController
         $property->sort = $position;
         $property->save();
     }
-
 }

@@ -20,8 +20,7 @@
 
                 this.update = function (type, id, tag) {
 
-                    if (this.timeouts[tag.id])
-                    {
+                    if (this.timeouts[tag.id]) {
                         $timeout.cancel(this.timeouts[tag.id]);
                     }
 

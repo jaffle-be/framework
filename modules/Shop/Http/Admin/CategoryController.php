@@ -1,4 +1,6 @@
-<?php namespace Modules\Shop\Http\Admin;
+<?php
+
+namespace Modules\Shop\Http\Admin;
 
 use Illuminate\Http\Request;
 use Modules\Shop\Product\Category;
@@ -6,7 +8,6 @@ use Modules\System\Http\AdminController;
 
 class CategoryController extends AdminController
 {
-
     public function suggest(Request $request)
     {
         $results = suggest_completion('product_categories', $request->get('query'), $request->get('locale'));
@@ -41,5 +42,4 @@ class CategoryController extends AdminController
     public function destroy(Category $category, Request $request)
     {
     }
-
 }

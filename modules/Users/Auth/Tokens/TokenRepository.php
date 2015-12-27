@@ -1,4 +1,6 @@
-<?php namespace Modules\Users\Auth\Tokens;
+<?php
+
+namespace Modules\Users\Auth\Tokens;
 
 use Carbon\Carbon;
 use Illuminate\Contracts\Hashing\Hasher;
@@ -6,7 +8,6 @@ use Modules\Users\Contracts\TokenRepositoryInterface;
 
 class TokenRepository implements TokenRepositoryInterface
 {
-
     /**
      * @var Token
      */
@@ -52,21 +53,20 @@ class TokenRepository implements TokenRepositoryInterface
     {
         return in_array($type, [
             Token::TYPE_CONFIRMATION,
-            Token::TYPE_RESET
+            Token::TYPE_RESET,
         ]);
     }
 
     /**
-     * Return a hash that has no / in it suited for url generated
+     * Return a hash that has no / in it suited for url generated.
      *
-     * @param $value
+     * @return string
      */
     protected function hash($value)
     {
         $hash = $this->hasher->make($value);
 
         while (strpos($hash, '/') !== false) {
-
             $hash = $this->hasher->make($value);
         }
 

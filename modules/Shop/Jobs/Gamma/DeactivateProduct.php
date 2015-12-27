@@ -1,16 +1,16 @@
-<?php namespace Modules\Shop\Jobs\Gamma;
+<?php
+
+namespace Modules\Shop\Jobs\Gamma;
 
 use App\Jobs\Job;
-use Illuminate\Contracts\Bus\SelfHandling;
 use Modules\Account\Account;
 use Modules\Shop\Gamma\ProductCategorySelection;
 use Modules\Shop\Gamma\ProductSelection;
 use Modules\Shop\Product\Category;
 use Modules\Shop\Product\Product;
 
-class DeactivateProduct extends Job implements SelfHandling
+class DeactivateProduct extends Job
 {
-
     protected $product;
 
     protected $categorie;
@@ -31,26 +31,28 @@ class DeactivateProduct extends Job implements SelfHandling
         $payload = [
             'account_id' => $this->account->id,
             'product_id' => $this->product->id,
-            'brand_id'   => $this->product->brand_id,
+            'brand_id' => $this->product->brand_id,
         ];
 
         $record = $this->getExisting($selection);
 
-        if (!$record) {
+        if (! $record) {
             $record = $selection->create($payload);
 
             $category = $this->attachCategory($record);
         } else {
             $category_id = $this->category->id;
 
-            $record->load(['categories' => function ($query) use ($category_id) {
-                $query->where('category_id', $category_id);
-                $query->withTrashed();
-            }]);
+            $record->load([
+                'categories' => function ($query) use ($category_id) {
+                    $query->where('category_id', $category_id);
+                    $query->withTrashed();
+                },
+            ]);
 
             $category = $record->categories->first();
 
-            if (!$category) {
+            if (! $category) {
                 $category = $this->attachCategory($record);
             }
         }
@@ -65,8 +67,6 @@ class DeactivateProduct extends Job implements SelfHandling
     }
 
     /**
-     * @param $record
-     *
      * @return ProductCategorySelection
      */
     protected function attachCategory($record)
@@ -82,8 +82,6 @@ class DeactivateProduct extends Job implements SelfHandling
      * do the query manually, so we won't depend on account manager.
      * if this ever get's called in a global system context,
      * it will now still work.
-     *
-     * @param ProductSelection $selection
      *
      * @return \Illuminate\Database\Eloquent\Model|null|static
      */

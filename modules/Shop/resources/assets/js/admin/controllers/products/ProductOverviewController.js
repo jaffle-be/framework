@@ -68,8 +68,7 @@
                     $state.go('admin.shop.product', {id: newProduct.id});
                 }, function (response) {
 
-                    if (response.status == 422)
-                    {
+                    if (response.status == 422) {
                         _.each(response.data, function (errors) {
                             toaster.error(errors[0]);
                         });
@@ -115,8 +114,7 @@
                     me = this;
 
                 _.each(this.products, function (product) {
-                    if (product.isSelected)
-                    {
+                    if (product.isSelected) {
                         products.push(product.id);
                     }
                 });

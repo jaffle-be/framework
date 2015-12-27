@@ -6,16 +6,15 @@ use App\Http\Requests\Request;
 
 class UpdateAddressRequest extends Request
 {
-
     public function rules()
     {
         return [
-            'street'    => 'required',
-            'city'      => 'required',
-            'postcode'  => 'required',
-            'latitude'  => 'required',
+            'street' => 'required',
+            'city' => 'required',
+            'postcode' => 'required',
+            'latitude' => 'required',
             'longitude' => 'required',
-            'country'   => 'required',
+            'country' => 'required',
         ];
     }
 
@@ -23,5 +22,4 @@ class UpdateAddressRequest extends Request
     {
         return true;
     }
-
 }

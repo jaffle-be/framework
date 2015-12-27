@@ -6,7 +6,8 @@
                 <h5>{{ Lang::get('portfolio::admin.project.details') }}</h5>
             </div>
             <div class="col-xs-4">
-                <span class="pull-right btn btn-danger btn-sm" ng-really="vm.delete()"><i class="fa fa-trash"></i></span>
+                <span class="pull-right btn btn-danger btn-sm" ng-really="vm.delete()"><i
+                        class="fa fa-trash"></i></span>
             </div>
         </div>
 
@@ -21,7 +22,8 @@
             <div class="row">
                 <div class="form-group col-xs-8">
                     <label for="website">{{ Lang::get('portfolio::admin.project.website') }}</label>
-                    <input id="website" type="text" class="form-control" ng-model="vm.project.website" ng-change="vm.save()">
+                    <input id="website" type="text" class="form-control" ng-model="vm.project.website"
+                           ng-change="vm.save()">
                 </div>
 
                 <div class="form-group col-xs-4">
@@ -30,7 +32,9 @@
 
                     <div class="input-group datepicker">
 
-                        <input uib-datepicker-popup="dd/MM/yyyy" show-weeks="false" is-open="status.datepickerStatus" type="text" class="form-control" ng-model="vm.project.date" ng-click="vm.openDatepicker($event)" ng-change="vm.save()"/>
+                        <input uib-datepicker-popup="dd/MM/yyyy" show-weeks="false" is-open="status.datepickerStatus"
+                               type="text" class="form-control" ng-model="vm.project.date"
+                               ng-click="vm.openDatepicker($event)" ng-change="vm.save()"/>
 
                         <div class="input-group-btn">
                                 <span type="button" class="btn btn-default" ng-click="vm.openDatepicker($event)">
@@ -45,7 +49,8 @@
                     <label for="title" class="control-label">{{ Lang::get('portfolio::admin.project.title') }}</label>
 
                     <div>
-                        <input ng-change="vm.save()" type="text" name="title" id="title" class="form-control" ng-model="vm.project.translations[vm.options.locale].title"/>
+                        <input ng-change="vm.save()" type="text" name="title" id="title" class="form-control"
+                               ng-model="vm.project.translations[vm.options.locale].title"/>
                     </div>
                 </div>
 
@@ -53,7 +58,8 @@
 
                     <div class="control-label">&nbsp;</div>
 
-                    <input type="checkbox" class="filled-in" id="published" ng-model="vm.project.translations[vm.options.locale].published" ng-change="vm.save()"/>
+                    <input type="checkbox" class="filled-in" id="published"
+                           ng-model="vm.project.translations[vm.options.locale].published" ng-change="vm.save()"/>
                     <label for="published">{{ Lang::get('portfolio::admin.project.published') }}</label>
 
                 </div>
@@ -72,7 +78,9 @@
                 <label for="content" class="control-label">{{ Lang::get('portfolio::admin.project.content') }}</label>
 
                 <div>
-                    <textarea class="form-control autosize-lg" auto-size ng-model="vm.project.translations[vm.options.locale].content" ng-change="vm.save()"></textarea>
+                    <textarea class="form-control autosize-lg" auto-size
+                              ng-model="vm.project.translations[vm.options.locale].content"
+                              ng-change="vm.save()"></textarea>
                 </div>
             </div>
 

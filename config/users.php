@@ -4,14 +4,14 @@ return [
 
     'auth' => [
 
-        /**
+        /*
          * Set the template for the authentication pages.
          * default
          * bg
          */
         'auth-pages-template' => 'default',
 
-        /**
+        /*
          * If set to true, the user will not need to confirm his email.
          */
         'auto_confirmation' => false,
@@ -24,13 +24,13 @@ return [
         'throttling_interval' => 10 * 60,
     ],
 
-    /**
+    /*
      * Disable certain listeners. Make sure to properly test things before actually running in production.
      */
     'listeners'        => [
         'Modules\Users\Auth\Events\UserRegistered' => [
             'Modules\Users\Auth\Subscribers\Email\UserRegistered@confirmation',
-        ]
-    ]
+        ],
+    ],
 
 ];

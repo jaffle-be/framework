@@ -1,22 +1,18 @@
-<?php namespace Modules\Media\Commands;
+<?php
+
+namespace Modules\Media\Commands;
 
 use App\Jobs\Job;
 use Exception;
-use Illuminate\Contracts\Bus\SelfHandling;
 use Illuminate\Filesystem\Filesystem;
-use Illuminate\Foundation\Bus\DispatchesCommands;
 use Modules\Account\Account;
 use Modules\Media\Configurator;
-use Modules\Media\Media;
 use Modules\Media\MediaRepositoryInterface;
 use Modules\Media\StoresMedia;
 use Modules\System\Locale;
 
-class StoreNewFile extends Job implements SelfHandling
+class StoreNewFile extends Job
 {
-
-    use DispatchesCommands;
-
     protected $account;
 
     /**
@@ -70,11 +66,7 @@ class StoreNewFile extends Job implements SelfHandling
     protected $path;
 
     /**
-     * @param Account     $account
-     * @param StoresMedia $owner
-     * @param Locale      $locale
-     * @param string      $path
-     * @param null        $rename
+     *
      */
     public function __construct(Account $account, StoresMedia $owner, Locale $locale, $path, $rename = null)
     {
@@ -91,7 +83,7 @@ class StoreNewFile extends Job implements SelfHandling
 
     public function handle(MediaRepositoryInterface $repo, Filesystem $files, Configurator $config)
     {
-        if (!$files->exists($this->currentPath)) {
+        if (! $files->exists($this->currentPath)) {
             return false;
         }
 
@@ -100,8 +92,7 @@ class StoreNewFile extends Job implements SelfHandling
 
         try {
             return $repo->createFile($this->owner, $this->getPayload());
-        }
-        catch (Exception $exception) {
+        } catch (Exception $exception) {
             //probably duplicate file error, always remove created file on error.
             $files->delete(public_path($this->path));
 
@@ -114,12 +105,12 @@ class StoreNewFile extends Job implements SelfHandling
         $abstract = $config->getAbstractPath($this->owner, 'files');
         $public = $config->getPublicPath($this->owner, 'files');
 
-        if (!$files->isDirectory($public)) {
+        if (! $files->isDirectory($public)) {
             $files->makeDirectory($public, 0755, true);
         }
 
         //abstract path to actual file
-        $path = $abstract . $this->rename;
+        $path = $abstract.$this->rename;
 
         //always copy the file first
         $files->copy($this->currentPath, public_path($path));
@@ -141,10 +132,10 @@ class StoreNewFile extends Job implements SelfHandling
     {
         return [
             'account_id' => $this->account->id,
-            'locale_id'  => $this->locale->id,
-            'path'       => $this->path,
-            'filename'   => $this->rename,
-            'extension'  => $this->extension,
+            'locale_id' => $this->locale->id,
+            'path' => $this->path,
+            'filename' => $this->rename,
+            'extension' => $this->extension,
         ];
     }
 }

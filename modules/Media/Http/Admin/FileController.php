@@ -1,4 +1,6 @@
-<?php namespace Modules\Media\Http\Admin;
+<?php
+
+namespace Modules\Media\Http\Admin;
 
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -12,7 +14,6 @@ use Modules\Theme\ThemeManager;
 
 class FileController extends AdminController
 {
-
     use MediaWidgetPreperations;
 
     protected $media;
@@ -30,9 +31,6 @@ class FileController extends AdminController
     }
 
     /**
-     * @param Request $request
-     * @param Locale  $locale
-     *
      * @return mixed
      */
     public function index(Request $request, Locale $locale)
@@ -48,13 +46,9 @@ class FileController extends AdminController
 
         $file = $request->file('file');
 
-        $file = $this->dispatchFromArray(UploadNewFile::class, [
-            'owner'  => $owner,
-            'file'   => $file,
-            'locale' => $locale->whereSlug($request->get('locale'))->firstOrFail(),
-        ]);
+        $file = $this->dispatch(new UploadNewFile($owner, $file, $locale->whereSlug($request->get('locale'))->firstOrFail()));
 
-        if (!$file) {
+        if (! $file) {
             return new JsonResponse('Something went wrong, check for duplicate filename', 400);
         }
 
@@ -66,7 +60,6 @@ class FileController extends AdminController
         $owner = $this->owner($request);
 
         if ($file->owner->id == $owner->id) {
-
             $input = $request->except(['_token']);
 
             $file->fill($input);
@@ -98,5 +91,4 @@ class FileController extends AdminController
             $file->save();
         }
     }
-
 }

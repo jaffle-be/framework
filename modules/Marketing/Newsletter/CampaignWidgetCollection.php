@@ -1,4 +1,6 @@
-<?php namespace Modules\Marketing\Newsletter;
+<?php
+
+namespace Modules\Marketing\Newsletter;
 
 use Illuminate\Database\Eloquent\Collection;
 use Modules\Blog\Post;
@@ -6,7 +8,6 @@ use Modules\Portfolio\Project;
 
 class CampaignWidgetCollection extends Collection
 {
-
     public function setData()
     {
         list($posts, $projects) = $this->getMaps();
@@ -77,9 +78,8 @@ class CampaignWidgetCollection extends Collection
     }
 
     /**
-     * @param Campaign $newsletter
-     *
      * @return array
+     * @internal param Campaign $newsletter
      */
     protected function getMaps()
     {
@@ -112,7 +112,6 @@ class CampaignWidgetCollection extends Collection
         $posts = Post::whereIn('posts.id', $posts->all())->with(['translations', 'images', 'images.sizes'])->get();
         $projects = Project::whereIn('portfolio_projects.id', $projects->all())->with(['translations', 'images', 'images.sizes'])->get();
 
-        return array($posts, $projects);
+        return [$posts, $projects];
     }
-
 }

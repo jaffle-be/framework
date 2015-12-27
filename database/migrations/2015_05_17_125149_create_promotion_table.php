@@ -5,7 +5,6 @@ use Illuminate\Database\Schema\Blueprint;
 
 class CreatePromotionTable extends Migration
 {
-
     /**
      * Run the migrations.
      *
@@ -74,5 +73,4 @@ class CreatePromotionTable extends Migration
             $table->dropForeign('promotion_to_product');
         });
     }
-
 }

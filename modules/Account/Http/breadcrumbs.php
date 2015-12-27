@@ -10,7 +10,7 @@ if (env('APP_MULTIPLE_LOCALES')) {
 
         Breadcrumbs::register("store.$locale.team.show", function ($breadcrumbs, $member) use ($locale) {
             $breadcrumbs->parent("store.$locale.team.index");
-            $breadcrumbs->push('Member', store_route("store.team.show", [$member]));
+            $breadcrumbs->push('Member', store_route('store.team.show', [$member]));
         });
 
         Breadcrumbs::register("store.$locale.api.admin.account.members.invitation.store", function ($breadcrumbs) use ($locale) {

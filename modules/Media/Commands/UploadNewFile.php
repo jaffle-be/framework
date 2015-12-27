@@ -1,18 +1,18 @@
-<?php namespace Modules\Media\Commands;
+<?php
+
+namespace Modules\Media\Commands;
 
 use App\Jobs\Job;
-use Illuminate\Contracts\Bus\SelfHandling;
 use Illuminate\Filesystem\Filesystem;
-use Illuminate\Foundation\Bus\DispatchesCommands;
+use Illuminate\Foundation\Bus\DispatchesJobs;
 use Modules\Account\AccountManager;
 use Modules\Media\StoresMedia;
 use Modules\System\Locale;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
-class UploadNewFile extends Job implements SelfHandling
+class UploadNewFile extends Job
 {
-
-    use DispatchesCommands;
+    use DispatchesJobs;
 
     /**
      * @var StoresMedia
@@ -30,9 +30,7 @@ class UploadNewFile extends Job implements SelfHandling
     protected $locale;
 
     /**
-     * @param StoresMedia  $owner
-     * @param UploadedFile $image
-     * @param Locale       $locale
+     * @internal param UploadedFile $image
      */
     public function __construct(StoresMedia $owner, UploadedFile $file, Locale $locale)
     {
@@ -43,26 +41,21 @@ class UploadNewFile extends Job implements SelfHandling
 
     public function handle(Filesystem $files, AccountManager $manager)
     {
-        $temp_dir = storage_path('media') . '/' . $this->owner->getMediaFolder('files');
+        $temp_dir = storage_path('media').'/'.$this->owner->getMediaFolder('files');
 
         $name = $this->uniqueName();
 
         $this->file->move($temp_dir, $name);
 
-        $temp_file = $temp_dir . $name;
+        $temp_file = $temp_dir.$name;
 
-        $name_with_extension = $name . $this->extension($temp_file);
+        $name_with_extension = $name.$this->extension($temp_file);
 
-        $final_path = $temp_dir . $name_with_extension;
+        $final_path = $temp_dir.$name_with_extension;
 
         $files->move($temp_file, $final_path);
 
-        $image = $this->dispatchFromArray(StoreNewFile::class, [
-            'account' => $manager->account(),
-            'owner'   => $this->owner,
-            'path'    => $final_path,
-            'locale'  => $this->locale
-        ]);
+        $this->dispatch(new StoreNewFile($manager->account(), $this->owner, $final_path, $this->locale));
 
         $files->delete($final_path);
 
@@ -71,8 +64,7 @@ class UploadNewFile extends Job implements SelfHandling
 
     /**
      * For files, we won't generate a very random name,
-     * so we can easily
-     *
+     * so we can easily.
      *
      * @return mixed|null|string
      */
@@ -95,5 +87,4 @@ class UploadNewFile extends Job implements SelfHandling
 
         return image_type_to_extension($info[2]);
     }
-
 }

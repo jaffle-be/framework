@@ -6,7 +6,8 @@
                 <h5>{{ Lang::get('blog::admin.post.details') }}</h5>
             </div>
             <div class="col-xs-4 text-right">
-                <span id="reset" class="btn-sm btn btn-danger" ng-really="vm.delete()"><i class="fa fa-trash"></i></span>
+                <span id="reset" class="btn-sm btn btn-danger" ng-really="vm.delete()"><i
+                        class="fa fa-trash"></i></span>
             </div>
         </div>
     </div>
@@ -24,7 +25,8 @@
                         <label for="title" class="control-label">{{ Lang::get('blog::admin.post.title') }}</label>
 
                         <div>
-                            <input ng-change="vm.save()" autocomplete="off" type="text" name="title" id="title" class="form-control" ng-model="vm.post.translations[vm.options.locale].title"/>
+                            <input ng-change="vm.save()" autocomplete="off" type="text" name="title" id="title"
+                                   class="form-control" ng-model="vm.post.translations[vm.options.locale].title"/>
                         </div>
                     </div>
 
@@ -38,7 +40,10 @@
 
                         <div class="input-group datepicker">
 
-                            <input uib-datepicker-popup="dd/MM/yyyy" show-weeks="false" is-open="status.datepickerStatus" type="text" class="form-control" ng-model="vm.post.translations[vm.options.locale].publish_at" ng-click="vm.openDatepicker($event)" ng-change="vm.save()"/>
+                            <input uib-datepicker-popup="dd/MM/yyyy" show-weeks="false"
+                                   is-open="status.datepickerStatus" type="text" class="form-control"
+                                   ng-model="vm.post.translations[vm.options.locale].publish_at"
+                                   ng-click="vm.openDatepicker($event)" ng-change="vm.save()"/>
 
                             <div class="input-group-btn">
                                 <span type="button" class="btn btn-default" ng-click="vm.openDatepicker($event)">
@@ -63,7 +68,9 @@
                 <label for="content" class="control-label">{{ Lang::get('blog::admin.post.content') }}</label>
 
                 <div>
-                    <textarea auto-size class="form-control autosize-lg" ng-model="vm.post.translations[vm.options.locale].content" ng-change="vm.save()"></textarea>
+                    <textarea auto-size class="form-control autosize-lg"
+                              ng-model="vm.post.translations[vm.options.locale].content"
+                              ng-change="vm.save()"></textarea>
                 </div>
             </div>
 

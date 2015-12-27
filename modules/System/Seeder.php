@@ -1,25 +1,22 @@
 <?php
+
 namespace Modules\System;
 
 use Faker\Factory as Faker;
 use Illuminate\Database\Seeder as BaseSeeder;
 use Illuminate\Filesystem\Filesystem;
-use Illuminate\Foundation\Bus\DispatchesCommands;
 use Modules\Media\Configurator;
-use Modules\Media\Image;
 use Modules\Media\ImageDimensionHelpers;
 use Modules\Media\MediaRepository;
 
 abstract class Seeder extends BaseSeeder
 {
-
-    use DispatchesCommands;
     use ImageDimensionHelpers;
 
     /**
      * The Faker instance.
      *
-     * @type Faker
+     * @var Faker
      */
     protected $faker;
 
@@ -61,10 +58,6 @@ abstract class Seeder extends BaseSeeder
 
     /**
      * Seed the given connection from the given path.
-     *
-     * @param  string $class
-     *
-     * @return void
      */
     public function call($class)
     {
@@ -87,7 +80,7 @@ abstract class Seeder extends BaseSeeder
 
         $images = array_rand($options, 1);
 
-        $source = database_path('images/' . $images);
+        $source = database_path('images/'.$images);
 
         $destination = $this->mediaConfig->getPublicPath($model, 'images');
 
@@ -96,11 +89,11 @@ abstract class Seeder extends BaseSeeder
         $files = scandir($destination);
 
         $files = array_filter($files, function ($file) {
-            return !in_array($file, ['.', '..', '.DS_Store']);
+            return ! in_array($file, ['.', '..', '.DS_Store']);
         });
 
         foreach ($files as $file) {
-            if ($this->files->isDirectory($destination . $file)) {
+            if ($this->files->isDirectory($destination.$file)) {
                 $sizes[] = $file;
             }
         }
@@ -113,32 +106,31 @@ abstract class Seeder extends BaseSeeder
 
     protected function addMain($model, $destination, $name)
     {
-        $path = $destination . $name;
+        $path = $destination.$name;
         $info = getimagesize($path);
 
         return $this->repository->createImage($model, [
-            'filename'  => $name,
-            'width'     => $info[0],
-            'height'    => $info[1],
+            'filename' => $name,
+            'width' => $info[0],
+            'height' => $info[1],
             'extension' => pathinfo($path, PATHINFO_EXTENSION),
-            'path'      => $this->mediaConfig->getAbstractPath($model, 'images') . $name,
+            'path' => $this->mediaConfig->getAbstractPath($model, 'images').$name,
         ]);
     }
 
     protected function addSizes($model, array $sizes, $original, $destination, $name)
     {
         foreach ($sizes as $size) {
-            $path = $destination . $size . '/' . $name;
+            $path = $destination.$size.'/'.$name;
             $info = getimagesize($path);
 
             $this->repository->createThumbnailImage([
-                'filename'  => $name,
-                'width'     => $info[0],
-                'height'    => $info[1],
+                'filename' => $name,
+                'width' => $info[0],
+                'height' => $info[1],
                 'extension' => pathinfo($path, PATHINFO_EXTENSION),
-                'path'      => $this->mediaConfig->getAbstractPath($model, 'images', $size) . $name,
+                'path' => $this->mediaConfig->getAbstractPath($model, 'images', $size).$name,
             ], $original);
         }
     }
-
 }

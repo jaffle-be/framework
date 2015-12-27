@@ -1,16 +1,16 @@
-<?php namespace Modules\Shop\Jobs\Gamma;
+<?php
+
+namespace Modules\Shop\Jobs\Gamma;
 
 use App\Jobs\Job;
-use Illuminate\Contracts\Bus\SelfHandling;
 use Modules\Account\Account;
 use Modules\Shop\Gamma\ProductCategorySelection;
 use Modules\Shop\Gamma\ProductSelection;
 use Modules\Shop\Product\Category;
 use Modules\Shop\Product\Product;
 
-class ActivateProduct extends Job implements SelfHandling
+class ActivateProduct extends Job
 {
-
     protected $product;
 
     protected $categorie;
@@ -28,10 +28,9 @@ class ActivateProduct extends Job implements SelfHandling
     {
         $base = $this->baseSelectionExists($products);
 
-        if (!$base) {
+        if (! $base) {
             $this->handleFullNewRecord($products);
         } else {
-
             $selection = $this->existingCategorySelection($base);
 
             if ($selection) {
@@ -50,8 +49,6 @@ class ActivateProduct extends Job implements SelfHandling
     }
 
     /**
-     * @param ProductSelection $selection
-     *
      * @return ProductSelection
      */
     protected function baseSelectionExists(ProductSelection $selection)
@@ -63,7 +60,7 @@ class ActivateProduct extends Job implements SelfHandling
     }
 
     /**
-     * @param $base
+     *
      */
     protected function attachCategory(ProductSelection $base)
     {
@@ -73,22 +70,20 @@ class ActivateProduct extends Job implements SelfHandling
     }
 
     /**
-     * @param ProductSelection $products
+     *
      */
     protected function handleFullNewRecord(ProductSelection $products)
     {
         $base = $products->create([
             'account_id' => $this->account->id,
             'product_id' => $this->product->id,
-            'brand_id'   => $this->product->brand_id,
+            'brand_id' => $this->product->brand_id,
         ]);
 
         $this->attachCategory($base);
     }
 
     /**
-     * @param $base
-     *
      * @return ProductCategorySelection
      */
     protected function existingCategorySelection(ProductSelection $base)
@@ -100,5 +95,4 @@ class ActivateProduct extends Job implements SelfHandling
 
         return $selection;
     }
-
 }

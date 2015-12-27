@@ -3,7 +3,7 @@
 return [
 
     'website-by' => 'website by',
-    'close'      => 'close',
-    'logout'     => 'logout',
+    'close' => 'close',
+    'logout' => 'logout',
 
 ];

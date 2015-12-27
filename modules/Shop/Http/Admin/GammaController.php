@@ -1,4 +1,6 @@
-<?php namespace Modules\Shop\Http\Admin;
+<?php
+
+namespace Modules\Shop\Http\Admin;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
@@ -18,7 +20,6 @@ use Modules\System\Http\AdminController;
 
 class GammaController extends AdminController
 {
-
     public function templateCategories()
     {
         return view('shop::admin.categories.overview');
@@ -51,7 +52,7 @@ class GammaController extends AdminController
 
         $ids = $categories->lists('id')->toArray();
 
-        if (!count($ids)) {
+        if (! count($ids)) {
             return new Collection();
         }
 
@@ -62,19 +63,19 @@ class GammaController extends AdminController
 
         //load brands separately, or you'll be getting bad results
         foreach ($categories as $category) {
-            $category->load(['brands' => function ($query) use ($subscriptions, $category) {
+            $category->load([
+                'brands' => function ($query) use ($subscriptions, $category) {
 
-                $query
-                    ->join('products', 'products.brand_id', '=', 'product_brands.id')
-                    ->join('product_categories_pivot', 'product_categories_pivot.product_id', '=', 'products.id')
-                    ->where('product_categories_pivot.category_id', $category->id)
-                    ->whereIn('products.account_id', $subscriptions->subscribedIds())
-                    ->distinct(['product_brands.*'])
-                    ->get(['product_brands.*']);
-            },
-
+                    $query
+                        ->join('products', 'products.brand_id', '=', 'product_brands.id')
+                        ->join('product_categories_pivot', 'product_categories_pivot.product_id', '=', 'products.id')
+                        ->where('product_categories_pivot.category_id', $category->id)
+                        ->whereIn('products.account_id', $subscriptions->subscribedIds())
+                        ->distinct(['product_brands.*'])
+                        ->get(['product_brands.*']);
+                },
                 'brands.translations',
-                'brands.selection'
+                'brands.selection',
             ]);
         }
 
@@ -97,7 +98,7 @@ class GammaController extends AdminController
                 $inReview = $bReviews && $bReviews->contains('brand_id', $brand->id);
                 $actuallySelected = $bSelections && $bSelections->contains('brand_id', $brand->id);
 
-                $brand->selected = ($actuallySelected && !$inReview) || (!$actuallySelected && $inReview);
+                $brand->selected = ($actuallySelected && ! $inReview) || (! $actuallySelected && $inReview);
                 $brand->inReview = $inReview;
 
                 return $brand;
@@ -157,14 +158,13 @@ class GammaController extends AdminController
 
         $ids = $brands->lists('id')->toArray();
 
-        if (!count($ids)) {
+        if (! count($ids)) {
             return new Collection();
         }
 
         $brands->load(['translations', 'selection']);
 
-        foreach($brands as $brand)
-        {
+        foreach ($brands as $brand) {
             $brand->load([
                 'categories' => function ($query) use ($subscriptions, $brand) {
                     $query->join('product_categories_pivot', 'product_categories_pivot.category_id', '=', 'product_categories.id')
@@ -175,7 +175,7 @@ class GammaController extends AdminController
                         ->get(['product_categories.*']);
                 },
                 'categories.translations',
-                'categories.selection'
+                'categories.selection',
             ]);
         }
 
@@ -199,7 +199,7 @@ class GammaController extends AdminController
                 $inReview = $cReviews && $cReviews->contains('category_id', $category->id);
                 $actuallySelected = $cSelections && $cSelections->contains('category_id', $category->id);
 
-                $category->selected = ($actuallySelected && !$inReview) || (!$actuallySelected && $inReview);
+                $category->selected = ($actuallySelected && ! $inReview) || (! $actuallySelected && $inReview);
                 $category->inReview = $inReview;
 
                 return $category;
@@ -254,5 +254,4 @@ class GammaController extends AdminController
 
         return $reviews;
     }
-
 }

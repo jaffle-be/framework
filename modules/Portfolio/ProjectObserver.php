@@ -1,11 +1,12 @@
-<?php namespace Modules\Portfolio;
+<?php
+
+namespace Modules\Portfolio;
 
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Modules\Tags\Commands\UntagSomething;
 
 class ProjectObserver
 {
-
     use DispatchesJobs;
 
     public function deleting(Project $project)
@@ -13,10 +14,7 @@ class ProjectObserver
         $project->collaborators()->sync([]);
 
         foreach ($project->tags as $tag) {
-            $this->dispatchFromArray(UntagSomething::class, [
-                'owner' => $project,
-                'tag'   => $tag,
-            ]);
+            $this->dispatch(new UntagSomething($project, $tag));
         }
 
         $project->translations()->delete();
@@ -25,5 +23,4 @@ class ProjectObserver
             $image->delete();
         }
     }
-
 }

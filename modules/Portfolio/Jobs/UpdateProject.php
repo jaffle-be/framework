@@ -1,12 +1,12 @@
-<?php namespace Modules\Portfolio\Jobs;
+<?php
+
+namespace Modules\Portfolio\Jobs;
 
 use App\Jobs\Job;
-use Illuminate\Contracts\Bus\SelfHandling;
 use Modules\Portfolio\Project;
 
-class UpdateProject extends Job implements SelfHandling
+class UpdateProject extends Job
 {
-
     /**
      * @var Project
      */
@@ -29,5 +29,4 @@ class UpdateProject extends Job implements SelfHandling
 
         return $this->project->save() ? $this->project : false;
     }
-
 }

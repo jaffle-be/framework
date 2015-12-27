@@ -1,14 +1,15 @@
-<?php namespace Modules\Account;
+<?php
+
+namespace Modules\Account;
 
 use Illuminate\Database\Eloquent\Model;
 use Modules\Contact\HasSocialLinks;
 
 class Account extends Model
 {
-
     use HasSocialLinks;
 
-    protected $table = "accounts";
+    protected $table = 'accounts';
 
     protected $fillable = ['alias', 'domain'];
 
@@ -82,11 +83,11 @@ class Account extends Model
         if ($cached) {
             $image = $cached->sizes->filter(function ($image) use ($width, $height) {
 
-                if (!empty($with)) {
+                if (! empty($with)) {
                     return $image->width == $width;
                 }
 
-                if (!empty($height)) {
+                if (! empty($height)) {
                     return $image->height == $height;
                 }
             })->first();
@@ -100,7 +101,7 @@ class Account extends Model
         return app('cache')->sear('account-logo', function () {
 
             $cached = new AccountLogo([
-                'id' => $this->getKey()
+                'id' => $this->getKey(),
             ]);
 
             if ($cached->images) {
@@ -114,5 +115,4 @@ class Account extends Model
             return false;
         });
     }
-
 }

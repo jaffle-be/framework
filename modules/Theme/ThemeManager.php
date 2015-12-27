@@ -8,7 +8,6 @@ use Illuminate\View\Factory;
 
 class ThemeManager
 {
-
     protected $view;
 
     protected $events;
@@ -36,7 +35,7 @@ class ThemeManager
 
     public function boot()
     {
-        if (!config('system.installed')) {
+        if (! config('system.installed')) {
             return;
         }
 
@@ -53,11 +52,11 @@ class ThemeManager
     {
         $theme = $this->current();
 
-        if (!$theme) {
+        if (! $theme) {
             throw new Exception('Need a theme set to be able to send emails');
         }
 
-        return ucfirst(strtolower($theme->name)) . '::' . strtolower($theme->name) . '-email';
+        return ucfirst(strtolower($theme->name)).'::'.strtolower($theme->name).'-email';
     }
 
     public function name()
@@ -77,11 +76,11 @@ class ThemeManager
 
     public function setting($key)
     {
-        if (!$theme = $this->current()) {
+        if (! $theme = $this->current()) {
             return;
         }
 
-        if (!$setting = $theme->settings->get($key)) {
+        if (! $setting = $theme->settings->get($key)) {
             throw new Exception(sprintf('Unknown setting requested: %s', $key));
         }
 
@@ -92,19 +91,18 @@ class ThemeManager
     {
         $name = $this->name();
 
-        return $this->view->make($name . '::' . $view, $data);
+        return $this->view->make($name.'::'.$view, $data);
     }
 
     protected function setupNamespace()
     {
         $name = $this->name();
 
-        $this->view->addNamespace('theme.' . $name, config('theme.path') . '/' . $name . '/views');
+        $this->view->addNamespace('theme.'.$name, config('theme.path').'/'.$name.'/views');
     }
 
     public function __call($name, $arguments)
     {
         return call_user_func_array([$this->repository, $name], $arguments);
     }
-
 }

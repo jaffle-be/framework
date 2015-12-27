@@ -5,11 +5,8 @@ use Illuminate\Database\Schema\Blueprint;
 
 class CreateAccountRolesTable extends Migration
 {
-
     /**
      * Run the migrations.
-     *
-     * @return void
      */
     public function up()
     {
@@ -32,8 +29,6 @@ class CreateAccountRolesTable extends Migration
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
     public function down()
     {
@@ -45,5 +40,4 @@ class CreateAccountRolesTable extends Migration
             $table->dropForeign('account_membership_roles_to_account');
         });
     }
-
 }

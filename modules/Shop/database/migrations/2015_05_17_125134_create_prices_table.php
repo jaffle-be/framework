@@ -5,11 +5,8 @@ use Illuminate\Database\Schema\Blueprint;
 
 class CreatePricesTable extends Migration
 {
-
     /**
      * Run the migrations.
-     *
-     * @return void
      */
     public function up()
     {
@@ -39,8 +36,6 @@ class CreatePricesTable extends Migration
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
     public function down()
     {

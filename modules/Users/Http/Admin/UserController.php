@@ -1,4 +1,6 @@
-<?php namespace Modules\Users\Http\Admin;
+<?php
+
+namespace Modules\Users\Http\Admin;
 
 use Illuminate\Auth\Guard;
 use Illuminate\Http\Request;
@@ -8,11 +10,12 @@ use Modules\Users\Jobs\CheckGravatarImage;
 
 class UserController extends AdminController
 {
-
     use MediaWidgetPreperations;
 
     /**
-     * the actual page
+     * the actual page.
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function profile(Guard $guard)
     {
@@ -45,14 +48,13 @@ class UserController extends AdminController
         $user->fill($data);
 
         if ($user->save()) {
-            return json_encode(array(
-                'status' => 'oke'
-            ));
+            return json_encode([
+                'status' => 'oke',
+            ]);
         }
 
-        return json_encode(array(
-            'status' => 'noke'
-        ));
+        return json_encode([
+            'status' => 'noke',
+        ]);
     }
-
 }

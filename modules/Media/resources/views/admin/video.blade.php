@@ -27,7 +27,7 @@
                        typeahead-loading="vm.youtube.loading"
                        typeahead-wait-ms="400"
                        typeahead-on-select="vm.youtube.select($item)"
-                        >
+                    >
             </div>
 
             <div class="preview" ng-show="vm.youtube.preview">
@@ -46,10 +46,13 @@
         </div>
 
         <div class="form-group">
-            <input type="text" autocomplete="off" ng-model="vm.youtube.input.title" class="form-control" placeholder="{{ Lang::get('blog::admin.post.title') }}">
+            <input type="text" autocomplete="off" ng-model="vm.youtube.input.title" class="form-control"
+                   placeholder="{{ Lang::get('blog::admin.post.title') }}">
         </div>
 
-        <button class="btn btn-block btn-primary" ng-click="vm.youtube.addVideo(videos, locale, ownerType, ownerId)">add</button>
+        <button class="btn btn-block btn-primary" ng-click="vm.youtube.addVideo(videos, locale, ownerType, ownerId)">
+            add
+        </button>
 
         <hr ng-show="videos[locale].length">
 
@@ -64,19 +67,24 @@
 
                         <div class="tools">
                             <div class="tools-inner">
-                                <span><i ng-show="($index != videos.length - 1)" ng-click="vm.moveDown(video, $index)" class="fa fa-arrow-down"></i></span>
-                                <span><i ng-show="($index != 0)" ng-click="vm.moveUp(video, $index)" class="fa fa-arrow-up"></i></span>
+                                <span><i ng-show="($index != videos.length - 1)" ng-click="vm.moveDown(video, $index)"
+                                         class="fa fa-arrow-down"></i></span>
+                                <span><i ng-show="($index != 0)" ng-click="vm.moveUp(video, $index)"
+                                         class="fa fa-arrow-up"></i></span>
                                 <span><i class="fa fa-trash" ng-really="vm.deleteVideo(video)"></i></span>
                             </div>
                         </div>
                     </div>
 
                     <div class="form-group" ng-hide="!locale">
-                        <input autocomplete="off" ng-change="vm.updateVideo(video)" class="form-control" type="text" ng-model="video.title" placeholder="{{ Lang::get('blog::admin.title') }}"/>
+                        <input autocomplete="off" ng-change="vm.updateVideo(video)" class="form-control" type="text"
+                               ng-model="video.title" placeholder="{{ Lang::get('blog::admin.title') }}"/>
                     </div>
 
                     <div class="form-group" ng-hide="!locale">
-                        <textarea auto-size class="form-control" ng-model="video.description" ng-change="vm.updateVideo(video)" placeholder="{{ Lang::get('blog::admin.description') }}"></textarea>
+                        <textarea auto-size class="form-control" ng-model="video.description"
+                                  ng-change="vm.updateVideo(video)"
+                                  placeholder="{{ Lang::get('blog::admin.description') }}"></textarea>
                     </div>
 
                 </li>

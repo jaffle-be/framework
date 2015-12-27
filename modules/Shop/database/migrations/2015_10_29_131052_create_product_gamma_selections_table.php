@@ -5,11 +5,8 @@ use Illuminate\Database\Schema\Blueprint;
 
 class CreateProductGammaSelectionsTable extends Migration
 {
-
     /**
      * Run the migrations.
-     *
-     * @return void
      */
     public function up()
     {
@@ -27,8 +24,6 @@ class CreateProductGammaSelectionsTable extends Migration
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
     public function down()
     {
@@ -38,5 +33,4 @@ class CreateProductGammaSelectionsTable extends Migration
             $table->dropForeign('gamma_selection_to_category');
         });
     }
-
 }

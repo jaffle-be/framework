@@ -1,17 +1,17 @@
-<?php namespace Modules\Media\Commands;
+<?php
+
+namespace Modules\Media\Commands;
 
 use Alaouy\Youtube\Youtube;
 use App\Jobs\Job;
-use Illuminate\Contracts\Bus\SelfHandling;
 use Modules\Account\AccountManager;
 use Modules\Media\MediaRepositoryInterface;
 use Modules\Media\StoresMedia;
 use Modules\Media\Video\VideoGenericFormatter;
 use Modules\System\Locale;
 
-class AddNewVideo extends Job implements SelfHandling
+class AddNewVideo extends Job
 {
-
     use VideoGenericFormatter;
 
     /**
@@ -42,26 +42,26 @@ class AddNewVideo extends Job implements SelfHandling
     {
         if ($this->input['mode'] == 'youtube') {
             $info = $this->handleYoutube();
-        } else if ($this->input['mode'] == 'vimeo') {
+        } elseif ($this->input['mode'] == 'vimeo') {
             $info = $this->handleVimeo();
         }
 
-        if (!$info) {
+        if (! $info) {
             return false;
         }
 
         $locale = $locale->whereSlug($this->input['locale'])->firstOrFail();
 
         $input = array_merge(array_except($this->input, ['url', 'mode']), [
-            'provider'           => $this->input['mode'],
-            'provider_id'        => $info['provider_id'],
+            'provider' => $this->input['mode'],
+            'provider_id' => $info['provider_id'],
             'provider_thumbnail' => $info['provider_thumbnail'],
-            'title'              => $info['title'],
-            'description'        => $info['description'],
-            'width'              => $info['width'],
-            'height'             => $info['height'],
-            'account_id'         => $accounts->account()->id,
-            'locale_id'          => $locale->id,
+            'title' => $info['title'],
+            'description' => $info['description'],
+            'width' => $info['width'],
+            'height' => $info['height'],
+            'account_id' => $accounts->account()->id,
+            'locale_id' => $locale->id,
         ]);
 
         return $media->createVideo($this->owner, $input);
@@ -82,9 +82,7 @@ class AddNewVideo extends Job implements SelfHandling
             $info = $youtube->getVideoInfo($id);
 
             return $this->youtubeVideoResponse($info);
-        }
-        catch (\Exception $e) {
-
+        } catch (\Exception $e) {
             if (isset($info)) {
                 app('log')->notice('handling youtube video failed', ['message' => $e->getMessage(), 'info' => $info]);
             } else {
@@ -106,10 +104,9 @@ class AddNewVideo extends Job implements SelfHandling
         }
 
         if ($id) {
-            $response = $vimeo->request('/videos/' . $id);
+            $response = $vimeo->request('/videos/'.$id);
 
             return $this->vimeoVideoResponse($response['body']);
         }
     }
-
 }

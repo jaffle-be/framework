@@ -1,5 +1,6 @@
-<?php namespace Test\System\Eventing;
+<?php
 
+namespace Test\System\Eventing;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
@@ -10,14 +11,11 @@ use Test\AdminTestCase;
 
 class EventedRelationsStub extends Model
 {
-
     use EventedRelations;
-
 }
 
 class EventedRelationsTest extends AdminTestCase
 {
-
     public function testEventedBelongsToMany()
     {
         $stub = new EventedRelationsStub();
@@ -96,5 +94,4 @@ class EventedRelationsTest extends AdminTestCase
         $stub = new EventedRelationsStub();
         $relation = $stub->eventedBelongsToMany(Product::class, null, null, null);
     }
-
 }

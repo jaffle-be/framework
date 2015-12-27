@@ -13,8 +13,7 @@ class CreatePagesTables extends Migration
      */
     public function up()
     {
-        Schema::create('pages', function(Blueprint $table)
-        {
+        Schema::create('pages', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('account_id', false, true);
             $table->foreign('account_id', 'page_to_account')->references('id')->on('accounts')->onDelete('cascade');
@@ -26,8 +25,7 @@ class CreatePagesTables extends Migration
             $table->timestamps();
         });
 
-        Schema::create('page_translations', function(Blueprint $table)
-        {
+        Schema::create('page_translations', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('page_id', false, true);
             $table->foreign('page_id', 'page_translation_to_page')->references('id')->on('pages')->onDelete('cascade');
@@ -54,7 +52,7 @@ class CreatePagesTables extends Migration
             ],
             'de'     => [
                 'name' => 'Pages',
-            ]
+            ],
         ]);
     }
 
@@ -65,11 +63,11 @@ class CreatePagesTables extends Migration
      */
     public function down()
     {
-        Schema::drop('page_translations', function(Blueprint $table){
+        Schema::drop('page_translations', function (Blueprint $table) {
             $table->dropForeign('page_translation_to_page');
         });
 
-        Schema::drop('pages', function(Blueprint $table){
+        Schema::drop('pages', function (Blueprint $table) {
             $table->dropForeign('page_to_account');
             $table->dropForeign('page_to_parent_page');
         });

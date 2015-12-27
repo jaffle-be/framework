@@ -6,11 +6,8 @@ use Modules\Module\Module;
 
 class CreatePagesTables extends Migration
 {
-
     /**
      * Run the migrations.
-     *
-     * @return void
      */
     public function up()
     {
@@ -42,25 +39,23 @@ class CreatePagesTables extends Migration
         //install the module itself.
         $module = Module::create([
             'namespace' => 'pages',
-            'nl'        => [
+            'nl' => [
                 'name' => 'Pages',
             ],
-            'en'        => [
+            'en' => [
                 'name' => 'Pages',
             ],
-            'fr'        => [
+            'fr' => [
                 'name' => 'Pages',
             ],
-            'de'        => [
+            'de' => [
                 'name' => 'Pages',
-            ]
+            ],
         ]);
     }
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
     public function down()
     {

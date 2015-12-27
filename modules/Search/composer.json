@@ -1,15 +1,15 @@
 {
-  "name": "pingpong-modules/search",
-  "description": "",
-  "authors": [
-    {
-      "name": "Pingpong Labs",
-      "email": "pingpong.labs@gmail.com"
+    "name": "pingpong-modules/search",
+    "description": "",
+    "authors": [
+        {
+            "name": "Pingpong Labs",
+            "email": "pingpong.labs@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Modules\\Search\\": ""
+        }
     }
-  ],
-  "autoload": {
-    "psr-4": {
-      "Modules\\Search\\": ""
-    }
-  }
 }

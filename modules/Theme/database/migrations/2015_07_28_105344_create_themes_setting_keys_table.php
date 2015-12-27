@@ -6,11 +6,8 @@ use Modules\Theme\ThemeSettingType;
 
 class CreateThemesSettingKeysTable extends Migration
 {
-
     /**
      * Run the migrations.
-     *
-     * @return void
      */
     public function up()
     {
@@ -48,8 +45,6 @@ class CreateThemesSettingKeysTable extends Migration
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
     public function down()
     {

@@ -15,7 +15,8 @@
                     </div>
 
                     <div>
-                        <input type="text" name="link_{{ $link}}" id="link_{{ $link}}" class="form-control" ng-model="links.{{$link}}" ng-change="vm.save()" placeholder="{{ $link }}"/>
+                        <input type="text" name="link_{{ $link}}" id="link_{{ $link}}" class="form-control"
+                               ng-model="links.{{$link}}" ng-change="vm.save()" placeholder="{{ $link }}"/>
                     </div>
                 </div>
             </div>

@@ -1,4 +1,6 @@
-<?php namespace Modules\Theme;
+<?php
+
+namespace Modules\Theme;
 
 use Illuminate\Database\Eloquent\Model;
 use Modules\Media\StoresMedia;
@@ -6,10 +8,9 @@ use Modules\Media\StoringMedia;
 
 class Theme extends Model implements StoresMedia
 {
-
     use StoringMedia;
 
-    protected $table = "themes";
+    protected $table = 'themes';
 
     protected $fillable = ['name', 'version'];
 
@@ -18,15 +19,13 @@ class Theme extends Model implements StoresMedia
     protected $mediaMultiple = false;
 
     /**
-     * Return an asset from a theme
-     *
-     * @param $asset
+     * Return an asset from a theme.
      *
      * @return string
      */
     public function asset($asset)
     {
-        $asset = config('theme.public_path') . '/' . $this->name . '/assets/' . ltrim($asset, '/');
+        $asset = config('theme.public_path').'/'.$this->name.'/assets/'.ltrim($asset, '/');
 
         return asset($asset);
     }
@@ -40,5 +39,4 @@ class Theme extends Model implements StoresMedia
     {
         return $this->hasOne('Modules\Theme\ThemeSelection');
     }
-
 }

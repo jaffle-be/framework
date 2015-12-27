@@ -1,4 +1,6 @@
-<?php namespace Modules\Blog\Http\Admin;
+<?php
+
+namespace Modules\Blog\Http\Admin;
 
 use Carbon\Carbon;
 use Illuminate\Contracts\Auth\Guard;
@@ -11,24 +13,29 @@ use Modules\System\Http\AdminController;
 
 class BlogController extends AdminController
 {
-
     use MediaWidgetPreperations;
 
     public function index(Request $request)
     {
-        $query = Post::with(['translations', 'tags', 'images', 'images.sizes' => function ($query) {
-            $query->dimension(150);
-        }, 'images.translations']);
+        $query = Post::with([
+            'translations',
+            'tags',
+            'images',
+            'images.sizes' => function ($query) {
+                $query->dimension(150);
+            },
+            'images.translations',
+        ]);
 
         $value = $request->get('query');
         $locale = $request->get('locale');
 
-        if (!empty($value)) {
+        if (! empty($value)) {
             $query->whereHas('translations', function ($q) use ($value, $locale) {
                 $q->where('locale', $locale);
                 $q->where(function ($q) use ($value) {
-                    $q->where('title', 'like', '%' . $value . '%')
-                        ->orWhere('content', 'like', '%' . $value . '%');
+                    $q->where('title', 'like', '%'.$value.'%')
+                        ->orWhere('content', 'like', '%'.$value.'%');
                 });
             });
         }
@@ -50,9 +57,9 @@ class BlogController extends AdminController
             return $post;
         }
 
-        return json_encode(array(
-            'status' => 'noke'
-        ));
+        return json_encode([
+            'status' => 'noke',
+        ]);
     }
 
     public function show(Post $post)
@@ -68,12 +75,9 @@ class BlogController extends AdminController
     {
         $post->load($this->relations());
 
-        $payload = [
-            'post'  => $post,
-            'input' => translation_input($request, ['title', 'content', 'publish_at'])
-        ];
+        $input = translation_input($request, ['title', 'content', 'publish_at']);
 
-        if (!$this->dispatchFromArray(UpdatePost::class, $payload)) {
+        if (! $this->dispatch(new UpdatePost($post, $input))) {
             return response('500', 'something bad happened');
         }
 

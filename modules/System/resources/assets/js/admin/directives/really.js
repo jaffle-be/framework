@@ -29,14 +29,11 @@
 
                     $translate('CONFIRM').then(function (translation) {
 
-                        if (!scope.ngReallyMessage)
-                        {
-                            if (translation)
-                            {
+                        if (!scope.ngReallyMessage) {
+                            if (translation) {
                                 scope.ngReallyMessage = translation;
                             }
-                            else
-                            {
+                            else {
                                 scope.ngReallyMessage = 'Are you sure?';
                             }
                         }

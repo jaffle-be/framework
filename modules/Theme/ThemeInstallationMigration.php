@@ -1,10 +1,11 @@
-<?php namespace Modules\Theme;
+<?php
+
+namespace Modules\Theme;
 
 use Illuminate\Database\Migrations\Migration;
 
 class ThemeInstallationMigration extends Migration
 {
-
     use MigrateThemeSettings;
 
     protected $name;
@@ -19,13 +20,11 @@ class ThemeInstallationMigration extends Migration
 
     /**
      * Run the migrations.
-     *
-     * @return void
      */
     public function up()
     {
         $theme = Theme::create([
-            'name'    => $this->name,
+            'name' => $this->name,
             'version' => $this->version,
         ]);
 
@@ -34,12 +33,9 @@ class ThemeInstallationMigration extends Migration
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
     public function down()
     {
         $theme = Theme::where('name', $this->name)->delete();
     }
-
 }

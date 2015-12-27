@@ -1,8 +1,9 @@
-<?php namespace Modules\System\Presenter;
+<?php
+
+namespace Modules\System\Presenter;
 
 abstract class BasePresenter implements EntityPresenter
 {
-
     /**
      * @var PresentableEntity
      */
@@ -13,8 +14,13 @@ abstract class BasePresenter implements EntityPresenter
         $this->entity = $entity;
     }
 
+    public function getPresentableEntity()
+    {
+        return $this->entity;
+    }
+
     /**
-     * @param $name
+     *
      */
     public function __get($name)
     {
@@ -24,5 +30,4 @@ abstract class BasePresenter implements EntityPresenter
 
         return $this->entity->{$name};
     }
-
 }

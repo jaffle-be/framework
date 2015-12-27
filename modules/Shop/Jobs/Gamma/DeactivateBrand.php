@@ -1,14 +1,14 @@
-<?php namespace Modules\Shop\Jobs\Gamma;
+<?php
+
+namespace Modules\Shop\Jobs\Gamma;
 
 use App\Jobs\Job;
-use Illuminate\Contracts\Bus\SelfHandling;
 use Modules\Account\Account;
 use Modules\Shop\Gamma\GammaNotification;
 use Modules\Shop\Product\Brand;
 
-class DeactivateBrand extends Job implements SelfHandling
+class DeactivateBrand extends Job
 {
-
     /**
      * @var Brand
      */

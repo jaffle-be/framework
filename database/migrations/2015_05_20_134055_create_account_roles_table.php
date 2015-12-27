@@ -5,7 +5,6 @@ use Illuminate\Database\Schema\Blueprint;
 
 class CreateAccountRolesTable extends Migration
 {
-
     /**
      * Run the migrations.
      *
@@ -45,5 +44,4 @@ class CreateAccountRolesTable extends Migration
             $table->dropForeign('account_membership_roles_to_account');
         });
     }
-
 }

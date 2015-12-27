@@ -1,4 +1,6 @@
-<?php namespace Modules\Portfolio\Http;
+<?php
+
+namespace Modules\Portfolio\Http;
 
 use Modules\Portfolio\Project;
 use Modules\Portfolio\ProjectTranslation;
@@ -7,7 +9,6 @@ use Modules\Tags\Tag;
 
 class PortfolioController extends FrontController
 {
-
     public function index(Project $project, Tag $tags)
     {
         $projects = $project->with($this->relations())->orderBy('date', 'desc')->get();
@@ -15,9 +16,9 @@ class PortfolioController extends FrontController
         $options = [
             'columns' => $this->theme->setting('portfolioColumns'),
             //grid or full width?
-            'grid'    => $this->theme->setting('portfolioGrid'),
+            'grid' => $this->theme->setting('portfolioGrid'),
             //space or no space?
-            'spaced'  => $this->theme->setting('portfolioSpaced'),
+            'spaced' => $this->theme->setting('portfolioSpaced'),
         ];
 
         $tags = $projects->getUniqueTags();
@@ -31,7 +32,7 @@ class PortfolioController extends FrontController
 
         $project = $portfolio->project;
 
-        if (!$project) {
+        if (! $project) {
             abort(404);
         }
 
@@ -42,18 +43,16 @@ class PortfolioController extends FrontController
         $tags = $project->tags;
 
         $relatedProjects = $project->with($relations)
-            ->whereHas('tags', function ($query) use ($tags) {
-                $query->whereIn('id', $tags->lists('id')->toArray());
-            })
-            ->where('id', '<>', $project->id)
-            ->orderBy('date', 'desc')
+            ->taggedWith($tags)
+            ->where($project->getTable().'.'.$project->getKeyName(), '<>', $project->id)
+            ->orderBy($project->getTable().'.date', 'desc')
             ->take(4)
             ->get();
 
         if ($relatedProjects->count() < 4) {
             $extra = $project->with($relations)
-                ->where('id', '<>', $project->id)
-                ->orderBy('date', 'desc')
+                ->where($project->getTable().'.'.$project->getKeyName(), '<>', $project->id)
+                ->orderBy($project->getTable().'.date', 'desc')
                 ->take(4)
                 ->get();
 
@@ -72,5 +71,4 @@ class PortfolioController extends FrontController
     {
         return ['translations', 'images', 'images.translations', 'images.sizes', 'tags', 'tags.translations'];
     }
-
 }

@@ -1,21 +1,20 @@
-<?php namespace Modules\Media\Commands;
+<?php
+
+namespace Modules\Media\Commands;
 
 use App\Jobs\Job;
 use Exception;
-use Illuminate\Contracts\Bus\SelfHandling;
 use Illuminate\Filesystem\Filesystem;
-use Illuminate\Foundation\Bus\DispatchesCommands;
+use Illuminate\Foundation\Bus\DispatchesJobs;
 use Intervention\Image\ImageManager;
 use Modules\Account\Account;
 use Modules\Media\Configurator;
-use Modules\Media\Media;
 use Modules\Media\MediaRepositoryInterface;
 use Modules\Media\StoresMedia;
 
-class StoreNewImage extends Job implements SelfHandling
+class StoreNewImage extends Job
 {
-
-    use DispatchesCommands;
+    use DispatchesJobs;
 
     protected $account;
 
@@ -65,11 +64,7 @@ class StoreNewImage extends Job implements SelfHandling
     protected $path;
 
     /**
-     * @param Account     $account
-     * @param StoresMedia $owner
-     * @param string      $path
-     * @param null        $rename
-     * @param array       $sizes
+     * @internal param array $sizes
      */
     public function __construct(Account $account = null, StoresMedia $owner, $path, $rename = null)
     {
@@ -85,7 +80,7 @@ class StoreNewImage extends Job implements SelfHandling
 
     public function handle(MediaRepositoryInterface $repo, ImageManager $images, Filesystem $files, Configurator $config)
     {
-        if (!$files->exists($this->currentPath)) {
+        if (! $files->exists($this->currentPath)) {
             return false;
         }
 
@@ -95,21 +90,15 @@ class StoreNewImage extends Job implements SelfHandling
 
         try {
             $image = $repo->createImage($this->owner, $this->getPayload());
-        }
-        catch (Exception $e) {
+        } catch (Exception $e) {
             $files->delete(public_path($this->path));
 
             return false;
         }
 
         if ($image) {
-
             foreach ($config->getImageSizes($this->owner) as $size) {
-                $this->dispatchFromArray(ResizeImage::class, [
-                    'image'      => $image,
-                    'size'       => $size,
-                    'cachedPath' => $this->currentPath,
-                ]);
+                $this->dispatch(new ResizeImage($image, $size, $this->currentPath));
             }
 
             return $image;
@@ -119,7 +108,7 @@ class StoreNewImage extends Job implements SelfHandling
     }
 
     /**
-     * set the filename, extension and the size
+     * set the filename, extension and the size.
      */
     protected function dimensions(ImageManager $image)
     {
@@ -134,12 +123,12 @@ class StoreNewImage extends Job implements SelfHandling
         $abstract = $config->getAbstractPath($this->owner, 'images');
         $public = $config->getPublicPath($this->owner, 'images');
 
-        if (!$files->isDirectory($public)) {
+        if (! $files->isDirectory($public)) {
             $files->makeDirectory($public, 0755, true);
         }
 
         //abstract path to actual file
-        $path = $abstract . $this->rename;
+        $path = $abstract.$this->rename;
 
         //always copy the file first
         $files->copy($this->currentPath, public_path($path));
@@ -161,11 +150,11 @@ class StoreNewImage extends Job implements SelfHandling
     {
         return [
             'account_id' => $this->account ? $this->account->id : null,
-            'path'       => $this->path,
-            'filename'   => $this->rename,
-            'extension'  => $this->extension,
-            'width'      => $this->width,
-            'height'     => $this->height,
+            'path' => $this->path,
+            'filename' => $this->rename,
+            'extension' => $this->extension,
+            'width' => $this->width,
+            'height' => $this->height,
         ];
     }
 }

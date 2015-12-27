@@ -1,18 +1,27 @@
-<?php namespace App\Exceptions;
+<?php
+
+namespace App\Exceptions;
 
 use Exception;
+use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Contracts\Validation\ValidationException;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class Handler extends ExceptionHandler
 {
-
     /**
      * A list of the exception types that should not be reported.
      *
      * @var array
      */
     protected $dontReport = [
-        'Symfony\Component\HttpKernel\Exception\HttpException'
+        'Symfony\Component\HttpKernel\Exception\HttpException',
+        AuthorizationException::class,
+        HttpException::class,
+        ModelNotFoundException::class,
+        ValidationException::class,
     ];
 
     /**
@@ -27,7 +36,7 @@ class Handler extends ExceptionHandler
     public function report(Exception $e)
     {
         //report to newrelic when debugging is disabled!
-        if (!env('APP_DEBUG')) {
+        if (! env('APP_DEBUG')) {
             $report = true;
 
             foreach ($this->dontReport as $type) {
@@ -36,9 +45,9 @@ class Handler extends ExceptionHandler
                 }
             }
 
-            if ($report) {
-                app('newrelic')->noticeError($e);
-            }
+//            if ($report) {
+//                app('newrelic')->noticeError($e);
+//            }
         }
 
         return parent::report($e);
@@ -68,8 +77,7 @@ class Handler extends ExceptionHandler
         //make sure we don't have any previous output.
         //we want clean error pages so we don't confuse the user.
 
-        if(!env('APP_DEBUG'))
-        {
+        if (! env('APP_DEBUG')) {
             ob_clean();
 
             return response()->view('errors.500', [], 500);
@@ -77,5 +85,4 @@ class Handler extends ExceptionHandler
 
         return parent::convertExceptionToResponse($e);
     }
-
 }

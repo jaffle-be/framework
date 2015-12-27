@@ -5,11 +5,8 @@ use Illuminate\Database\Schema\Blueprint;
 
 class UserSkillsTable extends Migration
 {
-
     /**
      * Run the migrations.
-     *
-     * @return void
      */
     public function up()
     {
@@ -42,8 +39,6 @@ class UserSkillsTable extends Migration
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
     public function down()
     {
@@ -60,5 +55,4 @@ class UserSkillsTable extends Migration
             $table->dropForeign('skill_to_user');
         });
     }
-
 }

@@ -1,11 +1,12 @@
-<?php namespace Modules\System\Seo\Providers;
+<?php
+
+namespace Modules\System\Seo\Providers;
 
 use Modules\System\Seo\MetaTagProvider;
 use Modules\System\Seo\SeoEntity;
 
 class Twitter extends MetaTagProvider
 {
-
     protected $prefix = 'twitter:';
 
     protected function handle(SeoEntity $seo)
@@ -17,5 +18,4 @@ class Twitter extends MetaTagProvider
             $this->addProperty('image', asset($image->path));
         }
     }
-
 }

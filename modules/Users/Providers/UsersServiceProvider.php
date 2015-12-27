@@ -1,10 +1,14 @@
-<?php namespace Modules\Users\Providers;
+<?php
 
-use Pingpong\Modules\ServiceProvider;
+namespace Modules\Users\Providers;
+
+use Carbon\Carbon;
+use Illuminate\Redis\Database;
+use Modules\System\ServiceProvider;
+use Modules\Users\Auth\Throttler\ThrottleManager;
 
 class UsersServiceProvider extends ServiceProvider
 {
-
     protected $namespace = 'users';
 
     public function register()
@@ -12,6 +16,8 @@ class UsersServiceProvider extends ServiceProvider
         $this->app->bind('Modules\Users\Contracts\UserRepositoryInterface', 'Modules\Users\UserRepository');
         $this->app->bind('Modules\Users\Contracts\TokenRepositoryInterface', 'Modules\Users\Auth\Tokens\TokenRepository');
         $this->app->bind('Modules\Users\Contracts\Throttler', 'Modules\Users\Auth\Throttler\ThrottleManager');
+
+        $this->bindAuthThrottler();
     }
 
     protected function listeners()
@@ -21,7 +27,15 @@ class UsersServiceProvider extends ServiceProvider
         $events->listen('Modules\Users\Auth\Events\UserRegistered', 'Modules\Users\Auth\Handlers\UserRegisteredHandler');
     }
 
-    protected function observers()
+    protected function bindAuthThrottler()
     {
+        $this->app->singleton(ThrottleManager::class, function () {
+            /* @var $redis Database */
+            $redis = app('redis')->connection(config('cache.stores.redis.connection'));
+
+            $queue = app('queue')->connection();
+
+            return new ThrottleManager($redis, app('config'), $queue, new Carbon(), app('request'));
+        });
     }
 }

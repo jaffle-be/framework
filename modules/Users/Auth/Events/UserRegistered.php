@@ -1,4 +1,6 @@
-<?php namespace Modules\Users\Auth\Events;
+<?php
+
+namespace Modules\Users\Auth\Events;
 
 use App\Events\Event;
 use Modules\Account\MembershipInvitation;
@@ -6,7 +8,6 @@ use Modules\Users\User;
 
 class UserRegistered extends Event
 {
-
     public $user;
 
     public $invitation;
@@ -16,5 +17,4 @@ class UserRegistered extends Event
         $this->user = $user;
         $this->invitation = $invitation;
     }
-
 }

@@ -1,4 +1,6 @@
-<?php namespace Modules\System\Uri;
+<?php
+
+namespace Modules\System\Uri;
 
 use Illuminate\Database\Eloquent\Model;
 use Modules\System\Scopes\ModelLocaleSpecificResource;
@@ -6,7 +8,6 @@ use Modules\System\Sluggable\Sluggable;
 
 class Uri extends Model
 {
-
     use Sluggable;
     use ModelLocaleSpecificResource;
 
@@ -16,12 +17,11 @@ class Uri extends Model
 
     protected $sluggable = [
         'build_from' => 'owner.title',
-        'save_to'    => 'uri',
+        'save_to' => 'uri',
     ];
 
     public function owner()
     {
         return $this->morphTo();
     }
-
 }

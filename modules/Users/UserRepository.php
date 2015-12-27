@@ -1,10 +1,11 @@
-<?php namespace Modules\Users;
+<?php
+
+namespace Modules\Users;
 
 use Modules\Users\Contracts\UserRepositoryInterface;
 
 class UserRepository implements UserRepositoryInterface
 {
-
     /**
      * @var User
      */
@@ -16,8 +17,6 @@ class UserRepository implements UserRepositoryInterface
     }
 
     /**
-     * @param $token
-     *
      * @return User|null
      */
     public function findUserByConfirmationToken($token)

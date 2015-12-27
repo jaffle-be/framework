@@ -19,7 +19,8 @@
             <input class="form-control" type="text" name="url" id="url" ng-model="item.url" ng-change="vm.saveItem()"/>
 
             <div class="checkbox">
-                <input type="checkbox" id="target_blank" class="filled-in" ng-model="item.target_blank" ng-change="vm.saveItem(false)">
+                <input type="checkbox" id="target_blank" class="filled-in" ng-model="item.target_blank"
+                       ng-change="vm.saveItem(false)">
 
                 <label for="target_blank">{{ Lang::get('menu::admin.target_blank') }}</label>
             </div>
@@ -34,7 +35,8 @@
                     @{{ locale.slug }}
                 </label>
 
-                <input class="form-control" type="text" name="locale" id="locale" ng-model="item.translations[locale.slug].name" ng-change="vm.saveItem()"/>
+                <input class="form-control" type="text" name="locale" id="locale"
+                       ng-model="item.translations[locale.slug].name" ng-change="vm.saveItem()"/>
 
             </div>
 

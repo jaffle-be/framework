@@ -1,4 +1,6 @@
-<?php namespace Modules\System\Seo;
+<?php
+
+namespace Modules\System\Seo;
 
 use Modules\Media\StoresMedia;
 use Modules\System\Locale;
@@ -7,7 +9,6 @@ use Modules\Users\User;
 
 trait SeoTrait
 {
-
     public function seo()
     {
         return $this->morphMany('Modules\System\Seo\SeoProperty', 'owner');
@@ -17,7 +18,7 @@ trait SeoTrait
     {
         static $locale;
 
-        if (!$locale) {
+        if (! $locale) {
             $locale = app()->getLocale();
 
             $locale = Locale::whereSlug($locale)->first();
@@ -62,7 +63,6 @@ trait SeoTrait
         //so it'll automatically use the same rules
         //as we use on our website.
         if ($this instanceof PresentableEntity) {
-
             if ($hasCustomSeoAttribute) {
                 return $this->present()->{$this->seo['extract']};
             }
@@ -91,7 +91,6 @@ trait SeoTrait
         //a journalist, would be able to write content and immediately tweak it to better match those search terms.
 
         //we could use the tags used if it's a taggable thing.
-
     }
 
     public function getSeoImage()
@@ -133,5 +132,4 @@ trait SeoTrait
             return $this->user->fullName;
         }
     }
-
 }

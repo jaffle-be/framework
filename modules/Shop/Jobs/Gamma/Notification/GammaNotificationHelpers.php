@@ -1,4 +1,6 @@
-<?php namespace Modules\Shop\Jobs\Gamma\Notification;
+<?php
+
+namespace Modules\Shop\Jobs\Gamma\Notification;
 
 use Modules\Account\Account;
 use Modules\Shop\Gamma\GammaNotification;
@@ -8,7 +10,6 @@ use Pusher;
 
 trait GammaNotificationHelpers
 {
-
     protected function beingProcessed(GammaNotification $notification, Account $account, Brand $brand, Category $category)
     {
         return $notification->newQueryWithoutScopes()
@@ -36,18 +37,13 @@ trait GammaNotificationHelpers
             $pusher->trigger(pusher_account_channel(), 'gamma.gamma_notification.denied', $notification->toArray());
 
             $notification->delete();
-            $counter++;
+            ++$counter;
         }
 
         return $counter;
     }
 
     /**
-     * @param GammaNotification $notification
-     * @param Account           $account
-     * @param Brand             $brand
-     * @param Category          $category
-     *
      * @return mixed
      */
     protected function findExistingCombination(GammaNotification $notification, Account $account, Brand $brand, Category $category)
@@ -61,5 +57,4 @@ trait GammaNotificationHelpers
 
         return $existing;
     }
-
 }

@@ -1,4 +1,6 @@
-<?php namespace Modules\Media;
+<?php
+
+namespace Modules\Media;
 
 use Illuminate\Database\Eloquent\Model;
 use Modules\Media\Image\ImageModelTrait;
@@ -8,7 +10,6 @@ use Modules\System\Translatable\Translatable;
 
 class Image extends Model
 {
-
     use Translatable;
     use ModelAccountOrSystemResource;
     use ModelAutoSort;

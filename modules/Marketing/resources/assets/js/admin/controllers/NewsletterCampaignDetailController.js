@@ -41,15 +41,13 @@
             this.load(id);
 
             function load(id) {
-                if (id)
-                {
+                if (id) {
                     me.campaign = me.campaigns.find(id, function (campaign) {
                         me.campaign = campaign;
                         console.log(campaign);
                     });
                 }
-                else
-                {
+                else {
                     me.campaign = new NewsletterCampaign();
                 }
             };
@@ -58,13 +56,12 @@
              * trigger a save for a document that exists but hold the autosave when it's a
              * document we're creating.
              *
-             * @param manual
+             *
              */
             function save() {
                 me.drafting = true;
 
-                if (me.campaign.id)
-                {
+                if (me.campaign.id) {
                     me.campaigns.save(me.campaign);
                 }
             }
@@ -95,8 +92,7 @@
             }
 
             function configItemCount(widget) {
-                if (!widget)
-                {
+                if (!widget) {
                     return false;
                 }
 
@@ -116,8 +112,7 @@
             }
 
             function widgetImage(field) {
-                if (me.editing)
-                {
+                if (me.editing) {
                     return me.editing[field] ? me.editing[field].path : null;
                 }
             }
@@ -128,16 +123,14 @@
 
                 var image = _.first(_.where(me.campaign.images, {id: id}));
 
-                if (image)
-                {
+                if (image) {
                     me.editing[image_field] = image;
                     me.saveWidget(me.editing);
                 }
             }
 
             function showImage(image) {
-                if (image)
-                {
+                if (image) {
                     return image.path;
                 }
 
@@ -153,12 +146,10 @@
             }
 
             function resourceToUse(type, widget) {
-                if (type == 'one')
-                {
+                if (type == 'one') {
                     return widget.resource;
                 }
-                else if (type == 'two')
-                {
+                else if (type == 'two') {
                     return widget.otherResource;
                 }
             }
@@ -166,8 +157,7 @@
             function showResourceImage(type, widget) {
                 var resource = resourceToUse(type, widget);
 
-                if (resource && resource.images)
-                {
+                if (resource && resource.images) {
                     return resource.images[0].path;
                 }
 
@@ -177,8 +167,7 @@
             function showResourceTitle(type, widget) {
                 var resource = resourceToUse(type, widget);
 
-                if (resource && resource.translations)
-                {
+                if (resource && resource.translations) {
                     return resource.translations[me.options.locale].title;
                 }
 
@@ -188,8 +177,7 @@
             function showResourceText(type, widget) {
                 var resource = resourceToUse(type, widget);
 
-                if (resource && resource.translations)
-                {
+                if (resource && resource.translations) {
                     return resource.translations[me.options.locale].cached_extract;
                 }
 

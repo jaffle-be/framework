@@ -5,11 +5,8 @@ use Illuminate\Database\Schema\Blueprint;
 
 class CreateCategoriesPivotTable extends Migration
 {
-
     /**
      * Run the migrations.
-     *
-     * @return void
      */
     public function up()
     {
@@ -24,8 +21,6 @@ class CreateCategoriesPivotTable extends Migration
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
     public function down()
     {
@@ -34,5 +29,4 @@ class CreateCategoriesPivotTable extends Migration
             $table->dropForeign('categories_product_pivot_to_category');
         });
     }
-
 }

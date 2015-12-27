@@ -1,12 +1,12 @@
-<?php namespace Modules\Tags\Commands;
+<?php
+
+namespace Modules\Tags\Commands;
 
 use App\Jobs\Job;
-use Illuminate\Contracts\Bus\SelfHandling;
 use Modules\Tags\Tag;
 
-class UpdateTag extends Job implements SelfHandling
+class UpdateTag extends Job
 {
-
     /**
      * @var Tag
      */
@@ -18,8 +18,7 @@ class UpdateTag extends Job implements SelfHandling
     protected $input;
 
     /**
-     * @param Tag   $tag
-     * @param array $input
+     *
      */
     public function __construct(Tag $tag, array $input)
     {

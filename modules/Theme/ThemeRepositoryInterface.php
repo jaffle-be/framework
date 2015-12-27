@@ -1,8 +1,9 @@
-<?php namespace Modules\Theme;
+<?php
+
+namespace Modules\Theme;
 
 interface ThemeRepositoryInterface
 {
-
     public function supported();
 
     public function current();

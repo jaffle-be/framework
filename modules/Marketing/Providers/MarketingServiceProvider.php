@@ -1,27 +1,23 @@
-<?php namespace Modules\Marketing\Providers;
+<?php
+
+namespace Modules\Marketing\Providers;
 
 use Drewm\MailChimp;
 use Modules\Marketing\Newsletter\CampaignWidget;
-use Pingpong\Modules\ServiceProvider;
+use Modules\System\ServiceProvider;
 
 class MarketingServiceProvider extends ServiceProvider
 {
-
     protected $namespace = 'marketing';
 
     public function register()
     {
-
         $this->app->singleton(MailChimp::class, function () {
             return new MailChimp(env('MAILCHIMP_APIKEY'));
         });
     }
 
     protected function listeners()
-    {
-    }
-
-    protected function observers()
     {
         $this->app->booted(function () {
 
@@ -36,7 +32,7 @@ class MarketingServiceProvider extends ServiceProvider
                 CampaignWidget::where('campaign_id', $item->campaign_id)
                     ->where('sort', '>', $item->sort)
                     ->update([
-                        'sort' => \DB::raw('sort - 1')
+                        'sort' => \DB::raw('sort - 1'),
                     ]);
             });
         });

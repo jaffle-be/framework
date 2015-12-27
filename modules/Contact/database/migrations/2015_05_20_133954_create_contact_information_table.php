@@ -7,11 +7,8 @@ use Modules\Module\ModuleRoute;
 
 class CreateContactInformationTable extends Migration
 {
-
     /**
      * Run the migrations.
-     *
-     * @return void
      */
     public function up()
     {
@@ -35,33 +32,33 @@ class CreateContactInformationTable extends Migration
         //install the module itself.
         $module = Module::create([
             'namespace' => 'contact',
-            'nl'        => [
+            'nl' => [
                 'name' => 'Contact',
             ],
-            'en'        => [
+            'en' => [
                 'name' => 'Contact',
             ],
-            'fr'        => [
+            'fr' => [
                 'name' => 'Contact',
             ],
-            'de'        => [
+            'de' => [
                 'name' => 'Contact',
-            ]
+            ],
         ]);
 
         $module->routes()->save(new ModuleRoute([
             'name' => 'store.contact.index',
-            'nl'   => [
-                'title' => 'contact'
+            'nl' => [
+                'title' => 'contact',
             ],
-            'en'   => [
-                'title' => 'contact'
+            'en' => [
+                'title' => 'contact',
             ],
-            'fr'   => [
-                'title' => 'contact'
+            'fr' => [
+                'title' => 'contact',
             ],
-            'de'   => [
-                'title' => 'contact'
+            'de' => [
+                'title' => 'contact',
             ],
 
         ]));
@@ -69,8 +66,6 @@ class CreateContactInformationTable extends Migration
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
     public function down()
     {
@@ -78,5 +73,4 @@ class CreateContactInformationTable extends Migration
             $table->dropForeign('contact_address_to_country');
         });
     }
-
 }

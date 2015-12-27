@@ -1,10 +1,11 @@
-<?php namespace Modules\Module\Providers;
+<?php
 
-use Pingpong\Modules\ServiceProvider;
+namespace Modules\Module\Providers;
+
+use Modules\System\ServiceProvider;
 
 class ModuleServiceProvider extends ServiceProvider
 {
-
     protected $namespace = 'module';
 
     public function register()
@@ -12,10 +13,6 @@ class ModuleServiceProvider extends ServiceProvider
     }
 
     protected function listeners()
-    {
-    }
-
-    protected function observers()
     {
     }
 }

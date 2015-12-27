@@ -1,4 +1,6 @@
-<?php namespace Modules\Shop\Gamma;
+<?php
+
+namespace Modules\Shop\Gamma;
 
 use Illuminate\Database\Eloquent\Model;
 use Modules\System\Pushable\CanPush;
@@ -7,7 +9,6 @@ use Modules\System\Scopes\ModelAccountResource;
 
 class GammaSelection extends Model implements Pushable
 {
-
     use ModelAccountResource;
     use CanPush;
 
@@ -24,5 +25,4 @@ class GammaSelection extends Model implements Pushable
     {
         return $this->belongsTo('Modules\Shop\Product\Category');
     }
-
 }

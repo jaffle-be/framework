@@ -6,13 +6,14 @@
 
                 <form role="search" class="navbar-form-custom" method="post" action="views/search_results.html">
                     <div class="form-group">
-                        <input type="text" placeholder="@{{ 'SEARCH' | translate }}" class="form-control" name="top-search" id="top-search">
+                        <input type="text" placeholder="@{{ 'SEARCH' | translate }}" class="form-control"
+                               name="top-search" id="top-search">
                     </div>
                 </form>
             </div>
             <ul class="nav navbar-top-links navbar-right">
                 <li>
-                    <a href="/auth/signout" target="_self">
+                    <a href="{{ store_route('store.auth.signout.index') }}" target="_self">
                         <i class="fa fa-sign-out"></i> {{ Lang::get('layout::admin.logout') }}
                     </a>
                 </li>

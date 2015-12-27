@@ -33,8 +33,7 @@
 
                     $scope.$watch('files', function (newValue) {
 
-                        if (newValue)
-                        {
+                        if (newValue) {
                             $scope.dupes = newValue;
                         }
                     });
@@ -50,8 +49,7 @@
 
                     function dropzoneSuccess(file, object, xhr) {
                         object = new FileResource(object);
-                        if (!$scope.files[$scope.locale])
-                        {
+                        if (!$scope.files[$scope.locale]) {
                             $scope.files[$scope.locale] = [];
                         }
                         $scope.files[$scope.locale].push(object);
@@ -61,12 +59,10 @@
 
                     function dropzoneError(file, message, response) {
                         //added to avoid large popup when we try uploading a file which is too large
-                        if (response.status == 413)
-                        {
+                        if (response.status == 413) {
                             toaster.error(response.statusText);
                         }
-                        else
-                        {
+                        else {
                             toaster.error(message);
                         }
 

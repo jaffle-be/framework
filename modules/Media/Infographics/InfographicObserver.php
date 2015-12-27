@@ -1,22 +1,21 @@
-<?php namespace Modules\Media\Infographics;
+<?php
+
+namespace Modules\Media\Infographics;
 
 use Illuminate\Filesystem\Filesystem;
 
 /**
- * Class InfographicObserver
- *
- * @package Media
+ * Class InfographicObserver.
  */
 class InfographicObserver
 {
-
     /**
      * @var Filesystem
      */
     protected $files;
 
     /**
-     * @param Filesystem $files
+     *
      */
     public function __construct(Filesystem $files)
     {
@@ -24,7 +23,7 @@ class InfographicObserver
     }
 
     /**
-     * @param Infographic $graphic
+     *
      */
     public function deleting(Infographic $graphic)
     {
@@ -37,11 +36,10 @@ class InfographicObserver
     }
 
     /**
-     * @param Infographic $graphic
+     *
      */
     public function deleted(Infographic $graphic)
     {
         $this->files->delete(public_path($graphic->path));
     }
-
 }

@@ -1,10 +1,11 @@
-<?php namespace Modules\System\Pushable;
+<?php
+
+namespace Modules\System\Pushable;
 
 use Modules\System\Scopes\ModelAccountResource;
 
 trait CanPush
 {
-
     public function getPushableChannel()
     {
         if (property_exists(get_class($this), 'pushableChannel')) {
@@ -24,12 +25,20 @@ trait CanPush
             return $this->pushableEventName;
         }
 
-        return null;
+        $type = explode('\\', get_class($this));
+
+        $type = array_map(function ($item) {
+            return snake_case($item);
+        }, $type);
+
+        $type = implode('.', $type);
+
+        //strip of the modules.{any module name}. part of the string
+        return preg_replace('/modules\.(.+?)\./', '', $type, 1);
     }
 
     public function getPushableData()
     {
         return $this->toArray();
     }
-
 }

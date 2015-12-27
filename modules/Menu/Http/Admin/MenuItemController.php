@@ -1,4 +1,6 @@
-<?php namespace Modules\Menu\Http\Admin;
+<?php
+
+namespace Modules\Menu\Http\Admin;
 
 use Illuminate\Http\Request;
 use Modules\Account\AccountManager;
@@ -13,15 +15,13 @@ use Modules\Theme\ThemeManager;
 
 class MenuItemController extends AdminController
 {
-
     /**
      * @var MenuManager
      */
     protected $menu;
 
     /**
-     * @param ThemeManager $theme
-     * @param MenuManager  $menu
+     *
      */
     public function __construct(ThemeManager $theme, MenuManager $menu, AccountManager $account)
     {
@@ -33,10 +33,6 @@ class MenuItemController extends AdminController
     }
 
     /**
-     * @param Menu     $menu
-     * @param MenuItem $item
-     * @param Request  $request
-     *
      * @return mixed
      */
     public function store(Menu $menu, MenuItem $item, Request $request, Page $page, Locale $locale, ModuleRoute $route)
@@ -66,7 +62,6 @@ class MenuItemController extends AdminController
                 }
             }
         } else {
-
             $rules = [
                 'url' => 'required',
             ];
@@ -84,10 +79,6 @@ class MenuItemController extends AdminController
     }
 
     /**
-     * @param Menu     $menu
-     * @param MenuItem $item
-     * @param Request  $request
-     *
      * @return mixed
      */
     public function update(Menu $menu, MenuItem $item, Request $request)
@@ -98,9 +89,6 @@ class MenuItemController extends AdminController
     }
 
     /**
-     * @param Menu     $menu
-     * @param MenuItem $item
-     *
      * @return mixed
      */
     public function destroy(Menu $menu, MenuItem $item)
@@ -113,5 +101,4 @@ class MenuItemController extends AdminController
 
         return $this->menu->deleteItem($item);
     }
-
 }

@@ -1,12 +1,13 @@
-<?php namespace Modules\Portfolio\Providers;
+<?php
+
+namespace Modules\Portfolio\Providers;
 
 use Modules\Portfolio\Project;
 use Modules\Portfolio\ProjectObserver;
-use Pingpong\Modules\ServiceProvider;
+use Modules\System\ServiceProvider;
 
 class PortfolioServiceProvider extends ServiceProvider
 {
-
     protected $namespace = 'portfolio';
 
     public function register()
@@ -15,10 +16,6 @@ class PortfolioServiceProvider extends ServiceProvider
     }
 
     protected function listeners()
-    {
-    }
-
-    protected function observers()
     {
         Project::observe(ProjectObserver::class);
     }

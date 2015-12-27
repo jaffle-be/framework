@@ -1,4 +1,6 @@
-<?php namespace Modules\Media\Console;
+<?php
+
+namespace Modules\Media\Console;
 
 use Illuminate\Console\Command;
 use Illuminate\Contracts\Filesystem\Filesystem;
@@ -10,7 +12,6 @@ use Modules\Media\StoresMedia;
 
 class Rebatch extends Command
 {
-
     use DispatchesJobs;
 
     protected $signature = 'media:rebatch {type=all} {--sizes=all} {--force}';
@@ -36,7 +37,6 @@ class Rebatch extends Command
         $sizes = $this->option('sizes');
 
         foreach ($types as $type) {
-
             $entity = app($type);
 
             $this->handleType($entity, $this->sizesForType($type, $sizes), $force);
@@ -46,16 +46,14 @@ class Rebatch extends Command
     protected function sizesForType($type, $requested)
     {
         if (class_exists($type)) {
-            return $this->config->getImageSizes(new $type, $requested);
+            return $this->config->getImageSizes(new $type(), $requested);
         }
 
         return $this->config->getImageSizes(new $this->config->classname($type), $requested);
     }
 
     /**
-     * @param StoresMedia $type
-     * @param array       $sizes
-     * @param bool        $force
+     *
      */
     protected function handleType(StoresMedia $type, array $sizes, $force)
     {
@@ -80,9 +78,7 @@ class Rebatch extends Command
     }
 
     /**
-     * @param StoresMedia $owner
-     * @param array       $sizes
-     * @param bool        $force
+     *
      */
     protected function handleOwner(StoresMedia $owner, array $sizes, $force)
     {
@@ -90,18 +86,15 @@ class Rebatch extends Command
             //check which sizes aren't there.
             //only resize those.
             foreach ($owner->images as $image) {
-
                 $this->handleImage($sizes, $image, $force);
             }
-        } else if ($owner->images) {
+        } elseif ($owner->images) {
             $this->handleImage($sizes, $owner->images, $force);
         }
     }
 
     /**
-     * @param array $sizes
-     * @param Image $image
-     * @param bool  $force
+     *
      */
     protected function handleImage(array $sizes, Image $image, $force)
     {
@@ -123,14 +116,13 @@ class Rebatch extends Command
         $resizing = [];
 
         foreach ($sizes as $size) {
-
             $path = $image->path;
 
             $info = pathinfo($path);
 
-            $path = $info['dirname'] . '/' . $size . '/' . $info['basename'];
+            $path = $info['dirname'].'/'.$size.'/'.$info['basename'];
 
-            if (!$this->imageHasSize($image, $path)) {
+            if (! $this->imageHasSize($image, $path)) {
                 $resizing[] = $size;
             }
         }
@@ -139,9 +131,6 @@ class Rebatch extends Command
     }
 
     /**
-     * @param Image $image
-     * @param       $path
-     *
      * @return mixed
      */
     protected function imageHasSize(Image $image, $path)
@@ -150,5 +139,4 @@ class Rebatch extends Command
             return $item->path == $path && file_exists(public_path($path));
         })->first();
     }
-
 }

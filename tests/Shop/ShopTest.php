@@ -1,4 +1,6 @@
-<?php namespace Test\Shop;
+<?php
+
+namespace Test\Shop;
 
 use Modules\Shop\Product\CategoryTranslation;
 use Modules\Shop\Product\ProductTranslation;
@@ -7,7 +9,6 @@ use Test\Routes\RouteTests;
 
 class ShopTest extends FrontTestCase
 {
-
     use RouteTests;
 
     public function testHome()
@@ -22,7 +23,7 @@ class ShopTest extends FrontTestCase
 
     public function testProduct()
     {
-//        $this->tryRoute('store.shop.product', [ProductTranslation::where('locale', 'en')->where('published', true)->first()]);
+        //        $this->tryRoute('store.shop.product', [ProductTranslation::where('locale', 'en')->where('published', true)->first()]);
     }
 
     public function testLogin()

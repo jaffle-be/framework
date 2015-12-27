@@ -1,10 +1,11 @@
-<?php namespace Modules\Menu\Engine;
+<?php
+
+namespace Modules\Menu\Engine;
 
 use Illuminate\Contracts\View\Factory;
 
 class Engine
 {
-
     protected $view;
 
     public function __construct(Factory $view)
@@ -15,8 +16,7 @@ class Engine
     public function render($theme, $items)
     {
         return $this->view->make($theme, [
-            'items' => $items
+            'items' => $items,
         ]);
     }
-
 }

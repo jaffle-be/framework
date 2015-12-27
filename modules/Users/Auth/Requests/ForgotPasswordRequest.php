@@ -1,10 +1,11 @@
-<?php namespace Modules\Users\Auth\Requests;
+<?php
+
+namespace Modules\Users\Auth\Requests;
 
 use App\Http\Requests\Request;
 
 class ForgotPasswordRequest extends Request
 {
-
     /**
      * Determine if the user is authorized to make this request.
      *

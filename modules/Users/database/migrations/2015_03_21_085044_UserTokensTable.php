@@ -5,11 +5,8 @@ use Illuminate\Database\Schema\Blueprint;
 
 class UserTokensTable extends Migration
 {
-
     /**
      * Run the migrations.
-     *
-     * @return void
      */
     public function up()
     {
@@ -34,8 +31,6 @@ class UserTokensTable extends Migration
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
     public function down()
     {

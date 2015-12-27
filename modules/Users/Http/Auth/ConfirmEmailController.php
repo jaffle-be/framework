@@ -1,4 +1,6 @@
-<?php namespace Modules\Users\Http\Auth;
+<?php
+
+namespace Modules\Users\Http\Auth;
 
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Http\Request;
@@ -12,11 +14,8 @@ use Modules\Users\Contracts\UserRepositoryInterface;
 
 class ConfirmEmailController extends FrontController
 {
-
     /**
      * Form for sending new confirmation email.
-     *
-     * @param Request $request
      *
      * @return \Illuminate\View\View
      */
@@ -30,9 +29,6 @@ class ConfirmEmailController extends FrontController
     /**
      * Trigger the actual sending of the email.
      *
-     * @param Request                 $request
-     * @param UserRepositoryInterface $users
-     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request, UserRepositoryInterface $users, AccountManager $manager)
@@ -40,17 +36,14 @@ class ConfirmEmailController extends FrontController
         $user = $users->findUserByEmail($request->get('email'));
 
         if ($user) {
-            $this->dispatchFromArray(SendConfirmationEmail::class, ['user' => $user, 'manager' => $manager]);
+            $this->dispatch(new SendConfirmationEmail($user));
         }
 
         return redirect()->to(store_route('store.auth.signin.index'))->withSuccess(Lang::get('users::front.request-handled'));
     }
 
     /**
-     * The method which actually triggers the confirmation
-     *
-     * @param                          $token
-     * @param TokenRepositoryInterface $tokens
+     * The method which actually triggers the confirmation.
      *
      * @return \Illuminate\Http\RedirectResponse
      */
@@ -59,7 +52,7 @@ class ConfirmEmailController extends FrontController
         $token = $tokens->findTokenByValue($token);
 
         if ($token) {
-            $user = $this->dispatchFromArray(ConfirmEmail::class, ['token' => $token]);
+            $user = $this->dispatch(new ConfirmEmail($token));
 
             if ($user) {
                 return redirect('admin/start');

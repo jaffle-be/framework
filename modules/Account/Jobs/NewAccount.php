@@ -1,15 +1,15 @@
-<?php namespace Modules\Account\Jobs;
+<?php
+
+namespace Modules\Account\Jobs;
 
 use App\Jobs\Job;
-use Illuminate\Contracts\Bus\SelfHandling;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Modules\Account\AccountRepository;
 use Modules\Account\Jobs\Membership\NewMembership;
 use Modules\Account\MembershipOwner;
 
-class NewAccount extends Job implements SelfHandling
+class NewAccount extends Job
 {
-
     use DispatchesJobs;
 
     /**
@@ -38,21 +38,20 @@ class NewAccount extends Job implements SelfHandling
     {
         //create the new account
         $account = $repo->newAccount([
-            'alias'   => $this->alias,
-            'domain'  => $this->domain,
-            'user_id' => $this->owner->getKey()
+            'alias' => $this->alias,
+            'domain' => $this->domain,
+            'user_id' => $this->owner->getKey(),
         ]);
 
-        if (!$account) {
+        if (! $account) {
             return false;
         }
 
         //setup the membership link
         $linked = $this->dispatch(new NewMembership($account, $this->owner));
 
-        if (!$linked) {
+        if (! $linked) {
             return false;
         }
     }
-
 }

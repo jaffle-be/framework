@@ -1,47 +1,47 @@
 @import "inspinia/variables.less";
 
 .newsletter-widget {
-  max-width: 600px;
-  margin: 0 auto 1.5em;
+    max-width: 600px;
+    margin: 0 auto 1.5em;
 
-  &.newsletter-widget-editor {
-    border-bottom: none;
-  }
+    &.newsletter-widget-editor {
+        border-bottom: none;
+    }
 
-  padding-bottom: 1.5em;
-  border-bottom: 1px solid @border-color;
+    padding-bottom: 1.5em;
+    border-bottom: 1px solid @border-color;
 
-  .newsletter-widget-tools, .newsletter-widget-header {
-    margin-bottom: 1.5em;
-    text-align: center;
-  }
+    .newsletter-widget-tools, .newsletter-widget-header {
+        margin-bottom: 1.5em;
+        text-align: center;
+    }
 
 }
 
 .newsletter-widget-stats {
 
-  .regular, .good, .bad {
+    .regular, .good, .bad {
 
-    label {
-      text-align: center;
-      font-size: larger;
-      display: block;
+        label {
+            text-align: center;
+            font-size: larger;
+            display: block;
+        }
+
+        span {
+            display: block;
+            text-align: center;
+            font-size: xx-large;
+
+        }
     }
 
-    span {
-      display: block;
-      text-align: center;
-      font-size: xx-large;
-
+    .good span {
+        color: @brand-success;
     }
-  }
 
-  .good span {
-    color: @brand-success;
-  }
-
-  .bad span {
-    color: @brand-danger;
-  }
+    .bad span {
+        color: @brand-danger;
+    }
 
 }

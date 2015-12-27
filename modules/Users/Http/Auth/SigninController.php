@@ -1,4 +1,6 @@
-<?php namespace Modules\Users\Http\Auth;
+<?php
+
+namespace Modules\Users\Http\Auth;
 
 use Illuminate\Translation\Translator;
 use Modules\System\Http\FrontController;
@@ -8,7 +10,6 @@ use Modules\Users\User;
 
 class SigninController extends FrontController
 {
-
     public function index()
     {
         return $this->theme->render('auth.login');
@@ -20,11 +21,11 @@ class SigninController extends FrontController
 
         $remember_me = $request->has('remember_me') ? true : false;
 
-        $response = $this->dispatchFromArray(Signin::class, compact('credentials', 'remember_me'));
+        $response = $this->dispatch(new Signin($credentials, $remember_me));
 
         if ($response instanceof User) {
             return redirect('admin/start');
-        } else if (is_string($response) && $response == 'unconfirmed') {
+        } elseif (is_string($response) && $response == 'unconfirmed') {
             $route = store_route('store.auth.confirm-email.create', ['email' => $credentials['email']]);
 
             $error = $lang->get('users::auth.errors.unconfirmed', ['url' => $route]);

@@ -18,7 +18,6 @@ use Modules\System\Seeder;
 
 class ShopTableSeeder extends Seeder
 {
-
     public function __construct()
     {
         $this->model = new Product();
@@ -28,15 +27,10 @@ class ShopTableSeeder extends Seeder
 
     public function run($count = 15)
     {
-        if (Brand::count() == 0) {
-            $this->brands();
-        }
-        if (Category::count() == 0) {
-            $this->categories();
-        }
+        $this->call(BrandTableSeeder::class);
+        $this->call(CategoryTableSeeder::class);
 
-        if (Property::count() == 0)
-        {
+        if (Property::count() == 0) {
             $this->baseProperties();
         }
 
@@ -51,10 +45,8 @@ class ShopTableSeeder extends Seeder
 
         $accounts = Account::take(2)->get();
 
-        foreach($accounts as $account)
-        {
-            for ($i = 0; $i < $amount; $i++) {
-
+        foreach ($accounts as $account) {
+            for ($i = 0; $i < $amount; ++$i) {
                 $product = factory(Product::class)->create([
                     'brand_id' => $brands->random(1)->id,
                     'account_id' => $account->id,
@@ -66,8 +58,7 @@ class ShopTableSeeder extends Seeder
 
                 $categoryIds = [$category->id];
 
-                if($category->synonyms)
-                {
+                if ($category->synonyms) {
                     $categoryIds = array_merge($categoryIds, $category->synonyms->lists('id')->toArray());
                 }
 
@@ -88,22 +79,21 @@ class ShopTableSeeder extends Seeder
         $counter = 0;
 
         while ($counter < $count) {
-
             $product->priceHistory()->save(new Price([
-                'account_id'  => $account,
+                'account_id' => $account,
                 'active_from' => $this->faker->dateTimeBetween('-3 years', '-5 months'),
-                'active_to'   => $this->faker->dateTimeBetween('-5 months', '-2 days'),
-                'value'       => rand(1000, 200000) / 10,
+                'active_to' => $this->faker->dateTimeBetween('-5 months', '-2 days'),
+                'value' => rand(1000, 200000) / 10,
             ]));
 
-            $counter++;
+            ++$counter;
         }
 
         if (rand(0, 1)) {
             $product->price()->save(new ActivePrice([
-                'account_id'   => $account,
+                'account_id' => $account,
                 'activated_on' => $this->faker->dateTimeBetween('-6 months', '-2 days'),
-                'value'        => rand(1000, 200000) / 10
+                'value' => rand(1000, 200000) / 10,
             ]));
         }
     }
@@ -119,16 +109,16 @@ class ShopTableSeeder extends Seeder
             $dates = rand(0, 1);
 
             $product->promotionHistory()->save(new Promotion([
-                'account_id'  => $account,
-                'absolute'    => $absolute,
+                'account_id' => $account,
+                'absolute' => $absolute,
                 'active_from' => $this->faker->dateTimeBetween('-3 years', '-5 months'),
-                'active_to'   => $this->faker->dateTimeBetween('-5 months', '-2 days'),
-                'value'       => $absolute ? rand(1, 5) * 10 : rand(1, 5 * 10 / 2),
-                'from'        => $dates ? $this->faker->dateTimeBetween('-3 years', '-5 months') : null,
-                'to'          => $dates ? $this->faker->dateTimeBetween('-5 months', '-2 days') : null,
+                'active_to' => $this->faker->dateTimeBetween('-5 months', '-2 days'),
+                'value' => $absolute ? rand(1, 5) * 10 : rand(1, 5 * 10 / 2),
+                'from' => $dates ? $this->faker->dateTimeBetween('-3 years', '-5 months') : null,
+                'to' => $dates ? $this->faker->dateTimeBetween('-5 months', '-2 days') : null,
             ]));
 
-            $counter++;
+            ++$counter;
         }
 
         if (rand(0, 1)) {
@@ -136,12 +126,12 @@ class ShopTableSeeder extends Seeder
             $dates = rand(0, 1);
 
             $product->promotion()->save(new ActivePromotion([
-                'account_id'   => $account,
-                'absolute'     => $absolute,
+                'account_id' => $account,
+                'absolute' => $absolute,
                 'activated_on' => $this->faker->dateTimeBetween('-6 months', '-2 days'),
-                'value'        => $absolute ? rand(1, 5) * 10 : rand(1, 5 * 10 / 2),
-                'from'         => $dates ? $this->faker->dateTimeBetween('-3 years', '-5 months') : null,
-                'to'           => $dates ? $this->faker->dateTimeBetween('-5 months', '-2 days') : null,
+                'value' => $absolute ? rand(1, 5) * 10 : rand(1, 5 * 10 / 2),
+                'from' => $dates ? $this->faker->dateTimeBetween('-3 years', '-5 months') : null,
+                'to' => $dates ? $this->faker->dateTimeBetween('-5 months', '-2 days') : null,
             ]));
         }
     }
@@ -150,18 +140,16 @@ class ShopTableSeeder extends Seeder
     {
         $properties = Property::where('category_id', $category->id)->get();
 
-        $properties = $properties->random(rand(5,10));
+        $properties = $properties->random(rand(5, 10));
 
         $values = new Collection();
 
-        foreach($properties as $property)
-        {
+        foreach ($properties as $property) {
             $payload = [
-                'property_id' => $property->id
+                'property_id' => $property->id,
             ];
 
-            if($property->options->count())
-            {
+            if ($property->options->count()) {
                 $payload['option_id'] = $property->options->random(1)->id;
             }
 
@@ -171,63 +159,12 @@ class ShopTableSeeder extends Seeder
         $product->properties()->saveMany($values);
     }
 
-    protected function brands()
-    {
-        $names = ['Philips', 'Samsung', 'Liebherr', 'Sony', 'Panasonic', 'Loewe', 'LG', 'Apple', 'HTC', 'AEG'];
-
-        for ($i = 0; $i < 10; $i++) {
-            factory(Brand::class)->create([
-                'nl' => ['name' => $names[$i]],
-                'fr' => ['name' => $names[$i]],
-                'en' => ['name' => $names[$i]],
-                'de' => ['name' => $names[$i]],
-            ]);
-        }
-    }
-
-    protected function categories()
-    {
-        $names = [
-            'Droogkast', 'Wasmachine', 'Koelkast', 'Diepvriezer', 'Microgolfoven', 'Gsm', 'Tv', 'Gps', 'Haardroger', 'Haartrimmer',
-        ];
-
-        for ($i = 0; $i < 10; $i++) {
-
-            $name = $names[$i];
-
-            $category = factory(Category::class)->create([
-                'nl' => ['name' => $name],
-                'fr' => ['name' => $name],
-                'en' => ['name' => $name],
-                'de' => ['name' => $name],
-            ]);
-
-            if(rand(0,1))
-            {
-                $count = rand(1,3);
-
-                for($j = 0; $j < $count; $j++)
-                {
-                    $synonym = factory(Category::class)->make([
-                        'nl' => ['name' => $name . ' syn ' . ($j + 1)],
-                        'fr' => ['name' => $name . ' syn ' . ($j + 1)],
-                        'en' => ['name' => $name . ' syn ' . ($j + 1)],
-                        'de' => ['name' => $name . ' syn ' . ($j + 1)],
-                    ]);
-
-                    $category->synonyms()->save($synonym);
-                }
-            }
-        }
-    }
-
     protected function baseProperties()
     {
         factory(PropertyUnit::class)->times(35)->create();
         $units = PropertyUnit::all();
 
-        foreach(Category::all() as $category)
-        {
+        foreach (Category::all() as $category) {
             $groups = factory(PropertyGroup::class)->times(4)->create([
                 'category_id' => $category->id,
             ]);
@@ -243,24 +180,21 @@ class ShopTableSeeder extends Seeder
             ]);
             factory(Property::class, 'float')->times(1)->create([
                 'group_id' => $groups->random(1)->id,
-                'category_id' => $category->id
+                'category_id' => $category->id,
             ]);
             factory(Property::class, 'string')->times(3)->create([
                 'group_id' => $groups->random(1)->id,
-                'category_id' => $category->id
+                'category_id' => $category->id,
             ]);
 
             factory(Property::class, 'options')->times(3)->create([
                 'group_id' => $groups->random(1)->id,
-                'category_id' => $category->id
+                'category_id' => $category->id,
             ])->each(function ($property) {
                 factory(PropertyOption::class)->times(rand(4, 10))->create([
-                    'property_id' => $property->id
+                    'property_id' => $property->id,
                 ]);
             });
         }
-
-
     }
-
 }

@@ -1,10 +1,11 @@
-<?php namespace Modules\Pages\Providers;
+<?php
 
-use Pingpong\Modules\ServiceProvider;
+namespace Modules\Pages\Providers;
+
+use Modules\System\ServiceProvider;
 
 class PagesServiceProvider extends ServiceProvider
 {
-
     protected $namespace = 'pages';
 
     public function register()
@@ -13,10 +14,6 @@ class PagesServiceProvider extends ServiceProvider
     }
 
     protected function listeners()
-    {
-    }
-
-    protected function observers()
     {
     }
 }

@@ -1,15 +1,15 @@
 {
-  "name": "Pages",
-  "alias": "pages",
-  "description": "",
-  "keywords": [],
-  "active": 1,
-  "order": 10,
-  "providers": [
-    "Modules\\Pages\\Providers\\PagesServiceProvider"
-  ],
-  "aliases": {},
-  "files": [
-    "helpers.php"
-  ]
+    "name": "Pages",
+    "alias": "pages",
+    "description": "",
+    "keywords": [],
+    "active": 1,
+    "order": 10,
+    "providers": [
+        "Modules\\Pages\\Providers\\PagesServiceProvider"
+    ],
+    "aliases": {},
+    "files": [
+        "helpers.php"
+    ]
 }

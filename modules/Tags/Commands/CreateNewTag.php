@@ -1,12 +1,12 @@
-<?php namespace Modules\Tags\Commands;
+<?php
+
+namespace Modules\Tags\Commands;
 
 use App\Jobs\Job;
-use Illuminate\Contracts\Bus\SelfHandling;
 use Modules\Tags\Tag;
 
-class CreateNewTag extends Job implements SelfHandling
+class CreateNewTag extends Job
 {
-
     protected $locale;
 
     protected $name;
@@ -21,8 +21,8 @@ class CreateNewTag extends Job implements SelfHandling
     {
         $payload = [
             $this->locale => [
-                'name' => $this->name
-            ]
+                'name' => $this->name,
+            ],
         ];
 
         $tag = $tag->create($payload);

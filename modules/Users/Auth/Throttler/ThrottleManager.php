@@ -1,19 +1,20 @@
-<?php namespace Modules\Users\Auth\Throttler;
+<?php
+
+namespace Modules\Users\Auth\Throttler;
 
 use Carbon\Carbon;
 use Illuminate\Contracts\Config\Repository;
 use Illuminate\Contracts\Queue\Queue;
-use Illuminate\Contracts\Redis\Database;
 use Illuminate\Http\Request;
 use Modules\Users\Contracts\Throttler;
+use Predis\Client;
 
 class ThrottleManager implements Throttler
 {
-
     const BASE_CACHE_KEY = 'users:auth:throttlers:';
 
     /**
-     * @var Database
+     * @var Client
      */
     protected $redis;
 
@@ -38,13 +39,9 @@ class ThrottleManager implements Throttler
     protected $ip;
 
     /**
-     * @param Database   $redis
-     * @param Repository $config
-     * @param Queue      $queue
-     * @param Carbon     $carbon
-     * @param Request    $request
+     *
      */
-    public function __construct(Database $redis, Repository $config, Queue $queue, Carbon $carbon, Request $request)
+    public function __construct(Client $redis, Repository $config, Queue $queue, Carbon $carbon, Request $request)
     {
         $this->redis = $redis;
 
@@ -60,8 +57,6 @@ class ThrottleManager implements Throttler
     /**
      * Is the current user allowed to do another attempt.
      *
-     * @param $email
-     *
      * @return bool
      */
     public function allows($email)
@@ -70,8 +65,6 @@ class ThrottleManager implements Throttler
     }
 
     /**
-     * @param $email
-     *
      * @return bool
      */
     public function throttle($email)
@@ -82,7 +75,7 @@ class ThrottleManager implements Throttler
     }
 
     /**
-     * @param $email
+     *
      */
     protected function startCooldown($email)
     {
@@ -108,8 +101,6 @@ class ThrottleManager implements Throttler
     }
 
     /**
-     * @param $email
-     *
      * @return bool
      */
     protected function allowsEmail($email)
@@ -118,13 +109,11 @@ class ThrottleManager implements Throttler
     }
 
     /**
-     * @param string $field email or ip
-     *
      * @return string
      */
     protected function key($field)
     {
-        return static::BASE_CACHE_KEY . $field;
+        return static::BASE_CACHE_KEY.$field;
     }
 
     /**
@@ -138,8 +127,6 @@ class ThrottleManager implements Throttler
     }
 
     /**
-     * @param $email
-     *
      * @return int
      */
     protected function getEmailCount($email)
@@ -150,8 +137,6 @@ class ThrottleManager implements Throttler
     }
 
     /**
-     * @param $increment
-     *
      * @return mixed
      */
     protected function throttleIp($increment, $ip = null)
@@ -164,9 +149,6 @@ class ThrottleManager implements Throttler
     }
 
     /**
-     * @param $increment
-     * @param $email
-     *
      * @return mixed
      */
     protected function throttleEmail($increment, $email)

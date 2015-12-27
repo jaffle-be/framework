@@ -1,14 +1,14 @@
-<?php namespace Modules\Account\Jobs\Membership;
+<?php
+
+namespace Modules\Account\Jobs\Membership;
 
 use App\Jobs\Job;
-use Illuminate\Contracts\Bus\SelfHandling;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Modules\Account\MembershipInvitation;
 use Modules\Account\MembershipOwner;
 
-class AcceptMembership extends Job implements SelfHandling
+class AcceptMembership extends Job
 {
-
     use DispatchesJobs;
 
     protected $invitation;
@@ -25,15 +25,11 @@ class AcceptMembership extends Job implements SelfHandling
     {
         $account = $this->invitation->account;
 
-        if ($this->dispatchFromArray(NewMembership::class, [
-            'account' => $account,
-            'member'  => $this->member
-        ])
+        if ($this->dispatch(new NewMembership($account, $this->member))
         ) {
             return $this->invitation->delete();
         }
 
         return false;
     }
-
 }

@@ -13,14 +13,12 @@
                 id = $state.params.id;
 
             this.load = function (id) {
-                if (id)
-                {
+                if (id) {
                     this.post = this.posts.find(id, function (post) {
                         me.post = post;
                     });
                 }
-                else
-                {
+                else {
                     this.post = new Blog();
                 }
             };
@@ -29,14 +27,13 @@
              * trigger a save for a document that exists but hold the autosave when it's a
              * document we're creating.
              *
-             * @param manual
+             *
              */
             this.save = function () {
                 var me = this;
                 me.drafting = true;
 
-                if (me.post.id)
-                {
+                if (me.post.id) {
                     this.posts.save(me.post);
                 }
             };

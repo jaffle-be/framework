@@ -1,4 +1,6 @@
-<?php namespace Modules\Marketing\Http\Admin;
+<?php
+
+namespace Modules\Marketing\Http\Admin;
 
 use Illuminate\Http\Request;
 use Modules\Marketing\Newsletter\Campaign;
@@ -8,15 +10,14 @@ use Modules\System\Http\AdminController;
 
 class NewsletterWidgetController extends AdminController
 {
-
     public function store(Campaign $campaign, Request $request)
     {
         $this->validate($request, ['name' => 'required']);
 
         $widget = new CampaignWidget([
             'campaign_id' => $campaign->id,
-            'path'        => $request->get('name'),
-            'manual'      => false,
+            'path' => $request->get('name'),
+            'manual' => false,
         ]);
 
         return $widget->save() ? $widget : abort(500);
@@ -28,15 +29,6 @@ class NewsletterWidgetController extends AdminController
             $widget->fill(translation_input($request));
 
             $widget->save();
-
-//            \DB::listen(function($query){
-//                if(strpos($query, 'and 0 = 1'))
-//                {
-//                    echo '<pre>';
-//                    debug_print_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS);
-//                    echo '</pre>';
-//                }
-//            });
 
             $widget->load(['resource', 'otherResource']);
 
@@ -59,5 +51,4 @@ class NewsletterWidgetController extends AdminController
 
         return $widget;
     }
-
 }

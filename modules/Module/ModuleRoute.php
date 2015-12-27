@@ -1,4 +1,6 @@
-<?php namespace Modules\Module;
+<?php
+
+namespace Modules\Module;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
@@ -7,12 +9,11 @@ use Modules\System\Translatable\Translatable;
 
 class ModuleRoute extends Model
 {
-
     use Translatable;
 
-    protected $table = "module_routes";
+    protected $table = 'module_routes';
 
-    protected $fillable = ["module_id", "name", "title"];
+    protected $fillable = ['module_id', 'name', 'title'];
 
     protected $translatedAttributes = ['title'];
 
@@ -27,5 +28,4 @@ class ModuleRoute extends Model
             $builder->whereNotIn($this->getKeyName(), $pages->lists($this->getKeyName())->toArray());
         }
     }
-
 }

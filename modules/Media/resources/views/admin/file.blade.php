@@ -29,7 +29,8 @@
 
                     <div class="input-group" ng-hide="!locale">
                         <div class="input-group-addon" as-sortable-item-handle><i class="fa fa-arrows"></i></div>
-                        <input autocomplete="off" ng-change="vm.updateFile(file)" class="form-control" type="text" ng-model="file.title" placeholder="{{ Lang::get('media::admin.title') }}"/>
+                        <input autocomplete="off" ng-change="vm.updateFile(file)" class="form-control" type="text"
+                               ng-model="file.title" placeholder="{{ Lang::get('media::admin.title') }}"/>
 
                         <div class="input-group-btn">
                             <button class="btn btn-danger" ng-really="vm.deleteFile(file)"><i class="fa fa-trash"></i>

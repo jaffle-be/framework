@@ -1,4 +1,6 @@
-<?php namespace Modules\Shop\Product;
+<?php
+
+namespace Modules\Shop\Product;
 
 use Cviebrock\EloquentSluggable\SluggableInterface;
 use Modules\Search\Model\Searchable;
@@ -10,7 +12,6 @@ use Modules\System\Translatable\TranslationModel;
 
 class BrandTranslation extends TranslationModel implements SluggableInterface, PresentableEntity, Searchable
 {
-
     use Sluggable, PresentableTrait;
     use SearchableTrait;
 
@@ -23,14 +24,14 @@ class BrandTranslation extends TranslationModel implements SluggableInterface, P
     ];
 
     protected static $searchableMapping = [
-        'id'         => ['type' => 'integer'],
+        'id' => ['type' => 'integer'],
         'created_at' => [
-            'type'   => 'date',
-            'format' => 'yyyy-MM-dd HH:mm:ss'
+            'type' => 'date',
+            'format' => 'yyyy-MM-dd HH:mm:ss',
         ],
         'updated_at' => [
-            'type'   => 'date',
-            'format' => 'yyyy-MM-dd HH:mm:ss'
+            'type' => 'date',
+            'format' => 'yyyy-MM-dd HH:mm:ss',
         ],
     ];
 
@@ -38,5 +39,4 @@ class BrandTranslation extends TranslationModel implements SluggableInterface, P
     {
         return $this->belongsTo('Modules\Shop\Product\Brand');
     }
-
 }

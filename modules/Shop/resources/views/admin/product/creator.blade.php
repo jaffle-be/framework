@@ -17,7 +17,8 @@
     <div class="col-md-4">
 
         <div class="form-group">
-            <input type="text" class="form-control" ng-model="vm.creatingProduct.name" placeholder="{{ Lang::get('shop::admin.product.name') }}">
+            <input type="text" class="form-control" ng-model="vm.creatingProduct.name"
+                   placeholder="{{ Lang::get('shop::admin.product.name') }}">
         </div>
 
     </div>
@@ -25,7 +26,8 @@
     <div class="col-md-4">
 
         <div class="form-group">
-            <input type="text" class="form-control" ng-model="vm.creatingProduct.ean" placeholder="{{ Lang::get('shop::admin.product.ean') }}">
+            <input type="text" class="form-control" ng-model="vm.creatingProduct.ean"
+                   placeholder="{{ Lang::get('shop::admin.product.ean') }}">
         </div>
 
     </div>

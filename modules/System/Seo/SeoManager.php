@@ -1,10 +1,11 @@
-<?php namespace Modules\System\Seo;
+<?php
+
+namespace Modules\System\Seo;
 
 use Illuminate\Contracts\Config\Repository;
 
 class SeoManager
 {
-
     protected $config;
 
     protected $entity;
@@ -32,7 +33,6 @@ class SeoManager
         $result = '';
 
         if ($this->entity) {
-
             foreach ($this->providers as $provider) {
                 $provider = $this->buildProvider($provider);
 
@@ -50,8 +50,6 @@ class SeoManager
     }
 
     /**
-     * @param $provider
-     *
      * @return MetaTagProvider
      */
     protected function buildProvider($provider)
@@ -62,9 +60,9 @@ class SeoManager
 
         $shortname = strtolower($shortname);
 
-        $config = $this->config->get('system.seo.' . $shortname);
+        $config = $this->config->get('system.seo.'.$shortname);
 
-        $defaults = $this->config->get('system.seo.defaults.' . $shortname, []);
+        $defaults = $this->config->get('system.seo.defaults.'.$shortname, []);
 
         $provider = new $provider($config, $defaults);
 

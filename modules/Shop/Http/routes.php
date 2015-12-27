@@ -2,7 +2,8 @@
 
 Route::group([
     'namespace' => 'Modules\Shop\Http',
-    'as'        => 'store.',
+    'as' => 'store.',
+    'middleware' => ['web'],
 ], function () {
 
     //admin routes

@@ -6,7 +6,8 @@
                 <h5>{{ Lang::get('shop::admin.product.details') }}</h5>
             </div>
             <div class="col-xs-4 text-right">
-                <span id="reset" class="btn-sm btn btn-danger" ng-really="vm.delete()"><i class="fa fa-trash"></i></span>
+                <span id="reset" class="btn-sm btn btn-danger" ng-really="vm.delete()"><i
+                        class="fa fa-trash"></i></span>
             </div>
         </div>
     </div>
@@ -24,7 +25,8 @@
                         <label for="title" class="control-label">{{ Lang::get('shop::admin.product.name') }}</label>
 
                         <div>
-                            <input ng-change="vm.save()" autocomplete="off" type="text" name="name" id="name" class="form-control" ng-model="vm.product.translations[vm.options.locale].name"/>
+                            <input ng-change="vm.save()" autocomplete="off" type="text" name="name" id="name"
+                                   class="form-control" ng-model="vm.product.translations[vm.options.locale].name"/>
                         </div>
                     </div>
 
@@ -32,7 +34,8 @@
                         <label for="title" class="control-label">{{ Lang::get('shop::admin.product.title') }}</label>
 
                         <div>
-                            <input ng-change="vm.save()" autocomplete="off" type="text" name="title" id="title" class="form-control" ng-model="vm.product.translations[vm.options.locale].title"/>
+                            <input ng-change="vm.save()" autocomplete="off" type="text" name="title" id="title"
+                                   class="form-control" ng-model="vm.product.translations[vm.options.locale].title"/>
                         </div>
                     </div>
 
@@ -43,7 +46,8 @@
                     <div class="form-group">
                         <label for="slug" class="control-label">{{ Lang::get('shop::admin.product.slug') }}</label>
 
-                        <span class="form-control slug" ng-bind="vm.product.translations[vm.options.locale].slug"></span>
+                        <span class="form-control slug"
+                              ng-bind="vm.product.translations[vm.options.locale].slug"></span>
                     </div>
 
 
@@ -51,7 +55,8 @@
 
                         <div class="control-label">&nbsp;</div>
 
-                        <input type="checkbox" class="filled-in" id="published" ng-model="vm.product.translations[vm.options.locale].published" ng-change="vm.save()"/>
+                        <input type="checkbox" class="filled-in" id="published"
+                               ng-model="vm.product.translations[vm.options.locale].published" ng-change="vm.save()"/>
                         <label for="published">{{ Lang::get('shop::admin.product.published') }}</label>
 
                     </div>
@@ -66,7 +71,8 @@
                     <div class="form-group">
                         <label for="title" class="control-label">{{ Lang::get('shop::admin.product.brand') }}</label>
 
-                        <div class="form-control slug" ng-bind-html="vm.renderHtml(vm.product.brand.translations[vm.options.locale].name)"></div>
+                        <div class="form-control slug"
+                             ng-bind-html="vm.renderHtml(vm.product.brand.translations[vm.options.locale].name)"></div>
                     </div>
 
                 </div>
@@ -74,59 +80,63 @@
 
         </form>
 
-                <div class="col-md-6">
+        <div class="col-md-6">
 
-                    <category-input product="vm.product" locale="vm.options.locale"></category-input>
+            <category-input product="vm.product" locale="vm.options.locale"></category-input>
 
-                </div>
+        </div>
 
-            </div>
+    </div>
 
-            <hr>
+    <hr>
 
 
     <form ng-submit="vm.save()" name="productForm" novalidate>
 
-            <div class="row">
+        <div class="row">
 
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label for="title" class="control-label">{{ Lang::get('shop::admin.product.ean') }}</label>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="title" class="control-label">{{ Lang::get('shop::admin.product.ean') }}</label>
 
-                        <div>
-                            <input ng-change="vm.save()" autocomplete="off" type="text" name="ean" id="ean" class="form-control" ng-model="vm.product.ean"/>
-                        </div>
+                    <div>
+                        <input ng-change="vm.save()" autocomplete="off" type="text" name="ean" id="ean"
+                               class="form-control" ng-model="vm.product.ean"/>
                     </div>
-
-                </div>
-
-                <div class="col-md-6">
-
-                    <div class="form-group">
-                        <label for="title" class="control-label">{{ Lang::get('shop::admin.product.upc') }}</label>
-
-                        <div>
-                            <input ng-change="vm.save()" autocomplete="off" type="text" name="upc" id="upc" class="form-control" ng-model="vm.product.upc"/>
-                        </div>
-                    </div>
-
                 </div>
 
             </div>
 
-            <hr>
+            <div class="col-md-6">
 
-            <div class="form-group">
-                <label for="content" class="control-label">{{ Lang::get('shop::admin.product.content') }}</label>
+                <div class="form-group">
+                    <label for="title" class="control-label">{{ Lang::get('shop::admin.product.upc') }}</label>
 
-                <div>
-                    <textarea auto-size class="form-control autosize-lg" ng-model="vm.product.translations[vm.options.locale].content" ng-change="vm.save()"></textarea>
+                    <div>
+                        <input ng-change="vm.save()" autocomplete="off" type="text" name="upc" id="upc"
+                               class="form-control" ng-model="vm.product.upc"/>
+                    </div>
                 </div>
+
             </div>
 
-        </form>
+        </div>
 
-    </div>
+        <hr>
+
+        <div class="form-group">
+            <label for="content" class="control-label">{{ Lang::get('shop::admin.product.content') }}</label>
+
+            <div>
+                <textarea auto-size class="form-control autosize-lg"
+                          ng-model="vm.product.translations[vm.options.locale].content"
+                          ng-change="vm.save()"></textarea>
+            </div>
+        </div>
+
+    </form>
+
+</div>
 
 </div>
 
@@ -147,10 +157,12 @@
                 <div class="input-group">
 
                     <div class="input-group-addon">
-                        <i class="fa fa-refresh" ng-show="searching"></i><i class="fa fa-search" ng-hide="searching"></i>
+                        <i class="fa fa-refresh" ng-show="searching"></i><i class="fa fa-search"
+                                                                            ng-hide="searching"></i>
                     </div>
 
-                    <input type="text" class="form-control" placeholder="{{ Lang::get('shop::admin.product.category') }}"
+                    <input type="text" class="form-control"
+                           placeholder="{{ Lang::get('shop::admin.product.category') }}"
                            uib-typeahead="category.label for category in vm.searchCategory($viewValue, locale)"
                            typeahead-loading="searching"
                            typeahead-on-select="vm.addCategory($item, $model, $label)"
@@ -180,10 +192,12 @@
                 <div class="form-group">
 
                     <div class="input-group">
-                        <input autocomplete="off" ng-change="vm.updateCategory(category)" class="form-control" type="text" name="@{{ locale }}" ng-model="category.translations[vm.locale].name"/>
+                        <input autocomplete="off" ng-change="vm.updateCategory(category)" class="form-control"
+                               type="text" name="@{{ locale }}" ng-model="category.translations[vm.locale].name"/>
 
                         <div class="input-group-btn">
-                            <button ng-really="vm.deleteCategory(category)" class="btn" ng-class="{'btn-danger' : !category.original_id, 'btn-warning': category.original_id}">
+                            <button ng-really="vm.deleteCategory(category)" class="btn"
+                                    ng-class="{'btn-danger' : !category.original_id, 'btn-warning': category.original_id}">
                                 <i class="fa fa-trash"></i>
                             </button>
                         </div>

@@ -33,7 +33,8 @@
             <div class="form-group col-xs-8">
 
                 <div class="input-group">
-                    <input autocomplete="off" ng-change="vm.updateSkill(skill)" class="form-control" type="text" ng-model="skill.translations[vm.options.locale].name"/>
+                    <input autocomplete="off" ng-change="vm.updateSkill(skill)" class="form-control" type="text"
+                           ng-model="skill.translations[vm.options.locale].name"/>
 
                         <span class="input-group-btn">
                             <button ng-really="vm.deleteSkill(skill)" class="btn btn-danger"><i class="fa fa-trash"></i>
@@ -48,7 +49,8 @@
                         <span class="input-group-addon">
                             {{ Lang::get('users::admin.skill.level') }}
                         </span>
-                    <input type="text" name="level" id="level" class="form-control" ng-model="skill.pivot.level" ng-change="vm.updateSkill(skill)"/>
+                    <input type="text" name="level" id="level" class="form-control" ng-model="skill.pivot.level"
+                           ng-change="vm.updateSkill(skill)"/>
 
                         <span class="input-group-addon">
                             %
@@ -60,7 +62,9 @@
 
                 <div class="form-group">
                     <label for="">{{ Lang::get('users::admin.skill.description') }}</label>
-                    <textarea class="form-control autosize-lg" auto-size ng-model="skill.translations[vm.options.locale].description" ng-change="vm.updateSkill(skill)"></textarea>
+                    <textarea class="form-control autosize-lg" auto-size
+                              ng-model="skill.translations[vm.options.locale].description"
+                              ng-change="vm.updateSkill(skill)"></textarea>
                 </div>
 
             </div>

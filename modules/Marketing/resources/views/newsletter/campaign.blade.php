@@ -73,7 +73,7 @@
 
                     @endforeach
 
-                    <? //leave these for now, as we do not have any data for them ?>
+                    <?php //leave these for now, as we do not have any data for them ?>
 <!--                    --><?// @include('marketing::newsletter._toimplement.date-left', $data) ?>
 <!--                    --><?// @include('marketing::newsletter._toimplement.date-right', $data) ?>
 <!--                    --><?// @include('marketing::newsletter._toimplement.callout', $data) ?>

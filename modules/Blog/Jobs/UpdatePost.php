@@ -1,12 +1,12 @@
-<?php namespace Modules\Blog\Jobs;
+<?php
+
+namespace Modules\Blog\Jobs;
 
 use App\Jobs\Job;
-use Illuminate\Contracts\Bus\SelfHandling;
 use Modules\Blog\Post;
 
-class UpdatePost extends Job implements SelfHandling
+class UpdatePost extends Job
 {
-
     /**
      * @var Post
      */
@@ -29,5 +29,4 @@ class UpdatePost extends Job implements SelfHandling
 
         return $this->post->save() ? $this->post : false;
     }
-
 }

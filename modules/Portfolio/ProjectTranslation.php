@@ -1,4 +1,6 @@
-<?php namespace Modules\Portfolio;
+<?php
+
+namespace Modules\Portfolio;
 
 use Cviebrock\EloquentSluggable\SluggableInterface;
 use Modules\Search\Model\Searchable;
@@ -12,7 +14,6 @@ use Modules\System\Translatable\TranslationModel;
 
 class ProjectTranslation extends TranslationModel implements Searchable, SluggableInterface, PresentableEntity, PresentableCache
 {
-
     use SearchableTrait, Sluggable, PresentableTrait, FrontScoping;
 
     protected $table = 'portfolio_project_translations';
@@ -22,20 +23,19 @@ class ProjectTranslation extends TranslationModel implements Searchable, Sluggab
     protected $hidden = ['project_id'];
 
     protected $casts = [
-        'published' => 'boolean'
+        'published' => 'boolean',
     ];
 
     protected $presenter = 'Modules\Portfolio\Presenter\ProjectFrontPresenter';
 
-
     protected static $searchableMapping = [
         'created_at' => [
-            'type'   => 'date',
-            'format' => 'yyyy-MM-dd HH:mm:ss'
+            'type' => 'date',
+            'format' => 'yyyy-MM-dd HH:mm:ss',
         ],
         'updated_at' => [
-            'type'   => 'date',
-            'format' => 'yyyy-MM-dd HH:mm:ss'
+            'type' => 'date',
+            'format' => 'yyyy-MM-dd HH:mm:ss',
         ],
     ];
 
@@ -43,5 +43,4 @@ class ProjectTranslation extends TranslationModel implements Searchable, Sluggab
     {
         return $this->belongsTo('Modules\Portfolio\Project');
     }
-
 }

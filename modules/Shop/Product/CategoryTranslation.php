@@ -1,4 +1,6 @@
-<?php namespace Modules\Shop\Product;
+<?php
+
+namespace Modules\Shop\Product;
 
 use Cviebrock\EloquentSluggable\SluggableInterface;
 use Modules\Search\Model\Searchable;
@@ -10,7 +12,6 @@ use Modules\System\Translatable\TranslationModel;
 
 class CategoryTranslation extends TranslationModel implements PresentableEntity, SluggableInterface, Searchable
 {
-
     use Sluggable, PresentableTrait, SearchableTrait;
 
     protected $table = 'product_category_translations';
@@ -22,14 +23,14 @@ class CategoryTranslation extends TranslationModel implements PresentableEntity,
     ];
 
     protected static $searchableMapping = [
-        'id'         => ['type' => 'integer'],
+        'id' => ['type' => 'integer'],
         'created_at' => [
-            'type'   => 'date',
-            'format' => 'yyyy-MM-dd HH:mm:ss'
+            'type' => 'date',
+            'format' => 'yyyy-MM-dd HH:mm:ss',
         ],
         'updated_at' => [
-            'type'   => 'date',
-            'format' => 'yyyy-MM-dd HH:mm:ss'
+            'type' => 'date',
+            'format' => 'yyyy-MM-dd HH:mm:ss',
         ],
     ];
 
@@ -37,5 +38,4 @@ class CategoryTranslation extends TranslationModel implements PresentableEntity,
     {
         return $this->belongsTo('Modules\Shop\Product\Category');
     }
-
 }

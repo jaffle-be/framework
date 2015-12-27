@@ -23,8 +23,7 @@
                     };
 
                     //only load when we're working on an existing document.
-                    if ($scope.ownerId)
-                    {
+                    if ($scope.ownerId) {
                         SeoService.list($scope.ownerType, $scope.ownerId, $scope.locale, function (response) {
                             $scope.seo = response.data;
                         });

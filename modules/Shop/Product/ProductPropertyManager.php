@@ -1,4 +1,6 @@
-<?php namespace Modules\Shop\Product;
+<?php
+
+namespace Modules\Shop\Product;
 
 class ProductPropertyManager
 {
@@ -17,10 +19,8 @@ class ProductPropertyManager
         $product = $this->product->find($payload['product_id']);
         $category = $this->category->find($payload['category_id']);
 
-        if(!$category->original_id)
-        {
+        if (! $category->original_id) {
             $product->properties()->delete();
         }
     }
-
 }

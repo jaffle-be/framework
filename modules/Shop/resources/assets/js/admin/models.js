@@ -11,12 +11,10 @@
                     method: 'GET',
                     transformResponse: function (response, something, status) {
 
-                        if(status == 200)
-                        {
+                        if (status == 200) {
                             response = angular.fromJson(response);
 
-                            if (response.translations.length == 0)
-                            {
+                            if (response.translations.length == 0) {
                                 response.translations = {};
                             }
 
@@ -65,8 +63,7 @@
                     transformResponse: function (response) {
                         response = angular.fromJson(response);
 
-                        if (response.translations.length == 0)
-                        {
+                        if (response.translations.length == 0) {
                             response.translations = {};
                         }
 
@@ -79,15 +76,14 @@
             });
         })
 
-        .factory('PropertyGroup', function($resource){
+        .factory('PropertyGroup', function ($resource) {
             return $resource('api/admin/shop/properties/groups/:id', {id: '@id'}, {
                 get: {
                     method: 'GET',
                     transformResponse: function (response) {
                         response = angular.fromJson(response);
 
-                        if (response.translations.length == 0)
-                        {
+                        if (response.translations.length == 0) {
                             response.translations = {};
                         }
 
@@ -100,15 +96,14 @@
             });
         })
 
-        .factory('Property', function($resource){
+        .factory('Property', function ($resource) {
             return $resource('api/admin/shop/properties/:id', {id: '@id'}, {
                 get: {
                     method: 'GET',
                     transformResponse: function (response) {
                         response = angular.fromJson(response);
 
-                        if (response.translations.length == 0)
-                        {
+                        if (response.translations.length == 0) {
                             response.translations = {};
                         }
 
@@ -121,15 +116,14 @@
             });
         })
 
-        .factory('PropertyUnit', function($resource){
+        .factory('PropertyUnit', function ($resource) {
             return $resource('api/admin/shop/properties/units/:id', {id: '@id'}, {
                 get: {
                     method: 'GET',
                     transformResponse: function (response) {
                         response = angular.fromJson(response);
 
-                        if (response.translations.length == 0)
-                        {
+                        if (response.translations.length == 0) {
                             response.translations = {};
                         }
 
@@ -142,15 +136,14 @@
             });
         })
 
-        .factory('PropertyOption', function($resource){
+        .factory('PropertyOption', function ($resource) {
             return $resource('api/admin/shop/properties/options/:id', {id: '@id'}, {
                 get: {
                     method: 'GET',
                     transformResponse: function (response) {
                         response = angular.fromJson(response);
 
-                        if (response.translations.length == 0)
-                        {
+                        if (response.translations.length == 0) {
                             response.translations = {};
                         }
 
@@ -163,15 +156,14 @@
             });
         })
 
-        .factory('PropertyValue', function($resource){
+        .factory('PropertyValue', function ($resource) {
             return $resource('api/admin/shop/properties/values/:id', {id: '@id'}, {
                 get: {
                     method: 'GET',
                     transformResponse: function (response) {
                         response = angular.fromJson(response);
 
-                        if (response.translations.length == 0)
-                        {
+                        if (response.translations.length == 0) {
                             response.translations = {};
                         }
 

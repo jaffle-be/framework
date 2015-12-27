@@ -1,4 +1,6 @@
-<?php namespace Modules\Shop\Http\Admin;
+<?php
+
+namespace Modules\Shop\Http\Admin;
 
 use Illuminate\Http\Request;
 use Modules\Shop\Gamma\GammaNotification;
@@ -9,7 +11,6 @@ use Modules\System\Http\AdminController;
 
 class NotificationController extends AdminController
 {
-
     public function template()
     {
         return view('shop::admin.notifications.overview');
@@ -84,9 +85,6 @@ class NotificationController extends AdminController
     }
 
     /**
-     * @param GammaNotification $notifications
-     * @param Request           $request
-     *
      * @return GammaNotification
      */
     protected function requestedNotifications(GammaNotification $notifications, Request $request)
@@ -95,5 +93,4 @@ class NotificationController extends AdminController
 
         return $notifications;
     }
-
 }

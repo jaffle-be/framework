@@ -1,6 +1,7 @@
-<?php namespace Modules\Pages;
+<?php
+
+namespace Modules\Pages;
 
 class PageScopeFront
 {
-
 }

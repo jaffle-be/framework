@@ -14,7 +14,8 @@
                         <td class="center">
                             <table border="0" cellpadding="0" cellspacing="0" align="center">
                                 <tr>
-                                    <td class="center" style="font-size: 16px; color: #687074; font-weight: bold; text-align: center; font-family: Arial, Helvetica, sans-serif; line-height: 25px; vertical-align: middle; padding: 20px 10px 10px;">
+                                    <td class="center"
+                                        style="font-size: 16px; color: #687074; font-weight: bold; text-align: center; font-family: Arial, Helvetica, sans-serif; line-height: 25px; vertical-align: middle; padding: 20px 10px 10px;">
                                         {{ Lang::get('users::emails.reset-password.intro') }}
                                     </td>
                                 </tr>
@@ -29,8 +30,11 @@
                         <td style=" padding: 15px 20px 30px;">
                             <table align="center">
                                 <tr>
-                                    <td valign="top" style="padding: 7px 15px; text-align: center; background-color: #74C52C;" class="center">
-                                        <a style="color: #fff; font-size: 12px; font-weight: bold; text-decoration: none; font-family: Arial, sans-serif; text-alight: center;" href="{{ store_route('store.auth.reset-password.show', [$token->value]) }}">{{ Lang::get('users::emails.reset-password.link') }}</a>
+                                    <td valign="top"
+                                        style="padding: 7px 15px; text-align: center; background-color: #74C52C;"
+                                        class="center">
+                                        <a style="color: #fff; font-size: 12px; font-weight: bold; text-decoration: none; font-family: Arial, sans-serif; text-alight: center;"
+                                           href="{{ store_route('store.auth.reset-password.show', [$token->value]) }}">{{ Lang::get('users::emails.reset-password.link') }}</a>
                                     </td>
                                 </tr>
                             </table>

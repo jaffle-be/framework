@@ -1,20 +1,21 @@
-<?php namespace Modules\System\Scopes;
+<?php
+
+namespace Modules\System\Scopes;
 
 use Illuminate\Http\Request;
 
 trait ModelLocaleSpecificResource
 {
-
     public static function bootModelLocaleSpecificResource()
     {
         /** @var Request $request */
         $request = app('request');
 
-        if (app()->runningInConsole()) {
+        if (app()->runningInConsole() && ! env('RUNNING_TESTS', false)) {
             return;
         }
 
-        if (!starts_with($request->getRequestUri(), ['/admin', '/api'])) {
+        if (! starts_with($request->getRequestUri(), ['/admin', '/api'])) {
             static::addGlobalScope(app()->make('Modules\System\Scopes\ModelLocaleSpecificResourceScope'));
         }
     }
@@ -28,5 +29,4 @@ trait ModelLocaleSpecificResource
     {
         return new LocalisedResourceCollection($items);
     }
-
 }

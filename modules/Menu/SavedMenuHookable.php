@@ -1,11 +1,12 @@
-<?php namespace Modules\Menu;
+<?php
+
+namespace Modules\Menu;
 
 use Modules\Account\AccountManager;
 use Modules\Pages\Page;
 
 class SavedMenuHookable
 {
-
     protected $account;
 
     protected $menu;
@@ -44,5 +45,4 @@ class SavedMenuHookable
             }
         }
     }
-
 }

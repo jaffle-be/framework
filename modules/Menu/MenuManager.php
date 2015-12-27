@@ -1,13 +1,12 @@
-<?php namespace Modules\Menu;
+<?php
+
+namespace Modules\Menu;
 
 /**
- * Class MenuManager
- *
- * @package Modules\Menu
+ * Class MenuManager.
  */
 class MenuManager
 {
-
     /**
      * @var bool
      */
@@ -39,7 +38,7 @@ class MenuManager
     protected $repository;
 
     /**
-     * @param MenuRepositoryInterface $repository
+     *
      */
     public function __construct(MenuRepositoryInterface $repository)
     {
@@ -47,21 +46,17 @@ class MenuManager
     }
 
     /**
-     * @param $name
-     * @param $arguments
-     *
      * @return mixed
      */
-    function __call($name, $arguments)
+    public function __call($name, $arguments)
     {
         return call_user_func_array([$this->repository, $name], $arguments);
     }
 
     /**
-     * @param       $menu
-     * @param array $options
+     *
      */
-    public function register($menu, array $options = array())
+    public function register($menu, array $options = [])
     {
         $this->supports[] = $menu;
         $this->options[$menu] = $options;
@@ -78,14 +73,12 @@ class MenuManager
     }
 
     /**
-     * @param $menu
-     *
      * @return mixed
      */
     public function get($menu)
     {
         //by the time the first menu is rendered, we should know all supported menu's for the current theme.
-        if (!$this->hasBeenLoaded) {
+        if (! $this->hasBeenLoaded) {
             $this->load();
         }
 

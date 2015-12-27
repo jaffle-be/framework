@@ -1,4 +1,6 @@
-<?php namespace Modules\Blog;
+<?php
+
+namespace Modules\Blog;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
@@ -19,7 +21,6 @@ use Modules\Users\User;
 
 class Post extends Model implements StoresMedia, Searchable, StoresTags, PresentableEntity, SeoEntity
 {
-
     use PresentableTrait;
     use Translatable;
     use Taggable;
@@ -43,12 +44,12 @@ class Post extends Model implements StoresMedia, Searchable, StoresTags, Present
 
     protected static $searchableMapping = [
         'created_at' => [
-            'type'   => 'date',
-            'format' => 'yyyy-MM-dd HH:mm:ss'
+            'type' => 'date',
+            'format' => 'yyyy-MM-dd HH:mm:ss',
         ],
         'updated_at' => [
-            'type'   => 'date',
-            'format' => 'yyyy-MM-dd HH:mm:ss'
+            'type' => 'date',
+            'format' => 'yyyy-MM-dd HH:mm:ss',
         ],
     ];
 
@@ -59,8 +60,6 @@ class Post extends Model implements StoresMedia, Searchable, StoresTags, Present
 
     /**
      * Create a new Eloquent Collection instance.
-     *
-     * @param  array $models
      *
      * @return \Illuminate\Database\Eloquent\Collection
      */
@@ -82,5 +81,4 @@ class Post extends Model implements StoresMedia, Searchable, StoresTags, Present
     public function scopeRelated(Builder $builder)
     {
     }
-
 }

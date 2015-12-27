@@ -6,13 +6,12 @@ use Modules\System\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
-
     protected $amounts = [
         //this is the amount of resources that will be created in this run.
         'shopTable'      => 10,
         'blogTable'      => 10,
         'portfolioTable' => 10,
-        'pagesTable'     => 3
+        'pagesTable'     => 3,
     ];
 
     /**
@@ -31,10 +30,9 @@ class DatabaseSeeder extends Seeder
 
     protected function seed($prefix)
     {
-        $table = ucfirst($prefix) . 'Seeder';
+        $table = ucfirst($prefix).'Seeder';
 
         if (class_exists($table)) {
-
             if (isset($this->amounts[$prefix])) {
                 $this->call($table, $this->amounts[$prefix]);
             } else {

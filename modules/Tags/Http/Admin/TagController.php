@@ -1,4 +1,6 @@
-<?php namespace Modules\Tags\Http\Admin;
+<?php
+
+namespace Modules\Tags\Http\Admin;
 
 use Illuminate\Http\Request;
 use Illuminate\Pagination\Paginator;
@@ -12,7 +14,6 @@ use Modules\Tags\Tag;
 
 class TagController extends AdminController
 {
-
     public function widget()
     {
         return view('tags::admin.widget');
@@ -32,13 +33,13 @@ class TagController extends AdminController
         $tags = $tag
             ->with(['translations'])
             ->where(function ($q) use ($tags) {
-                if (!empty($tags)) {
+                if (! empty($tags)) {
                     $q->whereNotIn('id', $tags);
                 }
             })
             ->whereHas('translations', function ($q) use ($value, $locale) {
                 $q->where('locale', $locale);
-                $q->where('name', 'like', '%' . $value . '%');
+                $q->where('name', 'like', '%'.$value.'%');
             })
             ->paginate(10);
 
@@ -61,17 +62,10 @@ class TagController extends AdminController
         $owner = $this->owner($request);
 
         if ($owner) {
-
-            $tag = $this->dispatchFromArray(CreateNewTag::class, [
-                'locale' => $locale,
-                'name'   => $name
-            ]);
+            $tag = $this->dispatch(new CreateNewTag($locale, $name));
 
             if ($tag) {
-                $this->dispatchFromArray(TagSomething::class, [
-                    'owner' => $owner,
-                    'tag'   => $tag
-                ]);
+                $this->dispatch(new TagSomething($tag, $owner));
             }
         }
 
@@ -85,18 +79,11 @@ class TagController extends AdminController
         $tag->load(['translations']);
 
         //if the owner didn't contain the tag, we wanted to add it.
-        if (!$owner->tags->contains($tag->id)) {
-
-            $this->dispatchFromArray(TagSomething::class, [
-                'owner' => $owner,
-                'tag'   => $tag
-            ]);
+        if (! $owner->tags->contains($tag->id)) {
+            $this->dispatch(new TagSomething($tag, $owner));
         }
 
-        $this->dispatchFromArray(UpdateTag::class, [
-            'tag'   => $tag,
-            'input' => translation_input($request, ['name'])
-        ]);
+        $this->dispatch(new UpdateTag($tag, translation_input($request, ['name'])));
 
         return $tag;
     }
@@ -105,10 +92,7 @@ class TagController extends AdminController
     {
         $owner = $this->owner($request);
 
-        return $this->dispatchFromArray(UntagSomething::class, [
-            'owner' => $owner,
-            'tag'   => $tag
-        ]);
+        return $this->dispatch(new UntagSomething($owner, $tag));
     }
 
     public function all(Request $request)
@@ -117,16 +101,15 @@ class TagController extends AdminController
 
         $owner->load([
             'tags',
-            'tags.translations'
+            'tags.translations',
         ]);
 
         return $owner->tags;
     }
 
     /**
-     * @param Request $request
-     *
      * @return array
+     * @throws \Exception
      */
     protected function owner(Request $request)
     {
@@ -135,7 +118,7 @@ class TagController extends AdminController
 
         $owners = config('tags.owners');
 
-        if (!isset($owners[$ownerType])) {
+        if (! isset($owners[$ownerType])) {
             throw new \Exception('Invalid owner type provided for tags');
         }
 
@@ -143,5 +126,4 @@ class TagController extends AdminController
 
         return $finder->findOrFail($ownerId);
     }
-
 }

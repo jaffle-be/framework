@@ -6,7 +6,6 @@ use Illuminate\Contracts\Cache\Repository;
 
 class AccountRepository implements AccountRepositoryInterface
 {
-
     protected $account;
 
     public function __construct(Account $account, Repository $cache)
@@ -18,7 +17,7 @@ class AccountRepository implements AccountRepositoryInterface
     public function findByDomain($domain)
     {
         if (empty($domain)) {
-            return null;
+            return;
         }
 
         return $this->account->where('domain', $domain)
@@ -26,8 +25,6 @@ class AccountRepository implements AccountRepositoryInterface
     }
 
     /**
-     * @param array $payload
-     *
      * @return Account
      */
     public function newAccount(array $payload)
@@ -36,14 +33,14 @@ class AccountRepository implements AccountRepositoryInterface
     }
 
     /**
-     * The alias represents the subdomain for the main app url an account is running under
+     * The alias represents the subdomain for the main app url an account is running under.
      *
-     * @param $domain
+     * @internal param $domain
      */
     public function findByAlias($alias)
     {
         if (empty($alias)) {
-            return null;
+            return;
         }
 
         $account = $this->account->with(['contactInformation', 'contactInformation.address', 'socialLinks', 'locales', 'locales.translations'])->where('alias', $alias)
@@ -53,7 +50,7 @@ class AccountRepository implements AccountRepositoryInterface
         if ($account) {
             $contact = $account->contactInformation->first();
 
-            if (!$contact) {
+            if (! $contact) {
                 $contact = $account->contactInformation()->create([]);
             }
         }
@@ -66,19 +63,19 @@ class AccountRepository implements AccountRepositoryInterface
     }
 
     /**
-     * Find the base account that's being used as the 'system' account
+     * Find the base account that's being used as the 'system' account.
      *
      * @return mixed
+     * @throws \Exception
      */
     public function baseAccount()
     {
         $digiredo = $this->account->newQueryWithoutScopes()->whereAlias('digiredo')->first();
 
-        if (!$digiredo) {
+        if (! $digiredo) {
             throw new \Exception('No default subscription account detected');
         }
 
         return $digiredo;
     }
-
 }

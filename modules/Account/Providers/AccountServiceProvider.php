@@ -1,13 +1,14 @@
-<?php namespace Modules\Account\Providers;
+<?php
+
+namespace Modules\Account\Providers;
 
 use Modules\Account\Account;
 use Modules\Account\AccountContactInformation;
 use Modules\Account\AccountLogo;
-use Pingpong\Modules\ServiceProvider;
+use Modules\System\ServiceProvider;
 
 class AccountServiceProvider extends ServiceProvider
 {
-
     protected $defer = false;
 
     protected $namespace = 'account';
@@ -23,8 +24,6 @@ class AccountServiceProvider extends ServiceProvider
 
     /**
      * Register the service provider.
-     *
-     * @return void
      */
     public function register()
     {
@@ -37,10 +36,6 @@ class AccountServiceProvider extends ServiceProvider
     {
         $this->cacheBusting();
         $this->indexers();
-    }
-
-    protected function observers()
-    {
     }
 
     protected function cacheBusting()
@@ -68,5 +63,4 @@ class AccountServiceProvider extends ServiceProvider
     {
         $this->app['events']->subscribe('Modules\\Account\\IndexManager');
     }
-
 }

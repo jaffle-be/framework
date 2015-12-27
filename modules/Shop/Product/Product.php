@@ -1,4 +1,6 @@
-<?php namespace Modules\Shop\Product;
+<?php
+
+namespace Modules\Shop\Product;
 
 use Illuminate\Database\Eloquent\Model;
 use InvalidArgumentException;
@@ -17,7 +19,6 @@ use Modules\Tags\Taggable;
 
 class Product extends Model implements StoresMedia, PresentableEntity, SeoEntity, Searchable
 {
-
     use Translatable, StoringMedia, PresentableTrait, FrontScoping, SeoTrait, Taggable, EventedRelations, SearchableTrait;
 
     protected $table = 'products';
@@ -29,32 +30,32 @@ class Product extends Model implements StoresMedia, PresentableEntity, SeoEntity
     protected $presenter = 'Modules\Shop\Presenter\ProductFrontPresenter';
 
     protected $casts = [
-        'id'         => 'integer',
+        'id' => 'integer',
         'account_id' => 'integer',
-        'brand_id'   => 'integer',
+        'brand_id' => 'integer',
     ];
 
     protected static $searchableMapping = [
-        'id'         => ['type' => 'integer'],
+        'id' => ['type' => 'integer'],
         'account_id' => ['type' => 'integer'],
-        'brand_id'   => ['type' => 'integer'],
+        'brand_id' => ['type' => 'integer'],
         'created_at' => [
-            'type'   => 'date',
-            'format' => 'yyyy-MM-dd HH:mm:ss'
+            'type' => 'date',
+            'format' => 'yyyy-MM-dd HH:mm:ss',
         ],
         'updated_at' => [
-            'type'   => 'date',
-            'format' => 'yyyy-MM-dd HH:mm:ss'
+            'type' => 'date',
+            'format' => 'yyyy-MM-dd HH:mm:ss',
         ],
     ];
 
     public function getMediaFolder($type = null, $size = null)
     {
-        if (!empty($type) && !in_array($type, ['files', 'images', 'videos', 'infographics'])) {
+        if (! empty($type) && ! in_array($type, ['files', 'images', 'videos', 'infographics'])) {
             throw new InvalidArgumentException('need proper media type to return media folder');
         }
 
-        if (!$size) {
+        if (! $size) {
             sprintf('products/%d/%d/', $this->attributes['brand_id'], $this->attributes['id']);
         }
 
@@ -73,8 +74,8 @@ class Product extends Model implements StoresMedia, PresentableEntity, SeoEntity
 
     public function mainCategory()
     {
-        return $this->categories->first(function($key, $item){
-            return !$item->original_id;
+        return $this->categories->first(function ($key, $item) {
+            return ! $item->original_id;
         });
     }
 
@@ -102,5 +103,4 @@ class Product extends Model implements StoresMedia, PresentableEntity, SeoEntity
     {
         return $this->hasMany('Modules\Shop\Product\PropertyValue');
     }
-
 }

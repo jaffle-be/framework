@@ -1,14 +1,15 @@
 <?php
 
 /**
- * templates stores
+ * templates stores.
  */
 Route::group([
     'namespace' => 'Modules\Dashboard\Http',
-    'as'        => 'store.',
+    'as' => 'store.',
+    'middleware' => ['web'],
 ], function () {
 
-    /**
+    /*
      * this is a special case:
      *
      * when installing as a multi locale application
@@ -22,7 +23,7 @@ Route::group([
         foreach (config('system.locales') as $locale) {
             Route::get("/$locale", [
                 'uses' => 'WelcomeController@storeHome',
-                'as'   => "$locale.home"
+                'as' => "$locale.home",
             ]);
         }
 
@@ -30,7 +31,7 @@ Route::group([
     } else {
         Route::get('/', [
             'uses' => 'WelcomeController@storeHome',
-            'as'   => 'home'
+            'as' => 'home',
         ]);
     }
 
@@ -43,16 +44,16 @@ Route::group([
         Route::get('/', ['uses' => 'WelcomeController@storeDash', 'middleware' => 'auth.admin']);
 
         Route::get('{subs}', [
-            'uses'       => 'WelcomeController@storeDash',
-            'middleware' => 'auth.admin'
+            'uses' => 'WelcomeController@storeDash',
+            'middleware' => 'auth.admin',
         ])->where(['subs' => '.*']);
     });
 
     Route::group(['prefix' => 'templates'], function () {
         Route::get('admin', [
-            'uses'       => 'WelcomeController@storeDash',
-            'as'         => 'dash',
-            'middleware' => 'auth.admin'
+            'uses' => 'WelcomeController@storeDash',
+            'as' => 'dash',
+            'middleware' => 'auth.admin',
         ]);
 
         //this route should probably no longer be used?
@@ -61,3 +62,4 @@ Route::group([
 });
 
 //Route::get('test', 'WelcomeController@test');
+

@@ -1,7 +1,8 @@
-<?php namespace Modules\Shop\Jobs\Gamma;
+<?php
+
+namespace Modules\Shop\Jobs\Gamma;
 
 use App\Jobs\Job;
-use Illuminate\Contracts\Bus\SelfHandling;
 use Modules\Account\Account;
 use Modules\Shop\Gamma\GammaNotification;
 use Modules\Shop\Gamma\GammaSelection;
@@ -9,9 +10,8 @@ use Modules\Shop\Gamma\ProductSelection;
 use Modules\Shop\Product\Brand;
 use Modules\Shop\Product\Category;
 
-class CleanupDetail extends Job implements SelfHandling
+class CleanupDetail extends Job
 {
-
     /**
      * @var Brand
      */
@@ -49,9 +49,11 @@ class CleanupDetail extends Job implements SelfHandling
             ->get(['product_gamma.*']);
 
         foreach ($selections as $selection) {
-            $selections->load(['categories' => function ($query) {
-                $query->withTrashed();
-            }]);
+            $selections->load([
+                'categories' => function ($query) {
+                    $query->withTrashed();
+                },
+            ]);
 
             foreach ($selection->categories as $category) {
                 $category->forceDelete();
@@ -62,9 +64,9 @@ class CleanupDetail extends Job implements SelfHandling
 
         $selections = $gamma->newQueryWithoutScopes()
             ->where([
-                'account_id'  => $this->account->id,
-                'brand_id'    => $this->brand->id,
-                'category_id' => $this->category->id
+                'account_id' => $this->account->id,
+                'brand_id' => $this->brand->id,
+                'category_id' => $this->category->id,
             ])->get();
 
         foreach ($selections as $selection) {
@@ -73,9 +75,6 @@ class CleanupDetail extends Job implements SelfHandling
     }
 
     /**
-     * @param ProductSelection  $products
-     * @param GammaNotification $notifications
-     *
      * @return bool
      */
     protected function shouldNotRun(ProductSelection $products, GammaNotification $notifications)
@@ -85,7 +84,7 @@ class CleanupDetail extends Job implements SelfHandling
         }
 
         $payload = [
-            'brand_id'    => $this->brand->id,
+            'brand_id' => $this->brand->id,
             'category_id' => $this->category->id,
         ];
 
@@ -95,5 +94,4 @@ class CleanupDetail extends Job implements SelfHandling
 
         return false;
     }
-
 }

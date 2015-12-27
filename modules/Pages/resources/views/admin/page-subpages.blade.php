@@ -19,7 +19,8 @@
 
         <h5>{{ Lang::get('pages::admin.selected-subpages') }}</h5>
 
-        <div class="alert alert-info" ng-hide="vm.parentPage.children.length">{{ Lang::get('pages::admin.no-selected-pages') }}</div>
+        <div class="alert alert-info"
+             ng-hide="vm.parentPage.children.length">{{ Lang::get('pages::admin.no-selected-pages') }}</div>
 
         <ul as-sortable="vm.sortables" ng-model="vm.parentPage.children">
             <li ng-repeat="child in vm.parentPage.children" as-sortable-item>
@@ -34,7 +35,8 @@
 
         <h5>{{ Lang::get('pages::admin.available-subpages') }}</h5>
 
-        <div class="alert alert-info" ng-hide="vm.parentPage.availablePages.length">{{ Lang::get('pages::admin.no-more-pages') }}</div>
+        <div class="alert alert-info"
+             ng-hide="vm.parentPage.availablePages.length">{{ Lang::get('pages::admin.no-more-pages') }}</div>
 
         <div ng-show="vm.parentPage.availablePages.length">
             <ul class="nav">
@@ -45,7 +47,8 @@
             </ul>
 
             <div class="text-center">
-                <button class="btn btn-primary" ng-click="vm.addPage()">{{ Lang::get('pages::admin.add-page') }}</button>
+                <button class="btn btn-primary"
+                        ng-click="vm.addPage()">{{ Lang::get('pages::admin.add-page') }}</button>
             </div>
         </div>
 

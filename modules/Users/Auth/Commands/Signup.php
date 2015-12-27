@@ -1,17 +1,17 @@
-<?php namespace Modules\Users\Auth\Commands;
+<?php
+
+namespace Modules\Users\Auth\Commands;
 
 use App\Jobs\Job;
 use Exception;
-use Illuminate\Contracts\Bus\SelfHandling;
 use Illuminate\Contracts\Hashing\Hasher;
 use Illuminate\Events\Dispatcher;
 use Modules\Account\MembershipInvitation;
 use Modules\Users\Auth\Events\UserRegistered;
 use Modules\Users\User;
 
-class Signup extends Job implements SelfHandling
+class Signup extends Job
 {
-
     protected $email;
 
     protected $password;
@@ -35,8 +35,7 @@ class Signup extends Job implements SelfHandling
 
         //we already have a user with this email.
         try {
-
-            if (!$this->user) {
+            if (! $this->user) {
                 $this->user = $user;
                 $this->user->email = $this->email;
                 $this->user->password = $hash->make($this->password);
@@ -48,8 +47,7 @@ class Signup extends Job implements SelfHandling
             $connection->commit();
 
             return $this->user;
-        }
-        catch (Exception $e) {
+        } catch (Exception $e) {
             $connection->rollBack();
             throw $e;
         }

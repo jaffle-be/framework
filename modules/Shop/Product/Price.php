@@ -1,11 +1,12 @@
-<?php namespace Modules\Shop\Product;
+<?php
+
+namespace Modules\Shop\Product;
 
 use Illuminate\Database\Eloquent\Model;
 use Modules\System\Scopes\ModelAccountResource;
 
 class Price extends Model
 {
-
     use ModelAccountResource;
 
     protected $table = 'product_prices';
@@ -16,5 +17,4 @@ class Price extends Model
     {
         return $this->belongsTo('Modules\Shop\Product\Product');
     }
-
 }

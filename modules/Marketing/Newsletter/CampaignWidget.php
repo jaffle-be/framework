@@ -1,4 +1,6 @@
-<?php namespace Modules\Marketing\Newsletter;
+<?php
+
+namespace Modules\Marketing\Newsletter;
 
 use Illuminate\Database\Eloquent\Model;
 use Modules\System\Presenter\PresentableEntity;
@@ -8,7 +10,6 @@ use Modules\System\Translatable\Translatable;
 
 class CampaignWidget extends Model implements PresentableEntity
 {
-
     use Translatable;
     use ModelAutoSort;
     use PresentableTrait;
@@ -32,12 +33,29 @@ class CampaignWidget extends Model implements PresentableEntity
 
     //the link to which widget we'll be showing will for now be simply the path where it is stored for the current theme.
     //this will break with a new account. but we need several things to be refactored when we're actually going to sell this.
-    protected $fillable = ['campaign_id', 'path', 'manual', 'image_id', 'title', 'text', 'title_left', 'text_left', 'image_left_id', 'title_right', 'text_right', 'image_right_id', 'resource_type', 'resource_id', 'other_resource_type', 'other_resource_id'];
+    protected $fillable = [
+        'campaign_id',
+        'path',
+        'manual',
+        'image_id',
+        'title',
+        'text',
+        'title_left',
+        'text_left',
+        'image_left_id',
+        'title_right',
+        'text_right',
+        'image_right_id',
+        'resource_type',
+        'resource_id',
+        'other_resource_type',
+        'other_resource_id',
+    ];
 
     protected $translatedAttributes = ['title', 'text', 'title_left', 'text_left', 'title_right', 'text_right'];
 
     protected $casts = [
-        'manual' => 'boolean'
+        'manual' => 'boolean',
     ];
 
     public function image()

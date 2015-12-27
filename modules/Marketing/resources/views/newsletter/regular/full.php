@@ -14,14 +14,15 @@
                                 <table border="0" cellpadding="0" cellspacing="0" width="100%">
                                     <tr>
                                         <td valign="top" class="imageContentLast">
-                                            <img src="<?= asset($widget->present()->image) ?>" width="560" class="flexibleImage" style="max-width:560px;">
+                                            <img src="<?php echo asset($widget->present()->image) ?>" width="560"
+                                                 class="flexibleImage" style="max-width:560px;">
                                         </td>
                                     </tr>
                                     <tr>
                                         <td valign="top" class="textContent">
-                                            <h3><?= $widget->present()->title($locale) ?></h3>
+                                            <h3><?php echo $widget->present()->title($locale) ?></h3>
                                             <br>
-                                            <?= $widget->present()->text($locale) ?>
+                                            <?php echo $widget->present()->text($locale) ?>
                                         </td>
                                     </tr>
                                 </table>

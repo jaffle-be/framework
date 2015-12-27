@@ -1,11 +1,12 @@
 <?php
 
 /**
- * store controllers
+ * store controllers.
  */
 Route::group([
     'namespace' => 'Modules\Media\Http',
-    'as'        => 'store.'
+    'as' => 'store.',
+    'middleware' => ['web'],
 ], function () {
 
     Route::group(['namespace' => 'Admin'], function () {

@@ -1,14 +1,14 @@
-<?php namespace Modules\Users\Auth\Commands;
+<?php
+
+namespace Modules\Users\Auth\Commands;
 
 use App\Jobs\Job;
 use Illuminate\Contracts\Auth\Guard;
-use Illuminate\Contracts\Bus\SelfHandling;
 use Modules\Users\Auth\Tokens\Token;
 use Modules\Users\Contracts\UserRepositoryInterface;
 
-class ConfirmEmail extends Job implements SelfHandling
+class ConfirmEmail extends Job
 {
-
     protected $token;
 
     public function __construct(Token $token)
@@ -21,7 +21,7 @@ class ConfirmEmail extends Job implements SelfHandling
         $user = $users->findUserByConfirmationToken($this->token->id);
 
         if ($user) {
-            if (!$user->confirmed) {
+            if (! $user->confirmed) {
                 $user->confirmed = 1;
             }
 
@@ -38,5 +38,4 @@ class ConfirmEmail extends Job implements SelfHandling
 
         return $user;
     }
-
 }

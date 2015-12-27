@@ -12,20 +12,20 @@ use Modules\Users\User;
 
 return [
 
-    /**
+    /*
      * The name of the index
      * Your app name might be a sane default value.
      */
     'index'    => env('ES_INDEX', 'app'),
 
-    /**
+    /*
      * All the hosts that are in the cluster.
      */
     'hosts'    => [
         env('APP_ENV') == 'testing' ? 'localhost' : env('ES_HOST'),
     ],
 
-    /**
+    /*
      * When adding a new type, add it here. This will allow you to easily rebuild the indexes using the build command.
      * Don't forget to add the new type as an argument when you execute the build command. You do not always want
      * to rebuild all your stored indexes.
@@ -43,9 +43,9 @@ return [
             'with'  => [
                 'user' => [
                     'class' => User::class,
-                    'key'   => 'user_id'
+                    'key'   => 'user_id',
                 ],
-            ]
+            ],
         ],
 
         'projects' => [
@@ -75,8 +75,8 @@ return [
                 'properties' => [
                     'class' => PropertyValue::class,
                     'key' => 'product_id',
-                ]
-            ]
+                ],
+            ],
         ],
 
         'product_gamma' => [
@@ -90,7 +90,7 @@ return [
                 'properties' => [
                     'class' => PropertyValue::class,
                     'key' => 'product_id',
-                ]
+                ],
             ],
         ],
 
@@ -100,6 +100,8 @@ return [
 
     ],
 
+    'refresh_interval' => '100ms',
+
     'settings' => [
         'index' => [
             'analysis' => [
@@ -107,31 +109,31 @@ return [
                     'custom_analyzer'        => [
                         'type'      => 'custom',
                         'tokenizer' => 'nGram',
-                        'filter'    => ['standard', 'asciifolding', 'lowercase', 'snowball', 'elision']
+                        'filter'    => ['standard', 'asciifolding', 'lowercase', 'snowball', 'elision'],
                     ],
 
                     'custom_search_analyzer' => [
                         'type'      => 'custom',
                         'tokenizer' => 'standard',
-                        'filter'    => ['standard', 'asciifolding', 'lowercase', 'snowball', 'elision']
+                        'filter'    => ['standard', 'asciifolding', 'lowercase', 'snowball', 'elision'],
                     ],
 
                     'code'                   => [
                         'tokenizer' => 'pattern',
-                        'filter'    => ['standard', 'lowercase', 'code']
+                        'filter'    => ['standard', 'lowercase', 'code'],
                     ],
 
                     'email'                  => [
                         'tokenizer' => 'uax_url_email',
-                        'filter'    => ['email', 'lowercase', 'unique']
-                    ]
+                        'filter'    => ['email', 'lowercase', 'unique'],
+                    ],
                 ],
 
                 'tokenizer' => [
                     'nGram' => [
                         'type'     => 'nGram',
                         'min_gram' => '2',
-                        'max_gram' => 20
+                        'max_gram' => 20,
                     ],
                 ],
 
@@ -145,25 +147,25 @@ return [
                         'type'              => 'pattern_capture',
                         'preserve_original' => 1,
                         'patterns'          => [
-                            "(\\p{Ll}+|\\p{Lu}\\p{Ll}+|\\p{Lu}+)",
-                            "(\\d+)"
-                        ]
+                            '(\\p{Ll}+|\\p{Lu}\\p{Ll}+|\\p{Lu}+)',
+                            '(\\d+)',
+                        ],
                     ],
 
                     'email'    => [
                         'type'              => 'pattern_capture',
                         'preserve_original' => 1,
                         'patterns'          => [
-                            "(\\w+)",
-                            "(\\p{L}+)",
-                            "(\\d+)",
-                            "@(.+)"
-                        ]
-                    ]
-                ]
-            ]
+                            '(\\w+)',
+                            '(\\p{L}+)',
+                            '(\\d+)',
+                            '@(.+)',
+                        ],
+                    ],
+                ],
+            ],
 
         ],
-    ]
+    ],
 
 ];

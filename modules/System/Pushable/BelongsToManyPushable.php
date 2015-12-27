@@ -1,9 +1,10 @@
-<?php namespace Modules\System\Pushable;
+<?php
+
+namespace Modules\System\Pushable;
 
 class BelongsToManyPushable implements Pushable
 {
-
-    public $data;
+    protected $data;
 
     protected $relation;
 
@@ -27,5 +28,4 @@ class BelongsToManyPushable implements Pushable
     {
         return $this->data;
     }
-
 }

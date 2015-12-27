@@ -1,13 +1,14 @@
-<?php namespace Modules\System\Scopes;
+<?php
+
+namespace Modules\System\Scopes;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\ScopeInterface;
+use Illuminate\Database\Eloquent\Scope;
 use Modules\System\Locale;
 
-class ModelLocaleSpecificResourceScope implements ScopeInterface
+class ModelLocaleSpecificResourceScope implements Scope
 {
-
     protected $locale;
 
     public function __construct(Locale $locale)
@@ -19,15 +20,10 @@ class ModelLocaleSpecificResourceScope implements ScopeInterface
     {
         $locale = app()->getLocale();
 
-        $locale = $this->locale->whereSlug($locale)->first();
+        $locale = $this->locale->where('slug', $locale)->first();
 
-        if ($this->locale) {
+        if ($locale) {
             $builder->where('locale_id', $locale->getKey());
         }
     }
-
-    public function remove(Builder $builder, Model $model)
-    {
-    }
-
 }

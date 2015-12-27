@@ -1,6 +1,7 @@
-<?php namespace Modules\System\Presenter;
+<?php
+
+namespace Modules\System\Presenter;
 
 interface PresentableCache
 {
-
 }

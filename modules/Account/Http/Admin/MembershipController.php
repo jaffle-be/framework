@@ -1,4 +1,6 @@
-<?php namespace Modules\Account\Http\Admin;
+<?php
+
+namespace Modules\Account\Http\Admin;
 
 use Modules\Account\AccountManager;
 use Modules\Account\Jobs\Membership\RevokeMembership;
@@ -7,7 +9,6 @@ use Modules\System\Http\AdminController;
 
 class MembershipController extends AdminController
 {
-
     public function page()
     {
         return view('account::admin.members.overview');
@@ -15,16 +16,14 @@ class MembershipController extends AdminController
 
     /**
      * this is the method to update some membership information, currently it has nothing
-     * but it should be able to adjust the membership roles in the future
+     * but it should be able to adjust the membership roles in the future.
      */
     public function update()
     {
-//        $this->dispatch();
+        //        $this->dispatch();
     }
 
     /**
-     * @param AccountManager $manager
-     *
      * @return mixed
      */
     public function index(AccountManager $manager)
@@ -42,11 +41,9 @@ class MembershipController extends AdminController
         $teams = $teams->keyBy('id');
 
         foreach ($account->memberships as $membership) {
-
             $membershipTeams = clone $teams;
 
             foreach ($membership->teams as $team) {
-
                 $team->selected = true;
 
                 $membershipTeams->put($team->id, $team);
@@ -60,17 +57,14 @@ class MembershipController extends AdminController
 
     public function destroy(Membership $membership)
     {
-        /**
+        /*
          * cannot destroy a final membership or the owner of an account
          */
-        if ($this->dispatchFromArray(RevokeMembership::class, [
-            'membership' => $membership
-        ])
+        if ($this->dispatch(new RevokeMembership($membership))
         ) {
             $membership->id = false;
         }
 
         return $membership;
     }
-
 }

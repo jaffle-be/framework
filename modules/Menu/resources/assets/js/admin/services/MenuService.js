@@ -22,13 +22,11 @@
 
                     var destination = angular.copy(item);
 
-                    if (!delayed)
-                    {
+                    if (!delayed) {
                         return destination.$update({}, success);
                     }
 
-                    if (this.timeout)
-                    {
+                    if (this.timeout) {
                         $timeout.cancel(this.timeout);
                     }
 
@@ -38,8 +36,7 @@
                 },
                 createItem: function (item, success) {
                     return item.$save({}).then(success, function (response) {
-                        if (response.status == 422)
-                        {
+                        if (response.status == 422) {
                             _.each(response.data, function (item) {
                                 toaster.pop('error', item[0]);
                             });

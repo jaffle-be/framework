@@ -14,13 +14,11 @@
                     transformResponse: function (response) {
                         response = angular.fromJson(response);
 
-                        if (response.translations.length == 0)
-                        {
+                        if (response.translations.length == 0) {
                             response.translations = {};
                         }
 
-                        if (response.date)
-                        {
+                        if (response.date) {
                             response.date = moment(response.date, 'YYYY-MM-DD').format('DD/MM/YYYY');
                         }
 
@@ -30,13 +28,11 @@
                 update: {
                     method: 'PUT',
                     transformRequest: function (request) {
-                        if (typeof request.date == 'string')
-                        {
+                        if (typeof request.date == 'string') {
                             request.date = moment(request.date, 'DD/MM/YYYY').format('YYYY-MM-DD');
                         }
 
-                        if (request.date instanceof Date)
-                        {
+                        if (request.date instanceof Date) {
                             var date = moment(request.date);
                             request.date = date.format('YYYY-MM-DD')
                         }

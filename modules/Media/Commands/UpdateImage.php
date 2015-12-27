@@ -1,17 +1,15 @@
-<?php namespace Modules\Media\Commands;
+<?php
+
+namespace Modules\Media\Commands;
 
 use App\Jobs\Job;
-use Illuminate\Contracts\Bus\SelfHandling;
 use Modules\Media\Image;
 
 /**
- * Class UpdateImage
- *
- * @package Modules\Media\Commands
+ * Class UpdateImage.
  */
-class UpdateImage extends Job implements SelfHandling
+class UpdateImage extends Job
 {
-
     /**
      * @var Image
      */
@@ -23,8 +21,7 @@ class UpdateImage extends Job implements SelfHandling
     protected $input;
 
     /**
-     * @param Image $image
-     * @param array $input
+     *
      */
     public function __construct(Image $image, array $input)
     {
@@ -41,5 +38,4 @@ class UpdateImage extends Job implements SelfHandling
 
         return $this->image->save() ? $this->image : false;
     }
-
 }

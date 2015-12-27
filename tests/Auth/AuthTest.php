@@ -1,11 +1,13 @@
-<?php namespace Test\Auth;
+<?php
 
+namespace Test\Auth;
+
+use Modules\Users\Auth\Tokens\Token;
 use Test\FrontTestCase;
 use Test\Routes\RouteTests;
 
 class AuthTest extends FrontTestCase
 {
-
     use RouteTests;
 
     public function testSignin()
@@ -26,7 +28,7 @@ class AuthTest extends FrontTestCase
 
     public function testConfirmEmail()
     {
-//        $this->tryRoute('store.auth.confirm-email.show');
+        //        $this->tryRoute('store.auth.confirm-email.show');
     }
 
     public function testForgotPassword()
@@ -36,7 +38,8 @@ class AuthTest extends FrontTestCase
 
     public function testResetPassword()
     {
-        $this->tryRoute('store.auth.reset-password.show');
-    }
+        $token = factory(Token::class, 'reset')->create();
 
+        $this->tryRoute('store.auth.reset-password.show', [$token]);
+    }
 }

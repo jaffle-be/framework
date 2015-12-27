@@ -1,8 +1,9 @@
-<?php namespace Modules\Pages;
+<?php
+
+namespace Modules\Pages;
 
 class PageRepository implements PageRepositoryInterface
 {
-
     protected $page;
 
     public function __construct(Page $page)
@@ -10,7 +11,7 @@ class PageRepository implements PageRepositoryInterface
         $this->page = $page;
     }
 
-    function __call($name, $arguments)
+    public function __call($name, $arguments)
     {
         return call_user_func_array([$this->page, $name], $arguments);
     }
@@ -21,11 +22,10 @@ class PageRepository implements PageRepositoryInterface
     }
 
     /**
-     * @return []
+     * @return array []
      */
     public function relations()
     {
         return ['user', 'translations'];
     }
-
 }

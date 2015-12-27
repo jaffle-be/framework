@@ -1,4 +1,6 @@
-<?php namespace Modules\Users\Http\Admin;
+<?php
+
+namespace Modules\Users\Http\Admin;
 
 use Illuminate\Auth\Guard;
 use Illuminate\Database\Eloquent\Collection;
@@ -10,7 +12,6 @@ use Modules\Users\Skill;
 
 class SkillController extends AdminController
 {
-
     public function widget()
     {
         return view('tags::admin.widget');
@@ -30,13 +31,13 @@ class SkillController extends AdminController
         $skills = $skill
             ->with(['translations'])
             ->where(function ($q) use ($skills) {
-                if (!empty($skills)) {
+                if (! empty($skills)) {
                     $q->whereNotIn('id', $skills);
                 }
             })
             ->whereHas('translations', function ($q) use ($value, $locale) {
                 $q->where('locale', $locale);
-                $q->where('name', 'like', '%' . $value . '%');
+                $q->where('name', 'like', '%'.$value.'%');
             })
             ->paginate(10);
 
@@ -60,8 +61,8 @@ class SkillController extends AdminController
 
         $skill = $skill->create([
             $locale => [
-                'name' => $name
-            ]
+                'name' => $name,
+            ],
         ]);
 
         $user->skills()->attach($skill);
@@ -83,7 +84,7 @@ class SkillController extends AdminController
         //attach the skill to the user if needed
         $user = $guard->user();
 
-        if (!$user->skills->contains($skill->id)) {
+        if (! $user->skills->contains($skill->id)) {
             $user->skills()->attach($skill);
         }
 
@@ -111,5 +112,4 @@ class SkillController extends AdminController
             $skill->delete();
         }
     }
-
 }

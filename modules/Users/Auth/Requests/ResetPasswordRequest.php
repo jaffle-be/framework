@@ -1,10 +1,11 @@
-<?php namespace Modules\Users\Auth\Requests;
+<?php
+
+namespace Modules\Users\Auth\Requests;
 
 use App\Http\Requests\Request;
 
 class ResetPasswordRequest extends Request
 {
-
     public function authorize()
     {
         return true;
@@ -13,9 +14,8 @@ class ResetPasswordRequest extends Request
     public function rules()
     {
         return [
-            'email'    => 'required',
+            'email' => 'required',
             'password' => 'required|min:8|confirmed',
         ];
     }
-
 }

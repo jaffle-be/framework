@@ -5,7 +5,6 @@ use Modules\System\Seeder;
 
 class ClientSeeder extends Seeder
 {
-
     public function run()
     {
         $accounts = [1, 2];
@@ -16,26 +15,25 @@ class ClientSeeder extends Seeder
             while ($teller < 15) {
                 Client::create([
                     'account_id' => $account,
-                    'name'       => $this->faker->userName,
-                    'website'    => $this->faker->url,
-                    'nl'         => [
+                    'name' => $this->faker->userName,
+                    'website' => $this->faker->url,
+                    'nl' => [
 
                         'description' => $this->faker->paragraph(5),
                     ],
-                    'en'         => [
+                    'en' => [
                         'description' => $this->faker->paragraph(5),
                     ],
-                    'fr'         => [
+                    'fr' => [
                         'description' => $this->faker->paragraph(5),
                     ],
-                    'de'         => [
+                    'de' => [
                         'description' => $this->faker->paragraph(5),
                     ],
                 ]);
 
-                $teller++;
+                ++$teller;
             }
         }
     }
-
 }

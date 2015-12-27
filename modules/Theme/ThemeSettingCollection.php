@@ -1,10 +1,11 @@
-<?php namespace Modules\Theme;
+<?php
+
+namespace Modules\Theme;
 
 use Illuminate\Database\Eloquent\Collection;
 
 class ThemeSettingCollection extends Collection
 {
-
     public function byModule()
     {
         return $this->groupBy(function ($item) {
@@ -14,5 +15,4 @@ class ThemeSettingCollection extends Collection
             return array_shift($pieces);
         });
     }
-
 }

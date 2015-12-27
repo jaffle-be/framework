@@ -29,8 +29,7 @@ class CreatePortfolioProjectCollaborators extends Migration
      */
     public function down()
     {
-        Schema::drop('portfolio_project_collaborators', function(Blueprint $table)
-        {
+        Schema::drop('portfolio_project_collaborators', function (Blueprint $table) {
             $table->dropForeign('project_collaborators_to_projects');
             $table->dropForeign('project_collaborators_to_users');
         });

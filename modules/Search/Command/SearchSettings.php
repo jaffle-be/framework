@@ -1,11 +1,12 @@
-<?php namespace Modules\Search\Command;
+<?php
+
+namespace Modules\Search\Command;
 
 use Illuminate\Console\Command;
 use Modules\Search\SearchServiceInterface;
 
 class SearchSettings extends Command
 {
-
     /**
      * The console command name.
      *
@@ -27,8 +28,6 @@ class SearchSettings extends Command
 
     /**
      * Create a new command instance.
-     *
-     * @param SearchServiceInterface $service
      */
     public function __construct(SearchServiceInterface $service)
     {
