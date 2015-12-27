@@ -1,4 +1,4 @@
-<div class="ibox" ng-controller="ModuleController as vm" ng-init="vm.options = {{ system_options() }}">
+<div class="ibox" ng-controller="ModuleController as vm">
 
     <div class="ibox-title">
         <h5>{{ Lang::get('module::admin.modules') }}</h5>
