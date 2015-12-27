@@ -49,14 +49,15 @@ abstract class MetaTagProvider
     {
         $defaults = ! empty($this->config) ? $this->config : [];
 
-        foreach ($defaults as $key => $value):
-            if ($key == 'images'):
-                if (empty($this->images)):
+        foreach ($defaults as $key => $value) {
+            if ($key == 'images') {
+                if (empty($this->images)) {
                     $this->images = $value;
-        endif; elseif (! empty($value) && ! array_key_exists($key, $this->properties)):
+                }
+            } elseif (! empty($value) && ! array_key_exists($key, $this->properties)) {
                 $this->addProperty($key, $value);
-        endif;
-        endforeach;
+            }
+        }
     }
 
     /**
@@ -130,11 +131,12 @@ abstract class MetaTagProvider
     {
         $html = [];
 
-        foreach ($properties as $property => $value):
+        foreach ($properties as $property => $value) {
             // multiple properties
-            if (is_array($value)):
+            if (is_array($value)) {
 
-                $html = $this->handleMultipleProperties($prefix, $property, $value, $html); else:
+                $html = $this->handleMultipleProperties($prefix, $property, $value, $html);
+            } else {
 
                 $key = $this->getPropertyKey($prefix, $property);
 
@@ -143,14 +145,14 @@ abstract class MetaTagProvider
                     continue;
                 }
 
-        if ($this->hasCustomRenderMethod($key)) {
-            $html[] = $this->customRenderMethod($key, $value);
-        } else {
-            $html[] = $this->tag($key, $value);
-        }
+                if ($this->hasCustomRenderMethod($key)) {
+                    $html[] = $this->customRenderMethod($key, $value);
+                } else {
+                    $html[] = $this->tag($key, $value);
+                }
 
-        endif;
-        endforeach;
+            }
+        }
 
         return implode(PHP_EOL, $html);
     }
@@ -173,17 +175,19 @@ abstract class MetaTagProvider
      */
     protected function getPropertyKey($prefix, $property)
     {
-        if (is_numeric($property)):
+        if (is_numeric($property)) {
             $key = $prefix.$property;
 
-        return $key; elseif (is_string($prefix)):
+            return $key;
+        } elseif (is_string($prefix)) {
             $key = (is_string($property)) ? $prefix.':'.$property : $prefix;
 
-        return $key; else:
+            return $key;
+        } else {
             $key = $property;
 
-        return $key;
-        endif;
+            return $key;
+        }
     }
 
     protected function hasCustomRenderMethod($key)
