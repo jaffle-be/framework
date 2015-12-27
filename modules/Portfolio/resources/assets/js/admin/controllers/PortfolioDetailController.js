@@ -2,8 +2,8 @@
     'use strict';
 
     angular.module('portfolio')
-        .controller('PortfolioDetailController', function ($scope, Portfolio, PortfolioService, MembershipService, Client, $state) {
-
+        .controller('PortfolioDetailController', function ($scope, Portfolio, PortfolioService, MembershipService, Client, $state, System) {
+            this.options = System.options;
             this.projects = PortfolioService;
             this.memberships = [];
             this.collaborators = [];

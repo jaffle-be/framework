@@ -1,5 +1,4 @@
-<div class="row wrapper wrapper-content portfolio-overview" ng-controller="PortfolioController as vm"
-     ng-init="vm.options = {{ system_options() }}" ng-cloak>
+<div class="row wrapper wrapper-content portfolio-overview" ng-controller="PortfolioController as vm" ng-cloak>
 
     <div class="ibox" st-table="vm.projects" st-pipe="vm.list">
 
