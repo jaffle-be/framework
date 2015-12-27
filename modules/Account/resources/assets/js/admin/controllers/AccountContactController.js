@@ -2,10 +2,11 @@
     'use strict';
 
     angular.module('account')
-        .controller('AccountContactController', function ($scope, $state, AccountContactInformation, $timeout, InputTranslationHandler) {
+        .controller('AccountContactController', function ($scope, $state, System, AccountContactInformation, $timeout, InputTranslationHandler) {
             var me = this;
 
             this.timer = false;
+            this.options = System.options;
 
             this.load = function () {
                 AccountContactInformation.load(function (response) {

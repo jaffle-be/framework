@@ -9,7 +9,7 @@
         </div>
     </div>
 
-    <div class="row" ng-controller="AccountContactController as vm" ng-init="vm.options = {{ system_options() }}">
+    <div class="row" ng-controller="AccountContactController as vm">
 
         <form ng-submit="vm.save()" novalidate name="accountContactForm">
 

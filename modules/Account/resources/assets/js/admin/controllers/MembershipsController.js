@@ -2,12 +2,13 @@
     'use strict';
 
     angular.module('account')
-        .controller('MembershipsController', function (MembershipService, Team) {
+        .controller('MembershipsController', function (MembershipService, System, Team) {
 
             this.invitations = [];
             this.invitationErrors = [];
             this.memberships = [];
             this.editingTeams = false;
+            this.options = System.options;
 
             var me = this;
 

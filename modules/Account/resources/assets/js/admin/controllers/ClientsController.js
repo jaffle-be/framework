@@ -2,12 +2,13 @@
     'use strict';
 
     angular.module('account')
-        .controller('ClientsController', function ($scope, Client, $timeout) {
+        .controller('ClientsController', function ($scope, System, Client, $timeout) {
             var me = this;
             this.timeouts = [];
             this.clients = [];
             this.client = false;
             this.saving = false;
+            this.options = System.options;
 
             function load() {
                 Client.list({}).$promise.then(function (clients) {
