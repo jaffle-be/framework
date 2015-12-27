@@ -2,7 +2,8 @@
     'use strict';
 
     angular.module('users')
-        .controller('ProfileController', function (ProfileService, SkillService) {
+        .controller('ProfileController', function (ProfileService, SkillService, System) {
+            this.options = System.options;
             this.profile = {};
             this.profileErrors = [];
             this.loaded = false;

@@ -1,4 +1,4 @@
-<div class="row wrapper-content" ng-controller="ProfileController as vm" ng-init="vm.options = {{ system_options() }}">
+<div class="row wrapper-content" ng-controller="ProfileController as vm">
 
     @include('system::admin.locale-tabs')
 
