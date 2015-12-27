@@ -29,3 +29,4 @@
 //    $breadcrumbs->parent('category', $page->category);
 //    $breadcrumbs->push($page->title, store_route('page', $page->id));
 //});
+

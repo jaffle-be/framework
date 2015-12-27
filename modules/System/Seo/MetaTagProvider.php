@@ -134,10 +134,8 @@ abstract class MetaTagProvider
         foreach ($properties as $property => $value) {
             // multiple properties
             if (is_array($value)) {
-
                 $html = $this->handleMultipleProperties($prefix, $property, $value, $html);
             } else {
-
                 $key = $this->getPropertyKey($prefix, $property);
 
                 // if empty jump to next
@@ -150,7 +148,6 @@ abstract class MetaTagProvider
                 } else {
                     $html[] = $this->tag($key, $value);
                 }
-
             }
         }
 
