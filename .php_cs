@@ -71,7 +71,16 @@ $fixers = [
 ];
 
 return Config::create()
-    ->finder(DefaultFinder::create()->in(__DIR__))
+    ->finder(DefaultFinder::create()
+        ->exclude('bootstrap/cache')
+        ->exclude('bower_components')
+        ->exclude('node_modules')
+        ->exclude('public')
+        ->exclude('storage')
+        ->exclude('themes')
+        ->exclude('vendor')
+        ->in(__DIR__)
+    )
     ->fixers($fixers)
     ->level(FixerInterface::NONE_LEVEL)
     ->setUsingCache(true);
