@@ -12,6 +12,7 @@ use Modules\Media\StoresMedia;
 use Modules\Media\StoringMedia;
 use Modules\Search\Model\Searchable;
 use Modules\Search\Model\SearchableTrait;
+use Modules\System\Locale;
 use Modules\System\Translatable\Translatable;
 
 /**
@@ -180,5 +181,10 @@ class User extends Model implements Authenticatable, MembershipOwner, AddressOwn
     public function getAuthIdentifierName()
     {
         return $this->getKeyName();
+    }
+
+    public function locale()
+    {
+        return $this->belongsTo(Locale::class);
     }
 }

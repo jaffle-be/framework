@@ -122,7 +122,7 @@ class SystemController extends AdminController
             $this->dispatch(new CheckGravatarImage($user));
         }
 
-        $user->load(['translations', 'skills', 'skills.translations']);
+        $user->load(['locale', 'translations', 'skills', 'skills.translations']);
 
         $this->prepareImages($user);
 

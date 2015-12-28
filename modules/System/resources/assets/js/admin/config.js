@@ -21,8 +21,6 @@
 
             Pace.options.ajax.trackMethods.push('POST');
 
-            moment.locale('en');
-
             // Configure Idle settings
             IdleProvider.idle(5); // in seconds
             IdleProvider.timeout(120); // in seconds
@@ -75,18 +73,22 @@
                     }
                 });
         })
-        .run(function ($rootScope, $state, System) {
+        .run(function ($rootScope, $state, System, $translate) {
             $rootScope.$state = $state;
 
             $rootScope.$on('$stateChangeStart',
                 function (event, toState, toParams, fromState, fromParams) {
 
                     //make sure users need to select their locale.
-                    System.then(function()
-                    {
+                    System.then(function () {
                         if (!System.user.locale_id && toState.name != 'admin.profile') {
                             $state.go('admin.profile');
                             event.preventDefault();
+                        }
+
+                        if(System.user.locale_id)
+                        {
+                            $translate.use(System.user.locale.slug);
                         }
                     });
 
