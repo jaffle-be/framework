@@ -2,13 +2,23 @@
     'use strict';
 
     angular.module('users')
-        .controller('ProfileController', function (ProfileService, SkillService, System) {
+        .controller('ProfileController', function (ProfileService, SkillService, System, $translate) {
             this.options = System.options;
             this.profile = System.user;
             this.mainTabs = [true, false];
             this.profileErrors = [];
             this.loaded = false;
             var me = this;
+
+            this.changeLanguage = function()
+            {
+                this.save();
+                var locales = System.options.locales;
+
+                var locale = _.first(_.where(locales, {'id' : this.profile.locale_id}));
+                moment.locale(locale.slug);
+                $translate.use(locale.slug);
+            }
 
             this.save = function () {
                 ProfileService.save(me.profile, function () {

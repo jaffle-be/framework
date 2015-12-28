@@ -7,7 +7,7 @@
     <div class="ibox-content">
 
         <div class="form-group col-md-3" ng-repeat="locale in vm.options.systemLocales">
-            <input type="radio" name="locales" id="@{{ locale.slug }}" class="filled-in" ng-model="vm.profile.locale_id" ng-value="locale.id" ng-change="vm.save()">
+            <input type="radio" name="locales" id="@{{ locale.slug }}" class="filled-in" ng-model="vm.profile.locale_id" ng-value="locale.id" ng-change="vm.changeLanguage()">
             <label for="@{{ locale.slug }}">@{{ locale.translations[vm.options.locale].name }}</label>
         </div>
 
