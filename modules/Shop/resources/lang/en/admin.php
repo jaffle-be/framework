@@ -18,6 +18,7 @@ return [
     ],
     'notifications' => [
         'title' => 'notifications',
+        'up-to-date' => 'up to date',
     ],
     'product' => [
         'base' => 'base',
@@ -48,5 +49,17 @@ return [
         'decimal' => 'decimal value',
         'select' => 'select or create new value',
         'unit' => 'unit',
+        'boolean' => 'boolean',
+        'cancel' => 'cancel',
+        'create' => 'create',
+        'float' => 'float',
+        'new' => 'new',
+        'new-unit' => 'new unit',
+        'no-unit' => 'no unit',
+        'numeric' => 'numeric',
+        'options' => 'options',
+        'string' => 'string',
+        'type' => 'type',
     ],
+
 ];

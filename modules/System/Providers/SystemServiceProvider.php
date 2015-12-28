@@ -5,6 +5,7 @@ namespace Modules\System\Providers;
 use Blade;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Factory;
+use Modules\System\Console\CompileTranslations;
 use Modules\System\Console\FreshApplication;
 use Modules\System\Seo\SeoManager;
 use Modules\System\ServiceProvider;
@@ -58,7 +59,7 @@ class SystemServiceProvider extends ServiceProvider
             $app->register('Modules\System\Uri\UriServiceProvider');
         });
 
-        $this->commands([FreshApplication::class]);
+        $this->commands([FreshApplication::class, CompileTranslations::class]);
     }
 
     protected function listeners()

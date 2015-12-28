@@ -1,12 +1,16 @@
 <?php
 
 return [
+    'title' => 'Title',
+    'description' => 'Description',
 
     'actions' => [
         'actions' => 'actions',
         'remove' => 'remove',
         'select-all' => 'all',
         'select-none' => 'none',
+        'publish' => 'publish',
+        'unpublish' => 'unpublish',
     ],
     'post' => [
         'content' => 'content',
