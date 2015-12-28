@@ -5,7 +5,7 @@
         .controller('NewsletterCampaignDetailController', function ($scope, $state, System, NewsletterCampaign, NewsletterCampaignService, $sce, toaster) {
 
             this.campaigns = NewsletterCampaignService;
-            this.options = {};
+            this.options = System.options;
             this.itemsPerRow = 1;
             //active state for tabs
             this.widgetTabs = [true, false];

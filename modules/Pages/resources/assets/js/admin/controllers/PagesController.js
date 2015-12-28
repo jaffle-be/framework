@@ -9,7 +9,7 @@
             };
 
             //start with true so we don't see the layout flash
-            this.options = {};
+            this.options = System.options;
             this.loading = true;
             this.rpp = 15;
             this.total = 0;

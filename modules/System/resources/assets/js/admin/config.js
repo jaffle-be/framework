@@ -46,6 +46,12 @@
                 .state('admin', {
                     abstract: true,
                     url: "/admin",
+                    resolve: {
+                        System: function(System)
+                        {
+                            return System.promise;
+                        }
+                    },
                     templateUrl: "templates/admin/layout/content",
                 })
                 .state('admin.start', {

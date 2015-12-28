@@ -3,7 +3,7 @@
 
     angular.module('theme')
         .controller('ThemeController', function (ThemeService, Theme, $window, System) {
-            this.options = {};
+            this.options = System.options;
             this.themes = [];
             this.theme = false;
 

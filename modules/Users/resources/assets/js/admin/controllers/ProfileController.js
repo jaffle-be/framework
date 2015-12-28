@@ -3,16 +3,12 @@
 
     angular.module('users')
         .controller('ProfileController', function (ProfileService, SkillService, System) {
-            this.options = {};
+            this.options = System.options;
+            this.profile = System.user;
             this.mainTabs = [true, false];
-            this.profile = {};
             this.profileErrors = [];
             this.loaded = false;
             var me = this;
-
-            this.load = function () {
-                me.profile = me.user
-            };
 
             this.save = function () {
                 ProfileService.save(me.profile, function () {
@@ -52,7 +48,6 @@
                 });
             };
 
-            this.load();
         });
 
 })();

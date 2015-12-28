@@ -4,7 +4,7 @@
     angular.module('shop')
         .controller('ProductDetailController', function ($scope, Product, ProductService, PropertyService, PropertySortingService, $state, $sce, System) {
 
-            this.options = {};
+            this.options = System.options;
             this.products = ProductService;
             this.newGroup = '';
             this.product = false;

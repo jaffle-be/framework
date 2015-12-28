@@ -5,7 +5,7 @@
         .controller('NewsletterSubscriptionController', function ($scope, NewsletterSubscription, System) {
 
             //start with true so we don't see the layout flash
-            this.options = {};
+            this.options = System.options;
             this.loading = true;
             this.rpp = 25;
             this.total = 0;

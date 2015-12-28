@@ -4,7 +4,7 @@
     angular.module('shop')
         .controller('GammaCategoryController', function ($scope, GammaService, Pusher, toaster, System) {
 
-            this.options = {};
+            this.options = System.options;
             this.gamma = GammaService;
             this.page = 1;
             this.totalItems = 0;

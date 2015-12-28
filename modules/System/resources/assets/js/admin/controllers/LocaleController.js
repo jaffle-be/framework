@@ -3,7 +3,7 @@
 
     angular.module('system')
         .controller('LocaleController', function (Locale, System) {
-            this.options = {};
+            this.options = System.options;
             var me = this;
 
             this.save = function (locale) {

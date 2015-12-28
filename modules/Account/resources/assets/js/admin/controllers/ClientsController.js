@@ -8,7 +8,7 @@
             this.clients = [];
             this.client = false;
             this.saving = false;
-            this.options = {};
+            this.options = System.options;
 
             function load() {
 

@@ -8,7 +8,7 @@
             this.invitationErrors = [];
             this.memberships = [];
             this.editingTeams = false;
-            this.options = {};
+            this.options = System.options;
 
             var me = this;
 

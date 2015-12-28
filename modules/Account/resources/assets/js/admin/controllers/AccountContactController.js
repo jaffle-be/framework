@@ -5,7 +5,7 @@
         .controller('AccountContactController', function ($scope, $state, System, AccountContactInformation, $timeout, InputTranslationHandler) {
             var me = this;
 
-            this.options = {};
+            this.options = System.options;
             this.timer = false;
 
             this.load = function () {
