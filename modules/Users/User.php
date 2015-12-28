@@ -42,7 +42,7 @@ class User extends Model implements Authenticatable, MembershipOwner, AddressOwn
      *
      * @var array
      */
-    protected $fillable = ['name', 'email', 'password', 'firstname', 'lastname', 'phone', 'vat', 'website', 'bio', 'quote', 'quote_author'];
+    protected $fillable = ['name', 'email', 'password', 'firstname', 'lastname', 'phone', 'vat', 'website', 'bio', 'quote', 'quote_author', 'locale_id'];
 
     /**
      * The attributes excluded from the model's JSON form.

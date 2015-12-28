@@ -25,6 +25,9 @@ class UserTable extends Migration
             $table->string('website', 300);
             $table->boolean('confirmed')->default(0);
 
+            $table->integer('locale_id', false, true)->nullable();
+            $table->foreign('locale_id', 'user_to_locale')->references('id')->on('locales')->onDelete('cascade');
+
             //tokens
             $table->rememberToken();
 
@@ -38,6 +41,9 @@ class UserTable extends Migration
      */
     public function down()
     {
-        Schema::drop('users');
+        Schema::drop('users', function(Blueprint $table)
+        {
+            $table->dropForeign('user_to_locale');
+        });
     }
 }

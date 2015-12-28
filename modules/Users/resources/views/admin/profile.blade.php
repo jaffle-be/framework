@@ -7,7 +7,7 @@
         <div class="ibox-tabs">
             <uib-tabset>
                 <uib-tab heading="{{ Lang::get('users::admin.tabs.profile') }}" active="vm.mainTabs[0]"></uib-tab>
-                <uib-tab heading="{{ Lang::get('users::admin.tabs.bio') }}" active="vm.mainTabs[1]"></uib-tab>
+                <uib-tab heading="{{ Lang::get('users::admin.tabs.bio') }}" active="vm.mainTabs[1]" ng-show="vm.profile.locale_id"></uib-tab>
             </uib-tabset>
         </div>
     </div>
@@ -18,7 +18,7 @@
 
     </div>
 
-    <div class="row" ng-show="vm.mainTabs[1]">
+    <div class="row" ng-show="vm.mainTabs[1]" ng-show="vm.profile.locale_id">
 
         @include('users::admin.tabs.skills')
 
