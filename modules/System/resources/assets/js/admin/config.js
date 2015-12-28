@@ -19,6 +19,7 @@
         .module('system')
         .config(function ($stateProvider, $urlRouterProvider, $ocLazyLoadProvider, IdleProvider, KeepaliveProvider, $httpProvider, $locationProvider) {
 
+            moment.locale('en');
             Pace.options.ajax.trackMethods.push('POST');
 
             // Configure Idle settings
@@ -79,7 +80,7 @@
                     }
                 });
         })
-        .run(function ($rootScope, $state, System, $translate) {
+        .run(function ($rootScope, $state, System) {
             $rootScope.$state = $state;
 
             $rootScope.$on('$stateChangeStart',
@@ -94,7 +95,7 @@
 
                         if(System.user.locale_id)
                         {
-                            $translate.use(System.user.locale.slug);
+                            moment.locale(System.user.locale.slug);
                         }
                     });
 
