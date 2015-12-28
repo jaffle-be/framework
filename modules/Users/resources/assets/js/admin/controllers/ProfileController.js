@@ -3,6 +3,7 @@
 
     angular.module('users')
         .controller('ProfileController', function (ProfileService, SkillService, System) {
+            this.mainTabs = [true, false];
             this.options = System.options;
             this.profile = {};
             this.profileErrors = [];
@@ -23,7 +24,6 @@
                     me.profileErrors = response.data;
                 });
             };
-
 
             this.updateSkill = function (skill) {
                 SkillService.update(skill);
