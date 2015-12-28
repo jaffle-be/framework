@@ -2,7 +2,7 @@
 
 namespace Modules\Users\Http\Auth;
 
-use Illuminate\Auth\Guard;
+use Illuminate\Contracts\Auth\Guard;
 use Modules\Account\MembershipInvitation;
 use Modules\System\Http\FrontController;
 use Modules\Users\Auth\Commands\Signup;
