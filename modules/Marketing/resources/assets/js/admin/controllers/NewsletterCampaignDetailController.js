@@ -43,10 +43,6 @@
 
             function load(id) {
 
-                System.then(function(){
-                    me.options = System.options;
-                });
-
                 if (id) {
                     me.campaign = me.campaigns.find(id, function (campaign) {
                         me.campaign = campaign;

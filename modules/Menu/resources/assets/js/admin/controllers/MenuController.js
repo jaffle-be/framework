@@ -15,10 +15,6 @@
 
             var me = this;
 
-            System.then(function(){
-                me.options = System.options;
-            });
-
             //the item we are editing
             this.item;
 

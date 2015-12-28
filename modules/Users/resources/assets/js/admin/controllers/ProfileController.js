@@ -11,10 +11,7 @@
             var me = this;
 
             this.load = function () {
-                System.then(function(){
-                    me.profile = System.user;
-                    me.options = System.options;
-                });
+                me.profile = me.user
             };
 
             this.save = function () {

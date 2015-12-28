@@ -9,10 +9,6 @@
 
             var me = this;
 
-            System.then(function(){
-                me.options = System.options;
-            });
-
             ThemeService.list(function (themes) {
                 me.themes = themes;
                 for (var i = 0; i < themes.length; i++) {

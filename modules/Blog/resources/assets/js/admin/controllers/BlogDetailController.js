@@ -15,10 +15,6 @@
 
             this.load = function (id) {
 
-                System.then(function(){
-                    me.options = System.options;
-                });
-
                 if (id) {
                     this.post = this.posts.find(id, function (post) {
                         me.post = post;

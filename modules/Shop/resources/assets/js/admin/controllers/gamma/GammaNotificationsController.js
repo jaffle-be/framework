@@ -78,10 +78,6 @@
 
             this.load = function () {
 
-                System.then(function(){
-                    me.options = System.options;
-                });
-
                 GammaNotificationsService.load({
                     page: me.page
                 }, function (response) {

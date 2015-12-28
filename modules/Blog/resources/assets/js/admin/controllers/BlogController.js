@@ -17,10 +17,6 @@
 
             var me = this;
 
-            System.then(function(){
-                me.options = System.options;
-            });
-
             this.newPost = function () {
                 var post = new Blog();
                 BlogService.save(post);

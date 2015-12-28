@@ -9,10 +9,6 @@
             this.timer = false;
 
             this.load = function () {
-                System.then(function(){
-                    me.options = System.options;
-                });
-
                 AccountContactInformation.load(function (response) {
                     me.info = response;
                 });

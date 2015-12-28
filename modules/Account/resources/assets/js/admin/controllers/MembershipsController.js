@@ -14,10 +14,6 @@
 
             this.load = function () {
 
-                System.then(function(){
-                    me.options = System.options;
-                });
-
                 MembershipService.list(function (memberships) {
                     me.memberships = memberships
                 });

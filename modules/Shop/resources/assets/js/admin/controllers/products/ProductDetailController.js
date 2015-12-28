@@ -16,10 +16,6 @@
             var me = this,
                 id = $state.params.id;
 
-            System.then(function(){
-                me.options = System.options;
-            });
-
             this.load = function (id) {
 
                 if (id) {

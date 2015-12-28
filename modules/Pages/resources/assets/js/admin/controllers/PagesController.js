@@ -17,10 +17,6 @@
 
             var me = this;
 
-            System.then(function(){
-                me.options = System.options;
-            });
-
             this.newPage = function () {
                 var page = new Page();
                 PageService.save(page);

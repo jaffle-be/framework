@@ -12,10 +12,6 @@
 
             function load() {
 
-                System.then(function(){
-                    me.options = System.options;
-                });
-
                 Client.list({}).$promise.then(function (clients) {
                     me.clients = clients;
                 });

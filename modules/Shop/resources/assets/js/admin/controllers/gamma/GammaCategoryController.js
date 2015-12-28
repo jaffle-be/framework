@@ -198,10 +198,6 @@
 
             function load(item) {
 
-                System.then(function(){
-                    me.options = System.options;
-                });
-
                 var data = {
                     page: me.page
                 };

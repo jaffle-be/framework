@@ -17,10 +17,6 @@
 
             var me = this;
 
-            System.then(function(){
-                me.options = System.options;
-            });
-
             this.newCampaign = function () {
                 var campaign = new NewsletterCampaign();
                 NewsletterCampaignService.save(campaign);
