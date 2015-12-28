@@ -1,6 +1,6 @@
 (function () {
     angular.module('system')
-        .factory('Pusher', function ($pusher, System, $q) {
+        .factory('Pusher', function ($pusher, System, $q, $window) {
 
             'use strict';
 
@@ -31,11 +31,15 @@
                 //we'd need a channel for each account
                 var alias = System.options.pusher.channel;
                 var pusher = $pusher(client);
-                //for now channels are 'mocked' to be separate.
-                //if in the future this would change, simply search replace
-                //Pusher.channel Pusher.channels.system or Pusher.channels.account etc
-                Service.channel = pusher.subscribe('private-' + alias);
+                var channel = pusher.subscribe('private-' + alias);
+
+                Service.channel = channel;
                 Service.pusher = pusher;
+
+                //add hard reload event
+                channel.bind('system.hard-reload', function () {
+                    $window.location.reload();
+                });
 
                 deferred.resolve();
             });
