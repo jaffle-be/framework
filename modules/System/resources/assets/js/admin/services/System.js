@@ -6,18 +6,24 @@
 
             function System()
             {
+                var me = this;
                 this.initialised = false;
                 this.options = {};
 
-                var me = this;
-
-                $http.get('api/admin/system').then(function (response) {
+                var promise = $http.get('api/admin/system').then(function (response) {
                     me.options = response.data;
                     me.initialised = true;
                 });
+
+                this.then = function(success, error)
+                {
+                    promise.then(success, error);
+                }
             }
 
-            return new System;
+            var system = new System;
+
+            return system;
         });
 
 })();

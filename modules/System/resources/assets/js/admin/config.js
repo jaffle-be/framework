@@ -77,8 +77,7 @@
         })
         .run(function ($rootScope, $state) {
             $rootScope.$state = $state;
-        })
-        .constant('PUSHER_API_KEY', '620bda78edffff62686a');
+        });
 
 
 })(window.Pace);

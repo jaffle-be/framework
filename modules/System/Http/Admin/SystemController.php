@@ -24,7 +24,7 @@ class SystemController extends AdminController
      * @param Application $app
      * @return string
      */
-    public function index(Repository $config, Application $app)
+    public function index(Repository $config, Application $app, AccountManager $account)
     {
         //this should return all settings needed for our angular app to work
         $options['locale'] = $app->getLocale();
@@ -36,6 +36,11 @@ class SystemController extends AdminController
         })->toArray();
 
         $options['systemModules'] = $this->system_modules()->toArray();
+
+        $options['pusher'] = [
+            'channel' => $account->account()->alias,
+            'apikey' => env('PUSHER_API_KEY')
+        ];
 
         return json_encode($options);
     }

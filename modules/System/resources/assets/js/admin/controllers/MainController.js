@@ -3,14 +3,16 @@
 
     function MainController($scope, toaster, Pusher, $window) {
 
+        Pusher.then(function()
+        {
+            Pusher.channel.bind('system.hard-reload', function () {
+                $window.location.reload();
+            });
+        });
+
         this.multipleLocales = function (locales) {
             return _.keys(locales).length > 1;
         };
-
-        Pusher.channel.bind('system.hard-reload', function () {
-            $window.location.reload();
-
-        });
 
         this.toaster = {
             'time-out': 3000,
