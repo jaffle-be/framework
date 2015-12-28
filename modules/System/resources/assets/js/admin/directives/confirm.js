@@ -34,7 +34,7 @@
                         modalHtml += '<div class="modal-footer"><button class="btn btn-warning" ng-click="ok()">{{ "DO" | translate }}</button><button class="btn btn-default" ng-click="cancel()">{{ "CANCEL" | translate }}</button></div>';
 
                         var modalInstance = $uibModal.open({
-                            template: modalHtml,
+                            templateUrl: modalHtml,
                             controller: ModalInstanceCtrl,
                             animation: false,
                             animate: false

@@ -7,19 +7,6 @@
 
             $translateProvider
                 .translations('en', {
-
-                    // Define all menu elements
-                    DASH: 'Dashboard',
-                    PAGES: 'Pages',
-                    BLOG: 'Blog',
-                    SHOP: 'Shop',
-                    CONTACT: 'Contact',
-                    ACCOUNT: 'Account',
-                    USERS: 'Users',
-                    CLIENTS: 'Clients',
-                    MARKETING: 'Marketing',
-
-
                     // Define some custom text
                     SEARCH: 'Search anything',
                     REMOVE: 'Remove',
@@ -29,19 +16,6 @@
                 })
 
                 .translations('nl', {
-
-                    // Define all menu elements
-                    DASH: 'Dashboard',
-                    PAGES: "Pagina's",
-                    BLOG: 'Blog',
-                    SHOP: 'Shop',
-                    CONTACT: 'Contact',
-                    ACCOUNT: 'Account',
-                    USERS: 'Gebruikers',
-                    CLIENTS: 'Klanten',
-                    MARKETING: 'Marketing',
-
-
                     // Define some custom text
                     SEARCH: 'Zoek om het even wat',
                     REMOVE: 'Verwijderen',

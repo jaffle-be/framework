@@ -6,7 +6,7 @@
 
                 <form role="search" class="navbar-form-custom" method="post" action="views/search_results.html">
                     <div class="form-group">
-                        <input type="text" placeholder="@{{ 'SEARCH' | translate }}" class="form-control"
+                        <input type="text" placeholder="{{ Lang::get('navigation.search') }}" class="form-control"
                                name="top-search" id="top-search">
                     </div>
                 </form>
