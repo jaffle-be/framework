@@ -14,6 +14,7 @@
                 id = $state.params.id;
 
             this.load = function (id) {
+
                 if (id) {
                     this.post = this.posts.find(id, function (post) {
                         me.post = post;

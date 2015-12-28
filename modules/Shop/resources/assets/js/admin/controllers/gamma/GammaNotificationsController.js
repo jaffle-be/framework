@@ -77,6 +77,7 @@
             };
 
             this.load = function () {
+
                 GammaNotificationsService.load({
                     page: me.page
                 }, function (response) {

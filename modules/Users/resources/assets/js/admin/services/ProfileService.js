@@ -2,10 +2,24 @@
     'use strict';
 
     angular.module('users')
-        .factory('ProfileService', function (Profile, $timeout) {
+        .factory('ProfileService', function (Profile, Skill, MediaService, $timeout) {
             return {
-                find: function (success) {
-                    Profile.find(success);
+                transformResponse: function (response) {
+                    var data = angular.fromJson(response);
+
+                    if (data.translations.length == 0) {
+                        data.translations = {};
+                    }
+
+                    var skills = [];
+
+                    _.each(data.skills, function (item) {
+                        skills.push(new Skill(item));
+                    });
+
+                    data.skills = skills;
+
+                    return MediaService.transformResponse(data);
                 },
                 save: function (profile, success, error) {
                     if (this.timeout) {

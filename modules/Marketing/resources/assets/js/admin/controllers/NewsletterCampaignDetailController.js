@@ -42,6 +42,7 @@
             this.load(id);
 
             function load(id) {
+
                 if (id) {
                     me.campaign = me.campaigns.find(id, function (campaign) {
                         me.campaign = campaign;

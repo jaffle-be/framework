@@ -21,8 +21,6 @@
 
             Pace.options.ajax.trackMethods.push('POST');
 
-            moment.locale('en');
-
             // Configure Idle settings
             IdleProvider.idle(5); // in seconds
             IdleProvider.timeout(120); // in seconds
@@ -48,6 +46,12 @@
                 .state('admin', {
                     abstract: true,
                     url: "/admin",
+                    resolve: {
+                        System: function(System)
+                        {
+                            return System.promise;
+                        }
+                    },
                     templateUrl: "templates/admin/layout/content",
                 })
                 .state('admin.start', {
@@ -75,10 +79,27 @@
                     }
                 });
         })
-        .run(function ($rootScope, $state) {
+        .run(function ($rootScope, $state, System, $translate) {
             $rootScope.$state = $state;
-        })
-        .constant('PUSHER_API_KEY', '620bda78edffff62686a');
+
+            $rootScope.$on('$stateChangeStart',
+                function (event, toState, toParams, fromState, fromParams) {
+
+                    //make sure users need to select their locale.
+                    System.then(function () {
+                        if (!System.user.locale_id && toState.name != 'admin.profile') {
+                            $state.go('admin.profile');
+                            event.preventDefault();
+                        }
+
+                        if(System.user.locale_id)
+                        {
+                            $translate.use(System.user.locale.slug);
+                        }
+                    });
+
+                })
+        });
 
 
 })(window.Pace);

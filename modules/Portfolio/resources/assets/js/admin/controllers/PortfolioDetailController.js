@@ -15,7 +15,6 @@
             var me = this,
                 id = $state.params.id;
 
-
             this.load = function (id) {
 
                 if (id) {

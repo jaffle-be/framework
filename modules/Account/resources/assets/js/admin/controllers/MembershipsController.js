@@ -13,6 +13,7 @@
             var me = this;
 
             this.load = function () {
+
                 MembershipService.list(function (memberships) {
                     me.memberships = memberships
                 });

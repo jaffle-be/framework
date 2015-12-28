@@ -8,9 +8,11 @@ use Illuminate\Foundation\Application;
 use Illuminate\Http\Request;
 use Modules\Account\AccountManager;
 use Modules\Account\AccountRepositoryInterface;
+use Modules\Media\MediaWidgetPreperations;
 use Modules\Module\Module;
 use Modules\System\Http\AdminController;
 use Modules\System\Locale;
+use Modules\Users\Jobs\CheckGravatarImage;
 use Pusher;
 
 /**
@@ -19,25 +21,20 @@ use Pusher;
  */
 class SystemController extends AdminController
 {
+    use MediaWidgetPreperations;
     /**
      * @param Repository $config
      * @param Application $app
      * @return string
      */
-    public function index(Repository $config, Application $app)
+    public function index(Repository $config, Application $app, AccountManager $account, Guard $guard)
     {
         //this should return all settings needed for our angular app to work
-        $options['locale'] = $app->getLocale();
-
-        $options['systemLocales'] = $this->system_locales()->toArray();
-
-        $options['locales'] = $this->system_locales()->filter(function ($item) {
-            return $item->activated == true;
-        })->toArray();
-
-        $options['systemModules'] = $this->system_modules()->toArray();
-
-        return json_encode($options);
+        return json_encode([
+            'options' => $this->systemInfo($app),
+            'user' => $this->userInfo($guard),
+            'pusher' => $this->pusherInfo($account),
+        ]);
     }
 
     /**
@@ -111,6 +108,56 @@ class SystemController extends AdminController
         });
 
         return $modules;
+    }
+
+    /**
+     * @param Guard $guard
+     * @return mixed
+     */
+    protected function userInfo(Guard $guard)
+    {
+        $user = $guard->user();
+
+        if ($user->images->count() == 0) {
+            $this->dispatch(new CheckGravatarImage($user));
+        }
+
+        $user->load(['locale', 'translations', 'skills', 'skills.translations']);
+
+        $this->prepareImages($user);
+
+        return $user;
+    }
+
+    /**
+     * @param AccountManager $account
+     * @return array
+     */
+    protected function pusherInfo(AccountManager $account)
+    {
+        return [
+            'channel' => $account->account()->alias,
+            'apikey' => env('PUSHER_API_KEY')
+        ];
+    }
+
+    /**
+     * @param Application $app
+     * @return mixed
+     */
+    protected function systemInfo(Application $app)
+    {
+        return [
+            'locale' => $app->getLocale(),
+
+            'systemLocales' => $this->system_locales()->toArray(),
+
+            'locales' => $this->system_locales()->filter(function ($item) {
+                return $item->activated == true;
+            })->toArray(),
+
+            'systemModules' => $this->system_modules()->toArray(),
+        ];
     }
 
 }

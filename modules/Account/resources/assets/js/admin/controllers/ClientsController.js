@@ -11,6 +11,7 @@
             this.options = System.options;
 
             function load() {
+
                 Client.list({}).$promise.then(function (clients) {
                     me.clients = clients;
                 });

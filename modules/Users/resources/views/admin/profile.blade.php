@@ -2,100 +2,27 @@
 
     @include('system::admin.locale-tabs')
 
-    <div class="row">
 
-        <div class="col-md-6">
-            <div class="ibox">
-
-                <div class="ibox-title">
-                    <h5>{{ Lang::get('users::admin.profile.basic-info') }}</h5>
-                </div>
-
-                <div class="ibox-content">
-
-                    @include('users::admin.elements.profile')
-
-                </div>
-
-            </div>
-
-
-            <div address-input address-id="{{ $user->address ? $user->address->id : null }}" address-owner-type="'user'"
-                 address-owner-id="{{ $user->id }}"></div>
-
+    <div class="ibox">
+        <div class="ibox-tabs">
+            <uib-tabset>
+                <uib-tab heading="{{ Lang::get('users::admin.tabs.profile') }}" active="vm.mainTabs[0]"></uib-tab>
+                <uib-tab heading="{{ Lang::get('users::admin.tabs.bio') }}" active="vm.mainTabs[1]" ng-show="vm.profile.locale_id"></uib-tab>
+            </uib-tabset>
         </div>
+    </div>
 
-        <div class="col-md-6">
+    <div ng-show="vm.mainTabs[0]">
 
-            <div social-links-input owner-id="{{ $user->id }}" owner-type="'user'"></div>
-
-        </div>
-
-        <div class="col-md-6">
-
-            <div class="ibox">
-
-                <div class="ibox-title">
-                    <h5>{{ Lang::get('users::admin.profile.bio') }}</h5>
-                </div>
-
-                <div class="ibox-content">
-
-                    <div class="form-group">
-                        <label for="bio" class="control-label"></label>
-                        <textarea class="form-control autosize-lg" auto-size id="bio"
-                                  ng-model="vm.profile.translations[vm.options.locale].bio"
-                                  ng-change="vm.save()"></textarea>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="quote" class="control-label">{{ Lang::get('users::admin.quote') }}</label>
-
-                        <div>
-                            <input type="text" name="quote" id="quote" class="form-control"
-                                   ng-model="vm.profile.translations[vm.options.locale].quote" ng-change="vm.save()"/>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="quote_author"
-                               class="control-label">{{ Lang::get('users::admin.quote-author') }}</label>
-
-                        <div>
-                            <input type="text" name="quote_author" id="quote_author" class="form-control"
-                                   ng-model="vm.profile.translations[vm.options.locale].quote_author"
-                                   ng-change="vm.save()"/>
-                        </div>
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-        <div class="col-md-6">
-
-            <div class="ibox">
-
-                <div class="ibox-title">
-                    <h5>{{ Lang::get('users::admin.profile.skills') }}</h5>
-                </div>
-
-                <div class="ibox-content">
-
-                    @include('users::admin.elements.skills')
-
-                    <div class="clearfix"></div>
-
-                </div>
-
-            </div>
-
-        </div>
+        @include('users::admin.tabs.profile')
 
     </div>
 
+    <div class="row" ng-show="vm.mainTabs[1]" ng-show="vm.profile.locale_id">
+
+        @include('users::admin.tabs.skills')
+
+    </div>
 
     <div class="clearfix"></div>
 </div>
