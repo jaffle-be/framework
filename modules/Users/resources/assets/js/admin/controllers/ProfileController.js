@@ -3,17 +3,17 @@
 
     angular.module('users')
         .controller('ProfileController', function (ProfileService, SkillService, System) {
+            this.options = {};
             this.mainTabs = [true, false];
-            this.options = System.options;
             this.profile = {};
             this.profileErrors = [];
             this.loaded = false;
             var me = this;
 
             this.load = function () {
-                ProfileService.find(function (profile) {
-                    me.profile = profile;
-                    me.loaded = true;
+                System.then(function(){
+                    me.profile = System.user;
+                    me.options = System.options;
                 });
             };
 

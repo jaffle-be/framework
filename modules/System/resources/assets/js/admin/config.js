@@ -75,8 +75,22 @@
                     }
                 });
         })
-        .run(function ($rootScope, $state) {
+        .run(function ($rootScope, $state, System) {
             $rootScope.$state = $state;
+
+            $rootScope.$on('$stateChangeStart',
+                function (event, toState, toParams, fromState, fromParams) {
+
+                    //make sure users need to select their locale.
+                    System.then(function()
+                    {
+                        if (!System.user.locale_id && toState.name != 'admin.profile') {
+                            $state.go('admin.profile');
+                            event.preventDefault();
+                        }
+                    });
+
+                })
         });
 
 

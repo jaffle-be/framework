@@ -3,7 +3,7 @@
 
     angular.module('portfolio')
         .controller('PortfolioDetailController', function ($scope, Portfolio, PortfolioService, MembershipService, Client, $state, System) {
-            this.options = System.options;
+            this.options = {};
             this.projects = PortfolioService;
             this.memberships = [];
             this.collaborators = [];
@@ -15,6 +15,9 @@
             var me = this,
                 id = $state.params.id;
 
+            System.then(function(){
+                me.options = System.options;
+            });
 
             this.load = function (id) {
 

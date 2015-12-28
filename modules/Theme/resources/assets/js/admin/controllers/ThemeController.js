@@ -3,11 +3,15 @@
 
     angular.module('theme')
         .controller('ThemeController', function (ThemeService, Theme, $window, System) {
-            this.options = System.options;
+            this.options = {};
             this.themes = [];
             this.theme = false;
 
             var me = this;
+
+            System.then(function(){
+                me.options = System.options;
+            });
 
             ThemeService.list(function (themes) {
                 me.themes = themes;

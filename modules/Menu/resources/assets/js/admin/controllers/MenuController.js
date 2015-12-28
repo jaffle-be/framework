@@ -3,7 +3,7 @@
 
     angular.module('menu')
         .controller('MenuController', function (MenuService, MenuItem, System) {
-            this.options = System.options;
+            this.options = {};
             this.menus = [];
             //active menu
             this.menu = {};
@@ -14,6 +14,10 @@
             };
 
             var me = this;
+
+            System.then(function(){
+                me.options = System.options;
+            });
 
             //the item we are editing
             this.item;

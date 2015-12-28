@@ -4,9 +4,7 @@ namespace Modules\Users\Http\Admin;
 
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Http\Request;
-use Modules\Media\MediaWidgetPreperations;
 use Modules\System\Http\AdminController;
-use Modules\Users\Jobs\CheckGravatarImage;
 
 /**
  * Class UserController
@@ -14,7 +12,6 @@ use Modules\Users\Jobs\CheckGravatarImage;
  */
 class UserController extends AdminController
 {
-    use MediaWidgetPreperations;
 
     /**
      * the actual page.
@@ -25,25 +22,6 @@ class UserController extends AdminController
     public function profile(Guard $guard)
     {
         return view('users::admin.profile');
-    }
-
-    /**
-     * @param Guard $guard
-     * @return mixed
-     */
-    public function index(Guard $guard)
-    {
-        $user = $guard->user();
-
-        if ($user->images->count() == 0) {
-            $this->dispatch(new CheckGravatarImage($user));
-        }
-
-        $user->load(['translations', 'skills', 'skills.translations']);
-
-        $this->prepareImages($user);
-
-        return $user;
     }
 
     /**

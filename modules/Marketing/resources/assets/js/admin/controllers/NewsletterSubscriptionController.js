@@ -5,7 +5,7 @@
         .controller('NewsletterSubscriptionController', function ($scope, NewsletterSubscription, System) {
 
             //start with true so we don't see the layout flash
-            this.options = System.options;
+            this.options = {};
             this.loading = true;
             this.rpp = 25;
             this.total = 0;
@@ -16,6 +16,10 @@
             };
 
             var me = this;
+
+            System.then(function(){
+                me.options = System.options;
+            });
 
             this.list = function (table) {
                 me.table = table;

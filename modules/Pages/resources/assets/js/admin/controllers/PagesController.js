@@ -9,13 +9,17 @@
             };
 
             //start with true so we don't see the layout flash
-            this.options = System.options;
+            this.options = {};
             this.loading = true;
             this.rpp = 15;
             this.total = 0;
             this.pages = [];
 
             var me = this;
+
+            System.then(function(){
+                me.options = System.options;
+            });
 
             this.newPage = function () {
                 var page = new Page();

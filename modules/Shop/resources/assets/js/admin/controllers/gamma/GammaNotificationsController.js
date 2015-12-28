@@ -4,7 +4,7 @@
     angular.module('shop')
         .controller('GammaNotificationsController', function (toaster, GammaNotificationsService, System) {
 
-            this.options = System.options;
+            this.options = {};
             this.page = 1;
             this.totalItems = 0;
             this.notifications = [];
@@ -77,6 +77,11 @@
             };
 
             this.load = function () {
+
+                System.then(function(){
+                    me.options = System.options;
+                });
+
                 GammaNotificationsService.load({
                     page: me.page
                 }, function (response) {

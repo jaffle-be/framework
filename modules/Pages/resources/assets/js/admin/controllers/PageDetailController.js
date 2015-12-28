@@ -3,7 +3,7 @@
 
     angular.module('pages')
         .controller('PageDetailController', function ($scope, $state, Page, PageService, System) {
-            this.options = System.options;
+            this.options = {};
             this.pages = PageService;
             $scope.status = {
                 datepickerStatus: false
@@ -11,6 +11,10 @@
 
             var me = this,
                 id = $state.params.id;
+
+            System.then(function(){
+                me.options = System.options;
+            });
 
             this.load = function (id) {
                 if (id) {

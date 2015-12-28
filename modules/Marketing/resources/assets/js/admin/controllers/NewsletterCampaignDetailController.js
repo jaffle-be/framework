@@ -5,7 +5,7 @@
         .controller('NewsletterCampaignDetailController', function ($scope, $state, System, NewsletterCampaign, NewsletterCampaignService, $sce, toaster) {
 
             this.campaigns = NewsletterCampaignService;
-            this.options = System.options;
+            this.options = {};
             this.itemsPerRow = 1;
             //active state for tabs
             this.widgetTabs = [true, false];
@@ -42,6 +42,11 @@
             this.load(id);
 
             function load(id) {
+
+                System.then(function(){
+                    me.options = System.options;
+                });
+
                 if (id) {
                     me.campaign = me.campaigns.find(id, function (campaign) {
                         me.campaign = campaign;

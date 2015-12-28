@@ -8,11 +8,16 @@
             this.invitationErrors = [];
             this.memberships = [];
             this.editingTeams = false;
-            this.options = System.options;
+            this.options = {};
 
             var me = this;
 
             this.load = function () {
+
+                System.then(function(){
+                    me.options = System.options;
+                });
+
                 MembershipService.list(function (memberships) {
                     me.memberships = memberships
                 });

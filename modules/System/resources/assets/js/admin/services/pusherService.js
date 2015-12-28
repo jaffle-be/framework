@@ -20,7 +20,7 @@
 
             System.then(function()
             {
-                var client = new Pusher(System.options.pusher.apikey, {
+                var client = new Pusher(System.pusher.apikey, {
                     auth: {
                         headers: {
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -29,7 +29,7 @@
                 });
 
                 //we'd need a channel for each account
-                var alias = System.options.pusher.channel;
+                var alias = System.pusher.channel;
                 var pusher = $pusher(client);
                 var channel = pusher.subscribe('private-' + alias);
 

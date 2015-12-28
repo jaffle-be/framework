@@ -4,7 +4,7 @@
     angular.module('blog')
         .controller('BlogDetailController', function ($scope, $state, System, Blog, BlogService) {
 
-            this.options = System.options;
+            this.options = {};
             this.posts = BlogService;
             $scope.status = {
                 datepickerStatus: false
@@ -14,6 +14,11 @@
                 id = $state.params.id;
 
             this.load = function (id) {
+
+                System.then(function(){
+                    me.options = System.options;
+                });
+
                 if (id) {
                     this.post = this.posts.find(id, function (post) {
                         me.post = post;
