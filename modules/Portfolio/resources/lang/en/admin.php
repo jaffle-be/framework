@@ -6,6 +6,8 @@ return [
         'remove' => 'remove',
         'select_all' => 'all',
         'select_none' => 'none',
+        'publish' => 'publish',
+        'unpublish' => 'unpublish',
     ],
     'project' => [
         'client' => 'client',
