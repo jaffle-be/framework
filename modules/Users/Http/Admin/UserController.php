@@ -2,7 +2,7 @@
 
 namespace Modules\Users\Http\Admin;
 
-use Illuminate\Auth\Guard;
+use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Http\Request;
 use Modules\Media\MediaWidgetPreperations;
 use Modules\System\Http\AdminController;
