@@ -3,8 +3,8 @@
 
     angular.module('system').directive('ngConfirm', confirmation);
 
-    confirmation.$inject = ['$uibModal', '$translate'];
-    function confirmation($uibModal, $translate) {
+    confirmation.$inject = ['$uibModal'];
+    function confirmation($uibModal) {
 
         ModalInstanceCtrl.$inject = ['$scope', '$uibModalInstance'];
 
@@ -26,26 +26,17 @@
             link: function (scope, element, attrs) {
                 element.bind('click', function () {
 
-                    $translate('CONFIRM').then(function (translation) {
+                    var modalInstance = $uibModal.open({
+                        templateUrl: 'confirmModal.html',
+                        controller: ModalInstanceCtrl,
+                        animation: false,
+                        animate: false
+                    });
 
-                        scope.ngReallyMessage = 'Are you sure?';
-
-                        var modalHtml = '<div class="modal-body">' + scope.ngReallyMessage + '</div>';
-                        modalHtml += '<div class="modal-footer"><button class="btn btn-warning" ng-click="ok()">{{ "DO" | translate }}</button><button class="btn btn-default" ng-click="cancel()">{{ "CANCEL" | translate }}</button></div>';
-
-                        var modalInstance = $uibModal.open({
-                            templateUrl: modalHtml,
-                            controller: ModalInstanceCtrl,
-                            animation: false,
-                            animate: false
-                        });
-
-                        modalInstance.result.then(function () {
-                            scope.ngConfirm();
-                        }, function () {
-                            //Modal dismissed
-                        });
-
+                    modalInstance.result.then(function () {
+                        scope.ngConfirm();
+                    }, function () {
+                        //Modal dismissed
                     });
 
                 });

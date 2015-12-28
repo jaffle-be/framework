@@ -22,6 +22,17 @@
 
 <div ui-view></div>
 
+<script type="text/ng-template" id="confirmModal.html">
+    <div class="modal-body">{{ Lang::get('navigation.are-you-sure') }}</div>;
+    <div class="modal-footer"><button class="btn btn-warning" ng-click="ok()">{{ Lang::get('navigation.do') }}</button><button class="btn btn-default" ng-click="cancel()">{{ Lang::get('navigation.cancel') }}</button></div>
+</script>
+
+<script type="text/ng-template" id="reallyModal.html">
+<div class="modal-body">{{ Lang::get('navigation.are-you-sure') }}</div>
+<div class="modal-footer"><button class="btn btn-danger" ng-click="ok()">{{ Lang::get('navigation.remove') }}</button><button class="btn btn-default" ng-click="cancel()">{{ Lang::get('navigation.cancel') }}</button></div>
+</script>
+
+
 <script src=" {{ asset('/js/admin/core.min.js') }}"></script>
 
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBcPQMkol7H0kSnSSqYkJpRicrKfxWHC4o&libraries=places&v=3.exp"></script>
