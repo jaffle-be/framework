@@ -4,7 +4,6 @@ use Mockery as m;
 use Modules\System\Sluggable\OwnsSlug;
 use Modules\System\Translatable\Translatable;
 use Modules\System\Uri\Cleanup;
-use Modules\System\Uri\Uri;
 use Test\TestCase;
 
 class CleanupTranslatableMock{
@@ -12,25 +11,6 @@ class CleanupTranslatableMock{
     use Translatable;
 
     public $translations;
-}
-
-class TranslatedModelMock implements OwnsSlug{
-
-    public function slug()
-    {
-
-    }
-
-    public function sluggify()
-    {
-
-    }
-
-    public function save()
-    {
-
-    }
-
 }
 
 class CleanupTest extends TestCase
@@ -60,20 +40,25 @@ class CleanupTest extends TestCase
     {
         //we need the translation model to be sluggable
         $related = m::mock(OwnsSlug::class);
+        $relation = m::mock('translation_relation');
+        $relation->shouldReceive('getRelated')->once()->andReturn($related);
+
         $model = m::mock(CleanupTranslatableMock::class);
-        $model->shouldReceive('translations')->once()->andReturn($related);
+        $model->shouldReceive('translations')->once()->andReturn($relation);
 
         //we'll mock the actual translations with an array having 2 translations
 
         //so we expect 2 different slugs to be deleted
-        $slugOne = m::mock(Uri::class)->shouldReceive('delete')->once();
-        $slugTwo = m::mock(Uri::class)->shouldReceive('delete')->once();
+        $slugOne = m::mock('slug_one');
+        $slugOne->shouldReceive('delete')->once();
+        $slugTwo = m::mock('slug_two');
+        $slugTwo->shouldReceive('delete')->once();
 
         //one for each translation
         $translationOne = m::mock('sluggable_translation_one');
-        $translationOne->shoudReceive('slug')->once()->andReturn($slugOne);
+        $translationOne->shouldReceive('slug')->once()->andReturn($slugOne);
         $translationTwo = m::mock('sluggable_translation_two');
-        $translationTwo->shoudReceive('slug')->once()->andReturn($slugTwo);
+        $translationTwo->shouldReceive('slug')->once()->andReturn($slugTwo);
 
         //set both the translations on the model we're cleaning up
         $model->translations = [

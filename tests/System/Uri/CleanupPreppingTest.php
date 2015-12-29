@@ -9,6 +9,13 @@ use Test\TestCase;
 class CleanupPreppingTranslatableMock{
 
     use Translatable;
+
+    public $translations;
+
+    public function translations()
+    {
+        return $this->translations;
+    }
 }
 
 class CleanupPreppingTest extends TestCase
@@ -27,26 +34,31 @@ class CleanupPreppingTest extends TestCase
     public function testItDoesntFireForTranslationsModelsThatArentSluggable()
     {
         $related = m::mock('stdClass');
-        $related->shouldNotReceive('load');
 
-        $model = m::mock(CleanupPreppingTranslatableMock::class);
-        $model->shouldReceive('translations')->andReturn($related);
+        $translations = m::mock('some_translations');
+        $translations->shouldReceive('getRelated')->once()->andReturn($related);
+
+        $translatable = new CleanupPreppingTranslatableMock();
+        $translatable->translations = $translations;
 
         $prepper = new CleanupPrepping();
-        $prepper->handle($model);
+        $prepper->handle($translatable);
     }
 
 
     public function testItFiresForTranslationModelsThatAreSluggable()
     {
         $related = m::mock(OwnsSlug::class);
-        $related->shouldReceive('load')->with(['translations', 'translations.slug']);
 
-        $model = m::mock(CleanupPreppingTranslatableMock::class);
-        $model->shouldReceive('translations')->andReturn($related);
+        $translations = m::mock('some_translations');
+        $translations->shouldReceive('getRelated')->once()->andReturn($related);
+
+        $translatable = m::mock(CleanupPreppingTranslatableMock::class);
+        $translatable->shouldReceive('load')->with(['translations','translations.slug'])->once();
+        $translatable->shouldReceive('translations')->once()->andReturn($translations);
 
         $prepper = new CleanupPrepping();
-        $prepper->handle($model);
+        $prepper->handle($translatable);
     }
 
 }
