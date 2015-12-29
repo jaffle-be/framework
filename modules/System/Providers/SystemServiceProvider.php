@@ -75,9 +75,6 @@ class SystemServiceProvider extends ServiceProvider
         $this->app->make('validator')->extend('vat', 'Modules\System\Validators\Vat@validate');
     }
 
-    /**
-     *
-     */
     protected function viewGlobals()
     {
         /* @var Factory $view */
