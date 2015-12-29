@@ -17,7 +17,8 @@ class CleanupPrepping
      */
     public function handle($model)
     {
-        if (uses_trait(get_class($model), Translatable::class)) {
+        if (uses_trait($model, Translatable::class)) {
+
             $related = $model->translations()->getRelated();
 
             if ($related instanceof OwnsSlug) {

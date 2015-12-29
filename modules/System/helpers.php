@@ -1,20 +1,60 @@
 <?php
 
 use Illuminate\Http\Request;
-use Modules\Module\Module;
+use Mockery\MockInterface;
 
 if (! function_exists('uses_trait')) {
     /**
-     * @param $class
-     * @param $trait
-     * @return bool
+     * our uses_trait function needs some special threatment when testing
+     * so we implement a different function, based on that fact.
+     *
+     * when we're dealing with a mocked object,
+     * we need to get all the methods for the trait,
+     * and see if they are all implemented on that object.
+     * mockery doesn't know about what traits are being used.
      */
-    function uses_trait($class, $trait)
-    {
-        $stuff = class_uses($class);
+    if (env('APP_ENV') == 'testing') {
+        /**
+         * @param $class
+         * @param $trait
+         * @return bool
+         */
+        function uses_trait($object, $trait)
+        {
+            //same as the regular function implementation for non mocked objects
+            if (! $object instanceof MockInterface) {
+                $class = get_class($object);
 
-        return in_array($trait, $stuff);
+                $stuff = class_uses($class);
+
+                return in_array($trait, $stuff);
+            } else {
+                //handle trough reflection.
+                $ref = new ReflectionClass($trait);
+                $methods = $ref->getMethods();
+                $traitMethods = array_pluck($methods, 'name');
+
+                $ref = new ReflectionClass($object);
+                $methods = $ref->getMethods();
+                $objectMethods = array_pluck($methods, 'name');
+
+                $same = array_intersect($traitMethods, $objectMethods);
+
+                return count($same) == count($traitMethods);
+            }
+
+        }
+    } else {
+        function uses_trait($object, $trait)
+        {
+            $class = get_class($object);
+
+            $stuff = class_uses($class);
+
+            return in_array($trait, $stuff);
+        }
     }
+
 }
 
 if (! function_exists('store_route')) {

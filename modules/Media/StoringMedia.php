@@ -101,7 +101,7 @@ trait StoringMedia
      */
     public function getMediaFolder($type = null, $size = null)
     {
-        if (uses_trait(get_class($this), ModelAccountResource::class)) {
+        if (uses_trait($this, ModelAccountResource::class)) {
             $account = isset($this->attributes['account_id']) ? $this->attributes['account_id'] : app('Modules\Account\AccountManager')->account()->id;
 
             $media = str_replace('{account}', $account, $this->media);

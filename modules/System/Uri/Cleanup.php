@@ -27,7 +27,7 @@ class Cleanup
             $object->slug()->delete();
         }
 
-        if(uses_trait(get_class($object), Translatable::class))
+        if(uses_trait($object, Translatable::class))
         {
             $related = $object->translations()->getRelated();
 
