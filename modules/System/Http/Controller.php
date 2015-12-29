@@ -13,7 +13,8 @@ use Modules\Theme\ThemeManager;
  */
 abstract class Controller extends BaseController
 {
-    use DispatchesJobs, ValidatesRequests;
+    use DispatchesJobs;
+    use ValidatesRequests;
 
     /**
      * @param ThemeManager $theme
