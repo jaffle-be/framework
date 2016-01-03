@@ -1,14 +1,11 @@
 <?php namespace Test\System\Translatable;
 
-use Faker\Test\Provider\LocalizationTest;
 use Illuminate\Container\Container;
 use Illuminate\Contracts\Config\Repository;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Mockery as m;
-use Modules\System\Translatable\Exception\LocalesNotDefinedException;
 use Modules\System\Translatable\Translatable;
 use Modules\System\Translatable\TranslationModel;
 use Test\TestCase;
@@ -96,6 +93,21 @@ class TranslatableTest extends TestCase
     }
 
     public function testGettingTranslationWithFallback()
+    {
+
+    }
+
+    public function testFilling()
+    {
+
+    }
+
+    public function testGettingAttribute()
+    {
+
+    }
+
+    public function testSettingAttribute()
     {
 
     }
@@ -218,16 +230,6 @@ class TranslatableTest extends TestCase
         $this->assertInstanceOf(HasMany::class, $relation);
         $this->assertInstanceOf(TranslatableStubTranslation::class, $relation->getRelated());
         $this->assertInstanceOf(TranslatableStub::class, $relation->getParent());
-    }
-
-    public function testGettingAttribute()
-    {
-
-    }
-
-    public function testSettingAttribute()
-    {
-
     }
 
     public function testIsTranslationAttribute()
@@ -373,11 +375,6 @@ class TranslatableTest extends TestCase
         $stub->shouldReceive('saveTranslations')->once()->andReturn('save translations result');
 
         $this->assertSame('save translations result', $stub->save());
-    }
-
-    public function testFilling()
-    {
-
     }
 
     public function testGettingNewTranslation()
