@@ -14,41 +14,18 @@ use Modules\System\Translatable\Exception\LocalesNotDefinedException;
  */
 trait Translatable
 {
-    /*
-     * Alias for getTranslation()
-     */
-    /**
-     * @param null $locale
-     * @param bool|false $withFallback
-     * @return null|void
-     */
-    public function translate($locale = null, $withFallback = false)
-    {
-        return $this->getTranslation($locale, $withFallback);
-    }
 
-    /*
-     * Alias for getTranslation()
-     */
-    /**
-     * @param $locale
-     * @return null|void
-     */
-    public function translateOrDefault($locale)
-    {
-        return $this->getTranslation($locale, true);
-    }
-
-    /*
-     * Alias for getTranslationOrNew()
-     */
     /**
      * @param $locale
      * @return mixed|null|void
      */
     public function translateOrNew($locale)
     {
-        return $this->getTranslationOrNew($locale);
+        if (($translation = $this->translate($locale, false)) === null) {
+            $translation = $this->getNewTranslation($locale);
+        }
+
+        return $translation;
     }
 
     /**
@@ -56,7 +33,7 @@ trait Translatable
      * @param null $withFallback
      * @return null|void
      */
-    public function getTranslation($locale = null, $withFallback = null)
+    public function translate($locale = null, $withFallback = null)
     {
         $locale = $locale ?: app()->getLocale();
 
@@ -142,11 +119,11 @@ trait Translatable
         }
 
         if ($this->isTranslationAttribute($key)) {
-            if ($this->getTranslation() === null) {
+            if ($this->translate() === null) {
                 return;
             }
 
-            return $this->getTranslation($locale)->$key;
+            return $this->translate($locale)->$key;
         }
 
         return parent::getAttribute($key);
@@ -165,7 +142,7 @@ trait Translatable
         }
 
         if (in_array($key, $this->translatedAttributes)) {
-            $this->getTranslationOrNew($locale)->$key = $value;
+            $this->translateOrNew($locale)->$key = $value;
         } else {
             parent::setAttribute($key, $value);
         }
@@ -178,6 +155,7 @@ trait Translatable
     public function save(array $options = [])
     {
         if ($this->exists) {
+
             //this might need a db transaction.
             //if the parent returns true, but the translations return false
             //we information partially while still returning false to the developer.
@@ -206,19 +184,6 @@ trait Translatable
     }
 
     /**
-     * @param $locale
-     * @return mixed|null|void
-     */
-    protected function getTranslationOrNew($locale)
-    {
-        if (($translation = $this->getTranslation($locale, false)) === null) {
-            $translation = $this->getNewTranslation($locale);
-        }
-
-        return $translation;
-    }
-
-    /**
      * @param array $attributes
      * @return mixed
      */
@@ -230,7 +195,7 @@ trait Translatable
             if ($this->isKeyALocale($key)) {
                 foreach ($values as $translationAttribute => $translationValue) {
                     if ($this->alwaysFillable() or $this->isFillable($translationAttribute)) {
-                        $this->getTranslationOrNew($key)->$translationAttribute = $translationValue;
+                        $this->translateOrNew($key)->$translationAttribute = $translationValue;
                     } elseif ($totallyGuarded) {
                         throw new MassAssignmentException($key);
                     }
@@ -259,7 +224,7 @@ trait Translatable
     /**
      * @return mixed
      */
-    private function getFallbackLocale()
+    public function getFallbackLocale()
     {
         return config('system.fallback_locale');
     }
@@ -267,9 +232,10 @@ trait Translatable
     /**
      *
      */
-    private function useFallback()
+    public function useFallback()
     {
-        if (isset($this->useTranslationFallback) && $this->useTranslationFallback !== null) {
+        if (isset($this->useTranslationFallback) && $this->useTranslationFallback){
+
             return $this->useTranslationFallback;
         }
 
@@ -280,7 +246,7 @@ trait Translatable
      * @param $key
      * @return bool
      */
-    protected function isTranslationAttribute($key)
+    public function isTranslationAttribute($key)
     {
         return in_array($key, $this->translatedAttributes);
     }
@@ -290,7 +256,7 @@ trait Translatable
      * @return bool
      * @throws LocalesNotDefinedException
      */
-    protected function isKeyALocale($key)
+    public function isKeyALocale($key)
     {
         $locales = $this->getLocales();
 
@@ -301,7 +267,7 @@ trait Translatable
      * @return mixed
      * @throws LocalesNotDefinedException
      */
-    protected function getLocales()
+    public function getLocales()
     {
         $locales = config('system.locales');
 
@@ -316,7 +282,7 @@ trait Translatable
     /**
      * @return bool
      */
-    protected function saveTranslations()
+    public function saveTranslations()
     {
         $saved = true;
         foreach ($this->translations as $translation) {
@@ -333,7 +299,7 @@ trait Translatable
      * @param Model $translation
      * @return bool
      */
-    protected function isTranslationDirty(Model $translation)
+    public function isTranslationDirty(Model $translation)
     {
         $dirtyAttributes = $translation->getDirty();
         unset($dirtyAttributes[$this->getLocaleKey()]);
@@ -419,7 +385,7 @@ trait Translatable
     /**
      * @return mixed
      */
-    private function alwaysFillable()
+    public function alwaysFillable()
     {
         return config('system.always_fillable', false);
     }
@@ -427,7 +393,7 @@ trait Translatable
     /**
      * @return mixed
      */
-    private function getTranslationsTable()
+    public function getTranslationsTable()
     {
         return app($this->getTranslationModelName())->getTable();
     }
