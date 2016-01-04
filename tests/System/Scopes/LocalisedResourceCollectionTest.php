@@ -29,7 +29,7 @@ class DummyLocalisedResource
     public function toArray()
     {
         return [
-            'id'        => $this->id,
+            'id' => $this->id,
             'locale_id' => $this->locale_id,
         ];
     }
@@ -41,17 +41,17 @@ class LocalisedResourceCollectionTest extends TestCase
     {
         $collection = new LocalisedResourceCollection([
             new DummyLocalisedResource([
-                'id'        => 1000,
+                'id' => 1000,
                 'locale_id' => 1,
             ]),
 
             new DummyLocalisedResource([
-                'id'        => 2000,
+                'id' => 2000,
                 'locale_id' => 1,
             ]),
 
             new DummyLocalisedResource([
-                'id'        => 3000,
+                'id' => 3000,
                 'locale_id' => 2,
             ]),
         ]);
@@ -75,17 +75,17 @@ class LocalisedResourceCollectionTest extends TestCase
     {
         $collection = new LocalisedResourceCollection([
             new DummyLocalisedResource([
-                'id'        => 1000,
+                'id' => 1000,
                 'locale_id' => 1,
             ]),
 
             new DummyLocalisedResource([
-                'id'        => 2000,
+                'id' => 2000,
                 'locale_id' => 1,
             ]),
 
             new DummyLocalisedResource([
-                'id'        => 3000,
+                'id' => 3000,
                 'locale_id' => 2,
             ]),
         ]);
@@ -106,22 +106,22 @@ class LocalisedResourceCollectionTest extends TestCase
     {
         parent::setUp();
 
-        Locale::unguard();
-
-        $data = [
-            new Locale([
-                'id'   => 1,
-                'slug' => 'nl',
-            ]),
-            new Locale([
-                'id'   => 2,
-                'slug' => 'fr',
-            ]),
-            new Locale([
-                'id'   => 3,
-                'slug' => 'en',
-            ]),
-        ];
+        $data = Locale::unguarded(function () {
+            return [
+                new Locale([
+                    'id' => 1,
+                    'slug' => 'nl',
+                ]),
+                new Locale([
+                    'id' => 2,
+                    'slug' => 'fr',
+                ]),
+                new Locale([
+                    'id' => 3,
+                    'slug' => 'en',
+                ]),
+            ];
+        });
 
         $locales = m::mock(Locale::class);
 
