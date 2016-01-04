@@ -50,8 +50,7 @@ trait SearchResponder
 
             $path = Paginator::resolveCurrentPath();
 
-            //for some reason things do not work when passing in the options as an array like so
-//            $results = new LengthAwarePaginator($collection, $results['hits']['total'], $this->pagination, ['path' => $path]);
+            //for some reason things do not work when passing in the options as an regular array
             $results = new LengthAwarePaginator($collection, $results['hits']['total'], $paginated);
             $results->setPath($path);
             //only need transform into a collection when we didn't lazyload relations
