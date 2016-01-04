@@ -5,12 +5,14 @@ use Illuminate\Contracts\Config\Repository;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Collection;
 use Mockery as m;
 use Modules\System\Translatable\Translatable;
 use Modules\System\Translatable\TranslationModel;
 use Test\TestCase;
 
-class StubModel extends Model{
+class StubModel extends Model
+{
 
     public $parentSaver;
 
@@ -24,6 +26,8 @@ class TranslatableStub extends StubModel
 {
 
     public $translatedAttributes = [];
+
+    public $fillable = ['name'];
 
     public $translationForeignKey = false;
 
@@ -46,6 +50,7 @@ class TranslatableStub extends StubModel
 class TranslatableStubTranslation extends TranslationModel
 {
 
+    public $fillable = ['locale', 'name', 'testTranslated'];
 }
 
 class TranslationStub
@@ -86,30 +91,196 @@ class TranslatableTest extends TestCase
         $this->assertSame($translation, $mock->translateOrNew('locale'));
     }
 
-    public function testTranslateWithoutLocaleAndWithoutFallback()
+    public function testTranslatingWithCurrentLocaleAndNoFallback()
     {
-        //without fallback the locale should be the one from our app
-        //
+        $translation = new TranslatableStubTranslation(['name' => 'test', 'locale' => 'en']);
+
+        $stub = new TranslatableStub();
+        $stub->translations = new Collection();
+        $stub->translations->add($translation);
+
+        $this->assertSame($translation, $stub->translate());
+        $stub->translations = [];
+        $this->assertNull($stub->translate());
     }
 
-    public function testGettingTranslationWithFallback()
+    public function testTranslatingWithSpecifiedLocaleAndNoFallback()
     {
+        $translation = new TranslatableStubTranslation(['name' => 'test', 'locale' => 'nl']);
 
+        $stub = new TranslatableStub();
+        $stub->translations = new Collection();
+        $stub->translations->add($translation);
+
+        $this->assertSame($translation, $stub->translate('nl'));
+        $this->assertNull($stub->translate('en'));
     }
 
-    public function testFilling()
+    public function testTranslatingWithCurrentLocaleAndFallback()
     {
+        $translation = new TranslatableStubTranslation(['name' => 'test', 'locale' => 'nl']);
 
+        $stub = new TranslatableStub();
+        $stub->translations = new Collection();
+        $stub->translations->add($translation);
+
+        //set the fallback locale to be 'nl'
+        //As currently, our app locale is 'en' and so is the fallback.
+        //need to make sure in our test that the actuall fallback is returned here.
+        $config = app('config');
+        $config->set('system.fallback_locale', 'nl');
+
+        $this->assertSame($translation, $stub->translate(null, true));
+
+        //now when we add an english translation, we should receive that one.
+        $english = new TranslatableStubTranslation(['name' => 'test', 'locale' => 'en']);
+        $stub->translations->add($english);
+
+        $this->assertSame($english, $stub->translate(null, true));
+    }
+
+    public function testTranslatingWithSpecifiedLocaleAndFallback()
+    {
+        $translation = new TranslatableStubTranslation(['name' => 'test', 'locale' => 'nl']);
+
+        $stub = new TranslatableStub();
+        $stub->translations = new Collection();
+        $stub->translations->add($translation);
+
+        $config = app('config');
+        $config->set('system.fallback_locale', 'nl');
+
+        $this->assertSame($translation, $stub->translate('en', true));
+
+        $english = new TranslatableStubTranslation(['name' => 'test', 'locale' => 'en']);
+        $stub->translations->add($english);
+
+        //now it should return the english one
+        $this->assertSame($english, $stub->translate('en', true));
+    }
+
+    public function testGettingTranslationByLocaleKey()
+    {
+        $translation1 = m::mock(TranslatableStubTranslation::class);
+        $translation1->shouldReceive('getAttribute')->with('locale')->andReturn('en');
+
+        $translation2 = m::mock(TranslatableStubTranslation::class);
+        $translation2->shouldReceive('getAttribute')->with('locale')->andReturn('nl');
+
+        $translation3 = m::mock(TranslatableStubTranslation::class);
+        $translation3->shouldReceive('getAttribute')->with('locale')->andReturn('fr');
+
+
+        $stub = new TranslatableStub();
+        $stub->translations = [
+            $translation1,
+            $translation2,
+            $translation3
+        ];
+
+        $this->assertSame($translation1, $stub->getTranslationByLocaleKey('en'));
+        $this->assertSame($translation2, $stub->getTranslationByLocaleKey('nl'));
+        $this->assertSame($translation3, $stub->getTranslationByLocaleKey('fr'));
+    }
+
+    /**
+     * @expectedException \Illuminate\Database\Eloquent\MassAssignmentException
+     */
+    public function testFillingRegularAttributesThrowsAnErrorWhenNotFillableAttributes()
+    {
+        $stub = new TranslatableStub();
+        $stub->fillable = [];
+        $stub->fill(['wrong_fillable' => 'haha']);
+    }
+
+    /**
+     * @expectedException \Illuminate\Database\Eloquent\MassAssignmentException
+     */
+    public function testFillingTranslatedAttributesThrowsAnErrorWhenNotFillableAttributes()
+    {
+        $stub = new TranslatableStub();
+        $stub->fillable = [];
+        $stub->translations = new Collection();
+        $stub->translatedAttributes = ['wrong_fillable'];
+        $stub->fill([
+            'en' => ['wrong_fillable' => 'haha']
+        ]);
+    }
+
+    public function testFillingWorksWhenRegularAttributeIsFillable()
+    {
+        $stub = new TranslatableStub();
+        $stub->fill(['name' => 'haha']);
+
+        $this->assertSame('haha', $stub->name);
+    }
+
+    public function testFillingWorksWhenTranslatedAttributesAreFillableAttributes()
+    {
+        $stub = new TranslatableStub();
+        $stub->translatedAttributes = ['name'];
+        $stub->translations = new Collection();
+        $stub->fill([
+            'en' => ['name' => 'haha']
+        ]);
+
+        //use collections (not our translatable methods) to fetch the translation,
+        //collections are tested outside and we 'know' they work.
+        //our function might be a bad one.
+        $this->assertSame('haha', $stub->translations->first()->name);
+        $this->assertSame('en', $stub->translations->first()->{$stub->getLocaleKey()});
     }
 
     public function testGettingAttribute()
     {
+        $stub = new TranslatableStub();
+        $stub->translatedAttributes = ['testTranslated'];
+        $stub->translations = new Collection();
+
+        $stub->setAttribute('testRegular', 'regular');
+        $stub->setAttribute('testTranslated', 'translated_en');
+        $stub->setAttribute('testTranslated:nl', 'translated_nl');
+        $stub->setAttribute('testTranslated:fr', 'translated_fr');
+
+        $this->assertSame('regular', $stub->getAttribute('testRegular'));
+        $this->assertSame('translated_en', $stub->getAttribute('testTranslated'));
+        $this->assertSame('translated_fr', $stub->getAttribute('testTranslated:fr'));
+        $this->assertSame('translated_nl', $stub->getAttribute('testTranslated:nl'));
 
     }
 
     public function testSettingAttribute()
     {
+        $stub = new TranslatableStub();
 
+        $stub->translatedAttributes = ['testTranslated'];
+        $stub->translations = new Collection();
+
+        //regular attribute
+        $stub->setAttribute('testRegular', 'regular');
+        //translated attribute with no locale specified
+        $stub->setAttribute('testTranslated', 'translated_en');
+        //2 tests with locale specified
+        $stub->setAttribute('testTranslated:nl', 'translated_nl');
+        $stub->setAttribute('testTranslated:fr', 'translated_fr');
+
+        $this->assertSame('regular', $stub->testRegular);
+        $this->assertCount(3, $stub->translations);
+
+        $map = [
+            'nl' => 'translated_nl',
+            'en' => 'translated_en',
+            'fr' => 'translated_fr',
+        ];
+
+        //quick check if our values are properly set on every model
+        foreach($stub->translations as $translation)
+        {
+            $locale = $translation->locale;
+            $value = $translation->testTranslated;
+
+            $this->assertTrue($map[$locale] == $value);
+        }
     }
 
     public function testUseFallbackLocale()
@@ -382,7 +553,7 @@ class TranslatableTest extends TestCase
         //need to mock construction since we're initiating a new Model instance within the function
         //or it fails due to datase reasons.
         $collection = m::mock('collection');
-        $collection->shouldReceive('add')->with(m::on(function($argument){
+        $collection->shouldReceive('add')->with(m::on(function ($argument) {
             return $argument instanceof TranslatableStubTranslation;
         }))->once();
 

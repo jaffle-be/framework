@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\MassAssignmentException;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Query\Builder as QueryBuilder;
 use Modules\System\Translatable\Exception\LocalesNotDefinedException;
+use Test\System\Translatable\TranslatableStub;
 
 /**
  * Class Translatable
@@ -39,18 +40,24 @@ trait Translatable
 
         $withFallback = $withFallback === null ? $this->useFallback() : $withFallback;
 
-        if ($this->getTranslationByLocaleKey($locale)) {
-            $translation = $this->getTranslationByLocaleKey($locale);
-        } elseif ($withFallback
-            && $this->getFallbackLocale()
-            && $this->getTranslationByLocaleKey($this->getFallbackLocale())
-        ) {
-            $translation = $this->getTranslationByLocaleKey($this->getFallbackLocale());
-        } else {
-            $translation = null;
+        $translation = $this->getTranslationByLocaleKey($locale);
+
+        if($translation)
+        {
+            return $translation;
         }
 
-        return $translation;
+        if ($withFallback && $this->getFallbackLocale())
+        {
+            $translation = $this->getTranslationByLocaleKey($this->getFallbackLocale());
+
+            if($translation){
+
+                return $translation;
+            }
+        }
+
+        return null;
     }
 
     /**
@@ -210,7 +217,7 @@ trait Translatable
     /**
      * @param $key
      */
-    private function getTranslationByLocaleKey($key)
+    public function getTranslationByLocaleKey($key)
     {
         foreach ($this->translations as $translation) {
             if ($translation->getAttribute($this->getLocaleKey()) == $key) {
@@ -218,7 +225,7 @@ trait Translatable
             }
         }
 
-        return;
+        return null;
     }
 
     /**
