@@ -37,9 +37,9 @@ class LocaleMiddleware
             $request = app('request');
 
             if (env('APP_MULTIPLE_LOCALES')) {
-                //if valid locale
                 $locale = $request->segment(1);
 
+                //if invalid locale
                 if (empty($locale) || ! in_array($locale, config('system.locales'))) {
                     //use the current default locale
                     $locale = app()->getLocale();
