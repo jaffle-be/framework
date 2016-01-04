@@ -85,7 +85,9 @@ class Config
      */
     protected function usesTranslations($type)
     {
-        return uses_trait($this->getClass($type), Translatable::class);
+        $class = $this->getClass($type);
+
+        return uses_trait(new $class(), Translatable::class);
     }
 
     /**

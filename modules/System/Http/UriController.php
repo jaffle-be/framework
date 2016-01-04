@@ -14,7 +14,8 @@ use Modules\System\Uri\Uri;
  */
 class UriController extends FrontController
 {
-    use BlogFrontControlling, PagesFrontControlling;
+    use BlogFrontControlling;
+    use PagesFrontControlling;
 
     /**
      * @param Uri $uri

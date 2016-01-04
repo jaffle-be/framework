@@ -3,10 +3,12 @@
 namespace Test;
 
 use App\Console\Kernel;
+use Mockery as m;
 
 class TestCase extends \Illuminate\Foundation\Testing\TestCase
 {
     protected $baseUrl = 'http://digiredo.local';
+
 
     /**
      * Creates the application.
@@ -33,4 +35,17 @@ class TestCase extends \Illuminate\Foundation\Testing\TestCase
     {
         putenv('RUNNING_TESTS_FRONT=false');
     }
+
+
+    public function tearDown()
+    {
+        if ($container = m::getContainer()) {
+            $this->addToAssertionCount($container->mockery_getExpectationCount());
+        }
+        m::close();
+
+        parent::tearDown();
+    }
+
+
 }

@@ -186,7 +186,7 @@ trait SearchableTrait
             $mapping = static::$searchableMapping;
         }
 
-        if (uses_trait(static::class, Translatable::class)) {
+        if (uses_trait($this, Translatable::class)) {
             $suggests = [];
 
             foreach (Locale::all() as $locale) {
@@ -334,7 +334,7 @@ trait SearchableTrait
     {
         $data = [];
 
-        if (uses_trait(static::class, Translatable::class)) {
+        if (uses_trait($this, Translatable::class)) {
             //foreach locale we add a different suggest
             foreach (Locale::all() as $locale) {
                 $translation = $this->translate($locale->slug);

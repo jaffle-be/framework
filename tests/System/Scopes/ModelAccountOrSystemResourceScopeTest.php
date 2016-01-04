@@ -58,7 +58,6 @@ class ModelAccountOrSystemResourceScopeTest extends TestCase
      */
     protected function managerWithAccount()
     {
-        Account::unguard();
         $account = new Account();
         $account->id = 1000;
         $manager = m::mock(AccountManager::class);

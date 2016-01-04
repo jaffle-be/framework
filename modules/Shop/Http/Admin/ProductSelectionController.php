@@ -4,6 +4,7 @@ namespace Modules\Shop\Http\Admin;
 
 use Illuminate\Http\Request;
 use Modules\Account\AccountManager;
+use Modules\Account\IndexManager;
 use Modules\Search\SearchServiceInterface;
 use Modules\Shop\Gamma\ProductSelection;
 use Modules\Shop\Jobs\UpdateProduct;
@@ -33,7 +34,7 @@ class ProductSelectionController extends AdminController
      * @param AccountManager $account
      * @return mixed
      */
-    public function index(Request $request, ProductSelection $selections, SearchServiceInterface $search, Product $products, AccountManager $account)
+    public function index(Request $request, ProductSelection $selections, SearchServiceInterface $search, Product $products, AccountManager $account, IndexManager $indexer)
     {
         $account = $account->account();
         //bazinga, we can now fully search using elasticsearch.
@@ -41,8 +42,10 @@ class ProductSelectionController extends AdminController
         //even a minute would be acceptable, for blazing fast sites.
         //allright
 
+        $indexes = $account->alias;
+
         $query = [
-            'index' => config('search.index'),
+            'index' => $indexes,
             'type' => $selections->getSearchableType(),
             'body' => [
                 'query' => [
@@ -53,7 +56,6 @@ class ProductSelectionController extends AdminController
                     ],
                 ],
             ],
-            'routing' => $account->id,
         ];
 
         $relations = [

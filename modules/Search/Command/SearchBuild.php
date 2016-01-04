@@ -53,6 +53,8 @@ class SearchBuild extends Command
      */
     public function fire()
     {
+        $this->call('search:speed', ['speed' => '5m']);
+
         $this->indexManager->allAliases();
 
         $types = $this->argument('types');
@@ -74,6 +76,8 @@ class SearchBuild extends Command
 
             $this->info(sprintf('%s seconds', $seconds));
         }
+
+        $this->call('search:speed');
     }
 
     /**

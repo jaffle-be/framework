@@ -52,7 +52,7 @@ abstract class Seeder extends BaseSeeder
             $this->de = Faker::create('de_DE');
             $this->faker = $this->en;
         }
-//        Model::unguard();
+
         \DB::disableQueryLog();
 
         $this->mediaConfig = app(Configurator::class);

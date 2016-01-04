@@ -15,7 +15,6 @@ class TranslationModel extends Model
      *
      * @param array $items
      * @return \Illuminate\Database\Eloquent\Collection
-     * @internal param array $models
      */
     public function newCollection(array $items = [])
     {

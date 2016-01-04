@@ -23,7 +23,14 @@ use Modules\Tags\Taggable;
  */
 class Product extends Model implements StoresMedia, PresentableEntity, SeoEntity, Searchable
 {
-    use Translatable, StoringMedia, PresentableTrait, FrontScoping, SeoTrait, Taggable, EventedRelations, SearchableTrait;
+    use Translatable;
+    use StoringMedia;
+    use PresentableTrait;
+    use FrontScoping;
+    use SeoTrait;
+    use Taggable;
+    use EventedRelations;
+    use SearchableTrait;
 
     protected $table = 'products';
 
